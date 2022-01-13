@@ -38,7 +38,7 @@
                 <div class="controls">
                 <?php
 
-                    $stmt = $role->read();
+                    $stmt = $role->showAll();
 
                     while($row_roles = $stmt->fetch(PDO::FETCH_ASSOC)){
                         extract($row_roles);

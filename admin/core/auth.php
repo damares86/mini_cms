@@ -55,6 +55,7 @@ if ($email_exists && password_verify($_POST['password'], $user->password)){
 // if username does not exist or password is wrong
 else{
     $access_denied=true;
+    print_r("ko");
 }
 
   

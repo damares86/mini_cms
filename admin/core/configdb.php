@@ -69,9 +69,6 @@ function autoloader($class){
 $database = new Database();
 $db = $database->getConnection();
 
-// require "functions.php";
-
-// $conn=OpenConnection();
 
 /////////////////////////////////////////////////////////////
 
@@ -85,11 +82,11 @@ $db->query("CREATE TABLE IF NOT EXISTS accounts
                              username VARCHAR(50) NOT NULL,
                              password VARCHAR(255) NOT NULL,
                              email VARCHAR(255) NOT NULL,
-                             role_id VARCHAR(50) NOT NULL)");
+                             rolename VARCHAR(50) NOT NULL)");
 
 $db->query("INSERT INTO accounts
-                            (id, username, password,email,role_id)
-                            VALUES ('1','admin', '$2y$10$/EoJNAFqj1MgZRZOs4iG3OY22LXjUJsFXdPCQGhjUClVRXNup0Vbm','mail@mail.com','1')
+                            (id, username, password,email,rolename)
+                            VALUES ('1','admin', '$2y$10$ejPT3k8pid12LTthDprOkuis79ZpEtEqSJO8D8eECrKZO47IlrTfC','mail@mail.com','Admin')
                             ");
 
 // creating file's table

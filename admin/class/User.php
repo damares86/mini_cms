@@ -61,11 +61,44 @@ class User{
         echo "</pre>";
     }
 
+    // da capire il where
+
+    function showAll($from_record_num, $records_per_page){
+        $query = "SELECT
+                    id, username, email, rolename
+                FROM
+                " . $this->table_name . "
+                WHERE
+                    rolename != 'Admin'
+                ORDER BY
+                    username ASC
+                LIMIT
+                    {$from_record_num}, {$records_per_page}";
+      
+        $stmt = $this->conn->prepare( $query );
+        $stmt->execute();
+        
+        return $stmt;
+    }
+
+    public function countAll(){
+    
+        $query = "SELECT id FROM accounts";
+    
+        $stmt = $this->conn->prepare( $query );
+        $stmt->execute();
+    
+        $num = $stmt->rowCount();
+    
+        return $num;
+    }
+
+
     // check if given email exist in the database
     function emailExists(){
     
         // query to check if email exists
-        $query = "SELECT id, username, password, role_id
+        $query = "SELECT id, username, password, rolename
                 FROM " . $this->table_name . "
                 WHERE email = ?
                 LIMIT 0,1";

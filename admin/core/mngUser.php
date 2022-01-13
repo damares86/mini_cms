@@ -50,15 +50,15 @@ if(filter_input(INPUT_POST,"subReg")){
 		
 		// create the user
 		if($user->create()){
-			echo "<div class='alert alert-info'>";
-				echo "Successfully registered. <a href='{$home_url}login'>Please login</a>.";
-			echo "</div>";
+			header("Location: ../index.php?msg=userSucc");
+			exit;
 		
 			// empty posted values
-			$_POST=array();
+			// $_POST=array();
 		
 		}else{
-			echo "<div class='alert alert-danger' role='alert'>Unable to register. Please try again.</div>";
+			header("Location: ../index.php?msg=userErr");
+			exit;
 		}
 	}
 	
