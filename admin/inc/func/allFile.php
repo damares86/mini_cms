@@ -42,6 +42,8 @@
             <tr>
                 <td><?=$id?></td>
                 <td><?=$title?></td>
+                <td><?=$filename?></td>
+                <td>Link</td>
 
       
                         <td><a href="index.php?man=roles&op=edit&idToMod=<?=$row["id"] ?>"><button type="button" class="btn btn-primary">Edit</button></a></td>

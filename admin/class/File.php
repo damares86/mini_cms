@@ -91,6 +91,34 @@ class File{
  
     }
 
+
+    function showAll(){
+        //select all data
+        $query = "SELECT
+                    id, filename, title
+                FROM
+                    " . $this->table_name . "
+                ORDER BY
+                    id";  
+  
+        $stmt = $this->conn->prepare( $query );
+        $stmt->execute();
+  
+        return $stmt;
+    }
+
+    public function countAll(){
+    
+        $query = "SELECT id FROM files";
+    
+        $stmt = $this->conn->prepare( $query );
+        $stmt->execute();
+    
+        $num = $stmt->rowCount();
+    
+        return $num;
+    }
+
     function uploadPhoto(){
     
         $result_message="";
@@ -169,34 +197,7 @@ class File{
     }
 
 
-    function showAll(){
-        //select all data
-        $query = "SELECT
-                    id, filename
-                FROM
-                    " . $this->table_name . "
-                WHERE NOT
-                    rolename='Admin'
-                ORDER BY
-                    id";  
-  
-        $stmt = $this->conn->prepare( $query );
-        $stmt->execute();
-  
-        return $stmt;
-    }
 
-    public function countAll(){
-    
-        $query = "SELECT id FROM roles";
-    
-        $stmt = $this->conn->prepare( $query );
-        $stmt->execute();
-    
-        $num = $stmt->rowCount();
-    
-        return $num;
-    }
 
 
  // delete the role
