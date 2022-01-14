@@ -29,32 +29,24 @@ if(filter_input(INPUT_POST,"subReg")){
 	$role = new Role($db);
 
 	//inserimento
-	$role->email=$_POST['email'];
+	$role->rolename=$_POST['rolename'];
 
-	if($user->emailExists()){
-        header("Location: ../index.php?err=mailExists");
+	if($role->roleExists()){
+        header("Location: ../index.php?err=roleExists");
     } else {
 
-		$roleArr=$_POST['rolename'];
-		$rolename=$roleArr[0];
-
-		// set values to object properties
-		$user->username=$_POST['username'];
-		$user->email=$_POST['email'];
-		$user->password=$_POST['password'];
-		$user->rolename=$rolename;
-	
+		$role->rolename=$_POST['rolename'];
 		
 		// create the user
-		if($user->create()){
-			header("Location: ../index.php?msg=userSucc");
+		if($role->create()){
+			header("Location: ../index.php?msg=roleSucc");
 			exit;
 		
 			// empty posted values
 			// $_POST=array();
 		
 		}else{
-			header("Location: ../index.php?msg=userErr");
+			header("Location: ../index.php?msg=roleErr");
 			exit;
 		}
 	}

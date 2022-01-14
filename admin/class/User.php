@@ -61,7 +61,6 @@ class User{
         echo "</pre>";
     }
 
-    // da capire il where
 
     function showAll($from_record_num, $records_per_page){
         $query = "SELECT
