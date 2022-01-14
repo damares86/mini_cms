@@ -20,8 +20,8 @@ class Role{
                     id, rolename
                 FROM
                     " . $this->table_name . "
-                WHERE
-                    rolename != 'Admin'
+                WHERE NOT
+                    rolename='Admin'
                 ORDER BY
                     id";  
   
@@ -31,22 +31,33 @@ class Role{
         return $stmt;
     }
 
-    function showById($id){
-        
-        //select all data
-        $query = "SELECT
-                    rolename
-                FROM
-                    " . $this->table_name . "
-                WHERE
-                    id = ".$id."";  
-        
+    public function countAll(){
+    
+        $query = "SELECT id FROM roles";
+    
         $stmt = $this->conn->prepare( $query );
-        
         $stmt->execute();
-        return $stmt;
-
+    
+        $num = $stmt->rowCount();
+    
+        return $num;
     }
+    // function showById($id){
+        
+    //     //select all data
+    //     $query = "SELECT
+    //                 rolename
+    //             FROM
+    //                 " . $this->table_name . "
+    //             WHERE
+    //                 id = ".$id."";  
+        
+    //     $stmt = $this->conn->prepare( $query );
+        
+    //     $stmt->execute();
+    //     return $stmt;
+
+    // }
 
     // function rolename_id(){
     //     //select all data

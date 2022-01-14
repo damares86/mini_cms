@@ -8,7 +8,7 @@ class User{
     public $id;
     public $username;
     public $password;
-    public $role_id;
+    public $rolename;
     public $email;
 
     // constructor
@@ -26,7 +26,7 @@ class User{
                     username = :username,
                     password = :password,
                     email = :email,
-                    role_id = :role_id";
+                    rolename = :rolename";
     
         // prepare the query
         $stmt = $this->conn->prepare($query);
@@ -34,12 +34,12 @@ class User{
         // sanitize
         $this->username=htmlspecialchars(strip_tags($this->username));
         $this->email=htmlspecialchars(strip_tags($this->email));
-        $this->role_id=htmlspecialchars(strip_tags($this->role_id));
+        $this->rolename=htmlspecialchars(strip_tags($this->rolename));
     
         // bind the values
         $stmt->bindParam(':username', $this->username);
         $stmt->bindParam(':email', $this->email);
-        $stmt->bindParam(':role_id', $this->role_id);
+        $stmt->bindParam(':rolename', $this->rolename);
     
         // hash the password before saving to database
         $password_hash = password_hash($this->password, PASSWORD_DEFAULT);
@@ -68,8 +68,8 @@ class User{
                     id, username, email, rolename
                 FROM
                 " . $this->table_name . "
-                WHERE
-                    rolename != 'Admin'
+                WHERE NOT
+                    rolename='Admin'
                 ORDER BY
                     username ASC
                 LIMIT
@@ -128,7 +128,7 @@ class User{
             $this->id = $row['id'];
             $this->username = $row['username'];
             $this->password = $row['password'];
-            $this->status = $row['role_id'];
+            $this->status = $row['rolename'];
     
             // return true because email exists in the database
             return true;

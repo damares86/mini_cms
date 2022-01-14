@@ -17,23 +17,33 @@
 
     if($total_rows>0){
         ?>
-      
-        <table class="table table-hover table-responsive table-bordered">
+<div class="module">
+    <div class="module-body">
+
+        <div class="align-items-center pt-3 pb-2 mb-3 align-items-center">
+            <!-- <h6><a href="home.php"><-- Back to dashboard's home</h6></a> -->
+            <h1 class="h2 mx-auto text-center">Users</h1>
+            <a href="index.php?man=users&op=add"><button type="button" class="btn btn-success">Add new user +</button></a>
+        </div>
+        <table class="table table-striped">
+            <thead>
             <tr>
-                <th>ID</th>
-                <th>Username</th>
-                <th>Email</th>
-                <th>Role</th>
-                <th>Edit</th>
-                <th>Delete</th>
+                <th scope="col">ID</th>
+                <th scope="col">Username</th>
+                <th scope="col">Email</th>
+                <th scope="col">Role</th>
+                <th scope="col">Edit</th>
+                <th scope="col">Delete</th>
             </tr>
+            </thead>
+            <tbody>
       <?php 
     
     
        
     
     while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
-                
+        
                 extract($row);
                
               
@@ -43,15 +53,29 @@
                 <td><?=$id?></td>
                 <td><?=$username?></td>
                 <td><?=$email?></td>
-                <td><?=$role_id?></td>
-                <td>Edit</td>
-                <td>Delete</td>
+                <td><?=$rolename?></td>
+                <td>
+                            <a href="index.php?man=users&op=edit&type=role&idToMod=<?=$row["id"]?>">
+                                <button type="button" class="btn btn-primary btn-sm">Role</button>
+                            </a> &nbsp;
+                            <a href="index.php?man=users&op=edit&type=pass&idToMod=<?=$row["id"]?>">
+                                <button type="button" class="btn btn-primary btn-sm">Password</button>
+                            </a>
+                        </td>
+                        <td>
+                            <a href="core/mngUser.php?idToDel=<?=$row["id"]?>">
+                                <button type="button" class="btn btn-danger btn-sm">Delete user</button>
+                            </a>
+                        </td>
       
             </tr>
       <?php
             }
       ?>
-        </table>
+        
+     </tbody>
+</table>
+
       <?php
         // paging buttons
         include_once 'paging.php';
@@ -64,3 +88,6 @@
 
 
 ?>
+
+    </div>
+</div>

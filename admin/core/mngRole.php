@@ -20,18 +20,16 @@ if (!isset($_SESSION['loggedin'])) {
 if(filter_input(INPUT_POST,"subReg")){
 	// loading class
 	include("../class/Database.php");
-	include("../class/User.php");
 	include("../class/Role.php");
 
 
 	$database = new Database();
 	$db = $database->getConnection();
 
-	$user = new User($db);
 	$role = new Role($db);
 
 	//inserimento
-	$user->email=$_POST['email'];
+	$role->email=$_POST['email'];
 
 	if($user->emailExists()){
         header("Location: ../index.php?err=mailExists");

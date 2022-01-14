@@ -1,49 +1,16 @@
 <?php
-$sql = $conn->prepare("SELECT * FROM roles $where");
-$sql->execute();
+    require "core/config.php";
 
-$resultAll = $sql->get_result();
+	$database = new Database();
+	$db = $database->getConnection();
 
-$totalRecords = $resultAll->num_rows;
+	$role = new Role($db);
+    
+    $stmt = $role->showAll($from_record_num, $records_per_page);
 
-$recordPagina = 10;
+    $total_rows=$role->countAll();
 
-$totalPages = ceil($totalRecords / $recordPagina);
-
-$currentPage = 1;
-
-if (isset($_GET["page"])) {
-    $currentPage = filter_input(INPUT_GET, "page", FILTER_VALIDATE_INT);
-}
-
-$offset = ($currentPage - 1) * $recordPagina;
-
-
-$ascDesc = "DESC";
-if (isset($_GET["ascDesc"])) {
-    $ascDesc = filter_input(INPUT_GET, "ascDesc");
-}
-
-$orderBy = "";
-
-if (isset($_GET["orderBy"])) {
-    $orderBy = "ORDER BY " . filter_input(INPUT_GET, "orderBy") . " " . $ascDesc;
-    if ($ascDesc == "ASC") {
-        $ascDesc = "DESC";
-    } else {
-        $ascDesc = "ASC";
-    }
-}
-
-$query = "SELECT * FROM roles $where $orderBy LIMIT $offset,$recordPagina";
-
-$sql = $conn->prepare($query);
-$sql->execute();
-$result = $sql->get_result();
-
-if ($search) {
-    $search = "&s=$search";
-}
+    if($total_rows>0){
 ?>
 <div class="module">
     <div class="module-body">
@@ -59,20 +26,22 @@ if ($search) {
                 <tr>
                     <th scope="col">#</th>
                     <th scope="col">Role's name</th>
-                    <!-- <th scope="col"><a href="?op=modUser&orderBy=email&ascDesc=<?= $ascDesc . $search ?>" class="dark">Email</a></th> -->
-                    <!-- <th scope="col"><a href="?op=modUser&orderBy=email&ascDesc=<?= $ascDesc . $search ?>" class="dark">Role</a></th> -->
                     <th scope="col">Edit</th>
                     <th scope="col">Delete</th>
                 </tr>
             </thead>
             <tbody>
-                <?php
-                foreach($result as $row){
-                ?>
-                    <tr>
-                        <th scope="row"><?= $row["id"] ?></th>
-                    
-                        <td><?= $row["rolename"] ?></td>
+            <?php
+            while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
+        
+                 extract($row);
+       
+            ?>
+            <tr>
+                <td><?=$id?></td>
+                <td><?=$rolename?></td>
+
+      
                         <td><a href="index.php?man=roles&op=edit&idToMod=<?=$row["id"] ?>"><button type="button" class="btn btn-primary">Edit</button></a></td>
                         <td><a href="core/mngRole.php?idToDel=<?=$row["id"] ?>"><button type="button" class="btn btn-danger">Delete</button></a></td>
                     </tr>
@@ -83,7 +52,18 @@ if ($search) {
 
             </tbody>
         </table>
+        <?php
+        // paging buttons
+        include_once 'paging.php';
+    }
+      
+    // tell the user there are no products
+    else{
+        echo "<div class='alert alert-danger'>No role found.</div>";
+    }
 
+
+?>
 
     </div>
 </div>

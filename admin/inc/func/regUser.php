@@ -44,7 +44,7 @@
                         extract($row_roles);
                     ?>
                         <label class="radio">
-                        <input type="radio" name="rolename[]" value="<?=$row_roles["id"]?>" checked="">
+                        <input type="radio" name="rolename[]" value="<?=$row_roles["rolename"]?>" checked="">
                         <?=$row_roles["rolename"]?>
                     </label> 
 
