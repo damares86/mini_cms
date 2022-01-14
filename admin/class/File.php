@@ -53,6 +53,7 @@ class File{
                 $filename = $_FILES['myfile']['tmp_name'];
 	
 				if (move_uploaded_file($filename, $target_file)) {
+                    chmod($target_file, 0777);
                     $query = "INSERT INTO
                                 " . $this->table_name . "
                             SET
@@ -216,22 +217,22 @@ class File{
 }
 
 
-    // function showById($id){
+    function showById($id){
         
-    //     //select all data
-    //     $query = "SELECT
-    //                 rolename
-    //             FROM
-    //                 " . $this->table_name . "
-    //             WHERE
-    //                 id = ".$id."";  
+        //select all data
+        $query = "SELECT
+                    *
+                FROM
+                    " . $this->table_name . "
+                WHERE
+                    id = ".$id."";  
         
-    //     $stmt = $this->conn->prepare( $query );
+        $stmt = $this->conn->prepare( $query );
         
-    //     $stmt->execute();
-    //     return $stmt;
+        $stmt->execute();
+        return $stmt;
 
-    // }
+    }
 
     // function rolename_id(){
     //     //select all data
