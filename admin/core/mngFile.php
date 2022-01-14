@@ -52,8 +52,8 @@ if (!isset($_SESSION['loggedin'])) {
 
 	
 	$doc=!empty($_FILES["myfile"]["name"])
-           ? sha1_file($_FILES['myfile']['tmp_name']) . "-" . basename($_FILES["myfile"]["name"]) : "";
-    
+          // ? sha1_file($_FILES['myfile']['tmp_name']) . "-" . basename($_FILES["myfile"]["name"]) : "";
+		  ? basename($_FILES["myfile"]["name"]) : "";
 	$title=$_POST['title'];
 
 	$file->file = $doc;

@@ -28,7 +28,6 @@
                     <th scope="col">Title</th>
                     <th scope="col">Name</th>
                     <th scope="col">Link</th>
-                    <th scope="col">Edit</th>
                     <th scope="col">Delete</th>
                 </tr>
             </thead>
@@ -43,11 +42,10 @@
                 <td><?=$id?></td>
                 <td><?=$title?></td>
                 <td><?=$filename?></td>
-                <td>Link</td>
+                <td><a href="../uploads/file/<?=$filename?>" target="_blank">Link</a></td>
 
       
-                        <td><a href="index.php?man=roles&op=edit&idToMod=<?=$row["id"] ?>"><button type="button" class="btn btn-primary">Edit</button></a></td>
-                        <td><a href="core/mngRole.php?idToDel=<?=$row["id"] ?>"><button type="button" class="btn btn-danger">Delete</button></a></td>
+                        <td><a href="core/mngFile.php?idToDel=<?=$row["id"] ?>"><button type="button" class="btn btn-danger">Delete</button></a></td>
                     </tr>
                 <?php
                 }
@@ -63,7 +61,7 @@
       
     // tell the user there are no products
     else{
-        echo "<div class='alert alert-danger'>No role found.</div>";
+        echo "<div class='alert alert-danger'>No file found.</div>";
     }
 
 
