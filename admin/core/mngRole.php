@@ -15,9 +15,6 @@ if (!isset($_SESSION['loggedin'])) {
     exit;
 }
 
-// ELIMINAZIONE UTENTE
-
-if(filter_input(INPUT_POST,"subReg")){
 	// loading class
 	include("../class/Database.php");
 	include("../class/Role.php");
@@ -27,6 +24,29 @@ if(filter_input(INPUT_POST,"subReg")){
 	$db = $database->getConnection();
 
 	$role = new Role($db);
+
+if(filter_input(INPUT_GET,"idToDel")){
+	
+	$idToDel = filter_input(INPUT_GET,"idToDel");
+	
+	$role->id=$idToDel;
+	
+	// delete the role
+	if($role->delete()){
+		header("Location: ../index.php?msg=roleDelSucc");
+		exit;
+	
+		// empty posted values
+		// $_POST=array();
+	
+	}else{
+		header("Location: ../index.php?msg=roleDelErr");
+		exit;
+	}
+}
+
+if(filter_input(INPUT_POST,"subReg")){
+
 
 	//inserimento
 	$role->rolename=$_POST['rolename'];
