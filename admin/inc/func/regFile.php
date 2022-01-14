@@ -1,14 +1,7 @@
-<?php
-
-require_once "../core/functions.php";
-$conn = OpenConnection();
-
-
-?> 
 
 <div class="module">
     <div class="module-head">
-        <h3>Add User</h3>
+        <h3>Add File</h3>
     </div>
     <div class="module-body">
 
@@ -16,7 +9,7 @@ $conn = OpenConnection();
         <input type="hidden" name="operation" value="add" />
 
             <div class="control-group">
-                <label class="control-label" for="username">File Title</label>
+                <label class="control-label" for="title">File Title</label>
                 <div class="controls">
                     <input type="text" id="title" name="title" placeholder="Choose the file title" class="span8">
                      
@@ -31,32 +24,6 @@ $conn = OpenConnection();
                 
             </div>
 
-
-           
-            <div class="control-group">
-                <label class="control-label">Role</label>
-                <div class="controls">
-                <?php
-
-                    $roles=GetAllRecords($conn,"roles");
-
-                    foreach($roles as $row){
-
-                    ?>      
-
-                    <label class="radio">
-                        <input type="radio" name="rolename[]" value="<?=$row["id"]?>" checked="">
-                        <?=$row["rolename"]?>
-                    </label> 
-
-                   <?php
-
-                    }
-
-                    ?>
-                   
-                </div>
-            </div>
 
 
             <div class="control-group">

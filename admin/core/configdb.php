@@ -93,8 +93,7 @@ $db->query("INSERT INTO accounts
 $db->query("CREATE TABLE IF NOT EXISTS files
                            ( id INT ( 5 ) NOT NULL AUTO_INCREMENT PRIMARY KEY,
                              filename VARCHAR(255) NOT NULL,
-                             title VARCHAR(255) NOT NULL,
-                             role_id INT(5) NOT NULL)");
+                             title VARCHAR(255) NOT NULL");
 
 // creating role's table
 $db->query("CREATE TABLE IF NOT EXISTS roles
