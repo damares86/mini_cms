@@ -20,6 +20,7 @@
             <a href="index.php?man=post&op=add"><button type="button" class="btn btn-success">Add new post +</button></a>
         </div>
         <br>
+        
         <?php
 
     if($total_rows>0){

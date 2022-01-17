@@ -44,6 +44,7 @@ $role = new Role($db);
         <link type="text/css" href="assets/images/icons/css/font-awesome.css" rel="stylesheet">
         <link type="text/css" href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,400,600'
             rel='stylesheet'>
+            <script src="https://cdn.ckeditor.com/4.11.2/standard/ckeditor.js"></script>
             <!--
     ###################################################################
     #                                                                 #

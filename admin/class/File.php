@@ -45,6 +45,8 @@ class File{
             // if not, create it
             if(!is_dir($target_directory)){
                 mkdir($target_directory, 0777, true);
+            }else{
+                chmod($target_directory, 0777);
             }
 
             if(empty($file_upload_error_messages)){
