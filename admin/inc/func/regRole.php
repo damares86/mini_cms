@@ -2,7 +2,7 @@
 <div class="module">
       
 <div class="module-head">
-<h3>Add User</h3>
+<h3>Add Role</h3>
     </div>
     <div class="module-body">
 

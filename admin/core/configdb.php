@@ -86,7 +86,7 @@ $db->query("CREATE TABLE IF NOT EXISTS accounts
 
 $db->query("INSERT INTO accounts
                             (id, username, password,email,rolename)
-                            VALUES ('1','admin', '$2y$10$ejPT3k8pid12LTthDprOkuis79ZpEtEqSJO8D8eECrKZO47IlrTfC','mail@mail.com','Admin')
+                            VALUES ('1','admin', '$2y$10$ZsaedCLNJmORQlgx2crM3.BZKUQTRTV6EIyN5LgAiYHHySG4iTPtO','mail@mail.com','Admin')
                             ");
 
 // creating file's table
@@ -115,8 +115,12 @@ $db->query("INSERT INTO roles
                             ");
 
 
+$db->query("CREATE TABLE `post` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `content` text COLLATE utf8_unicode_ci NOT NULL,
+  `created` datetime NOT NULL,
+  PRIMARY KEY (`id`)
+ ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;");
 
 
 header("Location: ../index.php");
-
-?>
