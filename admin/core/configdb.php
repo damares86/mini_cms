@@ -76,6 +76,23 @@ $db = $database->getConnection();
 
 /////////////////////////////////////////////////////////////
 
+
+////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////
+
+// DA CAPIRE COME MAI NON CREA LA TABELLA FILE
+// E PERCHE' SI PERDE UN PEZZO DELLA PASSWORD, PRENDENDOLA PER UNA VARIABILE
+
+////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////
+
+
+
 // creating user's table and inserting the default "admin" user
 $db->query("CREATE TABLE IF NOT EXISTS accounts
                            ( id INT ( 5 ) NOT NULL AUTO_INCREMENT PRIMARY KEY,
@@ -84,10 +101,7 @@ $db->query("CREATE TABLE IF NOT EXISTS accounts
                              email VARCHAR(255) NOT NULL,
                              rolename VARCHAR(50) NOT NULL)");
 
-$db->query("INSERT INTO accounts
-                            (id, username, password,email,rolename)
-                            VALUES ('1','admin', '$2y$10$ZsaedCLNJmORQlgx2crM3.BZKUQTRTV6EIyN5LgAiYHHySG4iTPtO','mail@mail.com','Admin')
-                            ");
+
 
 // creating file's table
 $db->query("CREATE TABLE IF NOT EXISTS files
@@ -122,5 +136,10 @@ $db->query("CREATE TABLE `post` (
   PRIMARY KEY (`id`)
  ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;");
 
+
+$db->query("INSERT INTO accounts
+                            (id, username, password,email,rolename)
+                            VALUES ('1','admin', '$2y$10$ZsaedCLNJmORQlgx2crM3.BZKUQTRTV6EIyN5LgAiYHHySG4iTPtO','mail@mail.com','Admin')
+                            ");
 
 header("Location: ../index.php");

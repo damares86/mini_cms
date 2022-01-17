@@ -15,7 +15,6 @@
 
     $total_rows=$user->countAll();
 
-    if($total_rows>0){
         ?>
 <div class="module">
     <div class="module-body">
@@ -24,7 +23,11 @@
             <!-- <h6><a href="home.php"><-- Back to dashboard's home</h6></a> -->
             <h1 class="h2 mx-auto text-center">Users</h1>
             <a href="index.php?man=users&op=add"><button type="button" class="btn btn-success">Add new user +</button></a>
-        </div>
+        </div><br>
+        <?php
+
+if($total_rows>0){
+    ?>
         <table class="table table-striped">
             <thead>
             <tr>

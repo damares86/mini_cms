@@ -8,6 +8,9 @@ if($_SESSION['user_id']==1){
                                     <a href="index.php"><i class="menu-icon icon-dashboard"></i>Dashboard</a>
                                 </li>
                                 <li>
+                                    <a href="index.php?man=post&op=show"><i class="menu-icon icon-group"></i>Post</a>
+                                </li>
+                                <li>
                                     <a href="index.php?man=users&op=show"><i class="menu-icon icon-group"></i>Users</a>
                                 </li>
                                 <li>

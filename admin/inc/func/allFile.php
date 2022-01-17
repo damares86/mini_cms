@@ -10,7 +10,6 @@
 
     $total_rows=$file->countAll();
 
-    if($total_rows>0){
 ?>
 <div class="module">
     <div class="module-body">
@@ -20,7 +19,11 @@
             <h1 class="h2 mx-auto text-center">Files</h1>
             <a href="index.php?man=files&op=add"><button type="button" class="btn btn-success">Add new file +</button></a>
         </div>
-        
+        <br>
+        <?php
+
+    if($total_rows>0){
+        ?>
         <table class="table table-striped">
             <thead>
                 <tr>

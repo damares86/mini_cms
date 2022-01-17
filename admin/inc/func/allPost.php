@@ -4,11 +4,11 @@
 	$database = new Database();
 	$db = $database->getConnection();
 
-	$role = new Role($db);
+	$file = new File($db);
     
-    $stmt = $role->showAll($from_record_num, $records_per_page);
+    $stmt = $file->showAll($from_record_num, $records_per_page);
 
-    $total_rows=$role->countAll();
+    $total_rows=$file->countAll();
 
 ?>
 <div class="module">
@@ -16,21 +16,22 @@
 
         <div class="align-items-center pt-3 pb-2 mb-3 align-items-center">
             <!-- <h6><a href="home.php"><-- Back to dashboard's home</h6></a> -->
-            <h1 class="h2 mx-auto text-center">Roles</h1>
-            <a href="index.php?man=roles&op=add"><button type="button" class="btn btn-success">Add new role +</button></a>
+            <h1 class="h2 mx-auto text-center">Post</h1>
+            <a href="index.php?man=post&op=add"><button type="button" class="btn btn-success">Add new post +</button></a>
         </div>
         <br>
         <?php
 
-if($total_rows>0){
-    ?>
-        
+    if($total_rows>0){
+
+        ?>
         <table class="table table-striped">
             <thead>
                 <tr>
                     <th scope="col">#</th>
-                    <th scope="col">Role's name</th>
-                    <th scope="col">Edit</th>
+                    <th scope="col">Title</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Link</th>
                     <th scope="col">Delete</th>
                 </tr>
             </thead>
@@ -43,11 +44,12 @@ if($total_rows>0){
             ?>
             <tr>
                 <td><?=$id?></td>
-                <td><?=$rolename?></td>
+                <td><?=$title?></td>
+                <td><?=$filename?></td>
+                <td><a href="../uploads/file/<?=$filename?>" target="_blank">Link</a></td>
 
       
-                        <td><a href="index.php?man=roles&op=edit&idToMod=<?=$row["id"] ?>"><button type="button" class="btn btn-primary">Edit</button></a></td>
-                        <td><a href="core/mngRole.php?idToDel=<?=$row["id"] ?>"><button type="button" class="btn btn-danger">Delete</button></a></td>
+                        <td><a href="core/mngFile.php?idToDel=<?=$row["id"] ?>"><button type="button" class="btn btn-danger">Delete</button></a></td>
                     </tr>
                 <?php
                 }
@@ -63,7 +65,7 @@ if($total_rows>0){
       
     // tell the user there are no products
     else{
-        echo "<div class='alert alert-danger'>No role found.</div>";
+        echo "<div class='alert alert-danger'>No post found.</div>";
     }
 
 

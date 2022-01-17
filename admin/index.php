@@ -35,7 +35,13 @@ $user=$_SESSION['name'];
                         <?php
                             
 
-                            if($manage=="users"){
+                            if($manage=="post"){
+                                if($operation=="show"){
+                                    require "inc/func/allPost.php";
+                                } else if($operation=="add"){
+                                    require "inc/func/regPost.php";
+                                } 
+                            } else if($manage=="users"){
                                 if($operation=="show"){
                                     require "inc/func/allUser.php";
                                 } else if($operation=="add"){
