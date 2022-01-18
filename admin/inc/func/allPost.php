@@ -32,8 +32,8 @@
                     <th scope="col">#</th>
                     <th scope="col">Title</th>
                     <th scope="col">Created</th>
+                    <th scope="col">Modified</th>
                     <th scope="col">Edit</th>
-                    <th scope="col">Delete</th>
                 </tr>
             </thead>
             <tbody>
@@ -47,7 +47,7 @@
                 <td><?=$id?></td>
                 <td><?=$title?></td>
                 <td><?=$created?></td>
-                <td><a href="../uploads/file/<?=$filename?>" target="_blank">Link</a></td>
+                <td><?=$modified?></td>
 
       
                         <td><a href="core/mngFile.php?idToDel=<?=$row["id"] ?>"><button type="button" class="btn btn-danger">Delete</button></a></td>

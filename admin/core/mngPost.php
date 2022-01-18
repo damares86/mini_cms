@@ -51,7 +51,6 @@ if(filter_input(INPUT_POST,"subReg")){
 	//inserimento
 	$post->title=$_POST['title'];
 	$post->content=$_POST['editor'];
-	$post->created=time();
 		
 	// create the user
 	if($post->insert()){

@@ -116,7 +116,8 @@ $db->query("CREATE TABLE post (
   id int(5) NOT NULL AUTO_INCREMENT PRIMARY KEY,
   title VARCHAR(255) NOT NULL,
   content text COLLATE utf8_unicode_ci NOT NULL,
-  created datetime NOT NULL
+  created datetime NOT NULL,
+  modified datetime NOT NULL
  ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;");
 
 

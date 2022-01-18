@@ -10,6 +10,7 @@ class Post{
     public $title;
     public $content;
     public $created;
+    public $modified;
 
     // constructor
     public function __construct($db){
@@ -24,7 +25,8 @@ class Post{
                 SET
                     title = :title,
                     content = :content,
-                    created = NOW()";
+                    created = NOW(),
+                    modified = NOW()";
     
         // prepare the query
         $stmt = $this->conn->prepare($query);

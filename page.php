@@ -36,10 +36,11 @@ $total_rows=$post->countAll();
             while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
         
                  extract($row);
-                
-                 echo $created;
-                 echo ("<br>");
+                 
                  echo $content;
+                 echo "Creato: " . $created . "<br>";
+                 echo "Modificato: " . $modified;
+                 
 
 
             }
