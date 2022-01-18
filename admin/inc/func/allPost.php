@@ -45,7 +45,7 @@
             ?>
             <tr>
                 <td><?=$id?></td>
-                <td><?=$content?></td>
+                <td><?=$title?></td>
                 <td><?=$created?></td>
                 <td><a href="../uploads/file/<?=$filename?>" target="_blank">Link</a></td>
 

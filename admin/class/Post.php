@@ -7,6 +7,7 @@ class Post{
     private $table_name = "post";
 
     public $id;
+    public $title;
     public $content;
     public $created;
 
@@ -21,6 +22,7 @@ class Post{
         $query = "INSERT INTO
                     " . $this->table_name . "
                 SET
+                    title = :title,
                     content = :content,
                     created = NOW()";
     
@@ -28,6 +30,7 @@ class Post{
         $stmt = $this->conn->prepare($query);
     
         // bind the values
+        $stmt->bindParam(':title', $this->title);       
         $stmt->bindParam(':content', $this->content);       
       
         // execute the query, also check if query was successful
@@ -55,7 +58,7 @@ class Post{
     function showAll(){
         //select all data
         $query = "SELECT
-                    id, content, created
+                    *
                 FROM
                     " . $this->table_name . "
                 ORDER BY
