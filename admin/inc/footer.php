@@ -7,6 +7,8 @@
     <script src="scripts/datatables/jquery.dataTables.js" type="text/javascript"></script>
     <script src="scripts/common.js" type="text/javascript"></script>
     	<script>
-    CKEDITOR.replace( 'editor' );
+    CKEDITOR.replace( 'editor' , {
+        filebrowserBrowseUrl: 'core/ckfinder/ckfinder.html',
+	    filebrowserUploadUrl: 'core/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files'});
 </script>
     

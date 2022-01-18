@@ -37,9 +37,11 @@ $total_rows=$post->countAll();
         
                  extract($row);
                  
+                 echo "<strong><i>" . $title . "</i></strong>";
                  echo $content;
                  echo "Creato: " . $created . "<br>";
                  echo "Modificato: " . $modified;
+                 echo "<hr><br>";
                  
 
 
