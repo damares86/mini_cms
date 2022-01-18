@@ -55,7 +55,7 @@ class Post{
     function showAll(){
         //select all data
         $query = "SELECT
-                    id, rolename
+                    id, content, created
                 FROM
                     " . $this->table_name . "
                 ORDER BY
@@ -69,7 +69,7 @@ class Post{
 
     public function countAll(){
     
-        $query = "SELECT id FROM roles";
+        $query = "SELECT id FROM post";
     
         $stmt = $this->conn->prepare( $query );
         $stmt->execute();
