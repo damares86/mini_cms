@@ -4,11 +4,11 @@
 	$database = new Database();
 	$db = $database->getConnection();
 
-	$file = new File($db);
+	$post = new Post($db);
     
-    $stmt = $file->showAll($from_record_num, $records_per_page);
+    $stmt = $post->showAll($from_record_num, $records_per_page);
 
-    $total_rows=$file->countAll();
+    $total_rows=$post->countAll();
 
 ?>
 <div class="module">
@@ -31,8 +31,8 @@
                 <tr>
                     <th scope="col">#</th>
                     <th scope="col">Title</th>
-                    <th scope="col">Name</th>
-                    <th scope="col">Link</th>
+                    <th scope="col">Created</th>
+                    <th scope="col">Edit</th>
                     <th scope="col">Delete</th>
                 </tr>
             </thead>
@@ -45,8 +45,8 @@
             ?>
             <tr>
                 <td><?=$id?></td>
-                <td><?=$title?></td>
-                <td><?=$filename?></td>
+                <td><?=$content?></td>
+                <td><?=$created?></td>
                 <td><a href="../uploads/file/<?=$filename?>" target="_blank">Link</a></td>
 
       
