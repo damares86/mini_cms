@@ -50,7 +50,7 @@
                 <td><?=$modified?></td>
 
       
-                        <td><a href="core/mngFile.php?idToDel=<?=$row["id"] ?>"><button type="button" class="btn btn-danger">Delete</button></a></td>
+                        <td><a href="core/mngPost.php?idToDel=<?=$row["id"] ?>"><button type="button" class="btn btn-danger">Delete</button></a></td>
                     </tr>
                 <?php
                 }
