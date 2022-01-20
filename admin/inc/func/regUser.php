@@ -135,12 +135,11 @@ if($operation=="mod"){
         <h3>New User's Password</h3>
     </div>
     <div class="module-body">
-        <form class="form-horizontal row-fluid" action="core/mngUser.php" method="POST" enctype="multipart/form-data">
+        <form class="form-horizontal row-fluid" action="core/mngPass.php" method="POST" enctype="multipart/form-data">
             <div class="control-group">
                 <label class="control-label" for="password">Password</label>
                 <div class="controls">
                     <input type="hidden" name="idToMod" value="<?= $idToMod ?>" />
-                    <input type="hidden" name="type" value="pass" />
 
                     <input type="text" id="password" name="password" placeholder="Choose the new password" class="span8">
                         

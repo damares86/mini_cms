@@ -98,8 +98,9 @@ class User{
         $stmt = $this->conn->prepare($query);
      
        // hash the password before saving to database
-       $password_hash = password_hash($this->password, PASSWORD_DEFAULT);
-       $stmt->bindParam(':password', $password_hash);
+        $password_hash = password_hash($this->password, PASSWORD_DEFAULT);
+        $stmt->bindParam(':password', $password_hash);
+        $stmt->bindParam(':id', $this->id);
                 
       
         // execute the query, also check if query was successful
