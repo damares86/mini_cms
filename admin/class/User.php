@@ -55,6 +55,68 @@ class User{
     
     }
 
+    function update(){
+        // insert query
+        $query = "UPDATE
+                    " . $this->table_name . "
+                SET
+                    username = :username,
+                    email = :email,
+                    rolename = :rolename
+                WHERE
+                    id = :id";
+    // prepare the query
+        $stmt = $this->conn->prepare($query);
+     
+        // bind the values
+        $stmt->bindParam(':username', $this->username);
+        $stmt->bindParam(':email', $this->email); 
+        $stmt->bindParam(':rolename', $this->rolename);
+        $stmt->bindParam(':id', $this->id);
+                
+      
+        // execute the query, also check if query was successful
+        if($stmt->execute()){
+            return true;
+
+        }else{
+            $this->showError($stmt);
+            return false;
+        }
+    
+    }
+
+    function updatePass(){
+        // insert query
+        $query = "UPDATE
+                    " . $this->table_name . "
+                SET
+                    password = :password
+                WHERE
+                    id = :id";
+    // prepare the query
+        $stmt = $this->conn->prepare($query);
+     
+       // hash the password before saving to database
+       $password_hash = password_hash($this->password, PASSWORD_DEFAULT);
+       $stmt->bindParam(':password', $password_hash);
+                
+      
+        // execute the query, also check if query was successful
+        if($stmt->execute()){
+            print_r("ok2");
+            exit;
+            return true;
+
+        }else{
+            print_r("ko");
+            exit;
+            $this->showError($stmt);
+            return false;
+        }
+    
+    }
+
     function showError($stmt){
         echo "<pre>";
             print_r($stmt->errorInfo());
@@ -78,6 +140,24 @@ class User{
         $stmt->execute();
         
         return $stmt;
+    }
+
+    function showById(){
+        $query = "SELECT *
+        FROM " . $this->table_name . "
+        WHERE id = ?
+        LIMIT 0,1";
+  
+        $stmt = $this->conn->prepare( $query );
+        $stmt->bindParam(1, $this->id);
+        $stmt->execute();
+    
+        $row = $stmt->fetch(PDO::FETCH_ASSOC);
+    
+        $this->id = $row['id'];
+        $this->username = $row['username'];
+        $this->email = $row['email'];
+        $this->rolename = $row['rolename'];
     }
 
     public function countAll(){

@@ -49,43 +49,89 @@ if(filter_input(INPUT_GET,"idToDel")){
 
 if(filter_input(INPUT_POST,"subReg")){
 
+	$operation=filter_input(INPUT_POST,"operation");
 
+
+	if($operation=="add"){
 	//inserimento
-	$user->email=$_POST['email'];
-
-	if($user->emailExists()){
-        header("Location: ../index.php?err=mailExists");
-    } else {
-
-		$roleArr=$_POST['rolename'];
-		$rolename=$roleArr[0];
-
-		// set values to object properties
-		$user->username=$_POST['username'];
 		$user->email=$_POST['email'];
-		$user->password=$_POST['password'];
-		$user->rolename=$rolename;
-	
+
+		if($user->emailExists()){
+			header("Location: ../index.php?err=mailExists");
+		} else {
+
+			$roleArr=$_POST['rolename'];
+			$rolename=$roleArr[0];
+
+			// set values to object properties
+			$user->username=$_POST['username'];
+			$user->email=$_POST['email'];
+			$user->password=$_POST['password'];
+			$user->rolename=$rolename;
 		
-		// create the user
-		if($user->create()){
-			header("Location: ../index.php?msg=userSucc");
-			exit;
+			
+			// create the user
+			if($user->create()){
+				header("Location: ../index.php?msg=userSucc");
+				exit;
+			
+				// empty posted values
+				// $_POST=array();
+			
+			}else{
+				header("Location: ../index.php?msg=userErr");
+				exit;
+			}
+		}
+	} else if($operation=="mod"){
+
+		$type = filter_input(INPUT_POST, "type");
 		
-			// empty posted values
-			// $_POST=array();
-		
-		}else{
-			header("Location: ../index.php?msg=userErr");
-			exit;
+		$user->id = $_POST['idToMod'];
+		print_r($_POST['password']);
+		exit;
+
+		if($type=="user"){
+			$roleArr=$_POST['rolename'];
+			$rolename=$roleArr[0];
+
+			$user->username = $_POST['username'];
+			$user->email = $_POST['email'];
+			$user->rolename = $rolename;
+
+			// update the post
+			if($user->update()){
+				header("Location: ../index.php?msg=userEditSucc");
+				exit;
+			
+				// empty posted values
+				// $_POST=array();
+			
+			}else{
+				header("Location: ../index.php?msg=userEditErr");
+				exit;
+			}
+		} else if($type=="pass"){
+
+			$user->password = $_POST['password'];
+
+			// update the post
+			if($user->updatePass()){
+				header("Location: ../index.php?msg=userEditSucc");
+				exit;
+			
+				// empty posted values
+				// $_POST=array();
+			
+			}else{
+				header("Location: ../index.php?msg=userEditErr");
+				exit;
+			}
+
+			
 		}
 	}
 	
-
-
-	// MODIFICA UTENTE
-
-
 
 } else {
 	echo "errore post";

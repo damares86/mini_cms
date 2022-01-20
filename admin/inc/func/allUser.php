@@ -58,12 +58,10 @@ if($total_rows>0){
                 <td><?=$email?></td>
                 <td><?=$rolename?></td>
                 <td>
-                            <a href="index.php?man=users&op=edit&type=role&idToMod=<?=$row["id"]?>">
-                                <button type="button" class="btn btn-primary btn-sm">Role</button>
+                            <a href="index.php?man=users&op=edit&idToMod=<?=$row["id"]?>">
+                                <button type="button" class="btn btn-primary btn-sm">Edit</button>
                             </a> &nbsp;
-                            <a href="index.php?man=users&op=edit&type=pass&idToMod=<?=$row["id"]?>">
-                                <button type="button" class="btn btn-primary btn-sm">Password</button>
-                            </a>
+                           
                         </td>
                         <td>
                             <a href="core/mngUser.php?idToDel=<?=$row["id"]?>">

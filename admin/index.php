@@ -49,7 +49,7 @@ $user=$_SESSION['name'];
                                 } else if($operation=="add"){
                                     require "inc/func/regUser.php";
                                 } else if($operation=="edit"){
-                                    require "inc/func/edUser.php";
+                                    require "inc/func/regUser.php";
                                 }
                             } else if($manage=="roles"){
                                 if($operation=="show"){
