@@ -47,24 +47,30 @@ if(filter_input(INPUT_GET,"idToDel")){
 
 if(filter_input(INPUT_POST,"subReg")){
 
+	$operation=filter_input(INPUT_POST,"operation");
 
-	//inserimento
-	$post->title=$_POST['title'];
-	$post->content=$_POST['editor'];
+	if($operation=="add"){
+
+		//inserimento
+		$post->title=$_POST['title'];
+		$post->content=$_POST['editor'];
+			
+		// create the user
+		if($post->insert()){
+			header("Location: ../index.php?msg=postSucc");
+			exit;
 		
-	// create the user
-	if($post->insert()){
-		header("Location: ../index.php?msg=postSucc");
-		exit;
-	
-		// empty posted values
-		// $_POST=array();
-	
-	}else{
-		header("Location: ../index.php?msg=postErr");
-		exit;
-	}
+			// empty posted values
+			// $_POST=array();
+		
+		}else{
+			header("Location: ../index.php?msg=postErr");
+			exit;
+		}
+	} else if($operation=="edit"){
+		// modifica post
 
+	}
 	
 
 

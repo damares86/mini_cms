@@ -40,6 +40,8 @@ $user=$_SESSION['name'];
                                     require "inc/func/allPost.php";
                                 } else if($operation=="add"){
                                     require "inc/func/regPost.php";
+                                } else if($operation=="edit"){
+                                    require "inc/func/regPost.php";
                                 } 
                             } else if($manage=="users"){
                                 if($operation=="show"){

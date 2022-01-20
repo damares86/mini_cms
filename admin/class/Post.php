@@ -84,8 +84,26 @@ class Post{
         return $num;
     }
 
+    function showById(){
+        $query = "SELECT *
+        FROM " . $this->table_name . "
+        WHERE id = ?
+        LIMIT 0,1";
+  
+        $stmt = $this->conn->prepare( $query );
+        $stmt->bindParam(1, $this->id);
+        $stmt->execute();
     
- // delete the role
+        $row = $stmt->fetch(PDO::FETCH_ASSOC);
+    
+        $this->id = $row['id'];
+        $this->title = $row['title'];
+        $this->content = $row['content'];
+        $this->created = $row['created'];
+        $this->modified = $row['modified'];
+    }
+
+ // delete the post
  function delete(){
     
     $query = "DELETE FROM " . $this->table_name . " WHERE id = ?";
@@ -101,37 +119,6 @@ class Post{
 }
 
 
-    // function showById($id){
-        
-    //     //select all data
-    //     $query = "SELECT
-    //                 rolename
-    //             FROM
-    //                 " . $this->table_name . "
-    //             WHERE
-    //                 id = ".$id."";  
-        
-    //     $stmt = $this->conn->prepare( $query );
-        
-    //     $stmt->execute();
-    //     return $stmt;
-
-    // }
-
-    // function rolename_id(){
-    //     //select all data
-    //     $query = "SELECT
-    //                 id, rolename
-    //             FROM
-    //                 " . $this->table_name . "
-    //             WHERE
-    //                 rolename = :rolename";  
-  
-    //     $stmt = $this->conn->prepare( $query );
-    //     $stmt->execute();
-  
-    //     return $stmt;
-    // }
 
 
 
