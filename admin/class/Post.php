@@ -25,7 +25,6 @@ class Post{
                 SET
                     title = :title,
                     content = :content,
-                    created = NOW(),
                     modified = NOW()";
     
         // prepare the query
@@ -54,6 +53,40 @@ class Post{
         echo "<pre>";
             print_r($stmt->errorInfo());
         echo "</pre>";
+    }
+
+    function update(){
+        // insert query
+        $query = "UPDATE
+                    " . $this->table_name . "
+                SET
+                    title = :title,
+                    content = :content,
+                    modified = NOW()
+                WHERE
+                    id = :id";
+    // prepare the query
+        $stmt = $this->conn->prepare($query);
+     
+        // bind the values
+        $stmt->bindParam(':title', $this->title);
+        $stmt->bindParam(':content', $this->content); 
+        $stmt->bindParam(':id', $this->id);
+                
+      
+        // execute the query, also check if query was successful
+        if($stmt->execute()){
+            print_r("ok2");
+            exit;
+            return true;
+
+        }else{
+            print_r("ko");
+            exit;
+            $this->showError($stmt);
+            return false;
+        }
+    
     }
 
 // DA CAPIRE
@@ -99,7 +132,6 @@ class Post{
         $this->id = $row['id'];
         $this->title = $row['title'];
         $this->content = $row['content'];
-        $this->created = $row['created'];
         $this->modified = $row['modified'];
     }
 

@@ -55,20 +55,35 @@ if(filter_input(INPUT_POST,"subReg")){
 		$post->title=$_POST['title'];
 		$post->content=$_POST['editor'];
 			
-		// create the user
+		// create the post
 		if($post->insert()){
 			header("Location: ../index.php?msg=postSucc");
 			exit;
 		
-			// empty posted values
-			// $_POST=array();
 		
 		}else{
 			header("Location: ../index.php?msg=postErr");
 			exit;
 		}
-	} else if($operation=="edit"){
+	} else if($operation=="mod"){
+			
 		// modifica post
+			$post->title=$_POST['title'];
+			$post->content=$_POST['editor'];
+			$post->id=$_POST['idToMod'];
+				
+			// update the post
+			if($post->update()){
+				header("Location: ../index.php?msg=postEditSucc");
+				exit;
+			
+				// empty posted values
+				// $_POST=array();
+			
+			}else{
+				header("Location: ../index.php?msg=postEditErr");
+				exit;
+			}
 
 	}
 	

@@ -31,7 +31,6 @@
                 <tr>
                     <th scope="col">#</th>
                     <th scope="col">Title</th>
-                    <th scope="col">Created</th>
                     <th scope="col">Modified</th>
                     <th scope="col">Edit</th>
                 </tr>
@@ -46,7 +45,6 @@
             <tr>
                 <td><?=$id?></td>
                 <td><?=$title?></td>
-                <td><?=$created?></td>
                 <td><?=$modified?></td>
 
       

@@ -9,7 +9,7 @@ $idToMod="";
 if(filter_input(INPUT_GET,"idToMod")){
     $idToMod = filter_input(INPUT_GET,"idToMod");
     $titoloForm="Edit Post";
-    $operation="edit";
+    $operation="mod";
 }
 
 ?>
@@ -21,12 +21,13 @@ if(filter_input(INPUT_GET,"idToMod")){
         <form class="form-horizontal row-fluid" action="core/mngPost.php" method="post">
         <input type="hidden" name="operation" value="<?= $operation ?>" />
                 <?php 
+        $post->id = $idToMod;
+
                 if($operation=="mod"){ 
                     ?>
-                    <input type="hidden" name="idToMod" value="<?= $postToMod ?>" />
+                    <input type="hidden" name="idToMod" value="<?= $idToMod ?>" />
                 <?php 
                 } 
-        $post->id = $idToMod;
         $post->showById();
 
         ?>
