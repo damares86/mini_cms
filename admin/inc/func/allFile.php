@@ -1,74 +1,45 @@
-<?php
-    require "core/config.php";
 
-	$database = new Database();
-	$db = $database->getConnection();
-
-	$file = new File($db);
-    
-    $stmt = $file->showAll($from_record_num, $records_per_page);
-
-    $total_rows=$file->countAll();
-
-?>
 <div class="module">
-    <div class="module-body">
+    <div class="module-head">
+        <h3>Add File</h3>
+    </div>
+    <div id="ckfinder1"></div>
+        <script src="ckfinder/ckfinder.js"></script>
+        <script>
+            CKFinder.widget( 'ckfinder1', {
+                height: 600
+            } );
+        </script>
+        <!-- <form class="form-horizontal row-fluid" action="core/mngFile.php" method="POST" enctype="multipart/form-data">
+        <input type="hidden" name="operation" value="add" />
 
-        <div class="align-items-center pt-3 pb-2 mb-3 align-items-center">
-            <!-- <h6><a href="home.php"><-- Back to dashboard's home</h6></a> -->
-            <h1 class="h2 mx-auto text-center">Files</h1>
-            <a href="index.php?man=files&op=add"><button type="button" class="btn btn-success">Add new file +</button></a>
-        </div>
-        <br>
-        <?php
+            <div class="control-group">
+                <label class="control-label" for="title">File Title</label>
+                <div class="controls">
+                    <input type="text" id="title" name="title" placeholder="Choose the file title" class="span8">
+                     
+                </div>
+            </div>
 
-    if($total_rows>0){
-        ?>
-        <table class="table table-striped">
-            <thead>
-                <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Title</th>
-                    <th scope="col">Name</th>
-                    <th scope="col">Link</th>
-                    <th scope="col">Delete</th>
-                </tr>
-            </thead>
-            <tbody>
-            <?php
-            while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
-        
-                 extract($row);
-       
-            ?>
-            <tr>
-                <td><?=$id?></td>
-                <td><?=$title?></td>
-                <td><?=$filename?></td>
-                <td><a href="../uploads/file/<?=$filename?>" target="_blank">Link</a></td>
-
-      
-                        <td><a href="core/mngFile.php?idToDel=<?=$row["id"] ?>"><button type="button" class="btn btn-danger">Delete</button></a></td>
-                    </tr>
-                <?php
-                }
-                ?>
+            <div class="control-group">
+                <label class="control-label" for="file">Upload file</label>
+                <div class="controls">
+                    <input type="file" name="myfile">
+                </div>
+                
+            </div>
 
 
-            </tbody>
-        </table>
-        <?php
-        // paging buttons
-        include_once 'paging.php';
-    }
-      
-    // tell the user there are no products
-    else{
-        echo "<div class='alert alert-danger'>No file found.</div>";
-    }
 
+            <div class="control-group">
+                <div class="controls">
+                   
+                    <input type="submit" class="btn btn-primary" name="subReg" value="Submit">
 
-?>
+                   
+                </div>
+            </div>
+        </form> -->
 
     </div>
 </div>
