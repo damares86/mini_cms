@@ -88,8 +88,6 @@ if(filter_input(INPUT_POST,"subReg")){
 		$type = filter_input(INPUT_POST, "type");
 		
 		$user->id = $_POST['idToMod'];
-		print_r($_POST['password']);
-		exit;
 
 		if($type=="user"){
 			$roleArr=$_POST['rolename'];

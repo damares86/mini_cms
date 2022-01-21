@@ -59,11 +59,8 @@
         </table>
         <?php
         // paging buttons
-        include_once 'paging.php';
-    }
-      
-    // tell the user there are no products
-    else{
+        include_once 'inc/paging.php';
+    } else{
         echo "<div class='alert alert-danger'>No post found.</div>";
     }
 
