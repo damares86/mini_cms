@@ -60,7 +60,8 @@ if(filter_input(INPUT_GET,"idToMod")){
             </div>
             <?php
             }
-            ?>
+
+            ?>          
 
             <div class="control-group">
                 <label class="control-label" for="email">Email</label>
@@ -69,8 +70,12 @@ if(filter_input(INPUT_GET,"idToMod")){
                      
                 </div>
             </div>
-
+            <?php
+            
            
+            
+            if($idToMod!=1){
+            ?>
             <div class="control-group">
                 <label class="control-label">Role</label>
                 <div class="controls">
@@ -103,15 +108,15 @@ if(filter_input(INPUT_GET,"idToMod")){
 
                     
 
-                   <?php
-
-                    // }
-
-                    ?>
+                   
                    
                 </div>
             </div>
+            <?php
 
+}
+
+?>
           
             <div class="control-group">
                 <div class="controls">

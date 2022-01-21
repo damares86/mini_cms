@@ -60,7 +60,7 @@ if($total_rows>0){
                 <td>
                             <a href="index.php?man=users&op=edit&idToMod=<?=$row["id"]?>">
                                 <button type="button" class="btn btn-primary btn-sm">Edit</button>
-                            </a> &nbsp;
+                            </a>
                            
                         </td>
                         <td>
