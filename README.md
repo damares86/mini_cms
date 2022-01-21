@@ -1,1 +1,1 @@
-# Lightweight CMS
+# Mini Cms
