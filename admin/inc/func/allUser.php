@@ -65,7 +65,7 @@ if($total_rows>0){
                         </td>
                         <td>
                             <a href="core/mngUser.php?idToDel=<?=$row["id"]?>">
-                                <button type="button" class="btn btn-danger btn-sm">Delete user</button>
+                                <button type="button" class="btn btn-danger btn-sm">Delete</button>
                             </a>
                         </td>
       

@@ -33,6 +33,7 @@
                     <th scope="col">Title</th>
                     <th scope="col">Modified</th>
                     <th scope="col">Edit</th>
+                    <th scope="col">Delete</th>
                 </tr>
             </thead>
             <tbody>
@@ -46,13 +47,12 @@
                 <td><?=$id?></td>
                 <td><?=$title?></td>
                 <td><?=$modified?></td>
-
-      
-                        <td><a href="index.php?man=post&op=edit&idToMod=<?=$row["id"]?>"><button type="button" class="btn btn-warning">Edit</button></a></td>
-                    </tr>
-                <?php
-                }
-                ?>
+                <td><a href="index.php?man=post&op=edit&idToMod=<?=$row["id"]?>"><button type="button" class="btn btn-warning">Edit</button></a></td>
+                <td><a href="core/mngPost.php?idToDel=<?=$row["id"]?>"><button type="button" class="btn btn-danger">Delete</button></a></td>
+            </tr>
+        <?php
+        }
+        ?>
 
 
             </tbody>

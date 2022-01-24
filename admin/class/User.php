@@ -105,13 +105,9 @@ class User{
       
         // execute the query, also check if query was successful
         if($stmt->execute()){
-            print_r("ok2");
-            exit;
             return true;
 
         }else{
-            print_r("ko");
-            exit;
             $this->showError($stmt);
             return false;
         }
@@ -208,7 +204,7 @@ class User{
             $this->id = $row['id'];
             $this->username = $row['username'];
             $this->password = $row['password'];
-            $this->status = $row['rolename'];
+            $this->rolename = $row['rolename'];
     
             // return true because email exists in the database
             return true;

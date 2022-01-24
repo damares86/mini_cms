@@ -60,14 +60,10 @@ $user=$_SESSION['name'];
                                     require "inc/func/regRole.php";
                                 }
                             } else if($manage=="files"){
-                                if($operation=="show"){
-                                    require "inc/func/allFile.php";
-                                } else if($operation=="add"){
-                                    require "inc/func/regFile.php";
-                                } 
-                            } else if($manage=="admin"){
-                                    require "inc/func/edAdmin.php";
-                            }else { 
+                                 require "inc/func/allFile.php";
+                            }else if($manage=="settings"){
+                                require "inc/func/allSettings.php";
+                            }else {  
                         ?>
                             <div class="module">
                                 <div class="module-head">

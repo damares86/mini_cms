@@ -38,6 +38,7 @@ if ($email_exists && password_verify($_POST['password'], $user->password)){
     $_SESSION['loggedin'] = true;
     $_SESSION['user_id'] = $user->id;
     $_SESSION['name'] = $user->username;
+    $_SESSION['rolename'] = $user->rolename;
     
     header("Location: ../");
     exit;

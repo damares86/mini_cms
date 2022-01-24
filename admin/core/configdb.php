@@ -120,10 +120,23 @@ $db->query("CREATE TABLE post (
   modified datetime NOT NULL
  ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;");
 
+$db->query("CREATE TABLE settings (
+  id int(5) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  site_name VARCHAR(255) NOT NULL,
+  site_description VARCHAR(255) NOT NULL,
+  dashboard_language VARCHAR(255) NOT NULL)");
+
 
 $db->query("INSERT INTO accounts
                             (id, username, password,email,rolename)
                             VALUES ('1','admin', '$2y$10$/EoJNAFqj1MgZRZOs4iG3OY22LXjUJsFXdPCQGhjUClVRXNup0Vbm','mail@mail.com','Admin')
                             ");
+
+
+$db->query("INSERT INTO settings
+(id, site_name, site_description,dashboard_language)
+VALUES ('1','Your site name', 'This is a short description of your website','en')
+");
+
 
 header("Location: ../index.php");
