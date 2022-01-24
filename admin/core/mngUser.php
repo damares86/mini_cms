@@ -57,7 +57,7 @@ if(filter_input(INPUT_POST,"subReg")){
 		$user->email=$_POST['email'];
 
 		if($user->emailExists()){
-			header("Location: ../index.php?err=mailExists");
+			header("Location: ../index.php?msg=mailExists");
 		} else {
 
 			$roleArr=$_POST['rolename'];
@@ -85,49 +85,29 @@ if(filter_input(INPUT_POST,"subReg")){
 		}
 	} else if($operation=="mod"){
 
-		$type = filter_input(INPUT_POST, "type");
 		
 		$user->id = $_POST['idToMod'];
 
-		if($type=="user"){
-			$roleArr=$_POST['rolename'];
-			$rolename=$roleArr[0];
+		$roleArr=$_POST['rolename'];
+		$rolename=$roleArr[0];
 
-			$user->username = $_POST['username'];
-			$user->email = $_POST['email'];
-			$user->rolename = $rolename;
+		$user->username = $_POST['username'];
+		$user->email = $_POST['email'];
+		$user->rolename = $rolename;
 
-			// update the post
-			if($user->update()){
-				header("Location: ../index.php?msg=userEditSucc");
-				exit;
-			
-				// empty posted values
-				// $_POST=array();
-			
-			}else{
-				header("Location: ../index.php?msg=userEditErr");
-				exit;
-			}
-		} else if($type=="pass"){
-
-			$user->password = $_POST['password'];
-
-			// update the post
-			if($user->updatePass()){
-				header("Location: ../index.php?msg=userEditSucc");
-				exit;
-			
-				// empty posted values
-				// $_POST=array();
-			
-			}else{
-				header("Location: ../index.php?msg=userEditErr");
-				exit;
-			}
-
-			
+		// update the post
+		if($user->update()){
+			header("Location: ../index.php?msg=userEditSucc");
+			exit;
+		
+			// empty posted values
+			// $_POST=array();
+		
+		}else{
+			header("Location: ../index.php?msg=userEditErr");
+			exit;
 		}
+		
 	}
 	
 

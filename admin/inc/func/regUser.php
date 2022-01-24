@@ -24,7 +24,6 @@ if(filter_input(INPUT_GET,"idToMod")){
 
         <form class="form-horizontal row-fluid" action="core/mngUser.php" method="POST" enctype="multipart/form-data">
         <input type="hidden" name="operation" value="<?=$operation?>" />
-        <input type="hidden" name="type" value="user" />
 
         <?php 
       
@@ -123,7 +122,6 @@ if(filter_input(INPUT_GET,"idToMod")){
                    
                     <input type="submit" class="btn btn-primary" name="subReg" value="Submit">
 
-                    <!-- <button type="submit" class="btn" name="subReg">Submit Form</button> -->
                 </div>
             </div>
         </form>
@@ -154,8 +152,6 @@ if($operation=="mod"){
                 <div class="controls">
                    
                     <input type="submit" class="btn btn-primary" name="subReg" value="Submit">
-
-                    <!-- <button type="submit" class="btn" name="subReg">Submit Form</button> -->
                 </div>
             </div>
         </form>

@@ -37,13 +37,9 @@ class Settings{
       
         // execute the query, also check if query was successful
         if($stmt->execute()){
-            print_r("ok");
-            exit;
             return true;
 
         }else{
-            print_r("ko");
-            exit;
             $this->showError($stmt);
             return false;
         }
