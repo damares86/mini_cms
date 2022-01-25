@@ -18,14 +18,6 @@
     <link href="assets/css/burger.css" rel="stylesheet" type="text/css">
     <link href="assets/css/main.css" rel="stylesheet" type="text/css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script src="js/wow.min.js"></script>
-    <script>
-        var wow = new WOW({
-            offset: 0, // distance to the element when triggering the animation (default is 0)
-            mobile: false // trigger animations on mobile devices (default is true)
-        });
-        wow.init();
-    </script>
     <script type="text/javascript" src="assets/js/main.js"></script>
     <meta name="viewport" content="width=device-width, intial-scale=1">
 </head>
@@ -37,7 +29,7 @@
             <header>
                 <div id="logo">
                     <a href="index.php">
-                        <img src="assets/img/logo.png">
+                        <img src="assets/img/logo_mc.svg">
                     </a>
                 </div>
                 <div id="menu">

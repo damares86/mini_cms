@@ -6,16 +6,14 @@ if(!is_file('admin/class/Database.php')){
 
 }
 
-// require "admin/core/functions.php";
-// $conn = OpenConnection();
-
 session_start();
 
 
-// if (isset($_SESSION['loggedin'])) {
-//     header('Location: admin/');
-//     exit;
-// }
+if (isset($_SESSION['loggedin'])) {
+    header('Location: admin/');
+    exit;
+}
+
 
 
 ?>
