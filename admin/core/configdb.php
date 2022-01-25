@@ -126,17 +126,30 @@ $db->query("CREATE TABLE settings (
   site_description VARCHAR(255) NOT NULL,
   dashboard_language VARCHAR(255) NOT NULL)");
 
+$db->query("CREATE TABLE IF NOT EXISTS categories
+                           ( id INT ( 5 ) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+                             category_name VARCHAR(255) NOT NULL)");
 
-$db->query("INSERT INTO accounts
-                            (id, username, password,email,rolename)
-                            VALUES ('1','admin', '$2y$10$/EoJNAFqj1MgZRZOs4iG3OY22LXjUJsFXdPCQGhjUClVRXNup0Vbm','mail@mail.com','Admin')
+$db->query("INSERT INTO categories
+                            (id, category_name)
+                            VALUES ('1','No Category')
                             ");
+
+$db->query("CREATE TABLE IF NOT EXISTS page
+                           ( id INT ( 5 ) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+                             page_name VARCHAR(255) NOT NULL,
+                             page_block VARCHAR(255) NOT NULL,
+                             page_block_content VARCHAR(255) NOT NULL)");
+                           
+$db->query("INSERT INTO accounts
+(id, username, password,email,rolename)
+VALUES ('1','admin', '$2y$10$/EoJNAFqj1MgZRZOs4iG3OY22LXjUJsFXdPCQGhjUClVRXNup0Vbm','mail@mail.com','Admin')
+");
 
 
 $db->query("INSERT INTO settings
 (id, site_name, site_description,dashboard_language)
 VALUES ('1','Your site name', 'This is a short description of your website','en')
 ");
-
 
 header("Location: ../index.php");

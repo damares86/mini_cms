@@ -1,19 +1,19 @@
 <?php
 
 
-require 'admin/phpDebug/src/Debug/Debug.php';   			// if not using composer
+// require 'admin/phpDebug/src/Debug/Debug.php';   			// if not using composer
 
-$debug = new \bdk\Debug(array(
-    'collect' => true,
-    'output' => true,
-));
+// $debug = new \bdk\Debug(array(
+//     'collect' => true,
+//     'output' => true,
+// ));
 
 
-session_start();
-if (!isset($_SESSION['loggedin'])) {
-    header('Location: ../');
-    exit;
-}
+// session_start();
+// if (!isset($_SESSION['loggedin'])) {
+//     header('Location: ../');
+//     exit;
+// }
 
 // loading class
 

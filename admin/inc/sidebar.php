@@ -25,6 +25,12 @@
                                 <li>
                                     <a href="index.php?man=post&op=show"><i class="menu-icon icon-edit"></i>Posts</a>
                                 </li>
+                                <li>
+                                    <a href="#"><i class="menu-icon icon-tags"></i>Categories</a>
+                                </li>
+                            </ul>
+                            <ul class="widget widget-menu unstyled">
+
                             <?php
                             if($_SESSION['rolename']!="Contributor"){
                             ?>
