@@ -16,7 +16,7 @@
 
         <div class="align-items-center pt-3 pb-2 mb-3 align-items-center">
             <!-- <h6><a href="home.php"><-- Back to dashboard's home</h6></a> -->
-            <h1 class="h2 mx-auto text-center">Colors</h1>
+            <h1 class="h2 mx-auto text-center">Box Background Colors</h1>
             <a href="index.php?man=color&op=add"><button type="button" class="btn btn-success">Add new color +</button></a>
         </div>
         <br>

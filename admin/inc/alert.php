@@ -162,7 +162,7 @@ if($msg=="userDelSucc"){
     </div>
 
     <?php    
-} else if($msg=="catError"){
+} else if($msg=="catErr"){
     ?>
     <div class="alert alert-danger">
         <button type="button" class="close" data-dismiss="alert">x</button>
@@ -178,11 +178,43 @@ if($msg=="userDelSucc"){
     </div>
 
     <?php    
-} else if($msg=="catEditError"){
+} else if($msg=="catEditErr"){
+    ?>
+    <div class="alert alert-danger">
+        <button type="button" class="close" data-dismiss="alert">x</button>
+        Category not modified
+    </div>
+
+    <?php    
+} else if($msg=="colorDelSucc"){
     ?>
     <div class="alert alert-warning">
         <button type="button" class="close" data-dismiss="alert">x</button>
-        Category not modified
+        Color deleted
+    </div>
+
+    <?php    
+} else if($msg=="colorDelErr"){
+    ?>
+    <div class="alert alert-danger">
+        <button type="button" class="close" data-dismiss="alert">x</button>
+        Color not deleted
+    </div>
+
+    <?php    
+} else if($msg=="colorSucc"){
+    ?>
+    <div class="alert alert-success">
+        <button type="button" class="close" data-dismiss="alert">x</button>
+        Color created
+    </div>
+
+    <?php    
+} else if($msg=="colorErr"){
+    ?>
+    <div class="alert alert-danger">
+        <button type="button" class="close" data-dismiss="alert">x</button>
+        Color not created
     </div>
 
     <?php    
