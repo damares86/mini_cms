@@ -67,7 +67,7 @@ $user=$_SESSION['name'];
                             }else if($manage=="color"){
                                 if($operation=="show"){
                                     require "inc/func/allColor.php";
-                                } else if($operation=="add"||$operation=="edit"){
+                                } else if($operation=="add"){
                                     require "inc/func/regColor.php";
                                 }
                             }else{  
