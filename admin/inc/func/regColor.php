@@ -1,12 +1,5 @@
-<script type="text/javascript">
+<script type="text/javascript"> $(document).ready(function() { $('#colorpicker').farbtastic('#color'); }); </script>
 
-  $(document).ready(function() {
-
-    $('#colorpicker').farbtastic('#color');
-
-  });
-
-</script>
 
 <div class="module">
     <div class="module-head">
@@ -14,8 +7,9 @@
     </div>
     <div class="module-body">
         
-        <div id="colorpicker"></div>
-        
+    <div id="colorpicker"></div>
+      
+        <br>
         <form class="form-horizontal row-fluid" action="core/mngColor.php" method="POST" enctype="multipart/form-data">
       
             <div class="control-group">
@@ -34,7 +28,6 @@
                 </div>
             </div>
         </form>
-
     </div>
 </div>
 
