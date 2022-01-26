@@ -130,6 +130,62 @@ if($msg=="userDelSucc"){
     </div>
 
     <?php    
+} else if($msg=="catDelSucc"){
+    ?>
+    <div class="alert alert-warning">
+        <button type="button" class="close" data-dismiss="alert">x</button>
+        Category successfully deleted
+    </div>
+
+    <?php    
+} else if($msg=="catDelError"){
+    ?>
+    <div class="alert alert-danger">
+        <button type="button" class="close" data-dismiss="alert">x</button>
+        Category not deleted
+    </div>
+
+    <?php    
+} else if($msg=="catExists"){
+    ?>
+    <div class="alert alert-danger">
+        <button type="button" class="close" data-dismiss="alert">x</button>
+        Category already exists
+    </div>
+
+    <?php    
+} else if($msg=="catSucc"){
+    ?>
+    <div class="alert alert-success">
+        <button type="button" class="close" data-dismiss="alert">x</button>
+        Category successfully created
+    </div>
+
+    <?php    
+} else if($msg=="catError"){
+    ?>
+    <div class="alert alert-danger">
+        <button type="button" class="close" data-dismiss="alert">x</button>
+        Category not created
+    </div>
+
+    <?php    
+} else if($msg=="catEditSucc"){
+    ?>
+    <div class="alert alert-success">
+        <button type="button" class="close" data-dismiss="alert">x</button>
+        Category successfully modified
+    </div>
+
+    <?php    
+} else if($msg=="catEditError"){
+    ?>
+    <div class="alert alert-warning">
+        <button type="button" class="close" data-dismiss="alert">x</button>
+        Category not modified
+    </div>
+
+    <?php    
 } else
 
 ?>

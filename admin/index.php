@@ -39,32 +39,38 @@ $user=$_SESSION['name'];
                             if($manage=="post"){
                                 if($operation=="show"){
                                     require "inc/func/allPost.php";
-                                } else if($operation=="add"){
-                                    require "inc/func/regPost.php";
-                                } else if($operation=="edit"){
+                                } else if($operation=="add"||$operation=="edit"){
                                     require "inc/func/regPost.php";
                                 } 
                             } else if($manage=="users"){
                                 if($operation=="show"){
                                     require "inc/func/allUser.php";
-                                } else if($operation=="add"){
-                                    require "inc/func/regUser.php";
-                                } else if($operation=="edit"){
+                                } else if($operation=="add"||$operation=="edit"){
                                     require "inc/func/regUser.php";
                                 }
-                            } else if($manage=="roles"){
-                                if($operation=="show"){
-                                    require "inc/func/allRole.php";
-                                } else if($operation=="add"){
-                                    require "inc/func/regRole.php";
-                                } else if($operation=="edit"){
-                                    require "inc/func/regRole.php";
-                                }
+                            // } else if($manage=="roles"){
+                            //     if($operation=="show"){
+                            //         require "inc/func/allRole.php";
+                            //     } else if($operation=="add"||$operation=="edit"){
+                            //         require "inc/func/regRole.php";
+                            //     } 
                             } else if($manage=="files"){
                                  require "inc/func/allFile.php";
                             }else if($manage=="settings"){
                                 require "inc/func/allSettings.php";
-                            }else {  
+                            }else if($manage=="cat"){
+                                if($operation=="show"){
+                                    require "inc/func/allCat.php";
+                                } else if($operation=="add"||$operation=="edit"){
+                                    require "inc/func/regCat.php";
+                                }
+                            }else if($manage=="color"){
+                                if($operation=="show"){
+                                    require "inc/func/allColor.php";
+                                } else if($operation=="add"||$operation=="edit"){
+                                    require "inc/func/regColor.php";
+                                }
+                            }else{  
                         ?>
                             <div class="module">
                                 <div class="module-head">
