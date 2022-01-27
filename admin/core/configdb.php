@@ -130,6 +130,7 @@ $db->query("INSERT INTO categories
 $db->query("CREATE TABLE IF NOT EXISTS page
                             ( id INT ( 5 ) NOT NULL AUTO_INCREMENT PRIMARY KEY,
                               page_name VARCHAR(255) NOT NULL,
+                              page_file VARCHAR (255) NOT NULL,
                               block1 VARCHAR(255) NOT NULL,
                               block1_bg VARCHAR(255) DEFAULT 'none',
                               block2 VARCHAR(255) NULL,
