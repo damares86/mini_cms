@@ -54,6 +54,7 @@ if(filter_input(INPUT_POST,"subReg")){
 		//inserimento
 		$post->title=$_POST['title'];
 		$post->content=$_POST['editor'];
+		$post->category_id=$_POST['category_id'];
 			
 		// create the post
 		if($post->insert()){
@@ -70,6 +71,7 @@ if(filter_input(INPUT_POST,"subReg")){
 		// modifica post
 			$post->title=$_POST['title'];
 			$post->content=$_POST['editor'];
+			$post->category_id=$_POST['category_id'];
 			$post->id=$_POST['idToMod'];
 				
 			// update the post

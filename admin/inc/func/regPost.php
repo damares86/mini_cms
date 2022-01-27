@@ -5,6 +5,7 @@ $titoloForm = "Add New Post";
 
 $postToMod="";
 $idToMod="";
+$category_id="";
 
 if(filter_input(INPUT_GET,"idToMod")){
     $idToMod = filter_input(INPUT_GET,"idToMod");
@@ -22,6 +23,7 @@ if(filter_input(INPUT_GET,"idToMod")){
         <input type="hidden" name="operation" value="<?= $operation ?>" />
                 <?php 
         $post->id = $idToMod;
+      
 
                 if($operation=="mod"){ 
                     ?>
@@ -29,6 +31,7 @@ if(filter_input(INPUT_GET,"idToMod")){
                 <?php 
                 } 
         $post->showById();
+        $category_id= $post->category_id;
 
         ?>
             <div class="control-group">
@@ -37,6 +40,35 @@ if(filter_input(INPUT_GET,"idToMod")){
                     <input type="text" id="title" name="title" placeholder="Post's Title" value="<?=$post->title?>" class="span8">
                      
                 </div>
+            </div>
+            <div class="control-group">
+            <label for="category_id">Category</label>
+            <?php
+            $cat = new Categories($db);
+                $stmt = $cat->showAll();
+                $total_rows = $cat->countAll();
+              
+                ?>
+            <select name="category_id">
+                <?php
+               
+                echo "<option value='0'>-none-</option>";
+                
+               
+                while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
+           
+                    extract($row);
+                  
+                    $selected = "";
+                    if ($id == $category_id) {
+                        $selected = "selected";
+                    }
+                    echo "<option value='{$id}' $selected>{$category_name}</option>";
+
+                }
+
+                ?>
+            </select>
             </div>
             <br>
 

@@ -124,7 +124,7 @@ $db->query("CREATE TABLE IF NOT EXISTS categories
 
 $db->query("INSERT INTO categories
                             (id, category_name)
-                            VALUES ('1','No Category')
+                            VALUES ('1','Misc')
                             ");
 
 $db->query("CREATE TABLE IF NOT EXISTS page
