@@ -108,25 +108,39 @@ if(filter_input(INPUT_POST,"subReg")){
 			exit;
 		}
 	} else if($operation=="mod"){
-			
-		// modifica post
-			$post->title=$_POST['title'];
-			$post->content=$_POST['editor'];
-			$post->category_id=$_POST['category_id'];
-			$post->id=$_POST['idToMod'];
-				
-			// update the post
-			if($post->update()){
-				header("Location: ../index.php?msg=postEditSucc");
-				exit;
-			
-				// empty posted values
-				// $_POST=array();
-			
-			}else{
-				header("Location: ../index.php?msg=postEditErr");
-				exit;
-			}
+		
+		$page->id=$_POST['idToMod'];
+		$page->page_name=$_POST['page_name'];
+		$page->block1=$_POST['editor'];
+		$page->block1_bg=$_POST['block1_bg'];
+
+		if($_POST['editor2']){
+			$page->block2=$_POST['editor2'];
+			$page->block2_bg=$_POST['block2_bg'];
+		}
+
+		if($_POST['editor3']){
+			$page->block3=$_POST['editor3'];
+			$page->block3_bg=$_POST['block3_bg'];
+		}
+		if($_POST['editor4']){
+			$page->block4=$_POST['editor4'];
+			$page->block4_bg=$_POST['block4_bg'];
+		}
+		
+
+		// update the post
+		if($page->update()){
+			header("Location: ../index.php?msg=pageEditSucc");
+			exit;
+		
+			// empty posted values
+			// $_POST=array();
+		
+		}else{
+			header("Location: ../index.php?msg=pageEditErr");
+			exit;
+		}
 
 	}
 	

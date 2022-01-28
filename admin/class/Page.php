@@ -91,24 +91,50 @@ class Page{
     }
 
     function update(){
-        // insert query
+        
+        if($this->block2){
+           
+            $this->setParam2 = ", block2 = :block2, block2_bg = :block2_bg";
+         
+        } 
+    
+        if($this->block3){
+            $this->setParam3 = ", block3 = :block3, block3_bg = :block3_bg";
+        }
+ 
+        if($this->block4){
+            $this->setParam4 = ", block4 = :block4, block4_bg = :block4_bg";
+        }
         $query = "UPDATE
                     " . $this->table_name . "
                 SET
-                    title = :title,
-                    content = :content,
-                    category_id = :category_id,
-                    modified = NOW()
+                page_name = :page_name,
+                block1 = :block1,
+                block1_bg = :block1_bg". $this->setParam2 . $this->setParam3 . $this->setParam4 . "
                 WHERE
                     id = :id";
+
     // prepare the query
         $stmt = $this->conn->prepare($query);
      
         // bind the values
-        $stmt->bindParam(':title', $this->title);
-        $stmt->bindParam(':content', $this->content); 
-        $stmt->bindParam(':category_id', $this->category_id);       
-        $stmt->bindParam(':id', $this->id);
+        $stmt->bindParam(':page_name', $this->page_name);       
+        $stmt->bindParam(':block1', $this->block1);       
+        $stmt->bindParam(':block1_bg', $this->block1_bg);       
+        if($this->block2){
+            $stmt->bindParam(':block2', $this->block2);       
+            $stmt->bindParam(':block2_bg', $this->block2_bg);       
+        }
+        if($this->block3){
+            $stmt->bindParam(':block3', $this->block3);       
+            $stmt->bindParam(':block3_bg', $this->block3_bg);       
+        }
+        if($this->block4){
+            $stmt->bindParam(':block4', $this->block4);       
+            $stmt->bindParam(':block4_bg', $this->block4_bg);       
+        }
+        $stmt->bindParam(':id', $this->id);       
+
                 
       
         // execute the query, also check if query was successful
@@ -163,9 +189,14 @@ class Page{
     
         $this->id = $row['id'];
         $this->page_name = $row['page_name'];
-    //     $this->content = $row['content'];
-    //     $this->category_id = $row['category_id'];
-    //     $this->modified = $row['modified'];
+        $this->block1 = $row['block1'];
+        $this->block1_bg = $row['block1_bg'];
+        $this->block2 = $row['block2'];
+        $this->block2_bg = $row['block2_bg'];
+        $this->block3 = $row['block3'];
+        $this->block3_bg = $row['block3_bg'];
+        $this->block4 = $row['block4'];
+        $this->block4_bg = $row['block4_bg'];
     }
 
  // delete the post
