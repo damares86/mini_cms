@@ -35,7 +35,7 @@
                             if($_SESSION['rolename']!="Contributor"){
                             ?>
                                 <li>
-                                    <a href="#"><i class="menu-icon icon-copy"></i>Pages</a>
+                                    <a href="index.php?man=page&op=show"><i class="menu-icon icon-copy"></i>Pages</a>
                                 </li>
                             <?php
                             }

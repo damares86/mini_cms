@@ -29,6 +29,7 @@ $db = $database->getConnection();
 $user = new User($db);
 $role = new Role($db);
 $post = new Post($db);
+$page = new Page($db);
 
 ?>
 

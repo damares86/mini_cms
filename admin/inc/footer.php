@@ -11,5 +11,17 @@
     filebrowserBrowseUrl: 'ckfinder/ckfinder.html',
     filebrowserUploadUrl: 'ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files'
 } );
+CKEDITOR.replace( 'editor2', {
+    filebrowserBrowseUrl: 'ckfinder/ckfinder.html',
+    filebrowserUploadUrl: 'ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files'
+} );
+CKEDITOR.replace( 'editor3', {
+    filebrowserBrowseUrl: 'ckfinder/ckfinder.html',
+    filebrowserUploadUrl: 'ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files'
+} );
+CKEDITOR.replace( 'editor4', {
+    filebrowserBrowseUrl: 'ckfinder/ckfinder.html',
+    filebrowserUploadUrl: 'ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files'
+} );
 </script>
     

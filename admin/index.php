@@ -48,12 +48,6 @@ $user=$_SESSION['name'];
                                 } else if($operation=="add"||$operation=="edit"){
                                     require "inc/func/regUser.php";
                                 }
-                            // } else if($manage=="roles"){
-                            //     if($operation=="show"){
-                            //         require "inc/func/allRole.php";
-                            //     } else if($operation=="add"||$operation=="edit"){
-                            //         require "inc/func/regRole.php";
-                            //     } 
                             } else if($manage=="files"){
                                  require "inc/func/allFile.php";
                             }else if($manage=="settings"){
@@ -63,6 +57,12 @@ $user=$_SESSION['name'];
                                     require "inc/func/allCat.php";
                                 } else if($operation=="add"||$operation=="edit"){
                                     require "inc/func/regCat.php";
+                                }
+                            }else if($manage=="page"){
+                                if($operation=="show"){
+                                    require "inc/func/allPage.php";
+                                } else if($operation=="add"||$operation=="edit"){
+                                    require "inc/func/regPage.php";
                                 }
                             }else if($manage=="color"){
                                 if($operation=="show"){
