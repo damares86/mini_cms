@@ -1,4 +1,6 @@
 <?php
+
+//CONFRONTARE IL NOME PAGINA CON QUELLO INSERITO NEL DB
 // prendo il nome del file (con estensione)
 $file = basename($_SERVER['PHP_SELF']);
 // mi prendo solo il nome senza l'estensione
@@ -7,9 +9,7 @@ $page = pathinfo($file, PATHINFO_FILENAME);
 $page=str_replace("_"," ", $page);
 // metto la prima lettera maiuscola
 $page=ucfirst($page);
-// ottengo così "Contact us" e passo la variabile $page come titolo della pagina
-
-
+// ottengo così "Contact 
 require "assets/inc/header.php";
 ?>
 

@@ -1,7 +1,15 @@
 <?php
 
 //CONFRONTARE IL NOME PAGINA CON QUELLO INSERITO NEL DB
-$page = basename($_SERVER['PHP_SELF']);
+// prendo il nome del file (con estensione)
+$file = basename($_SERVER['PHP_SELF']);
+// mi prendo solo il nome senza l'estensione
+$page = pathinfo($file, PATHINFO_FILENAME);
+// rimuovo gli _ (underscore) che ho messo nel nome file
+$page=str_replace("_"," ", $page);
+// metto la prima lettera maiuscola
+$page=ucfirst($page);
+// ottengo così "Contact 
 require "assets/inc/header.php";
 ?>
 

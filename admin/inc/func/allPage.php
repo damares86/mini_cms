@@ -7,8 +7,8 @@
 	$page = new Page($db);
     
     $stmt = $page->showAll($from_record_num, $records_per_page);
-
-    $total_rows=$post->countAll();
+    
+    $total_rows=$page->countAll();
 
 ?>
 <div class="module">
@@ -30,25 +30,28 @@
             <thead>
                 <tr>
                     <th scope="col">#</th>
-                    <th scope="col">Title</th>
-                    <th scope="col">Category</th>
-                    <th scope="col">Modified</th>
+                    <th scope="col">Page Name</th>
                     <th scope="col">Edit</th>
                     <th scope="col">Delete</th>
                 </tr>
             </thead>
             <tbody>
-           
+            <?php
+            while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
+        
+        extract($row);
+        ?>
             <tr>
                 <td><?=$id?></td>
-                <td><?=$title?></td>
-                <td><?=$category_name?></td>
-                <td><?=$modified?></td>
-                <td><a href="index.php?man=post&op=edit&idToMod=<?=$row["id"]?>"><button type="button" class="btn btn-warning">Edit</button></a></td>
-                <td><a href="core/mngPost.php?idToDel=<?=$row["id"]?>"><button type="button" class="btn btn-danger">Delete</button></a></td>
+                <td><?=$page_name?></td>
+                <td><a href="index.php?man=page&op=edit&idToMod=<?=$row["id"]?>"><button type="button" class="btn btn-warning">Edit</button></a></td>
+                <td><a href="core/mngPage.php?idToDel=<?=$row["id"]?>"><button type="button" class="btn btn-danger">Delete</button></a></td>
             </tr>
       
+<?php
+            }
 
+            ?>
 
             </tbody>
         </table>
