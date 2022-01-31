@@ -29,6 +29,11 @@ if (!isset($_SESSION['loggedin'])) {
 	
 	$user->id = $_POST['idToMod'];
 
+	if(!$_POST['password']){
+		header("Location: ../index.php?msg=pswEmpty");
+		exit;
+	}
+
 	$user->password = $_POST['password'];
 
 		// update the post

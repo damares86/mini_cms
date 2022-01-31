@@ -34,6 +34,7 @@ $user=$_SESSION['name'];
                     <div class="span9">
                         <div class="content">
                         <?php
+                                require "inc/alert.php";
                             
 
                             if($manage=="post"){
@@ -73,14 +74,13 @@ $user=$_SESSION['name'];
                             }else{  
                         ?>
                             <div class="module">
+
                                 <div class="module-head">
                                     <h3>damares86 Admin Dashboard</h3>
                                     
                                 </div>
                                 <div class="module-body">
-                                <?php
-                                require "inc/alert.php";
-                                ?>
+
                                     <section class="docs">
                                         <p>Welcome <b><?=$user?></b> to you Admin Dashboard Area.</p>
                                         <p>Below you have some quick links to manage the reserved area.</p><br>

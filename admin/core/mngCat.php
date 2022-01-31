@@ -35,10 +35,7 @@ if(filter_input(INPUT_GET,"idToDel")){
 	if($cat->delete()){
 		header("Location: ../index.php?msg=catDelSucc");
 		exit;
-	
-		// empty posted values
-		// $_POST=array();
-	
+		
 	}else{
 		header("Location: ../index.php?msg=catDelErr");
 		exit;
@@ -48,6 +45,12 @@ if(filter_input(INPUT_GET,"idToDel")){
 if(filter_input(INPUT_POST,"subReg")){
 
 	$operation=filter_input(INPUT_POST,"operation");
+	
+	if(!$_POST['category_name']){
+		header("Location: ../index.php?man=cat&op=show&msg=catEmpty");
+		exit;
+	}
+	
 	$cat->category_name=$_POST['category_name'];
 
 	if($operation=="add"){

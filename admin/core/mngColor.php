@@ -47,6 +47,11 @@ if(filter_input(INPUT_GET,"idToDel")){
 
 if(filter_input(INPUT_POST,"subReg")){
 
+	if(!$_POST['color']){
+		header("Location: ../index.php?man=color&op=show&msg=colorEmpty");
+		exit;
+	}
+
 	$colors->color=$_POST['color'];
 	
 	// create the user

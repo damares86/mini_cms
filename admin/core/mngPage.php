@@ -37,7 +37,7 @@ if(filter_input(INPUT_GET,"idToDel")){
 	$str = strtolower($str);
 	$filepath = "../../" . $str . ".php";
 
-	if(unlink($filepath)){
+	if(unlink($filepath) || !file_exists(($filepath))){
 		if($page->delete()){
 
 			header("Location: ../index.php?msg=pageDelSucc");
@@ -57,6 +57,11 @@ if(filter_input(INPUT_GET,"idToDel")){
 
 if(filter_input(INPUT_POST,"subReg")){
 	$operation=filter_input(INPUT_POST,"operation");
+
+	if(!$_POST['page_name']||!$_POST['editor']){
+		header("Location: ../index.php?man=page&op=show&msg=pageEmpty");
+		exit;
+	}
 
 	
 	if($operation=="add"){

@@ -218,6 +218,62 @@ if($msg=="userDelSucc"){
     </div>
 
     <?php    
+} else if($msg=="catEmpty"){
+    ?>
+    <div class="alert alert-danger">
+        <button type="button" class="close" data-dismiss="alert">x</button>
+        Category name missing
+    </div>
+
+    <?php    
+} else if($msg=="colorEmpty"){
+    ?>
+    <div class="alert alert-danger">
+        <button type="button" class="close" data-dismiss="alert">x</button>
+        Color missing
+    </div>
+
+    <?php    
+} else if($msg=="pageEmpty"){
+    ?>
+    <div class="alert alert-danger">
+        <button type="button" class="close" data-dismiss="alert">x</button>
+        Page name or first block missing
+    </div>
+
+    <?php    
+} else if($msg=="pswEmpty"){
+    ?>
+    <div class="alert alert-danger">
+        <button type="button" class="close" data-dismiss="alert">x</button>
+        New password missing
+    </div>
+
+    <?php    
+} else if($msg=="postEmpty"){
+    ?>
+    <div class="alert alert-danger">
+        <button type="button" class="close" data-dismiss="alert">x</button>
+        Post error: something missing
+    </div>
+
+    <?php    
+} else if($msg=="settingsEmpty"){
+    ?>
+    <div class="alert alert-danger">
+        <button type="button" class="close" data-dismiss="alert">x</button>
+        Title and description can't be empty
+    </div>
+
+    <?php    
+} else if($msg=="userEmpty"){
+    ?>
+    <div class="alert alert-danger">
+        <button type="button" class="close" data-dismiss="alert">x</button>
+        Some data missing during user creation
+    </div>
+
+    <?php    
 } else
 
 ?>
