@@ -25,11 +25,17 @@
                                 <li>
                                     <a href="index.php?man=post&op=show"><i class="menu-icon icon-edit"></i>Posts</a>
                                 </li>
+                                <li>
+                                    <a href="index.php?man=cat&op=show"><i class="menu-icon icon-tags"></i>Categories</a>
+                                </li>
+                            </ul>
+                            <ul class="widget widget-menu unstyled">
+
                             <?php
                             if($_SESSION['rolename']!="Contributor"){
                             ?>
                                 <li>
-                                    <a href="#"><i class="menu-icon icon-copy"></i>Pages</a>
+                                    <a href="index.php?man=page&op=show"><i class="menu-icon icon-copy"></i>Pages</a>
                                 </li>
                             <?php
                             }
@@ -43,7 +49,10 @@
                             ?>
                             <ul class="widget widget-menu unstyled">
                                 <li>
-                                    <a href="index.php?man=settings"><i class="menu-icon icon-wrench"></i>Settings</a>
+                                    <a href="index.php?man=settings"><i class="menu-icon icon-wrench"></i>Site settings</a>
+                                </li>
+                                <li>
+                                    <a href="index.php?man=color&op=show"><i class="menu-icon icon-picture"></i>Theme settings</a>
                                 </li>
                             </ul>
                             <?php

@@ -9,8 +9,8 @@ class Post{
     public $id;
     public $title;
     public $content;
-    public $created;
     public $modified;
+    public $category_id;
 
     // constructor
     public function __construct($db){
@@ -19,23 +19,28 @@ class Post{
 
     // create new role record
     function insert(){
+        
         // insert query
         $query = "INSERT INTO
                     " . $this->table_name . "
                 SET
                     title = :title,
                     content = :content,
+                    category_id = :category_id,
                     modified = NOW()";
     
         // prepare the query
         $stmt = $this->conn->prepare($query);
-    
+       
         // bind the values
         $stmt->bindParam(':title', $this->title);       
         $stmt->bindParam(':content', $this->content);       
+        $stmt->bindParam(':category_id', $this->category_id);       
+       
       
         // execute the query, also check if query was successful
         if($stmt->execute()){
+           
             return true;
 
         }else{
@@ -58,6 +63,7 @@ class Post{
                 SET
                     title = :title,
                     content = :content,
+                    category_id = :category_id,
                     modified = NOW()
                 WHERE
                     id = :id";
@@ -67,6 +73,7 @@ class Post{
         // bind the values
         $stmt->bindParam(':title', $this->title);
         $stmt->bindParam(':content', $this->content); 
+        $stmt->bindParam(':category_id', $this->category_id);       
         $stmt->bindParam(':id', $this->id);
                 
       
@@ -81,7 +88,6 @@ class Post{
     
     }
 
-// DA CAPIRE
     function showAll(){
         //select all data
         $query = "SELECT
@@ -124,6 +130,7 @@ class Post{
         $this->id = $row['id'];
         $this->title = $row['title'];
         $this->content = $row['content'];
+        $this->category_id = $row['category_id'];
         $this->modified = $row['modified'];
     }
 

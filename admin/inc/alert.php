@@ -130,6 +130,206 @@ if($msg=="userDelSucc"){
     </div>
 
     <?php    
+} else if($msg=="catDelSucc"){
+    ?>
+    <div class="alert alert-warning">
+        <button type="button" class="close" data-dismiss="alert">x</button>
+        Category successfully deleted
+    </div>
+
+    <?php    
+} else if($msg=="catDelError"){
+    ?>
+    <div class="alert alert-danger">
+        <button type="button" class="close" data-dismiss="alert">x</button>
+        Category not deleted
+    </div>
+
+    <?php    
+} else if($msg=="catExists"){
+    ?>
+    <div class="alert alert-danger">
+        <button type="button" class="close" data-dismiss="alert">x</button>
+        Category already exists
+    </div>
+
+    <?php    
+} else if($msg=="catSucc"){
+    ?>
+    <div class="alert alert-success">
+        <button type="button" class="close" data-dismiss="alert">x</button>
+        Category successfully created
+    </div>
+
+    <?php    
+} else if($msg=="catErr"){
+    ?>
+    <div class="alert alert-danger">
+        <button type="button" class="close" data-dismiss="alert">x</button>
+        Category not created
+    </div>
+
+    <?php    
+} else if($msg=="catEditSucc"){
+    ?>
+    <div class="alert alert-success">
+        <button type="button" class="close" data-dismiss="alert">x</button>
+        Category successfully modified
+    </div>
+
+    <?php    
+} else if($msg=="catEditErr"){
+    ?>
+    <div class="alert alert-danger">
+        <button type="button" class="close" data-dismiss="alert">x</button>
+        Category not modified
+    </div>
+
+    <?php    
+} else if($msg=="colorDelSucc"){
+    ?>
+    <div class="alert alert-warning">
+        <button type="button" class="close" data-dismiss="alert">x</button>
+        Color deleted
+    </div>
+
+    <?php    
+} else if($msg=="colorDelErr"){
+    ?>
+    <div class="alert alert-danger">
+        <button type="button" class="close" data-dismiss="alert">x</button>
+        Color not deleted
+    </div>
+
+    <?php    
+} else if($msg=="colorSucc"){
+    ?>
+    <div class="alert alert-success">
+        <button type="button" class="close" data-dismiss="alert">x</button>
+        Color created
+    </div>
+
+    <?php    
+} else if($msg=="colorErr"){
+    ?>
+    <div class="alert alert-danger">
+        <button type="button" class="close" data-dismiss="alert">x</button>
+        Color not created
+    </div>
+
+    <?php    
+} else if($msg=="catEmpty"){
+    ?>
+    <div class="alert alert-danger">
+        <button type="button" class="close" data-dismiss="alert">x</button>
+        Category name missing
+    </div>
+
+    <?php    
+} else if($msg=="colorEmpty"){
+    ?>
+    <div class="alert alert-danger">
+        <button type="button" class="close" data-dismiss="alert">x</button>
+        Color missing
+    </div>
+
+    <?php    
+} else if($msg=="pageEmpty"){
+    ?>
+    <div class="alert alert-danger">
+        <button type="button" class="close" data-dismiss="alert">x</button>
+        Page name or first block missing
+    </div>
+
+    <?php    
+} else if($msg=="pswEmpty"){
+    ?>
+    <div class="alert alert-danger">
+        <button type="button" class="close" data-dismiss="alert">x</button>
+        New password missing
+    </div>
+
+    <?php    
+} else if($msg=="postEmpty"){
+    ?>
+    <div class="alert alert-danger">
+        <button type="button" class="close" data-dismiss="alert">x</button>
+        Post error: something missing
+    </div>
+
+    <?php    
+} else if($msg=="settingsEmpty"){
+    ?>
+    <div class="alert alert-danger">
+        <button type="button" class="close" data-dismiss="alert">x</button>
+        Title and description can't be empty
+    </div>
+
+    <?php    
+} else if($msg=="userEmpty"){
+    ?>
+    <div class="alert alert-danger">
+        <button type="button" class="close" data-dismiss="alert">x</button>
+        Some data missing during user creation
+    </div>
+
+    <?php    
+} else if($msg=="pageDelSucc"){
+    ?>
+    <div class="alert alert-warning">
+        <button type="button" class="close" data-dismiss="alert">x</button>
+        Page successfully deleted
+    </div>
+
+    <?php    
+} else if($msg=="pageDelErr"){
+    ?>
+    <div class="alert alert-danger">
+        <button type="button" class="close" data-dismiss="alert">x</button>
+        Page not deleted
+    </div>
+
+    <?php    
+} else if($msg=="pageSucc"){
+    ?>
+    <div class="alert alert-success">
+        <button type="button" class="close" data-dismiss="alert">x</button>
+        Page successfully created
+    </div>
+
+    <?php    
+} else if($msg=="pageDelSucc"){
+    ?>
+    <div class="alert alert-warning">
+        <button type="button" class="close" data-dismiss="alert">x</button>
+        Page successfully deleted
+    </div>
+
+    <?php    
+} else if($msg=="pageErr"){
+    ?>
+    <div class="alert alert-danger">
+        <button type="button" class="close" data-dismiss="alert">x</button>
+        Page not created
+    </div>
+
+    <?php    
+} else if($msg=="pageEditSucc"){
+    ?>
+    <div class="alert alert-success">
+        <button type="button" class="close" data-dismiss="alert">x</button>
+        Page modified
+    </div>
+
+    <?php    
+} else if($msg=="pageEditErr"){
+    ?>
+    <div class="alert alert-warning">
+        <button type="button" class="close" data-dismiss="alert">x</button>
+        Page not modified
+    </div>
+
+    <?php    
 } else
 
 ?>

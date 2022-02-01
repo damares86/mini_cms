@@ -54,6 +54,11 @@ if(filter_input(INPUT_POST,"subReg")){
 
 	if($operation=="add"){
 	//inserimento
+		if(!$_POST['email']||!$_POST['username']||!$_POST['password']||!$_POST['rolename']){
+			header("Location: ../index.php?man=user&op=show&msg=userEmpty");
+			exit;
+		}
+
 		$user->email=$_POST['email'];
 
 		if($user->emailExists()){
@@ -75,8 +80,6 @@ if(filter_input(INPUT_POST,"subReg")){
 				header("Location: ../index.php?msg=userSucc");
 				exit;
 			
-				// empty posted values
-				// $_POST=array();
 			
 			}else{
 				header("Location: ../index.php?msg=userErr");

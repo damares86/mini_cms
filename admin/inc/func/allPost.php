@@ -5,7 +5,7 @@
 	$db = $database->getConnection();
 
 	$post = new Post($db);
-    
+    $cat = new Categories($db);
     $stmt = $post->showAll($from_record_num, $records_per_page);
 
     $total_rows=$post->countAll();
@@ -31,6 +31,7 @@
                 <tr>
                     <th scope="col">#</th>
                     <th scope="col">Title</th>
+                    <th scope="col">Category</th>
                     <th scope="col">Modified</th>
                     <th scope="col">Edit</th>
                     <th scope="col">Delete</th>
@@ -41,11 +42,17 @@
             while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
         
                  extract($row);
+                 $cat->id = $category_id;
+
+                 $cat->showById();
+                                 
+                 $category_name= $cat->category_name;
        
             ?>
             <tr>
                 <td><?=$id?></td>
                 <td><?=$title?></td>
+                <td><?=$category_name?></td>
                 <td><?=$modified?></td>
                 <td><a href="index.php?man=post&op=edit&idToMod=<?=$row["id"]?>"><button type="button" class="btn btn-warning">Edit</button></a></td>
                 <td><a href="core/mngPost.php?idToDel=<?=$row["id"]?>"><button type="button" class="btn btn-danger">Delete</button></a></td>

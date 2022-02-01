@@ -7,8 +7,8 @@
                 <div class="container p-3">
                    
                         
-                    <a href="index.php">
-                            <img src="assets/images/logo.png" class="logo"> 
+                    <a href="../index.php">
+                            <img src="assets/images/logo_mc.png" class="logo"> 
                     </a>
                    
                        

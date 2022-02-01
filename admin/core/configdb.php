@@ -84,14 +84,6 @@ $db->query("CREATE TABLE IF NOT EXISTS accounts
                              email VARCHAR(255) NOT NULL,
                              rolename VARCHAR(50) NOT NULL)");
 
-
-
-// creating file's table
-$db->query("CREATE TABLE IF NOT EXISTS files
-                           ( id INT ( 5 ) NOT NULL AUTO_INCREMENT PRIMARY KEY,
-                             filename VARCHAR(255) NOT NULL,
-                             title VARCHAR(255) NOT NULL");
-
 // creating role's table
 $db->query("CREATE TABLE IF NOT EXISTS roles
                            ( id INT ( 5 ) NOT NULL AUTO_INCREMENT PRIMARY KEY,
@@ -116,9 +108,9 @@ $db->query("CREATE TABLE post (
   id int(5) NOT NULL AUTO_INCREMENT PRIMARY KEY,
   title VARCHAR(255) NOT NULL,
   content text COLLATE utf8_unicode_ci NOT NULL,
-  created datetime NOT NULL,
-  modified datetime NOT NULL
- ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;");
+  modified datetime NOT NULL,
+  category VARCHAR(255) NOT NULL) 
+  ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;");
 
 $db->query("CREATE TABLE settings (
   id int(5) NOT NULL AUTO_INCREMENT PRIMARY KEY,
@@ -126,17 +118,49 @@ $db->query("CREATE TABLE settings (
   site_description VARCHAR(255) NOT NULL,
   dashboard_language VARCHAR(255) NOT NULL)");
 
+$db->query("CREATE TABLE IF NOT EXISTS categories
+                           ( id INT ( 5 ) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+                             category_name VARCHAR(255) NOT NULL)");
 
-$db->query("INSERT INTO accounts
-                            (id, username, password,email,rolename)
-                            VALUES ('1','admin', '$2y$10$/EoJNAFqj1MgZRZOs4iG3OY22LXjUJsFXdPCQGhjUClVRXNup0Vbm','mail@mail.com','Admin')
+$db->query("INSERT INTO categories
+                            (id, category_name)
+                            VALUES ('1','Misc')
                             ");
+
+$db->query("CREATE TABLE IF NOT EXISTS page
+                            ( id INT ( 5 ) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+                              page_name VARCHAR(255) NOT NULL,
+                              block1 text COLLATE utf8_unicode_ci NOT NULL,
+                              block1_bg VARCHAR(255) DEFAULT 'none',
+                              block2 text COLLATE utf8_unicode_ci NULL,
+                              block2_bg VARCHAR(255) DEFAULT 'none',
+                              block3 text COLLATE utf8_unicode_ci NULL,
+                              block3_bg VARCHAR(255) DEFAULT 'none',
+                              block4 text COLLATE utf8_unicode_ci NULL,
+                              block4_bg VARCHAR(255) DEFAULT 'none')
+                              ");
+
+$db->query("CREATE TABLE IF NOT EXISTS color
+                              ( id INT ( 5 ) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+                                color VARCHAR(50) NOT NULL)");
+$db->query("INSERT INTO color
+                              (id, color)
+                              VALUES ('1','#008db1')
+                              ");
+$db->query("INSERT INTO color
+                            (id, color)
+                            VALUES ('2','#00cc99')
+                            ");
+                           
+$db->query("INSERT INTO accounts
+(id, username, password,email,rolename)
+VALUES ('1','admin', '$2y$10$/EoJNAFqj1MgZRZOs4iG3OY22LXjUJsFXdPCQGhjUClVRXNup0Vbm','mail@mail.com','Admin')
+");
 
 
 $db->query("INSERT INTO settings
 (id, site_name, site_description,dashboard_language)
 VALUES ('1','Your site name', 'This is a short description of your website','en')
 ");
-
 
 header("Location: ../index.php");
