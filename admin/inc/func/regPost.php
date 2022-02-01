@@ -52,7 +52,7 @@ if(filter_input(INPUT_GET,"idToMod")){
             <select name="category_id">
                 <?php
                
-                echo "<option value='0'>-none-</option>";
+               
                 
                
                 while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){

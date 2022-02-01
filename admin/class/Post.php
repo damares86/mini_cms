@@ -63,7 +63,7 @@ class Post{
                 SET
                     title = :title,
                     content = :content,
-                    category_id = :category_id,
+                    category_name = :category_id,
                     modified = NOW()
                 WHERE
                     id = :id";
