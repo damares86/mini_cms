@@ -100,13 +100,6 @@ if(filter_input(INPUT_POST,"subReg")){
 			 } else {
 				 echo "ko";
 			 }
-
-
-
-
-			header("Location: ../index.php?msg=pageSucc");
-			exit;
-		
 		
 		}else{
 			header("Location: ../index.php?msg=pageErr");

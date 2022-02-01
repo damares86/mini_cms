@@ -59,7 +59,7 @@
         // paging buttons
         include_once 'inc/paging.php';
     } else{
-        echo "<div class='alert alert-danger'>No post found.</div>";
+        echo "<div class='alert alert-danger'>No page found.</div>";
     }
 
 

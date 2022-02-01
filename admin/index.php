@@ -82,24 +82,25 @@ $user=$_SESSION['name'];
                                 <div class="module-body">
 
                                     <section class="docs">
-                                        <p>Welcome <b><?=$user?></b> to you Admin Dashboard Area.</p>
-                                        <p>Below you have some quick links to manage the reserved area.</p><br>
-                                        <p>Here there are two buttons to change your username and password:<br><br>
-                                        <a href="index.php?man=admin&type=name" class="btn btn-primary">Change Username</a> 
-                                        <a href="index.php?man=admin&type=psw" class="btn btn-primary">Change Password</a>
-                                        </p>
+                                        <p>Welcome <b><?=$user?></b> to you Mini Cms Admin Dashboard.</p>
+                                        <p>Below you have some quick links to manage your website.</p><br>
+                                        
                                     </section>
                                 </div>
                             </div>
 
                             <div class="btn-controls">
                                 <div class="btn-box-row row-fluid">
-                                    <a href="index.php?man=users&op=show" class="btn-box big span6"><i class="icon-user"></i><b><?= $usersCount ?></b>
+                                    <a href="index.php?man=post&op=show" class="btn-box big span4"><i class="icon-edit"></i><b><?= $usersCount ?></b>
                                         <p class="text-muted">
-                                            Users</p>
-                                    </a><a href="index.php?man=files&op=show" class="btn-box big span6"><i class=" icon-folder-open"></i><b><?= $filesCount ?></b>
+                                            Post</p>
+                                    </a>
+                                    <a href="index.php?man=page&op=show" class="btn-box big span4"><i class=" icon-copy"></i><b><?= $filesCount ?></b>
                                         <p class="text-muted">
-                                           Files</p>
+                                           Pages</p>
+                                    </a>
+                                    <a href="index.php?man=users&op=show" class="btn-box big span4"><i class=" icon-group"></i><b><?= $filesCount ?></b>                                        <p class="text-muted">
+                                           Users</p>
                                     </a>
                                 </div>
                                 <div class="module">
@@ -109,14 +110,14 @@ $user=$_SESSION['name'];
                                     </div>
                                 </div>
                                 <div class="btn-box-row row-fluid">
-                                    <a href="index.php?man=users&op=add" class="btn-box small span3">
-                                        <i class="icon-plus"></i><b>Add User</b>
+                                    <a href="index.php?man=post&op=add" class="btn-box small span3">
+                                        <i class="icon-plus"></i><b>Add post</b>
                                     </a>
-                                    <a href="index.php?man=users&op=show" class="btn-box small span3">
-                                        <i class="icon-group"></i><b>Manage Users</b>
+                                    <a href="index.php?man=settings" class="btn-box small span3">
+                                        <i class="icon-wrench"></i><b>Site settings</b>
                                     </a>
-                                    <a href="index.php?man=roles&op=show" class="btn-box small span3">
-                                        <i class="icon-key"></i><b>Manage Roles</b>
+                                    <a href="index.php?man=color&op=show" class="btn-box small span3">
+                                        <i class="icon-picture"></i><b>Theme settings</b>
                                     </a>
                                     <a href="index.php?man=files&op=show" class="btn-box small span3">
                                         <i class="icon-folder-open"></i><b>Manage Files</b>

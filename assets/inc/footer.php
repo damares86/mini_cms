@@ -1,5 +1,5 @@
 <footer>
-    <h3>Space Park è un progetto di &nbsp; &nbsp; &nbsp;<a href="http://www.davidemasera.it" target="_blank"><img src="assets/img/logoDM.png"></a></h3>
+    <h3>Mini Cms - project by <a href="https://github.com/damares86">damares86</a></h3>
 </footer>
 
 </div>

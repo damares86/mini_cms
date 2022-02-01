@@ -274,6 +274,62 @@ if($msg=="userDelSucc"){
     </div>
 
     <?php    
+} else if($msg=="pageDelSucc"){
+    ?>
+    <div class="alert alert-warning">
+        <button type="button" class="close" data-dismiss="alert">x</button>
+        Page successfully deleted
+    </div>
+
+    <?php    
+} else if($msg=="pageDelErr"){
+    ?>
+    <div class="alert alert-danger">
+        <button type="button" class="close" data-dismiss="alert">x</button>
+        Page not deleted
+    </div>
+
+    <?php    
+} else if($msg=="pageSucc"){
+    ?>
+    <div class="alert alert-success">
+        <button type="button" class="close" data-dismiss="alert">x</button>
+        Page successfully created
+    </div>
+
+    <?php    
+} else if($msg=="pageDelSucc"){
+    ?>
+    <div class="alert alert-warning">
+        <button type="button" class="close" data-dismiss="alert">x</button>
+        Page successfully deleted
+    </div>
+
+    <?php    
+} else if($msg=="pageErr"){
+    ?>
+    <div class="alert alert-danger">
+        <button type="button" class="close" data-dismiss="alert">x</button>
+        Page not created
+    </div>
+
+    <?php    
+} else if($msg=="pageEditSucc"){
+    ?>
+    <div class="alert alert-success">
+        <button type="button" class="close" data-dismiss="alert">x</button>
+        Page modified
+    </div>
+
+    <?php    
+} else if($msg=="pageEditErr"){
+    ?>
+    <div class="alert alert-warning">
+        <button type="button" class="close" data-dismiss="alert">x</button>
+        Page not modified
+    </div>
+
+    <?php    
 } else
 
 ?>

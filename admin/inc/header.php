@@ -1,12 +1,12 @@
 <?php
 
 
-require 'phpDebug/src/Debug/Debug.php';   			// if not using composer
+// require 'phpDebug/src/Debug/Debug.php';   			// if not using composer
 
-$debug = new \bdk\Debug(array(
-    'collect' => true,
-    'output' => true,
-));
+// $debug = new \bdk\Debug(array(
+//     'collect' => true,
+//     'output' => true,
+// ));
 
 
 session_start();
@@ -39,7 +39,7 @@ $page = new Page($db);
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>damares86 Dashboard</title>        
+        <title>Mini Cms - Dashboard</title>        
         <script src="scripts/jquery-1.9.1.min.js" type="text/javascript"></script>
         <script src="scripts/jquery-ui-1.10.1.custom.min.js" type="text/javascript"></script>
         <link type="text/css" href="assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
