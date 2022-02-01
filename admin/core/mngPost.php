@@ -54,7 +54,6 @@ if(filter_input(INPUT_POST,"subReg")){
 	}
 
 	if($operation=="add"){
-
 		//inserimento
 		$post->title=$_POST['title'];
 		$post->content=$_POST['editor'];

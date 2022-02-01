@@ -109,7 +109,7 @@ $db->query("CREATE TABLE post (
   title VARCHAR(255) NOT NULL,
   content text COLLATE utf8_unicode_ci NOT NULL,
   modified datetime NOT NULL,
-  category VARCHAR(255) NOT NULL) 
+  category_id INT (5) NOT NULL) 
   ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;");
 
 $db->query("CREATE TABLE settings (

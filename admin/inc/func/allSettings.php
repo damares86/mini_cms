@@ -39,7 +39,7 @@
                 </div>
             </div>
             <div class="control-group">
-                            <label class="control-label" for="site_name">Site description</label>
+                            <label class="control-label" for="site_description">Site description</label>
                 <div class="controls">
 
                     <input type="text" id="site_description" name="site_description" placeholder="Site description" class="span8" value="<?= $site_description ?>">

@@ -27,8 +27,7 @@ if (!isset($_SESSION['loggedin'])) {
 
 
 if(filter_input(INPUT_POST,"subReg")){
-
-		if(!$_POST['site_name']||$_POST['site_description']){
+		if(!$_POST['site_name']||!$_POST['site_description']){
 			header("Location: ../index.php?man=settings&msg=settingsEmpty");
 			exit;
 		}
