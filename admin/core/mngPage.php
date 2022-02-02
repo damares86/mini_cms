@@ -91,6 +91,9 @@ if(filter_input(INPUT_POST,"subReg")){
 			
 			$str = strtolower($str);
 			
+//////////////////////////////////////////////////////////
+//     PERCORSO LEGATO A VARIABILE DI SCELTA DEL TEMA
+//////////////////////////////////////////////////////////
 
 			if(copy('../themes/dm_theme/master.php', '../../master.php')){
 				rename('../../master.php','../../'. $str . '.php');
@@ -127,7 +130,7 @@ if(filter_input(INPUT_POST,"subReg")){
 		}
 		
 
-		// update the post
+		// update the page
 		if($page->update()){
 			header("Location: ../index.php?msg=pageEditSucc");
 			exit;

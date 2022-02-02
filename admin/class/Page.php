@@ -11,6 +11,10 @@ class Page{
 
     public $id;
     public $page_name;
+    public $in_menu;
+    public $item_order;
+    public $parent;
+    public $child_of;
     public $block1;
     public $block1_bg;
     public $block2;
@@ -90,21 +94,44 @@ class Page{
         echo "</pre>";
     }
 
-    function update(){
-        
-        if($this->block2){
-           
-            $this->setParam2 = ", block2 = :block2, block2_bg = :block2_bg";
-         
-        } 
+    function updateMenu(){
+       
+        $query = "UPDATE
+                    " . $this->table_name . "
+                SET
+                in_menu = :in_menu,
+                item_order = :item_order,
+                parent = :parent,
+                child_of = :child_of
+                WHERE
+                    id = :id";
+
+    // prepare the query
+        $stmt = $this->conn->prepare($query);
+     
+        // bind the values
+        $stmt->bindParam(':in_menu', $this->in_menu);       
+        $stmt->bindParam(':item_order', $this->item_order);       
+        $stmt->bindParam(':parent', $this->parent);       
+        $stmt->bindParam(':child_of', $this->child_of);       
+       
+        $stmt->bindParam(':id', $this->id);       
+
+                
+      
+        // execute the query, also check if query was successful
+        if($stmt->execute()){
+            return true;
+
+        }else{
+            $this->showError($stmt);
+            return false;
+        }
     
-        if($this->block3){
-            $this->setParam3 = ", block3 = :block3, block3_bg = :block3_bg";
-        }
- 
-        if($this->block4){
-            $this->setParam4 = ", block4 = :block4, block4_bg = :block4_bg";
-        }
+    }
+
+    function update(){
+
         $query = "UPDATE
                     " . $this->table_name . "
                 SET
@@ -165,7 +192,7 @@ class Page{
 
     public function countAll(){
     
-        $query = "SELECT id FROM post";
+        $query = "SELECT id FROM page";
     
         $stmt = $this->conn->prepare( $query );
         $stmt->execute();

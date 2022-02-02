@@ -62,6 +62,13 @@
     </div>
 </div>
 
+<?php
+
+// require "allMenu.php";
+require "core/menu/index.php";
+
+?>
 
     </div>
 </div>
+

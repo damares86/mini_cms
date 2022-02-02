@@ -60,6 +60,8 @@ if(!is_file('../class/Database.php')){
   
 }
 
+chmod('../class/Database.php',0777);
+
 spl_autoload_register('autoloader');
 
 function autoloader($class){
@@ -116,7 +118,8 @@ $db->query("CREATE TABLE settings (
   id int(5) NOT NULL AUTO_INCREMENT PRIMARY KEY,
   site_name VARCHAR(255) NOT NULL,
   site_description VARCHAR(255) NOT NULL,
-  dashboard_language VARCHAR(255) NOT NULL)");
+  dashboard_language VARCHAR(255) NOT NULL,
+  theme VARCHAR(255) NOT NULL)");
 
 $db->query("CREATE TABLE IF NOT EXISTS categories
                            ( id INT ( 5 ) NOT NULL AUTO_INCREMENT PRIMARY KEY,
@@ -140,6 +143,16 @@ $db->query("CREATE TABLE IF NOT EXISTS page
                               block4_bg VARCHAR(255) DEFAULT 'none')
                               ");
 
+$db->query("CREATE TABLE IF NOT EXISTS menu
+                            ( id INT ( 5 ) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+                              page_name VARCHAR(255) NOT NULL,
+                              in_menu BOOLEAN DEFAULT 0,
+                              item_order INT ( 5 ) DEFAULT 0,
+                              parent BOOLEAN DEFAULT 0,
+                              child_of VARCHAR(255) DEFAULT 'none')
+                              ");
+
+
 $db->query("CREATE TABLE IF NOT EXISTS color
                               ( id INT ( 5 ) NOT NULL AUTO_INCREMENT PRIMARY KEY,
                                 color VARCHAR(50) NOT NULL)");
@@ -160,7 +173,7 @@ VALUES ('1','admin', '$2y$10$/EoJNAFqj1MgZRZOs4iG3OY22LXjUJsFXdPCQGhjUClVRXNup0V
 
 $db->query("INSERT INTO settings
 (id, site_name, site_description,dashboard_language)
-VALUES ('1','Your site name', 'This is a short description of your website','en')
+VALUES ('1','Your site name', 'This is a short description of your website','en','dm_theme')
 ");
 
 header("Location: ../index.php");
