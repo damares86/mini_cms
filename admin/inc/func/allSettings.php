@@ -46,8 +46,31 @@
                         
                 </div>
             </div>
-            <?php
+            <div class="control-group">
+                            <label class="control-label" for="site_description">Theme</label>
+                <div class="controls">
+                <select name="theme">
+                <?php
+            foreach (glob("../assets/*") as $file) {
+                if( is_dir($file) ){
+                    $folder=pathinfo($file, PATHINFO_FILENAME);
+                    $selected = "";
+                    if ($folder == $row['theme']) {
+                        $selected = "selected";
+                    }
+                    echo "<option value='{$folder}' $selected >{$folder}</option>";
+
+                }
             }
+                ?>
+            </select>
+                        
+                </div>
+            </div>
+            
+            <?php
+            } 
+// } 
 
 ?>
             <div class="control-group">

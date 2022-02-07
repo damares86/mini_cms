@@ -35,6 +35,7 @@ if(filter_input(INPUT_POST,"subReg")){
 		$settings->id=$_POST['id'];
 		$settings->site_name=$_POST['site_name'];
 		$settings->site_description=$_POST['site_description'];
+		$settings->theme=$_POST['theme'];
 		
 		// update the settings
 		if($settings->update()){

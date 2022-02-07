@@ -10,12 +10,9 @@ session_start();
 
 
 if (isset($_SESSION['loggedin'])) {
-    header('Location: admin/');
-    exit;
+	header('Location: admin/');
+	exit;
 }
-
-
-
 ?>
 
 <!DOCTYPE html>
@@ -24,7 +21,7 @@ if (isset($_SESSION['loggedin'])) {
 	<meta charset="utf-8">
 	<meta name="author" content="damares86">
 	<meta name="viewport" content="width=device-width,initial-scale=1">
-	<title>damares86 reserved area</title>
+	<title>Mini Cms - Admin Area</title>
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 	<link rel="stylesheet" type="text/css" href="login/css/my-login.css">
 </head>
@@ -88,6 +85,4 @@ if (isset($_SESSION['loggedin'])) {
 	<script src="login/js/my-login.js"></script>
 </body>
 </html>
-<?php
-								// }
-							?> 
+

@@ -9,6 +9,7 @@ class Settings{
     public $site_name;
     public $site_description;
     public $dashboard_language = "en";
+    public $theme;
 
     // constructor
     public function __construct($db){
@@ -22,7 +23,8 @@ class Settings{
                     " . $this->table_name . "
                 SET
                     site_name = :site_name,
-                    site_description = :site_description
+                    site_description = :site_description,
+                    theme = :theme
                 WHERE
                     id = :id";
     // prepare the query
@@ -31,6 +33,7 @@ class Settings{
         // bind the values
         $stmt->bindParam(':site_name', $this->site_name);
         $stmt->bindParam(':site_description', $this->site_description); 
+        $stmt->bindParam(':theme', $this->theme); 
         $stmt->bindParam(':id', $this->id);
         
                 

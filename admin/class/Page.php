@@ -170,6 +170,15 @@ class Page{
       
         // execute the query, also check if query was successful
         if($stmt->execute()){
+            $query1="UPDATE menu SET pagename = :page_name";
+            $stmt1 = $this->conn->prepare($query1);
+            $stmt1->bindParam(':page_name', $this->page_name);       
+            if($stmt1->execute()){
+                return true;
+            }else{
+                $this->showError($stmt);
+                return false;
+            }
             return true;
 
         }else{
@@ -193,6 +202,22 @@ class Page{
   
         return $stmt;
     }
+
+    function showMenu(){
+        //select all data
+        $query = "SELECT
+                    *
+                FROM
+                    menu
+                WHERE
+                inmenu = '1'";  
+  
+        $stmt = $this->conn->prepare( $query );
+        $stmt->execute();
+  
+        return $stmt;
+    }
+
 
     public function countAll(){
     

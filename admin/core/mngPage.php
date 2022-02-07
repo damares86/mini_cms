@@ -95,7 +95,7 @@ if(filter_input(INPUT_POST,"subReg")){
 //     PERCORSO LEGATO A VARIABILE DI SCELTA DEL TEMA
 //////////////////////////////////////////////////////////
 
-			if(copy('../themes/dm_theme/master.php', '../../master.php')){
+			if(copy('../template/master.php', '../../master.php')){
 				rename('../../master.php','../../'. $str . '.php');
 				chmod('../../'. $str . '.php',0777);
 				header("Location: ../index.php?man=page&op=show&msg=pageSucc");

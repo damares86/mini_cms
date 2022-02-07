@@ -172,8 +172,8 @@ VALUES ('1','admin', '$2y$10$/EoJNAFqj1MgZRZOs4iG3OY22LXjUJsFXdPCQGhjUClVRXNup0V
 
 
 $db->query("INSERT INTO settings
-(id, site_name, site_description,dashboard_language)
-VALUES ('1','Your site name', 'This is a short description of your website','en','dm_theme')
+(id, site_name, site_description,dashboard_language,theme)
+VALUES ('1','Mini Cms', 'Description of your website','en','dm_theme')
 ");
 
 header("Location: ../index.php");
