@@ -1,48 +1,75 @@
-<?php 
-include_once("db_connect.php");
-// include("header.php"	); 
+<?php
+//include connection file 
+include_once("core/menu/connection.php");
+$sql = "SELECT * FROM `menu` order by itemorder asc";
+$queryRecords = mysqli_query($conn, $sql) or die("error to fetch menu data");
 ?>
-<title>phpzag.com : DemoCreate Live Editable Table with jQuery, PHP and MySQL</title>
-<script type="text/javascript" src="core/menu/dist/jquery.tabledit.js"></script>
-<?php include('container.php');?>
-<div class="container home">	
-	<h2>Create Live Editable Table with jQuery, PHP and MySQL</h2>		 
-	<table id="data_table" class="table table-striped">
-		<thead>
-			<tr>
-				<th>Id</th>
-				<th>Name</th>
-				<th>Gender</th>
-				<th>Age</th>	
-				<th>Designation</th>
-				<th>Address</th>
-			</tr>
-		</thead>
-		<tbody>
-			<?php 
-			$sql_query = "SELECT id, name, gender, address, designation, age FROM developers LIMIT 10";
-			$resultset = mysqli_query($conn, $sql_query) or die("database error:". mysqli_error($conn));
-			while( $developer = mysqli_fetch_assoc($resultset) ) {
-			?>
-			   <tr id="<?php echo $developer ['id']; ?>">
-			   <td><?php echo $developer ['id']; ?></td>
-			   <td><?php echo $developer ['name']; ?></td>
-			   <td><?php echo $developer ['gender']; ?></td>
-			   <td><?php echo $developer ['age']; ?></td>   
-			   <td><?php echo $developer ['designation']; ?></td>
-			   <td><?php echo $developer ['address']; ?></td>   
-			   </tr>
-			<?php } ?>
-		</tbody>
-    </table>	
-	<div style="margin:50px 0px 0px 0px;">
-		<a class="btn btn-default read-more" style="background:#3399ff;color:white" href="http://www.phpzag.com/create-live-editable-table-with-jquery-php-and-mysql/">Back to Tutorial</a>		
-	</div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<script type="text/javascript" src="core/menu/jquery-1.11.1.min.js"></script>
+<link rel="stylesheet" type="text/css" href="bootstrap.min.css"/>
+</head>
+<body>
+<div class="module">
+	<div class="module-body">
+	<h1 class="h2 mx-auto text-center">Menu</h1>
+		
+<div id="msg" class="alert"></div>
+<table id="employee_grid" class="table table-condensed table-hover table-striped bootgrid-table" width="60%" cellspacing="0">
+   <thead>
+      <tr>
+         <th>Page Name</th>
+         <th>In menu</th>
+         <th>Order</th>
+      </tr>
+   </thead>
+   <tbody id="_editable_table">
+      <?php foreach($queryRecords as $res) :?>
+      <tr data-row-id="<?php echo $res['id'];?>">
+         <td class="editable-col" contenteditable="true" col-index='0' oldVal ="<?php echo $res['pagename'];?>"><?php echo $res['pagename'];?></td>
+         <td class="editable-col" contenteditable="true" col-index='1' oldVal ="<?php echo $res['inmenu'];?>"><?php echo $res['inmenu'];?></td>
+         <td class="editable-col" contenteditable="true" col-index='2' oldVal ="<?php echo $res['itemorder'];?>"><?php echo $res['itemorder'];?></td>
+      </tr>
+	  <?php endforeach;?>
+   </tbody>
+</table>
+
 </div>
-<script type="text/javascript" src="core/menu/custom_table_edit.js"></script>
-<?php include('footer.php');?>
- 
+</div>
+</body>
+</html>
+<script type="text/javascript">
+$(document).ready(function(){
+	$('td.editable-col').on('focusout', function() {
+		data = {};
+		data['val'] = $(this).text();
+		data['id'] = $(this).parent('tr').attr('data-row-id');
+		data['index'] = $(this).attr('col-index');
+	    if($(this).attr('oldVal') === data['val'])
+		return false;
 
+		$.ajax({   
+				  
+					type: "POST",  
+					url: "core/menu/server.php",  
+					cache:false,  
+					data: data,
+					dataType: "json",				
+					success: function(response)  
+					{   
+						//$("#loading").hide();
+						if(!response.error) {
+							$("#msg").removeClass('alert-danger');
+							$("#msg").addClass('alert-success').html(response.msg);
+						} else {
+							$("#msg").removeClass('alert-success');
+							$("#msg").addClass('alert-danger').html(response.msg);
+						}
+					}   
+				});
+	});
+});
 
-
-                                                                                                       
+</script>

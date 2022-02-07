@@ -75,15 +75,19 @@ class Page{
       
         // execute the query, also check if query was successful
         if($stmt->execute()){
-            
-            return true;
-            print_r("ok");
-            exit;
+
+            $query1="INSERT INTO menu SET pagename = :page_name";
+            $stmt1 = $this->conn->prepare($query1);
+            $stmt1->bindParam(':page_name', $this->page_name);       
+            if($stmt1->execute()){
+                return true;
+            }else{
+                $this->showError($stmt);
+                return false;
+            }
         }else{
             $this->showError($stmt);
             return false;
-            print_r("ko");
-            exit;
         }
     
     }
@@ -94,41 +98,41 @@ class Page{
         echo "</pre>";
     }
 
-    function updateMenu(){
+    // function updateMenu(){
        
-        $query = "UPDATE
-                    " . $this->table_name . "
-                SET
-                in_menu = :in_menu,
-                item_order = :item_order,
-                parent = :parent,
-                child_of = :child_of
-                WHERE
-                    id = :id";
+    //     $query = "UPDATE
+    //                 " . $this->table_name . "
+    //             SET
+    //             in_menu = :in_menu,
+    //             item_order = :item_order,
+    //             parent = :parent,
+    //             child_of = :child_of
+    //             WHERE
+    //                 id = :id";
 
-    // prepare the query
-        $stmt = $this->conn->prepare($query);
+    // // prepare the query
+    //     $stmt = $this->conn->prepare($query);
      
-        // bind the values
-        $stmt->bindParam(':in_menu', $this->in_menu);       
-        $stmt->bindParam(':item_order', $this->item_order);       
-        $stmt->bindParam(':parent', $this->parent);       
-        $stmt->bindParam(':child_of', $this->child_of);       
+    //     // bind the values
+    //     $stmt->bindParam(':in_menu', $this->in_menu);       
+    //     $stmt->bindParam(':item_order', $this->item_order);       
+    //     $stmt->bindParam(':parent', $this->parent);       
+    //     $stmt->bindParam(':child_of', $this->child_of);       
        
-        $stmt->bindParam(':id', $this->id);       
+    //     $stmt->bindParam(':id', $this->id);       
 
                 
       
-        // execute the query, also check if query was successful
-        if($stmt->execute()){
-            return true;
+    //     // execute the query, also check if query was successful
+    //     if($stmt->execute()){
+    //         return true;
 
-        }else{
-            $this->showError($stmt);
-            return false;
-        }
+    //     }else{
+    //         $this->showError($stmt);
+    //         return false;
+    //     }
     
-    }
+    // }
 
     function update(){
 
@@ -235,7 +239,18 @@ class Page{
     $stmt->bindParam(1, $this->id);
 
     if($result = $stmt->execute()){
-        return true;
+        
+        $query1 = "DELETE FROM menu WHERE id = ?";
+    
+        $stmt1 = $this->conn->prepare($query1);
+        $stmt1->bindParam(1, $this->id);
+        if($stmt1->execute()){
+            return true;
+        }else{
+            $this->showError($stmt1);
+            return false;
+        }  
+        
     }else{
         return false;
     }

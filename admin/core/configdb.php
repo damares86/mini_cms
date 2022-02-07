@@ -145,11 +145,11 @@ $db->query("CREATE TABLE IF NOT EXISTS page
 
 $db->query("CREATE TABLE IF NOT EXISTS menu
                             ( id INT ( 5 ) NOT NULL AUTO_INCREMENT PRIMARY KEY,
-                              page_name VARCHAR(255) NOT NULL,
-                              in_menu BOOLEAN DEFAULT 0,
-                              item_order INT ( 5 ) DEFAULT 0,
+                              pagename VARCHAR(255) NOT NULL,
+                              inmenu BOOLEAN DEFAULT 0,
+                              itemorder INT ( 5 ) DEFAULT 0,
                               parent BOOLEAN DEFAULT 0,
-                              child_of VARCHAR(255) DEFAULT 'none')
+                              childof VARCHAR(255) DEFAULT 'none')
                               ");
 
 
