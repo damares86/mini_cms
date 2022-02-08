@@ -45,7 +45,15 @@
                 <td><?=$id?></td>
                 <td><?=$page_name?></td>
                 <td><a href="index.php?man=page&op=edit&idToMod=<?=$row["id"]?>"><button type="button" class="btn btn-warning">Edit</button></a></td>
-                <td><a href="core/mngPage.php?idToDel=<?=$row["id"]?>"><button type="button" class="btn btn-danger">Delete</button></a></td>
+                <td>
+                <?php
+                if($page_name != "index"){
+                ?>
+                <a href="core/mngPage.php?idToDel=<?=$row["id"]?>"><button type="button" class="btn btn-danger">Delete</button></a>
+                <?php
+                }
+                ?>
+            </td>
             </tr>
       
 <?php

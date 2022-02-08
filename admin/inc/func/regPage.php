@@ -75,6 +75,34 @@ if(filter_input(INPUT_GET,"idToMod")){
 
                 ?>
             </select>
+            <br><br>
+            <label for="block1_text">Text color</label>
+            <?php
+                $color = new Colors($db);
+                $stmt = $color->showAll();
+                $total_rows = $color->countAll();
+              
+                ?>
+            <select name="block1_text">
+                <?php
+               
+                echo "<option value='none'>none</option>";
+                
+               
+                while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
+           
+                    extract($row);
+                  
+                    $selected = "";
+                    if ($color == $page->block1_text) {
+                        $selected = "selected";
+                    }
+                    echo "<option value='{$color}' $selected style='background-color:{$color}'>{$color}</option>";
+
+                }
+
+                ?>
+            </select>
             </div>
 
             <br>
@@ -124,6 +152,34 @@ if(filter_input(INPUT_GET,"idToMod")){
                   
                     $selected = "";
                     if ($color == $page->block2_bg) {
+                        $selected = "selected";
+                    }
+                    echo "<option value='{$color}' $selected style='background-color:{$color}'>{$color}</option>";
+
+                }
+
+                ?>
+            </select>
+            <br><br>
+            <label for="block2_text">Text color</label>
+            <?php
+                $color = new Colors($db);
+                $stmt = $color->showAll();
+                $total_rows = $color->countAll();
+              
+                ?>
+            <select name="block2_text">
+                <?php
+               
+                echo "<option value='none'>none</option>";
+                
+               
+                while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
+           
+                    extract($row);
+                  
+                    $selected = "";
+                    if ($color == $page->block2_text) {
                         $selected = "selected";
                     }
                     echo "<option value='{$color}' $selected style='background-color:{$color}'>{$color}</option>";
@@ -184,6 +240,34 @@ if(filter_input(INPUT_GET,"idToMod")){
 
                 ?>
             </select>
+            <br><br>
+            <label for="block3_text">Text color</label>
+            <?php
+                $color = new Colors($db);
+                $stmt = $color->showAll();
+                $total_rows = $color->countAll();
+              
+                ?>
+            <select name="block3_text">
+                <?php
+               
+                echo "<option value='none'>none</option>";
+                
+               
+                while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
+           
+                    extract($row);
+                  
+                    $selected = "";
+                    if ($color == $page->block3_text) {
+                        $selected = "selected";
+                    }
+                    echo "<option value='{$color}' $selected style='background-color:{$color}'>{$color}</option>";
+
+                }
+
+                ?>
+            </select>
             </div>
                  <!-- <input type="submit" class="btn btn-primary" name="subReg" value="Submit">
         </form> -->
@@ -227,6 +311,34 @@ if(filter_input(INPUT_GET,"idToMod")){
                   
                     $selected = "";
                     if ($color == $page->block4_bg) {
+                        $selected = "selected";
+                    }
+                    echo "<option value='{$color}' $selected style='background-color:{$color}'>{$color}</option>";
+
+                }
+
+                ?>
+            </select>
+            <br><br>
+            <label for="block4_text">Text color</label>
+            <?php
+                $color = new Colors($db);
+                $stmt = $color->showAll();
+                $total_rows = $color->countAll();
+              
+                ?>
+            <select name="block4_text">
+                <?php
+               
+                echo "<option value='none'>none</option>";
+                
+               
+                while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
+           
+                    extract($row);
+                  
+                    $selected = "";
+                    if ($color == $page->block4_text) {
                         $selected = "selected";
                     }
                     echo "<option value='{$color}' $selected style='background-color:{$color}'>{$color}</option>";

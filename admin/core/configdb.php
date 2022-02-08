@@ -135,18 +135,22 @@ $db->query("CREATE TABLE IF NOT EXISTS page
                               page_name VARCHAR(255) NOT NULL,
                               block1 text COLLATE utf8_unicode_ci NOT NULL,
                               block1_bg VARCHAR(255) DEFAULT 'none',
+                              block1_text VARCHAR(255) DEFAULT '#000000',
                               block2 text COLLATE utf8_unicode_ci NULL,
                               block2_bg VARCHAR(255) DEFAULT 'none',
+                              block2_text VARCHAR(255) DEFAULT '#000000',
                               block3 text COLLATE utf8_unicode_ci NULL,
                               block3_bg VARCHAR(255) DEFAULT 'none',
+                              block3_text VARCHAR(255) DEFAULT '#000000',
                               block4 text COLLATE utf8_unicode_ci NULL,
-                              block4_bg VARCHAR(255) DEFAULT 'none')
+                              block4_bg VARCHAR(255) DEFAULT 'none',
+                              block4_text VARCHAR(255) DEFAULT '#000000')
                               ");
 
 $db->query("CREATE TABLE IF NOT EXISTS menu
                             ( id INT ( 5 ) NOT NULL AUTO_INCREMENT PRIMARY KEY,
                               pagename VARCHAR(255) NOT NULL,
-                              inmenu BOOLEAN DEFAULT 0,
+                              inmenu VARCHAR(1) DEFAULT 'n',
                               itemorder INT ( 5 ) DEFAULT 0,
                               parent BOOLEAN DEFAULT 0,
                               childof VARCHAR(255) DEFAULT 'none')
@@ -164,7 +168,11 @@ $db->query("INSERT INTO color
                             (id, color)
                             VALUES ('2','#00cc99')
                             ");
-                           
+$db->query("INSERT INTO color
+                           (id, color)
+                           VALUES ('3','#000000')
+                           ");
+
 $db->query("INSERT INTO accounts
 (id, username, password,email,rolename)
 VALUES ('1','admin', '$2y$10$/EoJNAFqj1MgZRZOs4iG3OY22LXjUJsFXdPCQGhjUClVRXNup0Vbm','mail@mail.com','Admin')
@@ -175,5 +183,18 @@ $db->query("INSERT INTO settings
 (id, site_name, site_description,dashboard_language,theme)
 VALUES ('1','Mini Cms', 'Description of your website','en','dm_theme')
 ");
+
+
+$db->query("INSERT INTO page 
+(id, page_name, block1, block1_bg, block1_text,block2, block2_bg, block2_text,block3, block3_bg, block3_text,block4, block4_bg, block4_text) 
+VALUES ('1','index', '<p>This is your homepage</p>','none','#000000','', 'none','#000000', '', 'none','#000000','', 'none','#000000')
+");
+
+$db->query("INSERT INTO menu 
+(id, pagename) 
+VALUES ('1','index')
+");
+
+
 
 header("Location: ../index.php");

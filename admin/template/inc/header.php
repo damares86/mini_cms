@@ -31,6 +31,7 @@ if($file=="index.php"){
 } else{
 // mi prendo solo il nome senza l'estensione
 $page_name = pathinfo($file, PATHINFO_FILENAME);
+$page_class = pathinfo($file, PATHINFO_FILENAME);
 // rimuovo gli _ (underscore) che ho messo nel nome file
 $page_name=str_replace("_"," ", $page_name);
 // metto la prima lettera maiuscola
@@ -54,54 +55,16 @@ $page_name=ucfirst($page_name);
     <div id="siteContainer">
         <div id="topContainer" class="">
             <div class="coverSfondo"></div>
-            <header>
-                <div id="logo">
-                    <a href="index.php">
-                        <img src="assets/<?= $theme ?>/img/logo.svg">
-                    </a>
-                </div>
-                <div id="menu">
-                    <button class="hamburger hamburger--boring" type="button">
-                        <span class="hamburger-box">
-                            <span class="hamburger-inner"></span>
-                        </span>
-                    </button>
-                </div>
-                <div id="menuBurger" class="closed">
-                    <ul>
-                        <li><a href="index.php">Home</a></li>
-                    <?php
-                    $menu=$page->showMenu();
-                    while ($row = $menu->fetch(PDO::FETCH_ASSOC)){
-                        
-                        extract($row);
-                        $str=$row['pagename'];
-                     	$str = preg_replace('/\s+/', '_', $str);
-			            $str = strtolower($str);
-                    ?>
-                        <li><a href="<?=$str?>.php" ><?=$row['pagename']?></a></li>
-                    <?php
-                    }
-                    ?>
-                    </ul>
-                </div>
-              
-                <div class="clearfix"></div>
-            </header>
+
+            <?php
+            require "assets/".$theme."/inc/menu.php";
+            ?>
 
             <div id="visual">
-
-<div class="row my-5 p-5">
-    <div class="col">&nbsp;</div>
-    <div class="col">
-        <h1 class="my-5"><?= $row['site_description']?></h1>
-        <a href="login.php">Login</a>
-       
-    </div>
-</div>
-
-
-</div>
+                <?php
+                require "assets/".$theme."/inc/visual.php";
+                ?>
+            </div>
 <?php
 }
 ?>

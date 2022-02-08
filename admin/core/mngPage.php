@@ -65,24 +65,30 @@ if(filter_input(INPUT_POST,"subReg")){
 
 	
 	if($operation=="add"){
+	
 		//inserimento
 		$page->page_name=$_POST['page_name'];
 		$page->block1=$_POST['editor'];
 		$page->block1_bg=$_POST['block1_bg'];
+		$page->block1_text=$_POST['block1_text'];
 
 		if($_POST['editor2']){
 			$page->block2=$_POST['editor2'];
 			$page->block2_bg=$_POST['block2_bg'];
+			$page->block2_text=$_POST['block2_text'];
 		}
 
 		if($_POST['editor3']){
 			$page->block3=$_POST['editor3'];
 			$page->block3_bg=$_POST['block3_bg'];
+			$page->block3_text=$_POST['block3_text'];
 		}
 		if($_POST['editor4']){
 			$page->block4=$_POST['editor4'];
 			$page->block4_bg=$_POST['block4_bg'];
+			$page->block4_text=$_POST['block4_text'];
 		}
+		
 		
 		// create the page
 		if($page->insert()){
@@ -90,10 +96,6 @@ if(filter_input(INPUT_POST,"subReg")){
 			$str = preg_replace('/\s+/', '_', $str);
 			
 			$str = strtolower($str);
-			
-//////////////////////////////////////////////////////////
-//     PERCORSO LEGATO A VARIABILE DI SCELTA DEL TEMA
-//////////////////////////////////////////////////////////
 
 			if(copy('../template/master.php', '../../master.php')){
 				rename('../../master.php','../../'. $str . '.php');
@@ -109,25 +111,29 @@ if(filter_input(INPUT_POST,"subReg")){
 			exit;
 		}
 	} else if($operation=="mod"){
-		
 		$page->id=$_POST['idToMod'];
 		$page->page_name=$_POST['page_name'];
 		$page->block1=$_POST['editor'];
 		$page->block1_bg=$_POST['block1_bg'];
-
+		$page->block1_text=$_POST['block1_text'];
+	
 		if($_POST['editor2']){
 			$page->block2=$_POST['editor2'];
 			$page->block2_bg=$_POST['block2_bg'];
+			$page->block2_text=$_POST['block2_text'];
 		}
 
 		if($_POST['editor3']){
 			$page->block3=$_POST['editor3'];
 			$page->block3_bg=$_POST['block3_bg'];
+			$page->block3_text=$_POST['block3_text'];
 		}
 		if($_POST['editor4']){
 			$page->block4=$_POST['editor4'];
 			$page->block4_bg=$_POST['block4_bg'];
+			$page->block4_text=$_POST['block4_text'];
 		}
+	
 		
 
 		// update the page
