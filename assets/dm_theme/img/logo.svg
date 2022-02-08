@@ -15,7 +15,7 @@
    version="1.1"
    id="svg8"
    inkscape:version="0.92.5 (2060ec1f9f, 2020-04-08)"
-   sodipodi:docname="logo_mc.svg">
+   sodipodi:docname="logo.svg">
   <defs
      id="defs2" />
   <sodipodi:namedview
@@ -26,8 +26,8 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="1.1930643"
-     inkscape:cx="46.769074"
-     inkscape:cy="164.0694"
+     inkscape:cx="103.34607"
+     inkscape:cy="164.90758"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -92,7 +92,7 @@
      transform="translate(-30.231789,-84.591492)"
      style="opacity:0.66">
     <rect
-       style="fill:#ffffff;fill-opacity:1;stroke:#fcfcfc;stroke-width:6.31774855;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       style="fill:#ffffff;fill-opacity:0.98536587;stroke:#fcfcfc;stroke-width:6.31774855;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
        id="rect832"
        width="97.91684"
        height="73.796341"

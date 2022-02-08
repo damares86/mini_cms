@@ -1,5 +1,4 @@
 <ul>
-    <!-- <li><a href="index.php">Home</a></li> -->
     <?php
     $menu=$page->showMenu();
     while ($row = $menu->fetch(PDO::FETCH_ASSOC)){
@@ -10,7 +9,7 @@
         $str = strtolower($str);
     ?>
         <li><a href="<?=$str?>.php" ><?php
-        if($row['pagename']){
+        if($row['pagename']=='index'){
             echo "Home";
         } else {
         echo $row['pagename'];

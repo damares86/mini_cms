@@ -3,6 +3,11 @@
 session_start();
 // loading class
 
+if(!is_file('admin/class/Database.php')){
+    header("Location: admin/inc/dbdata.php");
+    exit;
+}
+
 spl_autoload_register('autoloader');
 
 function autoloader($class){
@@ -51,7 +56,17 @@ $page_name=ucfirst($page_name);
 </head>
 
 <body>
-  
+    <?php
+        if(isset($_SESSION['loggedin'])){
+    ?>
+    <div id="adminBar">
+        <a href="admin">Go to Admin Area</a>
+        &nbsp; - &nbsp;
+        <a href="admin/core/logout.php">Logout</a>
+    </div>
+    <?php
+        }
+    ?>
     <div id="siteContainer">
         <div id="topContainer" class="">
             <div class="coverSfondo"></div>
@@ -65,6 +80,7 @@ $page_name=ucfirst($page_name);
                 require "assets/".$theme."/inc/visual.php";
                 ?>
             </div>
+        </div>
 <?php
 }
 ?>

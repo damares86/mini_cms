@@ -14,10 +14,13 @@ $debug = new \bdk\Debug(array(
 */
 
 
-if(!is_file('../class/Database.php')){
+if(!$_POST['dbname']||!$_POST['username']||!$_POST['db_password']||!$_POST['host']||!$_POST['email']||!$_POST['password']){
+  header("Location: ../inc/dbdata.php?err=missing");
+  exit;
+} else if(!is_file('../class/Database.php')){
   $db_name=filter_input(INPUT_POST,"dbname");
   $username=filter_input(INPUT_POST,"username");
-  $password=filter_input(INPUT_POST,"password");
+  $db_password=filter_input(INPUT_POST,"db_password");
   $host=filter_input(INPUT_POST,"host");
   $file_handle = fopen('../class/Database.php', 'w');
   fwrite($file_handle, '<?php');
@@ -28,7 +31,7 @@ if(!is_file('../class/Database.php')){
   fwrite($file_handle, "\n");
   fwrite($file_handle, 'private $username="'.$username.'";');
   fwrite($file_handle, "\n");
-  fwrite($file_handle, 'private $password="'.$password.'";');
+  fwrite($file_handle, 'private $password="'.$db_password.'";');
   fwrite($file_handle, "\n");
   fwrite($file_handle, 'private $host="'.$host.'";');
   fwrite($file_handle, "\n");
@@ -71,6 +74,12 @@ function autoloader($class){
 $database = new Database();
 $db = $database->getConnection();
 
+$user_email=$_POST['email'];
+$password=$_POST['password'];
+$password_hash = password_hash($password, PASSWORD_DEFAULT);
+
+$user=new User($db);
+
 
 /////////////////////////////////////////////////////////////
 
@@ -78,7 +87,7 @@ $db = $database->getConnection();
 
 /////////////////////////////////////////////////////////////
 
-// creating user's table and inserting the default "admin" user
+// creating user's table 
 $db->query("CREATE TABLE IF NOT EXISTS accounts
                            ( id INT ( 5 ) NOT NULL AUTO_INCREMENT PRIMARY KEY,
                              username VARCHAR(50) NOT NULL,
@@ -175,7 +184,7 @@ $db->query("INSERT INTO color
 
 $db->query("INSERT INTO accounts
 (id, username, password,email,rolename)
-VALUES ('1','admin', '$2y$10$/EoJNAFqj1MgZRZOs4iG3OY22LXjUJsFXdPCQGhjUClVRXNup0Vbm','mail@mail.com','Admin')
+VALUES ('1','admin', '". $password_hash ."','". $user_email ."','Admin')
 ");
 
 
@@ -190,9 +199,20 @@ $db->query("INSERT INTO page
 VALUES ('1','index', '<p>This is your homepage</p>','none','#000000','', 'none','#000000', '', 'none','#000000','', 'none','#000000')
 ");
 
+
+$db->query("INSERT INTO page 
+(id, page_name, block1, block1_bg, block1_text,block2, block2_bg, block2_text,block3, block3_bg, block3_text,block4, block4_bg, block4_text) 
+VALUES ('2','Blog', '<p>This is your blog page</p>','none','#000000','', 'none','#000000', '', 'none','#000000','', 'none','#000000')
+");
+
 $db->query("INSERT INTO menu 
-(id, pagename) 
-VALUES ('1','index')
+(id, pagename, inmenu) 
+VALUES ('1','index', 'y')
+");
+
+$db->query("INSERT INTO menu 
+(id, pagename, inmenu) 
+VALUES ('2','Blog', 'y')
 ");
 
 

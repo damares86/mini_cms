@@ -13,6 +13,7 @@
                 </div>
                 <div id="menuBurger" class="closed">
                     <?php
+                    // THIS WILL REQUIRE THE MENU <ul>
                     require "admin/template/inc/menu.php";
                     ?>
                 </div>

@@ -136,11 +136,11 @@ class Page{
         $stmt->bindParam(':block1', $this->block1);       
         $stmt->bindParam(':block1_bg', $this->block1_bg);       
         $stmt->bindParam(':block1_text', $this->block1_text);       
-        if($this->block2){
+        // if($this->block2){
             $stmt->bindParam(':block2', $this->block2);       
             $stmt->bindParam(':block2_bg', $this->block2_bg);       
             $stmt->bindParam(':block2_text', $this->block2_text);       
-        }
+        // }
         if($this->block3){
             $stmt->bindParam(':block3', $this->block3);       
             $stmt->bindParam(':block3_bg', $this->block3_bg);       

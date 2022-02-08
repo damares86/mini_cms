@@ -7,43 +7,56 @@ require "admin/template/inc/header.php";
 <div id="bottomContainer" class="pb-1">
     <div class="container-fluid">
     <?php
-    $stmt=$page->showAll();
+    $file = basename($_SERVER['PHP_SELF']);
+    $page_class = pathinfo($file, PATHINFO_FILENAME);
 
+    $page->page_name=$page_class;
     
-    while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
-    
-     extract($row);
+    $stmt=$page->showByName();
+
     ?>
-        <div class="row <?=$page_class?>" id="block1" style="background-color:<?=$row['block1_bg']?>; ">
+        <div class="row <?=$page_class?>" id="block1" style="background-color:<?=$page->block1_bg?>; color:<?=$page->block1_text?>;">
         <?php
-        echo $row['block1'];
+        echo $page->block1;
         ?>
             
         </div>
         <?php
-        if($row['block2']){
+        if($page->block2){
         ?>
-        <div class="row" id="block2">
-            
+        <div class="row <?=$page_class?>" id="block2" style="background-color:<?=$page->block2_bg?>; color:<?=$page->block2_text?>;">
+        <?php
+        
+        echo $page->block2;
+
+        ?>
         </div>
         <?php
         }
-        if($row['block3']){
+        if($page->block3){
         ?>
-        <div class="row" id="block3">
+        <div class="row <?=$page_class?>" id="block3" style="background-color:<?=$page->block3_bg?>; color:<?=$page->block3_text?>; ">
+        <?php
+        
+        echo $page->block3;
 
+        ?>
         </div>
         <?php
          }
-         if($row['block4']){
+         if($page->block4){
 
         ?>
-        <div class="row" id="block4">
+        <div class="row <?=$page_class?>" id="block4" style="background-color:<?=$page->block4_bg?>; color:<?=$page->block4_text?>; ">
+        <?php
+        
+        echo $page->block4;
 
+        ?>
         </div>
         <?php
         }
-    }
+    // }
         ?>
     </div>
 </div>
