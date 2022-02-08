@@ -14,10 +14,13 @@ $debug = new \bdk\Debug(array(
 */
 
 
-if(!is_file('../class/Database.php')){
+if(!$_POST['dbname']||!$_POST['username']||!$_POST['db_password']||!$_POST['host']||!$_POST['email']||!$_POST['password']){
+  header("Location: ../inc/dbdata.php?err=missing");
+  exit;
+} else if(!is_file('../class/Database.php')){
   $db_name=filter_input(INPUT_POST,"dbname");
   $username=filter_input(INPUT_POST,"username");
-  $password=filter_input(INPUT_POST,"password");
+  $db_password=filter_input(INPUT_POST,"db_password");
   $host=filter_input(INPUT_POST,"host");
   $file_handle = fopen('../class/Database.php', 'w');
   fwrite($file_handle, '<?php');
@@ -28,7 +31,7 @@ if(!is_file('../class/Database.php')){
   fwrite($file_handle, "\n");
   fwrite($file_handle, 'private $username="'.$username.'";');
   fwrite($file_handle, "\n");
-  fwrite($file_handle, 'private $password="'.$password.'";');
+  fwrite($file_handle, 'private $password="'.$db_password.'";');
   fwrite($file_handle, "\n");
   fwrite($file_handle, 'private $host="'.$host.'";');
   fwrite($file_handle, "\n");
@@ -60,6 +63,8 @@ if(!is_file('../class/Database.php')){
   
 }
 
+chmod('../class/Database.php',0777);
+
 spl_autoload_register('autoloader');
 
 function autoloader($class){
@@ -69,6 +74,12 @@ function autoloader($class){
 $database = new Database();
 $db = $database->getConnection();
 
+$user_email=$_POST['email'];
+$password=$_POST['password'];
+$password_hash = password_hash($password, PASSWORD_DEFAULT);
+
+$user=new User($db);
+
 
 /////////////////////////////////////////////////////////////
 
@@ -76,7 +87,7 @@ $db = $database->getConnection();
 
 /////////////////////////////////////////////////////////////
 
-// creating user's table and inserting the default "admin" user
+// creating user's table 
 $db->query("CREATE TABLE IF NOT EXISTS accounts
                            ( id INT ( 5 ) NOT NULL AUTO_INCREMENT PRIMARY KEY,
                              username VARCHAR(50) NOT NULL,
@@ -116,7 +127,8 @@ $db->query("CREATE TABLE settings (
   id int(5) NOT NULL AUTO_INCREMENT PRIMARY KEY,
   site_name VARCHAR(255) NOT NULL,
   site_description VARCHAR(255) NOT NULL,
-  dashboard_language VARCHAR(255) NOT NULL)");
+  dashboard_language VARCHAR(255) NOT NULL,
+  theme VARCHAR(255) NOT NULL)");
 
 $db->query("CREATE TABLE IF NOT EXISTS categories
                            ( id INT ( 5 ) NOT NULL AUTO_INCREMENT PRIMARY KEY,
@@ -132,13 +144,27 @@ $db->query("CREATE TABLE IF NOT EXISTS page
                               page_name VARCHAR(255) NOT NULL,
                               block1 text COLLATE utf8_unicode_ci NOT NULL,
                               block1_bg VARCHAR(255) DEFAULT 'none',
+                              block1_text VARCHAR(255) DEFAULT '#000000',
                               block2 text COLLATE utf8_unicode_ci NULL,
                               block2_bg VARCHAR(255) DEFAULT 'none',
+                              block2_text VARCHAR(255) DEFAULT '#000000',
                               block3 text COLLATE utf8_unicode_ci NULL,
                               block3_bg VARCHAR(255) DEFAULT 'none',
+                              block3_text VARCHAR(255) DEFAULT '#000000',
                               block4 text COLLATE utf8_unicode_ci NULL,
-                              block4_bg VARCHAR(255) DEFAULT 'none')
+                              block4_bg VARCHAR(255) DEFAULT 'none',
+                              block4_text VARCHAR(255) DEFAULT '#000000')
                               ");
+
+$db->query("CREATE TABLE IF NOT EXISTS menu
+                            ( id INT ( 5 ) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+                              pagename VARCHAR(255) NOT NULL,
+                              inmenu VARCHAR(1) DEFAULT 'n',
+                              itemorder INT ( 5 ) DEFAULT 0,
+                              parent BOOLEAN DEFAULT 0,
+                              childof VARCHAR(255) DEFAULT 'none')
+                              ");
+
 
 $db->query("CREATE TABLE IF NOT EXISTS color
                               ( id INT ( 5 ) NOT NULL AUTO_INCREMENT PRIMARY KEY,
@@ -151,16 +177,44 @@ $db->query("INSERT INTO color
                             (id, color)
                             VALUES ('2','#00cc99')
                             ");
-                           
+$db->query("INSERT INTO color
+                           (id, color)
+                           VALUES ('3','#000000')
+                           ");
+
 $db->query("INSERT INTO accounts
 (id, username, password,email,rolename)
-VALUES ('1','admin', '$2y$10$/EoJNAFqj1MgZRZOs4iG3OY22LXjUJsFXdPCQGhjUClVRXNup0Vbm','mail@mail.com','Admin')
+VALUES ('1','admin', '". $password_hash ."','". $user_email ."','Admin')
 ");
 
 
 $db->query("INSERT INTO settings
-(id, site_name, site_description,dashboard_language)
-VALUES ('1','Your site name', 'This is a short description of your website','en')
+(id, site_name, site_description,dashboard_language,theme)
+VALUES ('1','Mini Cms', 'Description of your website','en','dm_theme')
 ");
+
+
+$db->query("INSERT INTO page 
+(id, page_name, block1, block1_bg, block1_text,block2, block2_bg, block2_text,block3, block3_bg, block3_text,block4, block4_bg, block4_text) 
+VALUES ('1','index', '<p>This is your homepage</p>','none','#000000','', 'none','#000000', '', 'none','#000000','', 'none','#000000')
+");
+
+
+$db->query("INSERT INTO page 
+(id, page_name, block1, block1_bg, block1_text,block2, block2_bg, block2_text,block3, block3_bg, block3_text,block4, block4_bg, block4_text) 
+VALUES ('2','Blog', '<p>This is your blog page</p>','none','#000000','', 'none','#000000', '', 'none','#000000','', 'none','#000000')
+");
+
+$db->query("INSERT INTO menu 
+(id, pagename, inmenu) 
+VALUES ('1','index', 'y')
+");
+
+$db->query("INSERT INTO menu 
+(id, pagename, inmenu) 
+VALUES ('2','Blog', 'y')
+");
+
+
 
 header("Location: ../index.php");

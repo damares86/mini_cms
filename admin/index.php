@@ -82,7 +82,7 @@ $user=$_SESSION['name'];
                                 <div class="module-body">
 
                                     <section class="docs">
-                                        <p>Welcome <b><?=$user?></b> to you Mini Cms Admin Dashboard.</p>
+                                        <p>Welcome <b><?=$user?></b> to your Mini Cms Admin Dashboard.</p>
                                         <p>Below you have some quick links to manage your website.</p><br>
                                         
                                     </section>

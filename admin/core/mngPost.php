@@ -60,11 +60,9 @@ if(filter_input(INPUT_POST,"subReg")){
 		$post->category_id=$_POST['category_id'];
 			
 		// create the post
-		if($post->insert()){
-			header("Location: ../index.php?msg=postSucc");
-			exit;
-		
-		
+		if($post->insert()){			
+				header("Location: ../index.php?msg=postErr");
+				exit;
 		}else{
 			header("Location: ../index.php?msg=postErr");
 			exit;

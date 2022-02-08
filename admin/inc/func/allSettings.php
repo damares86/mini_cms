@@ -14,7 +14,7 @@
 
     <div class="align-items-center pt-3 pb-2 mb-3 align-items-center">
             <!-- <h6><a href="home.php"><-- Back to dashboard's home</h6></a> -->
-            <h1 class="h2 mx-auto text-center">Settings</h1>
+            <h1 class="h2 mx-auto text-center">Site settings</h1>
         </div>
         <br>
         
@@ -46,8 +46,31 @@
                         
                 </div>
             </div>
-            <?php
+            <div class="control-group">
+                            <label class="control-label" for="site_description">Theme</label>
+                <div class="controls">
+                <select name="theme">
+                <?php
+            foreach (glob("../assets/*") as $file) {
+                if( is_dir($file) ){
+                    $folder=pathinfo($file, PATHINFO_FILENAME);
+                    $selected = "";
+                    if ($folder == $row['theme']) {
+                        $selected = "selected";
+                    }
+                    echo "<option value='{$folder}' $selected >{$folder}</option>";
+
+                }
             }
+                ?>
+            </select>
+                        
+                </div>
+            </div>
+            
+            <?php
+            } 
+// } 
 
 ?>
             <div class="control-group">
@@ -62,6 +85,13 @@
     </div>
 </div>
 
+<?php
+
+// require "allMenu.php";
+require "core/menu/index.php";
+
+?>
 
     </div>
 </div>
+

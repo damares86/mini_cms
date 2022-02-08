@@ -4,8 +4,8 @@ require "admin/template/inc/header.php";
 
 ?>
 
-<div id="bottomContainer">
-    
+<div id="bottomContainer" class="pb-1">
+    <div class="container-fluid">
     <?php
     $file = basename($_SERVER['PHP_SELF']);
     $page_class = pathinfo($file, PATHINFO_FILENAME);
@@ -13,8 +13,8 @@ require "admin/template/inc/header.php";
     $page->page_name=$page_class;
     
     $stmt=$page->showByName();
-    ?>
 
+    ?>
         <div class="row <?=$page_class?>" id="block1" style="background-color:<?=$page->block1_bg?>; color:<?=$page->block1_text?>;">
         <?php
         echo $page->block1;
@@ -58,7 +58,7 @@ require "admin/template/inc/header.php";
         }
     // }
         ?>
-        
+    </div>
 </div>
 <?php
 require "admin/template/inc/footer.php";
