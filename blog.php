@@ -33,6 +33,9 @@ require "admin/template/inc/header.php";
                 $cat->showById();
                                 
                 $category_name= $cat->category_name;
+
+                $post_title= preg_replace('/\s+/', '_', $title);
+                $post_title = strtolower($post_title);
         ?>
         <h1><?=$title?></h1>
         <p class="metainfo">Category: <b><?=$category_name?></b></p>
@@ -40,9 +43,9 @@ require "admin/template/inc/header.php";
         <div class="blog_content">
             <h4>Summary</h4>
             <?=$summary?>
+            <br>
+            <a href="post.php?id=<?=$id?>&title=<?=$post_title?>">Continue reading -></a>
             <hr>
-            <h4>Content</h4>
-            <?=$content?>
         </div>
         <hr>
         <?php

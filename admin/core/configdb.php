@@ -183,6 +183,11 @@ $db->query("INSERT INTO color
                            VALUES ('3','#000000')
                            ");
 
+$db->query("INSERT INTO color
+                            (id, color)
+                            VALUES ('4','#ffffff')
+                            ");
+
 $db->query("INSERT INTO accounts
 (id, username, password,email,rolename)
 VALUES ('1','admin', '". $password_hash ."','". $user_email ."','Admin')
