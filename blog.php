@@ -4,8 +4,9 @@ require "admin/template/inc/header.php";
 
 ?>
 
-<div id="bottomContainer" class="pb-1">
-    <div class="container-fluid">
+<div id="bottomContainer">
+    <div id="content">
+        <div id="blog">
         <?php
         $file = basename($_SERVER['PHP_SELF']);
         $page_class = pathinfo($file, PATHINFO_FILENAME);
@@ -47,13 +48,18 @@ require "admin/template/inc/header.php";
             <a href="post.php?id=<?=$id?>&title=<?=$post_title?>">Continue reading -></a>
             <hr>
         </div>
-        <hr>
         <?php
             }
         }
         require "admin/inc/paging.php";
         ?>
-       
+        </div>
+        <div id="sidebar">
+            <div id="sidebar_menu">
+                sidebar
+            </div>
+        </div>
+        <div class="clearfix"></div>
     </div>
 </div>
 <?php

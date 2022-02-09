@@ -79,6 +79,7 @@ header{
     background-color:burlywood;
 }
 
+
 footer{
     height: auto;
     width: 100%;
@@ -99,20 +100,47 @@ footer{
 }
 
 #adminBar a{
-	color:#fff;
+    color:#fff;
 }
 
 #adminBar a:visited{
-	color:#fff;
+    color:#fff;
 }
 
 #adminBar a:hover{
-	color:#e2f9ff;
+    color:#e2f9ff;
 }
 
 /*=============================
-    BLOG LAYOUT
+BLOG LAYOUT
 =============================*/
+
+#blog{
+    height:auto;
+    width:80%;
+    padding: 2%;
+    float:left;
+}
+
+#sidebar{
+    height:auto;
+    width:20%;
+    padding: 2%;
+    float:left;
+}
+
+#sidebar_menu{
+    height: auto;
+    width:100%;
+    padding:3% 5%;
+    background-color: coral;
+    border-radius:0.5em;
+}
+
+.blog_content{
+    border-bottom: 1px solid #000;
+}
+
 
 /*=============================
     GENERIC BLOCK PROPERTY
