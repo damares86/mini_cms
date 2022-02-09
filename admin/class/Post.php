@@ -8,6 +8,7 @@ class Post{
 
     public $id;
     public $title;
+    public $summary;
     public $content;
     public $modified;
     public $category_id;
@@ -25,6 +26,7 @@ class Post{
                     " . $this->table_name . "
                 SET
                     title = :title,
+                    summary = :summary,
                     content = :content,
                     category_id = :category_id,
                     modified = NOW()";
@@ -34,6 +36,7 @@ class Post{
        
         // bind the values
         $stmt->bindParam(':title', $this->title);       
+        $stmt->bindParam(':summary', $this->summary);       
         $stmt->bindParam(':content', $this->content);       
         $stmt->bindParam(':category_id', $this->category_id);       
        
@@ -62,6 +65,7 @@ class Post{
                     " . $this->table_name . "
                 SET
                     title = :title,
+                    summary = :summary,
                     content = :content,
                     category_name = :category_id,
                     modified = NOW()
@@ -72,6 +76,7 @@ class Post{
      
         // bind the values
         $stmt->bindParam(':title', $this->title);
+        $stmt->bindParam(':summary', $this->summary);
         $stmt->bindParam(':content', $this->content); 
         $stmt->bindParam(':category_id', $this->category_id);       
         $stmt->bindParam(':id', $this->id);
@@ -129,6 +134,7 @@ class Post{
     
         $this->id = $row['id'];
         $this->title = $row['title'];
+        $this->summary = $row['summary'];
         $this->content = $row['content'];
         $this->category_id = $row['category_id'];
         $this->modified = $row['modified'];

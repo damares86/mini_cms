@@ -38,6 +38,10 @@ require "admin/template/inc/header.php";
         <p class="metainfo">Category: <b><?=$category_name?></b></p>
         <p class="metainfo">Last modified on: <?=$modified?></p>
         <div class="blog_content">
+            <h4>Summary</h4>
+            <?=$summary?>
+            <hr>
+            <h4>Content</h4>
             <?=$content?>
         </div>
         <hr>

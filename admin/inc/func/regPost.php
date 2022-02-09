@@ -71,8 +71,15 @@ if(filter_input(INPUT_GET,"idToMod")){
             </select>
             </div>
             <br>
-
+            <h4>Summary</h4>
             <textarea name="editor" id="editor" rows="10" cols="80">
+                <?=$post->summary?>
+            </textarea>
+            
+            <br>
+
+            <h4>Content</h4>
+            <textarea name="editor2" id="editor2" rows="10" cols="80">
             <?=$post->content?>
             </textarea>
             <br>

@@ -102,7 +102,7 @@ a:hover{
 	width: 100%;
 	min-width:480px;
 	max-width: 1400px;
-	height: 100%;
+	height: auto;
 	margin:0 auto;
 	background-color:#e2f9ff;
 
@@ -116,7 +116,7 @@ a:hover{
 }
 
 header{
-	height:20%;
+	height:5em	;
 	width: 100%;
 	padding: 0.5em;
 	position:relative;
