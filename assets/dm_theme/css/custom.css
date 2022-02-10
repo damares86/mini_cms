@@ -1,2 +1,47 @@
-/* your css custom document */
 
+/*=============================
+	SPECIFIC BLOCK PROPERTY
+=============================*/
+
+.block1{
+	width:100%;
+	margin: 1% auto;
+    background-color:brown;
+}
+
+.block2{
+	width:100%;
+	margin: 1% auto;
+    background-color:brown;
+}
+
+.block3{
+	width:49%;
+	margin: 1% 1% 1% 0;
+    background-color:brown;
+}
+
+.block4{
+	width:49%;
+	margin: 1% 0 1% 1%;
+    background-color:brown;
+}
+
+
+/*=============================
+	MEDIA QUERIES
+=============================*/
+
+@media (max-width:767px){
+
+	#block3{
+        width:100%;
+	    margin: 1% auto;
+    }
+
+    #block4{
+        width:100%;
+	    margin: 1% auto;
+    }
+
+}

@@ -1,5 +1,12 @@
 <?php
 
+// require 'admin/phpDebug/src/Debug/Debug.php';   			// if not using composer
+
+// $debug = new \bdk\Debug(array(
+//     'collect' => true,
+//     'output' => true,
+// ));
+
 session_start();
 // loading class
 
@@ -23,11 +30,6 @@ $settings = new Settings($db);
 
 $stmt=$settings->showSettings();
 
-    
-while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
-
- extract($row);
-$theme=$row['theme'];
 // prendo il nome del file (con estensione)
 $file = basename($_SERVER['PHP_SELF']);
 $page_name="";
@@ -43,45 +45,82 @@ $page_name=str_replace("_"," ", $page_name);
 $page_name=ucfirst($page_name);
 }
 
+
+while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
+    
+    extract($row);
+    $theme=$row['theme'];
+
 ?>
+
 <!doctype html>
 <html>
+	<head>
+		<meta charset="utf-8">
+		<title><?=$page_name?> - <?=$site_name?></title>
+        <link rel="icon" href="assets/<?= $theme ?>/img/favicon.ico">
+		<?php
+            require "assets/".$theme."/inc/scripts.php";
+        ?>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+	</head>
 
-<head>
-    <meta charset="utf-8">
-    <title><?= $page_name ?> - <?= $row['site_name']?></title>
-    <?php
-    require "assets/".$theme."/inc/scripts.php";
-    ?>
-</head>
-
-<body>
-    <?php
-        if(isset($_SESSION['loggedin'])){
-    ?>
-    <div id="adminBar">
-        <a href="admin">Go to Admin Area</a>
-        &nbsp; - &nbsp;
-        <a href="admin/core/logout.php">Logout</a>
-    </div>
-    <?php
-        }
-    ?>
-    <div id="siteContainer">
-        <div id="topContainer" class="">
-            <div class="coverSfondo"></div>
-
-            <?php
-            require "assets/".$theme."/inc/menu.php";
-            ?>
-
-            <div id="visual">
-                <?php
-                require "assets/".$theme."/inc/visual.php";
-                ?>
-            </div>
+	<body>
+        <?php
+            if(isset($_SESSION['loggedin'])){
+        ?>
+        <div id="adminBar">
+            <a href="admin">Go to Admin Area</a>
+            &nbsp; - &nbsp;
+            <a href="admin/core/logout.php">Logout</a>
         </div>
-<?php
+        <?php
+            }
+        ?>
+        <div id="siteContainer">
+            <div id="topContainer">
+                <header>
+                    <div id="logo">
+                        <a href="index.php">
+                            <img src="assets/<?= $theme ?>/img/logo.png">
+                        </a>
+                    </div>
+                    <div id="menu">
+                        <button class="hamburger hamburger--boring" type="button">
+                            <span class="hamburger-box">
+                                <span class="hamburger-inner"></span>
+                            </span>
+                        </button>
+                    </div>
+                    <div id="menuBurger" class="closed">
+                    <ul>
+                    <?php
+                    $menu=$page->showMenu();
+                    while ($row = $menu->fetch(PDO::FETCH_ASSOC)){
+                        
+                        extract($row);
+                        $str=$row['pagename'];
+                        $str = preg_replace('/\s+/', '_', $str);
+                        $str = strtolower($str);
+                    ?>
+                        <li><a href="<?=$str?>.php" ><?php
+                        if($row['pagename']=='index'){
+                            echo "Home";
+                        } else {
+                        echo $row['pagename'];
+                        }?></a></li>
+                    <?php
+                    }
+                    ?>
+                    </ul>
+                    </div>
+              
+                    <div class="clearfix"></div>
+                </header>
+                <div id="visual">
+                    visual
+                </div>
+            </div>
+            <?php
 }
 ?>
-   

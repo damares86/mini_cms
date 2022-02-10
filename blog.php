@@ -4,8 +4,9 @@ require "admin/template/inc/header.php";
 
 ?>
 
-<div id="bottomContainer" class="pb-1">
-    <div class="container-fluid">
+<div id="bottomContainer">
+    <div id="content">
+        <div id="blog">
         <?php
         $file = basename($_SERVER['PHP_SELF']);
         $page_class = pathinfo($file, PATHINFO_FILENAME);
@@ -33,20 +34,32 @@ require "admin/template/inc/header.php";
                 $cat->showById();
                                 
                 $category_name= $cat->category_name;
+
+                $post_title= preg_replace('/\s+/', '_', $title);
+                $post_title = strtolower($post_title);
         ?>
         <h1><?=$title?></h1>
         <p class="metainfo">Category: <b><?=$category_name?></b></p>
         <p class="metainfo">Last modified on: <?=$modified?></p>
         <div class="blog_content">
-            <?=$content?>
+            <h4>Summary</h4>
+            <?=$summary?>
+            <br>
+            <a href="post.php?id=<?=$id?>&title=<?=$post_title?>">Continue reading -></a>
+            <hr>
         </div>
-        <hr>
         <?php
             }
         }
         require "admin/inc/paging.php";
         ?>
-       
+        </div>
+        <div id="sidebar">
+            <div id="sidebar_menu">
+                sidebar
+            </div>
+        </div>
+        <div class="clearfix"></div>
     </div>
 </div>
 <?php
