@@ -7,7 +7,7 @@ require "admin/template/inc/header.php";
                 $file = basename($_SERVER['PHP_SELF']);
                 $page_class = pathinfo($file, PATHINFO_FILENAME);
 
-                $page->page_name=$page_class;
+                $page->page_name=$page_name;
                 
                 $stmt=$page->showByName();
                 ?>
@@ -41,6 +41,23 @@ require "admin/template/inc/header.php";
                     <div class="block block4 <?=$page_class?>">
                     <?php
                         echo $page->block4;
+                        ?>  
+                    </div>
+                    <?php
+                    }
+                    if($page->block5){
+                    ?>
+                    <div class="block block5 <?=$page_class?>">
+                    <?php
+                        echo $page->block5;
+                        ?>  
+                    </div><?php
+                    }
+                    if($page->block6){
+                    ?>
+                    <div class="block block6 <?=$page_class?>">
+                    <?php
+                        echo $page->block6;
                         ?>  
                     </div>
                     <?php

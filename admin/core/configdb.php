@@ -154,7 +154,13 @@ $db->query("CREATE TABLE IF NOT EXISTS page
                               block3_text VARCHAR(255) DEFAULT '#000000',
                               block4 text COLLATE utf8_unicode_ci NULL,
                               block4_bg VARCHAR(255) DEFAULT 'none',
-                              block4_text VARCHAR(255) DEFAULT '#000000')
+                              block4_text VARCHAR(255) DEFAULT '#000000',
+                              block5 text COLLATE utf8_unicode_ci NULL,
+                              block5_bg VARCHAR(255) DEFAULT 'none',
+                              block5_text VARCHAR(255) DEFAULT '#000000',
+                              block6 text COLLATE utf8_unicode_ci NULL,
+                              block6_bg VARCHAR(255) DEFAULT 'none',
+                              block6_text VARCHAR(255) DEFAULT '#000000')
                               ");
 
 $db->query("CREATE TABLE IF NOT EXISTS menu
@@ -201,14 +207,14 @@ VALUES ('1','Mini Cms', 'Description of your website','en','dm_theme')
 
 
 $db->query("INSERT INTO page 
-(id, page_name, block1, block1_bg, block1_text,block2, block2_bg, block2_text,block3, block3_bg, block3_text,block4, block4_bg, block4_text) 
-VALUES ('1','index', '<p>This is your homepage</p>','none','#000000','', 'none','#000000', '', 'none','#000000','', 'none','#000000')
+(id, page_name, block1, block1_bg, block1_text,block2, block2_bg, block2_text,block3, block3_bg, block3_text,block4, block4_bg, block4_text, block5, block5_bg, block5_text, block6, block6_bg, block6_text) 
+VALUES ('1','index', '<p>This is your homepage</p>','none','#000000','', 'none','#000000', '', 'none','#000000','', 'none','#000000', '', 'none','#000000','', 'none','#000000')
 ");
 
 
 $db->query("INSERT INTO page 
-(id, page_name, block1, block1_bg, block1_text,block2, block2_bg, block2_text,block3, block3_bg, block3_text,block4, block4_bg, block4_text) 
-VALUES ('2','Blog', '<p>This is your blog page</p>','none','#000000','', 'none','#000000', '', 'none','#000000','', 'none','#000000')
+(id, page_name, block1, block1_bg, block1_text,block2, block2_bg, block2_text,block3, block3_bg, block3_text,block4, block4_bg, block4_text, block5, block5_bg, block5_text, block6, block6_bg, block6_text) 
+VALUES ('2','Blog', '<p>This is your blog page</p>','none','#000000','', 'none','#000000', '', 'none','#000000','', 'none','#000000', '', 'none','#000000', '', 'none','#000000')
 ");
 
 $db->query("INSERT INTO menu 

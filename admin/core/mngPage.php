@@ -88,6 +88,17 @@ if(filter_input(INPUT_POST,"subReg")){
 			$page->block4_bg=$_POST['block4_bg'];
 			$page->block4_text=$_POST['block4_text'];
 		}
+		if($_POST['editor5']){
+			$page->block5=$_POST['editor5'];
+			$page->block5_bg=$_POST['block5_bg'];
+			$page->block5_text=$_POST['block5_text'];
+		}
+		if($_POST['editor6']){
+			$page->block6=$_POST['editor6'];
+			$page->block6_bg=$_POST['block6_bg'];
+			$page->block6_text=$_POST['block6_text'];
+		}
+		
 		
 		
 		// create the page
@@ -133,6 +144,18 @@ if(filter_input(INPUT_POST,"subReg")){
 			$page->block4_bg=$_POST['block4_bg'];
 			$page->block4_text=$_POST['block4_text'];
 		}
+
+		if($_POST['editor5']){
+			$page->block5=$_POST['editor5'];
+			$page->block5_bg=$_POST['block5_bg'];
+			$page->block5_text=$_POST['block5_text'];
+		}
+		if($_POST['editor6']){
+			$page->block6=$_POST['editor6'];
+			$page->block6_bg=$_POST['block6_bg'];
+			$page->block6_text=$_POST['block6_text'];
+		}
+
 
 		
 

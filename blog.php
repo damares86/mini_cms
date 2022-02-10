@@ -43,7 +43,6 @@ require "admin/template/inc/header.php";
             <?=$summary?>
             <br>
             <a href="post.php?id=<?=$id?>&title=<?=$post_title?>">Continue reading -></a>
-            <hr>
         </div>
         <?php
             }

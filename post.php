@@ -16,7 +16,8 @@ function get_page_url() {
 $url = get_page_url();
 ?>
 <div id="bottomContainer" class="pb-1">
-    <div class="container-fluid">
+    <div id="content">
+        <div id="blog">
         <?php
         require "admin/core/config.php";
 
@@ -57,8 +58,13 @@ $url = get_page_url();
             
         </div>
         
-
-       
+        </div>
+        <div id="sidebar">
+            <div id="sidebar_menu">
+                sidebar
+            </div>
+        </div>
+        <div class="clearfix"></div>
     </div>
 </div>
 <?php

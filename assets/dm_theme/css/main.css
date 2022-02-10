@@ -14,6 +14,9 @@ body{
 	margin:0;
 	padding:0;
     font-size:1.2em;
+    background-color:#68b8ff;
+    font-family: 'Montserrat', sans-serif;
+    letter-spacing: 1px;
 }
 
 /*=============================
@@ -24,21 +27,18 @@ body{
     height: auto;
     width: 90%;
     margin:0 auto;
-    background-color: aqua;
 }
 
 #topContainer{
     height: auto;
     width: 100%;
     margin:0 auto;
-    background-color:burlywood;
 }
 
 #bottomContainer{
     height: auto;
     width: 100%;
     margin:0 auto;
-    background-color:cornflowerblue;
 }
 
 header{
@@ -46,14 +46,14 @@ header{
     width: 100%;
     margin:0 auto;
     padding:0.5em;
-    background-color:brown;
+    background-color:#68b8ff;
 }
 
 #logo{
     height: 100%;
     width:20%;
+    padding: 0 1%;
     float: left;
-    background-color:darkorange;
 }
 
 #menu{
@@ -67,8 +67,11 @@ header{
     height: 12em;
     width: 100%;
     margin:0 auto;
-    padding:1em;
-    background-color:darkorange;
+    border-radius: 1em 1em 0 0;
+    overflow: hidden; 
+    background-image: url(../img/visual.jpg);
+    background-size: cover;
+	background-position: center;
 }
 
 #content{
@@ -76,7 +79,7 @@ header{
     width: 100%;
     margin:0 auto;
     padding:1em;
-    background-color:burlywood;
+    background-color:#d8e9ff;
 }
 
 
@@ -85,11 +88,16 @@ footer{
     width: 100%;
     margin:0 auto;
     padding:1em;
-    background-color:darkcyan;
+    text-align: center;
+    border-radius:0 0 1em 1em;
+    background: rgb(0,141,177);
+    background: linear-gradient(0deg, rgba(0,141,177,1) 0%, rgba(216,233,255,1) 100%);
 }
 
+
+
 #adminBar{
-	height:1.8em;
+    height:1.8em;
 	width:100%;
 	background-color:#008db1;
 	position:fixed;
@@ -99,17 +107,16 @@ footer{
 	text-align: right;
 }
 
-#adminBar a{
-    color:#fff;
+
+/*=============================
+HEADER
+=============================*/
+
+#logo img{
+    height:100%;
+    margin:0 auto;
 }
 
-#adminBar a:visited{
-    color:#fff;
-}
-
-#adminBar a:hover{
-    color:#e2f9ff;
-}
 
 /*=============================
 BLOG LAYOUT
@@ -139,11 +146,12 @@ BLOG LAYOUT
 
 .blog_content{
     border-bottom: 1px solid #000;
+    padding:1em 0;
 }
 
 
 /*=============================
-    GENERIC BLOCK PROPERTY
+GENERIC BLOCK PROPERTY
 =============================*/
 
 .block{
@@ -154,29 +162,66 @@ BLOG LAYOUT
 }
 
 /*=============================
-    BURGER MENU
+FONTS PROPERTY
+=============================*/
+h1, h2, h3, h4, h5, h6{
+    font-family: 'Baloo Tammudu 2', cursive;
+}
+
+#adminBar a{
+    color:#fff;
+}
+
+#adminBar a:visited{
+    color:#fff;
+}
+
+#adminBar a:hover{
+    color:#e2f9ff;
+}
+
+footer a{
+    color:#fff;
+}
+
+footer a:visited{
+    color:#fff;
+}
+
+footer a:hover{
+    color:#fff;
+    text-decoration: underline;
+}
+
+p.metainfo{
+    margin-left:1em;
+    font-size:0.8em;
+}
+
+
+
+/*=============================
+BURGER MENU
 =============================*/
 
-
-
 .hamburger.is-active .hamburger-inner, .hamburger.is-active .hamburger-inner::before, .hamburger.is-active .hamburger-inner::after {
-	background-color: #fff;
+    background-color: #fff;
 }
 
 .hamburger-inner, .hamburger-inner::before, .hamburger-inner::after{
-	background-color: #fff;
+    background-color: #fff;
 }
 
 #menuBurger{
-	width:100%;
-	height: auto;
+    width:90%;
+	height: 250px;
 	margin: 0px auto;
-	background-color:#044DB4;
+	background-color:#008db1;
 	position: relative;
 	top:0.5em;    
 	z-index:9;
 	transition: height 1s;
-	overflow: hidden;
+	overflow: auto;
 }
 
 #menuBurger.closed{

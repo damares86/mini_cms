@@ -1,32 +1,38 @@
 
 /*=============================
-	SPECIFIC BLOCK PROPERTY
+	INDEX BLOCK PROPERTY
 =============================*/
 
 .block1{
 	width:100%;
 	margin: 1% auto;
-    background-color:brown;
 }
 
+
 .block2{
-	width:100%;
-	margin: 1% auto;
-    background-color:brown;
+	width:49%;
+	margin: 1% 1% 1% 0;
 }
 
 .block3{
 	width:49%;
-	margin: 1% 1% 1% 0;
-    background-color:brown;
+	margin: 1% 0 1% 1%;
 }
 
 .block4{
-	width:49%;
-	margin: 1% 0 1% 1%;
-    background-color:brown;
+	width:32%;
+	margin: 1% 1% 1% 0;
 }
 
+.block5{
+	width:32%;
+	margin: 1%;
+}
+
+.block6{
+	width:32%;
+	margin: 1% 0 1% 1%;
+}
 
 /*=============================
 	MEDIA QUERIES
@@ -34,14 +40,10 @@
 
 @media (max-width:767px){
 
-	#block3{
+	.block{
         width:100%;
 	    margin: 1% auto;
     }
 
-    #block4{
-        width:100%;
-	    margin: 1% auto;
-    }
 
 }
