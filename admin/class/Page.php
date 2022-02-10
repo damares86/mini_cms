@@ -53,7 +53,8 @@ class Page{
                 SET
                     page_name = :page_name,
                     block1 = :block1,
-                    block1_bg = :block1_bg". $this->setParam2 . $this->setParam3 . $this->setParam4 . "";
+                    block1_bg = :block1_bg,
+                    block1_text = :block1_text". $this->setParam2 . $this->setParam3 . $this->setParam4 . "";
                   
         // prepare the query
         $stmt = $this->conn->prepare($query);
