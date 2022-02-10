@@ -67,7 +67,9 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
 
 	<body>
         <?php
+            $style="";
             if(isset($_SESSION['loggedin'])){
+                $style="style='margin-top:1.8em'";
         ?>
         <div id="adminBar">
             <a href="admin">Go to Admin Area</a>
@@ -77,7 +79,7 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
         <?php
             }
         ?>
-        <div id="siteContainer">
+        <div id="siteContainer" <?=$style?>>
             <div id="topContainer">
                 <header>
                     <div id="logo">

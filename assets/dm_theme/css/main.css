@@ -89,13 +89,13 @@ footer{
 }
 
 #adminBar{
-	height:1.5em;
+	height:1.8em;
 	width:100%;
 	background-color:#008db1;
 	position:fixed;
 	top:0;
 	z-index:1000;
-	padding: 0 3em;
+	padding: 0.2em 3em;
 	text-align: right;
 }
 

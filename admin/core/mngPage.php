@@ -116,13 +116,13 @@ if(filter_input(INPUT_POST,"subReg")){
 		$page->block1=$_POST['editor'];
 		$page->block1_bg=$_POST['block1_bg'];
 		$page->block1_text=$_POST['block1_text'];
-	
+		
 		if($_POST['editor2']){
 			$page->block2=$_POST['editor2'];
 			$page->block2_bg=$_POST['block2_bg'];
 			$page->block2_text=$_POST['block2_text'];
 		}
-
+		
 		if($_POST['editor3']){
 			$page->block3=$_POST['editor3'];
 			$page->block3_bg=$_POST['block3_bg'];
@@ -133,7 +133,7 @@ if(filter_input(INPUT_POST,"subReg")){
 			$page->block4_bg=$_POST['block4_bg'];
 			$page->block4_text=$_POST['block4_text'];
 		}
-	
+
 		
 
 		// update the page

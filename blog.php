@@ -8,10 +8,7 @@ require "admin/template/inc/header.php";
     <div id="content">
         <div id="blog">
         <?php
-        $file = basename($_SERVER['PHP_SELF']);
-        $page_class = pathinfo($file, PATHINFO_FILENAME);
-
-        $page->page_name=$page_class;
+        
         require "admin/core/config.php";
 
         $database = new Database();

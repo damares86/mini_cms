@@ -107,15 +107,16 @@ class Page{
 
 
     function update(){
+        		
         if($this->block2){
             $this->setParam2 = ", block2 = :block2, block2_bg = :block2_bg, block2_text = :block2_text";
-         
+            
         } 
-    
+        
         if($this->block3){
             $this->setParam3 = ", block3 = :block3, block3_bg = :block3_bg, block3_text = :block3_text";
         }
- 
+        
         if($this->block4){
             $this->setParam4 = ", block4 = :block4, block4_bg = :block4_bg, block4_text = :block4_text";
         }
@@ -127,46 +128,48 @@ class Page{
                 block1_bg = :block1_bg,
                 block1_text = :block1_text". $this->setParam2 . $this->setParam3 . $this->setParam4 . "
                 WHERE
-                    id = :id";
+                id = :id";
+      
 
-    // prepare the query
-        $stmt = $this->conn->prepare($query);
-     
-        // bind the values
-        $stmt->bindParam(':page_name', $this->page_name);       
-        $stmt->bindParam(':block1', $this->block1);       
-        $stmt->bindParam(':block1_bg', $this->block1_bg);       
-        $stmt->bindParam(':block1_text', $this->block1_text);       
-        // if($this->block2){
-            $stmt->bindParam(':block2', $this->block2);       
-            $stmt->bindParam(':block2_bg', $this->block2_bg);       
-            $stmt->bindParam(':block2_text', $this->block2_text);       
-        // }
-        if($this->block3){
-            $stmt->bindParam(':block3', $this->block3);       
-            $stmt->bindParam(':block3_bg', $this->block3_bg);       
-            $stmt->bindParam(':block3_text', $this->block3_text);       
-        }
-        if($this->block4){
-            $stmt->bindParam(':block4', $this->block4);       
-            $stmt->bindParam(':block4_bg', $this->block4_bg);       
-            $stmt->bindParam(':block4_text', $this->block4_text);       
-        }
-        $stmt->bindParam(':id', $this->id);       
-
+                // prepare the query
+                $stmt = $this->conn->prepare($query);
+                
+                // bind the values
+                $stmt->bindParam(':page_name', $this->page_name);       
+                $stmt->bindParam(':block1', $this->block1);       
+                $stmt->bindParam(':block1_bg', $this->block1_bg);       
+                $stmt->bindParam(':block1_text', $this->block1_text);       
+                if($this->block2){
+                $stmt->bindParam(':block2', $this->block2);       
+                $stmt->bindParam(':block2_bg', $this->block2_bg);       
+                $stmt->bindParam(':block2_text', $this->block2_text);       
+                }
+                if($this->block3){
+                    $stmt->bindParam(':block3', $this->block3);       
+                    $stmt->bindParam(':block3_bg', $this->block3_bg);       
+                    $stmt->bindParam(':block3_text', $this->block3_text);       
+                }
+                if($this->block4){
+                    $stmt->bindParam(':block4', $this->block4);       
+                    $stmt->bindParam(':block4_bg', $this->block4_bg);       
+                    $stmt->bindParam(':block4_text', $this->block4_text);       
+                }
+                $stmt->bindParam(':id', $this->id);       
+                    
+                  
                 
       
         // execute the query, also check if query was successful
         if($stmt->execute()){
-            $query1="UPDATE menu SET pagename = :page_name";
-            $stmt1 = $this->conn->prepare($query1);
-            $stmt1->bindParam(':page_name', $this->page_name);       
-            if($stmt1->execute()){
-                return true;
-            }else{
-                $this->showError($stmt);
-                return false;
-            }
+                $query1="UPDATE menu SET pagename = :page_name";
+                $stmt1 = $this->conn->prepare($query1);
+                $stmt1->bindParam(':page_name', $this->page_name);       
+                if($stmt1->execute()){
+                    return true;
+                }else{
+                    $this->showError($stmt);
+                    return false;
+                }
             return true;
 
         }else{
