@@ -16,9 +16,13 @@ require "admin/template/inc/header.php";
     
         $post = new Post($db);
         $cat = new Categories($db);
-
-        
+        if(filter_input(INPUT_GET,"cat")){
+            $post->category_id=filter_input(INPUT_GET,"cat");
+            $stmt = $post->showByCatId($from_record_num, $records_per_page);
+        }else{
+           
         $stmt = $post->showAll($from_record_num, $records_per_page);
+    }
         
         $total_rows=$post->countAll();
 
@@ -36,7 +40,7 @@ require "admin/template/inc/header.php";
                 $post_title = strtolower($post_title);
         ?>
         <h1><?=$title?></h1>
-        <p class="metainfo">Category: <b><?=$category_name?></b></p>
+        <p class="metainfo">Category: <b><a href="blog.php?cat=<?=$category_id?>"><?=$category_name?></a></b></p>
         <p class="metainfo">Last modified on: <?=$modified?></p>
         <div class="blog_content">
             <h4>Summary</h4>
@@ -52,7 +56,12 @@ require "admin/template/inc/header.php";
         </div>
         <div id="sidebar">
             <div id="sidebar_menu">
-                sidebar
+                <h2><strong>Categories</strong></h2>
+                    <ul>
+            <?php
+                    require "admin/template/inc/sidebar.php";
+                ?>
+                    </ul>
             </div>
         </div>
         <div class="clearfix"></div>

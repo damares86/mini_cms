@@ -1,16 +1,18 @@
 <?php
-require '../phpDebug/src/Debug/Debug.php';   			// if not using composer
+// require '../phpDebug/src/Debug/Debug.php';   			// if not using composer
 
-$debug = new \bdk\Debug(array(
-    'collect' => true,
-    'output' => true,
-));
+// $debug = new \bdk\Debug(array(
+//     'collect' => true,
+//     'output' => true,
+// ));
+
+
 /*
-    ###################################################################
-    #                                                                 #
-    #   Reserved Area by damares86 (https://github.com/damares86/)    #
-    #                                                                 #
-    ###################################################################
+==========================================================================
+
+Mini Cms is a project by damares86 (https://github.com/damares86/mini_cms)
+
+==========================================================================
 */
 
 
@@ -209,12 +211,6 @@ VALUES ('1','Mini Cms', 'Description of your website','en','dm_theme')
 $db->query("INSERT INTO page 
 (id, page_name, block1, block1_bg, block1_text,block2, block2_bg, block2_text,block3, block3_bg, block3_text,block4, block4_bg, block4_text, block5, block5_bg, block5_text, block6, block6_bg, block6_text) 
 VALUES ('1','index', '<p>This is your homepage</p>','none','#000000','', 'none','#000000', '', 'none','#000000','', 'none','#000000', '', 'none','#000000','', 'none','#000000')
-");
-
-
-$db->query("INSERT INTO page 
-(id, page_name, block1, block1_bg, block1_text,block2, block2_bg, block2_text,block3, block3_bg, block3_text,block4, block4_bg, block4_text, block5, block5_bg, block5_text, block6, block6_bg, block6_text) 
-VALUES ('2','Blog', '<p>This is your blog page</p>','none','#000000','', 'none','#000000', '', 'none','#000000','', 'none','#000000', '', 'none','#000000', '', 'none','#000000')
 ");
 
 $db->query("INSERT INTO menu 

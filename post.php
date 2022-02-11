@@ -31,7 +31,7 @@ $url = get_page_url();
         
         $post->id=$post_id;
         $post->showById();
-        
+        $category_id = $post->category_id;
         $cat->id = $post->category_id;
 
         $cat->showById();
@@ -40,7 +40,7 @@ $url = get_page_url();
 
         ?>
         <h1><?=$post->title?></h1>
-        <p class="metainfo">Category: <b><?=$category_name?></b></p>
+        <p class="metainfo">Category: <b><a href="blog.php?cat=<?=$category_id?>"><?=$category_name?></a></b></p>
         <p class="metainfo">Last modified on: <?=$post->modified?></p>
         <div class="blog_content">
             <?=$post->content?>
@@ -61,7 +61,12 @@ $url = get_page_url();
         </div>
         <div id="sidebar">
             <div id="sidebar_menu">
-                sidebar
+            <h2><strong>Categories</strong></h2>
+                    <ul>
+            <?php
+                    require "admin/template/inc/sidebar.php";
+                ?>
+                    </ul>
             </div>
         </div>
         <div class="clearfix"></div>

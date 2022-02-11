@@ -56,6 +56,13 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
 <!doctype html>
 <html>
 	<head>
+        <!--
+        ==========================================================================
+
+        Mini Cms is a project by damares86 (https://github.com/damares86/mini_cms)
+        
+        ==========================================================================
+        -->
 		<meta charset="utf-8">
 		<title><?=$page_name?> - <?=$site_name?></title>
         <link rel="icon" href="assets/<?= $theme ?>/img/favicon.ico">

@@ -140,6 +140,20 @@ class Post{
         $this->modified = $row['modified'];
     }
 
+    function showByCatId(){
+        $query = "SELECT *
+        FROM " . $this->table_name . "
+        WHERE category_id = ?";
+        $stmt = $this->conn->prepare( $query );
+        $stmt->bindParam(1, $this->category_id);
+        $stmt->execute();
+        
+        return $stmt;
+   
+    
+        
+    }
+
  // delete the post
  function delete(){
     

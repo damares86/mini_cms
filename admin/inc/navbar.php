@@ -8,7 +8,7 @@
                    
                         
                     <a href="../index.php">
-                            <img src="assets/images/logo_mc.png" class="logo"> 
+                            <img src="assets/images/logo.svg" class="logo"> 
                     </a>
                    
                        

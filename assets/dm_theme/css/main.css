@@ -25,7 +25,7 @@ body{
 
 #siteContainer{
     height: auto;
-    width: 90%;
+    width: 80%;
     margin:0 auto;
 }
 
@@ -124,14 +124,14 @@ BLOG LAYOUT
 
 #blog{
     height:auto;
-    width:80%;
+    width:70%;
     padding: 2%;
     float:left;
 }
 
 #sidebar{
     height:auto;
-    width:20%;
+    width:30%;
     padding: 2%;
     float:left;
 }
@@ -139,9 +139,14 @@ BLOG LAYOUT
 #sidebar_menu{
     height: auto;
     width:100%;
-    padding:3% 5%;
-    background-color: coral;
+    padding:6%;
+    background-color: #008db1;
+    color:#fff;
     border-radius:0.5em;
+}
+
+#sidebar_menu li{
+    margin-bottom: 0.8em;
 }
 
 .blog_content{
@@ -196,6 +201,19 @@ footer a:hover{
 p.metainfo{
     margin-left:1em;
     font-size:0.8em;
+}
+
+#sidebar_menu li a{
+    color:#fff;
+}
+
+#sidebar_menu li a:visited{
+    color:#fff;
+}
+
+#sidebar_menu li a:hover{
+    color:#fff;
+    text-decoration: underline;
 }
 
 
@@ -257,6 +275,11 @@ BURGER MENU
 =============================*/
 
 @media (max-width:767px){
+
+    #siteContainer{
+        width: 95%;;
+    }
+
     header{
         padding: 4%;
         height: 6em;
