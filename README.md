@@ -57,6 +57,9 @@ In this tab, every user can change his username, email and password.
 
 ### Your page in "6 blocks"
 
+![minicms_layout](https://user-images.githubusercontent.com/85158984/153586670-e59669b5-728a-43e2-9c99-83ab65648d31.png)
+
+
 ### Background and text color
 
 ## Files
