@@ -1,9 +1,45 @@
 # Mini Cms
 
-The Mini Cms v 0.7 beta is not a stable release, it's only for testing.
-I'm testing and improving it, if you want to help me download the release and try it on your host.
+The Mini Cms is a solution that allows you create and manage little websites or blog.
+It offers many features:
+- create and manage user with 2 different roles
+- blog functions (post and category creation)
+- create and manage your website's pages
+- change website's theme (and if you know html and css you can create a theme on your own)
 
-Simply put all files in a folder on your host and go to it with your browser, Mini Cms will ask you all the information it needs.
-If you catch a bug or if you have some suggestion, open an issue.
+## Install
 
-Thank you.
+## Interface overview
+
+## User
+
+### Role
+
+### Profile
+
+## Post
+
+### Summary vs Content
+
+## Categories
+
+## Pages
+
+### Your page in "6 blocks"
+
+### Background and text color
+
+## Files
+
+## Site settings
+
+### Menu
+
+## Theme settings
+
+## Managing themes
+
+
+
+
+
