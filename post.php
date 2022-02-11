@@ -14,6 +14,7 @@ function get_page_url() {
 
 // esempio di utilizzo
 $url = get_page_url();
+
 ?>
 <div id="bottomContainer" class="pb-1">
     <div id="content">
