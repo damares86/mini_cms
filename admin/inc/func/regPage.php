@@ -37,18 +37,18 @@ if(filter_input(INPUT_GET,"idToMod")){
                 <label class="control-label" for="page_name">Page name</label>
                 <div class="controls">
                     <?php
-                    //    if($page->page_name=="index"){
+                  if($operation=="mod"){
                             ?>
                     <strong><?= $page->page_name ?></strong>
                     <input type="hidden" name="page_name" value="<?= $page->page_name ?>" />
                     <?php
-                       // } else {
+                       } else {
                     ?>
 
-                    <!-- <input type="text" id="page_name" name="page_name" placeholder="Page Name" value="<?=$page->page_name?>" class="span8"> -->
+                    <input type="text" id="page_name" name="page_name" placeholder="Page Name" value="<?=$page->page_name?>" class="span8">
 
                     <?php
-                       // }
+                       }
                     ?>
                      
                 </div>
