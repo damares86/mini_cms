@@ -1,10 +1,3 @@
-<?php
-
-// fare una IF che controlla se db.php esiste, nel caso non esista richiama il form per inserire i dati
-// quel form poi rimanda a configdb.php, che se non esiste lo crea, valorizza le variabili
-// poi bisogna fare la require del file db.php per assegnare le variabili alla function connection
-
-?>
 
 <!DOCTYPE html>
 <html lang="en">

@@ -14,6 +14,9 @@ body{
 	margin:0;
 	padding:0;
     font-size:1.2em;
+    background-color:#68b8ff;
+    font-family: 'Montserrat', sans-serif;
+    letter-spacing: 1px;
 }
 
 /*=============================
@@ -22,23 +25,20 @@ body{
 
 #siteContainer{
     height: auto;
-    width: 90%;
+    width: 80%;
     margin:0 auto;
-    background-color: aqua;
 }
 
 #topContainer{
     height: auto;
     width: 100%;
     margin:0 auto;
-    background-color:burlywood;
 }
 
 #bottomContainer{
     height: auto;
     width: 100%;
     margin:0 auto;
-    background-color:cornflowerblue;
 }
 
 header{
@@ -46,14 +46,14 @@ header{
     width: 100%;
     margin:0 auto;
     padding:0.5em;
-    background-color:brown;
+    background-color:#68b8ff;
 }
 
 #logo{
     height: 100%;
     width:20%;
+    padding: 0 1%;
     float: left;
-    background-color:darkorange;
 }
 
 #menu{
@@ -67,8 +67,11 @@ header{
     height: 12em;
     width: 100%;
     margin:0 auto;
-    padding:1em;
-    background-color:darkorange;
+    border-radius: 1em 1em 0 0;
+    overflow: hidden; 
+    background-image: url(../img/visual.jpg);
+    background-size: cover;
+	background-position: center;
 }
 
 #content{
@@ -76,7 +79,7 @@ header{
     width: 100%;
     margin:0 auto;
     padding:1em;
-    background-color:burlywood;
+    background-color:#d8e9ff;
 }
 
 
@@ -85,18 +88,89 @@ footer{
     width: 100%;
     margin:0 auto;
     padding:1em;
-    background-color:darkcyan;
+    text-align: center;
+    border-radius:0 0 1em 1em;
+    background: rgb(0,141,177);
+    background: linear-gradient(0deg, rgba(0,141,177,1) 0%, rgba(216,233,255,1) 100%);
 }
 
+
+
 #adminBar{
-	height:1.5em;
+    height:1.8em;
 	width:100%;
 	background-color:#008db1;
 	position:fixed;
 	top:0;
 	z-index:1000;
-	padding: 0 3em;
+	padding: 0.2em 3em;
 	text-align: right;
+}
+
+
+/*=============================
+HEADER
+=============================*/
+
+#logo img{
+    height:100%;
+    margin:0 auto;
+}
+
+
+/*=============================
+BLOG LAYOUT
+=============================*/
+
+#blog{
+    height:auto;
+    width:70%;
+    padding: 2%;
+    float:left;
+}
+
+#sidebar{
+    height:auto;
+    width:30%;
+    padding: 2%;
+    float:left;
+}
+
+#sidebar_menu{
+    height: auto;
+    width:100%;
+    padding:6%;
+    background-color: #008db1;
+    color:#fff;
+    border-radius:0.5em;
+}
+
+#sidebar_menu li{
+    margin-bottom: 0.8em;
+}
+
+.blog_content{
+    border-bottom: 1px solid #000;
+    padding:1em 0;
+}
+
+
+/*=============================
+GENERIC BLOCK PROPERTY
+=============================*/
+
+.block{
+    border-radius:0.5em;
+    padding:2%;
+    height: auto;
+	float: left;
+}
+
+/*=============================
+FONTS PROPERTY
+=============================*/
+h1, h2, h3, h4, h5, h6{
+    font-family: 'Baloo Tammudu 2', cursive;
 }
 
 #adminBar a{
@@ -111,72 +185,61 @@ footer{
     color:#e2f9ff;
 }
 
-/*=============================
-BLOG LAYOUT
-=============================*/
-
-#blog{
-    height:auto;
-    width:80%;
-    padding: 2%;
-    float:left;
+footer a{
+    color:#fff;
 }
 
-#sidebar{
-    height:auto;
-    width:20%;
-    padding: 2%;
-    float:left;
+footer a:visited{
+    color:#fff;
 }
 
-#sidebar_menu{
-    height: auto;
-    width:100%;
-    padding:3% 5%;
-    background-color: coral;
-    border-radius:0.5em;
+footer a:hover{
+    color:#fff;
+    text-decoration: underline;
 }
 
-.blog_content{
-    border-bottom: 1px solid #000;
+p.metainfo{
+    margin-left:1em;
+    font-size:0.8em;
+}
+
+#sidebar_menu li a{
+    color:#fff;
+}
+
+#sidebar_menu li a:visited{
+    color:#fff;
+}
+
+#sidebar_menu li a:hover{
+    color:#fff;
+    text-decoration: underline;
 }
 
 
-/*=============================
-    GENERIC BLOCK PROPERTY
-=============================*/
-
-.block{
-    border-radius:0.5em;
-    padding:2%;
-    height: auto;
-	float: left;
-}
 
 /*=============================
-    BURGER MENU
+BURGER MENU
 =============================*/
-
-
 
 .hamburger.is-active .hamburger-inner, .hamburger.is-active .hamburger-inner::before, .hamburger.is-active .hamburger-inner::after {
-	background-color: #fff;
+    background-color: #fff;
 }
 
 .hamburger-inner, .hamburger-inner::before, .hamburger-inner::after{
-	background-color: #fff;
+    background-color: #fff;
 }
 
 #menuBurger{
-	width:100%;
-	height: auto;
+    width:90%;
+	height: 250px;
 	margin: 0px auto;
-	background-color:#044DB4;
+	background-color:#008db1;
 	position: relative;
 	top:0.5em;    
 	z-index:9;
 	transition: height 1s;
-	overflow: hidden;
+	overflow: auto;
 }
 
 #menuBurger.closed{
@@ -212,6 +275,11 @@ BLOG LAYOUT
 =============================*/
 
 @media (max-width:767px){
+
+    #siteContainer{
+        width: 95%;;
+    }
+
     header{
         padding: 4%;
         height: 6em;

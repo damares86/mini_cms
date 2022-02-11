@@ -56,6 +56,13 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
 <!doctype html>
 <html>
 	<head>
+        <!--
+        ==========================================================================
+
+        Mini Cms is a project by damares86 (https://github.com/damares86/mini_cms)
+        
+        ==========================================================================
+        -->
 		<meta charset="utf-8">
 		<title><?=$page_name?> - <?=$site_name?></title>
         <link rel="icon" href="assets/<?= $theme ?>/img/favicon.ico">
@@ -67,7 +74,9 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
 
 	<body>
         <?php
+            $style="";
             if(isset($_SESSION['loggedin'])){
+                $style="style='margin-top:1.8em'";
         ?>
         <div id="adminBar">
             <a href="admin">Go to Admin Area</a>
@@ -77,49 +86,16 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
         <?php
             }
         ?>
-        <div id="siteContainer">
+        <div id="siteContainer" <?=$style?>>
             <div id="topContainer">
                 <header>
-                    <div id="logo">
-                        <a href="index.php">
-                            <img src="assets/<?= $theme ?>/img/logo.png">
-                        </a>
-                    </div>
-                    <div id="menu">
-                        <button class="hamburger hamburger--boring" type="button">
-                            <span class="hamburger-box">
-                                <span class="hamburger-inner"></span>
-                            </span>
-                        </button>
-                    </div>
-                    <div id="menuBurger" class="closed">
-                    <ul>
-                    <?php
-                    $menu=$page->showMenu();
-                    while ($row = $menu->fetch(PDO::FETCH_ASSOC)){
-                        
-                        extract($row);
-                        $str=$row['pagename'];
-                        $str = preg_replace('/\s+/', '_', $str);
-                        $str = strtolower($str);
-                    ?>
-                        <li><a href="<?=$str?>.php" ><?php
-                        if($row['pagename']=='index'){
-                            echo "Home";
-                        } else {
-                        echo $row['pagename'];
-                        }?></a></li>
-                    <?php
-                    }
-                    ?>
-                    </ul>
-                    </div>
-              
-                    <div class="clearfix"></div>
+                <?php
+                    require "assets/".$theme."/inc/header.php";
+                ?>  
                 </header>
-                <div id="visual">
-                    visual
-                </div>
+                <?php
+                    require "assets/".$theme."/inc/visual.php";
+                ?> 
             </div>
             <?php
 }

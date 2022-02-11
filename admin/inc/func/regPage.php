@@ -28,15 +28,28 @@ if(filter_input(INPUT_GET,"idToMod")){
                 if($operation=="mod"){ 
                     ?>
                     <input type="hidden" name="idToMod" value="<?= $idToMod ?>" />
-                <?php 
+                    <?php 
                 } 
-        $page->showById();
-
-        ?>
+                $page->showById();
+                
+                ?>
             <div class="control-group">
                 <label class="control-label" for="page_name">Page name</label>
                 <div class="controls">
-                    <input type="text" id="page_name" name="page_name" placeholder="Page Name" value="<?=$page->page_name?>" class="span8">
+                    <?php
+                    //    if($page->page_name=="index"){
+                            ?>
+                    <strong><?= $page->page_name ?></strong>
+                    <input type="hidden" name="page_name" value="<?= $page->page_name ?>" />
+                    <?php
+                       // } else {
+                    ?>
+
+                    <!-- <input type="text" id="page_name" name="page_name" placeholder="Page Name" value="<?=$page->page_name?>" class="span8"> -->
+
+                    <?php
+                       // }
+                    ?>
                      
                 </div>
             </div>
@@ -273,7 +286,7 @@ if(filter_input(INPUT_GET,"idToMod")){
         </form> -->
 
         <!-- Editor for block 4 -->
-        <form class="form-horizontal row-fluid" action="core/mngPage.php" method="post">
+        <!-- <form class="form-horizontal row-fluid" action="core/mngPage.php" method="post"> -->
             <input type="hidden" name="operation" value="<?= $operation ?>" />
                 <?php       
 
@@ -348,6 +361,162 @@ if(filter_input(INPUT_GET,"idToMod")){
                 ?>
             </select>
             </div>
+
+               <!-- Editor for block 5 -->
+        <!-- <form class="form-horizontal row-fluid" action="core/mngPage.php" method="post"> -->
+        <input type="hidden" name="operation" value="<?= $operation ?>" />
+                <?php       
+
+                if($operation=="mod"){ 
+                    ?>
+                    <input type="hidden" name="idToMod" value="<?= $idToMod ?>" />
+                <?php 
+                } 
+
+        ?>
+            <br>
+            <h3>Block 5</h3>
+            <textarea name="editor5" id="editor5" rows="10" cols="80">
+            <?=$page->block5?>
+            </textarea>
+
+            <br>
+            <div class="control-group">
+            <label for="block5_bg">Background color</label>
+            <?php
+                $color = new Colors($db);
+                $stmt = $color->showAll();
+                $total_rows = $color->countAll();
+              
+                ?>
+            <select name="block5_bg">
+                <?php
+               
+                echo "<option value='none'>none</option>";
+                
+               
+                while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
+           
+                    extract($row);
+                  
+                    $selected = "";
+                    if ($color == $page->block5_bg) {
+                        $selected = "selected";
+                    }
+                    echo "<option value='{$color}' $selected style='background-color:{$color}'>{$color}</option>";
+
+                }
+
+                ?>
+            </select>
+            <br><br>
+            <label for="block5_text">Text color</label>
+            <?php
+                $color = new Colors($db);
+                $stmt = $color->showAll();
+                $total_rows = $color->countAll();
+              
+                ?>
+            <select name="block5_text">
+                <?php
+               
+                echo "<option value='none'>none</option>";
+                
+               
+                while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
+           
+                    extract($row);
+                  
+                    $selected = "";
+                    if ($color == $page->block5_text) {
+                        $selected = "selected";
+                    }
+                    echo "<option value='{$color}' $selected style='background-color:{$color}'>{$color}</option>";
+
+                }
+
+                ?>
+            </select>
+            </div>
+
+               <!-- Editor for block 6 -->
+        <!-- <form class="form-horizontal row-fluid" action="core/mngPage.php" method="post"> -->
+        <input type="hidden" name="operation" value="<?= $operation ?>" />
+                <?php       
+
+                if($operation=="mod"){ 
+                    ?>
+                    <input type="hidden" name="idToMod" value="<?= $idToMod ?>" />
+                <?php 
+                } 
+
+        ?>
+            <br>
+            <h3>Block 6</h3>
+            <textarea name="editor6" id="editor6" rows="10" cols="80">
+            <?=$page->block6?>
+            </textarea>
+
+            <br>
+            <div class="control-group">
+            <label for="block6_bg">Background color</label>
+            <?php
+                $color = new Colors($db);
+                $stmt = $color->showAll();
+                $total_rows = $color->countAll();
+              
+                ?>
+            <select name="block6_bg">
+                <?php
+               
+                echo "<option value='none'>none</option>";
+                
+               
+                while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
+           
+                    extract($row);
+                  
+                    $selected = "";
+                    if ($color == $page->block6_bg) {
+                        $selected = "selected";
+                    }
+                    echo "<option value='{$color}' $selected style='background-color:{$color}'>{$color}</option>";
+
+                }
+
+                ?>
+            </select>
+            <br><br>
+            <label for="block6_text">Text color</label>
+            <?php
+                $color = new Colors($db);
+                $stmt = $color->showAll();
+                $total_rows = $color->countAll();
+              
+                ?>
+            <select name="block6_text">
+                <?php
+               
+                echo "<option value='none'>none</option>";
+                
+               
+                while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
+           
+                    extract($row);
+                  
+                    $selected = "";
+                    if ($color == $page->block6_text) {
+                        $selected = "selected";
+                    }
+                    echo "<option value='{$color}' $selected style='background-color:{$color}'>{$color}</option>";
+
+                }
+
+                ?>
+            </select>
+            </div>
+
+
             <br>
                  <input type="submit" class="btn btn-primary" name="subReg" value="Submit">
         </form>

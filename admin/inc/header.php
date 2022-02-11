@@ -1,12 +1,12 @@
 <?php
 
 
-require 'phpDebug/src/Debug/Debug.php';   			// if not using composer
+// require 'phpDebug/src/Debug/Debug.php';   			// if not using composer
 
-$debug = new \bdk\Debug(array(
-    'collect' => true,
-    'output' => true,
-));
+// $debug = new \bdk\Debug(array(
+//     'collect' => true,
+//     'output' => true,
+// ));
 
 
 session_start();
@@ -38,6 +38,13 @@ $page = new Page($db);
 <html lang="en">
 <head>
     <head>
+        <!--
+        ==========================================================================
+
+        Mini Cms is a project by damares86 (https://github.com/damares86/mini_cms)
+        
+        ==========================================================================
+        -->
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Mini Cms - Dashboard</title>        
@@ -55,13 +62,6 @@ $page = new Page($db);
 
             <script src="https://cdn.ckeditor.com/4.11.2/standard/ckeditor.js"></script>
          
-            <!--
-    ###################################################################
-    #                                                                 #
-    #   Reserved Area by damares86 (https://github.com/damares86/)    #
-    #                                                                 #
-    ###################################################################
--->
-
+  
     </head>
   

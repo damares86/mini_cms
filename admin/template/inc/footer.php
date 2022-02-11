@@ -2,7 +2,7 @@
                 <?php
                 require "assets/".$theme."/inc/footer.php";
                 ?>
-                <p class="copyright">Mini Cms - project by <a href="https://github.com/damares86">damares86</a></p>
+                <p class="copyright" style="font-size:0.7em;">Mini Cms - project by <a href="https://github.com/damares86">damares86</a></p>
             </footer>
         </div>
 

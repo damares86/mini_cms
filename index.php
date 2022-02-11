@@ -4,10 +4,9 @@ require "admin/template/inc/header.php";
 ?>
             <div id="bottomContainer">
                 <?php
-                $file = basename($_SERVER['PHP_SELF']);
-                $page_class = pathinfo($file, PATHINFO_FILENAME);
 
-                $page->page_name=$page_class;
+                $page->page_name="index";
+                $page_class="index";
                 
                 $stmt=$page->showByName();
                 ?>

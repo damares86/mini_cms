@@ -1,11 +1,11 @@
 <?php
 
-require '../phpDebug/src/Debug/Debug.php';   			// if not using composer
+// require '../phpDebug/src/Debug/Debug.php';   			// if not using composer
 
-$debug = new \bdk\Debug(array(
-    'collect' => true,
-    'output' => true,
-));
+// $debug = new \bdk\Debug(array(
+//     'collect' => true,
+//     'output' => true,
+// ));
 
 
 
@@ -88,6 +88,17 @@ if(filter_input(INPUT_POST,"subReg")){
 			$page->block4_bg=$_POST['block4_bg'];
 			$page->block4_text=$_POST['block4_text'];
 		}
+		if($_POST['editor5']){
+			$page->block5=$_POST['editor5'];
+			$page->block5_bg=$_POST['block5_bg'];
+			$page->block5_text=$_POST['block5_text'];
+		}
+		if($_POST['editor6']){
+			$page->block6=$_POST['editor6'];
+			$page->block6_bg=$_POST['block6_bg'];
+			$page->block6_text=$_POST['block6_text'];
+		}
+		
 		
 		
 		// create the page
@@ -116,13 +127,13 @@ if(filter_input(INPUT_POST,"subReg")){
 		$page->block1=$_POST['editor'];
 		$page->block1_bg=$_POST['block1_bg'];
 		$page->block1_text=$_POST['block1_text'];
-	
+		
 		if($_POST['editor2']){
 			$page->block2=$_POST['editor2'];
 			$page->block2_bg=$_POST['block2_bg'];
 			$page->block2_text=$_POST['block2_text'];
 		}
-
+		
 		if($_POST['editor3']){
 			$page->block3=$_POST['editor3'];
 			$page->block3_bg=$_POST['block3_bg'];
@@ -133,7 +144,19 @@ if(filter_input(INPUT_POST,"subReg")){
 			$page->block4_bg=$_POST['block4_bg'];
 			$page->block4_text=$_POST['block4_text'];
 		}
-	
+
+		if($_POST['editor5']){
+			$page->block5=$_POST['editor5'];
+			$page->block5_bg=$_POST['block5_bg'];
+			$page->block5_text=$_POST['block5_text'];
+		}
+		if($_POST['editor6']){
+			$page->block6=$_POST['editor6'];
+			$page->block6_bg=$_POST['block6_bg'];
+			$page->block6_text=$_POST['block6_text'];
+		}
+
+
 		
 
 		// update the page
