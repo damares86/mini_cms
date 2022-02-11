@@ -56,6 +56,8 @@ In this tab, every user can change his username, email and password.
 
 ## Post
 
+![post](https://user-images.githubusercontent.com/85158984/153595820-48695d50-aa0a-4bb9-9ebe-5aa72bbdfb21.png)
+
 You can manage the existing posts or create a new post using a simple WYSIWYG editor.
 
 On creating a new post, you can choose the title and the category of the post.
@@ -73,6 +75,8 @@ The second one, called **Content** is for the content of the post, this will be 
 You can create new categories that will automatically added to the available category for the posts.
 
 ## Pages
+
+![page](https://user-images.githubusercontent.com/85158984/153596086-e16fc701-da71-4fb4-9e90-7c52166159e6.png)
 
 You can create, manage and delete all the the page that you need (except from the index page, that can be only edited, and blog pages).
 
@@ -94,7 +98,8 @@ Every block may have specifics background and text color, you can select them fr
 
 ## Files
 
-This is a simple file managing system that allows you to upload files and images to your website. It's integrated with the WYSIWYG editor, so you will find the file uploaded in your editor while editing pages or posts.
+This is a simple file managing system that allows you to upload files and images to your website. 
+It's integrated with the WYSIWYG editor, so you will find the file uploaded in your editor while editing pages or posts.
 
 ## Site settings
 
@@ -113,7 +118,81 @@ By clicking on the items of **Order** column, you can decide the order of the pa
 
 ## Theme settings
 
+![colori](https://user-images.githubusercontent.com/85158984/153595692-4736cd9d-11ad-45e3-bdc4-3d8ebe9591ea.png)
+
+Here you can create as many color you need, this will be shown as available colors for the background and text color in page's creation.
+
+
 ## Managing themes
+
+The themes are in the folder `http://www.yoursite.com/assets/`. The default theme is `dm_theme`.
+
+### Customize theme
+
+The basic structure of a theme of Mini Cms is this:
+
+```bash
++--bootstrap  # css and js files from bootstrap
+|
++--css        # css files of the theme
+|    |
+|    +--main.css
+|    +--custom.css
+|
++--img        # the image of the theme
+|
++--inc        # snippets of code that recall specific part of the page
+|    |
+|    +--cookie.php
+|    +--footer.php
+|    +--header.php
+|    +--scripts.php
+|    +--visual.php
+|
++--js         # javascript files
+     |
+     +--main.js
+```
+
+If you want to customize your theme, you can use the `custom.css` file, this will override the `main.css` property.
+
+#### Customizing blocks
+
+Every block has some specific classes that will help you to change the behaviour only for the blocks you need.
+
+```html
+<div class="block block1 index">
+    <!-- text -->            
+</div>
+```
+
+The `block` class has this properties, specified in `main.css`:
+
+```css
+.block{
+    border-radius:0.5em;
+    padding:2%;
+    height: auto;
+	float: left;
+}
+```
+
+The `block1` class identifies the **Block1** in the page and `index` is a dynamic class, in every page the blocks will have a class with the same name as the page, with *underscore* instead of whitespaces and all lowercase (eg. page name -> "Contact us" / class name -> "contact_us").
+
+This allows you to set specific properties in `custom.css` for every single blocks in every page.
+
+#### inc
+
+These files are snippets of code that will be included in the page by Mini Cms.
+
+- **cookie.php** -> in this file you can paste the cookie script code (generated from services like Cookie-Script)
+- **footer.php** -> here you can add all the information you want to show in the footer
+- **header.php** -> this is the header part of the page, that includes the logo and the menu
+- **scripts.php** -> in this file are called all the css, js and fonts of the website, you can add your own as you need
+- **visual.php** -> this is the visual part of the page, below the menu
+
+
+### Create your own theme
 
 
 
