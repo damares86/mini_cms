@@ -194,7 +194,9 @@ These files are snippets of code that will be included in the page by Mini Cms.
 
 ### Create your own theme
 
-
+>
+> WIP: soon I will create a bare theme that can be used to create a new theme
+> 
 
 
 
