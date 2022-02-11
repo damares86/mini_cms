@@ -246,7 +246,7 @@ class Page{
                 FROM
                     menu
                 WHERE
-                inmenu = 'y'";  
+                inmenu = 'y' ORDER BY itemorder ASC";  
   
         $stmt = $this->conn->prepare( $query );
         $stmt->execute();
