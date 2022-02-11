@@ -77,7 +77,7 @@ I created a specific structure for the pages, that will be explained below.
 
 When you create a new page, you will have the possibility to insert various content in max 6 blocks (one per editor).
 The image above shows the **6 blocks** of the pages. This is the default behaviour of the blocks as they are set in the css file.
-If you want to modify one or more block's behaviour, you can customize it in the custom.css (
+If you want to modify one or more block's behaviour, you can customize it in the custom.css (see the[Managing themes](#managing-themes) section).
 
 ### Background and text color
 
