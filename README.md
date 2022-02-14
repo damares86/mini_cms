@@ -94,7 +94,7 @@ If you want to modify one or more block's behaviour, you can customize it in the
 
 ### Background and text color
 
-Every block may have specifics background and text color, you can select them from the dropdown menu below every block editor. If you want to add available colors go to the (Theme Settings)[#theme-settings]
+Every block may have specifics background and text color, you can select them from the dropdown menu below every block editor. If you want to add available colors go to the [Theme Settings](#theme-settings).
 
 ## Files
 
@@ -111,7 +111,7 @@ These are some settings of your website, like site name, description and theme.
 
 Here you can decide which of the pages you've created will be shown in the menu.
 
-By clicking on the items of **In menu** column you can **y** to include the page in the menu and **n** to exclude it.
+By clicking on the items of **In menu** column you can write **y** to include the page in the menu and **n** to exclude it.
 
 By clicking on the items of **Order** column, you can decide the order of the pages in the menu.
 
