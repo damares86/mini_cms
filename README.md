@@ -7,6 +7,10 @@ It offers many features:
 - create and manage your website's pages
 - change website's theme (and if you know html and css you can create a theme on your own)
 
+>
+> Please, report any bug you find and I will fix it, thank you!
+> 
+
 ## Install
 
 Install Mini Cms is very easy.
