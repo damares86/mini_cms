@@ -76,7 +76,24 @@ class Categories{
     }
 
 
-    function showAll(){
+    function showAll($from_record_num, $records_per_page){
+        //select all data
+        $query = "SELECT
+                    id, category_name
+                FROM
+                    " . $this->table_name . "
+                ORDER BY
+                    category_name
+                    LIMIT
+                    {$from_record_num}, {$records_per_page}";  
+  
+        $stmt = $this->conn->prepare( $query );
+        $stmt->execute();
+  
+        return $stmt;
+    }
+
+    function showAllList(){
         //select all data
         $query = "SELECT
                     id, category_name

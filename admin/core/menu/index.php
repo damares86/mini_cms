@@ -30,6 +30,7 @@ $queryRecords = mysqli_query($conn, $sql) or die("error to fetch menu data");
       <tr data-row-id="<?php echo $res['id'];?>">
          <td class="editable-col" contenteditable="true" col-index='0' oldVal ="<?php echo $res['pagename'];?>"><?php echo $res['pagename'];?></td>
          <td class="editable-col" contenteditable="true" col-index='1' oldVal ="<?php echo $res['inmenu'];?>"><?php echo $res['inmenu'];?></td>
+         <!-- <td class="editable-col" contenteditable="true" col-index='1' oldVal ="<?php //echo $res['inmenu'];?>"><input type="checkbox"></td> -->
          <td class="editable-col" contenteditable="true" col-index='2' oldVal ="<?php echo $res['itemorder'];?>"><?php echo $res['itemorder'];?></td>
       </tr>
 	  <?php endforeach;?>

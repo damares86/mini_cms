@@ -64,7 +64,7 @@ if(filter_input(INPUT_GET,"idToMod")){
             <label for="block1_bg">Background color</label>
             <?php
                 $color = new Colors($db);
-                $stmt = $color->showAll();
+                $stmt = $color->showAllList();
                 $total_rows = $color->countAll();
               
                 ?>
@@ -92,7 +92,7 @@ if(filter_input(INPUT_GET,"idToMod")){
             <label for="block1_text">Text color</label>
             <?php
                 $color = new Colors($db);
-                $stmt = $color->showAll();
+                $stmt = $color->showAllList();
                 $total_rows = $color->countAll();
               
                 ?>
@@ -149,7 +149,7 @@ if(filter_input(INPUT_GET,"idToMod")){
             <label for="block2_bg">Background color</label>
             <?php
                 $color = new Colors($db);
-                $stmt = $color->showAll();
+                $stmt = $color->showAllList();
                 $total_rows = $color->countAll();
               
                 ?>
@@ -177,7 +177,7 @@ if(filter_input(INPUT_GET,"idToMod")){
             <label for="block2_text">Text color</label>
             <?php
                 $color = new Colors($db);
-                $stmt = $color->showAll();
+                $stmt = $color->showAllList();
                 $total_rows = $color->countAll();
               
                 ?>
@@ -229,7 +229,7 @@ if(filter_input(INPUT_GET,"idToMod")){
             <label for="block3_bg">Background color</label>
             <?php
                 $color = new Colors($db);
-                $stmt = $color->showAll();
+                $stmt = $color->showAllList();
                 $total_rows = $color->countAll();
               
                 ?>
@@ -257,7 +257,7 @@ if(filter_input(INPUT_GET,"idToMod")){
             <label for="block3_text">Text color</label>
             <?php
                 $color = new Colors($db);
-                $stmt = $color->showAll();
+                $stmt = $color->showAllList();
                 $total_rows = $color->countAll();
               
                 ?>
@@ -308,7 +308,7 @@ if(filter_input(INPUT_GET,"idToMod")){
             <label for="block4_bg">Background color</label>
             <?php
                 $color = new Colors($db);
-                $stmt = $color->showAll();
+                $stmt = $color->showAllList();
                 $total_rows = $color->countAll();
               
                 ?>
@@ -336,7 +336,7 @@ if(filter_input(INPUT_GET,"idToMod")){
             <label for="block4_text">Text color</label>
             <?php
                 $color = new Colors($db);
-                $stmt = $color->showAll();
+                $stmt = $color->showAllList();
                 $total_rows = $color->countAll();
               
                 ?>
@@ -385,7 +385,7 @@ if(filter_input(INPUT_GET,"idToMod")){
             <label for="block5_bg">Background color</label>
             <?php
                 $color = new Colors($db);
-                $stmt = $color->showAll();
+                $stmt = $color->showAllList();
                 $total_rows = $color->countAll();
               
                 ?>
@@ -413,7 +413,7 @@ if(filter_input(INPUT_GET,"idToMod")){
             <label for="block5_text">Text color</label>
             <?php
                 $color = new Colors($db);
-                $stmt = $color->showAll();
+                $stmt = $color->showAllList();
                 $total_rows = $color->countAll();
               
                 ?>
@@ -462,7 +462,7 @@ if(filter_input(INPUT_GET,"idToMod")){
             <label for="block6_bg">Background color</label>
             <?php
                 $color = new Colors($db);
-                $stmt = $color->showAll();
+                $stmt = $color->showAllList();
                 $total_rows = $color->countAll();
               
                 ?>
@@ -490,7 +490,7 @@ if(filter_input(INPUT_GET,"idToMod")){
             <label for="block6_text">Text color</label>
             <?php
                 $color = new Colors($db);
-                $stmt = $color->showAll();
+                $stmt = $color->showAllList();
                 $total_rows = $color->countAll();
               
                 ?>
