@@ -40,6 +40,8 @@ footer, header, hgroup, menu, nav, section {
 
 body {
 	line-height: 1;
+	letter-spacing: 1px;;
+    font-family: 'Montserrat', sans-serif;
 }
 
 
@@ -87,7 +89,7 @@ input, select, textarea {
 
 #siteContainer{
     height: auto;
-    width: 80%;
+    width: 70%;
     margin:0 auto;
 }
 
@@ -146,7 +148,7 @@ input, select, textarea {
 	position:fixed;
 	top:0;
 	z-index:1000;
-	padding: 0.1em 3em;
+	padding: 0em 3em;
 	text-align: right;
 }
 
@@ -346,16 +348,16 @@ BLOG LAYOUT
 	.container {
 		margin: 0 auto;
 		max-width: 100%;
-		width: 1400px;
+		/* width: 1400px; */
 	}
 
-		@media screen and (max-width: 1680px) {
+		/* @media screen and (max-width: 1680px) {
 
-			.container {
+			container {
 				width: 1200px;
 			}
 
-		}
+		} */
 
 		@media screen and (max-width: 1280px) {
 
@@ -364,14 +366,14 @@ BLOG LAYOUT
 			}
 
 		}
-
+/* 
 		@media screen and (max-width: 980px) {
 
 			.container {
 				width: 90%;
 			}
 
-		}
+		} */
 
 		@media screen and (max-width: 736px) {
 
@@ -2121,7 +2123,8 @@ BLOG LAYOUT
 		position: absolute;
 		right: 0;
 		top: 0;
-		font-size: 0.9em;
+		font-size: 1.2em;
+		font-family: 'Baloo Tammudu 2', cursive;
 	}
 
 		#nav ul {
@@ -2774,7 +2777,7 @@ BLOG LAYOUT
 			}
 
 			#banner-wrapper {
-				padding: 0 15px 0 15px;
+				padding: 0;
 			}
 
 			#features-wrapper {

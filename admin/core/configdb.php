@@ -239,7 +239,7 @@ VALUES ('1','admin', '". $password_hash ."','". $user_email ."','Admin')
 
 $db->query("INSERT INTO settings
 (id, site_name, site_description,dashboard_language,theme)
-VALUES ('1','Mini Cms', 'Description of your website','en','dm_theme')
+VALUES ('1','Mini Cms', 'Description of your website','en','damares')
 ");
 
 
