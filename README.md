@@ -192,6 +192,7 @@ These files are snippets of code that will be included in the page by Mini Cms.
 
 - **cookie.php** -> in this file you can paste the cookie script code (generated from services like Cookie-Script)
 - **footer.php** -> here you can add all the information you want to show in the footer
+- **footerScript.php** -> here you can put all the call to javascript file or script inline
 - **header.php** -> this is the header part of the page, that includes the logo and the menu
 - **scripts.php** -> in this file are called all the css, js and fonts of the website, you can add your own as you need
 - **visual.php** -> this is the visual part of the page, below the menu
