@@ -149,6 +149,7 @@ The basic structure of a theme of Mini Cms is this:
 |    |
 |    +--cookie.php
 |    +--footer.php
+|    +--footerScript.php
 |    +--header.php
 |    +--scripts.php
 |    +--visual.php
