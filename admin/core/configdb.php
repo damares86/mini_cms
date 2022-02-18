@@ -19,7 +19,9 @@ Mini Cms is a project by damares86 (https://github.com/damares86/mini_cms)
 if(!$_POST['dbname']||!$_POST['username']||!$_POST['db_password']||!$_POST['host']||!$_POST['email']||!$_POST['password']){
   header("Location: ../inc/dbdata.php?err=missing");
   exit;
-} else if(!is_file('../class/Database.php')){
+} 
+
+if(!is_file('../class/Database.php')){
   $db_name=filter_input(INPUT_POST,"dbname");
   $username=filter_input(INPUT_POST,"username");
   $db_password=filter_input(INPUT_POST,"db_password");
@@ -65,7 +67,40 @@ if(!$_POST['dbname']||!$_POST['username']||!$_POST['db_password']||!$_POST['host
   
 }
 
+if(!is_file('../core/menu/connection.php')){
+  $db_name=filter_input(INPUT_POST,"dbname");
+  $username=filter_input(INPUT_POST,"username");
+  $db_password=filter_input(INPUT_POST,"db_password");
+  $host=filter_input(INPUT_POST,"host");
+  $file_handle = fopen('../core/menu/connection.php', 'w');
+  fwrite($file_handle, '<?php');
+  fwrite($file_handle, "\n");
+  fwrite($file_handle, '$server_name="'.$host.'";');
+  fwrite($file_handle, "\n");
+  fwrite($file_handle, '$username="'.$username.'";');
+  fwrite($file_handle, "\n");
+  fwrite($file_handle, '$password="'.$db_password.'";');
+  fwrite($file_handle, "\n");
+  fwrite($file_handle, '$dbname="'.$db_name.'";');
+  fwrite($file_handle, "\n");
+  fwrite($file_handle, "\n");
+  fwrite($file_handle, '$conn = mysqli_connect($servername, $username, $password, $dbname) or die("Connection failed: " . mysqli_connect_error());');
+  fwrite($file_handle, "\n");
+  fwrite($file_handle, "\n");
+  fwrite($file_handle, "if (mysqli_connect_errno()) {");
+  fwrite($file_handle, "\n");
+  fwrite($file_handle, ' printf("Connect failed: %s\n", mysqli_connect_error());');
+  fwrite($file_handle, "\n");
+  fwrite($file_handle, 'exit();');
+  fwrite($file_handle, "\n");
+  fwrite($file_handle, '}');
+  fwrite($file_handle, "\n");
+  fwrite($file_handle, '?>');
+  
+}
+
 chmod('../class/Database.php',0777);
+chmod('../core/menu/connection.php',0777);
 
 spl_autoload_register('autoloader');
 

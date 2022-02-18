@@ -45,7 +45,6 @@ require "admin/template/inc/header.php";
         <div class="blog_content">
             <h4>Summary</h4>
             <?=$summary?>
-            <br>
             <a href="post.php?id=<?=$id?>&title=<?=$post_title?>">Continue reading -></a>
         </div>
         <?php
