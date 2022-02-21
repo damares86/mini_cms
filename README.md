@@ -1,5 +1,7 @@
 # Mini Cms
 
+> 2022-02-21 -> Update: I'm about to complete a basic template with a bare template and the explanation for making your own template. Stay tuned!
+
 The Mini Cms is a solution that allows you create and manage little websites or blog.
 It offers many features:
 - create and manage user with 2 different roles
