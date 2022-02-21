@@ -14,6 +14,5 @@
                                 require "admin/template/inc/menu.php";
                             ?>
 							</nav>
-
 					</header>
 				</div>
