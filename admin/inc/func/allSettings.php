@@ -115,23 +115,25 @@
         <?php
 
 
-        $stmt = $menu->showAll();
+        $stmt = $menu->showAllParent();
 
         while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
                 
             extract($row);
                 $order=$itemorder;
+                $order1=$itemorder;
                 $checkedMenu ="";
-                $checkedParent = "";
+                $checkedParent = "checked";
+                
                 $child="&nbsp;---&nbsp;";
 
                 if($inmenu==1){
                     $checkedMenu="checked";
                 }
-                if($parent==1){
-                    $checkedParent="checked";
-                    $child="";
-                }           
+                // if($parent==1){
+                //     $checkedParent="checked";
+                //     $child="";
+                // }           
                  // if($user->showPermissionActive($idToMod,$id_product)){
                 //     $checked = "checked";
                 // }
@@ -139,7 +141,7 @@
            
         ?>
             <tbody>
-                    <td><?=$child?><?=$pagename?></td>
+                    <td><?=$pagename?></td>
                     <td><input type="checkbox" name="inmenu[]" value="<?= $id ?>" <?=$checkedMenu?>></td>
                     <td><input type="checkbox" name="parent[]" value="<?= $id ?>" <?=$checkedParent?>></td>
                     <td>
@@ -157,7 +159,7 @@
                             extract($row1);
                         
                             $selected = "";
-                            if ($parent==1) {
+                            if ($childof==$pagename) {
                                 $selected = "selected";
                             }
                             echo "<option value='{$id}' $selected>{$pagename}</option>";
@@ -199,6 +201,70 @@
            
       
             </tr>
+            <?php
+            $menu->pagename=$pagename;
+            $stmt3=$menu->showAllChild();
+                while ($row3 = $stmt3->fetch(PDO::FETCH_ASSOC)){
+                    extract($row3);
+                    $order1=$itemorder;
+                    $checkedParent="";
+                    ?>
+                    <tr>
+                    <td><?=$child?><?=$pagename?></td>
+                    <td><input type="checkbox" name="inmenu[]" value="<?= $id ?>" <?=$checkedMenu?>></td>
+                    <td><input type="checkbox" name="parent[]" value="<?= $id ?>" <?=$checkedParent?>></td>
+                    <td>
+
+                    <select name="childof">
+                        <?php
+                    
+                        $stmt1 = $menu->showAllParent();
+
+                        while ($row1 = $stmt1->fetch(PDO::FETCH_ASSOC)){
+                
+                            extract($row1);
+                        
+                            $selected = "";
+                            if ($childof==$pagename) {
+                                $selected = "selected";
+                            }
+                            echo "<option value='{$id}' $selected>{$pagename}</option>";
+
+                        }
+
+                        ?>
+                    </select>  
+                   
+                    </td>
+                    <td>
+                    <select name="itemorder1">
+                        <?php
+                       
+                        $stmt2 = $menu->countAll();
+
+                        
+                        for ($i=1; $i <= $stmt2 ; $i++) { 
+                          
+                            $selected="";
+                            if($i == $order1){
+                                $selected = "selected";
+                            }
+                            echo "<option value='{$i}' $selected>{$i}</option>";
+
+                            $selected="";
+                        }
+                   
+
+                        ?>
+                    </select>    
+                    </td>
+                    </tr>
+            <?php
+
+                }
+        
+            
+            ?>
       <?php
             }
       ?>

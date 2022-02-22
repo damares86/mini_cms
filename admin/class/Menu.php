@@ -111,6 +111,26 @@ class Menu{
         return $stmt;
     }
 
+    function showAllChild(){
+        $query = "SELECT
+                    *
+                FROM
+                    " . $this->table_name . "
+                WHERE
+                    childof = :childof
+                ORDER BY
+                    id";  
+                    
+                    
+        $stmt = $this->conn->prepare( $query );
+        $stmt->bindParam(':childof', $this->pagename);       
+        $stmt->execute();
+  
+        return $stmt;
+    }
+
+
+
     function showMenu(){
 
         ///////////////////////////
