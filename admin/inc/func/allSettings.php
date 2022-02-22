@@ -4,6 +4,7 @@
 	$db = $database->getConnection();
 
 	$settings = new Settings ($db);
+    $menu = new Menu($db);
     
     $stmt = $settings->showSettings();
 
@@ -88,9 +89,123 @@
 <?php
 
 // require "allMenu.php";
-require "core/menu/index.php";
+// require "core/menu/index.php";
+
 
 ?>
+
+<div class="module">
+    <div class="module-body">
+
+        <div class="align-items-center pt-3 pb-2 mb-3 align-items-center">
+            <!-- <h6><a href="home.php"><-- Back to dashboard's home</h6></a> -->
+            <h1 class="h2 mx-auto text-center">Menu settings</h1>
+            
+        </div><br>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">Page Name</th>
+                    <th scope="col">In menu</th>
+                    <th scope="col">Parent</th>
+                    <th scope="col">Child of</th>
+                    <th scope="col">Item order</th>
+                </tr>
+            </thead>
+        <?php
+
+
+        $stmt = $menu->showAll();
+
+        while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
+                
+            extract($row);
+                $order=$itemorder;
+                $checkedMenu ="";
+                $checkedParent = "";
+                $child="&nbsp;---&nbsp;";
+
+                if($inmenu==1){
+                    $checkedMenu="checked";
+                }
+                if($parent==1){
+                    $checkedParent="checked";
+                    $child="";
+                }           
+                 // if($user->showPermissionActive($idToMod,$id_product)){
+                //     $checked = "checked";
+                // }
+       
+           
+        ?>
+            <tbody>
+                    <td><?=$child?><?=$pagename?></td>
+                    <td><input type="checkbox" name="inmenu[]" value="<?= $id ?>" <?=$checkedMenu?>></td>
+                    <td><input type="checkbox" name="parent[]" value="<?= $id ?>" <?=$checkedParent?>></td>
+                    <td>
+                        <?php
+                        if($parent==0){
+                            ?>
+
+                    <select name="childof">
+                        <?php
+                    
+                        $stmt1 = $menu->showAllParent();
+
+                        while ($row1 = $stmt1->fetch(PDO::FETCH_ASSOC)){
+                
+                            extract($row1);
+                        
+                            $selected = "";
+                            if ($parent==1) {
+                                $selected = "selected";
+                            }
+                            echo "<option value='{$id}' $selected>{$pagename}</option>";
+
+                        }
+
+                        ?>
+                    </select>  
+                    <?php
+                        }else{
+                        ?>
+                    -
+                    <?php
+                        }
+                    ?>  
+                    </td>
+                    <td>
+                    <select name="itemorder">
+                        <?php
+                       
+                        $stmt2 = $menu->countAll();
+
+                        
+                        for ($i=1; $i <= $stmt2 ; $i++) { 
+                          
+                            $selected="";
+                            if($i == $order){
+                                $selected = "selected";
+                            }
+                            echo "<option value='{$i}' $selected>{$i}</option>";
+
+                            $selected="";
+                        }
+                   
+
+                        ?>
+                    </select>    
+                    </td>
+           
+      
+            </tr>
+      <?php
+            }
+      ?>
+        
+     </tbody>
+</table>
+
 
     </div>
 </div>
