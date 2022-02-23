@@ -129,6 +129,25 @@ class Menu{
         return $stmt;
     }
 
+    public function countChild(){
+    
+        $query = "SELECT 
+            id 
+            FROM 
+            menu
+            WHERE childof = :childof";
+    
+        $stmt = $this->conn->prepare( $query );
+        $stmt->bindParam(':childof', $this->childof);       
+
+        $stmt->execute();
+    
+        $num = $stmt->rowCount();
+    
+        return $num;
+    }
+
+
     function showAllNotInMenu(){
         //select all data
         $query = "SELECT
@@ -158,7 +177,7 @@ class Menu{
                 FROM
                     menu
                 WHERE
-                inmenu = 'y' ORDER BY itemorder ASC";  
+                inmenu = 1 ORDER BY itemorder ASC";  
   
         $stmt = $this->conn->prepare( $query );
         $stmt->execute();

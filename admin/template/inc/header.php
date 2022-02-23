@@ -26,6 +26,7 @@ $db = $database->getConnection();
 
 $post = new Post($db);
 $page = new Page($db);
+$menu = new Menu($db);
 $settings = new Settings($db);
 
 $stmt=$settings->showSettings();
