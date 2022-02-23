@@ -50,7 +50,23 @@ if(filter_input(INPUT_POST,"subReg")){
 			exit;
 		}
 
-} else {
+} else if(filter_input(INPUT_POST,"subTheme")) {
+
+	$settings->theme=$_POST['theme'];
+		
+		// update the settings
+		if($settings->updateTheme()){
+			header("Location: ../index.php?msg=setEditSucc");
+			exit;
+		
+			// empty posted values
+			// $_POST=array();
+		
+		}else{
+			header("Location: ../index.php?msg=setEditErr");
+			exit;
+		}
+}else {
 	echo "errore settings";
 	exit;
 }

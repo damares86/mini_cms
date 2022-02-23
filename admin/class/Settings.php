@@ -23,8 +23,7 @@ class Settings{
                     " . $this->table_name . "
                 SET
                     site_name = :site_name,
-                    site_description = :site_description,
-                    theme = :theme
+                    site_description = :site_description
                 WHERE
                     id = :id";
     // prepare the query
@@ -33,8 +32,33 @@ class Settings{
         // bind the values
         $stmt->bindParam(':site_name', $this->site_name);
         $stmt->bindParam(':site_description', $this->site_description); 
-        $stmt->bindParam(':theme', $this->theme); 
         $stmt->bindParam(':id', $this->id);
+        
+                
+      
+        // execute the query, also check if query was successful
+        if($stmt->execute()){
+            return true;
+
+        }else{
+            $this->showError($stmt);
+            return false;
+        }
+    
+    }
+
+    function updateTheme(){
+        // insert query
+        $query = "UPDATE
+                    " . $this->table_name . "
+                SET
+                    theme = :theme";
+    // prepare the query
+        $stmt = $this->conn->prepare($query);
+     
+        // bind the values
+        
+        $stmt->bindParam(':theme', $this->theme); 
         
                 
       
