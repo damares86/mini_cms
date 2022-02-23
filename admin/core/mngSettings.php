@@ -8,22 +8,23 @@
 // ));
 
 
-
 session_start();
 if (!isset($_SESSION['loggedin'])) {
-    header('Location: ../');
+	header('Location: ../');
     exit;
 }
 
-	// loading class
-	include("../class/Database.php");
-	include("../class/Settings.php");
+// loading class
+include("../class/Database.php");
+include("../class/Settings.php");
+include("../class/Menu.php");
 
 
-	$database = new Database();
-	$db = $database->getConnection();
+$database = new Database();
+$db = $database->getConnection();
 
-	$settings = new Settings($db);
+$settings = new Settings($db);
+$menu = new Menu($db);
 
 
 if(filter_input(INPUT_POST,"subReg")){
@@ -66,7 +67,14 @@ if(filter_input(INPUT_POST,"subReg")){
 			header("Location: ../index.php?msg=setEditErr");
 			exit;
 		}
-}else {
+}else if(filter_input(INPUT_POST,"subMenu")) {
+	$allID=$_POST['id'];
+	for($i=0; $i<count($allID); $i++){
+				
+		echo $allID[$i];
+	}
+	exit;
+}else{
 	echo "errore settings";
 	exit;
 }

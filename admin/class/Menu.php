@@ -62,7 +62,10 @@ class Menu{
                 $stmt->bindParam(':pagename', $this->pagename);       
                 $stmt->bindParam(':inmenu', $this->inmenu);       
                 $stmt->bindParam(':itemorder', $this->itemorder);       
-                $stmt->bindParam(':parent', $this->parent);       
+                $stmt->bindParam(':parent', $this->parent);  
+                if($this->parent==1){
+                    $this->childof="none";
+                }
                 $stmt->bindParam(':childof', $this->childof);       
    
                 $stmt->bindParam(':id', $this->id);       
