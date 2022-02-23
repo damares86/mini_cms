@@ -68,11 +68,55 @@ if(filter_input(INPUT_POST,"subReg")){
 			exit;
 		}
 }else if(filter_input(INPUT_POST,"subMenu")) {
-	$allID=$_POST['id'];
-	for($i=0; $i<count($allID); $i++){
-				
-		echo $allID[$i];
+	if($_POST['idParent']){
+
+		$idParent=$_POST['idParent'];
+
+		for($i=0; $i<count($idParent); $i++){
+
+		$menu->id=$idParent[$i];
+		$inmenu="";
+		
+		if(isset($_POST['inmenuParent'])){
+			$inmenu=0;
+		} else{
+			$inmenu=1;
+		}
+
+		$menu->inmenu=$inmenu;
+		$menu->childof=$_POST['childof'];
+		
+		$menu->itemorder=$_POST['itemorderParent'];
+		print_r($_POST['itemorderParent']);
+		exit;
+		
+		// if($_POST['inmenu']!=1){
+		// 	$menu->inmenu=0;
+		// }else{
+		// 	$menu->inmenu=$_POST['inmenu'];
+			
+		// }
+		// if($_POST['parent']!=1){
+		// 	$menu->parent=0;
+		// }else{
+		// 	$menu->parent=$_POST['parent'];
+		
+		// }
+		// if($_POST['childof']){
+		// 	$menu->childof=$_POST['childof'];
+		// 	print_r($menu->childof);
+		// 	exit;
+		
+		// }
 	}
+}
+		if($menu->update()){
+			header("Location: ../index.php?man=settings&msg=menuEditSucc");
+			exit;
+		}else{
+			header("Location: ../index.php?man=settings&msg=menuEditErr");
+			exit;
+		}
 	exit;
 }else{
 	echo "errore settings";

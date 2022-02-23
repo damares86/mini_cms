@@ -81,14 +81,16 @@
             <h1 class="h2 mx-auto text-center">Menu settings</h1>
             
         </div><br>
+        <h3><u>Page in menu</u></h3>
+
         <table class="table table-striped">
             <thead>
                 <tr>
-                    <th scope="col">In menu</th>
                     <th scope="col">Page Name</th>
                     <th scope="col">Parent</th>
                     <th scope="col">Child of</th>
                     <th scope="col">Item order</th>
+                    <th scope="col">In menu</th>
                 </tr>
             </thead>
             <tbody>
@@ -96,8 +98,8 @@
                 $stmt = $menu->showAllParent();
                 while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
                     extract($row);
-                    $order=$itemorder;
                     $order1=$itemorder;
+                    $order=$itemorder;
                     $checkedMenu ="";
                     $checkedParent = "checked";
                     $page=$pagename;
@@ -105,16 +107,17 @@
                     if($inmenu==1){
                         $checkedMenu="checked";
                     }
+
                 ?>
                 <tr>
-                    <td><input type="checkbox" name="inmenu[]" value="<?= $id ?>" <?=$checkedMenu?>></td>
-                    <td><?=$pagename?><input type="hidden" name="id[]" value="<?= $id ?>" /></td>
-                    <td><input type="checkbox" name="parent[]" value="1" <?=$checkedParent?>></td>
+                    <td><?=$pagename?><input type="hidden" name="idParent[]" value="<?= $id ?>" /></td>
+                    <td><input type="checkbox" name="parent" value="1" <?=$checkedParent?>></td>
                     <td>
+                    <input type="hidden" name="childof" value="none">
                         -
                     </td>
                     <td>
-                        <select name="itemorder">
+                        <select name="itemorderParent">
                             <?php
                             $stmt2 = $menu->countAll();
                             for ($i=1; $i <= $stmt2 ; $i++) {
@@ -129,6 +132,7 @@
                             ?>
                         </select>    
                     </td>
+                    <td><input type="checkbox" name="inmenuParent"> Remove</td>
                 </tr>
                 <?php
                     $menu->childof=$page;
@@ -140,11 +144,11 @@
                         $checkedParent="";
                         ?>
                         <tr>
-                            <td><input type="checkbox" name="inmenu[]" value="1" <?=$checkedMenu?>></td>
-                            <td><?=$childSpace?><?=$pagename?><input type="hidden" name="id[]" value="<?= $id ?>" /></td>
-                            <td><input type="checkbox" name="parent[]" value="1" <?=$checkedParent?>></td>
+                            
+                            <td><?=$childSpace?><?=$pagename?><input type="hidden" name="idChild[]" value="<?= $id ?>" /></td>
+                            <td><input type="checkbox" name="parent" value="1" <?=$checkedParent?>></td>
                             <td>
-                                <select name="childof">
+                                <select name="childofChild">
                                     <?php
                                     $stmt4 = $menu->showAllParent();
                                     while ($row4 = $stmt4->fetch(PDO::FETCH_ASSOC)){
@@ -159,7 +163,7 @@
                                 </select>  
                             </td>
                         <td>
-                            <select name="itemorder1">
+                            <select name="itemorderChild">
                                 <?php
                                 $stmt2 = $menu->countAll();
                                 for ($i=1; $i <= $stmt2 ; $i++) { 
@@ -174,6 +178,7 @@
                                 ?>
                             </select>    
                         </td>
+                        <td><input type="checkbox" name="inmenuChild"> Remove</td>
                     </tr>
                 <?php
                     }
@@ -182,15 +187,15 @@
             </tbody>
         </table>
         <br><br>
-        <h4>Page not in menu</h4>
+        <h3><u>Page not in menu</u></h3>
         <table class="table table-striped">
             <thead>
                 <tr>
-                    <th scope="col">In menu</th>
                     <th scope="col">Page Name</th>
                     <th scope="col">Parent</th>
                     <th scope="col">Child of</th>
                     <th scope="col">Item order</th>
+                    <th scope="col">In menu</th>
                 </tr>
             </thead>
             <tbody>
@@ -211,14 +216,13 @@
                     }
                 ?>
                 <tr>
-                    <td><input type="checkbox" name="inmenu[]" value="1" <?=$checkedMenu?>></td>
-                    <td><?=$pagename?><input type="hidden" name="id[]" value="<?= $id ?>" /></td>
-                    <td><input type="checkbox" name="parent[]" value="1" <?=$checkedParent?>></td>
+                    <td><?=$pagename?><input type="hidden" name="idNoMenu[]" value="<?= $id ?>" /></td>
+                    <td><input type="checkbox" name="parent" value="1" <?=$checkedParent?>></td>
                     <td>
                         -
                     </td>
                     <td>
-                        <select name="itemorder2">
+                        <select name="itemorderNotInMenu">
                             <?php
                             $stmt2 = $menu->countAll();
                             for ($i=1; $i <= $stmt2 ; $i++) {
@@ -227,60 +231,15 @@
                                     $selected = "selected";
                                 }
                                 echo "<option value='{$i}' $selected>{$i}</option>";
-
+                                
                                 $selected="";
                             }
                             ?>
                         </select>    
                     </td>
+                    <td><input type="checkbox" name="notInMenu"> Add</td>
                 </tr>
-                <?php
-                $menu->childof=$page;
-                $stmt3=$menu->showAllChild();
-                    while ($row3 = $stmt3->fetch(PDO::FETCH_ASSOC)){
-                        extract($row3);
-                        $child=$childof;
-                        $order1=$itemorder;
-                        $checkedParent="";
-                        ?>
-                <tr>
-                    <td><input type="checkbox" name="inmenu[]" value="1" <?=$checkedMenu?>></td>
-                    <td><?=$childSpace?><?=$pagename?></td>
-                    <td><input type="checkbox" name="parent[]" value="1" <?=$checkedParent?>></td>
-                    <td>
-                        <select name="childof">
-                            <?php
-                            $stmt4 = $menu->showAllParent();
-                            while ($row4 = $stmt4->fetch(PDO::FETCH_ASSOC)){
-                                extract($row4);
-                                $selected = "";
-                                if ($child==$pagename) {
-                                    $selected = "selected";
-                                }
-                                echo "<option value='{$id}' $selected>{$pagename}</option>";
-                            }
-                            ?>
-                        </select>  
-                    </td>
-                    <td>
-                        <select name="itemorder3">
-                            <?php
-                            $stmt2 = $menu->countAll();
-                            for ($i=1; $i <= $stmt2 ; $i++) { 
-                                $selected="";
-                                if($i == $order1){
-                                    $selected = "selected";
-                                }
-                                echo "<option value='{$i}' $selected>sub-> {$i}</option>";
-
-                                $selected="";
-                            }
-                            ?>
-                        </select>    
-                    </td>
-                </tr>
-            <?php
-                }
+            <?php   
             }
         ?>
             </tbody>

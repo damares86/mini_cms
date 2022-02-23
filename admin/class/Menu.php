@@ -41,11 +41,11 @@ class Menu{
 
     function update(){
    
-
+        print_r($this->childof);
+        exit;
         $query = "UPDATE
                     " . $this->table_name . "
                 SET
-                pagename = :pagename,
                 inmenu = :inmenu,
                 itemorder = :itemorder,
                 parent = :parent,
