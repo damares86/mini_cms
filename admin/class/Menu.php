@@ -103,7 +103,7 @@ class Menu{
                 WHERE
                     parent = 1
                 ORDER BY
-                    id";  
+                    itemorder";  
   
         $stmt = $this->conn->prepare( $query );
         $stmt->execute();
@@ -123,7 +123,7 @@ class Menu{
                     
                     
         $stmt = $this->conn->prepare( $query );
-        $stmt->bindParam(':childof', $this->pagename);       
+        $stmt->bindParam(':childof', $this->childof);       
         $stmt->execute();
   
         return $stmt;

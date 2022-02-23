@@ -124,8 +124,9 @@
                 $order1=$itemorder;
                 $checkedMenu ="";
                 $checkedParent = "checked";
+                $page=$pagename;
                 
-                $child="&nbsp;---&nbsp;";
+                $childSpace="&nbsp;---&nbsp;";
 
                 if($inmenu==1){
                     $checkedMenu="checked";
@@ -141,40 +142,11 @@
            
         ?>
             <tbody>
+                <td><input type="checkbox" name="inmenu[]" value="<?= $id ?>" <?=$checkedMenu?>></td>
                     <td><?=$pagename?></td>
-                    <td><input type="checkbox" name="inmenu[]" value="<?= $id ?>" <?=$checkedMenu?>></td>
                     <td><input type="checkbox" name="parent[]" value="<?= $id ?>" <?=$checkedParent?>></td>
                     <td>
-                        <?php
-                        if($parent==0){
-                            ?>
-
-                    <select name="childof">
-                        <?php
-                    
-                        $stmt1 = $menu->showAllParent();
-
-                        while ($row1 = $stmt1->fetch(PDO::FETCH_ASSOC)){
-                
-                            extract($row1);
-                        
-                            $selected = "";
-                            if ($childof==$pagename) {
-                                $selected = "selected";
-                            }
-                            echo "<option value='{$id}' $selected>{$pagename}</option>";
-
-                        }
-
-                        ?>
-                    </select>  
-                    <?php
-                        }else{
-                        ?>
-                    -
-                    <?php
-                        }
-                    ?>  
+                        -
                     </td>
                     <td>
                     <select name="itemorder">
@@ -202,30 +174,31 @@
       
             </tr>
             <?php
-            $menu->pagename=$pagename;
+            $menu->childof=$page;
             $stmt3=$menu->showAllChild();
                 while ($row3 = $stmt3->fetch(PDO::FETCH_ASSOC)){
                     extract($row3);
+                    $child=$childof;
                     $order1=$itemorder;
                     $checkedParent="";
                     ?>
                     <tr>
-                    <td><?=$child?><?=$pagename?></td>
-                    <td><input type="checkbox" name="inmenu[]" value="<?= $id ?>" <?=$checkedMenu?>></td>
+                        <td><input type="checkbox" name="inmenu[]" value="<?= $id ?>" <?=$checkedMenu?>></td>
+                    <td><?=$childSpace?><?=$pagename?></td>
                     <td><input type="checkbox" name="parent[]" value="<?= $id ?>" <?=$checkedParent?>></td>
                     <td>
 
                     <select name="childof">
                         <?php
                     
-                        $stmt1 = $menu->showAllParent();
+                        $stmt4 = $menu->showAllParent();
 
-                        while ($row1 = $stmt1->fetch(PDO::FETCH_ASSOC)){
+                        while ($row4 = $stmt4->fetch(PDO::FETCH_ASSOC)){
                 
-                            extract($row1);
+                            extract($row4);
                         
                             $selected = "";
-                            if ($childof==$pagename) {
+                            if ($child==$pagename) {
                                 $selected = "selected";
                             }
                             echo "<option value='{$id}' $selected>{$pagename}</option>";
