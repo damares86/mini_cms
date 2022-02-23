@@ -101,7 +101,7 @@ class Menu{
                 FROM
                     " . $this->table_name . "
                 WHERE
-                    parent = 1
+                    parent = 1 AND inmenu = 1
                 ORDER BY
                     itemorder";  
   
@@ -119,7 +119,7 @@ class Menu{
                 WHERE
                     childof = :childof
                 ORDER BY
-                    id";  
+                    itemorder";  
                     
                     
         $stmt = $this->conn->prepare( $query );
@@ -129,6 +129,22 @@ class Menu{
         return $stmt;
     }
 
+    function showAllNotInMenu(){
+        //select all data
+        $query = "SELECT
+                    *
+                FROM
+                    " . $this->table_name . "
+                WHERE
+                    inmenu = 0
+                ORDER BY
+                    itemorder";  
+  
+        $stmt = $this->conn->prepare( $query );
+        $stmt->execute();
+  
+        return $stmt;
+    }
 
 
     function showMenu(){
