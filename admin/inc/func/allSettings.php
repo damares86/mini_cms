@@ -110,10 +110,10 @@
                     
                     ?>
                 <tr style="background-color:#bdeeff">
-                    <td><?=$pagename?><input type="hidden" name="idParent[]" value="<?= $parentID ?>" /></td>
+                    <td><b><?=$pagename?></b><input type="hidden" name="idParent[]" value="<?= $parentID ?>" /></td>
                     <td>Yes</td>
                     <td>
-                        <input type="checkbox" name="childofParent" value="1">
+                        <input type="checkbox" name="childofParent<?= $id ?>" value="1">
                     </td>
                     <td>
                         <input type="hidden" name="itemorderParent<?= $id ?>" value="<?= $order ?>" /> 
@@ -147,11 +147,11 @@
                         <tr style="background-color: #e7fcff">
                         <td><?=$childSpace?><?=$pagename?><input type="hidden" name="idChild[]" value="<?= $childID ?>" /></td>
                         <td>
-                            <input type="checkbox" name="parentChild" value="1">
+                            <input type="checkbox" name="parentChild<?= $childID ?>" value="1">
                     
                         </td>
                         <td>
-                                <select name="childofChild">
+                                <select name="childofChild<?= $childID ?>">
                                     <?php
                                     $stmt4 = $menu->showAllParent();
                                     while ($row4 = $stmt4->fetch(PDO::FETCH_ASSOC)){
@@ -160,24 +160,24 @@
                                         if ($child==$pagename) {
                                             $selected = "selected";
                                         }
-                                        echo "<option value='{$id}' $selected>{$pagename}</option>";
+                                        echo "<option value='{$pagename}' $selected>{$pagename}</option>";
                                     }
                                     ?>
                                 </select>  
                             </td>
                         <td>
-                            <input type="hidden" name="itemorderChild" value="<?= $order1 ?>" />
+                            <input type="hidden" name="itemorderChild<?= $childID ?>" value="<?= $order1 ?>" />
                             <?=$order1?>
                         </td>
                         <td>
-                            <input type="radio" id="upChild" name="orderChild<?= $id ?>" value="upChild"> <i class="menu-icon icon-arrow-up"></i> Up
+                            <input type="radio" id="upChild" name="orderChild<?= $childID ?>" value="upChild"> <i class="menu-icon icon-arrow-up"></i> Up
                         </td>
                         <td>
-                        <input type="radio" id="downChild" name="orderChild<?= $id ?>" value="downChild"> <i class="menu-icon icon-arrow-down"></i> Down
+                        <input type="radio" id="downChild" name="orderChild<?= $childID?>" value="downChild"> <i class="menu-icon icon-arrow-down"></i> Down
                         </td>
                           
         
-                    <td><input type="checkbox" name="inmenuChild"> Remove</td>
+                    <td><input type="checkbox" name="inmenuChild<?=$childID?>"> Remove</td>
                      
                 </tr>
                 <?php
@@ -206,7 +206,7 @@
                 ?>
                 <tr>
                     <td><?=$pagename?><input type="hidden" name="idNoMenu[]" value="<?= $noMenuID ?>" /></td>
-                    <td><input type="checkbox" name="notInMenu"> Add</td>
+                    <td><input type="checkbox" name="notInMenu<?= $noMenuID ?>"> Add</td>
                 
                 </tr>
             <?php   
