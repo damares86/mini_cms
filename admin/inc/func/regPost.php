@@ -45,7 +45,7 @@ if(filter_input(INPUT_GET,"idToMod")){
             <label for="category_id">Category</label>
             <?php
             $cat = new Categories($db);
-                $stmt = $cat->showAll();
+                $stmt = $cat->showAllList();
                 $total_rows = $cat->countAll();
               
                 ?>

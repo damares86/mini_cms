@@ -1,11 +1,11 @@
 <?php
 
-// require '../phpDebug/src/Debug/Debug.php';   			// if not using composer
+require '../phpDebug/src/Debug/Debug.php';   			// if not using composer
 
-// $debug = new \bdk\Debug(array(
-//     'collect' => true,
-//     'output' => true,
-// ));
+$debug = new \bdk\Debug(array(
+    'collect' => true,
+    'output' => true,
+));
 
 
 
@@ -93,6 +93,7 @@ if(filter_input(INPUT_POST,"subReg")){
 			$page->block5_bg=$_POST['block5_bg'];
 			$page->block5_text=$_POST['block5_text'];
 		}
+	
 		if($_POST['editor6']){
 			$page->block6=$_POST['editor6'];
 			$page->block6_bg=$_POST['block6_bg'];
@@ -150,7 +151,7 @@ if(filter_input(INPUT_POST,"subReg")){
 			$page->block5_bg=$_POST['block5_bg'];
 			$page->block5_text=$_POST['block5_text'];
 		}
-		if($_POST['editor6']){
+	    if($_POST['editor6']){
 			$page->block6=$_POST['editor6'];
 			$page->block6_bg=$_POST['block6_bg'];
 			$page->block6_text=$_POST['block6_text'];

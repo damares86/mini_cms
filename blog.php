@@ -43,9 +43,7 @@ require "admin/template/inc/header.php";
         <p class="metainfo">Category: <b><a href="blog.php?cat=<?=$category_id?>"><?=$category_name?></a></b></p>
         <p class="metainfo">Last modified on: <?=$modified?></p>
         <div class="blog_content">
-            <h4>Summary</h4>
             <?=$summary?>
-            <br>
             <a href="post.php?id=<?=$id?>&title=<?=$post_title?>">Continue reading -></a>
         </div>
         <?php

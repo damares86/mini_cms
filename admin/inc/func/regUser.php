@@ -80,7 +80,7 @@ if(filter_input(INPUT_GET,"idToMod")){
                 <div class="controls">
                 <?php
 
-                    $stmt = $role->showAll();
+                    $stmt = $role->showAllList();
 
                     while($row_roles = $stmt->fetch(PDO::FETCH_ASSOC)){
                         extract($row_roles);

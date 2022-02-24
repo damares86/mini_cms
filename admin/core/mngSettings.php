@@ -1,29 +1,30 @@
 <?php
 
-// require '../phpDebug/src/Debug/Debug.php';   			// if not using composer
+require '../phpDebug/src/Debug/Debug.php';   			// if not using composer
 
-// $debug = new \bdk\Debug(array(
-//     'collect' => true,
-//     'output' => true,
-// ));
-
+$debug = new \bdk\Debug(array(
+    'collect' => true,
+    'output' => true,
+));
 
 
 session_start();
 if (!isset($_SESSION['loggedin'])) {
-    header('Location: ../');
+	header('Location: ../');
     exit;
 }
 
-	// loading class
-	include("../class/Database.php");
-	include("../class/Settings.php");
+// loading class
+include("../class/Database.php");
+include("../class/Settings.php");
+include("../class/Menu.php");
 
 
-	$database = new Database();
-	$db = $database->getConnection();
+$database = new Database();
+$db = $database->getConnection();
 
-	$settings = new Settings($db);
+$settings = new Settings($db);
+$menu = new Menu($db);
 
 
 if(filter_input(INPUT_POST,"subReg")){
@@ -35,7 +36,6 @@ if(filter_input(INPUT_POST,"subReg")){
 		$settings->id=$_POST['id'];
 		$settings->site_name=$_POST['site_name'];
 		$settings->site_description=$_POST['site_description'];
-		$settings->theme=$_POST['theme'];
 		
 		// update the settings
 		if($settings->update()){
@@ -50,12 +50,127 @@ if(filter_input(INPUT_POST,"subReg")){
 			exit;
 		}
 
-} else {
+} else if(filter_input(INPUT_POST,"subTheme")) {
+
+	$settings->theme=$_POST['theme'];
+		
+		// update the settings
+		if($settings->updateTheme()){
+			header("Location: ../index.php?msg=setEditSucc");
+			exit;
+		
+			// empty posted values
+			// $_POST=array();
+		
+		}else{
+			header("Location: ../index.php?msg=setEditErr");
+			exit;
+		}
+}else if(filter_input(INPUT_POST,"subMenu")) {
+	if($_POST['idParent']){
+		
+		$idParent=$_POST['idParent'];
+		
+		for($i=0; $i<count($idParent); $i++){
+			$menu->id=$idParent[$i];
+			$menu->parent=1;
+			$menu->childof="index";
+			
+			if(isset($_POST["childofParent{$idParent[$i]}"])){
+				$menu->parent=0;
+			}
+			
+			$order=$_POST["itemorderParent{$idParent[$i]}"];
+			
+		
+			if(isset($_POST["orderParent{$idParent[$i]}"])){
+
+				if(($_POST["orderParent{$idParent[$i]}"])=="upParent"){
+					$order=$order-1;	
+			
+					
+				} else if(($_POST["orderParent{$idParent[$i]}"])=="downParent"){
+					$order++;
+				} 
+			}
+			$menu->itemorder=$order;
+
+			$inmenu=1;			
+			if(isset($_POST["inmenuParent{$idParent[$i]}"])){
+				$inmenu=0;
+			}
+			$menu->inmenu=$inmenu;
+		
+			$menu->update();
+
+		}
+	}
+
+	if($_POST['idChild']){
+		
+		$idChild=$_POST['idChild'];
+		
+		for($i=0; $i<count($idChild); $i++){
+			$menu->id=$idChild[$i];
+			$menu->parent=0;
+			$menu->childof=$_POST["childofChild{$idChild[$i]}"];
+			if(isset($_POST["parentChild{$idChild[$i]}"])){
+				$menu->parent=1;
+				$menu->childof="index";
+			}
+			
+			$order=$_POST["itemorderChild{$idChild[$i]}"];
+			if(isset($_POST["orderChild{$idChild[$i]}"])){
+
+				if(($_POST["orderChild{$idChild[$i]}"])=="upChild"){
+					$order--;	
+				} else if(($_POST["orderChild{$idChild[$i]}"])=="downChild"){
+					$order++;
+				} 
+			}
+			$menu->itemorder=$order;
+
+			$inmenu=1;			
+			if(isset($_POST["inmenuChild{$idChild[$i]}"])){
+				$inmenu=0;
+			}
+			$menu->inmenu=$inmenu;
+		
+			$menu->update();
+
+	}
+}
+
+if($_POST['idNoMenu']){
+	
+	$idNoMenu=$_POST['idNoMenu'];
+
+
+	for($i=0; $i<count($idNoMenu); $i++){
+		$menu->id=$idNoMenu[$i];
+		if(isset($_POST["notInMenu{$idNoMenu[$i]}"])){
+			$menu->inmenu=1;
+			$menu->itemorder=1;
+			$menu->parent=1;
+			$menu->childof="index";
+
+			$menu->update();
+		}
+
+
+	}
+
+}
+
+
+	header("Location: ../index.php?man=settings");
+	exit;
+}else{
 	echo "errore settings";
 	exit;
 }
 
-
+print_r("ko");
 exit;
 
 ?>

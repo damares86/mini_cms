@@ -92,6 +92,22 @@ class Colors{
         return $stmt;
     }
 
+
+    function showAllList(){
+        //select all data
+        $query = "SELECT
+                    id, color
+                FROM
+                    " . $this->table_name . "
+                ORDER BY
+                    color";  
+  
+        $stmt = $this->conn->prepare( $query );
+        $stmt->execute();
+  
+        return $stmt;
+    }
+
     public function countAll(){
     
         $query = "SELECT id FROM color";

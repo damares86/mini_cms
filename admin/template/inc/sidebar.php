@@ -1,7 +1,7 @@
 
 <?php
 
-$stmt = $cat->showAll();
+$stmt = $cat->showAllList();
 
         while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
     
@@ -10,7 +10,7 @@ $stmt = $cat->showAll();
             $category_name= $row['category_name'];
 
 ?>
-<li><a href="blog.php?cat=<?=$category_name?>">
+<li><a href="blog.php?cat=<?=$id?>">
         <?=$category_name?>
     </a>
 </li>

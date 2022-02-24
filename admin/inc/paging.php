@@ -2,6 +2,7 @@
 // page given in URL parameter, default page is one
 $page = isset($_GET['page']) ? $_GET['page'] : 1; 
   
+$man=filter_input(INPUT_GET,"man");
 // set number of records per page
 $records_per_page = 5;
   
@@ -12,13 +13,14 @@ echo "<ul class=\"pagination justify-content-center\">";
   
 // button for first page
 if($page>1){
-    echo "<li class=\"page-item\"><a class=\"page-link\" href='?man=users&op=show' title='Go to the first page.'>";
+    echo "<li class=\"page-item\"><a class=\"page-link\" href='?man=".$man."&op=show' title='Go to the first page.'>";
         echo "First Page";
     echo "</a></li>";
 }
 
 // count all products in the database to calculate total pages
 $total_pages = ceil($total_rows / $records_per_page);
+
   
 // range of links to show
 $range = 2;
@@ -39,14 +41,14 @@ for ($x=$initial_num; $x<$condition_limit_num; $x++) {
   
         // not current page
         else {
-            echo "<li class=\"page-item\"><a class=\"page-link\" href='?man=users&op=show&page=$x'>$x</a></li>";
+            echo "<li class=\"page-item\"><a class=\"page-link\" href='?man=".$man."&op=show&page=$x'>$x</a></li>";
         }
     }
 }
   
 // button for last page
 if($page<$total_pages){
-    echo "<l class=\"page-item\"><a class=\"page-link\" href='?man=users&op=show&page={$total_pages}' title='Last page is {$total_pages}.'>";
+    echo "<l class=\"page-item\"><a class=\"page-link\" href='?man=".$man."&op=show&page={$total_pages}' title='Last page is {$total_pages}.'>";
         echo "Last Page";
     echo "</a></li>";
 }
