@@ -1,5 +1,6 @@
 <?php
 
+
 class Menu{
 
 
@@ -40,9 +41,6 @@ class Menu{
 
 
     function update(){
-   
-        print_r($this->childof);
-        exit;
         $query = "UPDATE
                     " . $this->table_name . "
                 SET
@@ -52,20 +50,18 @@ class Menu{
                 childof = :childof
                 WHERE
                 id = :id";
-      
-
+                
+                
                 // prepare the query
                 $stmt = $this->conn->prepare($query);
-               
-
-                // bind the values
-                $stmt->bindParam(':pagename', $this->pagename);       
-                $stmt->bindParam(':inmenu', $this->inmenu);       
+                
+                // bind the values    
+                $stmt->bindParam(':inmenu', $this->inmenu);  
                 $stmt->bindParam(':itemorder', $this->itemorder);       
                 $stmt->bindParam(':parent', $this->parent);  
-                if($this->parent==1){
-                    $this->childof="none";
-                }
+                // if($this->parent==1){
+                //     $this->childof="none";
+                // }
                 $stmt->bindParam(':childof', $this->childof);       
    
                 $stmt->bindParam(':id', $this->id);       
@@ -114,13 +110,29 @@ class Menu{
         return $stmt;
     }
 
-    function showAllChild(){
+    function showOrder(){
         $query = "SELECT
                     *
                 FROM
                     " . $this->table_name . "
                 WHERE
-                    childof = :childof
+                    id = :id";  
+                    
+                    
+        $stmt = $this->conn->prepare( $query );
+        $stmt->bindParam(':id', $this->id);       
+        $stmt->execute();
+  
+        return $stmt;
+    }
+
+    function showAllChildInMenu(){
+        $query = "SELECT
+                    *
+                FROM
+                    " . $this->table_name . "
+                WHERE
+                    childof = :childof AND inmenu = 1 AND parent = 0
                 ORDER BY
                     itemorder";  
                     

@@ -1,11 +1,11 @@
 <?php
 
-// require '../phpDebug/src/Debug/Debug.php';   			// if not using composer
+require '../phpDebug/src/Debug/Debug.php';   			// if not using composer
 
-// $debug = new \bdk\Debug(array(
-//     'collect' => true,
-//     'output' => true,
-// ));
+$debug = new \bdk\Debug(array(
+    'collect' => true,
+    'output' => true,
+));
 
 
 session_start();
@@ -36,7 +36,6 @@ if(filter_input(INPUT_POST,"subReg")){
 		$settings->id=$_POST['id'];
 		$settings->site_name=$_POST['site_name'];
 		$settings->site_description=$_POST['site_description'];
-		$settings->theme=$_POST['theme'];
 		
 		// update the settings
 		if($settings->update()){
@@ -69,47 +68,43 @@ if(filter_input(INPUT_POST,"subReg")){
 		}
 }else if(filter_input(INPUT_POST,"subMenu")) {
 	if($_POST['idParent']){
-
+		
 		$idParent=$_POST['idParent'];
-
+		
 		for($i=0; $i<count($idParent); $i++){
-
-		$menu->id=$idParent[$i];
-		$inmenu="";
-		
-		if(isset($_POST['inmenuParent'])){
-			$inmenu=0;
-		} else{
-			$inmenu=1;
-		}
-
-		$menu->inmenu=$inmenu;
-		$menu->childof=$_POST['childof'];
-		
-		$menu->itemorder=$_POST['itemorderParent'];
-		print_r($_POST['itemorderParent']);
-		exit;
-		
-		// if($_POST['inmenu']!=1){
-		// 	$menu->inmenu=0;
-		// }else{
-		// 	$menu->inmenu=$_POST['inmenu'];
+			$menu->id=$idParent[$i];
+			$menu->parent=1;
+			$menu->childof="index";
 			
-		// }
-		// if($_POST['parent']!=1){
-		// 	$menu->parent=0;
-		// }else{
-		// 	$menu->parent=$_POST['parent'];
+			if(isset($_POST['childofParent'])){
+				$menu->parent=0;
+			}
+			
+			$order=$_POST['itemorderParent'];
 		
-		// }
-		// if($_POST['childof']){
-		// 	$menu->childof=$_POST['childof'];
-		// 	print_r($menu->childof);
-		// 	exit;
+			if(isset($_POST['orderParent'])){
+
+				if(($_POST['orderParent'])=="upParent"){
+					$order++;
+				} else if(($_POST['orderParent'])=="downParent"){
+					$order--;
+				} 
+			}
+			$menu->itemorder=$order;
+			
+
+			$inmenu=1;			
+			if(isset($_POST['inmenuParent'])){
+				$inmenu=0;
+			}
+			$menu->inmenu=$inmenu;
 		
-		// }
+		
 	}
+	
 }
+
+
 		if($menu->update()){
 			header("Location: ../index.php?man=settings&msg=menuEditSucc");
 			exit;
@@ -123,7 +118,7 @@ if(filter_input(INPUT_POST,"subReg")){
 	exit;
 }
 
-
+print_r("ko");
 exit;
 
 ?>
