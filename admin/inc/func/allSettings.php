@@ -90,6 +90,8 @@
                     <th scope="col">Parent</th>
                     <th scope="col">Child of</th>
                     <th scope="col">Item order</th>
+                    <th scope="col">Up</th>
+                    <th scope="col">Down</th>
                     <th scope="col">In menu</th>
                 </tr>
             </thead>
@@ -99,6 +101,7 @@
                 while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
                     extract($row);
                     $order=$itemorder;
+                    $parentID=$id;
                     $checkedMenu ="";
                     $checkedParent = "checked";
                     $page=$pagename;
@@ -107,29 +110,34 @@
                     
                     ?>
                 <tr style="background-color:#bdeeff">
-                    <td><?=$pagename?><input type="hidden" name="idParent[]" value="<?= $id ?>" /></td>
+                    <td><?=$pagename?><input type="hidden" name="idParent[]" value="<?= $parentID ?>" /></td>
                     <td>Yes</td>
                     <td>
                         <input type="checkbox" name="childofParent" value="1">
                     </td>
                     <td>
-                        <input type="hidden" name="itemorderParent" value="<?= $order ?>" /> 
-                     
+                        <input type="hidden" name="itemorderParent<?= $id ?>" value="<?= $order ?>" /> 
+                        <?=$order?>
+                    </td>
+                    <td> 
+                        <input type="radio" id="upParent" name="orderParent<?= $id ?>" value="upParent"> <i class="menu-icon icon-arrow-up"></i> Up
+                    </td>
+                    <td>
+                        <input type="radio" id="downParent" name="orderParent<?= $id ?>" value="downParent"> <i class="menu-icon icon-arrow-down"></i> Down
+                    </td>
                         
-                        <input type="radio" id="upParent" name="orderParent" value="upParent">
-                        <label for="upParent">Up</label>
-                        <input type="radio" id="downParent" name="orderParent" value="downParent">
-                        <label for="downParent">Down
-                        </label>
+                       
+                        
     
                     </td>
-                    <td><input type="checkbox" name="inmenuParent"> Remove</td>
+                    <td><input type="checkbox" name="inmenuParent<?=$parentID?>"> Remove</td>
                 </tr>
                 <?php
                     $menu->childof=$page;
                     $stmt3=$menu->showAllChildInMenu();
                     while ($row3 = $stmt3->fetch(PDO::FETCH_ASSOC)){
                         extract($row3);
+                        $childID=$id;
                         $child=$childof;
                         $order1=$itemorder;
                        
@@ -137,7 +145,7 @@
                         ?>
 
                         <tr style="background-color: #e7fcff">
-                        <td><?=$childSpace?><?=$pagename?><input type="hidden" name="idChild[]" value="<?= $id ?>" /></td>
+                        <td><?=$childSpace?><?=$pagename?><input type="hidden" name="idChild[]" value="<?= $childID ?>" /></td>
                         <td>
                             <input type="checkbox" name="parentChild" value="1">
                     
@@ -158,14 +166,17 @@
                                 </select>  
                             </td>
                         <td>
-                            <input type="hidden" name="itemorderChild" value="<?= $order1 ?>" />    
-                            <input type="radio" id="upChild" name="orderChild" value="upChild">
-                            <label for="upChild">Up</label>
-                            <input type="radio" id="downChild" name="orderChild" value="downChild">
-                            <label for="downChild">Down
-                            </label>
-        
+                            <input type="hidden" name="itemorderChild" value="<?= $order1 ?>" />
+                            <?=$order1?>
                         </td>
+                        <td>
+                            <input type="radio" id="upChild" name="orderChild<?= $id ?>" value="upChild"> <i class="menu-icon icon-arrow-up"></i> Up
+                        </td>
+                        <td>
+                        <input type="radio" id="downChild" name="orderChild<?= $id ?>" value="downChild"> <i class="menu-icon icon-arrow-down"></i> Down
+                        </td>
+                          
+        
                     <td><input type="checkbox" name="inmenuChild"> Remove</td>
                      
                 </tr>
@@ -190,10 +201,11 @@
                 $stmt = $menu->showAllNotInMenu();
                 while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
                     extract($row);
+                    $noMenuID=$id;
                  
                 ?>
                 <tr>
-                    <td><?=$pagename?><input type="hidden" name="idNoMenu[]" value="<?= $id ?>" /></td>
+                    <td><?=$pagename?><input type="hidden" name="idNoMenu[]" value="<?= $noMenuID ?>" /></td>
                     <td><input type="checkbox" name="notInMenu"> Add</td>
                 
                 </tr>

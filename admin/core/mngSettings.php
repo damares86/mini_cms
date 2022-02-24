@@ -80,38 +80,34 @@ if(filter_input(INPUT_POST,"subReg")){
 				$menu->parent=0;
 			}
 			
-			$order=$_POST['itemorderParent'];
+			$order=$_POST["itemorderParent{$idParent[$i]}"];
+			
 		
-			if(isset($_POST['orderParent'])){
+			if(isset($_POST["orderParent{$idParent[$i]}"])){
 
-				if(($_POST['orderParent'])=="upParent"){
+				if(($_POST["orderParent{$idParent[$i]}"])=="upParent"){
+					$order=$order-1;	
+			
+					
+				} else if(($_POST["orderParent{$idParent[$i]}"])=="downParent"){
 					$order++;
-				} else if(($_POST['orderParent'])=="downParent"){
-					$order--;
 				} 
 			}
 			$menu->itemorder=$order;
-			
 
 			$inmenu=1;			
-			if(isset($_POST['inmenuParent'])){
+			if(isset($_POST["inmenuParent{$idParent[$i]}"])){
 				$inmenu=0;
 			}
 			$menu->inmenu=$inmenu;
 		
-		
+			$menu->update();
+
 	}
-	
 }
 
 
-		if($menu->update()){
-			header("Location: ../index.php?man=settings&msg=menuEditSucc");
-			exit;
-		}else{
-			header("Location: ../index.php?man=settings&msg=menuEditErr");
-			exit;
-		}
+	header("Location: ../index.php?man=settings");
 	exit;
 }else{
 	echo "errore settings";

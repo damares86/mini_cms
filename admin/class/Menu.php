@@ -55,7 +55,7 @@ class Menu{
                 // prepare the query
                 $stmt = $this->conn->prepare($query);
                 
-                // bind the values    
+               // bind the values    
                 $stmt->bindParam(':inmenu', $this->inmenu);  
                 $stmt->bindParam(':itemorder', $this->itemorder);       
                 $stmt->bindParam(':parent', $this->parent);  
@@ -67,7 +67,7 @@ class Menu{
                 $stmt->bindParam(':id', $this->id);       
                
       
-        // execute the query, also check if query was successful
+        //execute the query, also check if query was successful
         if($stmt->execute()){
             return true;
 
