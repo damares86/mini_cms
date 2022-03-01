@@ -1,11 +1,11 @@
 <?php
 
-require 'admin/phpDebug/src/Debug/Debug.php';   			// if not using composer
+// require 'admin/phpDebug/src/Debug/Debug.php';   			// if not using composer
 
-$debug = new \bdk\Debug(array(
-    'collect' => true,
-    'output' => true,
-));
+// $debug = new \bdk\Debug(array(
+//     'collect' => true,
+//     'output' => true,
+// ));
 
 session_start();
 // loading class
@@ -34,8 +34,10 @@ $stmt=$settings->showSettings();
 // prendo il nome del file (con estensione)
 $file = basename($_SERVER['PHP_SELF']);
 $page_name="";
+$page_class="";
 if($file=="index.php"){
     $page_name="Home";
+    $page_class = pathinfo($file, PATHINFO_FILENAME);
 } else{
 // mi prendo solo il nome senza l'estensione
 $page_name = pathinfo($file, PATHINFO_FILENAME);
@@ -51,23 +53,32 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
     
     extract($row);
     $theme=$row['theme'];
-
-?>
+    
+    ?>
 
 <!doctype html>
 <html>
-	<head>
+    <head>
         <!--
-        ==========================================================================
-
-        Mini Cms is a project by damares86 (https://github.com/damares86/mini_cms)
-        
-        ==========================================================================
+            ==========================================================================
+            
+            Mini Cms is a project by damares86 (https://github.com/damares86/mini_cms)
+            
+            ==========================================================================
         -->
 		<meta charset="utf-8">
 		<title><?=$page_name?> - <?=$site_name?></title>
         <link rel="icon" href="assets/<?= $theme ?>/img/favicon.ico">
+        <?php
+          
+            $page->page_name=$page_class;
+            $stmt1=$page->showByName();
+
+
+        ?>
+        <link rel="stylesheet" href="admin/template/layout/<?=$page->layout?>.css" />
 		<?php
+
             require "assets/".$theme."/inc/scripts.php";
         ?>
         <meta name="viewport" content="width=device-width, initial-scale=1" />

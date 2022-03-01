@@ -55,7 +55,29 @@ if(filter_input(INPUT_GET,"idToMod")){
             </div>
             
             <br>
+            <div class="control-group">
+                <label class="control-label" for="layout">
+                    Choose page layout
+                </label>
+                <div class="controls">
+                <?php
+                    
+                    foreach (glob("template/layout/*") as $style) {
+                        if( is_file($style) ){
+                            $layout=pathinfo($style, PATHINFO_FILENAME);
+                            $cheched="";
+                            if ($layout == $page->layout) {
+                                $checked = "checked";
+                            }
+                            echo "<input type='radio' id='$layout' name='layout' value='$layout' $checked> $layout";
 
+                        }
+                    }
+                ?>
+
+                </div>
+            </div>
+            <br>
             <textarea name="editor" id="editor" rows="10" cols="80">
             <?=$page->block1?>
             </textarea>

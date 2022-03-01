@@ -68,6 +68,7 @@ if(filter_input(INPUT_POST,"subReg")){
 	
 		//inserimento
 		$page->page_name=$_POST['page_name'];
+		$page->layout=$_POST['layout'];
 		$page->block1=$_POST['editor'];
 		$page->block1_bg=$_POST['block1_bg'];
 		$page->block1_text=$_POST['block1_text'];
@@ -125,6 +126,7 @@ if(filter_input(INPUT_POST,"subReg")){
 	} else if($operation=="mod"){
 		$page->id=$_POST['idToMod'];
 		$page->page_name=$_POST['page_name'];
+		$page->layout=$_POST['layout'];
 		$page->block1=$_POST['editor'];
 		$page->block1_bg=$_POST['block1_bg'];
 		$page->block1_text=$_POST['block1_text'];

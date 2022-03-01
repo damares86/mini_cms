@@ -15,6 +15,7 @@ class Page{
 
     public $id;
     public $page_name;
+    public $layout;
     public $in_menu;
     public $item_order;
     public $parent;
@@ -70,6 +71,7 @@ class Page{
                     " . $this->table_name . "
                 SET
                     page_name = :page_name,
+                    layout = :layout,
                     block1 = :block1,
                     block1_bg = :block1_bg,
                     block1_text = :block1_text". $this->setParam2 . $this->setParam3 . $this->setParam4 . $this->setParam5 . $this->setParam6 . "";
@@ -79,6 +81,7 @@ class Page{
         
         // bind the values
         $stmt->bindParam(':page_name', $this->page_name);       
+        $stmt->bindParam(':layout', $this->layout);       
         $stmt->bindParam(':block1', $this->block1);       
         $stmt->bindParam(':block1_bg', $this->block1_bg);       
         $stmt->bindParam(':block1_text', $this->block1_text);       
@@ -162,6 +165,7 @@ class Page{
         $query = "UPDATE
                     " . $this->table_name . "
                 SET
+                layout = :layout,
                 block1 = :block1,
                 block1_bg = :block1_bg,
                 block1_text = :block1_text". $this->setParam2 . $this->setParam3 . $this->setParam4 . $this->setParam5 . $this->setParam6 . "
@@ -174,6 +178,7 @@ class Page{
                
 
                 // bind the values
+                $stmt->bindParam(':layout', $this->layout);       
                 $stmt->bindParam(':block1', $this->block1);       
                 $stmt->bindParam(':block1_bg', $this->block1_bg);       
                 $stmt->bindParam(':block1_text', $this->block1_text);       
@@ -276,6 +281,7 @@ class Page{
     
         $this->id = $row['id'];
         $this->page_name = $row['page_name'];
+        $this->layout = $row['layout'];
         $this->block1 = $row['block1'];
         $this->block1_bg = $row['block1_bg'];
         $this->block1_text = $row['block1_text'];
@@ -312,6 +318,7 @@ class Page{
 
         $this->id = $row['id'];
         $this->page_name = $row['page_name'];
+        $this->layout = $row['layout'];
         $this->block1 = $row['block1'];
         $this->block1_bg = $row['block1_bg'];
         $this->block1_text = $row['block1_text'];

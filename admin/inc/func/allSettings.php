@@ -218,7 +218,7 @@
         <div class="control-group">
                 <div class="controls">
                    
-                    <input type="submit" class="btn btn-primary" name="subMenu" value="Submit">
+                    <input type="submit" class="btn btn-primary" name="subMenu" value="Refresh">
 
                     <!-- <button type="submit" class="btn" name="subReg">Submit Form</button> -->
                 </div>
