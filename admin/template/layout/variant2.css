@@ -1,18 +1,19 @@
 
+
+
 .block1{
-	width:100%;
-	margin: 1% auto;
-}
-
-
-.block2{
 	width:49%;
 	margin: 1% 1% 1% 0;
 }
 
-.block3{
+.block2{
 	width:49%;
 	margin: 1% 0 1% 1%;
+}
+
+.block3{
+	width:100%;
+	margin: 1% auto;
 }
 
 .block4{

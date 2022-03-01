@@ -60,16 +60,17 @@ if(filter_input(INPUT_GET,"idToMod")){
                     Choose page layout
                 </label>
                 <div class="controls">
-                <?php
-                    
-                    foreach (glob("template/layout/*") as $style) {
-                        if( is_file($style) ){
-                            $layout=pathinfo($style, PATHINFO_FILENAME);
-                            $cheched="";
-                            if ($layout == $page->layout) {
+                    <?php
+                    $pageLayout=$page->layout;
+                   
+                    foreach (glob("template/layout/*") as $file) {
+                        if( is_file($file) ){
+                            $style=pathinfo($file, PATHINFO_FILENAME);
+                            $checked="";
+                            if ($style == $pageLayout) {
                                 $checked = "checked";
                             }
-                            echo "<input type='radio' id='$layout' name='layout' value='$layout' $checked> $layout";
+                            echo "<input type='radio' id='$style' name='layout' value='$style' $checked> $style";
 
                         }
                     }
