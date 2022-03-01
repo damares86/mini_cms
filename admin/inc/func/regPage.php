@@ -70,7 +70,7 @@ if(filter_input(INPUT_GET,"idToMod")){
                             if ($style == $pageLayout) {
                                 $checked = "checked";
                             }
-                            echo "<input type='radio' id='$style' name='layout' value='$style' $checked> $style";
+                            echo "<input type='radio' id='$style' name='layout' value='$style' $checked> <img src='template/layout/img/$style.png'> &nbsp; &nbsp; &nbsp;";
 
                         }
                     }
