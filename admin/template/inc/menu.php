@@ -3,8 +3,9 @@
     $stmt=$menu->showAllParent();
     while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
         extract($row);
-        $name=$pagename;
+        // $name=$pagename;
         $class="";
+        $name=$row['pagename'];
         $str=$row['pagename'];
         $str = preg_replace('/\s+/', '_', $str);
         $str = strtolower($str);
@@ -13,9 +14,10 @@
         if($name=='index'){
             echo "Home";
         } else {
-        echo $row['pagename'];
+        echo $name;
         }?></a>
         <?php
+                
                 $menu->childof=$name;
                 $num=$menu->countChild();
                 if($num>0){

@@ -144,6 +144,23 @@ class Menu{
         return $stmt;
     }
 
+    function showAllChildNone(){
+        $query = "SELECT
+                    *
+                FROM
+                    " . $this->table_name . "
+                WHERE
+                    childof = 'none' AND inmenu = 1 AND parent = 0
+                ORDER BY
+                    itemorder";  
+                    
+                    
+        $stmt = $this->conn->prepare( $query );     
+        $stmt->execute();
+  
+        return $stmt;
+    }
+
     public function countChild(){
     
         $query = "SELECT 

@@ -67,14 +67,14 @@ if(filter_input(INPUT_POST,"subReg")){
 			exit;
 		}
 }else if(filter_input(INPUT_POST,"subMenu")) {
-	if($_POST['idParent']){
+	if(isset($_POST['idParent'])){
 		
 		$idParent=$_POST['idParent'];
 		
 		for($i=0; $i<count($idParent); $i++){
 			$menu->id=$idParent[$i];
 			$menu->parent=1;
-			$menu->childof="index";
+			$menu->childof="none";
 			
 			if(isset($_POST["childofParent{$idParent[$i]}"])){
 				$menu->parent=0;
@@ -106,7 +106,7 @@ if(filter_input(INPUT_POST,"subReg")){
 		}
 	}
 
-	if($_POST['idChild']){
+	if(isset($_POST['idChild'])){
 		
 		$idChild=$_POST['idChild'];
 		
@@ -116,7 +116,7 @@ if(filter_input(INPUT_POST,"subReg")){
 			$menu->childof=$_POST["childofChild{$idChild[$i]}"];
 			if(isset($_POST["parentChild{$idChild[$i]}"])){
 				$menu->parent=1;
-				$menu->childof="index";
+				$menu->childof="none";
 			}
 			
 			$order=$_POST["itemorderChild{$idChild[$i]}"];
@@ -141,7 +141,7 @@ if(filter_input(INPUT_POST,"subReg")){
 	}
 }
 
-if($_POST['idNoMenu']){
+if(isset($_POST['idNoMenu'])){
 	
 	$idNoMenu=$_POST['idNoMenu'];
 
@@ -159,6 +159,43 @@ if($_POST['idNoMenu']){
 
 
 	}
+
+}
+
+if(isset($_POST['idChildNone'])){
+
+	$idChildNone=$_POST['idChildNone'];
+		
+	for($i=0; $i<count($idChildNone); $i++){
+		$menu->id=$idChildNone[$i];
+		$menu->parent=0;
+		$menu->childof=$_POST["childNone{$idChildNone[$i]}"];
+		// if(isset($_POST["parentChild{$idChild[$i]}"])){
+		// 	$menu->parent=1;
+		// 	$menu->childof="none";
+		// }
+		
+		// $order=$_POST["itemorderChild{$idChild[$i]}"];
+		// if(isset($_POST["orderChild{$idChild[$i]}"])){
+
+		// 	if(($_POST["orderChild{$idChild[$i]}"])=="upChild"){
+		// 		$order--;	
+		// 	} else if(($_POST["orderChild{$idChild[$i]}"])=="downChild"){
+		// 		$order++;
+		// 	} 
+		// }
+		$menu->itemorder=1;
+
+		// $inmenu=1;			
+		// if(isset($_POST["inmenuChild{$idChild[$i]}"])){
+		// 	$inmenu=0;
+		// }
+		$menu->inmenu=1;
+	
+		$menu->update();
+
+}
+
 
 }
 

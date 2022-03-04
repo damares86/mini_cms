@@ -187,6 +187,46 @@
             </tbody>
         </table>
         <br><br>
+        <h3><u>Children without parent</u></h3>
+        <table class="table table-striped">
+
+            <thead>
+                <tr>
+                    <th scope="col">Page Name</th>
+                    <th scope="col">Parent</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php
+                $stmt2 = $menu->showAllChildNone();
+                while ($row2 = $stmt2->fetch(PDO::FETCH_ASSOC)){
+                    extract($row2);
+                    $childNoneID=$id;
+                 
+                ?>
+                <tr>
+                    <td><?=$pagename?><input type="hidden" name="idChildNone[]" value="<?= $childNoneID ?>" /></td>
+                    <td>
+                                <select name="childNone<?= $childNoneID ?>">
+                                    <option value="<?= $childNoneID ?>" selected>none</option>
+                                    <?php
+                                    $stmt5 = $menu->showAllParent();
+                                    while ($row5 = $stmt5->fetch(PDO::FETCH_ASSOC)){
+                                        extract($row5);
+                                        
+                                        echo "<option value='{$pagename}'>{$pagename}</option>";
+                                    }
+                                    ?>
+                                </select>  
+                            </td>
+                
+                </tr>
+            <?php   
+            }
+        ?>
+                            </tbody>
+        </table>
+        <br><br>
         <h3><u>Page not in menu</u></h3>
         <table class="table table-striped">
 
