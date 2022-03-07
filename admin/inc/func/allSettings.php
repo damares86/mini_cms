@@ -10,14 +10,23 @@
 
 
 ?>
-<div class="module">
-    <div class="module-body">
 
-    <div class="align-items-center pt-3 pb-2 mb-3 align-items-center">
-            <!-- <h6><a href="home.php"><-- Back to dashboard's home</h6></a> -->
-            <h1 class="h2 mx-auto text-center">Site settings</h1>
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
+                        <h1 class="h3 mb-0 text-gray-800">Site settings</h1>
+
+                    </div><div class="row">
+
+<!-- Content Column -->
+<div class="col-lg-12 mb-4">
+
+    <!-- Project Card Example -->
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Site details</h6>
         </div>
-        <br>
+        <div class="card-body">
+           
+
         
         <?php
 
@@ -31,14 +40,11 @@
         <form class="form-horizontal row-fluid" action="core/mngSettings.php" method="POST" enctype="multipart/form-data">
             <input type="hidden" name="id" value="<?= $id ?>" />
 
-            <div class="control-group">
                 <label class="control-label" for="site_name">Site Name</label>
-                <div class="controls">
+             
 
-                    <input type="text" id="site_name" name="site_name" placeholder="Site name" class="span8" value="<?= $site_name ?>">
-                        
-                </div>
-            </div>
+                    <input type="text" id="site_name" name="site_name" placeholder="Site name" class="span12" value="<?= $site_name ?>">
+              
             <div class="control-group">
                             <label class="control-label" for="site_description">Site description</label>
                 <div class="controls">
@@ -63,7 +69,7 @@
         </form>
     </div>
 </div>
-
+</div>
 <?php
 
 // require "allMenu.php";
@@ -72,8 +78,14 @@
 
 ?>
 
-<div class="module">
-    <div class="module-body">
+<div class="col-lg-12 mb-4">
+
+    <!-- Project Card Example -->
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Site details</h6>
+        </div>
+        <div class="card-body">
     <form class="form-horizontal row-fluid" action="core/mngSettings.php" method="POST" enctype="multipart/form-data">
        
         <div class="align-items-center pt-3 pb-2 mb-3 align-items-center">
@@ -266,4 +278,4 @@
         </form>
     </div>
 </div>
-
+</div></div>

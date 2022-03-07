@@ -11,16 +11,30 @@
     $total_rows=$post->countAll();
 
 ?>
-<div class="module">
-    <div class="module-body">
 
-        <div class="align-items-center pt-3 pb-2 mb-3 align-items-center">
-            <!-- <h6><a href="home.php"><-- Back to dashboard's home</h6></a> -->
-            <h1 class="h2 mx-auto text-center">Post</h1>
-            <a href="index.php?man=post&op=add"><button type="button" class="btn btn-success">Add new post +</button></a>
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
+                        <h1 class="h3 mb-0 text-gray-800">Posts</h1>
+
+                    </div><div class="row">
+
+<!-- Content Column -->
+<div class="col-lg-12 mb-4">
+
+    <!-- Project Card Example -->
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">All Posts</h6>
         </div>
-        <br>
-        
+        <div class="card-body">
+            <a href="index.php?man=post&op=add" class="btn btn-success btn-icon-split">
+                <span class="icon text-white-50">
+                    <i class="fas fa-plus"></i>
+                </span>
+                <span class="text">Add new post</span>
+            </a>
+            <br>
+            <br>
+
         <?php
 
     if($total_rows>0){
@@ -54,8 +68,22 @@
                 <td><?=$title?></td>
                 <td><?=$category_name?></td>
                 <td><?=$modified?></td>
-                <td><a href="index.php?man=post&op=edit&idToMod=<?=$row["id"]?>"><button type="button" class="btn btn-warning">Edit</button></a></td>
-                <td><a href="core/mngPost.php?idToDel=<?=$row["id"]?>"><button type="button" class="btn btn-danger">Delete</button></a></td>
+                <td>
+                <a href="index.php?man=post&op=edit&idToMod=<?=$row["id"]?>" class="btn btn-warning btn-icon-split">
+                    <span class="icon text-white-50">
+                        <i class="fas fa-pen"></i>
+                    </span>
+                    <span class="text">Edit</span>
+                </a>       
+                </td>
+                <td>
+                <a href="core/mngPost.php?idToDel=<?=$row["id"]?>" class="btn btn-danger btn-icon-split">
+                    <span class="icon text-white-50">
+                        <i class="fas fa-trash"></i>
+                    </span>
+                    <span class="text">Delete</span>
+                </a>   
+                </td>
             </tr>
         <?php
         }
@@ -75,4 +103,6 @@
 ?>
 
     </div>
+</div>
+</div>
 </div>

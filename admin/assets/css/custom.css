@@ -1,0 +1,22 @@
+body{
+    font-family: 'Montserrat', sans-serif;
+}
+
+.sidebar{
+    background-color: #008db1;;
+}
+
+.sidebar-dark .nav-item .nav-link{
+    color:#fff;
+}
+
+.logo img{
+    object-fit: contain;
+    height: 50%;
+    width:50%;
+    
+}
+
+.navbar{
+    background-color: #bdeeff;
+}

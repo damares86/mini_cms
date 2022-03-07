@@ -1,35 +1,9 @@
-
-    <script src="scripts/flot/jquery.flot.js" type="text/javascript"></script>
-    <script src="scripts/flot/jquery.flot.resize.js" type="text/javascript"></script>
-    <script src="scripts/datatables/jquery.dataTables.js" type="text/javascript"></script>
-    <script type="text/javascript" src="scripts/farbtastic/farbtastic.js"></script>
-    
-    <script src="scripts/common.js" type="text/javascript"></script>
-    	<script>
-   CKEDITOR.replace( 'editor', {
-    filebrowserBrowseUrl: 'ckfinder/ckfinder.html',
-    filebrowserUploadUrl: 'ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files'
-} );
-CKEDITOR.replace( 'editor2', {
-    filebrowserBrowseUrl: 'ckfinder/ckfinder.html',
-    filebrowserUploadUrl: 'ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files'
-} );
-CKEDITOR.replace( 'editor3', {
-    filebrowserBrowseUrl: 'ckfinder/ckfinder.html',
-    filebrowserUploadUrl: 'ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files'
-} );
-CKEDITOR.replace( 'editor4', {
-    filebrowserBrowseUrl: 'ckfinder/ckfinder.html',
-    filebrowserUploadUrl: 'ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files'
-} );
-CKEDITOR.replace( 'editor5', {
-    filebrowserBrowseUrl: 'ckfinder/ckfinder.html',
-    filebrowserUploadUrl: 'ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files'
-} );
-CKEDITOR.replace( 'editor6', {
-    filebrowserBrowseUrl: 'ckfinder/ckfinder.html',
-    filebrowserUploadUrl: 'ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files'
-} );
-
-</script>
-    
+  <!-- Footer -->
+  <footer class="sticky-footer bg-white">
+                <div class="container my-auto">
+                    <div class="copyright text-center my-auto">
+                        <span>Copyright &copy; Your Website 2021</span>
+                    </div>
+                </div>
+            </footer>
+            <!-- End of Footer -->

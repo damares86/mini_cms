@@ -14,15 +14,32 @@ if(filter_input(INPUT_GET,"idToMod")){
 }
 
 ?>
-<div class="module">
-    <div class="module-head">
-        <h3><?=$titoloForm?></h3>
-    </div>
-    <div class="module-body">
+
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
+                        <h1 class="h3 mb-0 text-gray-800">Edit page</h1>
+
+                    </div><div class="row">
+
+<!-- Content Column -->
+<div class="col-lg-12 mb-4">
+
+    <!-- Project Card Example -->
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+        <?php
+        $page->id = $idToMod;
+
+        $page->showById();
+        ?>
+
+        </div>
+        <div class="card-body">
+           
+            <br>
+
         <form class="form-horizontal row-fluid" action="core/mngPage.php" method="post">
         <input type="hidden" name="operation" value="<?= $operation ?>" />
                 <?php 
-        $page->id = $idToMod;
       
 
                 if($operation=="mod"){ 
@@ -30,11 +47,10 @@ if(filter_input(INPUT_GET,"idToMod")){
                     <input type="hidden" name="idToMod" value="<?= $idToMod ?>" />
                     <?php 
                 } 
-                $page->showById();
                 
                 ?>
             <div class="control-group">
-                <label class="control-label" for="page_name">Page name</label>
+             
                 <div class="controls">
                     <?php
                   if($operation=="mod"){
@@ -79,6 +95,8 @@ if(filter_input(INPUT_GET,"idToMod")){
                 </div>
             </div>
             <br>
+            <br>
+
             <textarea name="editor" id="editor" rows="10" cols="80">
             <?=$page->block1?>
             </textarea>
@@ -546,4 +564,6 @@ if(filter_input(INPUT_GET,"idToMod")){
         
         
     </div>
+</div>
+</div>
 </div>

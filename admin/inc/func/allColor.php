@@ -12,15 +12,23 @@
     
 
 ?>
-<div class="module">
-    <div class="module-body">
 
-    <div class="align-items-center pt-3 pb-2 mb-3 align-items-center">
-            <!-- <h6><a href="home.php"><-- Back to dashboard's home</h6></a> -->
-            <h1 class="h2 mx-auto text-center">Choose theme</h1>
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
+                        <h1 class="h3 mb-0 text-gray-800">Theme settings</h1>
+
+                    </div><div class="row">
+
+<!-- Content Column -->
+<div class="col-lg-12 mb-4">
+
+    <!-- Project Card Example -->
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Choose your theme</h6>
         </div>
-        <br>
-        
+        <div class="card-body">
+           
+
         <?php
 
     
@@ -75,15 +83,27 @@ $total_rows=$colors->countAll();
         </form>
     </div>
 </div>
-<div class="module">
-    <div class="module-body">
+</div>
 
-        <div class="align-items-center pt-3 pb-2 mb-3 align-items-center">
-            <!-- <h6><a href="home.php"><-- Back to dashboard's home</h6></a> -->
-            <h1 class="h2 mx-auto text-center">Box Background Colors</h1>
-            <a href="index.php?man=color&op=add"><button type="button" class="btn btn-success">Add new color +</button></a>
+<!-- Content Column -->
+<div class="col-lg-12 mb-4">
+
+    <!-- Project Card Example -->
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Box Background Colors</h6>
         </div>
-        <br>
+        <div class="card-body">
+            <a href="index.php?man=color&op=add" class="btn btn-success btn-icon-split">
+                <span class="icon text-white-50">
+                    <i class="fas fa-plus"></i>
+                </span>
+                <span class="text">Add new color</span>
+            </a>
+            <br>
+            <br>
+
+   
         <?php
 
 if($total_rows>0){
@@ -137,4 +157,6 @@ if($total_rows>0){
 ?>
 
     </div>
+</div>
+</div>
 </div>
