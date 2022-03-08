@@ -1,58 +1,116 @@
+<ul class="navbar-nav sidebar sidebar-dark accordion" id="accordionSidebar">
 
-   <div class="span3">
-                        <div class="sidebar">
-                            <ul class="widget widget-menu unstyled">
-                                <li class="active">
-                                    <a href="index.php"><i class="menu-icon icon-dashboard"></i>Dashboard</a>
-                                </li>
-                            </ul>
-                            <ul class="widget widget-menu unstyled">
-                                <li>
-                                    <a href="index.php?man=users&op=edit&idToMod=1"><i class="menu-icon icon-user"></i>Profile</a>
-                                </li>
-                                <?php
-                                if($_SESSION['rolename']=="Admin"){
-                                ?>
-                                <li>
-                                    <a href="index.php?man=users&op=show"><i class="menu-icon icon-group"></i>Users</a>
-                                </li>
-                                <?php
-                                }
-                                ?>
-                            </ul>
-                            <ul class="widget widget-menu unstyled">
+            <!-- Sidebar - Brand -->
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="../">
+                <div class="logo">
+                    <img src="assets/img/logo.svg">
+                </div>
+            </a>
 
-                                <li>
-                                    <a href="index.php?man=post&op=show"><i class="menu-icon icon-edit"></i>Posts</a>
-                                </li>
-                            <?php
-                            if($_SESSION['rolename']!="Contributor"){
-                            ?>
-                                <li>
-                                    <a href="#"><i class="menu-icon icon-copy"></i>Pages</a>
-                                </li>
-                            <?php
-                            }
-                            ?>
-                                <li>
-                                    <a href="index.php?man=files"><i class="menu-icon icon-folder-open"></i>Files</a>
-                                </li>
-                            </ul>
-                            <?php
-                            if($_SESSION['rolename']!="Contributor"){
-                            ?>
-                            <ul class="widget widget-menu unstyled">
-                                <li>
-                                    <a href="index.php?man=settings"><i class="menu-icon icon-wrench"></i>Settings</a>
-                                </li>
-                            </ul>
-                            <?php
-                            }
-                            ?>
-                            <!--/.widget-nav-->
-                            
-                            
-                        </div>
-                        <!--/.sidebar-->
-                    </div>
-                   
+            <!-- Divider -->
+            <hr class="sidebar-divider my-0">
+
+            <!-- Nav Item - Dashboard -->
+            <li class="nav-item">
+                <a class="nav-link" href="index.php">
+                    <i class="fas fa-fw fa-tachometer-alt"></i>
+                    <span>Dashboard</span></a>
+            </li>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider">
+
+            <li class="nav-item">
+                <a class="nav-link" href="index.php?man=users&op=edit&idToMod=<?=$user_id?>">
+                    <i class="fas fa-fw fa-user"></i>
+                    <span>Profile</span></a>
+            </li>
+            <?php
+            //if($_SESSION['rolename']=="Admin"){
+            ?>
+            <li class="nav-item">
+                <a class="nav-link" href="index.php?man=users&op=show">
+                    <i class="fas fa-fw fa-users"></i>
+                    <span>Users</span></a>
+            </li>
+            <?php
+            //}
+            ?>
+            <!-- Divider -->
+            <hr class="sidebar-divider">
+            <!-- Heading -->
+            <div class="sidebar-heading">
+                Managing site
+            </div>
+
+            <?php
+            if($_SESSION['rolename']!="Contributor"){
+            ?>
+            <li class="nav-item">
+                <a class="nav-link" href="index.php?man=page&op=show">
+                    <i class="fas fa-fw fa-file"></i>
+                    <span>Pages</span></a>
+            </li>
+            <?php
+            }
+            ?>
+            <li class="nav-item">
+                <a class="nav-link" href="index.php?man=files">
+                    <i class="fas fa-fw fa-folder-open"></i>
+                    <span>Files</span></a>
+            </li>
+
+
+            <hr class="sidebar-divider">
+
+            <!-- Heading -->
+            <div class="sidebar-heading">
+                Blog
+            </div>
+
+            <li class="nav-item">
+                <a class="nav-link" href="index.php?man=post&op=show">
+                    <i class="fas fa-fw fa-marker"></i>
+                    <span>Posts</span></a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="index.php?man=cat&op=show">
+                    <i class="fas fa-fw fa-tags"></i>
+                    <span>Categories</span></a>
+            </li>
+            <?php
+            if($_SESSION['rolename']!="Contributor"){
+            ?>
+             <!-- Heading -->
+             <div class="sidebar-heading">
+                Settings
+            </div>
+
+            <li class="nav-item">
+                <a class="nav-link" href="index.php?man=settings">
+                    <i class="fas fa-fw fa-wrench"></i>
+                    <span>Site settings</span></a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="index.php?man=color&op=show">
+                    <i class="fas fa-fw fa-image"></i>
+                    <span>Theme settings</span></a>
+            </li>
+            <?php
+            }
+            ?>
+         
+            <!-- Divider -->
+            <hr class="sidebar-divider d-none d-md-block">
+
+            <!-- Sidebar Toggler (Sidebar) -->
+            <div class="text-center d-none d-md-inline">
+                <button class="rounded-circle border-0" id="sidebarToggle"></button>
+            </div>
+
+           
+
+        </ul>
+        <!-- End of Sidebar -->

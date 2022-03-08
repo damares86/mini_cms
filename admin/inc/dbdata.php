@@ -1,10 +1,3 @@
-<?php
-
-// fare una IF che controlla se db.php esiste, nel caso non esista richiama il form per inserire i dati
-// quel form poi rimanda a configdb.php, che se non esiste lo crea, valorizza le variabili
-// poi bisogna fare la require del file db.php per assegnare le variabili alla function connection
-
-?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -12,9 +5,9 @@
 	<meta charset="utf-8">
 	<meta name="author" content="damares86">
 	<meta name="viewport" content="width=device-width,initial-scale=1">
-	<title>damares86 reserved area</title>
+	<title>Mini Cms by damares86</title>
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-	<link rel="stylesheet" type="text/css" href="css/my-login.css">
+	<link rel="stylesheet" type="text/css" href="../../login/css/my-login.css">
 </head>
 
 <body class="my-login-page">
@@ -23,13 +16,13 @@
 			<div class="row justify-content-md-center h-100">
 				<div class="card-wrapper">
 					<div class="brand">
-						<img src="img/logodm.png" alt="logo">
+						<img src="../assets/images/logo_mc.png" alt="logo">
 					</div>
 					<div class="card fat">
 						<div class="card-body">
 							
 							<h4 class="card-title">Insert your database data</h4>
-							<form method="POST" class="my-login-validation" novalidate="" action="admin/core/configdb.php">
+							<form method="POST" class="my-login-validation" novalidate="" action="../core/configdb.php">
 								<div class="form-group">
 									<label for="host">Server host (es. localhost)</label>
 									<input id="host" class="form-control" name="host" value="" required autofocus>
@@ -46,7 +39,24 @@
 								</div>
 
 								<div class="form-group">
-									<label for="password">Password
+									<label for="db_password">Database Password
+										<!-- <a href="forgot.html" class="float-right">
+											Forgot Password?
+										</a> -->
+									</label>
+									<input id="db_password" type="password" class="form-control" name="db_password" required data-eye>
+								    <div class="invalid-feedback">
+								    	Password is required
+							    	</div>
+								</div>
+								<hr>
+								<div class="form-group">
+									<label for="email">Your admin email</label>
+									<input id="email" class="form-control" name="email" value="" required autofocus>
+								</div>
+
+								<div class="form-group">
+									<label for="password">Your admin Password
 										<!-- <a href="forgot.html" class="float-right">
 											Forgot Password?
 										</a> -->

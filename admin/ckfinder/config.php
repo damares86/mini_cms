@@ -63,11 +63,23 @@ $config['images'] = array(
 /*=================================== Backends ========================================*/
 // https://ckeditor.com/docs/ckfinder/ckfinder3-php/configuration.html#configuration_options_backends
 
+
+function get_base_url() {
+    $s = empty($_SERVER["HTTPS"]) ? '' : ($_SERVER["HTTPS"] == "on") ? "s" : "";
+    $sp = strtolower($_SERVER["SERVER_PROTOCOL"]);
+    $protocol = substr($sp, 0, strpos($sp, "/")) . $s;
+    $port = ($_SERVER["SERVER_PORT"] == "80") ? "" : (":".$_SERVER["SERVER_PORT"]);
+    return $protocol . "://" . $_SERVER['SERVER_NAME'] . $port ;
+}
+// esempio di utilizzo
+$url = get_base_url();
+
+
 $config['backends'][] = array(
     'name'         => 'default',
     'adapter'      => 'local',
     // 'baseUrl'      => '/ckfinder/userfiles/',
-    'baseUrl'      => '/mini_cms/admin/ckfinder/userfiles/',
+    'baseUrl'      => ''.$url.'/admin/ckfinder/userfiles/',
 //  'root'         => '', // Can be used to explicitly set the CKFinder user files directory.
     'chmodFiles'   => 0777,
     'chmodFolders' => 0755,

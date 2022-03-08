@@ -1,7 +1,5 @@
-﻿<?php
-
+<?php
 require "inc/header.php";
-
 
 
 $manage=filter_input(INPUT_GET,"man");
@@ -12,132 +10,287 @@ $operation=filter_input(INPUT_GET,"op");
 // $filesCount=GetAllRows($conn,"files");
 
 $user=$_SESSION['name'];
+$user_id=$_SESSION['user_id'];
 
 
 ?>
 
-    <body>
+<body id="page-top">
+
+    <!-- Page Wrapper -->
+    <div id="wrapper">
+
+        <!-- Sidebar -->
         <?php
-
-        require "inc/navbar.php";
-
+            require "inc/sidebar.php";
         ?>
 
-        <div class="wrapper">
-            <div class="container">
-                <div class="row">
-                    <?php
-                        require "inc/sidebar.php";
-                    ?>
-                    <!--/.span3-->
-                    <div class="span9">
-                        <div class="content">
-                        <?php
+        <!-- Content Wrapper -->
+        <div id="content-wrapper" class="d-flex flex-column">
+
+            <!-- Main Content -->
+            <div id="content">
+
+               <?php
+                    require "inc/topbar.php";
+               ?>
+                <!-- Begin Page Content -->
+                <div class="container-fluid">
+                <?php
+                                require "inc/alert.php";
                             
 
                             if($manage=="post"){
                                 if($operation=="show"){
                                     require "inc/func/allPost.php";
-                                } else if($operation=="add"){
-                                    require "inc/func/regPost.php";
-                                } else if($operation=="edit"){
+                                } else if($operation=="add"||$operation=="edit"){
                                     require "inc/func/regPost.php";
                                 } 
                             } else if($manage=="users"){
                                 if($operation=="show"){
                                     require "inc/func/allUser.php";
-                                } else if($operation=="add"){
+                                } else if($operation=="add"||$operation=="edit"){
                                     require "inc/func/regUser.php";
-                                } else if($operation=="edit"){
-                                    require "inc/func/regUser.php";
-                                }
-                            } else if($manage=="roles"){
-                                if($operation=="show"){
-                                    require "inc/func/allRole.php";
-                                } else if($operation=="add"){
-                                    require "inc/func/regRole.php";
-                                } else if($operation=="edit"){
-                                    require "inc/func/regRole.php";
                                 }
                             } else if($manage=="files"){
                                  require "inc/func/allFile.php";
                             }else if($manage=="settings"){
                                 require "inc/func/allSettings.php";
-                            }else {  
+                            }else if($manage=="cat"){
+                                if($operation=="show"){
+                                    require "inc/func/allCat.php";
+                                } else if($operation=="add"||$operation=="edit"){
+                                    require "inc/func/regCat.php";
+                                }
+                            }else if($manage=="page"){
+                                if($operation=="show"){
+                                    require "inc/func/allPage.php";
+                                } else if($operation=="add"||$operation=="edit"){
+                                    require "inc/func/regPage.php";
+                                }
+                            }else if($manage=="color"){
+                                if($operation=="show"){
+                                    require "inc/func/allColor.php";
+                                } else if($operation=="add"){
+                                    require "inc/func/regColor.php";
+                                }
+                            }else{  
                         ?>
-                            <div class="module">
-                                <div class="module-head">
-                                    <h3>damares86 Admin Dashboard</h3>
-                                    
+
+                    <!-- Page Heading -->
+                    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                        <h1 class="h3 mb-0 text-gray-800">Mini Cms Dashboard</h1>
+                    </div>
+
+                    
+                    <!-- Content Row -->
+
+                    
+                    <!-- Content Row -->
+                    <div class="row">
+
+                        <!-- Content Column -->
+                        <div class="col-lg-8 mb-4">
+
+                            <!-- Project Card Example -->
+                            <div class="card shadow mb-4">
+                                <div class="card-header py-3">
+                                    <h6 class="m-0 font-weight-bold text-primary">Welcome</h6>
                                 </div>
-                                <div class="module-body">
-                                <?php
-                                require "inc/alert.php";
-                                ?>
-                                    <section class="docs">
-                                        <p>Welcome <b><?=$user?></b> to you Admin Dashboard Area.</p>
-                                        <p>Below you have some quick links to manage the reserved area.</p><br>
-                                        <p>Here there are two buttons to change your username and password:<br><br>
-                                        <a href="index.php?man=admin&type=name" class="btn btn-primary">Change Username</a> 
-                                        <a href="index.php?man=admin&type=psw" class="btn btn-primary">Change Password</a>
-                                        </p>
-                                    </section>
+                                <div class="card-body">
+                                <p>Welcome <b><?=$user?></b> to your Mini Cms Admin Dashboard.</p>
+                                        <p>Here you have some quick links to manage your website.</p><br>
                                 </div>
                             </div>
 
-                            <div class="btn-controls">
-                                <div class="btn-box-row row-fluid">
-                                    <a href="index.php?man=users&op=show" class="btn-box big span6"><i class="icon-user"></i><b><?= $usersCount ?></b>
-                                        <p class="text-muted">
-                                            Users</p>
-                                    </a><a href="index.php?man=files&op=show" class="btn-box big span6"><i class=" icon-folder-open"></i><b><?= $filesCount ?></b>
-                                        <p class="text-muted">
-                                           Files</p>
-                                    </a>
-                                </div>
-                                <div class="module">
-                                    <div class="module-head">
-                                        <h3>Quick links</h3>
-                                        
+                            <!-- Color System -->
+                            <div class="row">
+                            <div class="col-xl-4 col-md-6 mb-4">
+                            <div class="card border-left-primary shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                                Users</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800"><?=$total_user?></div>
+                                        </div>
+                                        <div class="col-auto">
+                                            <i class="fas fa-users fa-2x text-gray-300"></i>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="btn-box-row row-fluid">
-                                    <a href="index.php?man=users&op=add" class="btn-box small span3">
-                                        <i class="icon-plus"></i><b>Add User</b>
-                                    </a>
-                                    <a href="index.php?man=users&op=show" class="btn-box small span3">
-                                        <i class="icon-group"></i><b>Manage Users</b>
-                                    </a>
-                                    <a href="index.php?man=roles&op=show" class="btn-box small span3">
-                                        <i class="icon-key"></i><b>Manage Roles</b>
-                                    </a>
-                                    <a href="index.php?man=files&op=show" class="btn-box small span3">
-                                        <i class="icon-folder-open"></i><b>Manage Files</b>
-                                    </a>                                           
-                                </div>
-                                   
                             </div>
-                            <!--/.module-->
-                            <?php 
-                            }
-                            ?>
                         </div>
-                        <!--/.content-->
+
+                        <!-- Earnings (Monthly) Card Example -->
+                        <div class="col-xl-4 col-md-6 mb-4">
+                            <div class="card border-left-success shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                                Post</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800"><?=$total_post?></div>
+                                        </div>
+                                        <div class="col-auto">
+                                            <i class="fas fa-marker fa-2x text-gray-300"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <?php
+                        $settings=new Settings($db);
+                        $stmt = $settings->showSettings();
+                        while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
+        
+                            extract($row);
+                        ?>
+                             <!-- Earnings (Monthly) Card Example -->
+                        <div class="col-xl-4 col-md-6 mb-4">
+                            <div class="card border-left-info shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                                Your theme</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800"><?=$theme?></div>
+                                        </div>
+                                        <div class="col-auto">
+                                            <i class="fas fa-image fa-2x text-gray-300"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <?php
+                        }
+                        ?>
+
+                       
+                               
+                            </div>
+
+                        </div>
+
+                        <div class="col-lg-4 mb-4">
+
+                            <!-- Illustrations -->
+                            <div class="card shadow mb-4">
+                                <div class="card-header py-3">
+                                    <h6 class="m-0 font-weight-bold text-primary">Quick links</h6>
+                                </div>
+                                <div class="card-body"> 
+                                    <p>
+                                        <a href="https://minicms.altervista.org/" target="_blank">&rarr; Mini Cms</a>:
+                                        The official website of Mini Cms</p>
+                                    <p>
+                                        <a href="https://github.com/damares86/mini_cms" target="_blank">&rarr; GitHub</a>:
+                                        The GitHub repository of the project
+                                    </p>
+                                </div>
+                            </div>
+
+                         
+
+                        </div>
                     </div>
-                    <!--/.span9-->
+
+                <?php
+                            }
+                ?>
+                </div>
+                <!-- /.container-fluid -->
+
+            </div>
+            <!-- End of Main Content -->
+
+          <?php
+            require "inc/footer.php";
+          ?>
+
+        </div>
+        <!-- End of Content Wrapper -->
+
+    </div>
+    <!-- End of Page Wrapper -->
+
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+        <i class="fas fa-angle-up"></i>
+    </a>
+
+    <!-- Logout Modal-->
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                    <a class="btn btn-primary" href="core/logout.php">Logout</a>
                 </div>
             </div>
-            <!--/.container-->
         </div>
-        <!--/.wrapper-->
-            <!-- <div class="footer">
-                <div class="container">
-                    <b class="copyright">&copy; 2014 Edmin - EGrappler.com </b>All rights reserved.
-                </div>
-            </div> -->
-        <?php
-        require "inc/footer.php";
-        ?>
-      
-    </body>
+    </div>
+
+    <!-- Bootstrap core JavaScript-->
+    <script src="assets/vendor/jquery/jquery.min.js"></script>
+    <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script src="assets/vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="scripts/sb-admin-2.min.js"></script>
+
+    <!-- Page level plugins -->
+    <script src="assets/vendor/chart.js/Chart.min.js"></script>
+
+    <!-- Page level custom scripts -->
+    <script src="scripts/demo/chart-area-demo.js"></script>
+    <script src="scripts/demo/chart-pie-demo.js"></script>
+    
+    <script src="scripts/flot/jquery.flot.js" type="text/javascript"></script>
+    <script src="scripts/flot/jquery.flot.resize.js" type="text/javascript"></script>
+    <script src="scripts/datatables/jquery.dataTables.js" type="text/javascript"></script>
+    <script type="text/javascript" src="scripts/farbtastic/farbtastic.js"></script>
+    
+    <script src="scripts/common.js" type="text/javascript"></script>
+    	<script>
+   CKEDITOR.replace( 'editor', {
+    filebrowserBrowseUrl: 'ckfinder/ckfinder.html',
+    filebrowserUploadUrl: 'ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files'
+} );
+CKEDITOR.replace( 'editor2', {
+    filebrowserBrowseUrl: 'ckfinder/ckfinder.html',
+    filebrowserUploadUrl: 'ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files'
+} );
+CKEDITOR.replace( 'editor3', {
+    filebrowserBrowseUrl: 'ckfinder/ckfinder.html',
+    filebrowserUploadUrl: 'ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files'
+} );
+CKEDITOR.replace( 'editor4', {
+    filebrowserBrowseUrl: 'ckfinder/ckfinder.html',
+    filebrowserUploadUrl: 'ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files'
+} );
+CKEDITOR.replace( 'editor5', {
+    filebrowserBrowseUrl: 'ckfinder/ckfinder.html',
+    filebrowserUploadUrl: 'ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files'
+} );
+CKEDITOR.replace( 'editor6', {
+    filebrowserBrowseUrl: 'ckfinder/ckfinder.html',
+    filebrowserUploadUrl: 'ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files'
+} );
+
+</script>
+
+</body>
+
 </html>

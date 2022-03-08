@@ -1,11 +1,11 @@
 <?php
 
-require '../phpDebug/src/Debug/Debug.php';   			// if not using composer
+// require '../phpDebug/src/Debug/Debug.php';   			// if not using composer
 
-$debug = new \bdk\Debug(array(
-    'collect' => true,
-    'output' => true,
-));
+// $debug = new \bdk\Debug(array(
+//     'collect' => true,
+//     'output' => true,
+// ));
 
 
 
@@ -28,6 +28,11 @@ if (!isset($_SESSION['loggedin'])) {
 	$type = filter_input(INPUT_POST, "type");
 	
 	$user->id = $_POST['idToMod'];
+
+	if(!$_POST['password']){
+		header("Location: ../index.php?msg=pswEmpty");
+		exit;
+	}
 
 	$user->password = $_POST['password'];
 

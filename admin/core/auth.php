@@ -1,11 +1,11 @@
 <?php
 
-require '../phpDebug/src/Debug/Debug.php';   			// if not using composer
+// require '../phpDebug/src/Debug/Debug.php';   			// if not using composer
 
-$debug = new \bdk\Debug(array(
-    'collect' => true,
-    'output' => true,
-));
+// $debug = new \bdk\Debug(array(
+//     'collect' => true,
+//     'output' => true,
+// ));
 
 session_start();
 
@@ -56,7 +56,8 @@ if ($email_exists && password_verify($_POST['password'], $user->password)){
 // if username does not exist or password is wrong
 else{
     $access_denied=true;
-    print_r("ko");
+    header("Location: ../../login.php?msg=errUserPsw");
+    exit;
 }
 
   

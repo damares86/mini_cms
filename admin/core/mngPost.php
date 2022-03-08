@@ -1,11 +1,11 @@
 <?php
 
-require '../phpDebug/src/Debug/Debug.php';   			// if not using composer
+// require '../phpDebug/src/Debug/Debug.php';   			// if not using composer
 
-$debug = new \bdk\Debug(array(
-    'collect' => true,
-    'output' => true,
-));
+// $debug = new \bdk\Debug(array(
+//     'collect' => true,
+//     'output' => true,
+// ));
 
 
 
@@ -48,19 +48,22 @@ if(filter_input(INPUT_GET,"idToDel")){
 if(filter_input(INPUT_POST,"subReg")){
 
 	$operation=filter_input(INPUT_POST,"operation");
+	if(!$_POST['title']||!$_POST['editor']||!$_POST['editor2']||!$_POST['category_id']){
+		header("Location: ../index.php?man=post&op=show&msg=postEmpty");
+		exit;
+	}
 
 	if($operation=="add"){
-
 		//inserimento
 		$post->title=$_POST['title'];
-		$post->content=$_POST['editor'];
+		$post->summary=$_POST['editor'];
+		$post->content=$_POST['editor2'];
+		$post->category_id=$_POST['category_id'];
 			
 		// create the post
-		if($post->insert()){
-			header("Location: ../index.php?msg=postSucc");
-			exit;
-		
-		
+		if($post->insert()){			
+				header("Location: ../index.php?msg=postSucc");
+				exit;
 		}else{
 			header("Location: ../index.php?msg=postErr");
 			exit;
@@ -69,7 +72,9 @@ if(filter_input(INPUT_POST,"subReg")){
 			
 		// modifica post
 			$post->title=$_POST['title'];
-			$post->content=$_POST['editor'];
+			$post->summary=$_POST['editor'];
+			$post->content=$_POST['editor2'];
+			$post->category_id=$_POST['category_id'];
 			$post->id=$_POST['idToMod'];
 				
 			// update the post

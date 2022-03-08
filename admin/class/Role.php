@@ -49,7 +49,26 @@ class Role{
     }
 
 
-    function showAll(){
+    function showAll($from_record_num,$records_per_page){
+        //select all data
+        $query = "SELECT
+                    id, rolename
+                FROM
+                    " . $this->table_name . "
+                WHERE NOT
+                    rolename='Admin'
+                ORDER BY
+                    id
+                    LIMIT
+                    {$from_record_num}, {$records_per_page}";  
+  
+        $stmt = $this->conn->prepare( $query );
+        $stmt->execute();
+  
+        return $stmt;
+    }
+
+    function showAllList(){
         //select all data
         $query = "SELECT
                     id, rolename

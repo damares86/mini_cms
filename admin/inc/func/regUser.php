@@ -8,7 +8,7 @@ $idToMod="";
 
 if(filter_input(INPUT_GET,"idToMod")){
     $idToMod = filter_input(INPUT_GET,"idToMod");
-    $titoloForm="Edit User";
+    $titoloForm="User Management";
     $operation="mod";
 }
 
@@ -16,11 +16,22 @@ if(filter_input(INPUT_GET,"idToMod")){
 ?>
 
 
-<div class="module">
-    <div class="module-head">
-        <h3><?=$titoloForm?></h3>
-    </div>
-    <div class="module-body">
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
+                        <h1 class="h3 mb-0 text-gray-800"><?=$titoloForm?></h1>
+
+                    </div><div class="row">
+
+<!-- Content Column -->
+<div class="col-lg-12 mb-4">
+
+    <!-- Project Card Example -->
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary"> User data</h6>
+       
+
+        </div>
+        <div class="card-body">
 
         <form class="form-horizontal row-fluid" action="core/mngUser.php" method="POST" enctype="multipart/form-data">
         <input type="hidden" name="operation" value="<?=$operation?>" />
@@ -80,7 +91,7 @@ if(filter_input(INPUT_GET,"idToMod")){
                 <div class="controls">
                 <?php
 
-                    $stmt = $role->showAll();
+                    $stmt = $role->showAllList();
 
                     while($row_roles = $stmt->fetch(PDO::FETCH_ASSOC)){
                         extract($row_roles);
@@ -116,11 +127,12 @@ if(filter_input(INPUT_GET,"idToMod")){
 }
 
 ?>
-          
+          <br>
+          <br>
             <div class="control-group">
                 <div class="controls">
                    
-                    <input type="submit" class="btn btn-primary" name="subReg" value="Submit">
+                    <input type="submit" class="btn " name="subReg" value="Submit">
 
                 </div>
             </div>
@@ -128,16 +140,24 @@ if(filter_input(INPUT_GET,"idToMod")){
 
     </div>
 </div>
+</div>
 
 <?php
 
 if($operation=="mod"){
     ?>
-<div class="module">
-    <div class="module-head">
-        <h3>New User's Password</h3>
-    </div>
-    <div class="module-body">
+<!-- Content Column -->
+<div class="col-lg-12 mb-4">
+
+    <!-- Project Card Example -->
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">New user's password</h6>
+       
+
+        </div>
+        <div class="card-body">
+
         <form class="form-horizontal row-fluid" action="core/mngPass.php" method="POST" enctype="multipart/form-data">
             <div class="control-group">
                 <label class="control-label" for="password">Password</label>
@@ -157,7 +177,11 @@ if($operation=="mod"){
         </form>
     </div>
 </div>
+</div>
+
+
 <?php
 }
 
 ?>
+</div>

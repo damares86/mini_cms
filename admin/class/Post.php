@@ -8,9 +8,10 @@ class Post{
 
     public $id;
     public $title;
+    public $summary;
     public $content;
-    public $created;
     public $modified;
+    public $category_id;
 
     // constructor
     public function __construct($db){
@@ -19,23 +20,30 @@ class Post{
 
     // create new role record
     function insert(){
+        
         // insert query
         $query = "INSERT INTO
                     " . $this->table_name . "
                 SET
                     title = :title,
+                    summary = :summary,
                     content = :content,
+                    category_id = :category_id,
                     modified = NOW()";
     
         // prepare the query
         $stmt = $this->conn->prepare($query);
-    
+       
         // bind the values
         $stmt->bindParam(':title', $this->title);       
+        $stmt->bindParam(':summary', $this->summary);       
         $stmt->bindParam(':content', $this->content);       
+        $stmt->bindParam(':category_id', $this->category_id);       
+       
       
         // execute the query, also check if query was successful
         if($stmt->execute()){
+           
             return true;
 
         }else{
@@ -57,7 +65,9 @@ class Post{
                     " . $this->table_name . "
                 SET
                     title = :title,
+                    summary = :summary,
                     content = :content,
+                    category_name = :category_id,
                     modified = NOW()
                 WHERE
                     id = :id";
@@ -66,7 +76,9 @@ class Post{
      
         // bind the values
         $stmt->bindParam(':title', $this->title);
+        $stmt->bindParam(':summary', $this->summary);
         $stmt->bindParam(':content', $this->content); 
+        $stmt->bindParam(':category_id', $this->category_id);       
         $stmt->bindParam(':id', $this->id);
                 
       
@@ -81,15 +93,16 @@ class Post{
     
     }
 
-// DA CAPIRE
-    function showAll(){
+    function showAll($from_record_num, $records_per_page){
         //select all data
         $query = "SELECT
                     *
                 FROM
                     " . $this->table_name . "
                 ORDER BY
-                    id";  
+                    id
+                    LIMIT
+                    {$from_record_num}, {$records_per_page}";  
   
         $stmt = $this->conn->prepare( $query );
         $stmt->execute();
@@ -114,17 +127,33 @@ class Post{
         FROM " . $this->table_name . "
         WHERE id = ?
         LIMIT 0,1";
-  
+        
         $stmt = $this->conn->prepare( $query );
         $stmt->bindParam(1, $this->id);
         $stmt->execute();
-    
+        
         $row = $stmt->fetch(PDO::FETCH_ASSOC);
-    
+        
         $this->id = $row['id'];
         $this->title = $row['title'];
+        $this->summary = $row['summary'];
         $this->content = $row['content'];
+        $this->category_id = $row['category_id'];
         $this->modified = $row['modified'];
+    }
+
+    function showByCatId(){
+        $query = "SELECT *
+        FROM " . $this->table_name . "
+        WHERE category_id = ?";
+        $stmt = $this->conn->prepare( $query );
+        $stmt->bindParam(1, $this->category_id);
+        $stmt->execute();
+        
+        return $stmt;
+   
+    
+        
     }
 
  // delete the post
