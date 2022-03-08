@@ -11,8 +11,10 @@ session_start();
 // loading class
 
 if(!is_file('admin/class/Database.php')){
-    header("Location: admin/inc/dbdata.php");
+    require "admin/inc/dbdata.php";
     exit;
+    // header("Location: admin/inc/dbdata.php");
+    // exit;
 }
 
 spl_autoload_register('autoloader');
