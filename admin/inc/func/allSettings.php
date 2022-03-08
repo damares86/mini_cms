@@ -49,7 +49,7 @@
                             <label class="control-label" for="site_description">Site description</label>
                 <div class="controls">
 
-                    <input type="text" id="site_description" name="site_description" placeholder="Site description" class="span8" value="<?= $site_description ?>">
+                    <input type="text" id="site_description" name="site_descri$themeption" placeholder="Site description" class="span8" value="<?= $site_description ?>">
                         
                 </div>
             </div>
@@ -83,18 +83,15 @@
     <!-- Project Card Example -->
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">Site details</h6>
+            <h6 class="m-0 font-weight-bold text-primary">Menu configuration</h6>
         </div>
         <div class="card-body">
     <form class="form-horizontal row-fluid" action="core/mngSettings.php" method="POST" enctype="multipart/form-data">
        
         <div class="align-items-center pt-3 pb-2 mb-3 align-items-center">
-            <!-- <h6><a href="home.php"><-- Back to dashboard's home</h6></a> -->
-            <h1 class="h2 mx-auto text-center">Menu settings</h1>
-            
-        </div><br>
-        <h3><u>Page in menu</u></h3>
-
+       
+        <h3><b>Pages in menu</b></h3>
+<br>
         <table class="table">
             <thead>
                 <tr>
@@ -199,8 +196,11 @@
             </tbody>
         </table>
         <br><br>
-        <h3><u>Children without parent</u></h3>
-        <table class="table table-striped">
+        <div class="row">
+            <div class="col-md-6">
+            <h3><b>Children without parent</b></h3>
+            <br>
+            <table class="table table-striped">
 
             <thead>
                 <tr>
@@ -238,8 +238,10 @@
         ?>
                             </tbody>
         </table>
-        <br><br>
-        <h3><u>Page not in menu</u></h3>
+            </div>
+            <div class="col-md-6 border-left">
+            <h3><b>Page not in menu</b></h3>
+            <br>
         <table class="table table-striped">
 
             <thead>
@@ -266,6 +268,11 @@
         ?>
                             </tbody>
         </table>
+            </div>
+        </div>
+       
+        
+     
         <hr>
         <div class="control-group">
                 <div class="controls">

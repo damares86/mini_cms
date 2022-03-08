@@ -67,7 +67,7 @@
             <?php
             } 
 // } 
-$stmt = $colors->showAll($from_record_num, $records_per_page);
+$stmt1 = $colors->showAll($from_record_num, $records_per_page);
 $total_rows=$colors->countAll();
 
 
@@ -108,48 +108,45 @@ $total_rows=$colors->countAll();
 
 if($total_rows>0){
     ?>
+
+<div class="row">
+        <?php
+            while ($row1 = $stmt1->fetch(PDO::FETCH_ASSOC)){
         
-        <table class="table table-striped">
-            <thead>
-                <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Color</th>
-                    <th scope="col">HEX code</th>
-                    <th scope="col">Delete</th>
-                </tr>
-            </thead>
-            <tbody>
-            <?php
-            while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
-        
-                 extract($row);
+                 extract($row1);
+                 $colorValue="#000";
+                 if($color=="#000000"){
+                     $colorValue="#ffffff";
+                 }
        
             ?>
-            <tr>
-                <td><?=$id?></td>
-                <td style="background-color: <?=$color?>;" >
-                    
-                </td>
-                <td><?=$color?></td>
 
-      
-                       
-                        <td><a href="core/mngColor.php?idToDel=<?=$row["id"] ?>"><button type="button" class="btn btn-danger">Delete</button></a></td>
-                    </tr>
-                <?php
-                }
-                ?>
-
-
-            </tbody>
-        </table>
+         <div class="col-xl-3 col-md-4 mb-4">
+                            <div class="card shadow h-100 py-2" style="background-color: <?=$color?>;">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="h5 mb-0 font-weight-bold" style="color:<?=$colorValue?>;"><?=$color?></div>
+                                        </div>
+                                        <div class="col-auto">
+                                            <a href="core/mngColor.php?idToDel=<?=$row1["id"] ?>">
+                                                <i class="fas fa-trash fa-2x text-gray-300"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+       
         <?php
-        // paging buttons
-        include_once 'inc/paging.php';
+        // // paging buttons
+        // include_once 'inc/paging.php';
     }
-      
+    ?>
+</div>
+<?php
     // tell the user there are no products
-    else{
+}else{
         echo "<div class='alert alert-danger'>No role found.</div>";
     }
 

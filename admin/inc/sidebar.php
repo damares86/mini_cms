@@ -5,7 +5,6 @@
                 <div class="logo">
                     <img src="assets/img/logo.svg">
                 </div>
-                <div class="sidebar-brand-text mx-3">Mini Cms</div>
             </a>
 
             <!-- Divider -->

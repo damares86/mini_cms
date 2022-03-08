@@ -19,7 +19,7 @@
         <?php
                 
                 $menu->childof=$name;
-                $num=$menu->countChild();
+                $num=$menu->countChildInMenu();
                 if($num>0){
                 $stmt1=$menu->showAllChildInMenu();
                 ?>

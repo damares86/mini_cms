@@ -37,7 +37,7 @@ $user_id=$_SESSION['user_id'];
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
                 <?php
-                                //require "inc/alert.php";
+                                require "inc/alert.php";
                             
 
                             if($manage=="post"){
@@ -82,7 +82,7 @@ $user_id=$_SESSION['user_id'];
                         <h1 class="h3 mb-0 text-gray-800">Mini Cms Dashboard</h1>
                     </div>
 
-
+                    
                     <!-- Content Row -->
 
                     
@@ -99,7 +99,7 @@ $user_id=$_SESSION['user_id'];
                                 </div>
                                 <div class="card-body">
                                 <p>Welcome <b><?=$user?></b> to your Mini Cms Admin Dashboard.</p>
-                                        <p>Below you have some quick links to manage your website.</p><br>
+                                        <p>Here you have some quick links to manage your website.</p><br>
                                 </div>
                             </div>
 
@@ -111,11 +111,11 @@ $user_id=$_SESSION['user_id'];
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                                Earnings (Monthly)</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">$40,000</div>
+                                                Users</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800"><?=$total_user?></div>
                                         </div>
                                         <div class="col-auto">
-                                            <i class="fas fa-calendar fa-2x text-gray-300"></i>
+                                            <i class="fas fa-users fa-2x text-gray-300"></i>
                                         </div>
                                     </div>
                                 </div>
@@ -129,45 +129,43 @@ $user_id=$_SESSION['user_id'];
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                                                Earnings (Annual)</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">$215,000</div>
+                                                Post</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800"><?=$total_post?></div>
                                         </div>
                                         <div class="col-auto">
-                                            <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                                            <i class="fas fa-marker fa-2x text-gray-300"></i>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-
-                        <!-- Earnings (Monthly) Card Example -->
+                        <?php
+                        $settings=new Settings($db);
+                        $stmt = $settings->showSettings();
+                        while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
+        
+                            extract($row);
+                        ?>
+                             <!-- Earnings (Monthly) Card Example -->
                         <div class="col-xl-4 col-md-6 mb-4">
                             <div class="card border-left-info shadow h-100 py-2">
                                 <div class="card-body">
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Tasks
-                                            </div>
-                                            <div class="row no-gutters align-items-center">
-                                                <div class="col-auto">
-                                                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">50%</div>
-                                                </div>
-                                                <div class="col">
-                                                    <div class="progress progress-sm mr-2">
-                                                        <div class="progress-bar bg-info" role="progressbar"
-                                                            style="width: 50%" aria-valuenow="50" aria-valuemin="0"
-                                                            aria-valuemax="100"></div>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                                Your theme</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800"><?=$theme?></div>
                                         </div>
                                         <div class="col-auto">
-                                            <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
+                                            <i class="fas fa-image fa-2x text-gray-300"></i>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                        <?php
+                        }
+                        ?>
 
                        
                                
@@ -183,12 +181,13 @@ $user_id=$_SESSION['user_id'];
                                     <h6 class="m-0 font-weight-bold text-primary">Quick links</h6>
                                 </div>
                                 <div class="card-body"> 
-                                    <p>Add some quality, svg illustrations to your project courtesy of <a
-                                            target="_blank" rel="nofollow" href="https://undraw.co/">unDraw</a>, a
-                                        constantly updated collection of beautiful svg images that you can use
-                                        completely free and without attribution!</p>
-                                    <a target="_blank" rel="nofollow" href="https://undraw.co/">Browse Illustrations on
-                                        unDraw &rarr;</a>
+                                    <p>
+                                        <a href="https://minicms.altervista.org/" target="_blank">&rarr; Mini Cms</a>:
+                                        The official website of Mini Cms</p>
+                                    <p>
+                                        <a href="https://github.com/damares86/mini_cms" target="_blank">&rarr; GitHub</a>:
+                                        The GitHub repository of the project
+                                    </p>
                                 </div>
                             </div>
 

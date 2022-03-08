@@ -180,6 +180,26 @@ class Menu{
     }
 
 
+    public function countChildInMenu(){
+    
+        $query = "SELECT 
+            id 
+            FROM 
+            menu
+            WHERE childof = :childof and inmenu = 1";
+    
+        $stmt = $this->conn->prepare( $query );
+        $stmt->bindParam(':childof', $this->childof);       
+
+        $stmt->execute();
+    
+        $num = $stmt->rowCount();
+    
+        return $num;
+    }
+
+
+
     function showAllNotInMenu(){
         //select all data
         $query = "SELECT

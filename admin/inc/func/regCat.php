@@ -16,12 +16,17 @@ if(filter_input(INPUT_GET,"idToMod")){
 ?>
 
 
-<div class="module">
-    <div class="module-head">
-        <h3><?=$titoloForm?></h3>
-    </div>
-    <div class="module-body">
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
+                        <h1 class="h3 mb-0 text-gray-800"><?=$titoloForm?></h1>
 
+                    </div><div class="row">
+
+<!-- Content Column -->
+<div class="col-lg-12 mb-4">
+
+    <!-- Project Card Example -->
+    <div class="card shadow mb-4">
+        <div class="card-body">
         <form class="form-horizontal row-fluid" action="core/mngCat.php" method="POST" enctype="multipart/form-data">
         <input type="hidden" name="operation" value="<?=$operation?>" />
 
@@ -59,4 +64,5 @@ if(filter_input(INPUT_GET,"idToMod")){
 
     </div>
 </div>
-
+</div>
+</div>

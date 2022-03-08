@@ -16,7 +16,7 @@ if(filter_input(INPUT_GET,"idToMod")){
 ?>
 
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">Edit page</h1>
+                        <h1 class="h3 mb-0 text-gray-800"><?=$titoloForm?></h1>
 
                     </div><div class="row">
 
@@ -96,6 +96,7 @@ if(filter_input(INPUT_GET,"idToMod")){
             </div>
             <br>
             <br>
+            <h3>Block 1</h3>
 
             <textarea name="editor" id="editor" rows="10" cols="80">
             <?=$page->block1?>

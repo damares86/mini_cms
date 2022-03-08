@@ -33,14 +33,14 @@ if(filter_input(INPUT_GET,"idToDel")){
 	
 	// delete the role
 	if($colors->delete()){
-		header("Location: ../index.php?msg=colorDelSucc");
+		header("Location: ../index.php?man=color&op=show&msg=colorDelSucc");
 		exit;
 	
 		// empty posted values
 		// $_POST=array();
 	
 	}else{
-		header("Location: ../index.php?msg=colorDelErr");
+		header("Location: ../index.php?man=color&op=show&msg=colorDelErr");
 		exit;
 	}
 }
@@ -56,14 +56,14 @@ if(filter_input(INPUT_POST,"subReg")){
 	
 	// create the user
 	if($colors->create()){
-		header("Location: ../index.php?msg=colorSucc");
+		header("Location: ../index.php?man=color&op=show&msg=colorSucc");
 		exit;
 	
 		// empty posted values
 		// $_POST=array();
 	
 	}else{
-		header("Location: ../index.php?msg=colorErr");
+		header("Location: ../index.php?man=color&op=show&msg=colorErr");
 		exit;
 	}
 } else {

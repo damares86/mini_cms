@@ -28,8 +28,10 @@ $database = new Database();
 $db = $database->getConnection();
 
 $user = new User($db);
+$total_user=$user->countAll();
 $role = new Role($db);
 $post = new Post($db);
+$total_post=$post->countAll();
 $page = new Page($db);
 
 ?>
@@ -49,7 +51,7 @@ $page = new Page($db);
     <!-- Custom fonts for this template-->
     <script src="scripts/jquery-1.9.1.min.js" type="text/javascript"></script>
         <script src="scripts/jquery-ui-1.10.1.custom.min.js" type="text/javascript"></script>
-    <script src="assets/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+    <script src="assets/vendor/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
     <link href="assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -61,7 +63,7 @@ $page = new Page($db);
         <link rel="stylesheet" href="scripts/farbtastic/farbtastic.css" type="text/css" />
 
             <script src="https://cdn.ckeditor.com/4.11.2/standard/ckeditor.js"></script>
-         
+       
             <!-- Custom styles for this template-->
             <link href="assets/css/sb-admin-2.min.css" rel="stylesheet">
             <link href="assets/css/custom.css" rel="stylesheet">
