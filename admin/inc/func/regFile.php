@@ -1,9 +1,15 @@
 
-<div class="module">
-    <div class="module-head">
-        <h3>Add File</h3>
-    </div>
-    <div class="module-body">
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
+                        <h1 class="h3 mb-0 text-gray-800">Add file</h1>
+
+                    </div><div class="row">
+
+<!-- Content Column -->
+<div class="col-lg-12 mb-4">
+
+    <!-- Project Card Example -->
+    <div class="card shadow mb-4">
+        <div class="card-body">
   
        <form class="form-horizontal row-fluid" action="core/mngFile.php" method="POST" enctype="multipart/form-data">
         <input type="hidden" name="operation" value="add" />
@@ -23,45 +29,18 @@
                 </div>
                 
             </div>
-            <?php
-            $cat= new DocCategories($db);
-            $stmt = $cat->showAll();
-            $total_rows = $cat->countAll();
-            ?>
-            <div class="control-group">
-                <label class="control-label" for="category_id">Category</label>
-            <div class="controls">
             
-            <select name="category_id">
-                <?php
-               
-               
-                while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
-           
-                    extract($row);
-                  
-                    $selected = "";
-                    if ($id == $category_id) {
-                        $selected = "selected";
-                    }
-                    echo "<option value='{$id}' $selected>{$category_name}</option>";
-
-                }
-
-                ?>
-            </select>
-            </div>
-            </div>
-
+            
             <div class="control-group">
                 <div class="controls">
-                   
+                    
                     <input type="submit" class="btn btn-primary" name="subReg" value="Submit">
-
-                   
+                    
+                    
                 </div>
             </div>
         </form>
+    </div>
         </div>
 
     </div>

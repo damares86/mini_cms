@@ -33,14 +33,14 @@ if(filter_input(INPUT_GET,"idToDel")){
 	
 	// delete the role
 	if($post->delete()){
-		header("Location: ../index.php?msg=postDelSucc");
+		header("Location: ../index.php?man=post&op=show&msg=postDelSucc");
 		exit;
 	
 		// empty posted values
 		// $_POST=array();
 	
 	}else{
-		header("Location: ../index.php?msg=postDelErr");
+		header("Location: ../index.php?man=post&op=show&msg=postDelErr");
 		exit;
 	}
 }

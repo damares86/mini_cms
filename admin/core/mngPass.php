@@ -30,7 +30,7 @@ if (!isset($_SESSION['loggedin'])) {
 	$user->id = $_POST['idToMod'];
 
 	if(!$_POST['password']){
-		header("Location: ../index.php?msg=pswEmpty");
+		header("Location: ../index.php?man=users&op=show&msg=pswEmpty");
 		exit;
 	}
 
@@ -38,14 +38,14 @@ if (!isset($_SESSION['loggedin'])) {
 
 		// update the post
 		if($user->updatePass()){
-			header("Location: ../index.php?msg=userEditSucc");
+			header("Location: ../index.php?man=users&op=show&msg=userEditSucc");
 			exit;
 		
 			// empty posted values
 			// $_POST=array();
 		
 		}else{
-			header("Location: ../index.php?msg=userEditErr");
+			header("Location: ../index.php?man=users&op=show&msg=userEditErr");
 			exit;
 		}
 

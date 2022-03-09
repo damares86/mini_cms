@@ -40,14 +40,14 @@ if(filter_input(INPUT_POST,"subReg")){
 		
 		// update the settings
 		if($settings->update()){
-			header("Location: ../index.php?msg=setEditSucc");
+			header("Location: ../index.php?man=settings&msg=setEditSucc");
 			exit;
 		
 			// empty posted values
 			// $_POST=array();
 		
 		}else{
-			header("Location: ../index.php?msg=setEditErr");
+			header("Location: ../index.php?man=settings&msg=setEditErr");
 			exit;
 		}
 
@@ -57,14 +57,14 @@ if(filter_input(INPUT_POST,"subReg")){
 		
 		// update the settings
 		if($settings->updateTheme()){
-			header("Location: ../index.php?msg=setEditSucc");
+			header("Location: ../index.php?man=settings&msg=setEditSucc");
 			exit;
 		
 			// empty posted values
 			// $_POST=array();
 		
 		}else{
-			header("Location: ../index.php?msg=setEditErr");
+			header("Location: ../index.php?man=settings&msg=setEditErr");
 			exit;
 		}
 }else if(filter_input(INPUT_POST,"subMenu")) {

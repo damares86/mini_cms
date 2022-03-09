@@ -172,12 +172,17 @@ $db->query("CREATE TABLE IF NOT EXISTS page
 $db->query("CREATE TABLE IF NOT EXISTS menu
                             ( id INT ( 5 ) NOT NULL AUTO_INCREMENT PRIMARY KEY,
                               pagename VARCHAR(255) NOT NULL,
-                              inmenu VARCHAR(1) DEFAULT 'n',
+                              inmenu INT(1) DEFAULT '0',
                               itemorder INT ( 5 ) DEFAULT 0,
                               parent BOOLEAN DEFAULT 0,
                               childof VARCHAR(255) DEFAULT 'none')
                               ");
 
+$db->query("CREATE TABLE IF NOT EXISTS files
+                            ( id INT ( 5 ) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+                              filename VARCHAR(255) NOT NULL,
+                              title VARCHAR(255) NOT NULL)
+                              ");
 
 $db->query("CREATE TABLE IF NOT EXISTS color
                               ( id INT ( 5 ) NOT NULL AUTO_INCREMENT PRIMARY KEY,

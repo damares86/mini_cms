@@ -40,14 +40,14 @@ if(filter_input(INPUT_GET,"idToDel")){
 	if(unlink($filepath) || !file_exists(($filepath))){
 		if($page->delete()){
 
-			header("Location: ../index.php?msg=pageDelSucc");
+			header("Location: ../index.php?man=page&op=show&msg=pageDelSucc");
 			exit;
 		
 			// empty posted values
 			// $_POST=array();
 		
 		}else{
-			header("Location: ../index.php?msg=pageDelErr");
+			header("Location: ../index.php?man=page&op=show&msg=pageDelErr");
 			exit;
 		}
 	} else {
@@ -170,7 +170,7 @@ if(filter_input(INPUT_POST,"subReg")){
 			// $_POST=array();
 		
 		}else{
-			header("Location: ../index.php?msg=pageEditErr");
+			header("Location: ../index.php?man=page&op=show&msg=pageEditErr");
 			exit;
 		}
 
@@ -183,7 +183,7 @@ if(filter_input(INPUT_POST,"subReg")){
 
 
 } else {
-	echo "errore post";
+	header("Location: ../index.php?man=page&op=show&msg=pageEditErr");
 	exit;
 }
 

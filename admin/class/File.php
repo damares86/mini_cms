@@ -21,9 +21,7 @@ class File{
     function uploadFile(){
         
         if($this->filename){
-            ///////////////////////////////////////
-            // percorso da valutare
-            ///////////////////////////////////////
+            
             $target_directory = "../../uploads/";
             $target_file = $target_directory . $this->filename;
             $file_type = pathinfo($target_file, PATHINFO_EXTENSION);
@@ -67,8 +65,7 @@ class File{
                                 " . $this->table_name . "
                             SET
                             filename = :filename,
-                            title = :title,
-                            category_id = :category_id";
+                            title = :title";
                             
                             // prepare the query
                             $stmt = $this->conn->prepare($query);
@@ -80,19 +77,13 @@ class File{
                     // bind the values
                     $stmt->bindParam(':filename', $this->filename);
                     $stmt->bindParam(':title', $this->title);
-                    $stmt->bindParam(':category_id', $this->category_id);
                    
                     // execute the query, also check if query was successful
                     if($stmt->execute()){
-                        header("Location: ../index.php?man=partfiles&op=show&msg=fileSucc");
-                        exit;
-
-                        // return true;
+                        return true;
                     }else{
                         $this->showError($stmt);
-                        header("Location: ../index.php?man=partfiles&op=show&msg=fileErr");
-                        exit;
-                        // return false;
+                        return false;
                     }
 				
 				

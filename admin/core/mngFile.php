@@ -39,15 +39,15 @@ if(filter_input(INPUT_GET,"idToDel")){
 	
 	if(unlink($filepath) || !file_exists(($filepath))){
 		if($file->delete()){
-			header("Location: ../index.php?msg=fileDelSucc");
+			header("Location: ../index.php?man=files&op=show&msg=fileDelSucc");
 			exit;
 			
 		}else{
-			header("Location: ../index.php?msg=fileDelErr");
+			header("Location: ../index.php?man=files&op=show&msg=fileDelErr");
 			exit;
 		}
 	}else{
-		header("Location: ../index.php?msg=fileNotDel");
+		header("Location: ../index.php?man=files&op=show&msg=fileNotDel");
 		exit;
 	}
 }
@@ -56,85 +56,59 @@ if(filter_input(INPUT_POST,"subReg")){
 
 	$operation=filter_input(INPUT_POST,"operation");
 
-	if($operation=="bck"){
-				/* Get the name of the file uploaded to Apache */
-		$filename = $_FILES['file']['name'];
-
-
-		/* Prepare to save the file upload to the upload folder */
-		$location = "../../../uploaded/".$filename;
-	
-
-		/* Permanently save the file upload to the upload folder */
-		if ( move_uploaded_file($_FILES['file']['tmp_name'], $location) ) { 
-			header("Location: ../index.php?man=bckfiles&op=show&msg=bckFileSucc&name=$filename");
-			exit;
-		} else { 
-			header("Location: ../index.php?man=bckfiles&op=show&msg=bckFileErr");
-			exit;
-		}
-
-	}
-	
 	if((!$_POST['title'])){
-		header("Location: ../index.php?man=partfiles&op=show&msg=fileTitleEmpty");
+		header("Location: ../index.php?man=files&op=show&msg=fileTitleEmpty");
 		exit;
 	}
 	
-	if ($_FILES['myfile']['size'] == 0 && $_FILES['myfile']['error'] == 0){
-	// if(empty($_FILES['myfile'])){
-		header("Location: ../index.php?man=partfiles&op=show&msg=fileEmpty");
+	if ($_FILES['myfile']['size'] == 0 ){
+		header("Location: ../index.php?man=files&op=show&msg=fileEmpty");
 		exit;
 	}
 
 
 	if($operation=="add"){
 
-		//inserimento
-
-		// if($cat->catExists()){
-		// 	header("Location: ../index.php?msg=catExists");
-		// } else {
+		//insert
 
 			$file->file=$_FILES['myfile']['tmp_name'];
 			$file->title=$_POST['title'];
 			$file->filename=$_FILES['myfile']['name'];
-			$file->category_id=$_POST['category_id'];
 		
 		
 			// create the user
 			if($file->uploadFile()){
-				header("Location: ../index.php?msg=fileSucc");
+				header("Location: ../index.php?man=files&op=show&msg=fileSucc");
 				exit;
 			
 				// empty posted values
 				// $_POST=array();
 			
 			}else{
-				header("Location: ../index.php?msg=fileErr");
+				header("Location: ../index.php?man=files&op=show&msg=fileErr");
 				exit;
 			}
-		// }
-	} else if($operation=="mod"){
+		 }
+	// } else if($operation=="mod"){
 
-		$cat->id = $_POST['idToMod'];
+	// 	$cat->id = $_POST['idToMod'];
 
-		// update the post
-		if($cat->update()){
-			header("Location: ../index.php?msg=catEditSucc");
-			exit;
+	// 	// update the post
+	// 	if($cat->update()){
+	// 		header("Location: ../index.php?msg=catEditSucc");
+	// 		exit;
 		
-			// empty posted values
-			// $_POST=array();
+	// 		// empty posted values
+	// 		// $_POST=array();
 		
-		}else{
-			header("Location: ../index.php?msg=catEditErr");
-			exit;
-		}
+	// 	}else{
+	// 		header("Location: ../index.php?msg=catEditErr");
+	// 		exit;
+	// 	}
 
 
 
-	}
+	//}
 	
 
 
@@ -143,7 +117,7 @@ if(filter_input(INPUT_POST,"subReg")){
 
 
 } else {
-	echo "errore post";
+	header("Location: ../index.php?man=files&op=show&msg=fileErr");
 	exit;
 }
 

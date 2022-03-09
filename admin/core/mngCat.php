@@ -33,11 +33,11 @@ if(filter_input(INPUT_GET,"idToDel")){
 	
 	// delete the role
 	if($cat->delete()){
-		header("Location: ../index.php?msg=catDelSucc");
+		header("Location: ../index.php?man=cat&op=show&msg=catDelSucc");
 		exit;
 		
 	}else{
-		header("Location: ../index.php?msg=catDelErr");
+		header("Location: ../index.php?man=cat&op=show&msg=catDelErr");
 		exit;
 	}
 }
@@ -57,21 +57,21 @@ if(filter_input(INPUT_POST,"subReg")){
 		//inserimento
 
 		if($cat->catExists()){
-			header("Location: ../index.php?msg=catExists");
+			header("Location: ../index.php?man=cat&op=show&msg=catExists");
 		} else {
 
 			$cat->category_name=$_POST['category_name'];
 			
 			// create the user
 			if($cat->create()){
-				header("Location: ../index.php?msg=catSucc");
+				header("Location: ../index.php?man=cat&op=show&msg=catSucc");
 				exit;
 			
 				// empty posted values
 				// $_POST=array();
 			
 			}else{
-				header("Location: ../index.php?msg=catErr");
+				header("Location: ../index.php?man=cat&op=show&msg=catErr");
 				exit;
 			}
 		}
@@ -81,14 +81,14 @@ if(filter_input(INPUT_POST,"subReg")){
 
 		// update the post
 		if($cat->update()){
-			header("Location: ../index.php?msg=catEditSucc");
+			header("Location: ../index.php?man=cat&op=show&msg=catEditSucc");
 			exit;
 		
 			// empty posted values
 			// $_POST=array();
 		
 		}else{
-			header("Location: ../index.php?msg=catEditErr");
+			header("Location: ../index.php?man=cat&op=show&msg=catEditErr");
 			exit;
 		}
 
@@ -103,7 +103,7 @@ if(filter_input(INPUT_POST,"subReg")){
 
 
 } else {
-	echo "errore post";
+	header("Location: ../index.php?man=cat&op=show&msg=catEditErr");
 	exit;
 }
 
