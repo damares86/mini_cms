@@ -164,7 +164,7 @@ class User{
 
     public function countAll(){
     
-        $query = "SELECT id FROM accounts";
+        $query = "SELECT id FROM accounts WHERE NOT id=1";
     
         $stmt = $this->conn->prepare( $query );
         $stmt->execute();
