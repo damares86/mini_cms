@@ -223,13 +223,13 @@ VALUES ('1','index', '<p>This is your homepage</p>','none','#000000','', 'none',
 ");
 
 $db->query("INSERT INTO menu 
-(id, pagename, inmenu) 
-VALUES ('1','index', 'y')
+(id, pagename, inmenu,itemorder,parent,childof) 
+VALUES ('1','index', '0','0','1','none')
 ");
 
 $db->query("INSERT INTO menu 
-(id, pagename, inmenu) 
-VALUES ('2','Blog', 'y')
+(id, pagename, inmenu,itemorder,parent,childof) 
+VALUES ('2','Blog', '0','0','1','none')
 ");
 
 
