@@ -90,13 +90,13 @@ if(filter_input(INPUT_POST,"subReg")){
 
 		
 		$user->id = $_POST['idToMod'];
-
-		$roleArr=$_POST['rolename'];
-		$rolename=$roleArr[0];
-
+		if($user->id!=1){
+			$roleArr=$_POST['rolename'];
+			$rolename=$roleArr[0];
+			$user->rolename = $rolename;
+		}
 		$user->username = $_POST['username'];
 		$user->email = $_POST['email'];
-		$user->rolename = $rolename;
 
 		// update the post
 		if($user->update()){

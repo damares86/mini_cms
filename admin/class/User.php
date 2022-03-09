@@ -4,6 +4,7 @@ class User{
     
     private $conn;
     private $table_name = "accounts";
+    private $setRolename;
 
     public $id;
     public $username;
@@ -56,13 +57,15 @@ class User{
     }
 
     function update(){
+        if($this->rolename){
+            $this->setRolename=", rolename = :rolename";
+        }
         // insert query
         $query = "UPDATE
                     " . $this->table_name . "
                 SET
                     username = :username,
-                    email = :email,
-                    rolename = :rolename
+                    email = :email" . $this->setRolename . "
                 WHERE
                     id = :id";
     // prepare the query
@@ -71,7 +74,9 @@ class User{
         // bind the values
         $stmt->bindParam(':username', $this->username);
         $stmt->bindParam(':email', $this->email); 
-        $stmt->bindParam(':rolename', $this->rolename);
+        if($this->rolename){
+            $stmt->bindParam(':rolename', $this->rolename);
+        }
         $stmt->bindParam(':id', $this->id);
                 
       
