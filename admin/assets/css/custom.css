@@ -63,7 +63,7 @@ body{
     background-color: #fff;;
 }
 
-.form-horizontal .btn{
+.form-horizontal .btn.submit{
     background-color: #008db1;
     color:#fff;
 }

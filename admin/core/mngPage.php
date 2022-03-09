@@ -57,7 +57,6 @@ if(filter_input(INPUT_GET,"idToDel")){
 
 if(filter_input(INPUT_POST,"subReg")){
 	$operation=filter_input(INPUT_POST,"operation");
-
 	if(!$_POST['page_name']||!$_POST['editor']){
 		header("Location: ../index.php?man=page&op=show&msg=pageEmpty");
 		exit;
@@ -164,7 +163,7 @@ if(filter_input(INPUT_POST,"subReg")){
 
 		// update the page
 		if($page->update()){
-			header("Location: ../index.php?msg=pageEditSucc");
+			header("Location: ../index.php?man=page&op=show&msg=pageEditSucc");
 			exit;
 		
 			// empty posted values

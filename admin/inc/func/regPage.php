@@ -37,7 +37,7 @@ if(filter_input(INPUT_GET,"idToMod")){
            
             <br>
 
-        <form class="form-horizontal row-fluid" action="core/mngPage.php" method="post">
+        <form id="postForm" class="form-horizontal row-fluid" action="core/mngPage.php" method="post" onsubmit="return postForm()">
         <input type="hidden" name="operation" value="<?= $operation ?>" />
                 <?php 
       
@@ -98,9 +98,7 @@ if(filter_input(INPUT_GET,"idToMod")){
             <br>
             <h3>Block 1</h3>
 
-            <textarea name="editor" id="editor" rows="10" cols="80">
-            <?=$page->block1?>
-            </textarea>
+            <textarea id="summernote" name="editor" rows="10">   <?=$page->block1?></textarea>
             <br>
             <div class="control-group">
             <label for="block1_bg">Background color</label>
@@ -181,9 +179,7 @@ if(filter_input(INPUT_GET,"idToMod")){
             
             <br>
             <h3>Block 2</h3>
-            <textarea name="editor2" id="editor2" rows="10" cols="80">
-            <?=$page->block2?>
-            </textarea>
+            <textarea id="summernote2" name="editor2" rows="10">   <?=$page->block2?></textarea>
 
             <br>
 
@@ -262,9 +258,7 @@ if(filter_input(INPUT_GET,"idToMod")){
             
             <br>
             <h3>Block 3</h3>
-            <textarea name="editor3" id="editor3" rows="10" cols="80">
-            <?=$page->block3?>
-            </textarea>
+            <textarea id="summernote3" name="editor3" rows="10">   <?=$page->block3?></textarea>
 
             <br>
             <div class="control-group">
@@ -341,9 +335,7 @@ if(filter_input(INPUT_GET,"idToMod")){
         ?>
             <br>
             <h3>Block 4</h3>
-            <textarea name="editor4" id="editor4" rows="10" cols="80">
-            <?=$page->block4?>
-            </textarea>
+            <textarea id="summernote4" name="editor4" rows="10">   <?=$page->block4?></textarea>
 
             <br>
             <div class="control-group">
@@ -418,9 +410,7 @@ if(filter_input(INPUT_GET,"idToMod")){
         ?>
             <br>
             <h3>Block 5</h3>
-            <textarea name="editor5" id="editor5" rows="10" cols="80">
-            <?=$page->block5?>
-            </textarea>
+            <textarea id="summernote5" name="editor5" rows="10">   <?=$page->block5?></textarea>
 
             <br>
             <div class="control-group">
@@ -495,9 +485,7 @@ if(filter_input(INPUT_GET,"idToMod")){
         ?>
             <br>
             <h3>Block 6</h3>
-            <textarea name="editor6" id="editor6" rows="10" cols="80">
-            <?=$page->block6?>
-            </textarea>
+            <textarea id="summernote6" name="editor6" rows="10">   <?=$page->block6?></textarea>
 
             <br>
             <div class="control-group">

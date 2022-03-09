@@ -1,11 +1,11 @@
 <?php
 
-// require '../phpDebug/src/Debug/Debug.php';   			// if not using composer
+require '../phpDebug/src/Debug/Debug.php';   			// if not using composer
 
-// $debug = new \bdk\Debug(array(
-//     'collect' => true,
-//     'output' => true,
-// ));
+$debug = new \bdk\Debug(array(
+    'collect' => true,
+    'output' => true,
+));
 
 
 
@@ -62,31 +62,32 @@ if(filter_input(INPUT_POST,"subReg")){
 			
 		// create the post
 		if($post->insert()){			
-				header("Location: ../index.php?msg=postSucc");
+				header("Location: ../index.php?man=post&op=show&msg=postSucc");
 				exit;
 		}else{
-			header("Location: ../index.php?msg=postErr");
+			header("Location: ../index.php?man=post&op=show&msg=postErr");
 			exit;
 		}
 	} else if($operation=="mod"){
-			
+	
 		// modifica post
-			$post->title=$_POST['title'];
-			$post->summary=$_POST['editor'];
-			$post->content=$_POST['editor2'];
-			$post->category_id=$_POST['category_id'];
-			$post->id=$_POST['idToMod'];
-				
+		$post->title=$_POST['title'];
+		$post->summary=$_POST['editor'];
+		$post->content=$_POST['editor2'];
+		$post->category_id=$_POST['category_id'];
+		$post->id=$_POST['idToMod'];
+		
+		
 			// update the post
 			if($post->update()){
-				header("Location: ../index.php?msg=postEditSucc");
+				header("Location: ../index.php?man=post&op=show&msg=postEditSucc");
 				exit;
 			
 				// empty posted values
 				// $_POST=array();
 			
 			}else{
-				header("Location: ../index.php?msg=postEditErr");
+				header("Location: ../index.php?msg=man=post&op=show&postEditErr");
 				exit;
 			}
 

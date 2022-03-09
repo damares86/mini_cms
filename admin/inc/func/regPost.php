@@ -25,7 +25,7 @@ if(filter_input(INPUT_GET,"idToMod")){
     <!-- Project Card Example -->
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-        <form class="form-horizontal row-fluid" action="core/mngPost.php" method="post">
+        <form id="postForm" class="form-horizontal row-fluid" action="core/mngPost.php" method="post"  onsubmit="return postForm()">
         <input type="hidden" name="operation" value="<?= $operation ?>" />
                 <?php 
         $post->id = $idToMod;
@@ -78,15 +78,15 @@ if(filter_input(INPUT_GET,"idToMod")){
             </div>
             <br>
             <h4>Summary</h4>
-            <textarea name="editor" id="editor" rows="10" cols="80">
-                <?=$post->summary?>
+            <textarea id="summernote" name="editor" rows="10">
+                <?=$post->summary?>        
             </textarea>
             
             <br>
 
             <h4>Content</h4>
-            <textarea name="editor2" id="editor2" rows="10" cols="80">
-            <?=$post->content?>
+            <textarea id="summernote2" name="editor2" rows="10">
+                <?=$post->content?>        
             </textarea>
             <br>
                  <input type="submit" class="btn btn-primary" name="subReg" value="Submit">

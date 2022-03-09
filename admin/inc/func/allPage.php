@@ -46,6 +46,7 @@
                 <tr>
                     <th scope="col">#</th>
                     <th scope="col">Page Name</th>
+                    <th scope="col">Page link</th>
                     <th scope="col">Edit</th>
                     <th scope="col">Delete</th>
                 </tr>
@@ -59,6 +60,13 @@
             <tr>
                 <td><?=$id?></td>
                 <td><?=$page_name?></td>
+                <?php
+                    $str=$page_name;
+                    $str = preg_replace('/\s+/', '_', $str);
+
+                    $str = strtolower($str);
+                ?>
+                <td><a href="../<?=$str?>.php">View</a></td>
                 <td>
                 <a href="index.php?man=page&op=edit&idToMod=<?=$row["id"]?>" class="btn btn-warning btn-icon-split">
                             <span class="icon text-white-50">

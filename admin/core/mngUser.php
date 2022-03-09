@@ -115,7 +115,7 @@ if(filter_input(INPUT_POST,"subReg")){
 	
 
 } else {
-	echo "errore post";
+	header("Location: ../index.php?msg=userErr");
 	exit;
 }
 
