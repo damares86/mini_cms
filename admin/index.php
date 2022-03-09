@@ -53,7 +53,11 @@ $user_id=$_SESSION['user_id'];
                                     require "inc/func/regUser.php";
                                 }
                             } else if($manage=="files"){
+                                if($operation=="show")
                                  require "inc/func/allFile.php";
+                                else if($operation=="add"){
+                                 require "inc/func/regFile.php";
+                                }
                             }else if($manage=="settings"){
                                 require "inc/func/allSettings.php";
                             }else if($manage=="cat"){
@@ -249,13 +253,6 @@ $user_id=$_SESSION['user_id'];
 
     <!-- Custom scripts for all pages-->
     <script src="scripts/sb-admin-2.min.js"></script>
-
-    <!-- Page level plugins -->
-    <script src="assets/vendor/chart.js/Chart.min.js"></script>
-
-    <!-- Page level custom scripts -->
-    <script src="scripts/demo/chart-area-demo.js"></script>
-    <script src="scripts/demo/chart-pie-demo.js"></script>
     
     <script src="scripts/flot/jquery.flot.js" type="text/javascript"></script>
     <script src="scripts/flot/jquery.flot.resize.js" type="text/javascript"></script>
@@ -263,34 +260,52 @@ $user_id=$_SESSION['user_id'];
     <script type="text/javascript" src="scripts/farbtastic/farbtastic.js"></script>
     
     <script src="scripts/common.js" type="text/javascript"></script>
-    	<script>
-   CKEDITOR.replace( 'editor', {
-    filebrowserBrowseUrl: 'ckfinder/ckfinder.html',
-    filebrowserUploadUrl: 'ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files'
-} );
-CKEDITOR.replace( 'editor2', {
-    filebrowserBrowseUrl: 'ckfinder/ckfinder.html',
-    filebrowserUploadUrl: 'ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files'
-} );
-CKEDITOR.replace( 'editor3', {
-    filebrowserBrowseUrl: 'ckfinder/ckfinder.html',
-    filebrowserUploadUrl: 'ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files'
-} );
-CKEDITOR.replace( 'editor4', {
-    filebrowserBrowseUrl: 'ckfinder/ckfinder.html',
-    filebrowserUploadUrl: 'ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files'
-} );
-CKEDITOR.replace( 'editor5', {
-    filebrowserBrowseUrl: 'ckfinder/ckfinder.html',
-    filebrowserUploadUrl: 'ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files'
-} );
-CKEDITOR.replace( 'editor6', {
-    filebrowserBrowseUrl: 'ckfinder/ckfinder.html',
-    filebrowserUploadUrl: 'ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files'
-} );
 
+<script src="scripts/summernote/summernote.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function() {
+	$('#summernote').summernote({
+		height: "300px",
+		styleWithSpan: false
+	});
+
+$('#summernote2').summernote({
+		height: "300px",
+		styleWithSpan: false
+	});
+
+$('#summernote3').summernote({
+		height: "300px",
+		styleWithSpan: false
+	});
+
+$('#summernote4').summernote({
+		height: "300px",
+		styleWithSpan: false
+	});
+
+$('#summernote5').summernote({
+		height: "300px",
+		styleWithSpan: false
+	});
+
+$('#summernote6').summernote({
+		height: "300px",
+		styleWithSpan: false
+	});
+});
+
+function postForm() {
+
+	$('textarea[name="editor"]').html($('#summernote').code());
+	$('textarea[name="editor2"]').html($('#summernote2').code());
+	$('textarea[name="editor3"]').html($('#summernote3').code());
+	$('textarea[name="editor4"]').html($('#summernote4').code());
+	$('textarea[name="editor5"]').html($('#summernote5').code());
+	$('textarea[name="editor6"]').html($('#summernote6').code());
+}
 </script>
-
 </body>
 
 </html>

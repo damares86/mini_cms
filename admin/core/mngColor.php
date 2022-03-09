@@ -67,8 +67,8 @@ if(filter_input(INPUT_POST,"subReg")){
 		exit;
 	}
 } else {
-	echo "errore post";
-	exit;
+	header("Location: ../index.php?man=color&op=show&msg=colorErr");
+		exit;
 }
 
 

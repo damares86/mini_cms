@@ -63,7 +63,8 @@ $page = new Page($db);
         <link rel="stylesheet" href="scripts/farbtastic/farbtastic.css" type="text/css" />
 
             <script src="https://cdn.ckeditor.com/4.11.2/standard/ckeditor.js"></script>
-       
+            <link href="scripts/summernote/summernote.css" rel="stylesheet">
+
             <!-- Custom styles for this template-->
             <link href="assets/css/sb-admin-2.min.css" rel="stylesheet">
             <link href="assets/css/custom.css" rel="stylesheet">

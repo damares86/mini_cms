@@ -40,14 +40,14 @@ if(filter_input(INPUT_GET,"idToDel")){
 	if(unlink($filepath) || !file_exists(($filepath))){
 		if($page->delete()){
 
-			header("Location: ../index.php?msg=pageDelSucc");
+			header("Location: ../index.php?man=page&op=show&msg=pageDelSucc");
 			exit;
 		
 			// empty posted values
 			// $_POST=array();
 		
 		}else{
-			header("Location: ../index.php?msg=pageDelErr");
+			header("Location: ../index.php?man=page&op=show&msg=pageDelErr");
 			exit;
 		}
 	} else {
@@ -57,7 +57,6 @@ if(filter_input(INPUT_GET,"idToDel")){
 
 if(filter_input(INPUT_POST,"subReg")){
 	$operation=filter_input(INPUT_POST,"operation");
-
 	if(!$_POST['page_name']||!$_POST['editor']){
 		header("Location: ../index.php?man=page&op=show&msg=pageEmpty");
 		exit;
@@ -164,14 +163,14 @@ if(filter_input(INPUT_POST,"subReg")){
 
 		// update the page
 		if($page->update()){
-			header("Location: ../index.php?msg=pageEditSucc");
+			header("Location: ../index.php?man=page&op=show&msg=pageEditSucc");
 			exit;
 		
 			// empty posted values
 			// $_POST=array();
 		
 		}else{
-			header("Location: ../index.php?msg=pageEditErr");
+			header("Location: ../index.php?man=page&op=show&msg=pageEditErr");
 			exit;
 		}
 
@@ -184,7 +183,7 @@ if(filter_input(INPUT_POST,"subReg")){
 
 
 } else {
-	echo "errore post";
+	header("Location: ../index.php?man=page&op=show&msg=pageEditErr");
 	exit;
 }
 

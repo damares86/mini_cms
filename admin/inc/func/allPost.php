@@ -45,6 +45,7 @@
                 <tr>
                     <th scope="col">#</th>
                     <th scope="col">Title</th>
+                    <th scope="col">Post Link</th>
                     <th scope="col">Category</th>
                     <th scope="col">Modified</th>
                     <th scope="col">Edit</th>
@@ -61,11 +62,15 @@
                  $cat->showById();
                                  
                  $category_name= $cat->category_name;
+
+                 $post_title= preg_replace('/\s+/', '_', $title);
+                 $post_title = strtolower($post_title);
        
             ?>
             <tr>
                 <td><?=$id?></td>
                 <td><?=$title?></td>
+                <td><a href="../post.php?id=<?=$id?>&title=<?=$post_title?>">View</a></td>
                 <td><?=$category_name?></td>
                 <td><?=$modified?></td>
                 <td>

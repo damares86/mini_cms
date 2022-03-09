@@ -55,7 +55,7 @@
             }
             ?>
             <li class="nav-item">
-                <a class="nav-link" href="index.php?man=files">
+                <a class="nav-link" href="index.php?man=files&op=show">
                     <i class="fas fa-fw fa-folder-open"></i>
                     <span>Files</span></a>
             </li>

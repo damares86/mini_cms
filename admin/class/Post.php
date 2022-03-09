@@ -64,23 +64,23 @@ class Post{
         $query = "UPDATE
                     " . $this->table_name . "
                 SET
-                    title = :title,
-                    summary = :summary,
-                    content = :content,
-                    category_name = :category_id,
-                    modified = NOW()
+                title = :title,
+                summary = :summary,
+                content = :content,
+                category_id = :category_id,
+                modified = NOW()
                 WHERE
-                    id = :id";
-    // prepare the query
-        $stmt = $this->conn->prepare($query);
-     
-        // bind the values
-        $stmt->bindParam(':title', $this->title);
-        $stmt->bindParam(':summary', $this->summary);
-        $stmt->bindParam(':content', $this->content); 
-        $stmt->bindParam(':category_id', $this->category_id);       
-        $stmt->bindParam(':id', $this->id);
+                id = :id";
+                // prepare the query
+                $stmt = $this->conn->prepare($query);
                 
+                // bind the values
+                $stmt->bindParam(':title', $this->title);
+                $stmt->bindParam(':summary', $this->summary);
+                $stmt->bindParam(':content', $this->content); 
+                $stmt->bindParam(':category_id', $this->category_id);       
+                $stmt->bindParam(':id', $this->id);
+                    
       
         // execute the query, also check if query was successful
         if($stmt->execute()){
