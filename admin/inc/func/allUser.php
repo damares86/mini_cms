@@ -109,7 +109,7 @@ if($total_rows>0){
       
     // tell the user there are no products
     else{
-        echo "<div class='alert alert-danger'>No products found.</div>";
+        echo "<div class='alert alert-danger'>No user found.</div>";
     }
 
 

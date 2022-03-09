@@ -35,14 +35,14 @@ if(filter_input(INPUT_GET,"idToDel")){
 	
 	// delete the role
 	if($user->delete()){
-		header("Location: ../index.php?man=user&op=show&msg=userDelSucc");
+		header("Location: ../index.php?man=users&op=show&msg=userDelSucc");
 		exit;
 	
 		// empty posted values
 		// $_POST=array();
 	
 	}else{
-		header("Location: ../index.php?man=user&op=show&msg=userDelErr");
+		header("Location: ../index.php?man=users&op=show&msg=userDelErr");
 		exit;
 	}
 }
@@ -55,14 +55,14 @@ if(filter_input(INPUT_POST,"subReg")){
 	if($operation=="add"){
 	//inserimento
 		if(!$_POST['email']||!$_POST['username']||!$_POST['password']||!$_POST['rolename']){
-			header("Location: ../index.php?man=user&op=show&msg=userEmpty");
+			header("Location: ../index.php?man=users&op=show&msg=userEmpty");
 			exit;
 		}
 
 		$user->email=$_POST['email'];
 
 		if($user->emailExists()){
-			header("Location: ../index.php?man=user&op=show&msg=mailExists");
+			header("Location: ../index.php?man=users&op=show&msg=mailExists");
 		} else {
 
 			$roleArr=$_POST['rolename'];
@@ -77,12 +77,12 @@ if(filter_input(INPUT_POST,"subReg")){
 			
 			// create the user
 			if($user->create()){
-				header("Location: ../index.php?man=user&op=show&msg=userSucc");
+				header("Location: ../index.php?man=users&op=show&msg=userSucc");
 				exit;
 			
 			
 			}else{
-				header("Location: ../index.php?man=user&op=show&msg=userErr");
+				header("Location: ../index.php?man=users&op=show&msg=userErr");
 				exit;
 			}
 		}
@@ -100,14 +100,14 @@ if(filter_input(INPUT_POST,"subReg")){
 
 		// update the post
 		if($user->update()){
-			header("Location: ../index.php?man=user&op=show&msg=userEditSucc");
+			header("Location: ../index.php?man=users&op=show&msg=userEditSucc");
 			exit;
 		
 			// empty posted values
 			// $_POST=array();
 		
 		}else{
-			header("Location: ../index.php?man=user&op=show&msg=userEditErr");
+			header("Location: ../index.php?man=users&op=show&msg=userEditErr");
 			exit;
 		}
 		
@@ -115,7 +115,7 @@ if(filter_input(INPUT_POST,"subReg")){
 	
 
 } else {
-	header("Location: ../index.php?man=user&op=show&msg=userErr");
+	header("Location: ../index.php?man=users&op=show&msg=userErr");
 	exit;
 }
 
