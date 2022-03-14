@@ -79,6 +79,10 @@
                     <i class="fas fa-fw fa-tags"></i>
                     <span>Categories</span></a>
             </li>
+            
+            <!-- Divider -->
+            <hr class="sidebar-divider">
+            
             <?php
             if($_SESSION['rolename']!="Contributor"){
             ?>
