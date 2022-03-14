@@ -78,10 +78,11 @@ if($total_rows>0){
                                 <i class="fas fa-trash"></i>
                             </span>
                             <span class="text">Delete</span>
-                        </a>
+                        </a>    
                     
                         </td>
                     </tr>
+
                 <?php
                 }
                 ?>
@@ -104,4 +105,4 @@ if($total_rows>0){
       </div>
     </div>
 </div>
-</div>
+</div>  

@@ -245,7 +245,7 @@ $user_id=$_SESSION['user_id'];
     </div>
 
     <!-- Bootstrap core JavaScript-->
-    <script src="assets/vendor/jquery/jquery.min.js"></script>
+    <!-- <script src="assets/vendor/jquery/jquery.min.js"></script> -->
     <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
     <!-- Core plugin JavaScript-->
@@ -257,11 +257,11 @@ $user_id=$_SESSION['user_id'];
     <script src="scripts/flot/jquery.flot.js" type="text/javascript"></script>
     <script src="scripts/flot/jquery.flot.resize.js" type="text/javascript"></script>
     <script src="scripts/datatables/jquery.dataTables.js" type="text/javascript"></script>
-    <script type="text/javascript" src="scripts/farbtastic/farbtastic.js"></script>
+    <!-- <script type="text/javascript" src="scripts/farbtastic/farbtastic.js"></script> -->
     
     <script src="scripts/common.js" type="text/javascript"></script>
 
-<script src="scripts/summernote/summernote.min.js"></script>
+<!-- <script src="scripts/summernote/summernote.min.js"></script> -->
 
 <script type="text/javascript">
 $(document).ready(function() {
