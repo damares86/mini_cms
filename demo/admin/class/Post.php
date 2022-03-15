@@ -4,7 +4,7 @@ class Post{
 
 
     private $conn;
-    private $table_name = "post";
+    private $table_name = "t_post";
 
     public $id;
     public $title;
@@ -112,7 +112,7 @@ class Post{
 
     public function countAll(){
     
-        $query = "SELECT id FROM post";
+        $query = "SELECT id FROM t_post";
     
         $stmt = $this->conn->prepare( $query );
         $stmt->execute();

@@ -4,7 +4,7 @@ class Page{
 
 
     private $conn;
-    private $table_name = "page";
+    private $table_name = "t_page";
     private $setParam2;
     private $setParam3;
     private $setParam4;
@@ -116,7 +116,7 @@ class Page{
         // execute the query, also check if query was successful
         if($stmt->execute()){
 
-            $query1="INSERT INTO menu SET pagename = :page_name";
+            $query1="INSERT INTO t_menu SET pagename = :page_name";
             $stmt1 = $this->conn->prepare($query1);
             $stmt1->bindParam(':page_name', $this->page_name);       
             if($stmt1->execute()){
@@ -244,7 +244,7 @@ class Page{
         $query = "SELECT
                     *
                 FROM
-                    menu
+                t_menu
                 WHERE
                 inmenu = 'y' ORDER BY itemorder ASC";  
   
@@ -257,7 +257,7 @@ class Page{
 
     public function countAll(){
     
-        $query = "SELECT id FROM page";
+        $query = "SELECT id FROM t_page";
     
         $stmt = $this->conn->prepare( $query );
         $stmt->execute();
@@ -350,7 +350,7 @@ class Page{
 
     if($result = $stmt->execute()){
         
-        $query1 = "DELETE FROM menu WHERE id = ?";
+        $query1 = "DELETE FROM t_menu WHERE id = ?";
     
         $stmt1 = $this->conn->prepare($query1);
         $stmt1->bindParam(1, $this->id);

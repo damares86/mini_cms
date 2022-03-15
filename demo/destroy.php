@@ -11,31 +11,20 @@ if(session_status() == PHP_SESSION_ACTIVE){
  session_destroy();
 }
 
+if(is_file("admin/class/Database.php")){
 
 include ("admin/class/Database.php");
 $database=new Database();
 $db = $database->getConnection();
 
-// $query = "DROP TABLE t_accounts, t_categories, t_color, t_files, t_menu, t_page, t_post, t_roles, t_settings";
 $query = "DROP TABLE `t_accounts`, `t_categories`, `t_color`, `t_files`, `t_menu`, `t_page`, `t_post`, `t_roles`, `t_settings`";
         
 $stmt = $database->conn->prepare($query);
 
-if($stmt->execute()){
-    // print_r("db ok");
-    // exit;
-}else{
-    // print_r("db ko");
-    // exit;
-}
+$stmt->execute();
 
 
-if(unlink("admin/class/Database.php")){
-    // print_r("file ok");
-    // exit;
-}else{
-    // print_r("file ko");
-    // exit;
+unlink("admin/class/Database.php");
 }
 
 header("Location: index.php");

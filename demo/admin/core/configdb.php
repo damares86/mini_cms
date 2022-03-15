@@ -16,16 +16,16 @@ Mini Cms is a project by damares86 (https://github.com/damares86/mini_cms)
 */
 
 
-if(!$_POST['dbname']||!$_POST['username']||!$_POST['db_password']||!$_POST['host']||!$_POST['email']||!$_POST['password']){
+if(!$_POST['email']||!$_POST['password']){
   header("Location: ../inc/dbdata.php?err=missing");
   exit;
 } 
 
 if(!is_file('../class/Database.php')){
-  $db_name=filter_input(INPUT_POST,"dbname");
-  $username=filter_input(INPUT_POST,"username");
-  $db_password=filter_input(INPUT_POST,"db_password");
-  $host=filter_input(INPUT_POST,"host");
+  $db_name="my_minicms";
+  $username="minicms";
+  $db_password="Salomon-86";
+  $host="localhost";
   $file_handle = fopen('../class/Database.php', 'w');
   fwrite($file_handle, '<?php');
   fwrite($file_handle, "\n");

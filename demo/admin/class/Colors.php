@@ -4,7 +4,7 @@ class Colors{
 
 
     private $conn;
-    private $table_name = "color";
+    private $table_name = "t_color";
 
     public $id;
     public $color;
@@ -110,7 +110,7 @@ class Colors{
 
     public function countAll(){
     
-        $query = "SELECT id FROM color";
+        $query = "SELECT id FROM t_color";
     
         $stmt = $this->conn->prepare( $query );
         $stmt->execute();

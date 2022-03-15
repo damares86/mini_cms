@@ -3,7 +3,7 @@
 class Settings{
     
     private $conn;
-    private $table_name = "settings";
+    private $table_name = "t_settings";
 
     public $id;
     public $site_name;
