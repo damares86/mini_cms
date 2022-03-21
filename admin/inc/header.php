@@ -34,6 +34,8 @@ $post = new Post($db);
 $total_post=$post->countAll();
 $page = new Page($db);
 
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en">

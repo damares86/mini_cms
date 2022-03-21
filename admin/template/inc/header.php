@@ -71,8 +71,13 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
         <link rel="icon" href="assets/<?= $theme ?>/img/favicon.ico">
         <?php
           
-            $page->page_name=$page_class;
+            if($page_class=="index"){
+                $page->page_name=$page_class;
+            }else{
+                $page->page_name=$page_name;
+            }
             $stmt1=$page->showByName();
+            $img=$page->img;
 
 
         ?>

@@ -149,6 +149,7 @@ $db->query("CREATE TABLE IF NOT EXISTS page
                             ( id INT ( 5 ) NOT NULL AUTO_INCREMENT PRIMARY KEY,
                               page_name VARCHAR(255) NOT NULL,
                               layout VARCHAR(255) NOT NULL DEFAULT 'default',
+                              img VARCHAR(255) NOT NULL DEFAULT 'visual.jpg',
                               block1 text COLLATE utf8_unicode_ci NOT NULL,
                               block1_bg VARCHAR(255) DEFAULT 'none',
                               block1_text VARCHAR(255) DEFAULT '#000000',
@@ -213,7 +214,7 @@ VALUES ('1','admin', '". $password_hash ."','". $user_email ."','Admin')
 
 $db->query("INSERT INTO settings
 (id, site_name, site_description,dashboard_language,theme)
-VALUES ('1','Mini Cms', 'Description of your website','en','damares')
+VALUES ('1','Mini Cms', 'Create your own website','en','damares')
 ");
 
 
