@@ -299,10 +299,10 @@ class Menu{
  function delete(){
     
   
-    $query = "DELETE FROM menu WHERE id = ?";
+    $query = "DELETE FROM menu WHERE pagename = :pagename";
 
     $stmt = $this->conn->prepare($query);
-    $stmt->bindParam(1, $this->id);
+    $stmt->bindParam(":pagename",$this->pagename);
     if($stmt->execute()){
         return true;
     }else{

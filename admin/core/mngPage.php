@@ -18,12 +18,14 @@ if (!isset($_SESSION['loggedin'])) {
 	// loading class
 	include("../class/Database.php");
 	include("../class/Page.php");
+	include("../class/Menu.php");
 
 
 	$database = new Database();
 	$db = $database->getConnection();
 
 	$page = new Page($db);
+	$menu = new Menu($db);
 
 if(filter_input(INPUT_GET,"idToDel")){
 	
@@ -31,6 +33,7 @@ if(filter_input(INPUT_GET,"idToDel")){
 	
 	$page->id=$idToDel;
 	$page->showById();
+	$menu->pagename=$page->page_name;
 
 	$str=$page->page_name;
 	$str = preg_replace('/\s+/', '_', $str);
@@ -39,13 +42,10 @@ if(filter_input(INPUT_GET,"idToDel")){
 
 	if(unlink($filepath) || !file_exists(($filepath))){
 		if($page->delete()){
-
+			$menu->delete();
 			header("Location: ../index.php?man=page&op=show&msg=pageDelSucc");
 			exit;
-		
-			// empty posted values
-			// $_POST=array();
-		
+
 		}else{
 			header("Location: ../index.php?man=page&op=show&msg=pageDelErr");
 			exit;
