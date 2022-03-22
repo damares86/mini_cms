@@ -215,15 +215,19 @@ class Page{
       
         // execute the query, also check if query was successful
         if($stmt->execute()){
-            $query1="SELECT img FROM ".$this->table_name." WHERE pagename = :page_name";
+            $query1="SELECT * FROM ".$this->table_name." WHERE page_name = :page_name LIMIT 0,1";
             $stmt1 = $this->conn->prepare($query1);
-            $stmt1->bindParam(':page_name', $this->page_name);    
+            $stmt1->bindParam(':page_name', $this->page_name);       
             $stmt1->execute();
-            $row = $stmt1->fetch(PDO::FETCH_ASSOC);
-            $actualImage=$row['img'];
+            $row1 = $stmt1->fetch(PDO::FETCH_ASSOC);
+            $actualImage=$row1['img'];
             if(($this->img)==$actualImage){
-               return true;
+               // header
+            //    print_r("uguali");
+            //    exit;
             }else{
+                // print_r("ok");
+                // exit;
                 $this->uploadPhoto();
                 return true;
             }
@@ -243,6 +247,8 @@ class Page{
             $target_directory = "../../assets/".$this->theme."/img/";
             $target_file = $target_directory . $this->img;
             if(!file_exists($target_file)){
+                // print_r("ok");
+                // exit;
                 $file_type = pathinfo($target_file, PATHINFO_EXTENSION);
                 $file_upload_error_messages="";
                 
@@ -281,33 +287,30 @@ class Page{
                     
                     if (move_uploaded_file($file, $target_file)) {
                         chmod($target_file, 0777);
-                        $query = "UPDATE
-                                    " . $this->table_name . "
-                                SET
-                                img = :img
-                                WHERE page_name = :page_name";
-                                
-                                // prepare the query
-                                $stmt = $this->conn->prepare($query);
+                        
+                    }
+                }
+            }
+            $query2 = "UPDATE " . $this->table_name . "
+                        SET
+                        img = :img
+                        WHERE page_name = :page_name";
+                        
+                        // prepare the query
+                        $stmt2 = $this->conn->prepare($query2);
                                 
                             
                     
                         // bind the values
-                        $stmt->bindParam(':img', $this->img);
-                        $stmt->bindParam(':page_name', $this->page_name);    
+                        $stmt2->bindParam(':img', $this->img);
+                        $stmt2->bindParam(':page_name', $this->page_name);    
                     
                         // execute the query, also check if query was successful
-                        if($stmt->execute()){
+                        if($stmt2->execute()){
                             return true;
                         }else{
-                            $this->showError($stmt);
                             return false;
                         }
-                    }
-                }
-            } else {
-                return true;
-            }
 				
 				
                 } else {
