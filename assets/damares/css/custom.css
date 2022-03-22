@@ -5,7 +5,6 @@
 
 #banner{
 	overflow: hidden; 
-    background-image: url(../img/visual.jpg);
     background-size: cover;
 	background-position: center;
 	color:#fff;

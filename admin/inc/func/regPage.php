@@ -12,6 +12,8 @@ if(filter_input(INPUT_GET,"idToMod")){
     $titoloForm="Edit page";
     $operation="mod";
 }
+$settings = new Settings ($db);
+$stmt = $settings->showSettings();
 
 ?>
 
@@ -37,7 +39,7 @@ if(filter_input(INPUT_GET,"idToMod")){
            
             <br>
 
-        <form id="postForm" class="form-horizontal row-fluid" action="core/mngPage.php" method="post" onsubmit="return postForm()">
+        <form id="postForm" class="form-horizontal row-fluid" action="core/mngPage.php" method="post" onsubmit="return postForm()"  enctype="multipart/form-data">
         <input type="hidden" name="operation" value="<?= $operation ?>" />
                 <?php 
       
@@ -96,6 +98,36 @@ if(filter_input(INPUT_GET,"idToMod")){
             </div>
             <br>
             <br>
+
+            <?php
+$img=$page->img;
+$page_theme="";
+
+while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
+
+     extract($row);
+
+     $page_theme=$theme;
+     if(!($page->img)){
+         $img="visual.jpg";
+     }
+?>
+            <div class="control-group">
+                <label class="control-label" for="file">Visual image</label>
+                <div class="controls">
+                    <input type="file" id="myfile" name="myfile">
+                    <br><br>
+                    Actual image: <img src="../assets/<?=$theme?>/img/<?=$img?>"  style="max-width:200px;">
+                </div>
+            </div>
+            <br>
+            <br>
+            <?php
+}
+
+?>
+<input type="hidden" name="theme" value="<?= $page_theme ?>" />
+
             <h3>Block 1</h3>
 
             <textarea id="summernote" name="editor" rows="10">   <?=$page->block1?></textarea>

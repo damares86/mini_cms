@@ -1,0 +1,45 @@
+{
+	"name": "bdk/debug",
+	"description": "Browser/javascript like console class for PHP",
+	"keywords": ["debug", "chromelogger", "debugging", "firephp", "var_dump", "inspect", "errorhandler", "phpdebugconsole", "logger", "PSR-3"],
+	"homepage": "http://github.com/bkdotcom/PHPDebugConsole",
+	"license": "MIT",
+	"authors": [
+		{
+			"name": "Brad Kent",
+			"email": "bkfake-github@yahoo.com",
+			"homepage": "http://www.bradkent.com/",
+			"role": "Developer"
+		}
+	],
+	"autoload": {
+		"classmap": [
+			"src/Debug/Debug.php",
+			"src/ErrorHandler/ErrorHandler.php"
+		],
+		"psr-4": {
+			"bdk\\Debug\\": "src/Debug/",
+			"bdk\\ErrorHandler\\": "src/ErrorHandler/",
+			"bdk\\PubSub\\": "src/PubSub/"
+		}
+	},
+	"autoload-dev": {
+		"classmap": ["tests"]
+	},
+	"replace": {
+		"bdk/errorhandler": "2.3.1",
+		"bdk/pubsub": "2.3"
+	},
+	"require": {
+		"php": ">=5.4.0"
+	},
+	"require-dev": {
+		"bdk/css-xpath": "^1.0",
+		"psr/log": "^1.0"
+	},
+	"suggest": {
+		"bdk/wamp-publisher": "Publish messages to a WAMP (Web Application Messaging Protocol) router",
+		"bdk/debug-wamp-client": "Client to display logging published via PHPDebugConsole's WAMP plugin",
+		"psr/log": "PSR-3 : Common interface for logging libraries"
+	}
+}
