@@ -53,7 +53,7 @@ $page = new Page($db);
     <!-- Custom fonts for this template-->
     <script src="scripts/jquery-1.9.1.min.js" type="text/javascript"></script> <!-- per le modali -->
         <script src="scripts/jquery-ui-1.10.1.custom.min.js" type="text/javascript"></script>
-    <script src="assets/vendor/bootstrap/js/bootstrap.min.js" type="t   ext/javascript"></script>
+    <script src="assets/vendor/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
     <link href="assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -70,11 +70,19 @@ $page = new Page($db);
             <!-- Custom styles for this template-->
             <!-- <link href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet">-->
            
-            <!-- <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>per summernote -->
+            <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
             <!-- <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script> -->
+
             <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
             <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script> 
             <link href="assets/css/sb-admin-2.min.css" rel="stylesheet">
             <link href="assets/css/custom.css" rel="stylesheet">
+            <script>
+    $(document).ready(function(){
+        $(".btn").click(function(){
+            $("#myModal").modal('show');
+        });
+    });
+</script>
 
 </head>
