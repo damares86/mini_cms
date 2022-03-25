@@ -76,7 +76,7 @@
                         </a>   
                 <td>
                 <?php
-                if($page_name != "index" ){
+                if($page_name != "index" && $page_name != "Blog"  ){
                 ?>
                         <a href="#" class="btn btn-danger btn-icon-split" data-toggle="modal" data-target="#delete<?=$row['id']?>">
                             <span class="icon text-white-50">

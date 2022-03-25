@@ -280,27 +280,71 @@ $(document).ready(function() {
 	});
 
 $('#summernote2').summernote({
-       
+    toolbar: [
+     ['style', ['style','bold', 'italic', 'underline', 'clear']],
+     ['font', ['strikethrough', 'superscript', 'subscript']],
+     ['color', ['color']],
+     ['para', ['ul', 'ol', 'paragraph']],
+     ['insert', [ 'ajaxfileupload', 'link', 'video', 'table']],
+     ['misc', ['codeview']]
+   ],
+   dialogsInBody: true,
    height: "300px",
 		styleWithSpan: false,
 	});
 
 $('#summernote3').summernote({
+    toolbar: [
+     ['style', ['style','bold', 'italic', 'underline', 'clear']],
+     ['font', ['strikethrough', 'superscript', 'subscript']],
+     ['color', ['color']],
+     ['para', ['ul', 'ol', 'paragraph']],
+     ['insert', [ 'ajaxfileupload', 'link', 'video', 'table']],
+     ['misc', ['codeview']]
+   ],
+   dialogsInBody: true,
 		height: "300px",
 		styleWithSpan: false
 	});
 
 $('#summernote4').summernote({
+    toolbar: [
+     ['style', ['style','bold', 'italic', 'underline', 'clear']],
+     ['font', ['strikethrough', 'superscript', 'subscript']],
+     ['color', ['color']],
+     ['para', ['ul', 'ol', 'paragraph']],
+     ['insert', [ 'ajaxfileupload', 'link', 'video', 'table']],
+     ['misc', ['codeview']]
+   ],
+   dialogsInBody: true,
 		height: "300px",
 		styleWithSpan: false
 	});
 
 $('#summernote5').summernote({
+    toolbar: [
+     ['style', ['style','bold', 'italic', 'underline', 'clear']],
+     ['font', ['strikethrough', 'superscript', 'subscript']],
+     ['color', ['color']],
+     ['para', ['ul', 'ol', 'paragraph']],
+     ['insert', [ 'ajaxfileupload', 'link', 'video', 'table']],
+     ['misc', ['codeview']]
+   ],
+   dialogsInBody: true,
 		height: "300px",
 		styleWithSpan: false
 	});
 
 $('#summernote6').summernote({
+    toolbar: [
+     ['style', ['style','bold', 'italic', 'underline', 'clear']],
+     ['font', ['strikethrough', 'superscript', 'subscript']],
+     ['color', ['color']],
+     ['para', ['ul', 'ol', 'paragraph']],
+     ['insert', [ 'ajaxfileupload', 'link', 'video', 'table']],
+     ['misc', ['codeview']]
+   ],
+   dialogsInBody: true,
 		height: "300px",
 		styleWithSpan: false
 	});

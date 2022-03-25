@@ -142,29 +142,29 @@ class Page{
 
 
     function update(){
-        		
-        if($this->block2||$this->block2==NULL){
-            $this->setParam2 = ", block2 = :block2, block2_bg = :block2_bg, block2_text = :block2_text";
+        if($this->id!=2){
+            if($this->block2||$this->block2==NULL){
+                $this->setParam2 = ", block2 = :block2, block2_bg = :block2_bg, block2_text = :block2_text";
+                
+            } 
             
-        } 
-        
-        if($this->block3||$this->block3==NULL){
-            $this->setParam3 = ", block3 = :block3, block3_bg = :block3_bg, block3_text = :block3_text";
-        }
-        
-        if($this->block4||$this->block4==NULL){
-            $this->setParam4 = ", block4 = :block4, block4_bg = :block4_bg, block4_text = :block4_text";
-        }
+            if($this->block3||$this->block3==NULL){
+                $this->setParam3 = ", block3 = :block3, block3_bg = :block3_bg, block3_text = :block3_text";
+            }
+            
+            if($this->block4||$this->block4==NULL){
+                $this->setParam4 = ", block4 = :block4, block4_bg = :block4_bg, block4_text = :block4_text";
+            }
 
-        if($this->block5||$this->block5==NULL){
-            $this->setParam5 = ", block5 = :block5, block5_bg = :block5_bg, block5_text = :block5_text";
-        }
-        
-        if($this->block6||$this->block6==NULL){
-            $this->setParam6 = ", block6 = :block6, block6_bg = :block6_bg, block6_text = :block6_text";
-        }
+            if($this->block5||$this->block5==NULL){
+                $this->setParam5 = ", block5 = :block5, block5_bg = :block5_bg, block5_text = :block5_text";
+            }
+            
+            if($this->block6||$this->block6==NULL){
+                $this->setParam6 = ", block6 = :block6, block6_bg = :block6_bg, block6_text = :block6_text";
+            }
 
-        $query = "UPDATE
+            $query = "UPDATE
                     " . $this->table_name . "
                 SET
                 layout = :layout,
@@ -212,30 +212,47 @@ class Page{
                 }
                 $stmt->bindParam(':id', $this->id);       
                
-      
-        // execute the query, also check if query was successful
-        if($stmt->execute()){
-            $query1="SELECT * FROM ".$this->table_name." WHERE page_name = :page_name LIMIT 0,1";
-            $stmt1 = $this->conn->prepare($query1);
-            $stmt1->bindParam(':page_name', $this->page_name);       
-            $stmt1->execute();
-            $row1 = $stmt1->fetch(PDO::FETCH_ASSOC);
-            $actualImage=$row1['img'];
-            if(($this->img)==$actualImage){
-               // header
-            //    print_r("uguali");
-            //    exit;
-            }else{
-                // print_r("ok");
-                // exit;
-                $this->uploadPhoto();
+        
+            // execute the query, also check if query was successful
+            if($stmt->execute()){
+                $query1="SELECT * FROM ".$this->table_name." WHERE page_name = :page_name LIMIT 0,1";
+                $stmt1 = $this->conn->prepare($query1);
+                $stmt1->bindParam(':page_name', $this->page_name);       
+                $stmt1->execute();
+                $row1 = $stmt1->fetch(PDO::FETCH_ASSOC);
+                $actualImage=$row1['img'];
+                if(($this->img)==$actualImage){
+                    return true;
+                }else{
+                    if($this->uploadPhoto()){
+                        return true;
+                    }else{
+                        return false;
+                    }
+                }
                 return true;
-            }
-            return true;
 
-        }else{
-            $this->showError($stmt);
-            return false;
+            }else{
+                $this->showError($stmt);
+                return false;
+            }
+        } else {
+            $query1="SELECT * FROM ".$this->table_name." WHERE page_name = :page_name LIMIT 0,1";
+                $stmt1 = $this->conn->prepare($query1);
+                $stmt1->bindParam(':page_name', $this->page_name);       
+                $stmt1->execute();
+                $row1 = $stmt1->fetch(PDO::FETCH_ASSOC);
+                $actualImage=$row1['img'];
+                if(($this->img)==$actualImage){
+                    return true;
+                }else{
+                    if($this->uploadPhoto()){
+                        return true;
+                    }else{
+                        return false;
+                    }
+                }
+                
         }
     
     }

@@ -109,11 +109,11 @@ var phpUploadFile = 'core/fileUpload.php'; // location of the php file that will
       // some basic styling for this is in attached css file.
       this.initialize = function() {
         this.$panel = $('<div class="ajaxfileupload-panel"><div id="ajaxFileUploadInner"><div id="ajaxPanelClose">+</div><div id="fileUploadGroup"><label>Choose image to upload: </label><br /><input type="file" id="file" name="file"  /></div><div id="ajaxFileUploadSubmit">Upload</div></div></div>').css({
-          position: 'absolute',
+          position: 'fixed',
           width: 400,
           height: 200,
-          left: '50%',
-          top: '20%',
+          right: '30%',
+          top: '30%',
           background: 'white'
         }).hide();
 
