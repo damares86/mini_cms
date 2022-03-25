@@ -48,10 +48,22 @@ if(filter_input(INPUT_GET,"idToDel")){
 if(filter_input(INPUT_POST,"subReg")){
 
 	$operation=filter_input(INPUT_POST,"operation");
-	if(!$_POST['title']||!$_POST['editor']||!$_POST['editor2']||!$_POST['category_id']){
+
+	$editor = preg_replace('/\s+/', '', $_POST['editor']);
+	$editor2 = preg_replace('/\s+/', '', $_POST['editor2']);
+
+	if(!$_POST['title']||empty($editor)||empty($editor2)){
+		header("Location: ../index.php?man=post&op=show&msg=postTitleEmpty");
+		exit;
+	}
+
+	if(empty($editor)||empty($editor2)){
 		header("Location: ../index.php?man=post&op=show&msg=postEmpty");
 		exit;
 	}
+
+
+
 
 	if($operation=="add"){
 		//inserimento

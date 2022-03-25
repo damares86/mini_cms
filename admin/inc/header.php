@@ -74,15 +74,17 @@ $page = new Page($db);
             <!-- <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script> -->
 
             <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
+            <link href="assets/css/summernote-ajaxfileupload.css" rel="stylesheet">  
             <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script> 
+            <script src="scripts/summernote-ext-ajaxfileupload.js"></script>
             <link href="assets/css/sb-admin-2.min.css" rel="stylesheet">
             <link href="assets/css/custom.css" rel="stylesheet">
             <script>
-    $(document).ready(function(){
-        $(".btn").click(function(){
-            $("#myModal").modal('show');
-        });
-    });
+    // $(document).ready(function(){
+    //     $(".btn").click(function(){
+    //         $("#myModal").modal('show');
+    //     });
+    // });
 </script>
 
 </head>

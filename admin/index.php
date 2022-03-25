@@ -266,13 +266,23 @@ $user_id=$_SESSION['user_id'];
 <script type="text/javascript">
 $(document).ready(function() {
 	$('#summernote').summernote({
+        toolbar: [
+     ['style', ['style','bold', 'italic', 'underline', 'clear']],
+     ['font', ['strikethrough', 'superscript', 'subscript']],
+     ['color', ['color']],
+     ['para', ['ul', 'ol', 'paragraph']],
+     ['insert', [ 'ajaxfileupload', 'link', 'video', 'table']],
+     ['misc', ['codeview']]
+   ],
+   dialogsInBody: true,
 		height: "300px",
 		styleWithSpan: false
 	});
 
 $('#summernote2').summernote({
-		height: "300px",
-		styleWithSpan: false
+       
+   height: "300px",
+		styleWithSpan: false,
 	});
 
 $('#summernote3').summernote({
@@ -294,6 +304,8 @@ $('#summernote6').summernote({
 		height: "300px",
 		styleWithSpan: false
 	});
+
+ 
 });
 
 function postForm() {

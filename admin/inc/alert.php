@@ -250,11 +250,19 @@ if($msg=="userDelSucc"){
     </div>
 
     <?php    
+} else if($msg=="postTitleEmpty"){
+    ?>
+    <div class="alert alert-danger">
+        <button type="button" class="close" data-dismiss="alert">x</button>
+        Post title missing
+    </div>
+
+    <?php    
 } else if($msg=="postEmpty"){
     ?>
     <div class="alert alert-danger">
         <button type="button" class="close" data-dismiss="alert">x</button>
-        Post error: something missing
+        Post error: you have to fill both summary and content
     </div>
 
     <?php    

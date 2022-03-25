@@ -57,10 +57,15 @@ if(filter_input(INPUT_GET,"idToDel")){
 
 if(filter_input(INPUT_POST,"subReg")){
 	$operation=filter_input(INPUT_POST,"operation");
-	if(!$_POST['page_name']||!$_POST['editor']){
+
+	$editor = preg_replace('/\s+/', '', $_POST['editor']);
+
+
+	if(!$_POST['page_name']||empty($editor)){
 		header("Location: ../index.php?man=page&op=show&msg=pageEmpty");
 		exit;
 	}
+
 
 	
 	if($operation=="add"){
