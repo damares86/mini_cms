@@ -74,7 +74,7 @@ $stmt = $settings->showSettings();
             
             <br>
             <?php
-                if($idToMod!=2){
+                if($idToMod!=2 && $idToMod!=3){
             ?>
             <div class="control-group">
                 <label class="control-label" for="layout">
@@ -135,7 +135,7 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
 <input type="hidden" name="theme" value="<?= $page_theme ?>" />
 
             <?php   
-                if($idToMod!=2){
+                if($idToMod!=2 && $idToMod!=3){
             ?>
             <h3>Block 1</h3>
 

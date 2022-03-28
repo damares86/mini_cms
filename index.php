@@ -66,6 +66,6 @@ require "admin/template/inc/header.php";
                 </div>
             </div>
 
-<?php
+            <?php
 require "admin/template/inc/footer.php";
 ?>

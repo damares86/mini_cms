@@ -25,6 +25,7 @@ $database = new Database();
 $db = $database->getConnection();
 
 $post = new Post($db);
+$user = new User($db);
 $page = new Page($db);
 $menu = new Menu($db);
 $settings = new Settings($db);
@@ -33,8 +34,16 @@ $stmt=$settings->showSettings();
 
 // prendo il nome del file (con estensione)
 $file = basename($_SERVER['PHP_SELF']);
+
 $page_name="";
 $page_class="";
+if($file=="login.php"){
+    if (isset($_SESSION['loggedin'])) {
+        header('Location: admin/');
+        exit;
+    }
+}
+
 if($file=="index.php"){
     $page_name="Home";
     $page_class = pathinfo($file, PATHINFO_FILENAME);

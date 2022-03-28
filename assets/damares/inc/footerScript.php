@@ -3,4 +3,5 @@
 			<script src="assets/<?=$theme?>/js/browser.min.js"></script>
 			<script src="assets/<?=$theme?>/js/breakpoints.min.js"></script>
 			<script src="assets/<?=$theme?>/js/util.js"></script>
+			<script src="assets/<?=$theme?>/js/my-login.js"></script>
 			<script src="assets/<?=$theme?>/js/main.js"></script>
