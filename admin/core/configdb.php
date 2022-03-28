@@ -219,8 +219,18 @@ VALUES ('1','Mini Cms', 'Create your own website','en','damares')
 
 
 $db->query("INSERT INTO page 
-(id, page_name, block1, block1_bg, block1_text,block2, block2_bg, block2_text,block3, block3_bg, block3_text,block4, block4_bg, block4_text, block5, block5_bg, block5_text, block6, block6_bg, block6_text) 
-VALUES ('1','index', '<p>This is your homepage</p>','none','#000000','', 'none','#000000', '', 'none','#000000','', 'none','#000000', '', 'none','#000000','', 'none','#000000')
+(id, page_name, layout, img, block1, block1_bg, block1_text,block2, block2_bg, block2_text,block3, block3_bg, block3_text,block4, block4_bg, block4_text, block5, block5_bg, block5_text, block6, block6_bg, block6_text) 
+VALUES ('1','index', 'default', 'visual.jpg', '<p>This is your homepage</p>','none','#000000','', 'none','#000000', '', 'none','#000000','', 'none','#000000', '', 'none','#000000','', 'none','#000000')
+");
+
+$db->query("INSERT INTO page 
+(id, page_name, layout, img, block1, block1_bg, block1_text,block2, block2_bg, block2_text,block3, block3_bg, block3_text,block4, block4_bg, block4_text, block5, block5_bg, block5_text, block6, block6_bg, block6_text) 
+VALUES ('2','Blog', 'default', 'visual.jpg', '','none','#000000','', 'none','#000000', '', 'none','#000000','', 'none','#000000', '', 'none','#000000','', 'none','#000000')
+");
+
+$db->query("INSERT INTO page 
+(id, page_name, layout, img, block1, block1_bg, block1_text,block2, block2_bg, block2_text,block3, block3_bg, block3_text,block4, block4_bg, block4_text, block5, block5_bg, block5_text, block6, block6_bg, block6_text) 
+VALUES ('3','Login', 'default', 'visual.jpg', '','none','#000000','', 'none','#000000', '', 'none','#000000','', 'none','#000000', '', 'none','#000000','', 'none','#000000')
 ");
 
 $db->query("INSERT INTO menu 
@@ -233,6 +243,17 @@ $db->query("INSERT INTO menu
 VALUES ('2','Blog', '0','0','1','none')
 ");
 
+$db->query("INSERT INTO menu 
+(id, pagename, inmenu,itemorder,parent,childof) 
+VALUES ('3','Login', '0','0','1','none')
+");
+
+$db->query("CREATE TABLE `password_reset_temp` (
+  `email` varchar(250) NOT NULL,
+  `keys` varchar(250) NOT NULL,
+  `expDate` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+");
 
 
 header("Location: ../index.php");

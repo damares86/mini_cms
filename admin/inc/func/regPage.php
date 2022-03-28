@@ -73,6 +73,9 @@ $stmt = $settings->showSettings();
             </div>
             
             <br>
+            <?php
+                if($idToMod!=2 && $idToMod!=3){
+            ?>
             <div class="control-group">
                 <label class="control-label" for="layout">
                     Choose page layout
@@ -97,6 +100,9 @@ $stmt = $settings->showSettings();
                 </div>
             </div>
             <br>
+            <?php
+                }
+            ?>
             <br>
 
             <?php
@@ -128,6 +134,9 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
 ?>
 <input type="hidden" name="theme" value="<?= $page_theme ?>" />
 
+            <?php   
+                if($idToMod!=2 && $idToMod!=3){
+            ?>
             <h3>Block 1</h3>
 
             <textarea id="summernote" name="editor" rows="10">   <?=$page->block1?></textarea>
@@ -211,7 +220,7 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
             
             <br>
             <h3>Block 2</h3>
-            <textarea id="summernote2" name="editor2" rows="10">   <?=$page->block2?></textarea>
+            <textarea id="summernote2" name="editor2" rows="10" class="summernote position-absolute">   <?=$page->block2?></textarea>
 
             <br>
 
@@ -577,7 +586,9 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
                 ?>
             </select>
             </div>
-
+            <?php
+                }
+            ?>
 
             <br>
                  <input type="submit" class="btn btn-primary" name="subReg" value="Submit">
