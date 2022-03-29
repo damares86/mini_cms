@@ -94,6 +94,9 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
 		<?php
 
             require "assets/".$theme."/inc/scripts.php";
+            if($file=="login.php"){
+                require "assets/".$theme."/inc/recaptcha.php";
+            }
         ?>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
 	</head>

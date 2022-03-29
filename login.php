@@ -51,7 +51,8 @@ require "admin/template/inc/header.php";
 										Password is required
 									</div>
 								</div>
-								
+								<input type="hidden" name="recaptcha_response" id="recaptchaResponse">
+
 								<br>
 
 								<div class="form-group m-0">

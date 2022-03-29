@@ -58,6 +58,22 @@ if($msg=="errSend"){
     </div>
 
     <?php    
-} else 
+} else if($msg=="errRecaptcha"){
+    ?>
+    <div class="alert alert-danger">
+        <button type="button" class="close" data-dismiss="alert">x</button>
+        Sorry, you don't seem reliable, please try again or contact us.
+    </div>
+
+    <?php    
+} else if($msg=="errPost"){
+    ?>
+    <div class="alert alert-danger">
+        <button type="button" class="close" data-dismiss="alert">x</button>
+        Error while trying to login
+    </div>
+
+    <?php    
+} else  
 
 ?>
