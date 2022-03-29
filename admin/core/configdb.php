@@ -245,12 +245,12 @@ VALUES ('2','Blog', '0','0','1','none')
 
 $db->query("INSERT INTO menu 
 (id, pagename, inmenu,itemorder,parent,childof) 
-VALUES ('3','Login', '0','0','1','none')
+VALUES ('3','Login', '1','0','1','none')
 ");
 
 $db->query("CREATE TABLE `password_reset_temp` (
-  `email` varchar(250) NOT NULL,
-  `keys` varchar(250) NOT NULL,
+  `email` varchar(250) NOT NULL PRIMARY KEY,
+  `token` varchar(250) NOT NULL,
   `expDate` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 ");

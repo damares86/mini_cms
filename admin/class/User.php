@@ -11,7 +11,7 @@ class User{
     public $password;
     public $rolename;
     public $email;
-    public $keys;
+    public $token;
     public $expDate;
 
     // constructor
@@ -122,19 +122,17 @@ class User{
     }
 
 
-    public function countKey(){
+    public function findToken(){
     
         $query = "SELECT * FROM password_reset_temp WHERE
-                keys = :keys,
-                email = :email";
+                ( email = :email AND token = :token)";
     
         $stmt = $this->conn->prepare( $query );
         $stmt->bindParam(':email', $this->email);
-        $stmt->bindParam(':keys', $this->keys);
+        $stmt->bindParam(':token', $this->token);
         $stmt->execute();
-    
-        $num = $stmt->rowCount();
-        return $num;
+        
+        return $stmt;
     }
 
     function showError($stmt){
