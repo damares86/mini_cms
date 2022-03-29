@@ -153,7 +153,7 @@ if(isset($_POST['idNoMenu'])){
 			$menu->inmenu=1;
 			$menu->itemorder=1;
 			$menu->parent=1;
-			$menu->childof="index";
+			$menu->childof="none";
 
 			$menu->update();
 		}

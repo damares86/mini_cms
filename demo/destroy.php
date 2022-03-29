@@ -1,11 +1,11 @@
 <?php
 
-require 'admin/phpDebug/src/Debug/Debug.php';   			// if not using composer
+// require 'admin/phpDebug/src/Debug/Debug.php';   			// if not using composer
 
-$debug = new \bdk\Debug(array(
-    'collect' => true,
-    'output' => true,
-));
+// $debug = new \bdk\Debug(array(
+//     'collect' => true,
+//     'output' => true,
+// ));
 
 if(session_status() == PHP_SESSION_ACTIVE){
  session_destroy();
@@ -17,7 +17,7 @@ include ("admin/class/Database.php");
 $database=new Database();
 $db = $database->getConnection();
 
-$query = "DROP TABLE `t_accounts`, `t_categories`, `t_color`, `t_files`, `t_menu`, `t_page`, `t_post`, `t_roles`, `t_settings`";
+$query = "DROP TABLE `t_accounts`, `t_categories`, `t_color`, `t_files`, `t_menu`, `t_page`, `t_post`, `t_roles`, `t_settings`, `t_password_reset_temp`";
         
 $stmt = $database->conn->prepare($query);
 

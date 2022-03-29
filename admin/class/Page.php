@@ -142,7 +142,7 @@ class Page{
 
 
     function update(){
-        if($this->id!=2){
+        if($this->id!=2 && $this->id!=3){
             if($this->block2||$this->block2==NULL){
                 $this->setParam2 = ", block2 = :block2, block2_bg = :block2_bg, block2_text = :block2_text";
                 
@@ -223,6 +223,7 @@ class Page{
                 $actualImage=$row1['img'];
                 if(($this->img)==$actualImage){
                     return true;
+                    
                 }else{
                     if($this->uploadPhoto()){
                         return true;

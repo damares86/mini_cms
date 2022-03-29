@@ -24,10 +24,14 @@ $user = new User($db);
 // Now we check if the data from the login form was submitted, isset() will check if the data exists.
 if ( !isset($_POST['email'], $_POST['password']) ) {
 	// Could not get the data that should have been sent.
-	exit('Please fill both the username and password fields!');
+    header("Location: ../../login.php?msg=errUserPsw");
+    exit;
 }
 
 $user->email=$_POST['email'];
+
+// $email = filter_var($email, FILTER_SANITIZE_EMAIL);
+// $email = filter_var($email, FILTER_VALIDATE_EMAIL);
 
 $email_exists=$user->emailExists();
 

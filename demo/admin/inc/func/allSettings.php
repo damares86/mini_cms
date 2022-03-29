@@ -3,9 +3,8 @@
 	$database = new Database();
 	$db = $database->getConnection();
 
-	$settings = new Settings ($db);
     $menu = new Menu($db);
-    
+    $settings = new Settings ($db);
     $stmt = $settings->showSettings();
 
 

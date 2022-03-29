@@ -7,8 +7,8 @@
 //     'output' => true,
 // ));
 
-// loading class
 session_start();
+// loading class
 
 if(!is_file('admin/class/Database.php')){
     header("Location: admin/inc/dbdata.php");
@@ -25,6 +25,7 @@ $database = new Database();
 $db = $database->getConnection();
 
 $post = new Post($db);
+$user = new User($db);
 $page = new Page($db);
 $menu = new Menu($db);
 $settings = new Settings($db);
@@ -33,8 +34,16 @@ $stmt=$settings->showSettings();
 
 // prendo il nome del file (con estensione)
 $file = basename($_SERVER['PHP_SELF']);
+
 $page_name="";
 $page_class="";
+if($file=="login.php"){
+    if (isset($_SESSION['loggedin'])) {
+        header('Location: admin/');
+        exit;
+    }
+}
+
 if($file=="index.php"){
     $page_name="Home";
     $page_class = pathinfo($file, PATHINFO_FILENAME);
@@ -71,8 +80,13 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
         <link rel="icon" href="assets/<?= $theme ?>/img/favicon.ico">
         <?php
           
-            $page->page_name=$page_class;
+            if($page_class=="index"){
+                $page->page_name=$page_class;
+            }else{
+                $page->page_name=$page_name;
+            }
             $stmt1=$page->showByName();
+            $img=$page->img;
 
 
         ?>

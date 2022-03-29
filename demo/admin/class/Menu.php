@@ -240,7 +240,7 @@ class Menu{
 
     public function countAll(){
     
-        $query = "SELECT id FROM menu";
+        $query = "SELECT id FROM t_menu";
     
         $stmt = $this->conn->prepare( $query );
         $stmt->execute();
@@ -299,10 +299,10 @@ class Menu{
  function delete(){
     
   
-    $query = "DELETE FROM t_menu WHERE id = ?";
+    $query = "DELETE FROM t_menu WHERE pagename = :pagename";
 
     $stmt = $this->conn->prepare($query);
-    $stmt->bindParam(1, $this->id);
+    $stmt->bindParam(":pagename",$this->pagename);
     if($stmt->execute()){
         return true;
     }else{

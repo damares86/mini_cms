@@ -11,6 +11,8 @@ class User{
     public $password;
     public $rolename;
     public $email;
+    public $token;
+    public $expDate;
 
     // constructor
     public function __construct($db){
@@ -119,6 +121,20 @@ class User{
     
     }
 
+
+    public function findToken(){
+    
+        $query = "SELECT * FROM t_password_reset_temp WHERE
+                ( email = :email AND token = :token)";
+    
+        $stmt = $this->conn->prepare( $query );
+        $stmt->bindParam(':email', $this->email);
+        $stmt->bindParam(':token', $this->token);
+        $stmt->execute();
+        
+        return $stmt;
+    }
+
     function showError($stmt){
         echo "<pre>";
             print_r($stmt->errorInfo());
@@ -161,6 +177,42 @@ class User{
         $this->email = $row['email'];
         $this->rolename = $row['rolename'];
     }
+
+    function showByEmail(){
+        $query = "SELECT *
+        FROM " . $this->table_name . "
+        WHERE email = :email
+        LIMIT 0,1";
+  
+        $stmt = $this->conn->prepare( $query );
+        $stmt->bindParam(':email', $this->email);
+        $stmt->execute();
+    
+        $row = $stmt->fetch(PDO::FETCH_ASSOC);
+    
+        $this->id = $row['id'];
+        $this->username = $row['username'];
+        $this->email = $row['email'];
+        $this->rolename = $row['rolename'];
+    }
+
+
+    function showEmailPass(){
+        $query = "SELECT *
+        FROM t_password_reset_temp
+        WHERE email = :email
+        LIMIT 0,1";
+  
+        $stmt = $this->conn->prepare( $query );
+        $stmt->bindParam(':email', $this->email);
+                $stmt->execute();
+    
+        $row = $stmt->fetch(PDO::FETCH_ASSOC);
+    
+        $this->expDate = $row['expDate'];
+    }
+
+
 
     public function countAll(){
     
