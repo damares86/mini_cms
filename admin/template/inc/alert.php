@@ -50,6 +50,14 @@ if($msg=="errSend"){
     </div>
 
     <?php    
+} else if($msg=="errResetRequest"){
+    ?>
+    <div class="alert alert-danger">
+        <button type="button" class="close" data-dismiss="alert">x</button>
+        Reset request already done. Check your email for the link or come back later and retry
+    </div>
+
+    <?php    
 } else 
 
 ?>

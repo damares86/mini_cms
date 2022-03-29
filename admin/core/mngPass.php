@@ -49,16 +49,16 @@ session_start();
 			exit;
 		}
 		
-		$expFormat = mktime(date("H")+1, date("i"), date("s"), date("m") ,date("d")+1, date("Y"));
+		$expFormat = mktime(date("H")+1, date("i"), date("s"), date("m") ,date("d"), date("Y"));
 		$expDate = date("Y-m-d H:i:s",$expFormat);
 		// $user->expDate=$expDate;
-		$key = md5(2418*2+$email);
-		$addKey = substr(md5(uniqid(rand(),1)),3,10);
-		$key = $key . $addKey;
-		$user->keys=$key;
+		$token = md5(2418*2+$email);
+		$addToken= substr(md5(uniqid(rand(),1)),3,10);
+		$token = $token . $addToken;
+		$user->token=$token;
 		// $user->addResetPassKey();
-		$query="INSERT INTO `password_reset_temp` (`email`, `keys`, `expDate`)
-		VALUES ('".$email."', '".$key."', '".$expDate."');";
+		$query="INSERT INTO `password_reset_temp` (`email`, `token`, `expDate`)
+		VALUES ('".$email."', '".$token."', '".$expDate."');";
 		$stmt=$db->prepare($query);
 
         if($stmt->execute()){
@@ -89,7 +89,7 @@ session_start();
 		$output.='<p>Dear user,</p>';
 		$output.='<p>Please click on the following link to reset your password.</p>';
 		$output.='<p>-------------------------------------------------------------</p>';
-		$output.='<p><a href="'.$url.'/login.php?email='.$email.'&key='.$key.'&op=reset" target="_blank">'.$url.'/login.php?key='.$key.'&email='.$email.'&op=reset</a></p>';		
+		$output.='<p><a href="'.$url.'/login.php?email='.$email.'&token='.$token.'&op=reset" target="_blank">'.$url.'/login.php?email='.$email.'&token='.$token.'&op=reset</a></p>';		
 		$output.='<p>-------------------------------------------------------------</p>';
 		$output.='<p>Please be sure to copy the entire link into your browser.
 		The link will expire after 1 hour for security reason.</p>';
@@ -113,8 +113,8 @@ session_start();
 		}
 	
 	}else{	
-		$this->showError($stmt);
-		return false;
+		header("Location: ../../login.php?msg=errResetRequest");
+		exit;
 	}
 
 		

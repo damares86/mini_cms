@@ -249,8 +249,8 @@ VALUES ('3','Login', '0','0','1','none')
 ");
 
 $db->query("CREATE TABLE `password_reset_temp` (
-  `email` varchar(250) NOT NULL,
-  `keys` varchar(250) NOT NULL,
+  `email` varchar(250) NOT NULL PRIMARY KEY,
+  `token` varchar(250) NOT NULL,
   `expDate` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 ");
