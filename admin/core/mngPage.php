@@ -131,7 +131,16 @@ if(filter_input(INPUT_POST,"subReg")){
 	} else if($operation=="mod"){
 		$page->id=$_POST['idToMod'];
 		$page->page_name=$_POST['page_name'];
-		$page->img=$_FILES['myfile']['name'];
+		if($_FILES['myfile']['name']){
+			$page->img=$_FILES['myfile']['name'];
+		}else {
+			$query1="SELECT * FROM page WHERE page_name = :page_name LIMIT 0,1";
+			$stmt1 = $db->prepare($query1);
+			$stmt1->bindParam(':page_name', $page->page_name);       
+			$stmt1->execute();
+			$row1 = $stmt1->fetch(PDO::FETCH_ASSOC);
+			$page->img=$row1['img'];
+		}
 		if($_POST['idToMod']!=2){
 			$page->layout=$_POST['layout'];
 			$page->theme=$_POST['theme'];

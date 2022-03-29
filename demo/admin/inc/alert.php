@@ -250,11 +250,53 @@ if($msg=="userDelSucc"){
     </div>
 
     <?php    
+} else if($msg=="errUserPswy"){
+    ?>
+    <div class="alert alert-danger">
+        <button type="button" class="close" data-dismiss="alert">x</button>
+        Email or password wrong!
+    </div>
+
+    <?php    
+    //reset email
+} else if($msg=="mailResetErr"){
+    ?>
+    <div class="alert alert-danger">
+        <button type="button" class="close" data-dismiss="alert">x</button>
+        Empty or not valid email!
+    </div>
+
+    <?php    
+} else if($msg=="mailNotReg"){
+    ?>
+    <div class="alert alert-danger">
+        <button type="button" class="close" data-dismiss="alert">x</button>
+        Your email is not registered
+    </div>
+
+    <?php    
+} else if($msg=="linkExp"){
+    ?>
+    <div class="alert alert-danger">
+        <button type="button" class="close" data-dismiss="alert">x</button>
+        Link Expired
+    </div>
+
+    <?php    
+    // reset fino a qui
+} else if($msg=="postTitleEmpty"){
+    ?>
+    <div class="alert alert-danger">
+        <button type="button" class="close" data-dismiss="alert">x</button>
+        Post title missing
+    </div>
+
+    <?php    
 } else if($msg=="postEmpty"){
     ?>
     <div class="alert alert-danger">
         <button type="button" class="close" data-dismiss="alert">x</button>
-        Post error: something missing
+        Post error: you have to fill both summary and content
     </div>
 
     <?php    

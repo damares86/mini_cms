@@ -21,8 +21,8 @@
 					<div class="card fat">
 						<div class="card-body">
 							
+							<h4 class="card-title">Insert your database data</h4>
 							<form method="POST" class="my-login-validation" novalidate="" action="../core/configdb.php">
-							<!-- <h4 class="card-title">Insert your database data</h4>
 								<div class="form-group">
 									<label for="host">Server host (es. localhost)</label>
 									<input id="host" class="form-control" name="host" value="" required autofocus>
@@ -40,13 +40,16 @@
 
 								<div class="form-group">
 									<label for="db_password">Database Password
+										<!-- <a href="forgot.html" class="float-right">
+											Forgot Password?
+										</a> -->
 									</label>
 									<input id="db_password" type="password" class="form-control" name="db_password" required data-eye>
 								    <div class="invalid-feedback">
 								    	Password is required
 							    	</div>
 								</div>
-								<hr> -->
+								<hr>
 								<div class="form-group">
 									<label for="email">Your admin email</label>
 									<input id="email" class="form-control" name="email" value="" required autofocus>

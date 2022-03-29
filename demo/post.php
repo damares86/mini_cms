@@ -22,6 +22,7 @@ $url = get_page_url();
         <?php
         require "admin/core/config.php";
 
+
         $database = new Database();
         $db = $database->getConnection();
     
@@ -29,7 +30,7 @@ $url = get_page_url();
         $cat = new Categories($db);
 
         $post_id=filter_input(INPUT_GET,"id");
-        
+
         $post->id=$post_id;
         $post->showById();
         $category_id = $post->category_id;
@@ -38,13 +39,13 @@ $url = get_page_url();
         $cat->showById();
                         
         $category_name= $cat->category_name;
-
         ?>
         <h1><?=$post->title?></h1>
         <p class="metainfo">Category: <b><a href="blog.php?cat=<?=$category_id?>"><?=$category_name?></a></b></p>
         <p class="metainfo">Last modified on: <?=$post->modified?></p>
         <div class="blog_content">
             <?=$post->content?>
+            
             <br>
             Share: &nbsp;
             <a href="https://twitter.com/share?url=<?=$url?>" target="_blank" onclick="window.open(this.href,'window','width=640,height=480,resizable,scrollbars') ;return false;">

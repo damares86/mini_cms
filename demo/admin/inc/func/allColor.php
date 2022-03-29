@@ -129,7 +129,9 @@ if($total_rows>0){
                                             <div class="h5 mb-0 font-weight-bold" style="color:<?=$colorValue?>;"><?=$color?></div>
                                         </div>
                                         <div class="col-auto">
-                                            <a href="core/mngColor.php?idToDel=<?=$row1["id"] ?>">
+                                            <a href="#" data-toggle="modal" data-target="#delete<?=$row1['id']?>">
+
+                                            <!-- <a href="core/mngColor.php?idToDel=<?=$row1["id"] ?>"> -->
                                                 <i class="fas fa-trash fa-2x text-gray-300"></i>
                                             </a>
                                         </div>
@@ -137,7 +139,25 @@ if($total_rows>0){
                                 </div>
                             </div>
                         </div>
-       
+        <!-- Delete Modal-->
+        <div class="modal fade" id="delete<?=$row1['id']?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                        aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel"><b>Are you sure?</b></h5>
+                                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">×</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">If you really want to delete this file click "Ok" below.</div>
+                                <div class="modal-footer">
+                                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                                    <a class="btn btn-primary" href="core/mngColor.php?idToDel=<?=$row1["id"] ?>">Ok</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
         <?php
         // // paging buttons
         // include_once 'inc/paging.php';
