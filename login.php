@@ -107,14 +107,13 @@ require "admin/template/inc/header.php";
 				$token=filter_input(INPUT_GET, "token");
 				$user->token=$token;
 				$curDate=date("Y-m-d H:i:s");
-				// $findToken=$user->findToken();
-				$query="SELECT * FROM `password_reset_temp` WHERE (`email` = '.$email.' AND `token` = '.$token.')";
+				$query="SELECT * FROM `password_reset_temp` WHERE `token` = '$token' LIMIT 0,1";
 				$stmt=$db->prepare($query);	
 				$stmt->execute();
-					
-				if(!$stmt){	
+				$row=$stmt->fetch(PDO::FETCH_ASSOC);
+				if(!$row['token']){	
 				?>
-				<div class="alert alert-danger">
+				<div class="alert alert-danger" role="alert">
 					Wrong Link
 				</div>
 				<a href="login.php"><-- Back to login</a>
