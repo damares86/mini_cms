@@ -20,22 +20,27 @@ $db = $database->getConnection();
 
 $user = new User($db);
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['recaptcha_response'])) {
+// UNCOMMENT FROM HERE
 
-    // Costruire il POST request:      
+// if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['recaptcha_response'])) {
 
-    $recaptcha_url = 'https://www.google.com/recaptcha/api/siteverify';
-    $recaptcha_secret = '6LeaSycfAAAAALmNPy6G4C4-RcoXFNiaL7eah5XI';
-    $recaptcha_response = $_POST['recaptcha_response'];
+//     // Costruire il POST request:      
 
-    // Istanziare e decidoficare la richiesta POST:      
+//     $recaptcha_url = 'https://www.google.com/recaptcha/api/siteverify';
+//     $recaptcha_secret = 'YOUR_SECRET_RECAPTCHA_HERE';
+//     $recaptcha_response = $_POST['recaptcha_response'];
 
-    $recaptcha = file_get_contents($recaptcha_url . '?secret=' . $recaptcha_secret . '&response=' . $recaptcha_response);
-    $recaptcha = json_decode($recaptcha);
+//     // Istanziare e decidoficare la richiesta POST:      
 
-    // Azioni da compiere basate sul punteggio ottenuto:      
+//     $recaptcha = file_get_contents($recaptcha_url . '?secret=' . $recaptcha_secret . '&response=' . $recaptcha_response);
+//     $recaptcha = json_decode($recaptcha);
 
-    if ($recaptcha->score >= 0.5) {
+//     // Azioni da compiere basate sul punteggio ottenuto:      
+
+//     if ($recaptcha->score >= 0.5) {
+
+    // TILL THIS LINE
+
         // Now we check if the data from the login form was submitted, isset() will check if the data exists.
         if ( !isset($_POST['email'], $_POST['password']) ) {
             // Could not get the data that should have been sent.
@@ -78,13 +83,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['recaptcha_response'])
             header("Location: ../../login.php?msg=errUserPsw");
             exit;
         }
-    }else{
-        header("Location: ../../login.php?msg=errRecaptcha");
-        exit;
-    }
-}else{
-    header("Location: ../../login.php?msg=errPost");
-    exit;
-}
+// UNCOMMENT FROM HERE
+    // }else{
+    //     header("Location: ../../login.php?msg=errRecaptcha");
+    //     exit;
+    // }
+
+// }else{
+//     header("Location: ../../login.php?msg=errPost");
+//     exit;
+// }
+// TILL THIS LINE
   
 ?>
