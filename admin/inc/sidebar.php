@@ -98,6 +98,12 @@
             </li>
 
             <li class="nav-item">
+                <a class="nav-link" href="index.php?man=menu">
+                    <i class="fas fa-fw fa-bars"></i>
+                    <span>Menu settings</span></a>
+            </li>
+
+            <li class="nav-item">
                 <a class="nav-link" href="index.php?man=color&op=show">
                     <i class="fas fa-fw fa-image"></i>
                     <span>Theme settings</span></a>

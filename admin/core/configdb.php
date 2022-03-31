@@ -252,8 +252,20 @@ $db->query("CREATE TABLE `password_reset_temp` (
   `email` varchar(250) NOT NULL PRIMARY KEY,
   `token` varchar(250) NOT NULL,
   `expDate` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+)
 ");
+
+$db->query("CREATE TABLE `verify` (
+  `id` INT ( 5 ) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  `public` varchar(250) NOT NULL,
+  `secret` varchar(250) NOT NULL
+)");
+
+$db->query("CREATE TABLE `contacts` (
+  `id` INT ( 5 ) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  `reset` varchar(250) NOT NULL,
+  `inbox` varchar(250) NOT NULL
+)");
 
 
 header("Location: ../index.php");

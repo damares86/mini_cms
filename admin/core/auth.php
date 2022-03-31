@@ -20,26 +20,35 @@ $db = $database->getConnection();
 
 $user = new User($db);
 
-// UNCOMMENT FROM HERE
 
-// if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['recaptcha_response'])) {
 
-//     // Costruire il POST request:      
 
-//     $recaptcha_url = 'https://www.google.com/recaptcha/api/siteverify';
-//     $recaptcha_secret = 'YOUR_SECRET_RECAPTCHA_HERE';
-//     $recaptcha_response = $_POST['recaptcha_response'];
+/*###################    TO USE RECAPTCHA REMOVE THIS LINE (1 OF 4) ####################
 
-//     // Istanziare e decidoficare la richiesta POST:      
 
-//     $recaptcha = file_get_contents($recaptcha_url . '?secret=' . $recaptcha_secret . '&response=' . $recaptcha_response);
-//     $recaptcha = json_decode($recaptcha);
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['recaptcha_response'])) {
 
-//     // Azioni da compiere basate sul punteggio ottenuto:      
+    // Costruire il POST request:      
 
-//     if ($recaptcha->score >= 0.5) {
+    $recaptcha_url = 'https://www.google.com/recaptcha/api/siteverify';
+    $recaptcha_secret = 'YOUR_SECRET_RECAPTCHA_HERE';
+    $recaptcha_response = $_POST['recaptcha_response'];
 
-    // TILL THIS LINE
+    // Istanziare e decidoficare la richiesta POST:      
+
+    $recaptcha = file_get_contents($recaptcha_url . '?secret=' . $recaptcha_secret . '&response=' . $recaptcha_response);
+    $recaptcha = json_decode($recaptcha);
+
+    // Azioni da compiere basate sul punteggio ottenuto:      
+
+    if ($recaptcha->score >= 0.5) {
+
+
+#################   AND THIS LINE (2 OF 4)  ###########################*/
+
+
+
+
 
         // Now we check if the data from the login form was submitted, isset() will check if the data exists.
         if ( !isset($_POST['email'], $_POST['password']) ) {
@@ -66,15 +75,6 @@ $user = new User($db);
             
             header("Location: ../");
             exit;
-            // if access level is 'Admin', redirect to admin section
-            // if($user->id=='1'){
-            //     header("Location: {$home_url}admin/index.php?action=login_success");
-            // }
-        
-            // // else, redirect only to 'Customer' section
-            // else{
-            //     header("Location: {$home_url}index.php?action=login_success");
-            // }
         }
         
         // if username does not exist or password is wrong
@@ -83,16 +83,23 @@ $user = new User($db);
             header("Location: ../../login.php?msg=errUserPsw");
             exit;
         }
-// UNCOMMENT FROM HERE
-    // }else{
-    //     header("Location: ../../login.php?msg=errRecaptcha");
-    //     exit;
-    // }
 
-// }else{
-//     header("Location: ../../login.php?msg=errPost");
-//     exit;
-// }
-// TILL THIS LINE
+
+
+/* ############# AND THIS LINE (3 OF 4)  ##############################
+
+
+    }else{
+        header("Location: ../../login.php?msg=errRecaptcha");
+        exit;
+    }
+
+}else{
+    header("Location: ../../login.php?msg=errPost");
+    exit;
+}
+
+
+###############  AND THIS LINE (4 OF 4) */
   
 ?>

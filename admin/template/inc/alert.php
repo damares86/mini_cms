@@ -58,6 +58,14 @@ if($msg=="errSend"){
     </div>
 
     <?php    
+} else if($msg=="noResetDelete"){
+    ?>
+    <div class="alert alert-danger">
+        <button type="button" class="close" data-dismiss="alert">x</button>
+        There are problems with your reset request. Please contact us.
+    </div>
+
+    <?php    
 } else if($msg=="errRecaptcha"){
     ?>
     <div class="alert alert-danger">
