@@ -58,7 +58,7 @@ if($msg=="errSend"){
     </div>
 
     <?php    
-} else if($msg=="noResetDelete"){
+} else if(($msg=="noResetDelete")||($msg="noReset")){
     ?>
     <div class="alert alert-danger">
         <button type="button" class="close" data-dismiss="alert">x</button>

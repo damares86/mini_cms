@@ -125,6 +125,7 @@ session_start();
 				}
 			
 			}else{	
+				header("Location: ../../login.php?msg=noReset");
 				exit;
 			}
 		}
