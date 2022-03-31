@@ -261,11 +261,22 @@ $db->query("CREATE TABLE `verify` (
   `secret` varchar(250) NOT NULL
 )");
 
+$db->query("INSERT INTO verify
+(id, public, secret) 
+VALUES ('1','PUBLIC_KEY', 'SECRET_KEY')
+");
+
+
 $db->query("CREATE TABLE `contacts` (
   `id` INT ( 5 ) NOT NULL AUTO_INCREMENT PRIMARY KEY,
   `reset` varchar(250) NOT NULL,
   `inbox` varchar(250) NOT NULL
 )");
+
+$db->query("INSERT INTO contacts 
+(id, reset, inbox) 
+VALUES ('1','noreply@yoursite.com', 'info@yoursite.com')
+");
 
 
 header("Location: ../index.php");

@@ -5,6 +5,8 @@
 
     $menu = new Menu($db);
     $settings = new Settings ($db);
+    $contact = new Contact ($db);
+    $verify = new Verify ($db);
     $stmt = $settings->showSettings();
     $man=filter_input(INPUT_GET,"man");
 if($man=="settings"){
@@ -69,7 +71,129 @@ if($man=="settings"){
     </div>
 </div>
 </div>
+
+
+<!-- Content Column -->
+<div class="col-lg-12 mb-4">
+
+    <!-- Project Card Example -->
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Contact information</h6>
+        </div>
+        <div class="card-body">
+           
+
+        
+        <?php
+
+            $stmt1=$contact->showAll();
+    
+            while ($row1 = $stmt1->fetch(PDO::FETCH_ASSOC)){
+        
+                 extract($row1);
+       
+            ?>
+
+        <form class="form-horizontal row-fluid" action="core/mngSettings.php" method="POST" enctype="multipart/form-data">
+            <input type="hidden" name="id" value="<?= $row1['id']?>" />
+            <div class="control-group">
+
+                <label class="control-label" for="inbox">Email Address for Contact</label>
+                <div class="controls">
+             
+
+                    <input type="text" id="inbox" name="inbox" placeholder="es. info@yoursite.com" class="span12" value="<?= $row1['inbox']  ?>">
+                    </div>
+            </div>
+   <br>
+            <div class="control-group">
+                            <label class="control-label" for="reset">Email Address for Password Reset</label>
+                <div class="controls">
+
+                    <input type="text" id="reset" name="reset" placeholder="es. noreply@yoursite.com" class="span8" value="<?= $row1['reset'] ?>">
+                        
+                </div>
+            </div>
+   
+            <br>
+            <?php
+            } 
+?>
+            <div class="control-group">
+                <div class="controls">
+                   
+                    <input type="submit" class="btn btn-primary" name="subMail" value="Submit">
+
+                    <!-- <button type="submit" class="btn" name="subReg">Submit Form</button> -->
+                </div>
+            </div>
+        </form>
+    </div>
 </div>
+</div>
+
+<!-- Content Column -->
+<div class="col-lg-12 mb-4">
+
+    <!-- Project Card Example -->
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Google Recaptcha v3</h6>
+        </div>
+        <div class="card-body">
+           
+
+        
+        <?php
+
+            $stmt2=$verify->showAll();
+    
+            while ($row2 = $stmt2->fetch(PDO::FETCH_ASSOC)){
+        
+                 extract($row2);
+       
+            ?>
+
+        <form class="form-horizontal row-fluid" action="core/mngSettings.php" method="POST" enctype="multipart/form-data">
+            <input type="hidden" name="id" value="<?= $row2['id']?>" />
+            <div class="control-group">
+
+                <label class="control-label" for="public">Public Key</label>
+                <div class="controls">
+             
+
+                    <input type="text" id="public" name="public" placeholder="" class="span12" value="<?= $row2['public']  ?>">
+                    </div>
+            </div>
+   <br>
+            <div class="control-group">
+                            <label class="control-label" for="secret">Secret Key</label>
+                <div class="controls">
+
+                    <input type="text" id="secret" name="secret" placeholder="" class="span8" value="<?= $row2['secret'] ?>">
+                        
+                </div>
+            </div>
+   
+            <br>
+            <?php
+            } 
+?>
+            <div class="control-group">
+                <div class="controls">
+                   
+                    <input type="submit" class="btn btn-primary" name="subKey" value="Submit">
+
+                    <!-- <button type="submit" class="btn" name="subReg">Submit Form</button> -->
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+</div>
+
+
 <?php
 }else if($man=="menu"){
 ?>

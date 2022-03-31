@@ -25,6 +25,7 @@ $db = $database->getConnection();
 
 $settings = new Settings($db);
 $menu = new Menu($db);
+$contact = new Contact($db);
 
 
 if(filter_input(INPUT_POST,"subReg")){
@@ -201,15 +202,14 @@ if(isset($_POST['idChildNone'])){
 }
 
 
-	header("Location: ../index.php?man=settings");
+	header("Location: ../index.php?man=menu");
 	exit;
 }else{
-	echo "errore settings";
+	header("Location: ../index.php?man=settings");
 	exit;
 }
 
-print_r("ko");
-exit;
+
 
 ?>
 
