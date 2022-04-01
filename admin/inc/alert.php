@@ -428,6 +428,54 @@ if($msg=="userDelSucc"){
     </div>
 
     <?php    
+} else if($msg=="contactEmpty"){
+    ?>
+    <div class="alert alert-danger">
+        <button type="button" class="close" data-dismiss="alert">x</button>
+        You must choose both addresses!
+    </div>
+
+    <?php    
+} else if($msg=="setContactSucc"){
+    ?>
+    <div class="alert alert-success">
+        <button type="button" class="close" data-dismiss="alert">x</button>
+        Contact emails updated
+    </div>
+
+    <?php    
+} else if($msg=="setContactErr"){
+    ?>
+    <div class="alert alert-danger">
+        <button type="button" class="close" data-dismiss="alert">x</button>
+        Contact emails not updated
+    </div>
+
+    <?php    
+} else if($msg=="keyEmpty"){
+    ?>
+    <div class="alert alert-danger">
+        <button type="button" class="close" data-dismiss="alert">x</button>
+        You must write both the keys
+    </div>
+
+    <?php    
+} else if($msg=="setKeySucc"){
+    ?>
+    <div class="alert alert-success">
+        <button type="button" class="close" data-dismiss="alert">x</button>
+        Recaptcha keys updated
+    </div>
+
+    <?php    
+} else if($msg=="setKeyErr"){
+    ?>
+    <div class="alert alert-danger">
+        <button type="button" class="close" data-dismiss="alert">x</button>
+        Recaptcha keys not updated
+    </div>
+
+    <?php    
 } else
 
 ?>

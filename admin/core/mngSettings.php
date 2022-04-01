@@ -81,7 +81,7 @@ if(filter_input(INPUT_POST,"subReg")){
 } else if(filter_input(INPUT_POST,"subKey")){
 
 	if(!$_POST['public']||!$_POST['secret']){
-		header("Location: ../index.php?man=settings&msg=contactEmpty");
+		header("Location: ../index.php?man=settings&msg=keyEmpty");
 		exit;
 	}
 
@@ -105,7 +105,7 @@ if(filter_input(INPUT_POST,"subReg")){
 		// $_POST=array();
 	
 	}else{
-		header("Location: ../index.php?man=settings&msg=setCKeyErr");
+		header("Location: ../index.php?man=settings&msg=setKeyErr");
 		exit;
 	}
 
