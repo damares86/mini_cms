@@ -50,7 +50,8 @@ class Verify{
                     " . $this->table_name . "
                 SET
                     public = :public,
-                    secret = :secret
+                    secret = :secret,
+                    active = :active
                 WHERE
                     id = :id";
     // prepare the query
@@ -59,6 +60,34 @@ class Verify{
         // bind the values
         $stmt->bindParam(':public', $this->public);
         $stmt->bindParam(':secret', $this->secret);
+        $stmt->bindParam(':active', $this->active);
+        $stmt->bindParam(':id', $this->id);
+                
+      
+        // execute the query, also check if query was successful
+        if($stmt->execute()){
+            return true;
+
+        }else{
+            $this->showError($stmt);
+            return false;
+        }
+    
+    }
+
+    function updateActive(){
+        // insert query
+        $query = "UPDATE
+                    " . $this->table_name . "
+                SET
+                    active = :active
+                WHERE
+                    id = :id";
+    // prepare the query
+        $stmt = $this->conn->prepare($query);
+     
+        // bind the values
+        $stmt->bindParam(':active', $this->active);
         $stmt->bindParam(':id', $this->id);
                 
       

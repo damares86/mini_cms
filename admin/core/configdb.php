@@ -258,12 +258,13 @@ $db->query("CREATE TABLE `password_reset_temp` (
 $db->query("CREATE TABLE `verify` (
   `id` INT ( 5 ) NOT NULL AUTO_INCREMENT PRIMARY KEY,
   `public` varchar(250) NOT NULL,
-  `secret` varchar(250) NOT NULL
+  `secret` varchar(250) NOT NULL,
+  `active` INT ( 5 ) DEFAULT 0
 )");
 
 $db->query("INSERT INTO verify
-(id, public, secret) 
-VALUES ('1','PUBLIC_KEY', 'SECRET_KEY')
+(id, public, secret, active) 
+VALUES ('1','PUBLIC_KEY', 'SECRET_KEY', '0')
 ");
 
 

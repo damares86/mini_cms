@@ -86,8 +86,16 @@ if(filter_input(INPUT_POST,"subReg")){
 	}
 
 	$verify->id=$_POST['id'];
+	$verify->active=0;
+	
+	$verify->updateActive();
+
 	$verify->public=$_POST['public'];
 	$verify->secret=$_POST['secret'];
+	if($_POST['verify']){
+		$verify->active=1;
+	}
+
 	// update the settings
 	if($verify->update()){
 		header("Location: ../index.php?man=settings&msg=setKeySucc");

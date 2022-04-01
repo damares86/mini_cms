@@ -152,11 +152,21 @@ if($man=="settings"){
             while ($row2 = $stmt2->fetch(PDO::FETCH_ASSOC)){
         
                  extract($row2);
-       
+                $checked="";
+                if($row2['active']==1){
+                    $checked="checked";
+                }
             ?>
 
         <form class="form-horizontal row-fluid" action="core/mngSettings.php" method="POST" enctype="multipart/form-data">
             <input type="hidden" name="id" value="<?= $row2['id']?>" />
+            <div class="control-group">
+                <label class="control-label">Use Recaptcha</label>
+                    <div class="controls">
+                        <input type="checkbox" name="verify" value="1" <?=$checked?>> 
+                    </div>
+            </div>
+
             <div class="control-group">
 
                 <label class="control-label" for="public">Public Key</label>

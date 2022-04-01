@@ -23,45 +23,13 @@ $verify = new Verify($db);
 
 
 
-
-/*###################    TO USE RECAPTCHA REMOVE THIS LINE (1 OF 4) ####################
-
-
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['recaptcha_response'])) {
-
-    $stmt=$verify->showAll();
-    $row=$stmt->fetch(PDO::FETCH_ASSOC);
-    $secret=$row['secret'];
-    print_r($secret);
+// Now we check if the data from the login form was submitted, isset() will check if the data exists.
+if ( !isset($_POST['email'], $_POST['password']) ) {
+    // Could not get the data that should have been sent.
+    header("Location: ../../login.php?msg=errUserPsw");
     exit;
-    // Costruire il POST request:      
+}
 
-    $recaptcha_url = 'https://www.google.com/recaptcha/api/siteverify';
-    $recaptcha_secret = $secret;
-    $recaptcha_response = $_POST['recaptcha_response'];
-
-    // Istanziare e decidoficare la richiesta POST:      
-
-    $recaptcha = file_get_contents($recaptcha_url . '?secret=' . $recaptcha_secret . '&response=' . $recaptcha_response);
-    $recaptcha = json_decode($recaptcha);
-
-    // Azioni da compiere basate sul punteggio ottenuto:      
-
-    if ($recaptcha->score >= 0.5) {
-
-
-#################   AND THIS LINE (2 OF 4)  ###########################*/
-
-
-
-
-
-        // Now we check if the data from the login form was submitted, isset() will check if the data exists.
-        if ( !isset($_POST['email'], $_POST['password']) ) {
-            // Could not get the data that should have been sent.
-            header("Location: ../../login.php?msg=errUserPsw");
-            exit;
-        }
 
         $user->email=$_POST['email'];
 
@@ -91,21 +59,4 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['recaptcha_response'])
         }
 
 
-
-/* ############# AND THIS LINE (3 OF 4)  ##############################
-
-
-    }else{
-        header("Location: ../../login.php?msg=errRecaptcha");
-        exit;
-    }
-
-}else{
-    header("Location: ../../login.php?msg=errPost");
-    exit;
-}
-
-
-###############  AND THIS LINE (4 OF 4) */
-  
 ?>

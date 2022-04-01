@@ -26,11 +26,22 @@ require "admin/template/inc/header.php";
 							require "admin/template/inc/alert.php";
 							$op=filter_input(INPUT_GET,"op");
 							if($op==""){
+
+								$stmt=$verify->showAll();
+								$row=$stmt->fetch(PDO::FETCH_ASSOC);
+								$active=$row['active'];
+
+								$auth="auth";
+								if($active==1){
+									$auth="authRecap";
+								}
+
+
 						?>
 
 							<h3 class="my-3">Login</h3>
 
-							<form method="POST" class="my-login-validation" novalidate="" action="admin/core/auth.php">
+							<form method="POST" class="my-login-validation" novalidate="" action="admin/core/<?=$auth?>.php">
 								<!-- <div class="form-group">
 									<label for="username">Username</label>
 									<input id="username" class="form-control" name="username" value="" required autofocus>
