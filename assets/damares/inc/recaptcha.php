@@ -1,8 +1,16 @@
-<script src="https://www.google.com/recaptcha/api.js?render=YOUR_PUBLIC_RECAPTCHA_HERE"> </script>
+<?php
+				$stmt=$verify->showAll();
+				$row=$stmt->fetch(PDO::FETCH_ASSOC);
+				$public=$row['public'];
+?>
+
+
+
+<script src="https://www.google.com/recaptcha/api.js?render=<?=$public?>"> </script>
 
 <script>
     grecaptcha.ready(function() {
-        grecaptcha.execute('YOUR_PUBLIC_RECAPTCHA_HERE', {
+        grecaptcha.execute('<?=$public?>', {
             action: 'submit'
         }).then(function(token) {
             var recaptchaResponse = document.getElementById('recaptchaResponse');

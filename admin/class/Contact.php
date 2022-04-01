@@ -48,6 +48,7 @@ class Contact{
 
 
     function update(){
+
         // insert query
         $query = "UPDATE
                     " . $this->table_name . "

@@ -17,12 +17,14 @@ session_start();
 // loading class
 	include("../class/Database.php");
 	include("../class/User.php");
+	include("../class/Contact.php");
 
 	
 	$database = new Database();
 	$db = $database->getConnection();
 	
 	$user = new User($db);
+	$contact = new Contact($db);
 	
 	$resetForm = filter_input(INPUT_POST, "resetForm");
 	$resetMail = filter_input(INPUT_POST, "resetMail");
@@ -87,11 +89,16 @@ session_start();
 				// esempio di utilizzo
 				$url = get_base_url();
 
+				// select the noreply mail from database
+				$stmt=$contact->showAll();
+				$row=$stmt->fetch(PDO::FETCH_ASSOC);
+				$from=$row['reset'];
+
+
 
 				// To send HTML mail, the Content-type header must be set
 				$headers  = 'MIME-Version: 1.0' . "\r\n";
 				$headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
-				$from="noreply@davidemasera.it";
 				// Create email headers
 				$headers .= 'From: '.$from."\r\n".
 				'Reply-To: '.$from."\r\n" .

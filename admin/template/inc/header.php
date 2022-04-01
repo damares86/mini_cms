@@ -29,6 +29,7 @@ $user = new User($db);
 $page = new Page($db);
 $menu = new Menu($db);
 $settings = new Settings($db);
+$verify = new Verify($db);
 
 $stmt=$settings->showSettings();
 

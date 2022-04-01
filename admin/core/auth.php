@@ -19,6 +19,7 @@ $database = new Database();
 $db = $database->getConnection();
 
 $user = new User($db);
+$verify = new Verify($db);
 
 
 
@@ -28,10 +29,15 @@ $user = new User($db);
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['recaptcha_response'])) {
 
+    $stmt=$verify->showAll();
+    $row=$stmt->fetch(PDO::FETCH_ASSOC);
+    $secret=$row['secret'];
+    print_r($secret);
+    exit;
     // Costruire il POST request:      
 
     $recaptcha_url = 'https://www.google.com/recaptcha/api/siteverify';
-    $recaptcha_secret = 'YOUR_SECRET_RECAPTCHA_HERE';
+    $recaptcha_secret = $secret;
     $recaptcha_response = $_POST['recaptcha_response'];
 
     // Istanziare e decidoficare la richiesta POST:      

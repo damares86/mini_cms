@@ -18,6 +18,8 @@ if (!isset($_SESSION['loggedin'])) {
 include("../class/Database.php");
 include("../class/Settings.php");
 include("../class/Menu.php");
+include("../class/Contact.php");
+include("../class/Verify.php");
 
 
 $database = new Database();
@@ -26,6 +28,7 @@ $db = $database->getConnection();
 $settings = new Settings($db);
 $menu = new Menu($db);
 $contact = new Contact($db);
+$verify = new Verify($db);
 
 
 if(filter_input(INPUT_POST,"subReg")){
@@ -51,6 +54,52 @@ if(filter_input(INPUT_POST,"subReg")){
 			header("Location: ../index.php?man=settings&msg=setEditErr");
 			exit;
 		}
+
+} else if(filter_input(INPUT_POST,"subMail")){
+
+	if(!$_POST['reset']||!$_POST['inbox']){
+		header("Location: ../index.php?man=settings&msg=contactEmpty");
+		exit;
+	}
+
+	$contact->id=$_POST['id'];
+	$contact->reset=$_POST['reset'];
+	$contact->inbox=$_POST['inbox'];
+	// update the settings
+	if($contact->update()){
+		header("Location: ../index.php?man=settings&msg=setContactSucc");
+		exit;
+	
+		// empty posted values
+		// $_POST=array();
+	
+	}else{
+		header("Location: ../index.php?man=settings&msg=setContactErr");
+		exit;
+	}
+
+} else if(filter_input(INPUT_POST,"subKey")){
+
+	if(!$_POST['public']||!$_POST['secret']){
+		header("Location: ../index.php?man=settings&msg=contactEmpty");
+		exit;
+	}
+
+	$verify->id=$_POST['id'];
+	$verify->public=$_POST['public'];
+	$verify->secret=$_POST['secret'];
+	// update the settings
+	if($verify->update()){
+		header("Location: ../index.php?man=settings&msg=setKeySucc");
+		exit;
+	
+		// empty posted values
+		// $_POST=array();
+	
+	}else{
+		header("Location: ../index.php?man=settings&msg=setCKeyErr");
+		exit;
+	}
 
 } else if(filter_input(INPUT_POST,"subTheme")) {
 
