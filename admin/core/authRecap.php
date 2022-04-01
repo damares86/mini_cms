@@ -84,8 +84,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['recaptcha_response'])
     }
 
 }else{
-    print_r("ko");
-    exit;
     header("Location: ../../login.php?msg=errPost");
     exit;
 }

@@ -32,8 +32,10 @@ require "admin/template/inc/header.php";
 								$active=$row['active'];
 
 								$auth="auth";
+								$pass="mngPass";
 								if($active==1){
 									$auth="authRecap";
+									$pass="mngPassRecap";
 								}
 
 
@@ -83,7 +85,7 @@ require "admin/template/inc/header.php";
 
 							<p>Insert your email below to reset your password</p>
 
-							<form method="POST" class="my-login-validation" novalidate="" action="admin/core/mngPass.php">
+							<form method="POST" class="my-login-validation" novalidate="" action="admin/core/<?=$pass?>.php">
 								<input type="hidden" name="resetForm" value="resetForm" />
 
 								<div class="form-group">
@@ -142,7 +144,7 @@ require "admin/template/inc/header.php";
 						?>	
 
 							<h3 class="my-3">Insert your new password</h3>
-							<form method="POST" class="my-login-validation" novalidate="" action="admin/core/mngPass.php">
+							<form method="POST" class="my-login-validation" novalidate="" action="admin/core/<?=$pass?>.php">
 								<input type="hidden" name="resetMail" value="resetMail" />
 								<input type="hidden" name="email" value="<?=$email?>" />
 
