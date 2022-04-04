@@ -58,7 +58,7 @@ $user_id=$_SESSION['user_id'];
                                 else if($operation=="add"){
                                  require "inc/func/regFile.php";
                                 }
-                            }else if($manage=="settings"){
+                            }else if($manage=="settings"||$manage=="menu"){
                                 require "inc/func/allSettings.php";
                             }else if($manage=="cat"){
                                 if($operation=="show"){

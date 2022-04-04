@@ -33,6 +33,7 @@ $role = new Role($db);
 $post = new Post($db);
 $total_post=$post->countAll();
 $page = new Page($db);
+$contact = new Contact($db);
 
 
 

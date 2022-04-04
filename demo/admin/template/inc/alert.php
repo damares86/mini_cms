@@ -58,6 +58,62 @@ if($msg=="errSend"){
     </div>
 
     <?php    
-} else 
+} else if($msg=="noResetDelete"){
+    ?>
+    <div class="alert alert-danger">
+        <button type="button" class="close" data-dismiss="alert">x</button>
+        There are problems with your reset request. Please contact us.
+    </div>
+
+    <?php    
+} else if($msg=="noReset"){
+    ?>
+    <div class="alert alert-danger">
+        <button type="button" class="close" data-dismiss="alert">x</button>
+        There are problems with your reset request. Please contact us.
+    </div>
+
+    <?php    
+} else if($msg=="errRecaptcha"){
+    ?>
+    <div class="alert alert-danger">
+        <button type="button" class="close" data-dismiss="alert">x</button>
+        Sorry, you don't seem reliable, please try again or contact us.
+    </div>
+
+    <?php    
+} else if($msg=="errPost"){
+    ?>
+    <div class="alert alert-danger">
+        <button type="button" class="close" data-dismiss="alert">x</button>
+        Error while trying to login
+    </div>
+
+    <?php    
+} else if($msg=="contactEmpty"){
+    ?>
+    <div class="alert alert-danger">
+        <button type="button" class="close" data-dismiss="alert">x</button>
+        Please fill all the fields
+    </div>
+
+    <?php    
+} else if($msg=="sentContact"){
+    ?>
+    <div class="alert alert-success">
+        <button type="button" class="close" data-dismiss="alert">x</button>
+        Mail successfully sent
+    </div>
+
+    <?php    
+} else if($msg=="errSendContact"){
+    ?>
+    <div class="alert alert-danger">
+        <button type="button" class="close" data-dismiss="alert">x</button>
+        Error sending your email
+    </div>
+
+    <?php    
+} else
 
 ?>

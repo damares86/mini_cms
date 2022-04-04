@@ -15,7 +15,10 @@
    version="1.1"
    id="svg853"
    inkscape:version="0.92.5 (2060ec1f9f, 2020-04-08)"
-   sodipodi:docname="logo.svg">
+   sodipodi:docname="logo.svg"
+   inkscape:export-filename="/home/davide/logo.png"
+   inkscape:export-xdpi="96"
+   inkscape:export-ydpi="96">
   <defs
      id="defs847" />
   <sodipodi:namedview
@@ -25,9 +28,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="1.7915852"
-     inkscape:cx="-145.65891"
-     inkscape:cy="93.525596"
+     inkscape:zoom="5.0673682"
+     inkscape:cx="32.990831"
+     inkscape:cy="19.128912"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -67,16 +70,16 @@
        inkscape:export-xdpi="96"
        inkscape:export-ydpi="96" />
     <path
-       style="fill:none;stroke:#008db1;stroke-width:1.09819984;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.94117647"
-       d="m 104.93995,163.11307 c 0,0 -0.0239,-4.92148 4.99186,-4.95366 2.93928,-0.0188 4.27874,2.2381 4.4273,3.22286"
+       style="fill:none;stroke:#008db1;stroke-width:1.0467968;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.94117647"
+       d="m 104.91424,162.87288 c 0,0 -0.0227,-4.70839 4.74076,-4.73917 2.79144,-0.018 4.06351,2.1412 4.2046,3.08332"
        id="path1019"
        inkscape:connector-curvature="0"
        sodipodi:nodetypes="csc"
        inkscape:export-xdpi="96"
        inkscape:export-ydpi="96" />
     <path
-       style="fill:none;stroke:#008db1;stroke-width:1.09819984;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       d="m 104.93995,163.11307 c 0,0 -0.0298,4.96364 5.02157,5.01336 3.27191,0.0323 4.39761,-2.29778 4.54617,-3.28254"
+       style="fill:none;stroke:#008db1;stroke-width:1.0467968;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 104.91424,162.87288 c 0,0 -0.0283,4.74872 4.76898,4.79628 3.10733,0.0309 4.1764,-2.19828 4.31749,-3.1404"
        id="path1019-4"
        inkscape:connector-curvature="0"
        sodipodi:nodetypes="csc"
