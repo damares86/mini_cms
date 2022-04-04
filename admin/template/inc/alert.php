@@ -90,6 +90,30 @@ if($msg=="errSend"){
     </div>
 
     <?php    
-} else  
+} else if($msg=="contactEmpty"){
+    ?>
+    <div class="alert alert-danger">
+        <button type="button" class="close" data-dismiss="alert">x</button>
+        Please fill all the fields
+    </div>
+
+    <?php    
+} else if($msg=="sentContact"){
+    ?>
+    <div class="alert alert-success">
+        <button type="button" class="close" data-dismiss="alert">x</button>
+        Mail successfully sent
+    </div>
+
+    <?php    
+} else if($msg=="errSendContact"){
+    ?>
+    <div class="alert alert-danger">
+        <button type="button" class="close" data-dismiss="alert">x</button>
+        Error sending your email
+    </div>
+
+    <?php    
+} else
 
 ?>

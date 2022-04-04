@@ -124,7 +124,7 @@ session_start();
 
 				
 				if (mail ($to, $subject, $output, $headers)) {
-					header("Location: ../../login.php?op=sentMail");
+					header("Location: ../../login.php?msg=sentMail");
 					exit;
 				} else {
 					header("Location: ../../login.php?msg=errSend");

@@ -145,7 +145,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['recaptcha_response'])
 
 				
 				if (mail ($to, $subject, $output, $headers)) {
-					header("Location: ../../login.php?op=sentMail");
+					header("Location: ../../login.php?msg=sentMail");
 					exit;
 				} else {
 					header("Location: ../../login.php?msg=errSend");
