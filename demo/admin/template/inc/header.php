@@ -29,6 +29,7 @@ $user = new User($db);
 $page = new Page($db);
 $menu = new Menu($db);
 $settings = new Settings($db);
+$verify = new Verify($db);
 
 $stmt=$settings->showSettings();
 
@@ -94,6 +95,9 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
 		<?php
 
             require "assets/".$theme."/inc/scripts.php";
+            if(($file=="login.php")||($file=="contact.php")){
+                require "assets/".$theme."/inc/recaptcha.php";
+            }
         ?>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
 	</head>

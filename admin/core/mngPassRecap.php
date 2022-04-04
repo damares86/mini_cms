@@ -25,6 +25,27 @@ session_start();
 	
 	$user = new User($db);
 	$contact = new Contact($db);
+	$verify = new Verify($db);
+
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['recaptcha_response'])) {
+    $stmt=$verify->showAll();
+    $row=$stmt->fetch(PDO::FETCH_ASSOC);
+    $secret=$row['secret'];
+    // Costruire il POST request:      
+    
+    $recaptcha_url = 'https://www.google.com/recaptcha/api/siteverify';
+    $recaptcha_secret = $secret;
+    $recaptcha_response = $_POST['recaptcha_response'];
+    
+    // Istanziare e decodificare la richiesta POST:      
+    
+    $recaptcha = file_get_contents($recaptcha_url . '?secret=' . $recaptcha_secret . '&response=' . $recaptcha_response);
+    $recaptcha = json_decode($recaptcha);
+    
+    // Azioni da compiere basate sul punteggio ottenuto:      
+    
+    if ($recaptcha->score >= 0.5) {
 	
 	$resetForm = filter_input(INPUT_POST, "resetForm");
 	$resetMail = filter_input(INPUT_POST, "resetMail");
@@ -51,7 +72,7 @@ session_start();
 			exit;
 		}
 		
-		$query="SELECT * FROM `t_password_reset_temp` WHERE `email` = '$email' LIMIT 0,1";
+		$query="SELECT * FROM `password_reset_temp` WHERE `email` = '$email' LIMIT 0,1";
 		$stmt=$db->prepare($query);	
 		$stmt->execute();
 		$row=$stmt->fetch(PDO::FETCH_ASSOC);
@@ -59,7 +80,7 @@ session_start();
 		$expDate=$row['expDate'];
 		
 		if((!$row['email']||(($row['email']) && ($expDate<$curDate)))){
-			$query="DELETE FROM `t_password_reset_temp` WHERE `email` = '$email'";
+			$query="DELETE FROM `password_reset_temp` WHERE `email` = '$email'";
 			$stmt=$db->prepare($query);	
 			if(!$stmt->execute()){
 				header("Location: ../../login.php?msg=noResetDelete");
@@ -73,7 +94,7 @@ session_start();
 			$token = $token . $addToken;
 			$user->token=$token;
 			// $user->addResetPassKey();
-			$query="INSERT INTO `t_password_reset_temp` (`email`, `token`, `expDate`)
+			$query="INSERT INTO `password_reset_temp` (`email`, `token`, `expDate`)
 			VALUES ('".$email."', '".$token."', '".$expDate."');";
 			$stmt=$db->prepare($query);
 
@@ -155,7 +176,7 @@ session_start();
 
 		// update the post
 		if($user->updatePass()){
-			$query="DELETE FROM t_password_reset_temp WHERE email = '$email'";
+			$query="DELETE FROM password_reset_temp WHERE email = '$email'";
 			$stmt=$db->prepare($query);	
 			if($stmt->execute()){
 				header("Location: ../../login.php?msg=newPass");
@@ -195,6 +216,16 @@ session_start();
 		}
 	}
 		
+}else{
+	header("Location: ../../login.php?msg=errRecaptcha");
+	exit;
+}
+
+}else{
+header("Location: ../../login.php?msg=errPost");
+exit;
+}
+
 exit;
 
 ?>

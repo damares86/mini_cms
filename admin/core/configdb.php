@@ -233,6 +233,11 @@ $db->query("INSERT INTO page
 VALUES ('3','Login', 'default', 'visual.jpg', '','none','#000000','', 'none','#000000', '', 'none','#000000','', 'none','#000000', '', 'none','#000000','', 'none','#000000')
 ");
 
+$db->query("INSERT INTO page 
+(id, page_name, layout, img, block1, block1_bg, block1_text,block2, block2_bg, block2_text,block3, block3_bg, block3_text,block4, block4_bg, block4_text, block5, block5_bg, block5_text, block6, block6_bg, block6_text) 
+VALUES ('4','Contact', 'default', 'visual.jpg', '','none','#000000','', 'none','#000000', '', 'none','#000000','', 'none','#000000', '', 'none','#000000','', 'none','#000000')
+");
+
 $db->query("INSERT INTO menu 
 (id, pagename, inmenu,itemorder,parent,childof) 
 VALUES ('1','index', '0','0','1','none')
@@ -248,11 +253,40 @@ $db->query("INSERT INTO menu
 VALUES ('3','Login', '1','0','1','none')
 ");
 
+$db->query("INSERT INTO menu 
+(id, pagename, inmenu,itemorder,parent,childof) 
+VALUES ('4','Contacts', '0','0','1','none')
+");
+
 $db->query("CREATE TABLE `password_reset_temp` (
   `email` varchar(250) NOT NULL PRIMARY KEY,
   `token` varchar(250) NOT NULL,
   `expDate` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+)
+");
+
+$db->query("CREATE TABLE `verify` (
+  `id` INT ( 5 ) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  `public` varchar(250) NOT NULL,
+  `secret` varchar(250) NOT NULL,
+  `active` INT ( 5 ) DEFAULT 0
+)");
+
+$db->query("INSERT INTO verify
+(id, public, secret, active) 
+VALUES ('1','PUBLIC_KEY', 'SECRET_KEY', '0')
+");
+
+
+$db->query("CREATE TABLE `contacts` (
+  `id` INT ( 5 ) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  `reset` varchar(250) NOT NULL,
+  `inbox` varchar(250) NOT NULL
+)");
+
+$db->query("INSERT INTO contacts 
+(id, reset, inbox) 
+VALUES ('1','noreply@yoursite.com', 'info@yoursite.com')
 ");
 
 

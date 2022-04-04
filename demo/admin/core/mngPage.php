@@ -134,7 +134,7 @@ if(filter_input(INPUT_POST,"subReg")){
 		if($_FILES['myfile']['name']){
 			$page->img=$_FILES['myfile']['name'];
 		}else {
-			$query1="SELECT * FROM t_<page WHERE page_name = :page_name LIMIT 0,1";
+			$query1="SELECT * FROM page WHERE page_name = :page_name LIMIT 0,1";
 			$stmt1 = $db->prepare($query1);
 			$stmt1->bindParam(':page_name', $page->page_name);       
 			$stmt1->execute();

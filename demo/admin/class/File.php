@@ -113,7 +113,7 @@ class File{
 
     public function countAll(){
     
-        $query = "SELECT id FROM t_files";
+        $query = "SELECT id FROM files";
     
         $stmt = $this->conn->prepare( $query );
         $stmt->execute();

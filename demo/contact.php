@@ -1,98 +1,83 @@
+
 <?php
 require "admin/template/inc/header.php";
 
-?>
-            <div id="bottomContainer">
-                <?php
 
-                $page->page_name="index";
-                $page_class="index";
-                
-                $stmt=$page->showByName();
-                ?>
-                <div id="content">
-                    
-                
-                    <div class="block block1 <?=$page_class?>">
+// if(!is_file('admin/class/Database.php')){
+// 	require "admin/inc/dbdata.php";
 
-							<form class="form-horizontal" role="form" method="post" action="contactform.php">
-								<div class="form-group">
-									<label for="name" class="col-sm-2 control-label">Name</label>
-									<div class="col-sm-10">
-										<input type="text" class="form-control" id="name" name="name" placeholder="First & Last Name" value="<?php echo htmlspecialchars($_POST['name']); ?>">
-										<?php echo "<p class='text-danger'>$errName</p>";?>
-                                    </div>
-									
-								</div>
-								<div class="form-group">
-									<label for="email" class="col-sm-2 control-label">Email</label>
-									<div class="col-sm-10">
-										<input type="email" class="form-control" id="email" name="email" placeholder="example@domain.com" value="<?php echo htmlspecialchars($_POST['email']); ?>">
-										<?php echo "<p class='text-danger'>$errEmail</p>";?>
-									</div>
-								</div>
-								<div class="form-group">
-									<label for="message" class="col-sm-2 control-label">Message</label>
-									<div class="col-sm-10">
-										<textarea class="form-control" rows="4" name="message"><?php echo htmlspecialchars($_POST['message']);?></textarea>
-										<?php echo "<p class='text-danger'>$errMessage</p>";?>
-									</div>
-								</div>
-								<div class="form-group">
-									<label for="human" class="col-sm-2 control-label">2 + 3 = ?</label>
-									<div class="col-sm-10">
-										<input type="text" class="form-control" id="human" name="human" placeholder="Your Answer">
-										<?php echo "<p class='text-danger'>$errHuman</p>";?>
-									</div>
-								</div>
-								<div class="form-group">
-									<div class="col-sm-10 col-sm-offset-2">
-										<input id="submit" name="submit" type="submit" value="Send" class="btn btn-primary">
-									</div>
-								</div>
-								<div class="form-group">
-									<div class="col-sm-10 col-sm-offset-2">
-										<?php echo $result; ?>	
-									</div>
-								</div>
-							</form> 
-                        <?php
-                        // echo $page->block1;
-                        ?>            
-                    </div>
-                    <?php
-                    if($page->block2){
-                    ?>
-                    <div class="block block2 <?=$page_class?>">
-                    <?php
-                        echo $page->block2;
-                        ?>  
-                    </div>
-                    <?php
-                    }
-                    if($page->block3){
-                    ?>
-                    <div class="block block3 <?=$page_class?>">
-                    <?php
-                        echo $page->block3;
-                        ?>  
-                    </div>
-                    <?php
-                    }
-                    if($page->block4){
-                    ?>
-                    <div class="block block4 <?=$page_class?>">
-                    <?php
-                        echo $page->block4;
-                        ?>  
-                    </div>
-                    <?php
-                    }
-                    ?>
-                    <div class="clearfix"></div>
-                </div>
-            </div>
+// }
 
-<?php
+// session_start();
+
+
+// if (isset($_SESSION['loggedin'])) {
+	// 	header('Location: admin/');
+	// 	exit;
+	// }
+	?>
+
+<div id="bottomContainer">
+	<div id="content">
+		<div class="d-flex justify-content-center ">
+				<div class="card mt-3 mb-5 login">
+					<div class="card-body">
+						<?php
+							require "admin/template/inc/alert.php";
+
+
+								$stmt=$verify->showAll();
+								$row=$stmt->fetch(PDO::FETCH_ASSOC);
+								$active=$row['active'];
+
+								$send="mngMail";
+								if($active==1){
+									$send="mngMailRecap";
+								}
+
+
+						?>
+
+							<h3 class="my-3">Contact</h3>
+
+							<form method="POST" class="my-login-validation" novalidate="" action="admin/core/<?=$send?>.php">
+								<div class="form-group">
+									<label for="name">Your name</label>
+									<input id="name" class="form-control" name="name" value="" required autofocus>
+								</div>
+								<div class="form-group">
+									<label for="email">Your Email</label>
+									<input id="email" class="form-control" name="email" value="" required autofocus>
+								</div>
+								<div class="form-group">
+									<label for="subject">Subject</label>
+									<input id="subject" class="form-control" name="subject" value="" required autofocus>
+
+								</div>
+								<div class="form-group">
+									<label for="message">Your Message</label>
+									<textarea id="message" name="message" placeholder="Write your message here"></textarea>
+								</div>
+								
+								<input type="hidden" name="recaptcha_response" id="recaptchaResponse">
+
+								<br>
+
+								<div class="form-group m-0">
+									<button type="submit" class="btn btn-primary btn-block">
+										Send
+									</button>
+								</div>
+							</form>
+
+				</div>
+			</div>
+		</div>
+
+</div>
+					
+
+						</div> 			
+						<?php
 require "admin/template/inc/footer.php";
 ?>
