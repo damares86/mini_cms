@@ -244,27 +244,45 @@ if($man=="settings"){
         <div class="card-header py-3">
         </div>
         <div class="card-body">
-
-        <div class="row guide">
-            <div class="col">
-                Here you can decide which pages will be shown in the menu of your website and also create a hierarchy of the pages.<br>
-                There are three tables:<br><br>
-                <ul>
-                    <li><b>Pages in menu:</b> these are the pages shown in menu; you can see if they are "parent" or "child" (the "children" are tabbed to right and have a different background), you can change the view order using "Up" and "Down" and you can remove the page from menu.</li>
-                </ul>
-                </div>
-                <div class="col">
-                    <ul>
-                        <li><b>Children without parent:</b> these are pages marked as "children" but they don't have any parent (you can choose it using the dropdown menu)</li>
-                        <li><b>Page not in menu:</b> these are the page which are not shown in menu, you can insert them selecting "Add"</li>
-                    </ul>
-                    <br>
-                    <b>NOTE:</b> to save the changes you have to click on the <b>Refresh</b> button.
-
-
-
-            </div>
-        </div>
+        <a href="#" class="btn btn-primary btn-icon-split" data-toggle="modal" data-target="#infoMenu">
+                        <span class="icon text-white-50">
+                            <i class="fas fa-fw fa-question"></i>
+                        </span>
+                        <span class="text">Menu management</span>
+                    </a> <br>
+             <!-- Info Modal-->
+             <div class="modal fade" id="infoMenu" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                        aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-scrollable" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel"><b>Menu management</b></h5>
+                                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">×</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body guide">
+                                    Here you can decide which pages will be shown in the menu of your website and also create a hierarchy of the pages.<br>
+                                    There are three tables:<br><br>
+                                    <ul>
+                                        <li><b>Pages in menu:</b> these are the pages shown in menu; you can see if they are "parent" or "child" (the "children" are tabbed to right and have a different background), you can change the view order using "Up" and "Down" and you can remove the page from menu.</li>
+                                        <li><b>Children without parent:</b> these are pages marked as "children" but they don't have any parent (you can choose it using the dropdown menu)</li>
+                                        <li><b>Page not in menu:</b> these are the page which are not shown in menu, you can insert them selecting "Add"</li>
+                                    </ul>
+                                    <br>
+                                    <b>NOTE:</b> to save the changes you have to click on the <b>Refresh</b> button.
+ 
+                                </div>
+                                <div class="modal-footer">
+                                    <button class="btn btn-primary" type="button" data-dismiss="modal">Close</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+            <br>
+           
+            <br>
+      
     <form class="form-horizontal row-fluid" action="core/mngSettings.php" method="POST" enctype="multipart/form-data">
        
         <div class="align-items-center pt-3 pb-2 mb-3 align-items-center">

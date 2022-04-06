@@ -42,7 +42,7 @@ $stmt = $settings->showSettings();
                             <i class="fas fa-fw fa-question"></i>
                         </span>
                         <span class="text">Page creation info</span>
-                    </a> 
+                    </a> <br>
              <!-- Info Modal-->
              <div class="modal fade" id="infoPage" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
                         aria-hidden="true">
@@ -54,7 +54,16 @@ $stmt = $settings->showSettings();
                                         <span aria-hidden="true">×</span>
                                     </button>
                                 </div>
-                                <div class="modal-body">If you really want to delete this post click "Ok" below.</div>
+                                <div class="modal-body guide">
+                                    When you create a new page, you will have the possibility to insert various content in max <b>6 blocks</b> (one per editor). <br><br>
+                                    It's mandatory to insert the Block1, then you can choose which block use (for example, you may insert only block1, block4, block5 and block6).<br><br>
+                                    You can choose from <b>three different layout</b> for the six blocks positioning, look at the images to select the best layout for your page.<br><br>
+                                    You can upload a different image for the <b>visual image</b> on the top of the page.<br><br>
+                                    <b>Background and text color</b><br>
+                                    Every block may have specifics background and text color, you can select them from the dropdown menu below every 
+                                    block editor.<br>
+                                     If you want to add more colors go to the "Theme Settings" section.
+                                </div>
                                 <div class="modal-footer">
                                     <button class="btn btn-primary" type="button" data-dismiss="modal">Close</button>
                                 </div>

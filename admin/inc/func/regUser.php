@@ -32,7 +32,8 @@ if(filter_input(INPUT_GET,"idToMod")){
 
         </div>
         <div class="card-body">
-
+        <div class="row">
+      <div class="col">
         <form class="form-horizontal row-fluid" action="core/mngUser.php" method="POST" enctype="multipart/form-data">
         <input type="hidden" name="operation" value="<?=$operation?>" />
 
@@ -137,6 +138,15 @@ if(filter_input(INPUT_GET,"idToMod")){
                 </div>
             </div>
         </form>
+        </div>
+      <div class="col guide">
+          There are two different roles for a new user:<br>
+          <ul>
+              <li><b>Editor:</b> It can create, modify and delete pages, posts and categories. It can also manage website's settings, like site name or theme.</li>
+              <li><b>Contributor:</b> It can only create, modify and delete posts and categories</li>
+          </ul>
+      </div>
+  </div>
 
     </div>
 </div>

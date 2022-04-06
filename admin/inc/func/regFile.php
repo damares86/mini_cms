@@ -9,8 +9,10 @@
 
     <!-- Project Card Example -->
     <div class="card shadow mb-4">
+        <div class="card-header"></div>
         <div class="card-body">
-  
+  <div class="row">
+      <div class="col">
        <form class="form-horizontal row-fluid" action="core/mngFile.php" method="POST" enctype="multipart/form-data">
         <input type="hidden" name="operation" value="add" />
 
@@ -40,6 +42,13 @@
                 </div>
             </div>
         </form>
+        </div>
+      <div class="col guide">
+          Here you can upload file that you will link in some post or page.<br><br>
+          The only allowed file formats are <b>".pdf", ".doc", ".docx", ".zip"</b> 
+          After the file upload, you will have the file link in the table with all files.
+      </div>
+  </div>
     </div>
         </div>
 
