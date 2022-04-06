@@ -27,7 +27,9 @@ if($man=="settings"){
         </div>
         <div class="card-body">
            
-
+           
+        <div class="row">
+    <div class="col">
         
         <?php
 
@@ -68,6 +70,12 @@ if($man=="settings"){
                 </div>
             </div>
         </form>
+        </div>
+    <div class="col rounded guide mx-3">
+        Choose the Site name and the description, that will be shown on the top of the pages and in the browser header. <br><br>
+        
+    </div>
+</div>
     </div>
 </div>
 </div>
@@ -83,7 +91,8 @@ if($man=="settings"){
         </div>
         <div class="card-body">
            
-
+        <div class="row">
+    <div class="col">
         
         <?php
 
@@ -118,7 +127,7 @@ if($man=="settings"){
    
             <br>
             <?php
-            } 
+            }   
 ?>
             <div class="control-group">
                 <div class="controls">
@@ -129,6 +138,15 @@ if($man=="settings"){
                 </div>
             </div>
         </form>
+        </div>
+    <div class="col rounded guide mx-3">
+        Specify your email, in order to make the contact form and the password reset working correctly. <br><br>
+        <ul>
+            <li><b>Email Address for Contact:</b> this is the email which will receive the messages sent from the contact form</li>
+            <li><b>Email Address for Password Reset:</b> this is the email used in the password reset procedure, it's good to use a different mail, like noreply@yoursite.com (anyway it will work properly also if you use the same email)</li>
+        </ul>
+    </div>
+</div>
     </div>
 </div>
 </div>
@@ -139,11 +157,12 @@ if($man=="settings"){
     <!-- Project Card Example -->
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">Google Recaptcha v3</h6>
+            <h6 class="m-0 font-weight-bold text-primary">Google reCAPTCHA v3</h6>
         </div>
         <div class="card-body">
            
-
+<div class="row">
+    <div class="col">
         
         <?php
 
@@ -161,12 +180,12 @@ if($man=="settings"){
         <form class="form-horizontal row-fluid" action="core/mngSettings.php" method="POST" enctype="multipart/form-data">
             <input type="hidden" name="id" value="<?= $row2['id']?>" />
             <div class="control-group">
-                <label class="control-label">Use Recaptcha</label>
+                <label class="control-label">Use reCAPTCHA v3</label>
                     <div class="controls">
                         <input type="checkbox" name="verify" value="1" <?=$checked?>> 
                     </div>
             </div>
-
+<br>
             <div class="control-group">
 
                 <label class="control-label" for="public">Public Key</label>
@@ -199,6 +218,13 @@ if($man=="settings"){
                 </div>
             </div>
         </form>
+        </div>
+    <div class="col rounded guide mx-3">
+        This is a tool to avoid spam attack on your email address. <br><br>
+        You need to create two keys going to <a href="https://www.google.com/recaptcha/admin" target="_blank">this page</a>, then you can select the "Use Recaptcha" checkbox and paste the two keys given by Google.<br><br>
+        Discover more about <a href="https://developers.google.com/search/blog/2018/10/introducing-recaptcha-v3-new-way-to" target="_blank">Google reCAPTCHA v3</a>
+    </div>
+</div>
     </div>
 </div>
 </div>
@@ -218,6 +244,27 @@ if($man=="settings"){
         <div class="card-header py-3">
         </div>
         <div class="card-body">
+
+        <div class="row guide">
+            <div class="col">
+                Here you can decide which pages will be shown in the menu of your website and also create a hierarchy of the pages.<br>
+                There are three tables:<br><br>
+                <ul>
+                    <li><b>Pages in menu:</b> these are the pages shown in menu; you can see if they are "parent" or "child" (the "children" are tabbed to right and have a different background), you can change the view order using "Up" and "Down" and you can remove the page from menu.</li>
+                </ul>
+                </div>
+                <div class="col">
+                    <ul>
+                        <li><b>Children without parent:</b> these are pages marked as "children" but they don't have any parent (you can choose it using the dropdown menu)</li>
+                        <li><b>Page not in menu:</b> these are the page which are not shown in menu, you can insert them selecting "Add"</li>
+                    </ul>
+                    <br>
+                    <b>NOTE:</b> to save the changes you have to click on the <b>Refresh</b> button.
+
+
+
+            </div>
+        </div>
     <form class="form-horizontal row-fluid" action="core/mngSettings.php" method="POST" enctype="multipart/form-data">
        
         <div class="align-items-center pt-3 pb-2 mb-3 align-items-center">

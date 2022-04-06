@@ -27,8 +27,8 @@
             <h6 class="m-0 font-weight-bold text-primary">Choose your theme</h6>
         </div>
         <div class="card-body">
-           
-
+        <div class="row">
+            <div class="col">
         <?php
 
     
@@ -81,6 +81,14 @@ $total_rows=$colors->countAll();
                 </div>
             </div>
         </form>
+        </div>
+            <div class="col guide">
+                Here you can select the theme for your website.<br>
+                If you want to add another theme, you have to upload the theme folder in <b>http://yoursite.com/assets/</b><br>
+                Discover more about themes creation on <a href="http://minicms.altervista.org">Mini Cms</a>.
+            </div>
+        </div>
+
     </div>
 </div>
 </div>
@@ -94,6 +102,8 @@ $total_rows=$colors->countAll();
             <h6 class="m-0 font-weight-bold text-primary">Box Background Colors</h6>
         </div>
         <div class="card-body">
+            <div class="row">
+                <div class="col-8">
             <a href="index.php?man=color&op=add" class="btn btn-success btn-icon-split">
                 <span class="icon text-white-50">
                     <i class="fas fa-plus"></i>
@@ -172,7 +182,12 @@ if($total_rows>0){
 
 
 ?>
-
+</div>
+                <div class="col-4 guide m-0">
+                    These are the colors for the box background and for the text color.<br>
+                    You can add new colors and these will be shown in the dropdown menus below the editors of the six block during the page creation.
+                </div>
+            </div>
     </div>
 </div>
 </div>

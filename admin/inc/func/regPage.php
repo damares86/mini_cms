@@ -36,6 +36,32 @@ $stmt = $settings->showSettings();
 
         </div>
         <div class="card-body">
+ 
+            <a href="#" class="btn btn-primary btn-icon-split" data-toggle="modal" data-target="#infoPage">
+                        <span class="icon text-white-50">
+                            <i class="fas fa-fw fa-question"></i>
+                        </span>
+                        <span class="text">Page creation info</span>
+                    </a> 
+             <!-- Info Modal-->
+             <div class="modal fade" id="infoPage" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                        aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-scrollable" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel"><b>Page creation info</b></h5>
+                                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">×</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">If you really want to delete this post click "Ok" below.</div>
+                                <div class="modal-footer">
+                                    <button class="btn btn-primary" type="button" data-dismiss="modal">Close</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+            <br>
            
             <br>
 
