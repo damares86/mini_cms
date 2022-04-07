@@ -56,15 +56,40 @@ if($man=="settings"){
                         
                 </div>
             </div>
+
+            <div class="control-group">
+                            <label class="control-label" for="site_description">Dashboard language</label>
+                <div class="controls">
+
+                <select name="language">
+                <?php
+                $lang =glob("locale/*.php", GLOB_BRACE);
+
+            foreach ($lang as $file) {
+                    $language=pathinfo($file, PATHINFO_FILENAME);
+                    $selected = "";
+                    if ($language == $dashboard_language) {
+                        $selected = "selected";
+                    }
+                    echo "<option value='{$language}' $selected >{$language}</option>";
+
+                
+            }
+                ?>
+            </select>
+                        
+                </div>
+            </div>
    
             
             <?php
             } 
 ?>
+<br>
             <div class="control-group">
                 <div class="controls">
                    
-                    <input type="submit" class="btn btn-primary" name="subReg" value="Submit">
+                    <input type="submit" class="btn btn-primary" name="subReg" value="<?=$txt_submit?>">
 
                     <!-- <button type="submit" class="btn" name="subReg">Submit Form</button> -->
                 </div>
