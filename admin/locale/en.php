@@ -6,6 +6,9 @@ $txt_submit = "Submit";
 $txt_edit = "Edit";
 $txt_delete = "Delete";
 $txt_logout = "Logout";
+$txt_modal_title = "Are you sure?";
+$txt_modal_logout = "Select \"Logout\" below if you are ready to end your current session.";
+
 
 
 // SIDEBAR
@@ -58,6 +61,7 @@ $alluser_title = "Users";
 $alluser_box_title = "All Users";
 $alluser_add = "Add new user";
 $alluser_role = "Role";
+$alluser_modal_text = "If you really want to delete this user click \"Ok\" below.";
 
 
 // PAGES
@@ -68,6 +72,8 @@ $allpage_add = "Add new page";
 $allpage_name = "Page name";
 $allpage_link = "Page link";
 $allpage_view = "View";
+$allpage_modal_text = "If you really want to delete this page click \"Ok\" below.";
+
 
 // REG AND EDIT PAGES
 
@@ -95,6 +101,8 @@ $file_box_title = "All files";
 $file_add = "Add new file";
 $file_filetitle = "Title";
 $file_filename = "Name";
+$file_modal_text = "If you really want to delete this file click \"Ok\" below.";
+
 
 
 // ADD FILES
@@ -116,6 +124,8 @@ $post_link ="Post link";
 $post_view = "View";
 $post_cat = "Category";
 $post_mod = "Modified";
+$post_modal_text = "If you really want to delete this post click \"Ok\" below.";
+
 
 
 // REG AND EDIT POST
@@ -140,6 +150,8 @@ $cat_title = "Categories";
 $cat_box_title = "All Categories";
 $cat_add = "Add new category";
 $cat_name = "Category name";
+$cat_modal_text = "If you really want to delete this category click \"Ok\" below.";
+
 
 
 // REG AND EDIT CATEGORIES
@@ -200,7 +212,6 @@ $menu_desc .= "the page from menu.</li><li><b>Children without parent:</b> these
 $menu_desc .= "it using the dropdown menu)</li><li><b>Page not in menu:</b> these are the page which are not shown in menu, you can insert them selecting \"Add\"</li>";
 $menu_desc .= "</ul><br><b>NOTE:</b> to save the changes you have to click on the <b>Refresh</b> button.";
 
-/////////////// aggiungere modale
 
 // THEME SETTINGS
 
@@ -210,13 +221,18 @@ $theme_theme = "Theme";
 $theme_box1_desc = "Here you can select the theme for your website.<br>";
 $theme_box1_desc .= "If you want to add another theme, you have to upload the theme folder in <b>http://yoursite.com/assets/</b><br>";
 $theme_box1_desc .= "Discover more about themes creation on <a href=\"http://minicms.altervista.org\">Mini Cms</a>.";
-$theme_box2_title = "Box backgound and text colors";
+$theme_box2_title = "Box background and text colors";
 $them_box2_add = "Add new color";
 $theme_box2_desc = "These are the colors for the box background and for the text color.<br>";
 $theme_box2_desc .= "You can add new colors and these will be shown in the dropdown menus below the editors of the six block during the page creation.<br>";
 $theme_box2_desc .= "NOTE: these color <b>don't change the theme colors</b>.";
 
 
+//////////////////////////////////////////////////////
+
+// AGGIUNGERE ALERT E TESTI LOGIN, RESET E CONTACT
+
+//////////////////////////////////////////////////////
 
 
 

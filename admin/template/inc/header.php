@@ -33,6 +33,10 @@ $verify = new Verify($db);
 
 $stmt=$settings->showSettings();
 
+$stmt1=$settings->showLang();
+$lang=$settings->dashboard_language;
+require "admin/locale/$lang.php";
+
 // prendo il nome del file (con estensione)
 $file = basename($_SERVER['PHP_SELF']);
 

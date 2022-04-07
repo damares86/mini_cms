@@ -38,8 +38,7 @@ $settings = new Settings($db);
 
 $stmt=$settings->showLang();
 $lang=$settings->dashboard_language;
-
-    require "locale/$lang.php";
+require "locale/$lang.php";
 
 
 ?>
