@@ -27,7 +27,12 @@
         </div>
         <div class="card-body">
         <div class="align-items-center pt-3 pb-2 mb-3 align-items-center">
-            <a href="index.php?man=files&op=add"><button type="button" class="btn btn-success">Add new file +</button></a>
+            <a href="index.php?man=files&op=add" class="btn btn-success btn-icon-split">
+                <span class="icon text-white-50">
+                    <i class="fas fa-plus"></i>
+                </span>
+                <span class="text">Add new file</span>
+            </a>
         </div>
         <br>
         <?php

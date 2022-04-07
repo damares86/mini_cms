@@ -47,17 +47,16 @@ $url = get_page_url();
             <?=$post->content?>
             
             <br>
-            Share: &nbsp;
+            Share on: &nbsp;
             <a href="https://twitter.com/share?url=<?=$url?>" target="_blank" onclick="window.open(this.href,'window','width=640,height=480,resizable,scrollbars') ;return false;">
-                            <i class="fa fa-twitter" data-toggle="tooltip" title="" data-original-title="Twitter">twitter</i></a>
+            <i class="fab fa-twitter"></i></a>
 
                         &nbsp; &nbsp; <a href="https://www.facebook.com/sharer.php?u=<?=$url?>">
-                            <i class="fa fa-facebook" data-toggle="tooltip" title="" data-original-title="Facebook">facebook</i></a>
+                        <i class="fab fa-facebook"></i></a>
                         <!-- <a href="http://www.linkedin.com/shareArticle?mini=true&url=<?=$url?>">
                             <i class="fa fa-linkedin" data-toggle="tooltip" title="" data-original-title="Linkedin">linkedin</i>
                         </a> -->
             <br>
-            
         </div>
         
         </div>

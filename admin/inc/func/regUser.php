@@ -133,7 +133,7 @@ if(filter_input(INPUT_GET,"idToMod")){
             <div class="control-group">
                 <div class="controls">
                    
-                    <input type="submit" class="btn " name="subReg" value="Submit">
+                    <input type="submit" class="btn btn-primary" name="subReg" value="Submit">
 
                 </div>
             </div>
