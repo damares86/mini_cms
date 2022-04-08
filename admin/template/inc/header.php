@@ -40,6 +40,16 @@ require "admin/locale/$lang.php";
 // prendo il nome del file (con estensione)
 $file = basename($_SERVER['PHP_SELF']);
 
+$post_title="";
+if(filter_input(INPUT_GET,"id")){
+$post_id=filter_input(INPUT_GET,"id");
+
+$post->id=$post_id;
+$post->showById();
+$post_title = $post->title;
+}
+
+
 $page_name="";
 $page_class="";
 if($file=="login.php"){
@@ -52,7 +62,10 @@ if($file=="login.php"){
 if($file=="index.php"){
     $page_name="Home";
     $page_class = pathinfo($file, PATHINFO_FILENAME);
-} else{
+} else if($file=="post.php"){
+    $page_name=$post_title." - Blog ";
+    $page_class="blog";
+}else{
 // mi prendo solo il nome senza l'estensione
 $page_name = pathinfo($file, PATHINFO_FILENAME);
 $page_class = pathinfo($file, PATHINFO_FILENAME);
@@ -85,7 +98,7 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
         <link rel="icon" href="assets/<?= $theme ?>/img/favicon.ico">
         <?php
           
-            if($page_class=="index"){
+            if($page_class=="index"||$page_class="blog"){
                 $page->page_name=$page_class;
             }else{
                 $page->page_name=$page_name;
