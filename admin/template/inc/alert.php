@@ -90,7 +90,7 @@ if($msg=="errSend"){
     </div>
 
     <?php    
-} else if($msg=="contactEmpty"){
+} else if($msg=="contactFormEmpty"){
     ?>
     <div class="alert alert-danger">
         <button type="button" class="close" data-dismiss="alert">x</button>
@@ -114,6 +114,15 @@ if($msg=="errSend"){
     </div>
 
     <?php    
+} else if($msg=="errUserPsw"){
+    ?>
+    <div class="alert alert-danger">
+        <button type="button" class="close" data-dismiss="alert">x</button>
+        Email or password wrong!
+    </div>
+
+    <?php    
+    //reset email
 } else
 
 ?>

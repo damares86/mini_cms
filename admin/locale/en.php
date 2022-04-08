@@ -86,7 +86,7 @@ $regpage_actual = "Actual image";
 $regpage_block = "Block";
 $regpage_background = "Background color";
 $regpage_text = "Text color";
-$regpage_desc = "When you create a new page, you will have the possibility to insert various content in max <b>6 blocks</b> (one per editor). <br><br>".
+$regpage_desc = "When you create a new page, you will have the possibility to insert various content in max <b>6 blocks</b> (one per editor). <br><br>";
 $regpage_desc .= "It's mandatory to insert the Block1, then you can choose which block use (for example, you may insert only block1, block4, block5 and block6).<br><br>";
 $regpage_desc .= "You can choose from <b>three different layout</b> for the six blocks positioning, look at the images to select the best layout for your page.<br><br>";
 $regpage_desc .= "You can upload a different image for the <b>visual image</b> on the top of the page.<br><br>";
@@ -228,11 +228,113 @@ $theme_box2_desc .= "You can add new colors and these will be shown in the dropd
 $theme_box2_desc .= "NOTE: these color <b>don't change the theme colors</b>.";
 
 
-//////////////////////////////////////////////////////
+// ALERT DASHBOARD
 
-// AGGIUNGERE ALERT E TESTI LOGIN, RESET E CONTACT
+$al_userDelSucc = "User successfully deleted";
+$al_userDelErr = "User not deleted";
+$al_mailExists = "User's email already registered";
+$al_userSucc = "User successfully registered";
+$al_userErr = "Error while registering user";
+$al_userEditSucc = "User successfully modified";
+$al_userEditErr = "User not modified";
+$al_setEditSucc = "Settings succesfully updated";
+$al_setEditErr = "Settings not modified";
+$al_postDelSucc = "Post successfully deleted";
+$al_postDelErr = "Post not deleted";
+$al_postSucc = "Post successfully inserted";
+$al_postErr = "Post not inserted";
+$al_postEditSucc = "Post successfully modified";
+$al_postEditErr = "Post not modified";
+$al_userdelSucc = "User successfully deleted";
+$al_catDelSucc = "Category successfully deleted";
+$al_catDelError = "Category not deleted";
+$al_catExists = "Category already exists";
+$al_catSucc = "Category successfully created";
+$al_catErr = "Category not created";
+$al_catEditSucc = "Category successfully modified";
+$al_catEditErr = "Category not modified";
+$al_colorDelSucc = "Color deleted";
+$al_colorDelErr = "Color not deleted";
+$al_colorSucc = "Color created";
+$al_colorErr = "Color not created";
+$al_catEmpty = "Category name missing";
+$al_colorEmpty = "Color missing";
+$al_pageEmpty = "Page name or first block missing";
+$al_pswEmpty = "New password missing";
+$al_postTitleEmpty = "Post title missing";
+$al_postEmpty = "Post error: you have to fill both summary and content";
+$al_settingsEmpty = "Title and description can't be empty";
+$al_userEmpty = "Some data missing during user creation";
+$al_pageDelSucc = "Page successfully deleted";
+$al_pageDelErr = "Page not deleted";
+$al_pageSucc = "Page successfully created";
+$al_pageDelSucc = "Page successfully deleted";
+$al_pageErr = "Page not created";
+$al_pageEditSucc = "Page modified";
+$al_pageEditErr = "Page not modified";
+$al_fileDelSucc = "File deleted";
+$al_fileNotDel = "File not deleted";
+$al_fileTitleEmpty = "File title missing";
+$al_fileEmpty = "File missing";
+$al_fileSucc = "File uploaded";
+$al_fileErr = "File not uploaded";
+$al_contactEmpty = "You must insert both addesses!";
+$al_setContactSucc = "Contact emails updated";
+$al_setContactErr = "Contact emails not updated";
+$al_keyEmpty = "You must insert both keys";
+$al_setKeySucc = "reCAPTCHA keys updated";
+$al_setKeyErr = "reCAPTCHA keys not updated";
 
-//////////////////////////////////////////////////////
+// ALERT WEBSITE
+
+$al_errSend = "Problems sending you an email.";
+$al_mailResetErr = "Email missing";
+$al_mailNotReg = "Email not registered";
+$al_newPass = "Password changed successfully. Login below";
+$al_pswEditErr = "Error while changing your password";
+$al_errResetRequest = "Reset request already done. Check your email for the link or come back later and retry";
+$al_noResetDelete = "There are problems with your reset request. Please contact us.";
+$al_noReset = "There are problems with your reset request. Please contact us.";
+$al_errRecaptcha = "Sorry, you don't seem reliable, please try again or contact us.";
+$al_errPost = "Error while trying to login";
+$al_contactFormEmpty = "Please fill all the fields";
+$al_sentContact = "Mail successfully sent";
+$al_errSendContact = "Error sending your email";
+$al_errUserPsw = "Email or password wrong!";
+
+
+// LOGIN AND RESET FORM
+
+$log_forgot = "Forgot password?";
+$log_required = "Password is required";
+$log_back = "Back to login";
+$log_forgot_title = "Forgot your password?";
+$log_forgot_desc = "Insert your email below to reset your password";
+$log_forgot_sent = "An email has been sent to you with instructions on how to reset your password.";
+$log_forgot_wrong = "Wrong link";
+$log_forgot_new = "Insert your new password";
+$log_forgot_exp = "Your link is expired";
+
+
+// CONTACT FORM
+
+$cont_page_title = "Contact us";
+$cont_form_title = "Contact";
+$cont_form_name = "Your name";
+$cont_form_email = "Your email";
+$cont_form_sub = "Subject";
+$cont_form_msg = "Your message";
+$cont_form_button = "Send";
+
+// BLOG
+
+$blog_category = "Category";
+$blog_mod = "Last modified on";
+$blog_continue = "Continue reading";
+$blog_categories = "Categories";
+
+
+
 
 
 
