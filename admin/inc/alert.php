@@ -146,6 +146,14 @@ if($msg=="userDelSucc"){
     </div>
 
     <?php    
+} else if($msg=="catDelExist"){
+    ?>
+    <div class="alert alert-danger">
+        <button type="button" class="close" data-dismiss="alert">x</button>
+        Category not deleted because some post use it!
+    </div>
+
+    <?php    
 } else if($msg=="catExists"){
     ?>
     <div class="alert alert-danger">

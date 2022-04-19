@@ -9,6 +9,24 @@
 
 
 
+
+
+
+
+/////////////////////////////////////////////////////////////////////////////////
+
+//////   CONTROLLARE SE ESISTONO DEI POST CON LA CATEGORIA PRIMA DI CANCELLARLA
+
+/////////////////////////////////////////////////////////////////////////////////
+
+
+
+
+
+
+
+
+
 session_start();
 if (!isset($_SESSION['loggedin'])) {
     header('Location: ../');
@@ -18,12 +36,14 @@ if (!isset($_SESSION['loggedin'])) {
 	// loading class
 	include("../class/Database.php");
 	include("../class/Categories.php");
+	include("../class/Post.php");
 
 
 	$database = new Database();
 	$db = $database->getConnection();
 
 	$cat = new Categories($db);
+	$post = new Post($db);
 
 if(filter_input(INPUT_GET,"idToDel")){
 	
@@ -31,15 +51,42 @@ if(filter_input(INPUT_GET,"idToDel")){
 	
 	$cat->id=$idToDel;
 	
-	// delete the role
-	if($cat->delete()){
-		header("Location: ../index.php?man=cat&op=show&msg=catDelSucc");
-		exit;
+	$countPost = 0;
+
+	$stmt = $post->showTot();
+
+
+
+	while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
 		
-	}else{
-		header("Location: ../index.php?man=cat&op=show&msg=catDelErr");
-		exit;
+		extract($row);
+
+		if($category_id = $idToDel){
+			$countPost ++;
+		}
+
 	}
+
+
+	if($countPost>0){
+		header("Location: ../index.php?man=cat&op=show&msg=catDelExist");
+		exit;
+	}else{
+		// delete the category
+		if($cat->delete()){
+			header("Location: ../index.php?man=cat&op=show&msg=catDelSucc");
+			exit;
+			
+		}else{
+			header("Location: ../index.php?man=cat&op=show&msg=catDelErr");
+			exit;
+		}
+	}
+
+
+
+
+
 }
 
 if(filter_input(INPUT_POST,"subReg")){
