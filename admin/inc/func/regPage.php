@@ -1,7 +1,7 @@
 <?php
 
 $operation = "add";
-$titoloForm = "Add New Page";
+$titoloForm = $regpage_title_add;
 
 $postToMod="";
 $idToMod="";
@@ -9,7 +9,7 @@ $category_id="";
 
 if(filter_input(INPUT_GET,"idToMod")){
     $idToMod = filter_input(INPUT_GET,"idToMod");
-    $titoloForm="Edit page";
+    $titoloForm=$regpage_title_edit;
     $operation="mod";
 }
 $settings = new Settings ($db);
@@ -41,7 +41,7 @@ $stmt = $settings->showSettings();
                         <span class="icon text-white-50">
                             <i class="fas fa-fw fa-question"></i>
                         </span>
-                        <span class="text">Page creation info</span>
+                        <span class="text"><?=$regpage_info?></span>
                     </a> <br>
              <!-- Info Modal-->
              <div class="modal fade" id="infoPage" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
@@ -49,23 +49,16 @@ $stmt = $settings->showSettings();
                         <div class="modal-dialog modal-dialog-scrollable" role="document">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel"><b>Page creation info</b></h5>
+                                    <h5 class="modal-title" id="exampleModalLabel"><b><?=$regpage_info?></b></h5>
                                     <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">×</span>
                                     </button>
                                 </div>
                                 <div class="modal-body guide">
-                                    When you create a new page, you will have the possibility to insert various content in max <b>6 blocks</b> (one per editor). <br><br>
-                                    It's mandatory to insert the Block1, then you can choose which block use (for example, you may insert only block1, block4, block5 and block6).<br><br>
-                                    You can choose from <b>three different layout</b> for the six blocks positioning, look at the images to select the best layout for your page.<br><br>
-                                    You can upload a different image for the <b>visual image</b> on the top of the page.<br><br>
-                                    <b>Background and text color</b><br>
-                                    Every block may have specifics background and text color, you can select them from the dropdown menu below every 
-                                    block editor.<br>
-                                     If you want to add more colors go to the "Theme Settings" section.
+                                   <?=$regpage_text?>
                                 </div>
                                 <div class="modal-footer">
-                                    <button class="btn btn-primary" type="button" data-dismiss="modal">Close</button>
+                                    <button class="btn btn-primary" type="button" data-dismiss="modal"><?=$txt_close?></button>
                                 </div>
                             </div>
                         </div>
@@ -98,7 +91,7 @@ $stmt = $settings->showSettings();
                        } else {
                     ?>
 
-                    <input type="text" id="page_name" name="page_name" placeholder="Page Name" value="<?=$page->page_name?>" class="span8">
+                    <input type="text" id="page_name" name="page_name" placeholder="<?=$regpage_name?>" value="<?=$page->page_name?>" class="span8">
 
                     <?php
                        }
@@ -113,7 +106,7 @@ $stmt = $settings->showSettings();
             ?>
             <div class="control-group">
                 <label class="control-label" for="layout">
-                    Choose page layout
+                    <?=$regpage_layout?>
                 </label>
                 <div class="controls">
                     <?php
@@ -154,11 +147,11 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
      }
 ?>
             <div class="control-group">
-                <label class="control-label" for="file">Visual image</label>
+                <label class="control-label" for="file"><?=$regpage_visual?></label>
                 <div class="controls">
                     <input type="file" id="myfile" name="myfile">
                     <br><br>
-                    Actual image: <img src="../assets/<?=$theme?>/img/<?=$img?>"  style="max-width:200px;">
+                    <?=$regpage_actual?><img src="../assets/<?=$theme?>/img/<?=$img?>"  style="max-width:200px;">
                 </div>
             </div>
             <br>
@@ -172,12 +165,12 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
             <?php   
                 if($idToMod!=2 && $idToMod!=3 && $idToMod!=4){
             ?>
-            <h3>Block 1</h3>
+            <h3><?=$regpage_block?> 1</h3>
 
             <textarea id="summernote" name="editor" rows="10">   <?=$page->block1?></textarea>
             <br>
             <div class="control-group">
-            <label for="block1_bg">Background color</label>
+            <label for="block1_bg"><?=$regpage_background?></label>
             <?php
                 $color = new Colors($db);
                 $stmt = $color->showAllList();
@@ -205,7 +198,7 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
                 ?>
             </select>
             <br><br>
-            <label for="block1_text">Text color</label>
+            <label for="block1_text"><?=$regpage_text?></label>
             <?php
                 $color = new Colors($db);
                 $stmt = $color->showAllList();
@@ -254,13 +247,13 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
         ?>
             
             <br>
-            <h3>Block 2</h3>
+            <h3><?=$regpage_block?> 2</h3>
             <textarea id="summernote2" name="editor2" rows="10" class="summernote position-absolute">   <?=$page->block2?></textarea>
 
             <br>
 
             <div class="control-group">
-            <label for="block2_bg">Background color</label>
+            <label for="block2_bg"><?=$regpage_background?></label>
             <?php
                 $color = new Colors($db);
                 $stmt = $color->showAllList();
@@ -288,7 +281,7 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
                 ?>
             </select>
             <br><br>
-            <label for="block2_text">Text color</label>
+            <label for="block2_text"><?=$regpage_text?></label>
             <?php
                 $color = new Colors($db);
                 $stmt = $color->showAllList();
@@ -333,12 +326,12 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
         ?>
             
             <br>
-            <h3>Block 3</h3>
+            <h3><?=$regpage_block?> 3</h3>
             <textarea id="summernote3" name="editor3" rows="10">   <?=$page->block3?></textarea>
 
             <br>
             <div class="control-group">
-            <label for="block3_bg">Background color</label>
+            <label for="block3_bg"><?=$regpage_background?></label>
             <?php
                 $color = new Colors($db);
                 $stmt = $color->showAllList();
@@ -366,7 +359,7 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
                 ?>
             </select>
             <br><br>
-            <label for="block3_text">Text color</label>
+            <label for="block3_text"><?=$regpage_text?></label>
             <?php
                 $color = new Colors($db);
                 $stmt = $color->showAllList();
@@ -410,12 +403,12 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
 
         ?>
             <br>
-            <h3>Block 4</h3>
+            <h3><?=$regpage_block?> 4</h3>
             <textarea id="summernote4" name="editor4" rows="10">   <?=$page->block4?></textarea>
 
             <br>
             <div class="control-group">
-            <label for="block4_bg">Background color</label>
+            <label for="block4_bg"><?=$regpage_background?></label>
             <?php
                 $color = new Colors($db);
                 $stmt = $color->showAllList();
@@ -443,7 +436,7 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
                 ?>
             </select>
             <br><br>
-            <label for="block4_text">Text color</label>
+            <label for="block4_text"><?=$regpage_text?></label>
             <?php
                 $color = new Colors($db);
                 $stmt = $color->showAllList();
@@ -485,12 +478,12 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
 
         ?>
             <br>
-            <h3>Block 5</h3>
+            <h3><?=$regpage_block?> 5</h3>
             <textarea id="summernote5" name="editor5" rows="10">   <?=$page->block5?></textarea>
 
             <br>
             <div class="control-group">
-            <label for="block5_bg">Background color</label>
+            <label for="block5_bg"><?=$regpage_background?></label>
             <?php
                 $color = new Colors($db);
                 $stmt = $color->showAllList();
@@ -518,7 +511,7 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
                 ?>
             </select>
             <br><br>
-            <label for="block5_text">Text color</label>
+            <label for="block5_text"><?=$regpage_text?></label>
             <?php
                 $color = new Colors($db);
                 $stmt = $color->showAllList();
@@ -560,12 +553,12 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
 
         ?>
             <br>
-            <h3>Block 6</h3>
+            <h3><?=$regpage_block?> 6</h3>
             <textarea id="summernote6" name="editor6" rows="10">   <?=$page->block6?></textarea>
 
             <br>
             <div class="control-group">
-            <label for="block6_bg">Background color</label>
+            <label for="block6_bg"><?=$regpage_background?></label>
             <?php
                 $color = new Colors($db);
                 $stmt = $color->showAllList();
@@ -593,7 +586,7 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
                 ?>
             </select>
             <br><br>
-            <label for="block6_text">Text color</label>
+            <label for="block6_text"><?=$regpage_text?></label>
             <?php
                 $color = new Colors($db);
                 $stmt = $color->showAllList();
@@ -626,7 +619,7 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
             ?>
 
             <br>
-                 <input type="submit" class="btn btn-primary" name="subReg" value="Submit">
+                 <input type="submit" class="btn btn-primary" name="subReg" value="<?=$txt_submit?>">
         </form>
         
         

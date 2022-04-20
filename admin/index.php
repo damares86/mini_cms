@@ -83,7 +83,7 @@ $user_id=$_SESSION['user_id'];
 
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">Mini Cms Dashboard</h1>
+                        <h1 class="h3 mb-0 text-gray-800"><?=$home_title?></h1>
                     </div>
 
                     
@@ -99,11 +99,11 @@ $user_id=$_SESSION['user_id'];
                             <!-- Project Card Example -->
                             <div class="card shadow mb-4">
                                 <div class="card-header py-3">
-                                    <h6 class="m-0 font-weight-bold text-primary">Welcome</h6>
+                                    <h6 class="m-0 font-weight-bold text-primary"><?=$home_welcome?></h6>
                                 </div>
                                 <div class="card-body">
-                                <p>Welcome <b><?=$user?></b> to your Mini Cms Admin Dashboard.</p>
-                                        <p>Here you have some quick links to manage your website.</p><br>
+                                <p><?=$home_intro1?> <b><?=$user?></b> <?=$home_intro2?></p>
+                                        <p><?=$home_intro3?></p><br>
                                 </div>
                             </div>
 
@@ -115,7 +115,7 @@ $user_id=$_SESSION['user_id'];
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                                Users</div>
+                                               <?=$home_tab1?></div>
                                             <div class="h5 mb-0 font-weight-bold text-gray-800"><?=$total_user?></div>
                                         </div>
                                         <div class="col-auto">
@@ -133,7 +133,7 @@ $user_id=$_SESSION['user_id'];
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                                                Post</div>
+                                                <?=$home_tab2?></div>
                                             <div class="h5 mb-0 font-weight-bold text-gray-800"><?=$total_post?></div>
                                         </div>
                                         <div class="col-auto">
@@ -157,7 +157,7 @@ $user_id=$_SESSION['user_id'];
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                                                Your theme</div>
+                                                <?=$home_tab3?></div>
                                             <div class="h5 mb-0 font-weight-bold text-gray-800"><?=$theme?></div>
                                         </div>
                                         <div class="col-auto">
@@ -182,15 +182,16 @@ $user_id=$_SESSION['user_id'];
                             <!-- Illustrations -->
                             <div class="card shadow mb-4">
                                 <div class="card-header py-3">
-                                    <h6 class="m-0 font-weight-bold text-primary">Quick links</h6>
+                                    <h6 class="m-0 font-weight-bold text-primary"><?=$quicklink?></h6>
                                 </div>
                                 <div class="card-body"> 
                                     <p>
                                         <a href="https://minicms.altervista.org/" target="_blank">&rarr; Mini Cms</a>:
-                                        The official website of Mini Cms</p>
+                                        <?=$home_link1?>
+                                    </p>
                                     <p>
                                         <a href="https://github.com/damares86/mini_cms" target="_blank">&rarr; GitHub</a>:
-                                        The GitHub repository of the project
+                                        <?=$home_link1?>
                                     </p>
                                 </div>
                             </div>
@@ -230,15 +231,15 @@ $user_id=$_SESSION['user_id'];
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                    <h5 class="modal-title" id="exampleModalLabel"><?=$txt_modal_title?></h5>
                     <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">×</span>
                     </button>
                 </div>
-                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+                <div class="modal-body"><?=$txt_modal_logout?></div>
                 <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="core/logout.php">Logout</a>
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal"><?=$txt_cancel?></button>
+                    <a class="btn btn-primary" href="core/logout.php"><?=$txt_logout?></a>
                 </div>
             </div>
         </div>

@@ -4,8 +4,10 @@
 
 $txt_submit = "Submit";
 $txt_edit = "Edit";
+$txt_cancel = "Cancel";
 $txt_delete = "Delete";
 $txt_logout = "Logout";
+$txt_close = "Close";
 $txt_modal_title = "Are you sure?";
 $txt_modal_logout = "Select \"Logout\" below if you are ready to end your current session.";
 
@@ -33,8 +35,9 @@ $side_themeset = "Theme settings";
 $home_title = "Mini Cms Dashboard";
 $home_welcome ="Welcome";
 // note: in the next line don't change the single quotation ( ' ) with the double quotation ( " )
-$home_intro1 = 'Welcome <b><?=$user?></b> to your Mini Cms Admin Dashboard.'; 
-$home_intro2 = "Here you have some quick links to manage your website.";
+$home_intro1 = "Welcome";
+$home_intro2 = "to your Mini Cms Admin Dashboard."; 
+$home_intro3 = "Here you have some quick links to manage your website.";
 $home_quicklink = "Quick links";
 $home_link1 = "The official website of Mini Cms";
 $home_link2 = "The GitHub repository of the project";
@@ -53,6 +56,14 @@ $prof_box1_desc .= "It can also manage website's settings, like site name or the
 $prof_box1_desc .= "<li><b>Contributor:</b> It can only create, modify and delete posts and categories</li></ul>";
 $prof_box2_title = "New user's password";
 $prof_title_add = "Add User";
+$prof_username = "Username";
+$prof_password = "Password";
+$prof_email = "Email";
+$prof_role = "Role";
+$prof_username_ph = "Choose a username";
+$prof_email_ph = "sample@mail.com";
+$prof_password_ph = "Choose a password";
+
 
 
 // ALL USERS
@@ -60,8 +71,11 @@ $prof_title_add = "Add User";
 $alluser_title = "Users";
 $alluser_box_title = "All Users";
 $alluser_add = "Add new user";
+$alluser_username = "Username";
+$alluser_email = "Email";
 $alluser_role = "Role";
 $alluser_modal_text = "If you really want to delete this user click \"Ok\" below.";
+$alluser_nouser = "No users found";
 
 
 // PAGES
@@ -73,6 +87,7 @@ $allpage_name = "Page name";
 $allpage_link = "Page link";
 $allpage_view = "View";
 $allpage_modal_text = "If you really want to delete this page click \"Ok\" below.";
+$allpage_nopage = "No pages found";
 
 
 // REG AND EDIT PAGES
@@ -80,6 +95,7 @@ $allpage_modal_text = "If you really want to delete this page click \"Ok\" below
 $regpage_title_add = "Add New Page";
 $regpage_title_edit = "Edit Page";
 $regpage_info = "Page creation info";
+$regpage_name = "Page name";
 $regpage_layout = "Choose page layout";
 $regpage_visual = "Visual image";
 $regpage_actual = "Actual image";
@@ -101,13 +117,17 @@ $file_box_title = "All files";
 $file_add = "Add new file";
 $file_filetitle = "Title";
 $file_filename = "Name";
+$file_filelink = "Link";
 $file_modal_text = "If you really want to delete this file click \"Ok\" below.";
+$file_nofile = "No files found";
 
 
 
 // ADD FILES
 
 $addfile_title = "Add file";
+$addfile_filetitle = "File Title";
+$addfile_filetitle_ph = "Choose the file title";
 $addfile_upload = "Upload file";
 $addfile_desc = " Here you can upload file that you will link in some post or page.<br><br>";
 $addfile_desc .= "The only allowed file formats are <b>\".pdf\", \".doc\", \".docx\", \".zip\"</b> ";
@@ -125,6 +145,7 @@ $post_view = "View";
 $post_cat = "Category";
 $post_mod = "Modified";
 $post_modal_text = "If you really want to delete this post click \"Ok\" below.";
+$post_nopost = "No posts found";
 
 
 
@@ -134,6 +155,7 @@ $regpost_title_add = "Add New Post";
 $regpost_title_edit = "Edit Post";
 $regpost_info = "Post creation info";
 $regpost_posttitle = "Title";
+$regpost_posttitle_ph = "Post's Title";
 $regpost_cat = "Category";
 $regpost_summary = "Summary";
 $regpost_content = "Content";
@@ -151,7 +173,7 @@ $cat_box_title = "All Categories";
 $cat_add = "Add new category";
 $cat_name = "Category name";
 $cat_modal_text = "If you really want to delete this category click \"Ok\" below.";
-
+$cat_nocat = "No categories found";
 
 
 // REG AND EDIT CATEGORIES
@@ -159,6 +181,7 @@ $cat_modal_text = "If you really want to delete this category click \"Ok\" below
 $regcat_title_add = "Add category";
 $regcat_title_edit = "Edit category";
 $regcat_name = "Category name";
+$regcat_name_ph = "Choose a category name";
 
 
 // SITE SETTINGS
@@ -171,7 +194,9 @@ $site_lang = "Site language";
 $site_box1_desc = "Choose the Site name and the description, that will be shown on the top of the pages and in the browser header.";
 $site_box2_title = "Contact information";
 $site_inbox = "Email address for contact";
+$site_inbox_ph = "es. info@yoursite.com";
 $site_reset = "Email address for password reset";
+$site_reset_ph = "es. noreply@yoursite.com";
 $site_box2_desc = "Specify your email, in order to make the contact form and the password reset working correctly. <br><br>";
 $site_box2_desc .= "<ul><li><b>Email Address for Contact:</b> this is the email which will receive the messages sent from the contact form</li>";
 $site_box2_desc .= "<li><b>Email Address for Password Reset:</b> this is the email used in the password reset procedure, it's good to use a different mail,";
@@ -191,18 +216,17 @@ $site_box3_desc .= "<a href=\"https://developers.google.com/search/blog/2018/10/
 
 $menu_title = "Menu settings";
 $menu_info = "Menu management";
+$menu_t1_title = "Pages in menu";
 $menu_name = "Page name";
 $menu_parent = "Parent";
-$menu_inmenu = "In menu";
-$menu_t1_title = "Pages in menu";
 $menu_t1_yes = "Yes";
 $menu_t1_child = "Child of";
 $menu_t1_order = "Item order";
 $menu_t1_up ="Up";
 $menu_t1_down = "Down";
+$menu_inmenu = "In menu";
 $menu_t1_remove = "Remove";
 $menu_t2_title = "Children without parent";
-$menu_t2_name = "Page name";
 $menu_t3_title = "Page not in menu";
 $menu_t2_add = "Add";
 $menu_refresh = "Refresh";
@@ -223,10 +247,13 @@ $theme_box1_desc = "Here you can select the theme for your website.<br>";
 $theme_box1_desc .= "If you want to add another theme, you have to upload the theme folder in <b>http://yoursite.com/assets/</b><br>";
 $theme_box1_desc .= "Discover more about themes creation on <a href=\"http://minicms.altervista.org\">Mini Cms</a>.";
 $theme_box2_title = "Box background and text colors";
-$them_box2_add = "Add new color";
+$theme_box2_add = "Add new color";
 $theme_box2_desc = "These are the colors for the box background and for the text color.<br>";
 $theme_box2_desc .= "You can add new colors and these will be shown in the dropdown menus below the editors of the six block during the page creation.<br>";
 $theme_box2_desc .= "NOTE: these color <b>don't change the theme colors</b>.";
+$theme_nocolor = "No colors found";
+$theme_modal_text = "If you really want to delete this color click \"Ok\" below.";
+$theme_color = "Color";
 
 
 // ALERT DASHBOARD

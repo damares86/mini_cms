@@ -1,7 +1,7 @@
 <script type="text/javascript"> $(document).ready(function() { $('#colorpicker').farbtastic('#color'); }); </script>
 
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">Add new color</h1>
+                        <h1 class="h3 mb-0 text-gray-800"><?=$theme_box2_add?></h1>
 
                     </div><div class="row">
 
@@ -18,7 +18,7 @@
             <form class="form-horizontal row-fluid" action="core/mngColor.php" method="POST" enctype="multipart/form-data">
                 
                 <div class="control-group">
-                    <label class="control-label" for="category_name">Color</label>
+                    <label class="control-label" for="category_name"><?=$theme_color?></label>
                     <div class="controls">
                         <input type="text" id="color" name="color" value="#008db1" class="span8">
                         
@@ -28,7 +28,7 @@
                 <div class="control-group">
                     <div class="controls">
                         
-                        <input type="submit" class="btn btn-primary" name="subReg" value="Submit">
+                        <input type="submit" class="btn btn-primary" name="subReg" value="<?=$txt_submit?>">
 
                     </div>
                 </div>

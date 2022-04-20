@@ -1,14 +1,14 @@
 <?php
 
 $operation = "add";
-$titoloForm = "Add Category";
+$titoloForm = $regcat_title_add;
 
 $catToMod="";
 $idToMod="";
 
 if(filter_input(INPUT_GET,"idToMod")){
     $idToMod = filter_input(INPUT_GET,"idToMod");
-    $titoloForm="Edit Category";
+    $titoloForm=$regcat_title_edit;
     $operation="mod";
 }
 
@@ -46,17 +46,17 @@ if(filter_input(INPUT_GET,"idToMod")){
 
         ?>
             <div class="control-group">
-                <label class="control-label" for="category_name">Category name</label>
+                <label class="control-label" for="category_name"><?=$regcat_name?></label>
                 <div class="controls">
-                    <input type="text" id="category_name" name="category_name" placeholder="Choose the category name" value="<?=$cat->category_name?>" class="span8">
+                    <input type="text" id="category_name" name="category_name" placeholder="<?=$regcat_name_ph?>" value="<?=$cat->category_name?>" class="span8">
                      
                 </div>
             </div>
-          
+          <br>
             <div class="control-group">
                 <div class="controls">
                    
-                    <input type="submit" class="btn btn-primary" name="subReg" value="Submit">
+                    <input type="submit" class="btn btn-primary" name="subReg" value="<?=$txt_submit?>">
 
                 </div>
             </div>

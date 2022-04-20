@@ -1,14 +1,14 @@
 <?php
 
 $operation = "add";
-$titoloForm = "Add User";
+$titoloForm = $prof_title_add;
 
 $postToMod="";
 $idToMod="";
 
 if(filter_input(INPUT_GET,"idToMod")){
     $idToMod = filter_input(INPUT_GET,"idToMod");
-    $titoloForm="User Management";
+    $titoloForm=$prof_title;
     $operation="mod";
 }
 
@@ -27,7 +27,7 @@ if(filter_input(INPUT_GET,"idToMod")){
     <!-- Project Card Example -->
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-        <h6 class="m-0 font-weight-bold text-primary"> User data</h6>
+        <h6 class="m-0 font-weight-bold text-primary"><?=$prof_box1_title?></h6>
        
 
         </div>
@@ -53,9 +53,9 @@ if(filter_input(INPUT_GET,"idToMod")){
 
         ?>
             <div class="control-group">
-                <label class="control-label" for="username">Username</label>
+                <label class="control-label" for="username"><?=$prof_username?></label>
                 <div class="controls">
-                    <input type="text" id="username" name="username" placeholder="Choose the username" value="<?=$user->username?>" class="span8">
+                    <input type="text" id="username" name="username" placeholder="<?=$prof_username_ph?>" value="<?=$user->username?>" class="span8">
                      
                 </div>
             </div>
@@ -63,9 +63,9 @@ if(filter_input(INPUT_GET,"idToMod")){
             if($operation=="add"){
             ?>
             <div class="control-group">
-                <label class="control-label" for="password">Password</label>
+                <label class="control-label" for="password"><?=$prof_password?></label>
                 <div class="controls">
-                    <input type="text" id="password" name="password" placeholder="Choose the password" class="span8">
+                    <input type="text" id="password" name="password" placeholder="<?=$prof_username_ph?>" class="span8">
                      
                 </div>
             </div>
@@ -75,9 +75,9 @@ if(filter_input(INPUT_GET,"idToMod")){
             ?>          
 
             <div class="control-group">
-                <label class="control-label" for="email">Email</label>
+                <label class="control-label" for="email"><?=$prof_email?></label>
                 <div class="controls">
-                    <input type="text" id="email" name="email" placeholder="sample@mail.com" value="<?=$user->email?>" class="span8">
+                    <input type="text" id="email" name="email" placeholder="<?=$prof_email_ph?>" value="<?=$user->email?>" class="span8">
                      
                 </div>
             </div>
@@ -88,7 +88,7 @@ if(filter_input(INPUT_GET,"idToMod")){
             if($idToMod!=1){
             ?>
             <div class="control-group">
-                <label class="control-label">Role</label>
+                <label class="control-label"><?=$prof_role?></label>
                 <div class="controls">
                 <?php
 
@@ -133,18 +133,14 @@ if(filter_input(INPUT_GET,"idToMod")){
             <div class="control-group">
                 <div class="controls">
                    
-                    <input type="submit" class="btn btn-primary" name="subReg" value="Submit">
+                    <input type="submit" class="btn btn-primary" name="subReg" value="<?=$txt_submit?>">
 
                 </div>
             </div>
         </form>
         </div>
       <div class="col guide">
-          There are two different roles for a new user:<br>
-          <ul>
-              <li><b>Editor:</b> It can create, modify and delete pages, posts and categories. It can also manage website's settings, like site name or theme.</li>
-              <li><b>Contributor:</b> It can only create, modify and delete posts and categories</li>
-          </ul>
+          <?=$prof_box1_desc?>
       </div>
   </div>
 
@@ -162,7 +158,7 @@ if($operation=="mod"){
     <!-- Project Card Example -->
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-        <h6 class="m-0 font-weight-bold text-primary">New user's password</h6>
+        <h6 class="m-0 font-weight-bold text-primary"><?=$prof_box2_title?></h6>
        
 
         </div>
@@ -170,7 +166,7 @@ if($operation=="mod"){
 
         <form class="form-horizontal row-fluid" action="core/mngPass.php" method="POST" enctype="multipart/form-data">
             <div class="control-group">
-                <label class="control-label" for="password">Password</label>
+                <label class="control-label" for="password"><?=$prof_password?></label>
                 <div class="controls">
                     <input type="hidden" name="idToMod" value="<?= $idToMod ?>" />
 
@@ -181,7 +177,7 @@ if($operation=="mod"){
             <div class="control-group">
                 <div class="controls">
                    
-                    <input type="submit" class="btn btn-primary" name="subReg" value="Submit">
+                    <input type="submit" class="btn btn-primary" name="subReg" value="<?=$txt_submit?>">
                 </div>
             </div>
         </form>

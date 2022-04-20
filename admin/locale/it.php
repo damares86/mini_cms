@@ -4,8 +4,10 @@
 
 $txt_submit = "Invia";
 $txt_edit = "Modifica";
-$txt_delete = "Cancella";
+$txt_cancel = "Cancella";
+$txt_delete = "Elimina";
 $txt_logout = "Logout";
+$txt_close = "Chiudi";
 $txt_modal_title = "Sei sicuro?";
 $txt_modal_logout = "Seleziona \"Logout\" se ti vuoi disconnettere.";
 
@@ -32,9 +34,9 @@ $side_themeset = "Tema";
 
 $home_title = "Mini Cms Dashboard";
 $home_welcome ="Benvenuto";
-// note: in the next line don't change the single quotation ( ' ) with the double quotation ( " )
-$home_intro1 = 'Benvenuto <b><?=$user?></b> nel Pannello di Amministazione di Mini Cms.'; 
-$home_intro2 = "Qui ci sono alcuni link rapidi per gestire il tuo sito.";
+$home_intro1 = "Benvenuto";
+$home_intro2 = "nel Pannello di Amministazione di Mini Cms."; 
+$home_intro3 = "Qui ci sono alcuni link rapidi per gestire il tuo sito.";
 $home_quicklink = "Link rapidi";
 $home_link1 = "Il sito ufficiale di Mini Cms";
 $home_link2 = "Il repository GitHub del progetto";
@@ -53,6 +55,13 @@ $prof_box1_desc .= " Può anche modificare le impostazioni del sito, come il nom
 $prof_box1_desc .= "<li><b>Contributor:</b> può solo creare, modificare e cancellare post e categorie";
 $prof_box2_title = "Nuova password utente";
 $prof_title_add = "Aggiungi utente";
+$prof_username = "Username";
+$prof_password = "Password";
+$prof_email = "Email";
+$prof_role = "Ruolo";
+$prof_username_ph = "Scegli uno username";
+$prof_email_ph = "esempio@mail.com";
+$prof_password_ph = "Scegli una password";
 
 
 // ALL USERS
@@ -60,8 +69,11 @@ $prof_title_add = "Aggiungi utente";
 $alluser_title = "Utenti";
 $alluser_box_title = "Tutti gli utenti";
 $alluser_add = "Aggiungi utente";
+$alluser_username = "Username";
+$alluser_email = "Email";
 $alluser_role = "Ruolo";
 $alluser_modal_text = "Se vuoi veramente cancellare questo utente clicca \"Ok\".";
+$alluser_nouser = "Nessun utente trovato";
 
 
 // PAGES
@@ -73,6 +85,7 @@ $allpage_name = "Nome della pagina";
 $allpage_link = "Link della pagina";
 $allpage_view = "Mostra";
 $allpage_modal_text = "Se vuoi veramente cancellare questa pagina clicca \"Ok\".";
+$allpage_nopage = "Nessuna pagina trovata";
 
 
 // REG AND EDIT PAGES
@@ -80,6 +93,7 @@ $allpage_modal_text = "Se vuoi veramente cancellare questa pagina clicca \"Ok\".
 $regpage_title_add = "Aggiungi una pagina";
 $regpage_title_edit = "Modifica pagina";
 $regpage_info = "Info sulla creazione delle pagine";
+$regpage_name = "Nome della pagina";
 $regpage_layout = "Scegli il layout della pagina";
 $regpage_visual = "Immagine del visual";
 $regpage_actual = "Immagine attuale";
@@ -101,13 +115,17 @@ $file_box_title = "Tutti i file";
 $file_add = "Aggiungi file";
 $file_filetitle = "Titolo";
 $file_filename = "Nome";
+$file_filelink = "Link";
 $file_modal_text = "Se vuoi veramente cancellare questo file clicca \"Ok\".";
+$file_nofile = "Nessun file trovato";
 
 
 
 // ADD FILES
 
 $addfile_title = "Aggiungi file";
+$addfile_filetitle = "Titolo del file";
+$addfile_filetitle_ph = "Scegli un titolo per il file";
 $addfile_upload = "Upload file";
 $addfile_desc = "Qui puoi caricare dei file da poter linkare nei post o nelle pagine.<br><br>";
 $addfile_desc .= "Gli unici formati ammessi sono <b>\".pdf\", \".doc\", \".docx\", \".zip\"</b> ";
@@ -120,11 +138,13 @@ $post_title = "Post";
 $post_box_title = "Tutti i post";
 $post_add = "Aggiungi post";
 $post_posttitle = "Titolo";
+$regpost_posttitle_ph = "Titolo del post";
 $post_link ="Link del post";
 $post_view = "Mostra";
 $post_cat = "Categoria";
 $post_mod = "Modificato";
 $post_modal_text = "Se vuoi veramente cancellare questo post clicca \"Ok\".";
+$post_nopost = "Nessun post trovato";
 
 
 
@@ -151,6 +171,7 @@ $cat_box_title = "Tutte le categorie";
 $cat_add = "Aggiungi una categoria";
 $cat_name = "Nome della categoria";
 $cat_modal_text = "Se vuoi veramente cancellare questa categoria clicca \"Ok\".";
+$cat_nocat = "Nessuna categoria trovata";
 
 
 
@@ -159,6 +180,7 @@ $cat_modal_text = "Se vuoi veramente cancellare questa categoria clicca \"Ok\"."
 $regcat_title_add = "Aggiungi una categoria";
 $regcat_title_edit = "Modifica categoria";
 $regcat_name = "Nome della categoria";
+$regcat_name_ph = "Scegli un nome per la categoria";
 
 
 // SITE SETTINGS
@@ -171,6 +193,7 @@ $site_lang = "Lingua del Sito";
 $site_box1_desc = "Scegli il nome e la descrizione del sito, che verranno mostrati in cima alla pagina e nella barra del browser.";
 $site_box2_title = "Contatti";
 $site_inbox = "Indirizzo email per i contatti";
+$site_inbox_ph = "es. info@iltuosito.com";
 $site_reset = "Indirizzo email per il reset della password";
 $site_box2_desc = "Inserisci degli indirizzi corretti, per far funzionare correttamente il modulo di contatto e il reset della password. <br><br>";
 $site_box2_desc .= "<ul><li><b>Indirizzo email per i contatti:</b> questa è la mail che riceverà i messaggi mandati dal modulo di contatto</li>";
@@ -202,7 +225,6 @@ $menu_t1_up ="Su";
 $menu_t1_down = "Giù";
 $menu_t1_remove = "Rimuovi";
 $menu_t2_title = "Figlie senza genitore";
-$menu_t2_name = "Nome della pagina";
 $menu_t3_title = "Pagine non nel menu";
 $menu_t2_add = "Aggiungi";
 $menu_refresh = "Aggiorna";
@@ -223,10 +245,15 @@ $theme_box1_desc = "Qui puoi scegliere il tema per il tuo sito.<br>";
 $theme_box1_desc .= "Se vuoi aggiungere nuovi temi, devi caricare la cartella del tema in <b>http://yoursite.com/assets/</b><br>";
 $theme_box1_desc .= "Scopri di più sulla creazione dei temi su <a href=\"http://minicms.altervista.org\">Mini Cms</a>.";
 $theme_box2_title = "Colore di sfondo e del testo";
-$them_box2_add = "Aggiungi colore";
+$theme_box2_add = "Aggiungi colore";
 $theme_box2_desc = "Questi sono i colori per lo sfondo dei box e per il testo.<br>";
 $theme_box2_desc .= "I colori che aggiungi verranno mostrati nel menù a tendina sotto gli editor dei blocchi delle pagine.<br>";
 $theme_box2_desc .= "NOTA BENE: questi colori <b>non cambiano i colori del tema</b>.";
+$theme_nocolor = "Nessun colore trovato";
+$theme_modal_text = "Se vuoi veramente cancellare questo colore clicca \"Ok\".";
+$theme_color = "Colore";
+
+
 
 
 // ALERT DASHBOARD

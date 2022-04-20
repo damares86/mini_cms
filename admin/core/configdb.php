@@ -260,7 +260,7 @@ VALUES ('3','Login', '1','0','1','none')
 
 $db->query("INSERT INTO menu 
 (id, pagename, inmenu,itemorder,parent,childof) 
-VALUES ('4','Contacts', '0','0','1','none')
+VALUES ('4','Contact', '0','0','1','none')
 ");
 
 $db->query("CREATE TABLE `password_reset_temp` (

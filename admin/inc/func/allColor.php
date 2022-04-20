@@ -14,7 +14,7 @@
 ?>
 
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">Theme settings</h1>
+                        <h1 class="h3 mb-0 text-gray-800"><?=$theme_title?></h1>
 
                     </div><div class="row">
 
@@ -24,7 +24,7 @@
     <!-- Project Card Example -->
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">Choose your theme</h6>
+            <h6 class="m-0 font-weight-bold text-primary"><?=$theme_box1_title?></h6>
         </div>
         <div class="card-body">
         <div class="row">
@@ -43,7 +43,7 @@
 
            
             <div class="control-group">
-                            <label class="control-label" for="site_description">Theme</label>
+                            <label class="control-label" for="site_description"><?=$theme_theme?></label>
                 <div class="controls">
                 <select name="theme">
                 <?php
@@ -75,7 +75,7 @@ $total_rows=$colors->countAll();
             <div class="control-group">
                 <div class="controls">
                    
-                    <input type="submit" class="btn btn-primary" name="subTheme" value="Submit">
+                    <input type="submit" class="btn btn-primary" name="subTheme" value="<?=$txt_submit?>">
 
                     <!-- <button type="submit" class="btn" name="subReg">Submit Form</button> -->
                 </div>
@@ -83,9 +83,7 @@ $total_rows=$colors->countAll();
         </form>
         </div>
             <div class="col guide">
-                Here you can select the theme for your website.<br>
-                If you want to add another theme, you have to upload the theme folder in <b>http://yoursite.com/assets/</b><br>
-                Discover more about themes creation on <a href="http://minicms.altervista.org">Mini Cms</a>.
+                <?=$theme_box1_desc?>
             </div>
         </div>
 
@@ -99,7 +97,7 @@ $total_rows=$colors->countAll();
     <!-- Project Card Example -->
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">Box Background Colors</h6>
+            <h6 class="m-0 font-weight-bold text-primary"><?=$theme_box2_title?></h6>
         </div>
         <div class="card-body">
             <div class="row">
@@ -108,7 +106,7 @@ $total_rows=$colors->countAll();
                 <span class="icon text-white-50">
                     <i class="fas fa-plus"></i>
                 </span>
-                <span class="text">Add new color</span>
+                <span class="text"><?=$theme_box2_add?></span>
             </a>
             <br>
             <br>
@@ -155,14 +153,14 @@ if($total_rows>0){
                         <div class="modal-dialog" role="document">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel"><b>Are you sure?</b></h5>
+                                    <h5 class="modal-title" id="exampleModalLabel"><b><?=$txt_modal_title?></b></h5>
                                     <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">×</span>
                                     </button>
                                 </div>
-                                <div class="modal-body">If you really want to delete this file click "Ok" below.</div>
+                                <div class="modal-body"><?=$theme_modal_text?></div>
                                 <div class="modal-footer">
-                                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                                    <button class="btn btn-secondary" type="button" data-dismiss="modal"><?=$txt_cancel?></button>
                                     <a class="btn btn-primary" href="core/mngColor.php?idToDel=<?=$row1["id"] ?>">Ok</a>
                                 </div>
                             </div>
@@ -177,15 +175,14 @@ if($total_rows>0){
 <?php
     // tell the user there are no products
 }else{
-        echo "<div class='alert alert-danger'>No role found.</div>";
+        echo "<div class='alert alert-danger'>$theme_nocolor</div>";
     }
 
 
 ?>
 </div>
                 <div class="col-4 guide m-0">
-                    These are the colors for the box background and for the text color.<br>
-                    You can add new colors and these will be shown in the dropdown menus below the editors of the six block during the page creation.
+                    <?=$theme_box2_desc?>
                 </div>
             </div>
     </div>
