@@ -246,7 +246,6 @@ $al_postSucc = "Post successfully inserted";
 $al_postErr = "Post not inserted";
 $al_postEditSucc = "Post successfully modified";
 $al_postEditErr = "Post not modified";
-$al_userdelSucc = "User successfully deleted";
 $al_catDelSucc = "Category successfully deleted";
 $al_catDelError = "Category not deleted";
 $al_catDelError = "Category not deleted because some post use it!";

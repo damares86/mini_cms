@@ -194,146 +194,144 @@ $menu_info = "Gestione del menù";
 $menu_name = "Nome della pagina";
 $menu_parent = "Genitore";
 $menu_inmenu = "Nel menu";
-$menu_t1_title = "Pagina nel menu";
+$menu_t1_title = "Pagine nel menu";
 $menu_t1_yes = "Sì";
 $menu_t1_child = "Figlia di";
 $menu_t1_order = "Ordine pagine";
 $menu_t1_up ="Su";
 $menu_t1_down = "Giù";
 $menu_t1_remove = "Rimuovi";
-$menu_t2_title = "Figli senza genitore";
+$menu_t2_title = "Figlie senza genitore";
 $menu_t2_name = "Nome della pagina";
 $menu_t3_title = "Pagine non nel menu";
 $menu_t2_add = "Aggiungi";
 $menu_refresh = "Aggiorna";
-$menu_desc = "Here you can decide which pages will be shown in the menu of your website and also create a hierarchy of the pages.<br>";
-$menu_desc .= "There are three tables:<br><br><ul><li><b>Pages in menu:</b> these are the pages shown in menu; you can see if they are \"parent\" or \"child\" ";
-$menu_desc .= "(the \"children\" are tabbed to right and have a different background), you can change the view order using \"Up\" and \"Down\" and you can remove ";
-$menu_desc .= "the page from menu.</li><li><b>Children without parent:</b> these are pages marked as \"children\" but they don't have any parent (you can choose ";
-$menu_desc .= "it using the dropdown menu)</li><li><b>Page not in menu:</b> these are the page which are not shown in menu, you can insert them selecting \"Add\"</li>";
-$menu_desc .= "</ul><br><b>NOTE:</b> to save the changes you have to click on the <b>Refresh</b> button.";
+$menu_desc = "Qui puoi decidere quali pagine verranno mostrate nel menu del sito e anche creare una gerarchia delle pagine.<br>";
+$menu_desc .= "Ci sono 3 tabelle:<br><br><ul><li><b>Pagine nel menù:</b> queste sono le pagine mostrate nel menù; puoi decidere se sono \"genitori\" o \"figlie\"";
+$menu_desc .= "(le pagine \"figlie\" hanno un margine a sinistra e uno sfondo diverso nella tabella), puoi cambiare l'ordine delle pagine usando \"Su\" e \"Giù\" e puoi rimuovere ";
+$menu_desc .= "le pagine dal menù.</li><li><b>Figlie ssenza genitore:</b> queste pagine sono state definite come \"figlie\", ma non hanno nessun genitore (puoi scegliere ";
+$menu_desc .= "un genitore usando il menù a tendina)</li><li><b>Pagine non nel menù:</b> queste sono pagine che non vengono mostrate nel menù, puoi aggiungerle selezionando \"Aggiungi\"</li>";
+$menu_desc .= "</ul><br><b>NOTA BENE:</b> per salvare le modifiche devi cliccare su <b>Aggiorna</b>.";
 
 
 // THEME SETTINGS
 
-$theme_title = "Theme settings";
-$theme_box1_title = "Choose your theme";
-$theme_theme = "Theme";
-$theme_box1_desc = "Here you can select the theme for your website.<br>";
-$theme_box1_desc .= "If you want to add another theme, you have to upload the theme folder in <b>http://yoursite.com/assets/</b><br>";
-$theme_box1_desc .= "Discover more about themes creation on <a href=\"http://minicms.altervista.org\">Mini Cms</a>.";
-$theme_box2_title = "Box background and text colors";
-$them_box2_add = "Add new color";
-$theme_box2_desc = "These are the colors for the box background and for the text color.<br>";
-$theme_box2_desc .= "You can add new colors and these will be shown in the dropdown menus below the editors of the six block during the page creation.<br>";
-$theme_box2_desc .= "NOTE: these color <b>don't change the theme colors</b>.";
+$theme_title = "Impostazioni del tema";
+$theme_box1_title = "Scegli il tema";
+$theme_theme = "Temi";
+$theme_box1_desc = "Qui puoi scegliere il tema per il tuo sito.<br>";
+$theme_box1_desc .= "Se vuoi aggiungere nuovi temi, devi caricare la cartella del tema in <b>http://yoursite.com/assets/</b><br>";
+$theme_box1_desc .= "Scopri di più sulla creazione dei temi su <a href=\"http://minicms.altervista.org\">Mini Cms</a>.";
+$theme_box2_title = "Colore di sfondo e del testo";
+$them_box2_add = "Aggiungi colore";
+$theme_box2_desc = "Questi sono i colori per lo sfondo dei box e per il testo.<br>";
+$theme_box2_desc .= "I colori che aggiungi verranno mostrati nel menù a tendina sotto gli editor dei blocchi delle pagine.<br>";
+$theme_box2_desc .= "NOTA BENE: questi colori <b>non cambiano i colori del tema</b>.";
 
 
 // ALERT DASHBOARD
 
-$al_userDelSucc = "User successfully deleted";
-$al_userDelErr = "User not deleted";
-$al_mailExists = "User's email already registered";
-$al_userSucc = "User successfully registered";
-$al_userErr = "Error while registering user";
-$al_userEditSucc = "User successfully modified";
-$al_userEditErr = "User not modified";
-$al_setEditSucc = "Settings succesfully updated";
-$al_setEditErr = "Settings not modified";
-$al_postDelSucc = "Post successfully deleted";
-$al_postDelErr = "Post not deleted";
-$al_postSucc = "Post successfully inserted";
-$al_postErr = "Post not inserted";
-$al_postEditSucc = "Post successfully modified";
-$al_postEditErr = "Post not modified";
-$al_userdelSucc = "User successfully deleted";
-$al_catDelSucc = "Category successfully deleted";
-$al_catDelError = "Category not deleted";
-$al_catDelError = "Category not deleted because some post use it!";
-$al_catExists = "Category already exists";
-$al_catSucc = "Category successfully created";
-$al_catErr = "Category not created";
-$al_catEditSucc = "Category successfully modified";
-$al_catEditErr = "Category not modified";
-$al_colorDelSucc = "Color deleted";
-$al_colorDelErr = "Color not deleted";
-$al_colorSucc = "Color created";
-$al_colorErr = "Color not created";
-$al_catEmpty = "Category name missing";
-$al_colorEmpty = "Color missing";
-$al_pageEmpty = "Page name or first block missing";
-$al_pswEmpty = "New password missing";
-$al_postTitleEmpty = "Post title missing";
-$al_postEmpty = "Post error: you have to fill both summary and content";
-$al_settingsEmpty = "Title and description can't be empty";
-$al_userEmpty = "Some data missing during user creation";
-$al_pageDelSucc = "Page successfully deleted";
-$al_pageDelErr = "Page not deleted";
-$al_pageSucc = "Page successfully created";
-$al_pageDelSucc = "Page successfully deleted";
-$al_pageErr = "Page not created";
-$al_pageEditSucc = "Page modified";
-$al_pageEditErr = "Page not modified";
-$al_fileDelSucc = "File deleted";
-$al_fileNotDel = "File not deleted";
-$al_fileTitleEmpty = "File title missing";
-$al_fileEmpty = "File missing";
-$al_fileSucc = "File uploaded";
-$al_fileErr = "File not uploaded";
-$al_contactEmpty = "You must insert both addesses!";
-$al_setContactSucc = "Contact emails updated";
-$al_setContactErr = "Contact emails not updated";
-$al_keyEmpty = "You must insert both keys";
-$al_setKeySucc = "reCAPTCHA keys updated";
-$al_setKeyErr = "reCAPTCHA keys not updated";
+$al_userDelSucc = "Utente eliminato";
+$al_userDelErr = "Utente non eliminato";
+$al_mailExists = "Email utente già registrata";
+$al_userSucc = "Utente registrato";
+$al_userErr = "Errore durante la registrazione utente";
+$al_userEditSucc = "Utente modificato";
+$al_userEditErr = "Utente non modificato";
+$al_setEditSucc = "Impostazioni modificate";
+$al_setEditErr = "Impostazioni non modificate";
+$al_postDelSucc = "Post eliminato";
+$al_postDelErr = "Post non eliminato";
+$al_postSucc = "Post creato";
+$al_postErr = "Post non creato";
+$al_postEditSucc = "Post modificato";
+$al_postEditErr = "Post non modificato";
+$al_catDelSucc = "Categoria eliminata";
+$al_catDelError = "Categoria non eliminata";
+$al_catDelError = "Categoria non eliminata perché in uso!";
+$al_catExists = "La categoria esiste già";
+$al_catSucc = "Categoria creata";
+$al_catErr = "Categoria non creata";
+$al_catEmpty = "Nome della categoria mancante";
+$al_catEditSucc = "Categoria modificata";
+$al_catEditErr = "Categoria non modificata";
+$al_colorDelSucc = "Colore eliminato";
+$al_colorDelErr = "Colore non eliminato";
+$al_colorSucc = "Colore creato";
+$al_colorErr = "Colore non creato";
+$al_colorEmpty = "Colore mancante";
+$al_pageEmpty = "Manca il nome della pagina o il primo blocco";
+$al_pswEmpty = "Nuova password non fornita";
+$al_postTitleEmpty = "Manca il titolo del post";
+$al_postEmpty = "Errore post: sia il sommario che il contenuto devono essere presenti";
+$al_settingsEmpty = "Il nome del sito e la descrizione non possono essere vuoti";
+$al_userEmpty = "Mancano alcuni dati per poter creare l'utente";
+$al_pageDelSucc = "Pagina eliminata";
+$al_pageDelErr = "Pagina non eliminata";
+$al_pageSucc = "Pagina creata";
+$al_pageErr = "Pagina non creatat";
+$al_pageEditSucc = "Pagina modificata";
+$al_pageEditErr = "Pagina non modificata";
+$al_fileDelSucc = "File eliminato";
+$al_fileNotDel = "File non eliminato";
+$al_fileTitleEmpty = "Titolo del file mancante";
+$al_fileEmpty = "File assente";
+$al_fileSucc = "File caricato";
+$al_fileErr = "File non caricato";
+$al_contactEmpty = "Devi inserire entrambi gli indirizzi email!";
+$al_setContactSucc = "Indirizzi email modificati";
+$al_setContactErr = "Indirizzi email non modificati";
+$al_keyEmpty = "Devi inserire entrambe le chiavi";
+$al_setKeySucc = "Chiavi reCAPTCHA modificate";
+$al_setKeyErr = "Chiavi reCAPTCHA non modificate";
 
 // ALERT WEBSITE
 
-$al_errSend = "Problems sending you an email.";
-$al_mailResetErr = "Email missing";
-$al_mailNotReg = "Email not registered";
-$al_newPass = "Password changed successfully. Login below";
-$al_pswEditErr = "Error while changing your password";
-$al_errResetRequest = "Reset request already done. Check your email for the link or come back later and retry";
-$al_noResetDelete = "There are problems with your reset request. Please contact us.";
-$al_noReset = "There are problems with your reset request. Please contact us.";
-$al_errRecaptcha = "Sorry, you don't seem reliable, please try again or contact us.";
-$al_errPost = "Error while trying to login";
-$al_contactFormEmpty = "Please fill all the fields";
-$al_sentContact = "Mail successfully sent";
-$al_errSendContact = "Error sending your email";
-$al_errUserPsw = "Email or password wrong!";
+$al_errSend = "Ci sono stati dei problemi a mandare la mail.";
+$al_mailResetErr = "Email mancante";
+$al_mailNotReg = "Email non registrata";
+$al_newPass = "Password aggiornata correttamente. Effettua il login.";
+$al_pswEditErr = "Ci sono stati dei problemi con il reset della password";
+$al_errResetRequest = "Richiesta di reset della password già effettuata. Controlla la mail oppure ritorna più tardi e riprova";
+$al_noResetDelete = "Ci sono stati dei problemi con la richiesta di reset della password. Per favore contattaci.";
+$al_noReset = "Ci sono stati dei problemi con la richiesta di reset della password. Per favore contattaci.";
+$al_errRecaptcha = "Spiacente, ma non sembri affidabile. Riprova o contattaci.";
+$al_errPost = "Errore login";
+$al_contactFormEmpty = "Compila tutti i campi";
+$al_sentContact = "Mail inviata";
+$al_errSendContact = "Errore nell'invio della mail";
+$al_errUserPsw = "Email o password errate!";
 
 
 // LOGIN AND RESET FORM
 
-$log_forgot = "Forgot password?";
-$log_required = "Password is required";
-$log_back = "Back to login";
-$log_forgot_title = "Forgot your password?";
-$log_forgot_desc = "Insert your email below to reset your password";
-$log_forgot_sent = "An email has been sent to you with instructions on how to reset your password.";
-$log_forgot_wrong = "Wrong link";
-$log_forgot_new = "Insert your new password";
-$log_forgot_exp = "Your link is expired";
+$log_forgot = "Password dimenticata?";
+$log_required = "La password è obbligatoria";
+$log_back = "Torna al login";
+$log_forgot_title = "Password dimenticata?";
+$log_forgot_desc = "Inserisci la tua mail per effettuare il reset della password";
+$log_forgot_sent = "Ti è stata inviata una mail con le istruzioni per il reset della password.";
+$log_forgot_wrong = "Link errato";
+$log_forgot_new = "Inserisci la nuova password";
+$log_forgot_exp = "Il tuo link non è più valido";
 
 
 // CONTACT FORM
 
-$cont_page_title = "Contact us";
-$cont_form_title = "Contact";
-$cont_form_name = "Your name";
-$cont_form_email = "Your email";
-$cont_form_sub = "Subject";
-$cont_form_msg = "Your message";
-$cont_form_button = "Send";
+$cont_page_title = "Contattaci";
+$cont_form_title = "Contatti";
+$cont_form_name = "Il tuo nome";
+$cont_form_email = "La tua mail";
+$cont_form_sub = "Oggetto";
+$cont_form_msg = "Il tuo messaggio";
+$cont_form_button = "Invia";
 
 // BLOG
 
-$blog_category = "Category";
-$blog_mod = "Last modified on";
-$blog_continue = "Continue reading";
-$blog_categories = "Categories";
+$blog_category = "Categoria";
+$blog_mod = "Ultima modifica";
+$blog_continue = "Continua a leggere";
+$blog_categories = "Categorie";
 
 
 

@@ -122,14 +122,6 @@ if($msg=="userDelSucc"){
     </div>
 
     <?php    
-} else if($msg=="userdelSucc"){
-    ?>
-    <div class="alert alert-warning">
-        <button type="button" class="close" data-dismiss="alert">x</button>
-        User successfully deleted
-    </div>
-
-    <?php    
 } else if($msg=="catDelSucc"){
     ?>
     <div class="alert alert-warning">
