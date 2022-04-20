@@ -56,12 +56,12 @@ require "admin/template/inc/header.php";
 								<div class="form-group">
 									<label for="password">Password
 										<a href="?op=insert" class="float-right">
-											Forgot Password?
+											<?=$log_forgot?>
 										</a>
 									</label>
 									<input id="password" type="password" class="form-control" name="password" required data-eye>
 									<div class="invalid-feedback">
-										Password is required
+										<?=$log_required?>
 									</div>
 								</div>
 								<input type="hidden" name="recaptcha_response" id="recaptchaResponse">
@@ -79,11 +79,11 @@ require "admin/template/inc/header.php";
 							} else if($op=="insert"){
 						?>
 
-							<a href="login.php"><-- Back to login</a>
+							<a href="login.php"><-- <?=$log_back?></a>
 
-							<h3 class="my-3">Forgot your password?</h3>
+							<h3 class="my-3"><?=$log_forgot_title?></h3>
 
-							<p>Insert your email below to reset your password</p>
+							<p><?=$log_forgot_desc?></p>
 
 							<form method="POST" class="my-login-validation" novalidate="" action="admin/core/<?=$pass?>.php">
 								<input type="hidden" name="resetForm" value="resetForm" />
@@ -99,7 +99,7 @@ require "admin/template/inc/header.php";
 
 								<div class="form-group m-0">
 									<button type="submit" class="btn btn-primary btn-block">
-										Submit
+										<?=$txt_submit?>
 									</button>
 								</div>
 							</form>
@@ -109,10 +109,10 @@ require "admin/template/inc/header.php";
 							?>
 
 								<div class="alert alert-success" role="alert">
-									An email has been sent to you with instructions on how to reset your password.
+									<?=$log_forgot_sent?>
 								</div>
 
-								<a href="login.php"><-- Back to login</a>
+								<a href="login.php"><-- <?=$log_back?></a>
 
 
 							<?php
@@ -131,9 +131,9 @@ require "admin/template/inc/header.php";
 
 
 								<div class="alert alert-danger" role="alert">
-									Wrong Link
+									<?=$log_forgot_wrong?>
 								</div>
-								<a href="login.php"><-- Back to login</a>				
+								<a href="login.php"><-- <?=$log_back?></a>				
 
 
 							<?php	
@@ -143,7 +143,7 @@ require "admin/template/inc/header.php";
 							if($expDate>=$curDate){
 						?>	
 
-							<h3 class="my-3">Insert your new password</h3>
+							<h3 class="my-3"><?=$log_forgot_new?></h3>
 							<form method="POST" class="my-login-validation" novalidate="" action="admin/core/<?=$pass?>.php">
 								<input type="hidden" name="resetMail" value="resetMail" />
 								<input type="hidden" name="email" value="<?=$email?>" />
@@ -155,14 +155,14 @@ require "admin/template/inc/header.php";
 									</label>
 									<input id="password" type="password" class="form-control" name="password" required data-eye>
 									<div class="invalid-feedback">
-										Password is required
+										<?=$log_required?>
 									</div>
 								</div>
 								<br>
 
 								<div class="form-group m-0">
 									<button type="submit" class="btn btn-primary btn-block">
-										Submit
+										<?=$txt_submit?>
 									</button>
 								</div>
 							</form>
@@ -172,9 +172,9 @@ require "admin/template/inc/header.php";
 						?>
 
 							<div class="alert alert-danger">
-								Your link is expired
+								<?=$log_forgot_exp?>
 							</div>
-							<a href="login.php"><-- Back to login</a>
+							<a href="login.php"><-- <?=$log_back?></a>
 
 						<?php
 							}

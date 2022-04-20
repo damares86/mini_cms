@@ -6,7 +6,7 @@ if($msg=="userDelSucc"){
     ?>
     <div class="alert alert-warning">
         <button type="button" class="close" data-dismiss="alert">x</button>
-        User successfully deleted
+        <?=$al_userDelSucc?>
     </div>
 
     <?php    
@@ -14,7 +14,7 @@ if($msg=="userDelSucc"){
     ?>
     <div class="alert alert-danger">
         <button type="button" class="close" data-dismiss="alert">x</button>
-        User not deleted
+        <?=$al_userDelErr?>
     </div>
 
     <?php    
@@ -22,7 +22,7 @@ if($msg=="userDelSucc"){
     ?>
     <div class="alert alert-danger">
         <button type="button" class="close" data-dismiss="alert">x</button>
-        User's email already registered
+        <?=$al_mailExists?>
     </div>
 
     <?php    
@@ -30,7 +30,7 @@ if($msg=="userDelSucc"){
     ?>
     <div class="alert alert-success">
         <button type="button" class="close" data-dismiss="alert">x</button>
-        User successfully registered
+        <?=$al_userSucc?>
     </div>
 
     <?php    
@@ -38,7 +38,7 @@ if($msg=="userDelSucc"){
     ?>
     <div class="alert alert-danger">
         <button type="button" class="close" data-dismiss="alert">x</button>
-        Error while registering user
+        <?=$al_userErr?>
     </div>
 
     <?php    
@@ -46,7 +46,7 @@ if($msg=="userDelSucc"){
     ?>
     <div class="alert alert-success">
         <button type="button" class="close" data-dismiss="alert">x</button>
-        User successfully modified
+        <?=$al_userEditSucc?>
     </div>
 
     <?php    
@@ -54,7 +54,7 @@ if($msg=="userDelSucc"){
     ?>
     <div class="alert alert-danger">
         <button type="button" class="close" data-dismiss="alert">x</button>
-        User not modified
+        <?=$al_userEditErr?>
     </div>
 
     <?php    
@@ -62,7 +62,7 @@ if($msg=="userDelSucc"){
     ?>
     <div class="alert alert-success">
         <button type="button" class="close" data-dismiss="alert">x</button>
-        Settings succesfully updated
+        <?=$al_setEditSucc?>
     </div>
 
     <?php    
@@ -70,7 +70,7 @@ if($msg=="userDelSucc"){
     ?>
     <div class="alert alert-danger">
         <button type="button" class="close" data-dismiss="alert">x</button>
-        Settings not modified
+        <?=$al_setEditErr?>
     </div>
 
     <?php    
@@ -78,7 +78,7 @@ if($msg=="userDelSucc"){
     ?>
     <div class="alert alert-warning">
         <button type="button" class="close" data-dismiss="alert">x</button>
-        Post successfully deleted
+        <?=$al_postDelSucc?>
     </div>
 
     <?php    
@@ -86,7 +86,7 @@ if($msg=="userDelSucc"){
     ?>
     <div class="alert alert-danger">
         <button type="button" class="close" data-dismiss="alert">x</button>
-        Post not deleted
+        <?=$al_postDelErr?>
     </div>
 
     <?php    
@@ -94,7 +94,7 @@ if($msg=="userDelSucc"){
     ?>
     <div class="alert alert-success">
         <button type="button" class="close" data-dismiss="alert">x</button>
-        Post successfully inserted
+        <?=$al_postSucc?>
     </div>
 
     <?php    
@@ -102,7 +102,7 @@ if($msg=="userDelSucc"){
     ?>
     <div class="alert alert-danger">
         <button type="button" class="close" data-dismiss="alert">x</button>
-        Post not inserted
+        <?=$al_postErr?>
     </div>
 
     <?php    
@@ -110,7 +110,7 @@ if($msg=="userDelSucc"){
     ?>
     <div class="alert alert-success">
         <button type="button" class="close" data-dismiss="alert">x</button>
-        Post successfully modified
+        <?=$al_postEditSucc?>
     </div>
 
     <?php    
@@ -118,7 +118,7 @@ if($msg=="userDelSucc"){
     ?>
     <div class="alert alert-danger">
         <button type="button" class="close" data-dismiss="alert">x</button>
-        Post not modified
+        <?=$al_postEditErr?>
     </div>
 
     <?php    
@@ -126,7 +126,7 @@ if($msg=="userDelSucc"){
     ?>
     <div class="alert alert-warning">
         <button type="button" class="close" data-dismiss="alert">x</button>
-        Category successfully deleted
+        <?=$al_catDelSucc?>
     </div>
 
     <?php    
@@ -134,7 +134,7 @@ if($msg=="userDelSucc"){
     ?>
     <div class="alert alert-danger">
         <button type="button" class="close" data-dismiss="alert">x</button>
-        Category not deleted
+        <?=$al_catDelError?>
     </div>
 
     <?php    
@@ -142,7 +142,7 @@ if($msg=="userDelSucc"){
     ?>
     <div class="alert alert-danger">
         <button type="button" class="close" data-dismiss="alert">x</button>
-        Category not deleted because some post use it!
+        <?=$al_catDelExist?>
     </div>
 
     <?php    
@@ -150,7 +150,7 @@ if($msg=="userDelSucc"){
     ?>
     <div class="alert alert-danger">
         <button type="button" class="close" data-dismiss="alert">x</button>
-        Category already exists
+        <?=$al_catExists?>
     </div>
 
     <?php    
@@ -158,7 +158,7 @@ if($msg=="userDelSucc"){
     ?>
     <div class="alert alert-success">
         <button type="button" class="close" data-dismiss="alert">x</button>
-        Category successfully created
+        <?=$al_catSucc?>
     </div>
 
     <?php    
@@ -166,7 +166,7 @@ if($msg=="userDelSucc"){
     ?>
     <div class="alert alert-danger">
         <button type="button" class="close" data-dismiss="alert">x</button>
-        Category not created
+        <?=$al_catErr?>
     </div>
 
     <?php    
@@ -174,7 +174,7 @@ if($msg=="userDelSucc"){
     ?>
     <div class="alert alert-success">
         <button type="button" class="close" data-dismiss="alert">x</button>
-        Category successfully modified
+        <?=$al_catEditSucc?>
     </div>
 
     <?php    
@@ -182,7 +182,7 @@ if($msg=="userDelSucc"){
     ?>
     <div class="alert alert-danger">
         <button type="button" class="close" data-dismiss="alert">x</button>
-        Category not modified
+        <?=$al_catEditErr?>
     </div>
 
     <?php    
@@ -190,7 +190,7 @@ if($msg=="userDelSucc"){
     ?>
     <div class="alert alert-warning">
         <button type="button" class="close" data-dismiss="alert">x</button>
-        Color deleted
+        <?=$al_colorDelSucc?>
     </div>
 
     <?php    
@@ -198,7 +198,7 @@ if($msg=="userDelSucc"){
     ?>
     <div class="alert alert-danger">
         <button type="button" class="close" data-dismiss="alert">x</button>
-        Color not deleted
+        <?=$al_colorDelErr?>
     </div>
 
     <?php    
@@ -206,7 +206,7 @@ if($msg=="userDelSucc"){
     ?>
     <div class="alert alert-success">
         <button type="button" class="close" data-dismiss="alert">x</button>
-        Color created
+        <?=$al_colorSucc?>
     </div>
 
     <?php    
@@ -214,7 +214,7 @@ if($msg=="userDelSucc"){
     ?>
     <div class="alert alert-danger">
         <button type="button" class="close" data-dismiss="alert">x</button>
-        Color not created
+        <?=$al_colorErr?>
     </div>
 
     <?php    
@@ -222,7 +222,7 @@ if($msg=="userDelSucc"){
     ?>
     <div class="alert alert-danger">
         <button type="button" class="close" data-dismiss="alert">x</button>
-        Category name missing
+        <?=$al_catEmpty?>
     </div>
 
     <?php    
@@ -230,7 +230,7 @@ if($msg=="userDelSucc"){
     ?>
     <div class="alert alert-danger">
         <button type="button" class="close" data-dismiss="alert">x</button>
-        Color missing
+        <?=$al_colorEmpty?>
     </div>
 
     <?php    
@@ -238,7 +238,7 @@ if($msg=="userDelSucc"){
     ?>
     <div class="alert alert-danger">
         <button type="button" class="close" data-dismiss="alert">x</button>
-        Page name or first block missing
+        <?=$al_pageEmpty?>
     </div>
 
     <?php    
@@ -246,7 +246,7 @@ if($msg=="userDelSucc"){
     ?>
     <div class="alert alert-danger">
         <button type="button" class="close" data-dismiss="alert">x</button>
-        New password missing
+        <?=$al_pswEmpty?>
     </div>
 
     <?php    
@@ -254,7 +254,7 @@ if($msg=="userDelSucc"){
     ?>
     <div class="alert alert-danger">
         <button type="button" class="close" data-dismiss="alert">x</button>
-        Post title missing
+        <?=$al_postTitleEmpty?>
     </div>
 
     <?php    
@@ -262,7 +262,7 @@ if($msg=="userDelSucc"){
     ?>
     <div class="alert alert-danger">
         <button type="button" class="close" data-dismiss="alert">x</button>
-        Post error: you have to fill both summary and content
+        <?=$al_postEmpty?>
     </div>
 
     <?php    
@@ -270,7 +270,7 @@ if($msg=="userDelSucc"){
     ?>
     <div class="alert alert-danger">
         <button type="button" class="close" data-dismiss="alert">x</button>
-        Title and description can't be empty
+        <?=$al_settingsEmpty?>
     </div>
 
     <?php    
@@ -278,7 +278,7 @@ if($msg=="userDelSucc"){
     ?>
     <div class="alert alert-danger">
         <button type="button" class="close" data-dismiss="alert">x</button>
-        Some data missing during user creation
+        <?=$al_userEmpty?>
     </div>
 
     <?php    
@@ -286,7 +286,7 @@ if($msg=="userDelSucc"){
     ?>
     <div class="alert alert-warning">
         <button type="button" class="close" data-dismiss="alert">x</button>
-        Page successfully deleted
+        <?=$al_pageDelSucc?>
     </div>
 
     <?php    
@@ -294,7 +294,7 @@ if($msg=="userDelSucc"){
     ?>
     <div class="alert alert-danger">
         <button type="button" class="close" data-dismiss="alert">x</button>
-        Page not deleted
+        <?=$al_pageDelErr ?>
     </div>
 
     <?php    
@@ -302,7 +302,7 @@ if($msg=="userDelSucc"){
     ?>
     <div class="alert alert-success">
         <button type="button" class="close" data-dismiss="alert">x</button>
-        Page successfully created
+        <?=$al_pageSucc?>
     </div>
 
     <?php    
@@ -310,7 +310,7 @@ if($msg=="userDelSucc"){
     ?>
     <div class="alert alert-warning">
         <button type="button" class="close" data-dismiss="alert">x</button>
-        Page successfully deleted
+        <?=$al_pageDelSucc?>
     </div>
 
     <?php    
@@ -318,7 +318,7 @@ if($msg=="userDelSucc"){
     ?>
     <div class="alert alert-danger">
         <button type="button" class="close" data-dismiss="alert">x</button>
-        Page not created
+        <?=$al_pageErr?>
     </div>
 
     <?php    
@@ -326,7 +326,7 @@ if($msg=="userDelSucc"){
     ?>
     <div class="alert alert-success">
         <button type="button" class="close" data-dismiss="alert">x</button>
-        Page modified
+        <?=$al_pageEditSucc?>
     </div>
 
     <?php    
@@ -334,7 +334,7 @@ if($msg=="userDelSucc"){
     ?>
     <div class="alert alert-danger">
         <button type="button" class="close" data-dismiss="alert">x</button>
-        Page not modified
+        <?=$al_pageEditErr?>
     </div>
 
     <?php    
@@ -342,7 +342,7 @@ if($msg=="userDelSucc"){
     ?>
     <div class="alert alert-warning">
         <button type="button" class="close" data-dismiss="alert">x</button>
-        File deleted
+        <?=$al_fileDelSucc?>
     </div>
 
     <?php    
@@ -350,7 +350,7 @@ if($msg=="userDelSucc"){
     ?>
     <div class="alert alert-danger">
         <button type="button" class="close" data-dismiss="alert">x</button>
-        File deleted, but not removed from database
+        <?=$al_fileDelErr?>
     </div>
 
     <?php    
@@ -358,7 +358,7 @@ if($msg=="userDelSucc"){
     ?>
     <div class="alert alert-danger">
         <button type="button" class="close" data-dismiss="alert">x</button>
-        File not deleted
+        <?=$al_fileNotDel?>
     </div>
 
     <?php    
@@ -366,7 +366,7 @@ if($msg=="userDelSucc"){
     ?>
     <div class="alert alert-danger">
         <button type="button" class="close" data-dismiss="alert">x</button>
-        File title missing
+        <?=$al_fileTitleEmpty?>
     </div>
 
     <?php    
@@ -374,7 +374,7 @@ if($msg=="userDelSucc"){
     ?>
     <div class="alert alert-danger">
         <button type="button" class="close" data-dismiss="alert">x</button>
-        File missing
+        <?=$al_fileEmpty?>
     </div>
 
     <?php    
@@ -382,7 +382,7 @@ if($msg=="userDelSucc"){
     ?>
     <div class="alert alert-success">
         <button type="button" class="close" data-dismiss="alert">x</button>
-        File uploaded
+        <?=$al_fileSucc?>
     </div>
 
     <?php    
@@ -390,7 +390,7 @@ if($msg=="userDelSucc"){
     ?>
     <div class="alert alert-danger">
         <button type="button" class="close" data-dismiss="alert">x</button>
-        File not uploaded
+        <?=$al_fileErr?>
     </div>
 
     <?php    
@@ -398,7 +398,7 @@ if($msg=="userDelSucc"){
     ?>
     <div class="alert alert-danger">
         <button type="button" class="close" data-dismiss="alert">x</button>
-        You must choose both addresses!
+        <?=$al_contactEmpty?>
     </div>
 
     <?php    
@@ -406,7 +406,7 @@ if($msg=="userDelSucc"){
     ?>
     <div class="alert alert-success">
         <button type="button" class="close" data-dismiss="alert">x</button>
-        Contact emails updated
+        <?=$al_setContactSucc?>
     </div>
 
     <?php    
@@ -414,7 +414,7 @@ if($msg=="userDelSucc"){
     ?>
     <div class="alert alert-danger">
         <button type="button" class="close" data-dismiss="alert">x</button>
-        Contact emails not updated
+        <?=$al_setContactErr?>
     </div>
 
     <?php    
@@ -422,7 +422,7 @@ if($msg=="userDelSucc"){
     ?>
     <div class="alert alert-danger">
         <button type="button" class="close" data-dismiss="alert">x</button>
-        You must write both the keys
+        <?=$al_keyEmpty?>
     </div>
 
     <?php    
@@ -430,7 +430,7 @@ if($msg=="userDelSucc"){
     ?>
     <div class="alert alert-success">
         <button type="button" class="close" data-dismiss="alert">x</button>
-        Recaptcha keys updated
+        <?=$al_setKeySucc?>
     </div>
 
     <?php    
@@ -438,7 +438,7 @@ if($msg=="userDelSucc"){
     ?>
     <div class="alert alert-danger">
         <button type="button" class="close" data-dismiss="alert">x</button>
-        Recaptcha keys not updated
+        <?=$al_setKeyErr?>
     </div>
 
     <?php    
