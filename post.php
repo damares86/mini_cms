@@ -41,13 +41,15 @@ $url = get_page_url();
         $category_name= $cat->category_name;
         ?>
         <h1><?=$post->title?></h1>
-        <p class="metainfo">Category: <b><a href="blog.php?cat=<?=$category_id?>"><?=$category_name?></a></b></p>
-        <p class="metainfo">Last modified on: <?=$post->modified?></p>
+        <p class="metainfo"><?=$blog_category?>: <b><a href="blog.php?cat=<?=$category_id?>"><?=$category_name?></a></b></p>
+        <p class="metainfo"><?=$blog_mod?>: <?=$post->modified?></p>
         <div class="blog_content">
             <?=$post->content?>
             
             <br>
-            Share on: &nbsp;
+            <div class="border p-3">
+                <?=$blog_share?>: &nbsp;
+                
             <a href="https://twitter.com/share?url=<?=$url?>" target="_blank" onclick="window.open(this.href,'window','width=640,height=480,resizable,scrollbars') ;return false;">
             <i class="fab fa-twitter"></i></a>
 
@@ -57,12 +59,13 @@ $url = get_page_url();
                             <i class="fa fa-linkedin" data-toggle="tooltip" title="" data-original-title="Linkedin">linkedin</i>
                         </a> -->
             <br>
+            </div>
         </div>
         
         </div>
         <div id="sidebar">
             <div id="sidebar_menu">
-            <h2><strong>Categories</strong></h2>
+            <h2><strong><?=$blog_categories?></strong></h2>
                     <ul>
             <?php
                     require "admin/template/inc/sidebar.php";

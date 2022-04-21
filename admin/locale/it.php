@@ -346,8 +346,7 @@ $log_forgot_exp = "Il tuo link non è più valido";
 
 // CONTACT FORM
 
-$cont_page_title = "Contattaci";
-$cont_form_title = "Contatti";
+$cont_form_title = "Contattaci";
 $cont_form_name = "Il tuo nome";
 $cont_form_email = "La tua mail";
 $cont_form_sub = "Oggetto";
@@ -360,7 +359,12 @@ $blog_category = "Categoria";
 $blog_mod = "Ultima modifica";
 $blog_continue = "Continua a leggere";
 $blog_categories = "Categorie";
+$blog_share = "Condividi su";
 
+
+// ADMIN AREA
+
+$goToAdmin = "Vai al pannello di amministrazione";
 
 
 

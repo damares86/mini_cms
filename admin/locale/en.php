@@ -347,8 +347,7 @@ $log_forgot_exp = "Your link is expired";
 
 // CONTACT FORM
 
-$cont_page_title = "Contact us";
-$cont_form_title = "Contact";
+$cont_form_title = "Contact us";
 $cont_form_name = "Your name";
 $cont_form_email = "Your email";
 $cont_form_sub = "Subject";
@@ -361,8 +360,11 @@ $blog_category = "Category";
 $blog_mod = "Last modified on";
 $blog_continue = "Continue reading";
 $blog_categories = "Categories";
+$blog_share = "Share on";
 
+// ADMIN AREA
 
+$goToAdmin = "Go to Admin Area";
 
 
 

@@ -126,7 +126,7 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
                 $style="style='margin-top:1.8em'";
         ?>
         <div id="adminBar">
-            <a href="admin">Go to Admin Area</a>
+            <a href="admin"><?=$goToAdmin?></a>
             &nbsp; - &nbsp;
             <a href="admin/core/logout.php">Logout</a>
         </div>
