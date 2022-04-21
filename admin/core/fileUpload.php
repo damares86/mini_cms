@@ -8,7 +8,7 @@
 // change this to your location where to store uploaded files. It must start and end with /, or just / if root directory
 
 define('ROOT', '../../');
-define('UPLOAD_PATH', '/mini_cms/uploads/'); /* EDIT THIS */
+define('UPLOAD_PATH', '/uploads/'); /* EDIT THIS */
 
 
 
@@ -47,8 +47,8 @@ if(isset($_FILES["file"]["type"])){
 
       $sourcePath = $_FILES['file']['tmp_name'];
       $picture = date('YmdHis').rand(1,9999).'.'.$file_extension; // generates file name from time + random
-      $targetPath = LOCAL_ROOT.$picture; // sets target path
-      // $targetPath =  UPLOAD_PATH.$picture; // sets target path
+      //$targetPath = LOCAL_ROOT.$picture; // sets target path
+      $targetPath =  ROOT.UPLOAD_PATH.$picture; // sets target path
       if(move_uploaded_file($sourcePath,$targetPath)){
         $resp = PUBLIC_ROOT.$picture; // gives back image name for editor
         $resp_mes = 'ok';
