@@ -56,6 +56,7 @@
             while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
         
         extract($row);
+        if($id!=3){
         ?>
             <tr>
                 <td><?=$id?></td>
@@ -76,7 +77,7 @@
                         </a>   
                 <td>
                 <?php
-                if($page_name != "index" && $page_name != "Blog" && $page_name != "Login" && $page_name != "Contact"){
+                if($page_name != "index" && $page_name != "Blog" && $page_name != "Post" && $page_name != "Login" && $page_name != "Contact"){
                 ?>
                         <a href="#" class="btn btn-danger btn-icon-split" data-toggle="modal" data-target="#delete<?=$row['id']?>">
                             <span class="icon text-white-50">
@@ -87,6 +88,7 @@
                 
                 <?php
                 }
+            }
                 ?>
             </td>
             </tr>
