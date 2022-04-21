@@ -4,7 +4,7 @@ class Role{
 
 
     private $conn;
-    private $table_name = "roles";
+    private $table_name = "t_roles";
 
     public $id;
     public $rolename;
@@ -87,7 +87,7 @@ class Role{
 
     public function countAll(){
     
-        $query = "SELECT id FROM roles";
+        $query = "SELECT id FROM t_roles";
     
         $stmt = $this->conn->prepare( $query );
         $stmt->execute();

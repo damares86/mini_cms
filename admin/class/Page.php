@@ -344,7 +344,7 @@ class Page{
                 FROM
                     " . $this->table_name . "
                 ORDER BY
-                    id
+                    id DESC
                     LIMIT
                     {$from_record_num}, {$records_per_page}";  
   

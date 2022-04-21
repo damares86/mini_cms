@@ -65,9 +65,9 @@ if($file=="index.php"){
 } else if($file=="post.php"){
     $page_name=$post_title." - Blog ";
     $page_class="blog";
-}else if($file="contact.php"){
+}else if($file=="contact.php"){
     $page_name=$cont_form_page;
-    $page_class="blog";
+    $page_class="contact";
 }else{
 // mi prendo solo il nome senza l'estensione
 $page_name = pathinfo($file, PATHINFO_FILENAME);
@@ -101,7 +101,7 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
         <link rel="icon" href="assets/<?= $theme ?>/img/favicon.ico">
         <?php
           
-            if($page_class=="index"||$page_class="blog"){
+            if($page_class=="index"||$page_class=="blog"||$page_class=="contact"){
                 $page->page_name=$page_class;
             }else{
                 $page->page_name=$page_name;

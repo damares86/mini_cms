@@ -4,7 +4,7 @@ class Page{
 
 
     private $conn;
-    private $table_name = "page";
+    private $table_name = "t_page";
     private $setParam2;
     private $setParam3;
     private $setParam4;
@@ -344,7 +344,7 @@ class Page{
                 FROM
                     " . $this->table_name . "
                 ORDER BY
-                    id
+                    id DESC
                     LIMIT
                     {$from_record_num}, {$records_per_page}";  
   
@@ -359,7 +359,7 @@ class Page{
         $query = "SELECT
                     *
                 FROM
-                    menu
+                t_menu
                 WHERE
                 inmenu = 'y' ORDER BY itemorder ASC";  
   
@@ -372,7 +372,7 @@ class Page{
 
     public function countAll(){
     
-        $query = "SELECT id FROM page";
+        $query = "SELECT id FROM t_page";
     
         $stmt = $this->conn->prepare( $query );
         $stmt->execute();
@@ -467,7 +467,7 @@ class Page{
 
     if($result = $stmt->execute()){
         
-        $query1 = "DELETE FROM menu WHERE id = ?";
+        $query1 = "DELETE FROM t_menu WHERE id = ?";
     
         $stmt1 = $this->conn->prepare($query1);
         $stmt1->bindParam(1, $this->id);

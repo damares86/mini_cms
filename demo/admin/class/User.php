@@ -3,7 +3,7 @@
 class User{
     
     private $conn;
-    private $table_name = "accounts";
+    private $table_name = "t_accounts";
     private $setRolename;
 
     public $id;
@@ -124,7 +124,7 @@ class User{
 
     public function findToken(){
     
-        $query = "SELECT * FROM password_reset_temp WHERE
+        $query = "SELECT * FROM t_password_reset_temp WHERE
                 ( email = :email AND token = :token)";
     
         $stmt = $this->conn->prepare( $query );
@@ -199,7 +199,7 @@ class User{
 
     function showEmailPass(){
         $query = "SELECT *
-        FROM password_reset_temp
+        FROM t_password_reset_temp
         WHERE email = :email
         LIMIT 0,1";
   
@@ -216,7 +216,7 @@ class User{
 
     public function countAll(){
     
-        $query = "SELECT id FROM accounts WHERE NOT id=1";
+        $query = "SELECT id FROM t_accounts WHERE NOT id=1";
     
         $stmt = $this->conn->prepare( $query );
         $stmt->execute();

@@ -4,7 +4,7 @@ class File{
 
 
     private $conn;
-    private $table_name = "files";
+    private $table_name = "t_files";
 
     public $id;
     public $filename;
@@ -113,7 +113,7 @@ class File{
 
     public function countAll(){
     
-        $query = "SELECT id FROM files";
+        $query = "SELECT id FROM t_files";
     
         $stmt = $this->conn->prepare( $query );
         $stmt->execute();
