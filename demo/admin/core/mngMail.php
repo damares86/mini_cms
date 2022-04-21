@@ -1,11 +1,11 @@
 <?php
 
-require '../phpDebug/src/Debug/Debug.php';   			// if not using composer
+// require '../phpDebug/src/Debug/Debug.php';   			// if not using composer
 
-$debug = new \bdk\Debug(array(
-    'collect' => true,
-    'output' => true,
-));
+// $debug = new \bdk\Debug(array(
+//     'collect' => true,
+//     'output' => true,
+// ));
 
 
 session_start();
@@ -28,7 +28,7 @@ session_start();
 
 
 	if(!$_POST['name']||!$_POST['email']||!$_POST['message']||!$_POST['subject']){
-		header("Location: ../../contact.php?msg=contactEmpty");
+		header("Location: ../../contact.php?msg=contactFormEmpty");
 		exit;
 	}
 

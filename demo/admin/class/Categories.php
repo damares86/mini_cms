@@ -4,7 +4,7 @@ class Categories{
 
 
     private $conn;
-    private $table_name = "t_categories";
+    private $table_name = "categories";
 
     public $id;
     public $category_name;
@@ -110,7 +110,7 @@ class Categories{
 
     public function countAll(){
     
-        $query = "SELECT id FROM t_categories";
+        $query = "SELECT id FROM categories";
     
         $stmt = $this->conn->prepare( $query );
         $stmt->execute();

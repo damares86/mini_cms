@@ -4,7 +4,7 @@ class File{
 
 
     private $conn;
-    private $table_name = "t_files";
+    private $table_name = "files";
 
     public $id;
     public $filename;

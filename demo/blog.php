@@ -40,11 +40,12 @@ require "admin/template/inc/header.php";
                 $post_title = strtolower($post_title);
         ?>
         <h1><?=$title?></h1>
-        <p class="metainfo">Category: <b><a href="blog.php?cat=<?=$category_id?>"><?=$category_name?></a></b></p>
-        <p class="metainfo">Last modified on: <?=$modified?></p>
+        <p class="metainfo"><?=$blog_category?>: <b><a href="blog.php?cat=<?=$category_id?>"><?=$category_name?></a></b></p>
+        <p class="metainfo"><?=$blog_mod?>: <?=$modified?></p>
         <div class="blog_content">
             <?=$summary?>
-            <a href="post.php?id=<?=$id?>&title=<?=$post_title?>">Continue reading -></a>
+            <br>
+            <a href="post.php?id=<?=$id?>&title=<?=$post_title?>"><?=$blog_continue?> -></a>
         </div>
         <?php
             }
@@ -54,7 +55,7 @@ require "admin/template/inc/header.php";
         </div>
         <div id="sidebar">
             <div id="sidebar_menu">
-                <h2><strong>Categories</strong></h2>
+                <h2><strong><?=$blog_categories?></strong></h2>
                     <ul>
             <?php
                     require "admin/template/inc/sidebar.php";

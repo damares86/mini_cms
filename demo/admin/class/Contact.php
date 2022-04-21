@@ -4,7 +4,7 @@ class Contact{
 
 
     private $conn;
-    private $table_name = "t_contacts";
+    private $table_name = "contacts";
 
     public $id;
     public $reset;

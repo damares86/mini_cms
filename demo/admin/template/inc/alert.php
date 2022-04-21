@@ -6,7 +6,7 @@ if($msg=="errSend"){
     ?>
     <div class="alert alert-danger">
         <button type="button" class="close" data-dismiss="alert">x</button>
-        Problems sending you an email.
+        <?=$al_errSend?>
     </div>
 
     <?php    
@@ -14,7 +14,7 @@ if($msg=="errSend"){
     ?>
     <div class="alert alert-danger">
         <button type="button" class="close" data-dismiss="alert">x</button>
-        Email missing
+        <?=$al_mailResetErr?>
     </div>
 
     <?php    
@@ -22,7 +22,7 @@ if($msg=="errSend"){
     ?>
     <div class="alert alert-danger">
         <button type="button" class="close" data-dismiss="alert">x</button>
-        Email not registered
+        <?=$al_mailNotReg?>
     </div>
 
     <?php    
@@ -30,7 +30,7 @@ if($msg=="errSend"){
     ?>
     <div class="alert alert-danger">
         <button type="button" class="close" data-dismiss="alert">x</button>
-        You have to write a new password
+        <?=$al_pswEmpty?>
     </div>
 
     <?php    
@@ -38,7 +38,7 @@ if($msg=="errSend"){
     ?>
     <div class="alert alert-success">
         <button type="button" class="close" data-dismiss="alert">x</button>
-        Password changed successfully. Login below
+        <?=$al_newPass?>
     </div>
 
     <?php    
@@ -46,7 +46,7 @@ if($msg=="errSend"){
     ?>
     <div class="alert alert-danger">
         <button type="button" class="close" data-dismiss="alert">x</button>
-        Error while changing your password
+        <?=$al_pswEditErr?>
     </div>
 
     <?php    
@@ -54,7 +54,7 @@ if($msg=="errSend"){
     ?>
     <div class="alert alert-danger">
         <button type="button" class="close" data-dismiss="alert">x</button>
-        Reset request already done. Check your email for the link or come back later and retry
+        <?=$al_errResetRequest?>
     </div>
 
     <?php    
@@ -62,7 +62,7 @@ if($msg=="errSend"){
     ?>
     <div class="alert alert-danger">
         <button type="button" class="close" data-dismiss="alert">x</button>
-        There are problems with your reset request. Please contact us.
+        <?=$al_noResetDelete?>
     </div>
 
     <?php    
@@ -70,7 +70,7 @@ if($msg=="errSend"){
     ?>
     <div class="alert alert-danger">
         <button type="button" class="close" data-dismiss="alert">x</button>
-        There are problems with your reset request. Please contact us.
+        <?=$al_noReset?>
     </div>
 
     <?php    
@@ -78,7 +78,7 @@ if($msg=="errSend"){
     ?>
     <div class="alert alert-danger">
         <button type="button" class="close" data-dismiss="alert">x</button>
-        Sorry, you don't seem reliable, please try again or contact us.
+        <?=$al_errRecaptcha?>
     </div>
 
     <?php    
@@ -86,15 +86,15 @@ if($msg=="errSend"){
     ?>
     <div class="alert alert-danger">
         <button type="button" class="close" data-dismiss="alert">x</button>
-        Error while trying to login
+        <?=$al_errPost?>
     </div>
 
     <?php    
-} else if($msg=="contactEmpty"){
+} else if($msg=="contactFormEmpty"){
     ?>
     <div class="alert alert-danger">
         <button type="button" class="close" data-dismiss="alert">x</button>
-        Please fill all the fields
+        <?=$al_contactFormEmpty?>
     </div>
 
     <?php    
@@ -102,7 +102,7 @@ if($msg=="errSend"){
     ?>
     <div class="alert alert-success">
         <button type="button" class="close" data-dismiss="alert">x</button>
-        Mail successfully sent
+        <?=$al_sentContact?>
     </div>
 
     <?php    
@@ -110,10 +110,19 @@ if($msg=="errSend"){
     ?>
     <div class="alert alert-danger">
         <button type="button" class="close" data-dismiss="alert">x</button>
-        Error sending your email
+        <?=$al_errSendContact?>
     </div>
 
     <?php    
+} else if($msg=="errUserPsw"){
+    ?>
+    <div class="alert alert-danger">
+        <button type="button" class="close" data-dismiss="alert">x</button>
+        <?=$al_errUserPsw?>
+    </div>
+
+    <?php    
+    //reset email
 } else
 
 ?>

@@ -51,7 +51,7 @@ session_start();
 			exit;
 		}
 		
-		$query="SELECT * FROM `t_password_reset_temp` WHERE `email` = '$email' LIMIT 0,1";
+		$query="SELECT * FROM `password_reset_temp` WHERE `email` = '$email' LIMIT 0,1";
 		$stmt=$db->prepare($query);	
 		$stmt->execute();
 		$row=$stmt->fetch(PDO::FETCH_ASSOC);
@@ -59,7 +59,7 @@ session_start();
 		$expDate=$row['expDate'];
 		
 		if((!$row['email']||(($row['email']) && ($expDate<$curDate)))){
-			$query="DELETE FROM `t_password_reset_temp` WHERE `email` = '$email'";
+			$query="DELETE FROM `password_reset_temp` WHERE `email` = '$email'";
 			$stmt=$db->prepare($query);	
 			if(!$stmt->execute()){
 				header("Location: ../../login.php?msg=noResetDelete");
@@ -73,7 +73,7 @@ session_start();
 			$token = $token . $addToken;
 			$user->token=$token;
 			// $user->addResetPassKey();
-			$query="INSERT INTO `t_password_reset_temp` (`email`, `token`, `expDate`)
+			$query="INSERT INTO `password_reset_temp` (`email`, `token`, `expDate`)
 			VALUES ('".$email."', '".$token."', '".$expDate."');";
 			$stmt=$db->prepare($query);
 
@@ -155,7 +155,7 @@ session_start();
 
 		// update the post
 		if($user->updatePass()){
-			$query="DELETE FROM t_password_reset_temp WHERE email = '$email'";
+			$query="DELETE FROM password_reset_temp WHERE email = '$email'";
 			$stmt=$db->prepare($query);	
 			if($stmt->execute()){
 				header("Location: ../../login.php?msg=newPass");

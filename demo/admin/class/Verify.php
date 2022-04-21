@@ -4,7 +4,7 @@ class Verify{
 
 
     private $conn;
-    private $table_name = "t_verify";
+    private $table_name = "verify";
 
     public $id;
     public $public;

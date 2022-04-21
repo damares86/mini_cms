@@ -4,7 +4,7 @@ class Page{
 
 
     private $conn;
-    private $table_name = "t_page";
+    private $table_name = "page";
     private $setParam2;
     private $setParam3;
     private $setParam4;
@@ -118,7 +118,7 @@ class Page{
         if($stmt->execute()){
             $this->uploadPhoto();
 
-            $query1="INSERT INTO t_menu SET pagename = :page_name";
+            $query1="INSERT INTO menu SET pagename = :page_name";
             $stmt1 = $this->conn->prepare($query1);
             $stmt1->bindParam(':page_name', $this->page_name);       
             if($stmt1->execute()){
@@ -359,7 +359,7 @@ class Page{
         $query = "SELECT
                     *
                 FROM
-                t_menu
+                    menu
                 WHERE
                 inmenu = 'y' ORDER BY itemorder ASC";  
   
@@ -372,7 +372,7 @@ class Page{
 
     public function countAll(){
     
-        $query = "SELECT id FROM t_page";
+        $query = "SELECT id FROM page";
     
         $stmt = $this->conn->prepare( $query );
         $stmt->execute();

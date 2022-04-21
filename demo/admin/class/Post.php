@@ -4,7 +4,7 @@ class Post{
 
 
     private $conn;
-    private $table_name = "t_post";
+    private $table_name = "post";
 
     public $id;
     public $title;
@@ -110,9 +110,22 @@ class Post{
         return $stmt;
     }
 
+    function showTot(){
+        //select all data
+        $query = "SELECT
+                    *
+                FROM
+                    " . $this->table_name ." ";  
+  
+        $stmt = $this->conn->prepare( $query );
+        $stmt->execute();
+  
+        return $stmt;
+    }
+
     public function countAll(){
     
-        $query = "SELECT id FROM t_post";
+        $query = "SELECT id FROM post";
     
         $stmt = $this->conn->prepare( $query );
         $stmt->execute();

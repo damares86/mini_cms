@@ -133,6 +133,7 @@ $db->query("CREATE TABLE t_settings (
   id int(5) NOT NULL AUTO_INCREMENT PRIMARY KEY,
   site_name VARCHAR(255) NOT NULL,
   site_description VARCHAR(255) NOT NULL,
+  footer VARCHAR(255) NOT NULL,
   dashboard_language VARCHAR(255) NOT NULL,
   theme VARCHAR(255) NOT NULL)");
 
@@ -146,29 +147,29 @@ $db->query("INSERT INTO t_categories
                             ");
 
 $db->query("CREATE TABLE IF NOT EXISTS t_page
-                            ( id INT ( 5 ) NOT NULL AUTO_INCREMENT PRIMARY KEY,
-                              page_name VARCHAR(255) NOT NULL,
-                              layout VARCHAR(255) NOT NULL DEFAULT 'default',
-                              img VARCHAR(255) NOT NULL DEFAULT 'visual.jpg',
-                              block1 text COLLATE utf8_unicode_ci NOT NULL,
-                              block1_bg VARCHAR(255) DEFAULT 'none',
-                              block1_text VARCHAR(255) DEFAULT '#000000',
-                              block2 text COLLATE utf8_unicode_ci NULL,
-                              block2_bg VARCHAR(255) DEFAULT 'none',
-                              block2_text VARCHAR(255) DEFAULT '#000000',
-                              block3 text COLLATE utf8_unicode_ci NULL,
-                              block3_bg VARCHAR(255) DEFAULT 'none',
-                              block3_text VARCHAR(255) DEFAULT '#000000',
-                              block4 text COLLATE utf8_unicode_ci NULL,
-                              block4_bg VARCHAR(255) DEFAULT 'none',
-                              block4_text VARCHAR(255) DEFAULT '#000000',
-                              block5 text COLLATE utf8_unicode_ci NULL,
-                              block5_bg VARCHAR(255) DEFAULT 'none',
-                              block5_text VARCHAR(255) DEFAULT '#000000',
-                              block6 text COLLATE utf8_unicode_ci NULL,
-                              block6_bg VARCHAR(255) DEFAULT 'none',
-                              block6_text VARCHAR(255) DEFAULT '#000000')
-                              ");
+( id INT ( 5 ) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  page_name VARCHAR(255) NOT NULL,
+  layout VARCHAR(255) NOT NULL DEFAULT 'default',
+  img VARCHAR(255) NOT NULL DEFAULT 'visual.jpg',
+  block1 text COLLATE utf8_unicode_ci NOT NULL,
+  block1_bg VARCHAR(255) DEFAULT 'none',
+  block1_text VARCHAR(255) DEFAULT '#000000',
+  block2 text COLLATE utf8_unicode_ci NULL,
+  block2_bg VARCHAR(255) DEFAULT 'none',
+  block2_text VARCHAR(255) DEFAULT '#000000',
+  block3 text COLLATE utf8_unicode_ci NULL,
+  block3_bg VARCHAR(255) DEFAULT 'none',
+  block3_text VARCHAR(255) DEFAULT '#000000',
+  block4 text COLLATE utf8_unicode_ci NULL,
+  block4_bg VARCHAR(255) DEFAULT 'none',
+  block4_text VARCHAR(255) DEFAULT '#000000',
+  block5 text COLLATE utf8_unicode_ci NULL,
+  block5_bg VARCHAR(255) DEFAULT 'none',
+  block5_text VARCHAR(255) DEFAULT '#000000',
+  block6 text COLLATE utf8_unicode_ci NULL,
+  block6_bg VARCHAR(255) DEFAULT 'none',
+  block6_text VARCHAR(255) DEFAULT '#000000')
+  ");
 
 $db->query("CREATE TABLE IF NOT EXISTS t_menu
                             ( id INT ( 5 ) NOT NULL AUTO_INCREMENT PRIMARY KEY,
@@ -213,8 +214,8 @@ VALUES ('1','admin', '". $password_hash ."','". $user_email ."','Admin')
 
 
 $db->query("INSERT INTO t_settings
-(id, site_name, site_description,dashboard_language,theme)
-VALUES ('1','Mini Cms', 'Create your own website','en','damares')
+(id, site_name, site_description,footer,dashboard_language,theme)
+VALUES ('1','Mini Cms', 'Create your own website','Your footer text','en','damares')
 ");
 
 
@@ -230,12 +231,17 @@ VALUES ('2','Blog', 'default', 'visual.jpg', '','none','#000000','', 'none','#00
 
 $db->query("INSERT INTO t_page 
 (id, page_name, layout, img, block1, block1_bg, block1_text,block2, block2_bg, block2_text,block3, block3_bg, block3_text,block4, block4_bg, block4_text, block5, block5_bg, block5_text, block6, block6_bg, block6_text) 
-VALUES ('3','Login', 'default', 'visual.jpg', '','none','#000000','', 'none','#000000', '', 'none','#000000','', 'none','#000000', '', 'none','#000000','', 'none','#000000')
+VALUES ('3','Post', 'default', 'visual.jpg', '','none','#000000','', 'none','#000000', '', 'none','#000000','', 'none','#000000', '', 'none','#000000','', 'none','#000000')
 ");
 
 $db->query("INSERT INTO t_page 
 (id, page_name, layout, img, block1, block1_bg, block1_text,block2, block2_bg, block2_text,block3, block3_bg, block3_text,block4, block4_bg, block4_text, block5, block5_bg, block5_text, block6, block6_bg, block6_text) 
-VALUES ('4','Contact', 'default', 'visual.jpg', '','none','#000000','', 'none','#000000', '', 'none','#000000','', 'none','#000000', '', 'none','#000000','', 'none','#000000')
+VALUES ('4','Login', 'default', 'visual.jpg', '','none','#000000','', 'none','#000000', '', 'none','#000000','', 'none','#000000', '', 'none','#000000','', 'none','#000000')
+");
+
+$db->query("INSERT INTO t_page 
+(id, page_name, layout, img, block1, block1_bg, block1_text,block2, block2_bg, block2_text,block3, block3_bg, block3_text,block4, block4_bg, block4_text, block5, block5_bg, block5_text, block6, block6_bg, block6_text) 
+VALUES ('5','Contact', 'default', 'visual.jpg', '','none','#000000','', 'none','#000000', '', 'none','#000000','', 'none','#000000', '', 'none','#000000','', 'none','#000000')
 ");
 
 $db->query("INSERT INTO t_menu 
@@ -255,7 +261,7 @@ VALUES ('3','Login', '1','0','1','none')
 
 $db->query("INSERT INTO t_menu 
 (id, pagename, inmenu,itemorder,parent,childof) 
-VALUES ('4','Contacts', '0','0','1','none')
+VALUES ('4','Contact', '0','0','1','none')
 ");
 
 $db->query("CREATE TABLE `t_password_reset_temp` (
@@ -288,6 +294,7 @@ $db->query("INSERT INTO t_contacts
 (id, reset, inbox) 
 VALUES ('1','noreply@yoursite.com', 'info@yoursite.com')
 ");
+
 
 
 header("Location: ../index.php");

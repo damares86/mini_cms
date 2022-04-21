@@ -5,7 +5,7 @@ class Menu{
 
 
     private $conn;
-    private $table_name = "t_menu";
+    private $table_name = "menu";
 
     public $id;
     public $pagename;
@@ -21,7 +21,7 @@ class Menu{
 
     // create new role record
     function insert(){
-        $query="INSERT INTO t_menu SET pagename = :page_name";
+        $query="INSERT INTO menu SET pagename = :page_name";
         $stmt = $this->conn->prepare($query);
         $stmt->bindParam(':page_name', $this->page_name);       
         if($stmt->execute()){
@@ -166,7 +166,7 @@ class Menu{
         $query = "SELECT 
             id 
             FROM 
-            t_menu
+            menu
             WHERE childof = :childof";
     
         $stmt = $this->conn->prepare( $query );
@@ -185,7 +185,7 @@ class Menu{
         $query = "SELECT 
             id 
             FROM 
-            t_menu
+            menu
             WHERE childof = :childof and inmenu = 1";
     
         $stmt = $this->conn->prepare( $query );
@@ -227,7 +227,7 @@ class Menu{
         $query = "SELECT
                     *
                 FROM
-                t_menu
+                    menu
                 WHERE
                 inmenu = 1 ORDER BY itemorder ASC";  
   
@@ -240,7 +240,7 @@ class Menu{
 
     public function countAll(){
     
-        $query = "SELECT id FROM t_menu";
+        $query = "SELECT id FROM menu";
     
         $stmt = $this->conn->prepare( $query );
         $stmt->execute();
@@ -299,7 +299,7 @@ class Menu{
  function delete(){
     
   
-    $query = "DELETE FROM t_menu WHERE pagename = :pagename";
+    $query = "DELETE FROM menu WHERE pagename = :pagename";
 
     $stmt = $this->conn->prepare($query);
     $stmt->bindParam(":pagename",$this->pagename);
