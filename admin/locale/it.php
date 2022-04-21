@@ -187,10 +187,11 @@ $regcat_name_ph = "Scegli un nome per la categoria";
 
 $site_title = "Impostazioni del sito";
 $site_box1_title = "Dettagli del sito";
-$site_name = "Nome del sito";
-$site_description = "Descrizione del sito";
+$site_sitename = "Nome del sito";
+$site_sitedescription = "Descrizione del sito";
+$site_footer = "Testo del footer";
 $site_lang = "Lingua del Sito";
-$site_box1_desc = "Scegli il nome e la descrizione del sito, che verranno mostrati in cima alla pagina e nella barra del browser.";
+$site_box1_desc = "Scegli il nome e la descrizione del sito, che verranno mostrati in cima alla pagina e nella barra del browser e il testo del footer al fondo della pagina.";
 $site_box2_title = "Contatti";
 $site_inbox = "Indirizzo email per i contatti";
 $site_inbox_ph = "es. info@iltuosito.com";
@@ -346,6 +347,7 @@ $log_forgot_exp = "Il tuo link non è più valido";
 
 // CONTACT FORM
 
+$cont_form_page = "Contattaci";
 $cont_form_title = "Contattaci";
 $cont_form_name = "Il tuo nome";
 $cont_form_email = "La tua mail";

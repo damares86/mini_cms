@@ -133,6 +133,7 @@ $db->query("CREATE TABLE settings (
   id int(5) NOT NULL AUTO_INCREMENT PRIMARY KEY,
   site_name VARCHAR(255) NOT NULL,
   site_description VARCHAR(255) NOT NULL,
+  footer VARCHAR(255) NOT NULL,
   dashboard_language VARCHAR(255) NOT NULL,
   theme VARCHAR(255) NOT NULL)");
 
@@ -213,8 +214,8 @@ VALUES ('1','admin', '". $password_hash ."','". $user_email ."','Admin')
 
 
 $db->query("INSERT INTO settings
-(id, site_name, site_description,dashboard_language,theme)
-VALUES ('1','Mini Cms', 'Create your own website','en','damares')
+(id, site_name, site_description,footer,dashboard_language,theme)
+VALUES ('1','Mini Cms', 'Create your own website','Your footer text','en','damares')
 ");
 
 

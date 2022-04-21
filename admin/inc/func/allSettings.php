@@ -43,22 +43,31 @@ if($man=="settings"){
         <form class="form-horizontal row-fluid" action="core/mngSettings.php" method="POST" enctype="multipart/form-data">
             <input type="hidden" name="id" value="<?= $id ?>" />
 
-                <label class="control-label" for="site_name"><?=$site_name?></label>
+                <label class="control-label" for="site_name"><?=$site_sitename?></label>
              
 
-                    <input type="text" id="site_name" name="site_name" placeholder="<?=$site_name?>" class="span12" value="<?= $site_name ?>">
+                    <input type="text" id="site_name" name="site_name" placeholder="<?=$site_sitename?>" class="span12" value="<?= $site_name ?>">
               
             <div class="control-group">
-                            <label class="control-label" for="site_description"><?=$site_description ?></label>
+                            <label class="control-label" for="site_description"><?=$site_sitedescription ?></label>
                 <div class="controls">
 
-                    <input type="text" id="site_description" name="site_description" placeholder="<?=$site_description ?>" class="span8" value="<?= $site_description ?>">
+                    <input type="text" id="site_description" name="site_description" placeholder="<?=$site_sitedescription ?>" class="span8" value="<?= $site_description ?>">
                         
                 </div>
             </div>
 
             <div class="control-group">
-                            <label class="control-label" for="site_description"><?=$site_lang?></label>
+                            <label class="control-label" for="footer"><?=$site_footer ?></label>
+                <div class="controls">
+
+                    <input type="text" id="footer" name="footer" placeholder="<?=$site_footer ?>" class="span8" value="<?= $footer ?>">
+                        
+                </div>
+            </div>
+
+            <div class="control-group">
+                            <label class="control-label" for="language"><?=$site_lang?></label>
                 <div class="controls">
 
                 <select name="language">
@@ -154,6 +163,7 @@ if($man=="settings"){
             <?php
             }   
 ?>
+<br>
             <div class="control-group">
                 <div class="controls">
                    

@@ -188,10 +188,11 @@ $regcat_name_ph = "Choose a category name";
 
 $site_title = "Site settings";
 $site_box1_title = "Site details";
-$site_name = "Site name";
-$site_description = "Site description";
+$site_sitename = "Site name";
+$site_sitedescription = "Site description";
+$site_footer = "Footer text";
 $site_lang = "Site language";
-$site_box1_desc = "Choose the Site name and the description, that will be shown on the top of the pages and in the browser header.";
+$site_box1_desc = "Choose the Site name and the description, that will be shown on the top of the pages and in the browser header and the footer text for the bottom of the page.";
 $site_box2_title = "Contact information";
 $site_inbox = "Email address for contact";
 $site_inbox_ph = "es. info@yoursite.com";
@@ -347,6 +348,7 @@ $log_forgot_exp = "Your link is expired";
 
 // CONTACT FORM
 
+$cont_form_page = "Contact us";
 $cont_form_title = "Contact us";
 $cont_form_name = "Your name";
 $cont_form_email = "Your email";

@@ -1,11 +1,11 @@
 <?php
 
-require 'admin/phpDebug/src/Debug/Debug.php';   			// if not using composer
+// require 'admin/phpDebug/src/Debug/Debug.php';   			// if not using composer
 
-$debug = new \bdk\Debug(array(
-    'collect' => true,
-    'output' => true,
-));
+// $debug = new \bdk\Debug(array(
+//     'collect' => true,
+//     'output' => true,
+// ));
 
 session_start();
 // loading class
@@ -64,6 +64,9 @@ if($file=="index.php"){
     $page_class = pathinfo($file, PATHINFO_FILENAME);
 } else if($file=="post.php"){
     $page_name=$post_title." - Blog ";
+    $page_class="blog";
+}else if($file="contact.php"){
+    $page_name=$cont_form_page;
     $page_class="blog";
 }else{
 // mi prendo solo il nome senza l'estensione
