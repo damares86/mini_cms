@@ -28,7 +28,7 @@ session_start();
 
 
 	if(!$_POST['name']||!$_POST['email']||!$_POST['message']||!$_POST['subject']){
-		header("Location: ../../contact.php?msg=contactEmpty");
+		header("Location: ../../contact.php?msg=contactFormEmpty");
 		exit;
 	}
 

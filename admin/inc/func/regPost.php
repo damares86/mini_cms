@@ -1,7 +1,7 @@
 <?php
 
 $operation = "add";
-$titoloForm = "Add New Post";
+$titoloForm = $regpost_title_add;
 
 $postToMod="";
 $idToMod="";
@@ -9,7 +9,7 @@ $category_id="";
 
 if(filter_input(INPUT_GET,"idToMod")){
     $idToMod = filter_input(INPUT_GET,"idToMod");
-    $titoloForm="Edit Post";
+    $titoloForm=$regpost_title_edit;
     $operation="mod";
 }
 
@@ -25,6 +25,38 @@ if(filter_input(INPUT_GET,"idToMod")){
     <!-- Project Card Example -->
     <div class="card shadow mb-4">
         <div class="card-header py-3">
+        </div>
+        <div class="card-body">
+        <a href="#" class="btn btn-primary btn-icon-split" data-toggle="modal" data-target="#infoPost">
+                        <span class="icon text-white-50">
+                            <i class="fas fa-fw fa-question"></i>
+                        </span>
+                        <span class="text"><?=$regpost_info?></span>
+                    </a> <br>
+             <!-- Info Modal-->
+             <div class="modal fade" id="infoPost" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                        aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-scrollable" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel"><b><?=$regpost_info?></b></h5>
+                                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">×</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body guide">
+                                   <?=$regpost_desc?>
+ 
+                                </div>
+                                <div class="modal-footer">
+                                    <button class="btn btn-primary" type="button" data-dismiss="modal"><?=$txt_close?></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+            <br>
+           
+            <br>
         <form id="postForm" class="form-horizontal row-fluid" action="core/mngPost.php" method="post"  onsubmit="return postForm()">
         <input type="hidden" name="operation" value="<?= $operation ?>" />
                 <?php 
@@ -41,14 +73,14 @@ if(filter_input(INPUT_GET,"idToMod")){
 
         ?>
             <div class="control-group">
-                <label class="control-label" for="title">Title</label>
+                <label class="control-label" for="title"><?=$regpost_posttitle?></label>
                 <div class="controls">
-                    <input type="text" id="title" name="title" placeholder="Post's Title" value="<?=$post->title?>" class="span8">
+                    <input type="text" id="title" name="title" placeholder="<?=$regpost_posttitle_ph?>" value="<?=$post->title?>" class="span8">
                      
                 </div>
             </div>
             <div class="control-group">
-            <label for="category_id">Category</label>
+            <label for="category_id"><?=$regpost_cat?></label>
             <?php
             $cat = new Categories($db);
                 $stmt = $cat->showAllList();
@@ -77,19 +109,19 @@ if(filter_input(INPUT_GET,"idToMod")){
             </select>
             </div>
             <br>
-            <h4>Summary</h4>
+            <h4><?=$regpost_summary?></h4>
             <textarea id="summernote" name="editor" rows="10">
                 <?=$post->summary?>        
             </textarea>
             
             <br>
 
-            <h4>Content</h4>
+            <h4><?=$regpost_content?></h4>
             <textarea id="summernote2" name="editor2" rows="10">
                 <?=$post->content?>        
             </textarea>
             <br>
-                 <input type="submit" class="btn btn-primary" name="subReg" value="Submit">
+                 <input type="submit" class="btn btn-primary" name="subReg" value="<?=$txt_submit?>">
         </form>
 
         

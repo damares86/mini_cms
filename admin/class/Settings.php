@@ -8,7 +8,8 @@ class Settings{
     public $id;
     public $site_name;
     public $site_description;
-    public $dashboard_language = "en";
+    public $footer;
+    public $dashboard_language;
     public $theme;
 
     // constructor
@@ -23,7 +24,9 @@ class Settings{
                     " . $this->table_name . "
                 SET
                     site_name = :site_name,
-                    site_description = :site_description
+                    site_description = :site_description,
+                    footer = :footer,
+                    dashboard_language = :dashboard_language
                 WHERE
                     id = :id";
     // prepare the query
@@ -32,6 +35,8 @@ class Settings{
         // bind the values
         $stmt->bindParam(':site_name', $this->site_name);
         $stmt->bindParam(':site_description', $this->site_description); 
+        $stmt->bindParam(':footer', $this->footer); 
+        $stmt->bindParam(':dashboard_language', $this->dashboard_language); 
         $stmt->bindParam(':id', $this->id);
         
                 
@@ -90,6 +95,20 @@ class Settings{
         $stmt->execute();
         
         return $stmt;
+    }
+
+    function showLang(){
+        $query = "SELECT
+                    *
+                FROM
+                " . $this->table_name . "";
+  
+        $stmt = $this->conn->prepare( $query );
+        $stmt->execute();
+    
+        $row = $stmt->fetch(PDO::FETCH_ASSOC);
+    
+        $this->dashboard_language = $row['dashboard_language'];
     }
 
    

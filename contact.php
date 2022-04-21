@@ -38,24 +38,24 @@ require "admin/template/inc/header.php";
 
 						?>
 
-							<h3 class="my-3">Contact</h3>
+							<h3 class="my-3"><?=$cont_form_title?></h3>
 
 							<form method="POST" class="my-login-validation" novalidate="" action="admin/core/<?=$send?>.php">
 								<div class="form-group">
-									<label for="name">Your name</label>
+									<label for="name"><?=$cont_form_name?></label>
 									<input id="name" class="form-control" name="name" value="" required autofocus>
 								</div>
 								<div class="form-group">
-									<label for="email">Your Email</label>
+									<label for="email"><?=$cont_form_email?></label>
 									<input id="email" class="form-control" name="email" value="" required autofocus>
 								</div>
 								<div class="form-group">
-									<label for="subject">Subject</label>
+									<label for="subject"><?=$cont_form_sub?></label>
 									<input id="subject" class="form-control" name="subject" value="" required autofocus>
 
 								</div>
 								<div class="form-group">
-									<label for="message">Your Message</label>
+									<label for="message"><?=$cont_form_msg?></label>
 									<textarea id="message" name="message" placeholder="Write your message here"></textarea>
 								</div>
 								
@@ -65,7 +65,7 @@ require "admin/template/inc/header.php";
 
 								<div class="form-group m-0">
 									<button type="submit" class="btn btn-primary btn-block">
-										Send
+										<?=$cont_form_button?>
 									</button>
 								</div>
 							</form>

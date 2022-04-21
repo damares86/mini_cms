@@ -14,7 +14,8 @@
             <li class="nav-item">
                 <a class="nav-link" href="index.php">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span>Dashboard</span></a>
+                    <span><?=$side_dash?></span>
+                </a>
             </li>
 
             <!-- Divider -->
@@ -23,7 +24,7 @@
             <li class="nav-item">
                 <a class="nav-link" href="index.php?man=users&op=edit&idToMod=<?=$user_id?>">
                     <i class="fas fa-fw fa-user"></i>
-                    <span>Profile</span></a>
+                    <span><?=$side_profile?></span></a>
             </li>
             <?php
             //if($_SESSION['rolename']=="Admin"){
@@ -31,7 +32,7 @@
             <li class="nav-item">
                 <a class="nav-link" href="index.php?man=users&op=show">
                     <i class="fas fa-fw fa-users"></i>
-                    <span>Users</span></a>
+                    <span><?=$side_users?></span></a>
             </li>
             <?php
             //}
@@ -40,7 +41,7 @@
             <hr class="sidebar-divider">
             <!-- Heading -->
             <div class="sidebar-heading">
-                Managing site
+                <?=$side_manage?>
             </div>
 
             <?php
@@ -49,7 +50,7 @@
             <li class="nav-item">
                 <a class="nav-link" href="index.php?man=page&op=show">
                     <i class="fas fa-fw fa-file"></i>
-                    <span>Pages</span></a>
+                    <span><?=$side_page?></span></a>
             </li>
             <?php
             }
@@ -57,7 +58,7 @@
             <li class="nav-item">
                 <a class="nav-link" href="index.php?man=files&op=show">
                     <i class="fas fa-fw fa-folder-open"></i>
-                    <span>Files</span></a>
+                    <span><?=$side_files?></span></a>
             </li>
 
 
@@ -65,19 +66,19 @@
 
             <!-- Heading -->
             <div class="sidebar-heading">
-                Blog
+            <?=$side_blog?>
             </div>
 
             <li class="nav-item">
                 <a class="nav-link" href="index.php?man=post&op=show">
                     <i class="fas fa-fw fa-marker"></i>
-                    <span>Posts</span></a>
+                    <span><?=$side_post?></span></a>
             </li>
 
             <li class="nav-item">
                 <a class="nav-link" href="index.php?man=cat&op=show">
                     <i class="fas fa-fw fa-tags"></i>
-                    <span>Categories</span></a>
+                    <span><?=$side_cat?></span></a>
             </li>
             
             <!-- Divider -->
@@ -88,25 +89,25 @@
             ?>
              <!-- Heading -->
              <div class="sidebar-heading">
-                Settings
+             <?=$side_settings?>
             </div>
 
             <li class="nav-item">
                 <a class="nav-link" href="index.php?man=settings">
                     <i class="fas fa-fw fa-wrench"></i>
-                    <span>Site settings</span></a>
+                    <span><?=$side_siteset?></span></a>
             </li>
 
             <li class="nav-item">
                 <a class="nav-link" href="index.php?man=menu">
                     <i class="fas fa-fw fa-bars"></i>
-                    <span>Menu settings</span></a>
+                    <span><?=$side_menuset?></span></a>
             </li>
 
             <li class="nav-item">
                 <a class="nav-link" href="index.php?man=color&op=show">
                     <i class="fas fa-fw fa-image"></i>
-                    <span>Theme settings</span></a>
+                    <span><?=$side_themeset?></span></a>
             </li>
             <?php
             }

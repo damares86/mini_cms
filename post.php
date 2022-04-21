@@ -41,29 +41,31 @@ $url = get_page_url();
         $category_name= $cat->category_name;
         ?>
         <h1><?=$post->title?></h1>
-        <p class="metainfo">Category: <b><a href="blog.php?cat=<?=$category_id?>"><?=$category_name?></a></b></p>
-        <p class="metainfo">Last modified on: <?=$post->modified?></p>
+        <p class="metainfo"><?=$blog_category?>: <b><a href="blog.php?cat=<?=$category_id?>"><?=$category_name?></a></b></p>
+        <p class="metainfo"><?=$blog_mod?>: <?=$post->modified?></p>
         <div class="blog_content">
             <?=$post->content?>
             
             <br>
-            Share: &nbsp;
+            <div class="border p-3">
+                <?=$blog_share?>: &nbsp;
+                
             <a href="https://twitter.com/share?url=<?=$url?>" target="_blank" onclick="window.open(this.href,'window','width=640,height=480,resizable,scrollbars') ;return false;">
-                            <i class="fa fa-twitter" data-toggle="tooltip" title="" data-original-title="Twitter">twitter</i></a>
+            <i class="fab fa-twitter"></i></a>
 
                         &nbsp; &nbsp; <a href="https://www.facebook.com/sharer.php?u=<?=$url?>">
-                            <i class="fa fa-facebook" data-toggle="tooltip" title="" data-original-title="Facebook">facebook</i></a>
+                        <i class="fab fa-facebook"></i></a>
                         <!-- <a href="http://www.linkedin.com/shareArticle?mini=true&url=<?=$url?>">
                             <i class="fa fa-linkedin" data-toggle="tooltip" title="" data-original-title="Linkedin">linkedin</i>
                         </a> -->
             <br>
-            
+            </div>
         </div>
         
         </div>
         <div id="sidebar">
             <div id="sidebar_menu">
-            <h2><strong>Categories</strong></h2>
+            <h2><strong><?=$blog_categories?></strong></h2>
                     <ul>
             <?php
                     require "admin/template/inc/sidebar.php";

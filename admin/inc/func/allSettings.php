@@ -13,7 +13,7 @@ if($man=="settings"){
 ?>
 
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">Site settings</h1>
+                        <h1 class="h3 mb-0 text-gray-800"><?=$site_title?></h1>
 
                     </div><div class="row">
 
@@ -23,11 +23,13 @@ if($man=="settings"){
     <!-- Project Card Example -->
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">Site details</h6>
+            <h6 class="m-0 font-weight-bold text-primary"><?=$site_box1_title?></h6>
         </div>
         <div class="card-body">
            
-
+           
+        <div class="row">
+    <div class="col">
         
         <?php
 
@@ -41,16 +43,49 @@ if($man=="settings"){
         <form class="form-horizontal row-fluid" action="core/mngSettings.php" method="POST" enctype="multipart/form-data">
             <input type="hidden" name="id" value="<?= $id ?>" />
 
-                <label class="control-label" for="site_name">Site Name</label>
+                <label class="control-label" for="site_name"><?=$site_sitename?></label>
              
 
-                    <input type="text" id="site_name" name="site_name" placeholder="Site name" class="span12" value="<?= $site_name ?>">
+                    <input type="text" id="site_name" name="site_name" placeholder="<?=$site_sitename?>" class="span12" value="<?= $site_name ?>">
               
             <div class="control-group">
-                            <label class="control-label" for="site_description">Site description</label>
+                            <label class="control-label" for="site_description"><?=$site_sitedescription ?></label>
                 <div class="controls">
 
-                    <input type="text" id="site_description" name="site_description" placeholder="Site description" class="span8" value="<?= $site_description ?>">
+                    <input type="text" id="site_description" name="site_description" placeholder="<?=$site_sitedescription ?>" class="span8" value="<?= $site_description ?>">
+                        
+                </div>
+            </div>
+
+            <div class="control-group">
+                            <label class="control-label" for="footer"><?=$site_footer ?></label>
+                <div class="controls">
+
+                    <input type="text" id="footer" name="footer" placeholder="<?=$site_footer ?>" class="span8" value="<?= $footer ?>">
+                        
+                </div>
+            </div>
+
+            <div class="control-group">
+                            <label class="control-label" for="language"><?=$site_lang?></label>
+                <div class="controls">
+
+                <select name="language">
+                <?php
+                $lang =glob("locale/*.php", GLOB_BRACE);
+
+            foreach ($lang as $file) {
+                    $language=pathinfo($file, PATHINFO_FILENAME);
+                    $selected = "";
+                    if ($language == $dashboard_language) {
+                        $selected = "selected";
+                    }
+                    echo "<option value='{$language}' $selected >{$language}</option>";
+
+                
+            }
+                ?>
+            </select>
                         
                 </div>
             </div>
@@ -59,15 +94,22 @@ if($man=="settings"){
             <?php
             } 
 ?>
+<br>
             <div class="control-group">
                 <div class="controls">
                    
-                    <input type="submit" class="btn btn-primary" name="subReg" value="Submit">
+                    <input type="submit" class="btn btn-primary" name="subReg" value="<?=$txt_submit?>">
 
                     <!-- <button type="submit" class="btn" name="subReg">Submit Form</button> -->
                 </div>
             </div>
         </form>
+        </div>
+    <div class="col rounded guide mx-3">
+        <?=$site_box1_desc ?>
+        
+    </div>
+</div>
     </div>
 </div>
 </div>
@@ -79,11 +121,12 @@ if($man=="settings"){
     <!-- Project Card Example -->
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">Contact information</h6>
+            <h6 class="m-0 font-weight-bold text-primary"><?=$site_box2_title?></h6>
         </div>
         <div class="card-body">
            
-
+        <div class="row">
+    <div class="col">
         
         <?php
 
@@ -99,36 +142,42 @@ if($man=="settings"){
             <input type="hidden" name="id" value="<?= $row1['id']?>" />
             <div class="control-group">
 
-                <label class="control-label" for="inbox">Email Address for Contact</label>
+                <label class="control-label" for="inbox"><?=$site_inbox?></label>
                 <div class="controls">
              
 
-                    <input type="text" id="inbox" name="inbox" placeholder="es. info@yoursite.com" class="span12" value="<?= $row1['inbox']  ?>">
+                    <input type="text" id="inbox" name="inbox" placeholder="<?=$site_inbox_ph?>" class="span12" value="<?= $row1['inbox']  ?>">
                     </div>
             </div>
    <br>
             <div class="control-group">
-                            <label class="control-label" for="reset">Email Address for Password Reset</label>
+                            <label class="control-label" for="reset"><?=$site_reset?></label>
                 <div class="controls">
 
-                    <input type="text" id="reset" name="reset" placeholder="es. noreply@yoursite.com" class="span8" value="<?= $row1['reset'] ?>">
+                    <input type="text" id="reset" name="reset" placeholder="<?=$site_reset_ph?>" class="span8" value="<?= $row1['reset'] ?>">
                         
                 </div>
             </div>
    
             <br>
             <?php
-            } 
+            }   
 ?>
+<br>
             <div class="control-group">
                 <div class="controls">
                    
-                    <input type="submit" class="btn btn-primary" name="subMail" value="Submit">
+                    <input type="submit" class="btn btn-primary" name="subMail" value="<?=$txt_submit?>">
 
                     <!-- <button type="submit" class="btn" name="subReg">Submit Form</button> -->
                 </div>
             </div>
         </form>
+        </div>
+    <div class="col rounded guide mx-3">
+        <?=$site_box2_desc?>
+    </div>
+</div>
     </div>
 </div>
 </div>
@@ -139,11 +188,12 @@ if($man=="settings"){
     <!-- Project Card Example -->
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">Google Recaptcha v3</h6>
+            <h6 class="m-0 font-weight-bold text-primary"><?=$site_box3_title?></h6>
         </div>
         <div class="card-body">
            
-
+<div class="row">
+    <div class="col">
         
         <?php
 
@@ -161,15 +211,15 @@ if($man=="settings"){
         <form class="form-horizontal row-fluid" action="core/mngSettings.php" method="POST" enctype="multipart/form-data">
             <input type="hidden" name="id" value="<?= $row2['id']?>" />
             <div class="control-group">
-                <label class="control-label">Use Recaptcha</label>
+                <label class="control-label"><?=$site_useRec?></label>
                     <div class="controls">
                         <input type="checkbox" name="verify" value="1" <?=$checked?>> 
                     </div>
             </div>
-
+<br>
             <div class="control-group">
 
-                <label class="control-label" for="public">Public Key</label>
+                <label class="control-label" for="public"><?=$site_public?></label>
                 <div class="controls">
              
 
@@ -178,7 +228,7 @@ if($man=="settings"){
             </div>
    <br>
             <div class="control-group">
-                            <label class="control-label" for="secret">Secret Key</label>
+                            <label class="control-label" for="secret"><?=$site_secret?></label>
                 <div class="controls">
 
                     <input type="text" id="secret" name="secret" placeholder="" class="span8" value="<?= $row2['secret'] ?>">
@@ -193,12 +243,17 @@ if($man=="settings"){
             <div class="control-group">
                 <div class="controls">
                    
-                    <input type="submit" class="btn btn-primary" name="subKey" value="Submit">
+                    <input type="submit" class="btn btn-primary" name="subKey" value="<?=$txt_submit?>">
 
                     <!-- <button type="submit" class="btn" name="subReg">Submit Form</button> -->
                 </div>
             </div>
         </form>
+        </div>
+    <div class="col rounded guide mx-3">
+      <?=$site_box3_desc?>
+    </div>
+</div>
     </div>
 </div>
 </div>
@@ -208,7 +263,7 @@ if($man=="settings"){
 }else if($man=="menu"){
 ?>
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">Menu settings</h1>
+                        <h1 class="h3 mb-0 text-gray-800"><?=$menu_title?></h1>
 
                     </div><div class="row">
 <div class="col-lg-12 mb-4">
@@ -218,22 +273,53 @@ if($man=="settings"){
         <div class="card-header py-3">
         </div>
         <div class="card-body">
+        <a href="#" class="btn btn-primary btn-icon-split" data-toggle="modal" data-target="#infoMenu">
+                        <span class="icon text-white-50">
+                            <i class="fas fa-fw fa-question"></i>
+                        </span>
+                        <span class="text"><?=$menu_info?></span>
+                    </a> <br>
+             <!-- Info Modal-->
+             <div class="modal fade" id="infoMenu" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                        aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-scrollable" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel"><b><?=$menu_info?></b></h5>
+                                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">×</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body guide">
+                                    <?=$menu_desc?>
+ 
+                                </div>
+                                <div class="modal-footer">
+                                    <button class="btn btn-primary" type="button" data-dismiss="modal"><?=$txt_cloe?></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+            <br>
+           
+            <br>
+      
     <form class="form-horizontal row-fluid" action="core/mngSettings.php" method="POST" enctype="multipart/form-data">
        
         <div class="align-items-center pt-3 pb-2 mb-3 align-items-center">
        
-        <h3><b>Pages in menu</b></h3>
+        <h3><b><?=$menu_t1_title?></b></h3>
 <br>
         <table class="table">
             <thead>
                 <tr>
-                    <th scope="col">Page Name</th>
-                    <th scope="col">Parent</th>
-                    <th scope="col">Child of</th>
-                    <th scope="col">Item order</th>
-                    <th scope="col">Up</th>
-                    <th scope="col">Down</th>
-                    <th scope="col">In menu</th>
+                    <th scope="col"><?=$menu_name?></th>
+                    <th scope="col"><?=$menu_parent?></th>
+                    <th scope="col"><?=$menu_t1_child?></th>
+                    <th scope="col"><?=$menu_t1_order?></th>
+                    <th scope="col"><?=$menu_t1_up?></th>
+                    <th scope="col"><?=$menu_t1_down?></th>
+                    <th scope="col"><?=$menu_inmenu?></th>
                 </tr>
             </thead>
             <tbody>
@@ -252,7 +338,7 @@ if($man=="settings"){
                     ?>
                 <tr style="background-color:#bdeeff">
                     <td><b><?=$pagename?></b><input type="hidden" name="idParent[]" value="<?= $parentID ?>" /></td>
-                    <td>Yes</td>
+                    <td><?=$menu_t1_yes?></td>
                     <td>
                         <input type="checkbox" name="childofParent<?= $id ?>" value="1">
                     </td>
@@ -261,17 +347,17 @@ if($man=="settings"){
                         <?=$order?>
                     </td>
                     <td> 
-                        <input type="radio" id="upParent" name="orderParent<?= $id ?>" value="upParent"> <i class="menu-icon icon-arrow-up"></i> Up
+                        <input type="radio" id="upParent" name="orderParent<?= $id ?>" value="upParent"> <i class="menu-icon icon-arrow-up"></i> <?=$menu_t1_up?>
                     </td>
                     <td>
-                        <input type="radio" id="downParent" name="orderParent<?= $id ?>" value="downParent"> <i class="menu-icon icon-arrow-down"></i> Down
+                        <input type="radio" id="downParent" name="orderParent<?= $id ?>" value="downParent"> <i class="menu-icon icon-arrow-down"></i> <?=$menu_t1_down?>
                     </td>
                         
                        
                         
     
                     </td>
-                    <td><input type="checkbox" name="inmenuParent<?=$parentID?>"> Remove</td>
+                    <td><input type="checkbox" name="inmenuParent<?=$parentID?>"><?=$menu_t1_remove?></td>
                 </tr>
                 <?php
                     $menu->childof=$page;
@@ -318,7 +404,7 @@ if($man=="settings"){
                         </td>
                           
         
-                    <td><input type="checkbox" name="inmenuChild<?=$childID?>"> Remove</td>
+                    <td><input type="checkbox" name="inmenuChild<?=$childID?>"> <?=$menu_t1_remove?></td>
                      
                 </tr>
                 <?php
@@ -330,14 +416,14 @@ if($man=="settings"){
         <br><br>
         <div class="row">
             <div class="col-md-6">
-            <h3><b>Children without parent</b></h3>
+            <h3><b><?=$menu_t2_title?></b></h3>
             <br>
             <table class="table table-striped">
 
             <thead>
                 <tr>
-                    <th scope="col">Page Name</th>
-                    <th scope="col">Parent</th>
+                    <th scope="col"><?=$menu_name?></th>
+                    <th scope="col"><?=$menu_parent?></th>
                 </tr>
             </thead>
             <tbody>
@@ -372,14 +458,14 @@ if($man=="settings"){
         </table>
             </div>
             <div class="col-md-6 border-left">
-            <h3><b>Page not in menu</b></h3>
+            <h3><b><?=$menu_t3_title?></b></h3>
             <br>
         <table class="table table-striped">
 
             <thead>
                 <tr>
-                    <th scope="col">Page Name</th>
-                    <th scope="col">In menu</th>
+                    <th scope="col"><?=$menu_name?></th>
+                    <th scope="col"><?=$menu_inmenu?></th>
                 </tr>
             </thead>
             <tbody>
@@ -392,7 +478,7 @@ if($man=="settings"){
                 ?>
                 <tr>
                     <td><?=$pagename?><input type="hidden" name="idNoMenu[]" value="<?= $noMenuID ?>" /></td>
-                    <td><input type="checkbox" name="notInMenu<?= $noMenuID ?>"> Add</td>
+                    <td><input type="checkbox" name="notInMenu<?= $noMenuID ?>"> <?=$menu_t2_add ?></td>
                 
                 </tr>
             <?php   
@@ -409,7 +495,7 @@ if($man=="settings"){
         <div class="control-group">
                 <div class="controls">
                    
-                    <input type="submit" class="btn btn-primary" name="subMenu" value="Refresh">
+                    <input type="submit" class="btn btn-primary" name="subMenu" value="<?=$menu_refresh?>">
 
                     <!-- <button type="submit" class="btn" name="subReg">Submit Form</button> -->
                 </div>
