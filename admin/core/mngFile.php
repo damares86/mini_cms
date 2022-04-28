@@ -56,18 +56,20 @@ if(filter_input(INPUT_POST,"subReg")){
 
 	$operation=filter_input(INPUT_POST,"operation");
 
-	if((!$_POST['title'])){
-		header("Location: ../index.php?man=files&op=show&msg=fileTitleEmpty");
-		exit;
-	}
-	
-	if ($_FILES['myfile']['size'] == 0 ){
-		header("Location: ../index.php?man=files&op=show&msg=fileEmpty");
-		exit;
-	}
-
-
 	if($operation=="add"){
+
+		if((!$_POST['title'])){
+			header("Location: ../index.php?man=files&op=show&msg=fileTitleEmpty");
+			exit;
+		}
+		
+		if ($_FILES['myfile']['size'] == 0 ){
+			header("Location: ../index.php?man=files&op=show&msg=fileEmpty");
+			exit;
+		}
+
+
+
 
 		//insert
 
@@ -76,7 +78,6 @@ if(filter_input(INPUT_POST,"subReg")){
 			$file->filename=$_FILES['myfile']['name'];
 		
 		
-			// create the user
 			if($file->uploadFile()){
 				header("Location: ../index.php?man=files&op=show&msg=fileSucc");
 				exit;
@@ -88,31 +89,71 @@ if(filter_input(INPUT_POST,"subReg")){
 				header("Location: ../index.php?man=files&op=show&msg=fileErr");
 				exit;
 			}
+		 }else if($operation=="edit"){
+
+			$file->id=$_POST['idToMod'];
+			if((!$_POST['title'])){
+				header("Location: ../index.php?man=files&op=show&msg=fileTitleEmpty");
+				exit;
+			}
+			$file->title=$_POST['title'];
+
+			if($file->update()){
+				if(isset($_POST['fileSel'])){
+
+					$idToDel = filter_input(INPUT_POST,"idToMod");
+		
+					$file->id=$idToDel;
+
+					$file->showById();
+					
+					$filename = $file->filename;
+
+					$filepath = "../../uploads/". $filename ."";
+					
+					if(unlink($filepath) || !file_exists(($filepath))){
+						if($file->delete()){
+							
+							if ($_FILES['myfile']['size'] == 0 ){
+								header("Location: ../index.php?man=files&op=show&msg=fileEmpty");
+								exit;
+							}
+							$file->file=$_FILES['myfile']['tmp_name'];
+							$file->title=$_POST['title'];
+							$file->filename=$_FILES['myfile']['name'];
+						
+						
+							if($file->uploadFile()){
+								header("Location: ../index.php?man=files&op=show&msg=fileModSucc");
+								exit;
+							
+								// empty posted values
+								// $_POST=array();
+							
+							}else{
+								header("Location: ../index.php?man=files&op=show&msg=fileModErr");
+								exit;
+							}
+							
+						}else{
+							header("Location: ../index.php?man=files&op=show&msg=fileModDelErr");
+							exit;
+						}
+					}else{
+						header("Location: ../index.php?man=files&op=show&msg=fileModNotDel");
+						exit;
+					}
+				}else{
+					header("Location: ../index.php?man=files&op=show&msg=fileModTitleSucc");
+					exit;	
+				}
+				}else{
+					header("Location: ../index.php?man=files&op=show&msg=fileModTitleErr");
+					exit;
+			}
+
+
 		 }
-	// } else if($operation=="mod"){
-
-	// 	$cat->id = $_POST['idToMod'];
-
-	// 	// update the post
-	// 	if($cat->update()){
-	// 		header("Location: ../index.php?msg=catEditSucc");
-	// 		exit;
-		
-	// 		// empty posted values
-	// 		// $_POST=array();
-		
-	// 	}else{
-	// 		header("Location: ../index.php?msg=catEditErr");
-	// 		exit;
-	// 	}
-
-
-
-	//}
-	
-
-
-	// MODIFICA UTENTE
 
 
 

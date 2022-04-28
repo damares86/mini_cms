@@ -35,6 +35,7 @@ $total_post=$post->countAll();
 $page = new Page($db);
 $contact = new Contact($db);
 $settings = new Settings($db);
+$file = new File($db);
 
 $stmt=$settings->showLang();
 $lang=$settings->dashboard_language;

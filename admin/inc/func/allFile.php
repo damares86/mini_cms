@@ -4,7 +4,7 @@
 	$database = new Database();
 	$db = $database->getConnection();
 
-	$file = new File($db);
+	
     
     $stmt = $file->showAll($from_record_num, $records_per_page);
 
@@ -46,6 +46,7 @@
                     <th scope="col"><?=$file_filetitle?></th>
                     <th scope="col"><?=$file_filename?></th>
                     <th scope="col"><?=$file_filelink?></th>
+                    <th scope="col"><?=$txt_edit?></th>
                     <th scope="col"><?=$txt_delete?></th>
                 </tr>
             </thead>
@@ -62,7 +63,14 @@
                 <td><?=$filename?></td>
                 <td><a href="../uploads/<?=$filename?>" target="_blank"><?=$file_filelink?></a></td>
 
-      
+                    <td>
+                        <a href="index.php?man=files&op=edit&idToMod=<?=$id?>" class="btn btn-warning btn-icon-split">
+                            <span class="icon text-white-50">
+                                <i class="fas fa-pen"></i>
+                            </span>
+                            <span class="text"><?=$txt_edit?></span>
+                        </a>            
+                    </td>
                     <td>
                         <a href="#" class="btn btn-danger btn-icon-split" data-toggle="modal" data-target="#delete<?=$row['id']?>">
                             <span class="icon text-white-50">

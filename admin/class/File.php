@@ -200,7 +200,32 @@ class File{
         echo "</pre>";
     }
 
+    function update(){
+        // insert query
+        $query = "UPDATE
+                    " . $this->table_name . "
+                SET
+                title = :title
+                WHERE
+                    id = :id";
+    // prepare the query
+        $stmt = $this->conn->prepare($query);
+     
+        // bind the values
+        $stmt->bindParam(':title', $this->title);
+        $stmt->bindParam(':id', $this->id);
+                
+      
+        // execute the query, also check if query was successful
+        if($stmt->execute()){
+            return true;
 
+        }else{
+            $this->showError($stmt);
+            return false;
+        }
+    
+    }
 
 
 
