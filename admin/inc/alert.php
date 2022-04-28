@@ -394,6 +394,46 @@ if($msg=="userDelSucc"){
     </div>
 
     <?php    
+} else if($msg=="fileModSucc"){
+    ?>
+    <div class="alert alert-success">
+        <button type="button" class="close" data-dismiss="alert">x</button>
+        <?=$al_fileModSucc?>
+    </div>
+
+    <?php    
+} else if($msg=="fileModErr"){
+    ?>
+    <div class="alert alert-danger">
+        <button type="button" class="close" data-dismiss="alert">x</button>
+        <?=$al_fileModErr?>
+    </div>
+
+    <?php    
+} else if($msg=="fileModDelErr"){
+    ?>
+    <div class="alert alert-danger">
+        <button type="button" class="close" data-dismiss="alert">x</button>
+        <?=$al_fileModDelErr?>
+    </div>
+
+    <?php    
+} else if($msg=="fileModTitleSucc"){
+    ?>
+    <div class="alert alert-success">
+        <button type="button" class="close" data-dismiss="alert">x</button>
+        <?=$al_fileModTitleSucc?>
+    </div>
+
+    <?php    
+} else if($msg=="fileModTitleErr"){
+    ?>
+    <div class="alert alert-danger">
+        <button type="button" class="close" data-dismiss="alert">x</button>
+        <?=$al_fileModTitleErr?>
+    </div>
+
+    <?php    
 } else if($msg=="contactEmpty"){
     ?>
     <div class="alert alert-danger">

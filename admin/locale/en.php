@@ -125,10 +125,12 @@ $file_nofile = "No files found";
 
 // ADD FILES
 
-$addfile_title = "Add file";
+$addfile_title_add = "Add file";
+$addfile_title_edit = "Edit file";
 $addfile_filetitle = "File Title";
 $addfile_filetitle_ph = "Choose the file title";
 $addfile_upload = "Upload file";
+$addfile_upload_edit = "Upload an up-to-date file";
 $addfile_desc = " Here you can upload file that you will link in some post or page.<br><br>";
 $addfile_desc .= "The only allowed file formats are <b>\".pdf\", \".doc\", \".docx\", \".zip\"</b> ";
 $addfile_desc .= "After the file upload, you will have the file link in the table with all files.";
@@ -308,6 +310,11 @@ $al_fileTitleEmpty = "File title missing";
 $al_fileEmpty = "File missing";
 $al_fileSucc = "File uploaded";
 $al_fileErr = "File not uploaded";
+$al_fileModSucc = "Title and file updated";
+$al_fileModErr = "New file not uploaded";
+$al_fileModDelErr = "Old file not deleted";
+$al_fileModTitleSucc = "File title modified";
+$al_fileModTitleErr = "File title not modified";
 $al_contactEmpty = "You must insert both addesses!";
 $al_setContactSucc = "Contact emails updated";
 $al_setContactErr = "Contact emails not updated";

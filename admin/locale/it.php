@@ -124,9 +124,11 @@ $file_nofile = "Nessun file trovato";
 // ADD FILES
 
 $addfile_title = "Aggiungi file";
+$addfile_title_edit = "Modifica file";
 $addfile_filetitle = "Titolo del file";
 $addfile_filetitle_ph = "Scegli un titolo per il file";
 $addfile_upload = "Upload file";
+$addfile_upload_edit = "Upload file aggiornato";
 $addfile_desc = "Qui puoi caricare dei file da poter linkare nei post o nelle pagine.<br><br>";
 $addfile_desc .= "Gli unici formati ammessi sono <b>\".pdf\", \".doc\", \".docx\", \".zip\"</b> ";
 $addfile_desc .= "Dopo l'upload del file, il link sarà disponibile nella tabella con tutti i file.";
@@ -307,6 +309,11 @@ $al_fileTitleEmpty = "Titolo del file mancante";
 $al_fileEmpty = "File assente";
 $al_fileSucc = "File caricato";
 $al_fileErr = "File non caricato";
+$al_fileModSucc = "Titolo e file aggiornati";
+$al_fileModErr = "Nuovo file non caricato";
+$al_fileModDelErr = "File precedente non cancellato";
+$al_fileModTitleSucc = "Titolo del file modificato";
+$al_fileModTitleErr = "Titolo del file non modificato";
 $al_contactEmpty = "Devi inserire entrambi gli indirizzi email!";
 $al_setContactSucc = "Indirizzi email modificati";
 $al_setContactErr = "Indirizzi email non modificati";

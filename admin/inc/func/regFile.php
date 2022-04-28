@@ -1,4 +1,21 @@
+<?php
+// MODIFICARE SU LOCALE !!!!!!!!!!!!!!!!!!!!
+$addfile_title = $addfile_title_add;
+$idToMod="";
+$file->id="";
 
+$operation=filter_input(INPUT_GET,"op");
+
+if($operation=="edit"){
+    $addfile_title=$addfile_title_edit;
+    $idToMod=filter_input(INPUT_GET,"idToMod");
+    $file->id=$idToMod;
+}
+
+$file->showById();
+
+
+?>
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
                         <h1 class="h3 mb-0 text-gray-800"><?=$addfile_title?></h1>
 
@@ -14,17 +31,41 @@
   <div class="row">
       <div class="col">
        <form class="form-horizontal row-fluid" action="core/mngFile.php" method="POST" enctype="multipart/form-data">
-        <input type="hidden" name="operation" value="add" />
+        <input type="hidden" name="operation" value="<?=$operation?>" />
 
             <div class="control-group">
                 <label class="control-label" for="title"><?=$addfile_filetitle?></label>
                 <div class="controls">
-                    <input type="text" id="title" name="title" placeholder="<?=$addfile_filetitle_ph?>" class="span8">
+                    <input type="text" id="title" name="title" placeholder="<?=$addfile_filetitle_ph?>" value="<?=$file->title?>" class="span8">
                      
                 </div>
             </div>
+            <?php
+            if($idToMod!=0){
+                $display="none";
+        ?>
+        <script>
+            function show(i) {
+                document.getElementById(i).style.visibility='visible';
+            }
+        </script>
+        <script>
+            $(document).ready(function(){
+            $("#changeFile").click(function(){
+                $("#uploadFile").toggle();
+            });
+            });
+        </script>
+        <input type="checkbox" name="fileSel" value="fileSel" id="changeFile" > 
+        <?=$addfile_upload_edit?>
+        <br>
+        <br>
+        <?php
+            }
+        ?>
+            <div class="control-group" id="uploadFile" style="display:<?=$display?>">
+                <input type="hidden" name="idToMod" value="<?=$idToMod?>" />
 
-            <div class="control-group">
                 <label class="control-label" for="file"><?=$addfile_upload?></label>
                 <div class="controls">
                     <input type="file" id="myfile" name="myfile">
