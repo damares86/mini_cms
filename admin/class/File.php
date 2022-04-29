@@ -12,6 +12,7 @@ class File{
     public $category_id;
     public $rolename;
     public $file;
+    public $operation;
 
     // constructor
     public function __construct($db){
@@ -21,7 +22,7 @@ class File{
     function uploadFile(){
         
         if($this->filename){
-            
+
             $target_directory = "../../uploads/";
             $target_file = $target_directory . $this->filename;
             $file_type = pathinfo($target_file, PATHINFO_EXTENSION);
@@ -60,23 +61,37 @@ class File{
       
                 
 				if (move_uploaded_file($file, $target_file)) {
+
                     chmod($target_file, 0777);
+                    $query="";
+                    if($this->operation=="add"){
                     $query = "INSERT INTO
                                 " . $this->table_name . "
                             SET
                             filename = :filename,
                             title = :title";
-                            
+                        }else if($this->operation=="edit"){
+                            $query = "UPDATE
+                            " . $this->table_name . "
+                            SET
+                            filename = :filename,
+                            title = :title
+                            WHERE 
+                            id = :id";
+                        }
                             // prepare the query
                             $stmt = $this->conn->prepare($query);
                             
                           
                     // sanitize
-                    $this->rolename=htmlspecialchars(strip_tags($this->title));
+                    // $this->rolename=htmlspecialchars(strip_tags($this->title));
                 
                     // bind the values
                     $stmt->bindParam(':filename', $this->filename);
                     $stmt->bindParam(':title', $this->title);
+                    if($this->operation=="edit"){
+                        $stmt->bindParam(':id', $this->id);
+                    }
                    
                     // execute the query, also check if query was successful
                     if($stmt->execute()){

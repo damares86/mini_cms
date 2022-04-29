@@ -55,9 +55,9 @@ if(filter_input(INPUT_GET,"idToDel")){
 if(filter_input(INPUT_POST,"subReg")){
 
 	$operation=filter_input(INPUT_POST,"operation");
-
+	
 	if($operation=="add"){
-
+		
 		if((!$_POST['title'])){
 			header("Location: ../index.php?man=files&op=show&msg=fileTitleEmpty");
 			exit;
@@ -67,16 +67,17 @@ if(filter_input(INPUT_POST,"subReg")){
 			header("Location: ../index.php?man=files&op=show&msg=fileEmpty");
 			exit;
 		}
-
-
-
-
-		//insert
-
-			$file->file=$_FILES['myfile']['tmp_name'];
-			$file->title=$_POST['title'];
-			$file->filename=$_FILES['myfile']['name'];
 		
+		
+		
+		
+		//insert
+		$file->operation = "add";
+		$file->file=$_FILES['myfile']['tmp_name'];
+		$file->title=$_POST['title'];
+		$file->filename=$_FILES['myfile']['name'];
+		
+
 		
 			if($file->uploadFile()){
 				header("Location: ../index.php?man=files&op=show&msg=fileSucc");
@@ -90,7 +91,8 @@ if(filter_input(INPUT_POST,"subReg")){
 				exit;
 			}
 		 }else if($operation=="edit"){
-
+			
+			$file->operation = "edit";
 			$file->id=$_POST['idToMod'];
 			if((!$_POST['title'])){
 				header("Location: ../index.php?man=files&op=show&msg=fileTitleEmpty");
@@ -112,8 +114,6 @@ if(filter_input(INPUT_POST,"subReg")){
 					$filepath = "../../uploads/". $filename ."";
 					
 					if(unlink($filepath) || !file_exists(($filepath))){
-						if($file->delete()){
-							
 							if ($_FILES['myfile']['size'] == 0 ){
 								header("Location: ../index.php?man=files&op=show&msg=fileEmpty");
 								exit;
@@ -135,10 +135,7 @@ if(filter_input(INPUT_POST,"subReg")){
 								exit;
 							}
 							
-						}else{
-							header("Location: ../index.php?man=files&op=show&msg=fileModDelErr");
-							exit;
-						}
+
 					}else{
 						header("Location: ../index.php?man=files&op=show&msg=fileModNotDel");
 						exit;
