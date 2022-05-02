@@ -78,6 +78,12 @@ $user_id=$_SESSION['user_id'];
                                 } else if($operation=="add"||$operation=="edit"){
                                     require "inc/func/regPortfolio.php";
                                 }
+                            }else if($manage=="catPortfolio"){
+                                if($operation=="show"){
+                                    require "inc/func/allCatPortfolio.php";
+                                } else if($operation=="add"||$operation=="edit"){
+                                    require "inc/func/regCatPortfolio.php";
+                                }
                             }else if($manage=="color"){
                                 if($operation=="show"){
                                     require "inc/func/allColor.php";

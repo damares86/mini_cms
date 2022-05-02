@@ -34,7 +34,7 @@ if(filter_input(INPUT_GET,"idToDel")){
 	$portfolio->id=$idToDel;
 	$portfolio->showById();
 
-	$str=$page->page_name;
+	$str=$portfolio->project_title;
 	$str = preg_replace('/\s+/', '_', $str);
 	$str = strtolower($str);
 	$filepath = "../../" . $str . ".php";

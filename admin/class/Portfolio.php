@@ -237,6 +237,20 @@ class Portfolio{
         return $num;
     }
 
+    public function countById(){
+    
+        $query = "SELECT * FROM portfolio
+                WHERE category = :category";
+    
+        $stmt = $this->conn->prepare( $query );
+        $stmt->bindParam('category', $this->category);
+        $stmt->execute();
+    
+        $num = $stmt->rowCount();
+    
+        return $num;
+    }
+
     function showById(){
         $query = "SELECT *
         FROM " . $this->table_name . "
@@ -257,6 +271,61 @@ class Portfolio{
         $this->completed = $row['completed'];
         $this->link = $row['link'];   
         $this->category = $row['category'];   
+    }
+
+
+    function showByCat($from_record_num, $records_per_page){
+        $query = "SELECT *
+        FROM " . $this->table_name . "
+        WHERE category = :category
+        ORDER BY
+                    completed DESC
+                    LIMIT
+                    {$from_record_num}, {$records_per_page}";
+  
+        $stmt = $this->conn->prepare( $query );
+        $stmt->bindParam('category', $this->category);
+        $stmt->execute();
+        return $stmt;
+    
+
+    }
+
+    function showByTitle(){
+        $query = "SELECT *
+        FROM " . $this->table_name . "
+        WHERE project_title = :project_title
+        LIMIT 0,1";
+  
+        $stmt = $this->conn->prepare( $query );
+        $stmt->bindParam('project_title', $this->project_title);
+        $stmt->execute();
+    
+        $row = $stmt->fetch(PDO::FETCH_ASSOC);
+    
+        $this->id = $row['id'];
+        $this->project_title = $row['project_title'];
+        $this->main_img = $row['main_img'];
+        $this->description = $row['description'];
+        $this->client = $row['client'];
+        $this->completed = $row['completed'];
+        $this->link = $row['link'];   
+        $this->category = $row['category'];   
+    }
+
+
+    
+    function showTot(){
+        //select all data
+        $query = "SELECT
+                    *
+                FROM
+                    " . $this->table_name ." ";  
+  
+        $stmt = $this->conn->prepare( $query );
+        $stmt->execute();
+  
+        return $stmt;
     }
 
     

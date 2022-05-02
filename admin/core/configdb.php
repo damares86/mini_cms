@@ -244,6 +244,11 @@ $db->query("INSERT INTO page
 VALUES ('5','Contact', 'default', 'visual.jpg', '','none','#000000','', 'none','#000000', '', 'none','#000000','', 'none','#000000', '', 'none','#000000','', 'none','#000000')
 ");
 
+$db->query("INSERT INTO page 
+(id, page_name, layout, img, block1, block1_bg, block1_text,block2, block2_bg, block2_text,block3, block3_bg, block3_text,block4, block4_bg, block4_text, block5, block5_bg, block5_text, block6, block6_bg, block6_text) 
+VALUES ('6','Portfolio', 'default', 'visual.jpg', '','none','#000000','', 'none','#000000', '', 'none','#000000','', 'none','#000000', '', 'none','#000000','', 'none','#000000')
+");
+
 $db->query("INSERT INTO menu 
 (id, pagename, inmenu,itemorder,parent,childof) 
 VALUES ('1','index', '0','0','1','none')
