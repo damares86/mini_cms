@@ -1,12 +1,12 @@
 <?php
 
 
-// require 'phpDebug/src/Debug/Debug.php';   			// if not using composer
+require 'phpDebug/src/Debug/Debug.php';   			// if not using composer
 
-// $debug = new \bdk\Debug(array(
-//     'collect' => true,
-//     'output' => true,
-// ));
+$debug = new \bdk\Debug(array(
+    'collect' => true,
+    'output' => true,
+));
 
 session_start();
 
@@ -33,6 +33,8 @@ $role = new Role($db);
 $post = new Post($db);
 $total_post=$post->countAll();
 $page = new Page($db);
+$portfolio = new Portfolio($db);
+$portfolio_cat = new Categories_Portfolio($db);
 $contact = new Contact($db);
 $settings = new Settings($db);
 $file = new File($db);

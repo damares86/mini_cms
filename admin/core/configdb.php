@@ -264,6 +264,11 @@ $db->query("INSERT INTO menu
 VALUES ('4','Contact', '0','0','1','none')
 ");
 
+$db->query("INSERT INTO menu 
+(id, pagename, inmenu,itemorder,parent,childof) 
+VALUES ('5','Portfolio', '0','0','1','none')
+");
+
 $db->query("CREATE TABLE `password_reset_temp` (
   `email` varchar(250) NOT NULL PRIMARY KEY,
   `token` varchar(250) NOT NULL,
@@ -295,5 +300,25 @@ $db->query("INSERT INTO contacts
 VALUES ('1','noreply@yoursite.com', 'info@yoursite.com')
 ");
 
+$db->query("CREATE TABLE IF NOT EXISTS portfolio
+                            ( id INT ( 5 ) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+                              project_title VARCHAR(255) NOT NULL,
+                              main_img VARCHAR(255) NOT NULL DEFAULT 'visual.jpg',
+                              description text COLLATE utf8_unicode_ci NOT NULL,
+                              client VARCHAR(255) NOT NULL,
+                              completed date NOT NULL,
+                              category INT NOT NULL,
+                              link VARCHAR(255) NOT NULL)
+                              ");
+
+$db->query("CREATE TABLE IF NOT EXISTS portfolio_categories
+                           ( id INT ( 5 ) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+                             category_name VARCHAR(255) NOT NULL)");
+
+
+$db->query("INSERT INTO portfolio_categories
+                            (id, category_name)
+                            VALUES ('1','Web design')
+                            ");
 
 header("Location: ../index.php");
