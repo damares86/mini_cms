@@ -295,7 +295,7 @@ if($man=="settings"){
  
                                 </div>
                                 <div class="modal-footer">
-                                    <button class="btn btn-primary" type="button" data-dismiss="modal"><?=$txt_cloe?></button>
+                                    <button class="btn btn-primary" type="button" data-dismiss="modal"><?=$txt_close?></button>
                                 </div>
                             </div>
                         </div>

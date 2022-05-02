@@ -43,6 +43,32 @@ h1, h2, h3, h4, h5, h6{
 	border:none;
 }
 
+.box{
+	background-color:#f7f7f7;
+}
+
+.img_portfolio img{
+	max-width:100%;
+}
+
+.button{
+	font-size:1em;
+}
+
+.button.inactive{
+	background-color: transparent;
+	color:#0090c5;
+}
+
+.button.active{
+	background-color:#0090c5;
+}
+
+.project_data{
+	background-color:#f7f7f7;
+	border-radius:1em;
+}
+
   .border-top { border-top: 1px solid #e5e5e5; }
   .border-bottom { border-bottom: 1px solid #e5e5e5; }
   .border-top-gray { border-top-color: #adb5bd; }

@@ -1,20 +1,18 @@
 <?php
 
-require 'admin/phpDebug/src/Debug/Debug.php';   			// if not using composer
+// require 'admin/phpDebug/src/Debug/Debug.php';   			// if not using composer
 
-$debug = new \bdk\Debug(array(
-    'collect' => true,
-    'output' => true,
-));
+// $debug = new \bdk\Debug(array(
+//     'collect' => true,
+//     'output' => true,
+// ));
 
 session_start();
 // loading class
 
 if(!is_file('admin/class/Database.php')){
-    require "admin/inc/dbdata.php";
+    header("Location: admin/inc/dbdata.php");
     exit;
-    // header("Location: admin/inc/dbdata.php");
-    // exit;
 }
 
 spl_autoload_register('autoloader');
@@ -30,7 +28,7 @@ $post = new Post($db);
 $user = new User($db);
 $page = new Page($db);
 $portfolio = new Portfolio($db);
-$portfolio_cat = new Categories_Portfolio($db);
+$cat = new Categories_Portfolio($db);
 $menu = new Menu($db);
 $settings = new Settings($db);
 $verify = new Verify($db);
@@ -63,16 +61,7 @@ if($file=="login.php"){
     }
 }
 
-if($file=="index.php"){
-    $page_name="Home";
-    $page_class = pathinfo($file, PATHINFO_FILENAME);
-} else if($file=="post.php"){
-    $page_name=$post_title." - Blog ";
-    $page_class="blog";
-}else if($file=="contact.php"){
-    $page_name=$cont_form_page;
-    $page_class="contact";
-}else{
+
 // mi prendo solo il nome senza l'estensione
 $page_name = pathinfo($file, PATHINFO_FILENAME);
 $page_class = pathinfo($file, PATHINFO_FILENAME);
@@ -80,7 +69,7 @@ $page_class = pathinfo($file, PATHINFO_FILENAME);
 $page_name=str_replace("_"," ", $page_name);
 // metto la prima lettera maiuscola
 $page_name=ucfirst($page_name);
-}
+
 
 
 while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
@@ -105,17 +94,14 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
         <link rel="icon" href="assets/<?= $theme ?>/img/favicon.ico">
         <?php
           
-            if($page_class=="index"||$page_class=="blog"||$page_class=="contact"){
-                $page->page_name=$page_class;
-            }else{
-                $page->page_name=$page_name;
-            }
+
+                $page->page_name='Portfolio';
+
             $stmt1=$page->showByName();
             $img=$page->img;
 
 
         ?>
-        <link rel="stylesheet" href="admin/template/layout/<?=$page->layout?>.css" />
 		<?php
 
             require "assets/".$theme."/inc/scripts.php";
