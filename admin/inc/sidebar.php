@@ -65,17 +65,17 @@
                 <hr class="sidebar-divider">
                 <!-- Heading -->
                 <div class="sidebar-heading">
-                    Portfolio
+                    <?=$side_port?>
                 </div>
                 <li class="nav-item">
                     <a class="nav-link" href="index.php?man=portfolio&op=show">
                         <i class="fas fa-fw fa-file"></i>
-                        <span>EDIT: Projects</span></a>
+                        <span><?=$side_project?></span></a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="index.php?man=catPortfolio&op=show">
                         <i class="fas fa-fw fa-file"></i>
-                        <span>EDIT: Portfolio categories</span></a>
+                        <span><?=$side_project_cat?></span></a>
                 </li>
             <hr class="sidebar-divider">
 

@@ -482,6 +482,142 @@ if($msg=="userDelSucc"){
     </div>
 
     <?php    
+} else if($msg=="projectDelSucc"){
+    ?>
+    <div class="alert alert-warning">
+        <button type="button" class="close" data-dismiss="alert">x</button>
+        Project successfully deleted
+    </div>
+
+    <?php    
+} else if($msg=="projectDelErr"){
+    ?>
+    <div class="alert alert-danger">
+        <button type="button" class="close" data-dismiss="alert">x</button>
+        Project not deleted
+    </div>
+
+    <?php    
+} else if($msg=="projectEmpty"){
+    ?>
+    <div class="alert alert-danger">
+        <button type="button" class="close" data-dismiss="alert">x</button>
+        Please fill all the fields
+    </div>
+
+    <?php    
+} else if($msg=="projectImgEmpty"){
+    ?>
+    <div class="alert alert-danger">
+        <button type="button" class="close" data-dismiss="alert">x</button>
+        Main image missing
+    </div>
+
+    <?php    
+} else if($msg=="projectSucc"){
+    ?>
+    <div class="alert alert-success">
+        <button type="button" class="close" data-dismiss="alert">x</button>
+        Project successfully created
+    </div>
+
+    <?php    
+} else if($msg=="projectErr"){
+    ?>
+    <div class="alert alert-danger">
+        <button type="button" class="close" data-dismiss="alert">x</button>
+        Project not created
+    </div>
+
+    <?php    
+} else if($msg=="projectEditSucc"){
+    ?>
+    <div class="alert alert-success">
+        <button type="button" class="close" data-dismiss="alert">x</button>
+        Project successfully modified
+    </div>
+
+    <?php    
+} else if($msg=="projectEditErr"){
+    ?>
+    <div class="alert alert-danger">
+        <button type="button" class="close" data-dismiss="alert">x</button>
+        Project not modified
+    </div>
+
+    <?php    
+} else if($msg=="catPortfolioDelExist"){
+    ?>
+    <div class="alert alert-danger">
+        <button type="button" class="close" data-dismiss="alert">x</button>
+        Category not deleted, there are some projects that use it
+    </div>
+
+    <?php    
+} else if($msg=="catPortfolioDelSucc"){
+    ?>
+    <div class="alert alert-warning">
+        <button type="button" class="close" data-dismiss="alert">x</button>
+        Category deleted
+    </div>
+
+    <?php    
+} else if($msg=="catPortfolioDelErr"){
+    ?>
+    <div class="alert alert-danger">
+        <button type="button" class="close" data-dismiss="alert">x</button>
+        Category not deleted
+    </div>
+
+    <?php    
+} else if($msg=="catPortfolioEmpty"){
+    ?>
+    <div class="alert alert-danger">
+        <button type="button" class="close" data-dismiss="alert">x</button>
+        Category name missing
+    </div>
+
+    <?php    
+} else if($msg=="catPortfolioExists"){
+    ?>
+    <div class="alert alert-danger">
+        <button type="button" class="close" data-dismiss="alert">x</button>
+        Category already exists
+    </div>
+
+    <?php    
+} else if($msg=="catPortfolioSucc"){
+    ?>
+    <div class="alert alert-success">
+        <button type="button" class="close" data-dismiss="alert">x</button>
+        Category successfully created
+    </div>
+
+    <?php    
+} else if($msg=="catPortfolioErr"){
+    ?>
+    <div class="alert alert-danger">
+        <button type="button" class="close" data-dismiss="alert">x</button>
+        Category not created
+    </div>
+
+    <?php    
+} else if($msg=="catPortfolioEditSucc"){
+    ?>
+    <div class="alert alert-success">
+        <button type="button" class="close" data-dismiss="alert">x</button>
+        Category successfully modified
+    </div>
+
+    <?php    
+} else if($msg=="catPortfolioEditErr"){
+    ?>
+    <div class="alert alert-danger">
+        <button type="button" class="close" data-dismiss="alert">x</button>
+        Category not modified
+    </div>
+
+    <?php    
 } else
 
 ?>

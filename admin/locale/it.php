@@ -21,6 +21,9 @@ $side_users = "Utenti";
 $side_manage = "Gestione sito";
 $side_page = "Pagine";
 $side_files = "Files";
+$side_port = "Portfolio";
+$side_project = "Progetti";
+$side_project_cat = "Categorie progetti";
 $side_blog = "Blog";
 $side_post = "Post";
 $side_cat = "Categorie";
@@ -132,6 +135,39 @@ $addfile_upload_edit = "Upload file aggiornato";
 $addfile_desc = "Qui puoi caricare dei file da poter linkare nei post o nelle pagine.<br><br>";
 $addfile_desc .= "Gli unici formati ammessi sono <b>\".pdf\", \".doc\", \".docx\", \".zip\"</b> ";
 $addfile_desc .= "Dopo l'upload del file, il link sarà disponibile nella tabella con tutti i file.";
+
+
+// PORTFOLIO
+
+$port_title = "Portfolio";
+$port_box_title = "All projects";
+$port_add = "Add new project";
+$port_project_title = "Project title";
+$port_completed = "Completed";
+$port_category = "Category";
+$port_view = "View";
+$port_link = "Link";
+$port_modal_text = "If you really want to delete this project click \"Ok\" below";
+$port_cat_title = "Portfolio categories";
+
+
+
+// REG AND EDIT PORTFOLIO
+
+$regport_title_add = "Add new project";
+$regport_title_edit = "Edit project";
+$regport_name_placeholder = "Your project's title";
+$regport_category = "Project category";
+$regport_img = "Main project image";
+$regport_actual = "Actual image";
+$regport_client = "Client";
+$regport_client_placeholder = "Client's name";
+$regport_completed = "Completed";
+$regport_completed_placeholder = "Insert the date in dd/mm/yy format";
+$regport_link = "Link";
+$regport_link_placeholder = "Project's link";
+$regport_description = "Description";
+
 
 
 // POSTS

@@ -14,7 +14,7 @@
 ?>
 
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">Portfolio</h1>
+                        <h1 class="h3 mb-0 text-gray-800"><?=$port_title?></h1>
 
                     </div><div class="row">
 
@@ -24,14 +24,14 @@
     <!-- Project Card Example -->
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">All projects</h6>
+            <h6 class="m-0 font-weight-bold text-primary"><?=$port_box_title?></h6>
         </div>
         <div class="card-body">
             <a href="index.php?man=portfolio&op=add" class="btn btn-success btn-icon-split">
                 <span class="icon text-white-50">
                     <i class="fas fa-plus"></i>
                 </span>
-                <span class="text">Add new project</span>
+                <span class="text"><?=$port_add?></span>
             </a>
             <br>
             <br>
@@ -46,10 +46,10 @@
             <thead>
                 <tr>
                     <th scope="col">#</th>
-                    <th scope="col">Project title</th>
-                    <th scope="col">Completed</th>
-                    <th scope="col">Category</th>
-                    <th scope="col">View</th>
+                    <th scope="col"><?=$port_project_title ?></th>
+                    <th scope="col"><?=$port_completed?></th>
+                    <th scope="col"><?=$port_category?></th>
+                    <th scope="col"><?=$port_view ?></th>
                     <th scope="col"><?=$txt_edit?></th>
                     <th scope="col"><?=$txt_delete?></th>
                 </tr>
@@ -72,7 +72,7 @@
                 <td><?=$project_title?></td>
                 <td><?=$completed?></td>
                 <td><?=$cat->category_name?></td>
-                <td><a href="../<?=$str?>.php">Link</a></td>
+                <td><a href="../<?=$str?>.php"><?=$port_link?></a></td>
                
                 <td>
                 <a href="index.php?man=portfolio&op=edit&idToMod=<?=$row["id"]?>" class="btn btn-warning btn-icon-split">
@@ -106,7 +106,7 @@
                                         <span aria-hidden="true">×</span>
                                     </button>
                                 </div>
-                                <div class="modal-body">If you really want to delete this project click "Ok"</div>
+                                <div class="modal-body"><?=$port_modal_text?></div>
                                 <div class="modal-footer">
                                     <button class="btn btn-secondary" type="button" data-dismiss="modal"><?=$txt_cancel?></button>
                                     <a class="btn btn-primary" href="core/mngPortfolio.php?idToDel=<?=$id?>">Ok</a>
