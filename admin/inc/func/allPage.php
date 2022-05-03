@@ -77,7 +77,10 @@
                         </a>   
                 <td>
                 <?php
-                if($page_name != "index" && $page_name != "Blog" && $page_name != "Post" && $page_name != "Login" && $page_name != "Contact"){
+                // if($page_name != "index" && $page_name != "Blog" && $page_name != "Post" && $page_name != "Login" && $page_name != "Contact"){
+                    $notToMod=array("index", "Blog", "Post", "Login", "Contact", "Portfolio");
+
+                    if(!in_array($page_name, $notToMod)){
                 ?>
                         <a href="#" class="btn btn-danger btn-icon-split" data-toggle="modal" data-target="#delete<?=$row['id']?>">
                             <span class="icon text-white-50">
