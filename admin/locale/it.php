@@ -140,33 +140,33 @@ $addfile_desc .= "Dopo l'upload del file, il link sarà disponibile nella tabell
 // PORTFOLIO
 
 $port_title = "Portfolio";
-$port_box_title = "All projects";
-$port_add = "Add new project";
-$port_project_title = "Project title";
-$port_completed = "Completed";
-$port_category = "Category";
-$port_view = "View";
+$port_box_title = "Tutti i progetti";
+$port_add = "Aggiungi un nuovo progetto";
+$port_project_title = "Titolo del progetto";
+$port_completed = "Completato";
+$port_category = "Categoria";
+$port_view = "Mostra";
 $port_link = "Link";
-$port_modal_text = "If you really want to delete this project click \"Ok\" below";
-$port_cat_title = "Portfolio categories";
+$port_modal_text = "Se vuoi veramente cancellare questo progetto clicca \"Ok\".";
+$port_cat_title = "Categorie del portfolio";
 
 
 
 // REG AND EDIT PORTFOLIO
 
-$regport_title_add = "Add new project";
-$regport_title_edit = "Edit project";
-$regport_name_placeholder = "Your project's title";
-$regport_category = "Project category";
-$regport_img = "Main project image";
-$regport_actual = "Actual image";
-$regport_client = "Client";
-$regport_client_placeholder = "Client's name";
-$regport_completed = "Completed";
-$regport_completed_placeholder = "Insert the date in dd/mm/yy format";
+$regport_title_add = "Aggiungi un nuovo progetto";
+$regport_title_edit = "Modifica progetto";
+$regport_name_placeholder = "Il titolo del progetto";
+$regport_category = "Categoria del progetto";
+$regport_img = "Immagine del progetto";
+$regport_actual = "Immagine attuale";
+$regport_client = "Cliente";
+$regport_client_placeholder = "Nome del cliente";
+$regport_completed = "Completato";
+$regport_completed_placeholder = "Inserisci la data in formato gg/mm/aa";
 $regport_link = "Link";
-$regport_link_placeholder = "Project's link";
-$regport_description = "Description";
+$regport_link_placeholder = "Link del progetto";
+$regport_description = "Descrizione";
 
 
 
@@ -356,6 +356,23 @@ $al_setContactErr = "Indirizzi email non modificati";
 $al_keyEmpty = "Devi inserire entrambe le chiavi";
 $al_setKeySucc = "Chiavi reCAPTCHA modificate";
 $al_setKeyErr = "Chiavi reCAPTCHA non modificate";
+$al_projectDelSucc = "Progetto cancellato";
+$al_projectDelErr = "Progetto non cancellato";
+$al_projectEmpty = "Devi riempire tutti i campi";
+$al_projectImgEmpty = "Manca l'immagine del progetto";
+$al_projectSucc = "Progetto creato correttamente";
+$al_projectErr = "Progetto non creato";
+$al_projectEditSucc = "Progetto modificato correttamente";
+$al_projectEditErr = "Progetto non modificato";
+$al_catPortfolioDelExist = "Categoria non cancellata, ci sono dei progetti che la utilizzano";
+$al_catPortfolioDelSucc = "Categoria cancellata";
+$al_catPortfolioDelErr = "Categoria non cancellata";
+$al_catPortfolioEmpty = "Nome della categoria mancante";
+$al_catPortfolioExists = "La categoria esiste già";
+$al_catPortfolioSucc = "Categoria creata correttamente";
+$al_catPortfolioErr = "Categoria non creata";
+$al_catPortfolioEditSucc = "Categoria modificata correttamente";
+$al_catPortfolioEditErr = "Categoria non modificata";
 
 // ALERT WEBSITE
 

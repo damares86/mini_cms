@@ -486,7 +486,7 @@ if($msg=="userDelSucc"){
     ?>
     <div class="alert alert-warning">
         <button type="button" class="close" data-dismiss="alert">x</button>
-        Project successfully deleted
+        <?=$al_projectDelSucc?>
     </div>
 
     <?php    
@@ -494,7 +494,7 @@ if($msg=="userDelSucc"){
     ?>
     <div class="alert alert-danger">
         <button type="button" class="close" data-dismiss="alert">x</button>
-        Project not deleted
+        <?=$al_projectDelErr?>
     </div>
 
     <?php    
@@ -502,7 +502,7 @@ if($msg=="userDelSucc"){
     ?>
     <div class="alert alert-danger">
         <button type="button" class="close" data-dismiss="alert">x</button>
-        Please fill all the fields
+        <?=$al_projectEmpty?>
     </div>
 
     <?php    
@@ -510,7 +510,7 @@ if($msg=="userDelSucc"){
     ?>
     <div class="alert alert-danger">
         <button type="button" class="close" data-dismiss="alert">x</button>
-        Main image missing
+        <?=$al_projectImgEmpty?>
     </div>
 
     <?php    
@@ -518,7 +518,7 @@ if($msg=="userDelSucc"){
     ?>
     <div class="alert alert-success">
         <button type="button" class="close" data-dismiss="alert">x</button>
-        Project successfully created
+        <?=$al_projectSucc?>
     </div>
 
     <?php    
@@ -526,7 +526,7 @@ if($msg=="userDelSucc"){
     ?>
     <div class="alert alert-danger">
         <button type="button" class="close" data-dismiss="alert">x</button>
-        Project not created
+        <?=$al_projectErr ?>
     </div>
 
     <?php    
@@ -534,7 +534,7 @@ if($msg=="userDelSucc"){
     ?>
     <div class="alert alert-success">
         <button type="button" class="close" data-dismiss="alert">x</button>
-        Project successfully modified
+        <?=$al_projectEditSucc?>
     </div>
 
     <?php    
@@ -542,7 +542,7 @@ if($msg=="userDelSucc"){
     ?>
     <div class="alert alert-danger">
         <button type="button" class="close" data-dismiss="alert">x</button>
-        Project not modified
+        <?=$al_projectEditErr?>
     </div>
 
     <?php    
@@ -550,7 +550,7 @@ if($msg=="userDelSucc"){
     ?>
     <div class="alert alert-danger">
         <button type="button" class="close" data-dismiss="alert">x</button>
-        Category not deleted, there are some projects that use it
+        <?=$al_catPortfolioDelExist?>
     </div>
 
     <?php    
@@ -558,7 +558,7 @@ if($msg=="userDelSucc"){
     ?>
     <div class="alert alert-warning">
         <button type="button" class="close" data-dismiss="alert">x</button>
-        Category deleted
+        <?=$al_catPortfolioDelSucc?>
     </div>
 
     <?php    
@@ -566,7 +566,7 @@ if($msg=="userDelSucc"){
     ?>
     <div class="alert alert-danger">
         <button type="button" class="close" data-dismiss="alert">x</button>
-        Category not deleted
+        <?=$al_catPortfolioDelErr?>
     </div>
 
     <?php    
@@ -574,7 +574,7 @@ if($msg=="userDelSucc"){
     ?>
     <div class="alert alert-danger">
         <button type="button" class="close" data-dismiss="alert">x</button>
-        Category name missing
+        <?=$al_catPortfolioEmpty?>
     </div>
 
     <?php    
@@ -582,7 +582,7 @@ if($msg=="userDelSucc"){
     ?>
     <div class="alert alert-danger">
         <button type="button" class="close" data-dismiss="alert">x</button>
-        Category already exists
+        <?=$al_catPortfolioExists?>
     </div>
 
     <?php    
@@ -590,7 +590,7 @@ if($msg=="userDelSucc"){
     ?>
     <div class="alert alert-success">
         <button type="button" class="close" data-dismiss="alert">x</button>
-        Category successfully created
+        <?=$al_catPortfolioSucc?>
     </div>
 
     <?php    
@@ -598,7 +598,7 @@ if($msg=="userDelSucc"){
     ?>
     <div class="alert alert-danger">
         <button type="button" class="close" data-dismiss="alert">x</button>
-        Category not created
+        <?=$al_catPortfolioErr?>
     </div>
 
     <?php    
@@ -606,7 +606,7 @@ if($msg=="userDelSucc"){
     ?>
     <div class="alert alert-success">
         <button type="button" class="close" data-dismiss="alert">x</button>
-        Category successfully modified
+        <?=$al_catPortfolioEditSucc?>
     </div>
 
     <?php    
@@ -614,7 +614,7 @@ if($msg=="userDelSucc"){
     ?>
     <div class="alert alert-danger">
         <button type="button" class="close" data-dismiss="alert">x</button>
-        Category not modified
+        <?=$al_catPortfolioEditErr?>
     </div>
 
     <?php    
