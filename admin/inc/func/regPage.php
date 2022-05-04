@@ -102,7 +102,10 @@ $stmt = $settings->showSettings();
             
             <br>
             <?php
-                if($idToMod!=2 && $idToMod!=3 && $idToMod!=4){
+                $notToMod=array("2", "3", "4", "5", "6");
+
+                if(!in_array($idToMod, $notToMod)){
+         
             ?>
             <div class="control-group">
                 <label class="control-label" for="layout">
@@ -163,7 +166,7 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
 <input type="hidden" name="theme" value="<?= $page_theme ?>" />
 
             <?php   
-                if($idToMod!=2 && $idToMod!=3 && $idToMod!=4){
+                if(!in_array($idToMod, $notToMod)){
             ?>
             <h3><?=$regpage_block?> 1</h3>
 
