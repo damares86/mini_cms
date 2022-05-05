@@ -6,9 +6,9 @@
 
 	$page = new Page($db);
     
-    $stmt = $page->showAllDefault();
+    $stmt = $page->showAllCustom($from_record_num, $records_per_page);
     
-    $total_rows=$page->countAll();
+    $total_rows=$page->countAllCustom();
 
 ?>
 
@@ -44,9 +44,11 @@
         <table class="table table-striped">
             <thead>
                 <tr>
+                    <th scope="col">#</th>
                     <th scope="col"><?=$allpage_name?></th>
                     <th scope="col"><?=$allpage_link?></th>
                     <th scope="col"><?=$txt_edit?></th>
+                    <th scope="col"><?=$txt_delete?></th>
                 </tr>
             </thead>
             <tbody>
@@ -57,6 +59,7 @@
         if($id!=3){
         ?>
             <tr>
+                <td><?=$id?></td>
                 <td><?=$page_name?></td>
                 <?php
                     $str=$page_name;
@@ -73,12 +76,46 @@
                             <span class="text"><?=$txt_edit?></span>
                         </a>   
                 <td>
-             
+                <?php
+                // if($page_name != "index" && $page_name != "Blog" && $page_name != "Post" && $page_name != "Login" && $page_name != "Contact"){
+                    $notToMod=array("index", "Blog", "Post", "Login", "Contact", "Portfolio");
+
+                    if(!in_array($page_name, $notToMod)){
+                ?>
+                        <a href="#" class="btn btn-danger btn-icon-split" data-toggle="modal" data-target="#delete<?=$row['id']?>">
+                            <span class="icon text-white-50">
+                                <i class="fas fa-trash"></i>
+                            </span>
+                            <span class="text"><?=$txt_delete?></span>
+                        </a> 
+                
+                <?php
+                }
+            }
+                ?>
+            </td>
             </tr>
-                          
+                          <!-- Delete Modal-->
+                          <div class="modal fade" id="delete<?=$row['id']?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                        aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel"><b><?=$txt_modal_title?></b></h5>
+                                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">×</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body"><?=$allpage_modal_text?></div>
+                                <div class="modal-footer">
+                                    <button class="btn btn-secondary" type="button" data-dismiss="modal"><?=$txt_cancel?></button>
+                                    <a class="btn btn-primary" href="core/mngPage.php?idToDel=<?=$row["id"]?>">Ok</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 <?php
             }
-        }
 
             ?>
 
@@ -86,7 +123,7 @@
         </table>
         <?php
         // paging buttons
-        // include_once 'inc/paging.php';
+        include_once 'inc/paging.php';
     } else{
         echo "<div class='alert alert-danger'>$allpage_nopage</div>";
     }

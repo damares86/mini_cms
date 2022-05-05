@@ -37,6 +37,8 @@
             <?php
             //}
             ?>
+
+
             <!-- Divider -->
             <hr class="sidebar-divider">
             <!-- Heading -->
@@ -48,13 +50,47 @@
             if($_SESSION['rolename']!="Contributor"){
             ?>
             <li class="nav-item">
-                <a class="nav-link" href="index.php?man=page&op=show">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseOne"
+                    aria-expanded="true" aria-controls="collapseOne">
                     <i class="fas fa-fw fa-file"></i>
-                    <span><?=$side_page?></span></a>
+                    <span><?=$side_page?></span>
+                </a>
+                <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item" href="index.php?man=page&op=show&type=default">Default</a>
+                        <a class="collapse-item" href="index.php?man=page&op=show&type=custom">Custom</a>
+                    </div>
+                </div>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
+                    aria-expanded="true" aria-controls="collapseTwo">
+                    <i class="fas fa-fw fa-images"></i>
+                    <span><?=$side_port?></span>
+                </a>
+                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item" href="index.php?man=portfolio&op=show"><?=$side_project?></a>
+                        <a class="collapse-item" href="index.php?man=catPortfolio&op=show"><?=$side_project_cat?></a>
+                    </div>
+                </div>
             </li>
             <?php
             }
             ?>
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseThree"
+                    aria-expanded="true" aria-controls="collapseThree">
+                    <i class="fas fa-fw fa-marker"></i>
+                    <span><?=$side_blog?></span>
+                </a>
+                <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item" href="index.php?man=post&op=show"><?=$side_post?></a>
+                        <a class="collapse-item" href="index.php?man=cat&op=show"><?=$side_cat?></a>
+                    </div>
+                </div>
+            </li>
             <li class="nav-item">
                 <a class="nav-link" href="index.php?man=files&op=show">
                     <i class="fas fa-fw fa-folder-open"></i>
@@ -64,40 +100,8 @@
                 <!-- Divider -->
                 <hr class="sidebar-divider">
                 <!-- Heading -->
-                <div class="sidebar-heading">
-                    <?=$side_port?>
-                </div>
-                <li class="nav-item">
-                    <a class="nav-link" href="index.php?man=portfolio&op=show">
-                        <i class="fas fa-fw fa-file"></i>
-                        <span><?=$side_project?></span></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="index.php?man=catPortfolio&op=show">
-                        <i class="fas fa-fw fa-file"></i>
-                        <span><?=$side_project_cat?></span></a>
-                </li>
-            <hr class="sidebar-divider">
-
-            <!-- Heading -->
-            <div class="sidebar-heading">
-            <?=$side_blog?>
-            </div>
-
-            <li class="nav-item">
-                <a class="nav-link" href="index.php?man=post&op=show">
-                    <i class="fas fa-fw fa-marker"></i>
-                    <span><?=$side_post?></span></a>
-            </li>
-
-            <li class="nav-item">
-                <a class="nav-link" href="index.php?man=cat&op=show">
-                    <i class="fas fa-fw fa-tags"></i>
-                    <span><?=$side_cat?></span></a>
-            </li>
-            
-            <!-- Divider -->
-            <hr class="sidebar-divider">
+               
+           
             
             <?php
             if($_SESSION['rolename']!="Contributor"){

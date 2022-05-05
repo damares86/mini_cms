@@ -61,7 +61,7 @@ $stmt = $settings->showSettings();
                        } else {
                     ?>
 
-                    <input type="text" id="project_title" name="project_title" placeholder="<?=$port_name_placeholder?>" value="<?= $portfolio->project_title ?>" class="span8">
+                    <input type="text" id="project_title" name="project_title" placeholder="<?=$regport_name_placeholder?>" value="<?= $portfolio->project_title ?>" class="span8">
 
                     <?php
                        }

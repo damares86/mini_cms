@@ -337,16 +337,33 @@ class Page{
         	}
    
 
-    function showAll($from_record_num, $records_per_page){
+    function showAllCustom($from_record_num, $records_per_page){
         //select all data
         $query = "SELECT
                     *
                 FROM
                     " . $this->table_name . "
+                WHERE id>6
                 ORDER BY
                     id DESC
                     LIMIT
                     {$from_record_num}, {$records_per_page}";  
+  
+        $stmt = $this->conn->prepare( $query );
+        $stmt->execute();
+  
+        return $stmt;
+    }
+
+    function showAllDefault(){
+        //select all data
+        $query = "SELECT
+                    *
+                FROM
+                    " . $this->table_name . "
+                WHERE id BETWEEN 1 AND 6
+                ORDER BY
+                    id ASC";  
   
         $stmt = $this->conn->prepare( $query );
         $stmt->execute();
@@ -373,6 +390,18 @@ class Page{
     public function countAll(){
     
         $query = "SELECT id FROM page";
+    
+        $stmt = $this->conn->prepare( $query );
+        $stmt->execute();
+    
+        $num = $stmt->rowCount();
+    
+        return $num;
+    }
+
+    public function countAllCustom(){
+    
+        $query = "SELECT id FROM page WHERE id > 6";
     
         $stmt = $this->conn->prepare( $query );
         $stmt->execute();

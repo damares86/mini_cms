@@ -15,6 +15,7 @@ if(filter_input(INPUT_GET,"idToMod")){
 $settings = new Settings ($db);
 $stmt = $settings->showSettings();
 
+
 ?>
 
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
@@ -55,7 +56,7 @@ $stmt = $settings->showSettings();
                                     </button>
                                 </div>
                                 <div class="modal-body guide">
-                                   <?=$regpage_text?>
+                                   <?=$regpage_desc?>
                                 </div>
                                 <div class="modal-footer">
                                     <button class="btn btn-primary" type="button" data-dismiss="modal"><?=$txt_close?></button>
