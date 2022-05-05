@@ -43,7 +43,6 @@
         <table class="table table-striped">
             <thead>
                 <tr>
-                    <th scope="col">#</th>
                     <th scope="col"><?=$post_posttitle?></th>
                     <th scope="col"><?=$post_link?></th>
                     <th scope="col"><?=$post_cat?></th>
@@ -68,7 +67,6 @@
        
             ?>
             <tr>
-                <td><?=$id?></td>
                 <td><?=$title?></td>
                 <td><a href="../post.php?id=<?=$id?>&title=<?=$post_title?>"><?=$post_view?></a></td>
                 <td><?=$category_name?></td>

@@ -45,7 +45,6 @@
         <table class="table table-striped">
             <thead>
                 <tr>
-                    <th scope="col">#</th>
                     <th scope="col"><?=$port_project_title ?></th>
                     <th scope="col"><?=$port_completed?></th>
                     <th scope="col"><?=$port_category?></th>
@@ -68,7 +67,6 @@
 
         ?>
             <tr>
-                <td><?=$id?></td>
                 <td><?=$project_title?></td>
                 <td><?=$completed?></td>
                 <td><?=$cat->category_name?></td>

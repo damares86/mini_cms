@@ -44,7 +44,6 @@
         <table class="table table-striped">
             <thead>
                 <tr>
-                    <th scope="col">#</th>
                     <th scope="col"><?=$allpage_name?></th>
                     <th scope="col"><?=$allpage_link?></th>
                     <th scope="col"><?=$txt_edit?></th>
@@ -59,7 +58,6 @@
         if($id!=3){
         ?>
             <tr>
-                <td><?=$id?></td>
                 <td><?=$page_name?></td>
                 <?php
                     $str=$page_name;

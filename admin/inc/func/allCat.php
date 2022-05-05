@@ -44,7 +44,6 @@ if($total_rows>0){
         <table class="table table-striped">
             <thead>
                 <tr>
-                    <th scope="col">#</th>
                     <th scope="col"><?=$cat_name?></th>
                     <th scope="col"><?=$txt_edit?></th>
                     <th scope="col"><?=$txt_delete?></th>
@@ -58,7 +57,6 @@ if($total_rows>0){
        
             ?>
             <tr>
-                <td><?=$id?></td>
                 <td><?=$category_name?></td>
 
       

@@ -43,11 +43,11 @@ if(filter_input(INPUT_GET,"idToDel")){
 	if(unlink($filepath) || !file_exists(($filepath))){
 		if($page->delete()){
 			$menu->delete();
-			header("Location: ../index.php?man=page&op=show&msg=pageDelSucc");
+			header("Location: ../index.php?man=page&op=show&type=custom&msg=pageDelSucc");
 			exit;
 
 		}else{
-			header("Location: ../index.php?man=page&op=show&msg=pageDelErr");
+			header("Location: ../index.php?man=page&op=show&type=custom&msg=pageDelErr");
 			exit;
 		}
 	} else {
@@ -62,7 +62,7 @@ if(filter_input(INPUT_POST,"subReg")){
 
 	if($_POST['idToMod']!=2){
 		if(!$_POST['page_name']||empty($editor)){
-			header("Location: ../index.php?man=page&op=show&msg=pageEmpty");
+			header("Location: ../index.php?man=page&op=show&type=custom&msg=pageEmpty");
 			exit;
 		}
 	}
@@ -118,14 +118,14 @@ if(filter_input(INPUT_POST,"subReg")){
 			if(copy('../template/master.php', '../../master.php')){
 				rename('../../master.php','../../'. $str . '.php');
 				chmod('../../'. $str . '.php',0777);
-				header("Location: ../index.php?man=page&op=show&msg=pageSucc");
+				header("Location: ../index.php?man=page&op=show&type=custom&msg=pageSucc");
 				exit;
 			 } else {
 				 echo "ko";
 			 }
 		
 		}else{
-			header("Location: ../index.php?msg=pageErr");
+			header("Location: ../index.php?man=page&op=show&type=custom&msg=pageErr");
 			exit;
 		}
 	} else if($operation=="mod"){
@@ -181,14 +181,14 @@ if(filter_input(INPUT_POST,"subReg")){
 
 		// update the page
 		if($page->update()){
-			header("Location: ../index.php?man=page&op=show&msg=pageEditSucc");
+			header("Location: ../index.php?man=page&op=show&type=custom&msg=pageEditSucc");
 			exit;
 		
 			// empty posted values
 			// $_POST=array();
 		
 		}else{
-			header("Location: ../index.php?man=page&op=show&msg=pageEditErr");
+			header("Location: ../index.php?man=page&op=show&type=custom&msg=pageEditErr");
 			exit;
 		}
 
@@ -201,7 +201,7 @@ if(filter_input(INPUT_POST,"subReg")){
 
 
 } else {
-	header("Location: ../index.php?man=page&op=show&msg=pageEditErr");
+	header("Location: ../index.php?man=page&op=show&type=custom&msg=pageEditErr");
 	exit;
 }
 
