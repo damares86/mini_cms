@@ -54,9 +54,28 @@ if(filter_input(INPUT_GET,"idToDel")){
 
 if(filter_input(INPUT_POST,"subReg")){
 
-	$file->gallery_title = $_POST['title'];
+	if(!$_POST['title']){
+		header("Location: ../index.php?man=gall&op=add&msg=gallTitleErr");
+		exit;
+	}
+
+	if ($_FILES['file']['size'] == 0 ){
+		header("Location: ../index.php?man=gall&op=add&msg=gallFileErr");
+		exit;
+	}
+
+	$file_type = pathinfo($target_file, PATHINFO_EXTENSION);
+	$file_upload_error_messages="";
+	// $allowed_file_types=array("jpg", "JPG", "png");
+	// if(!in_array($file_type, $allowed_file_types)){
+	// 	header("Location: ../index.php?man=gall&op=add&msg=formatErr");
+	// 	exit;
+	// 	// $file_upload_error_messages.="<div>Only .zip, .doc, .docx,.pdf files are allowed.</div>";
+	// 	//exit;
+	// }
+
 	$dir = $_POST['title'];
-	$target_directory = "../../uploads/$dir/";
+	$target_directory = "../../uploads/gallery/$dir/";
 
 	mkdir($target_directory, 0777, true);
 

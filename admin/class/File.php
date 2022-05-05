@@ -13,7 +13,6 @@ class File{
     public $rolename;
     public $file;
     public $operation;
-    public $gallery_title;
 
     // constructor
     public function __construct($db){
