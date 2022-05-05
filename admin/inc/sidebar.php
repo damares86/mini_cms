@@ -65,7 +65,7 @@
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
                     aria-expanded="true" aria-controls="collapseTwo">
-                    <i class="fas fa-fw fa-images"></i>
+                    <i class="fas fa-fw fa-image"></i>
                     <span><?=$side_port?></span>
                 </a>
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
@@ -88,6 +88,19 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         <a class="collapse-item" href="index.php?man=post&op=show"><?=$side_post?></a>
                         <a class="collapse-item" href="index.php?man=cat&op=show"><?=$side_cat?></a>
+                    </div>
+                </div>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseFour"
+                    aria-expanded="true" aria-controls="collapseFour">
+                    <i class="fas fa-fw fa-images"></i>
+                    <span>Galleries</span>
+                </a>
+                <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item" href="index.php?man=gall&op=show">All galleries</a>
+                        <a class="collapse-item" href="index.php?man=gall&op=add">Upload photo</a>
                     </div>
                 </div>
             </li>
@@ -125,7 +138,7 @@
 
             <li class="nav-item">
                 <a class="nav-link" href="index.php?man=color&op=show">
-                    <i class="fas fa-fw fa-image"></i>
+                    <i class="fas fa-fw fa-palette"></i>
                     <span><?=$side_themeset?></span></a>
             </li>
             <?php

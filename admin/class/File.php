@@ -13,6 +13,7 @@ class File{
     public $rolename;
     public $file;
     public $operation;
+    public $gallery_title;
 
     // constructor
     public function __construct($db){
@@ -82,7 +83,7 @@ class File{
                             // prepare the query
                             $stmt = $this->conn->prepare($query);
                             
-                          
+           ;               
                     // sanitize
                     // $this->rolename=htmlspecialchars(strip_tags($this->title));
                 
