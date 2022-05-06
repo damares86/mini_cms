@@ -66,14 +66,14 @@
                                             <div class="h5 mb-0 font-weight-bold text-gray-800"></div>
                                         </div>
                                     </div>
-                                    <div class="row my-2">
+                                    <div class="row my-3 text-center">
                                         <div class="col-12">
-                                            <img src="<?=$firstFile?>" style="width:150px; margin:0 auto;">
+                                            <img src="<?=$firstFile?>" style="height:100px; max-width:100%; margin:0 auto;">
                                         </div>                                
                                     </div>
                                     <div class="row">
                                         <div class="col-6">
-                                            <a href="#" class="btn btn-warning btn-icon-split">
+                                            <a href="index.php?man=gall&op=edit&name=<?=$folder?>" class="btn btn-warning btn-icon-split btn-sm">
                                                 <span class="icon text-white-50">
                                                     <i class="fas fa-pen"></i>
                                                 </span>
@@ -81,8 +81,8 @@
                                             </a>   
                                         </div>
                                         <div class="col-6">
-                                            <!-- <a href="#" class="btn btn-danger btn-icon-split" data-toggle="modal" data-target="#delete<?=$row['id']?>"> -->
-                                            <a href="core/mngGallery.php?gallToDel=<?=$folder?>" class="btn btn-danger btn-icon-split">
+                                            <a href="#" class="btn btn-danger btn-icon-split btn-sm" data-toggle="modal" data-target="#delete<?=$folder?>">
+                                            <!-- <a href="core/mngGallery.php?gallToDel=<?=$folder?>" class="btn btn-danger btn-icon-split"> -->
                                                 <span class="icon text-white-50">
                                                     <i class="fas fa-trash"></i>
                                                 </span>
@@ -93,6 +93,25 @@
                                 </div>
                             </div>
                         </div>
+
+                                                 <!-- Delete Modal-->
+                    <div class="modal fade" id="delete<?=$folder?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel"><b><?=$txt_modal_title?></b></h5>
+                                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">×</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">If you want to delete this gallery click "Ok" below</div>
+                                <div class="modal-footer">
+                                    <button class="btn btn-secondary" type="button" data-dismiss="modal"><?=$txt_cancel?></button>
+                                    <a class="btn btn-primary" href="core/mngGallery.php?gallToDel=<?=$folder?>">Ok</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
         <?php
 
 

@@ -52,9 +52,74 @@ if(filter_input(INPUT_GET,"gallToDel")){
 	$gallToDel = filter_input(INPUT_GET,"gallToDel");
 	$folderName="../../uploads/gallery/$gallToDel";
 	removeFolder($folderName);
+
+}else  if(filter_input(INPUT_GET, "imgToDel")){
+
+	$imgName = filter_input(INPUT_GET, "imgToDel");
+	$gall = filter_input(INPUT_GET, "gall");
+	$filepath = "../../uploads/gallery/$gall/$imgName";
+	
+	if(unlink($filepath) || !file_exists(($filepath))){
+		header("Location: ../index.php?man=gall&op=edit&name=$gall&msg=imgDelSucc");
+		exit;
+	}else{
+		header("Location: ../index.php?man=gall&op=show&msg=imgNotDel");
+		exit;
+	}
+
+
 }
 
 if(filter_input(INPUT_POST,"subReg")){
+
+	if(filter_input(INPUT_POST,"gall")){
+
+		$gall = filter_input(INPUT_POST,"gall");
+		$path="../../uploads/gallery/$gall";
+		$files = scandir($path, SCANDIR_SORT_DESCENDING);
+		$newest_file = $files[0];
+
+		$filename = explode(".", $newest_file);
+		$temp = explode("_",$filename[0]);
+		$number = end($temp);
+		$temp2 = str_split($number);
+		$i = "";
+
+		if($temp2[0]==0){
+			$i = $temp2[1]+1;
+		}else{
+			$i = $number+1;
+		}
+
+		$target_directory = "../../uploads/gallery/$gall/";
+
+		$target_file = $target_directory . $_FILES['file']['name'];
+		$file_type = pathinfo($target_file, PATHINFO_EXTENSION);
+		$file_upload_error_messages="";
+		$allowed_file_types=array("jpg", "JPG", "jpeg", "png");
+		if(!in_array($file_type, $allowed_file_types)){
+			header("Location: ../index.php?man=gall&op=edit&name=$gall&msg=formatErr");
+			exit;
+			// $file_upload_error_messages.="<div>Only .zip, .doc, .docx,.pdf files are allowed.</div>";
+			//exit;
+		}
+		$filename = $_FILES['file']['name'];
+
+		$temp = explode(".", $filename);
+		if($i<10){
+			$newfilename = $gall . '_0'. $i . '.' . end($temp);
+		} else {
+			$newfilename = $gall . '_' . $i . '.' . end($temp);
+		}
+        $target_file=$target_directory.$newfilename;
+	
+        move_uploaded_file($_FILES['file']['tmp_name'],$target_file);
+		chmod($target_file, 0777);
+
+		header("Location: ../index.php?man=gall&op=edit&name=$gall&msg=imgSucc");
+		exit;
+
+	}else{
 
 	if(!$_POST['title']){
 		header("Location: ../index.php?man=gall&op=add&msg=gallTitleErr");
@@ -105,7 +170,7 @@ if(filter_input(INPUT_POST,"subReg")){
     }
 	header("Location: ../index.php?man=gall&op=show&msg=gallSucc");
 	exit;
-
+	}
 } else {
 	header("Location: ../index.php?man=gall&op=show&msg=gallErr");
 	exit;

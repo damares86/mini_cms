@@ -92,7 +92,7 @@ $user_id=$_SESSION['user_id'];
                             }else if($manage=="gall"){
                                 if($operation=="show"){
                                     require "inc/func/allGallery.php";
-                                } else if($operation=="add"){
+                                } else if($operation=="add"||$operation=="edit"){
                                     require "inc/func/regGallery.php";
                                 }
                             }else if($manage=="color"){
