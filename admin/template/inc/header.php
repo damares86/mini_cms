@@ -114,6 +114,9 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
 
         ?>
         <link rel="stylesheet" href="admin/template/layout/<?=$page->layout?>.css" />
+        <link href='admin/scripts/simplelightbox/simple-lightbox.min.css' rel='stylesheet' type='text/css'>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script type="text/javascript" src="admin/scripts/simplelightbox/simple-lightbox.jquery.min.js"></script>
 		<?php
 
             require "assets/".$theme."/inc/scripts.php";

@@ -3,7 +3,7 @@
                         <div class="col-12">
                             <div id="copyright">
                                 <ul class="menu">
-                                    <li><?=$footer?></a></li>
+                                    <li>Testo</a></li>
                                     <!-- <li>&copy; Untitled. All rights reserved</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li> -->
                                 </ul>
                             </div>
@@ -15,8 +15,8 @@
 
         
         <?php
-            require "assets/".$theme."/inc/cookie.php";
-            require "assets/".$theme."/inc/footerScript.php";
+            // require "assets/".$theme."/inc/cookie.php";
+            // require "assets/".$theme."/inc/footerScript.php";
         ?>
 
 
