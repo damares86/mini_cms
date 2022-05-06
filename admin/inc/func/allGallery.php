@@ -35,6 +35,7 @@
             </a>
         </div>
         <br>
+        <div class="row">
         <?php
             $dir_gall="../uploads/gallery/";
             function is_dir_empty($dir) {
@@ -46,25 +47,28 @@
                 }else{
             foreach (glob("../uploads/gallery/*") as $file) {
                 $folder=pathinfo($file, PATHINFO_FILENAME);
+                $gallery= str_replace("_"," ", $folder);
+                $gallery=ucfirst($gallery);
+                
                 $images= scandir ($file);
                 $firstFile = $file ."/". $images[2];// because [0] = "." [1] = ".." 
             
 
                 ?>
 
-                <div class="col-xl-4 col-md-6 mb-4">
+                        <div class="col-xl-4 col-md-6 mb-4">
                             <div class="card border-left-info shadow h-100 py-2">
                                 <div class="card-body">
                                     <div class="row no-gutters align-items-center">
                                         <div class="col-12">
                                             <div class="text-s font-weight-bold text-success text-uppercase mb-1">
-                                                <?=$folder?></div>
+                                                <?=$gallery?></div>
                                             <div class="h5 mb-0 font-weight-bold text-gray-800"></div>
                                         </div>
                                     </div>
-                                    <div class="row my-5">
+                                    <div class="row my-2">
                                         <div class="col-12">
-                                            <img src="<?=$firstFile?>" style="max-width:100%;">
+                                            <img src="<?=$firstFile?>" style="width:150px; margin:0 auto;">
                                         </div>                                
                                     </div>
                                     <div class="row">
@@ -77,7 +81,8 @@
                                             </a>   
                                         </div>
                                         <div class="col-6">
-                                            <a href="#" class="btn btn-danger btn-icon-split" data-toggle="modal" data-target="#delete<?=$row['id']?>">
+                                            <!-- <a href="#" class="btn btn-danger btn-icon-split" data-toggle="modal" data-target="#delete<?=$row['id']?>"> -->
+                                            <a href="core/mngGallery.php?gallToDel=<?=$folder?>" class="btn btn-danger btn-icon-split">
                                                 <span class="icon text-white-50">
                                                     <i class="fas fa-trash"></i>
                                                 </span>
@@ -85,6 +90,7 @@
                                             </a> 
                                         </div>
                                     </div>
+                                </div>
                             </div>
                         </div>
         <?php
@@ -96,6 +102,7 @@
                 ?>
       
     </div>
+</div>
 </div>
 </div>
 </div>

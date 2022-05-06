@@ -25,31 +25,33 @@ if (!isset($_SESSION['loggedin'])) {
 
 	$file = new File($db);
 
-if(filter_input(INPUT_GET,"idToDel")){
-	
-	$idToDel = filter_input(INPUT_GET,"idToDel");
-	
-	$file->id=$idToDel;
+if(filter_input(INPUT_GET,"gallToDel")){
+	function removeFolder($folderName) {
+			if (is_dir($folderName))
+			$folderHandle = opendir($folderName);
 
-	$file->showById();
-	
-	$filename = $file->filename;
+			if (!$folderHandle){
+				header("Location: ../index.php?man=gall&op=show&msg=gallDelSucc");
+				exit;
+			}
 
-	$filepath = "../../uploads/". $filename ."";
-	
-	if(unlink($filepath) || !file_exists(($filepath))){
-		if($file->delete()){
-			header("Location: ../index.php?man=files&op=show&msg=fileDelSucc");
+			while($file = readdir($folderHandle)) {
+				if ($file != "." && $file != "..") {
+						if (!is_dir($folderName."/".$file))
+							unlink($folderName."/".$file);
+						else
+							removeFolder($folderName.'/'.$file);
+				}
+			}
+			closedir($folderHandle);
+			rmdir($folderName);
+			header("Location: ../index.php?man=gall&op=show&msg=gallNotDel");
 			exit;
-			
-		}else{
-			header("Location: ../index.php?man=files&op=show&msg=fileDelErr");
-			exit;
-		}
-	}else{
-		header("Location: ../index.php?man=files&op=show&msg=fileNotDel");
-		exit;
+
 	}
+	$gallToDel = filter_input(INPUT_GET,"gallToDel");
+	$folderName="../../uploads/gallery/$gallToDel";
+	removeFolder($folderName);
 }
 
 if(filter_input(INPUT_POST,"subReg")){
@@ -64,25 +66,39 @@ if(filter_input(INPUT_POST,"subReg")){
 		exit;
 	}
 
-	$file_type = pathinfo($target_file, PATHINFO_EXTENSION);
-	$file_upload_error_messages="";
-	// $allowed_file_types=array("jpg", "JPG", "png");
-	// if(!in_array($file_type, $allowed_file_types)){
-	// 	header("Location: ../index.php?man=gall&op=add&msg=formatErr");
-	// 	exit;
-	// 	// $file_upload_error_messages.="<div>Only .zip, .doc, .docx,.pdf files are allowed.</div>";
-	// 	//exit;
-	// }
-
-	$dir = $_POST['title'];
+	$gallery = $_POST['title'];
+	$dir = preg_replace('/\s+/', '_', $gallery);	
+	$dir = strtolower($dir);
 	$target_directory = "../../uploads/gallery/$dir/";
 
 	mkdir($target_directory, 0777, true);
-
+	
 	$countfiles = count($_FILES['file']['name']);
+
     for($i=0;$i<$countfiles;$i++){
-        $filename = $_FILES['file']['name'][$i];
-        $target_file=$target_directory.$filename;
+
+		// controllo formato
+		$target_file = $target_directory . $_FILES['file']['name'][$i];
+		$file_type = pathinfo($target_file, PATHINFO_EXTENSION);
+		$file_upload_error_messages="";
+		$allowed_file_types=array("jpg", "JPG", "jpeg", "png");
+		if(!in_array($file_type, $allowed_file_types)){
+			rmdir($target_directory);
+			header("Location: ../index.php?man=gall&op=add&msg=formatErr");
+			exit;
+			// $file_upload_error_messages.="<div>Only .zip, .doc, .docx,.pdf files are allowed.</div>";
+			//exit;
+		}
+		$filename = $_FILES['file']['name'][$i];
+
+		$temp = explode(".", $filename);
+		if($i<10){
+			$newfilename = $dir . '_0'. $i . '.' . end($temp);
+		} else {
+			$newfilename = $dir . '_' . $i . '.' . end($temp);
+		}
+        $target_file=$target_directory.$newfilename;
+	
         move_uploaded_file($_FILES['file']['tmp_name'][$i],$target_file);
 		chmod($target_file, 0777);
 
