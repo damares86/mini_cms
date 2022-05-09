@@ -37,10 +37,12 @@ if(filter_input(INPUT_GET,"idToDel")){
 	$str=$portfolio->project_title;
 	$str = preg_replace('/\s+/', '_', $str);
 	$str = strtolower($str);
-	$filepath = "../../" . $str . ".php";
+	$dir="../../misc/portfolio/";
+	$filepath = "../../misc/portfolio/" . $str . ".php";
 
 	if(unlink($filepath) || !file_exists(($filepath))){
 		if($portfolio->delete()){
+			unlink($dir.'/img/'.$portfolio->main_img);
 			header("Location: ../index.php?man=portfolio&op=show&msg=projectDelSucc");
 			exit;
 
@@ -82,16 +84,32 @@ if(filter_input(INPUT_POST,"subReg")){
 		$portfolio->category=$_POST['category'];
 		$portfolio->link=$_POST['link'];
 
+		$dir="../../misc/portfolio/";
+		if(!is_dir($dir)){
+			mkdir($dir);
+			chmod($dir,0777);
+		}
+
+		$dirImg="../../misc/portfolio/img/";
+		if(!is_dir($dirImg)){
+			mkdir($dirImg);
+			chmod($dirImg,0777);
+		}
+
+
 		// create the page
 		if($portfolio->insert()){
+
 			$str=$portfolio->project_title;
 			$str = preg_replace('/\s+/', '_', $str);
 			
 			$str = strtolower($str);
 
-			if(copy('../template/project.php', '../../project.php')){
-				rename('../../project.php','../../'. $str . '.php');
-				chmod('../../'. $str . '.php',0777);
+
+			if(copy('../template/project.php', ''.$dir.'project.php')){
+				rename(''.$dir.'project.php',''.$dir.$str . '.php');
+
+				chmod(''.$dir.$str . '.php',0777);
 				header("Location: ../index.php?man=portfolio&op=show&msg=projectSucc");
 				exit;
 			 } else {

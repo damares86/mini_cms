@@ -131,7 +131,7 @@ class Portfolio{
     function uploadPhoto(){
         if($this->main_img){
           
-            $target_directory = "../../uploads/portfolio/";
+            $target_directory = "../../misc/portfolio/img/";
             $target_file = $target_directory . $this->main_img;
             if(!file_exists($target_file)){
                 // print_r("ok");
