@@ -61,20 +61,20 @@ if(filter_input(INPUT_POST,"subReg")){
 	$editor = preg_replace('/\s+/', '', $_POST['editor']);
 
 
+	
+	
+	
 	if(!$_POST['project_title']||!$_POST['client']||!$_POST['completed']||!$_POST['link']||!$_POST['category']||empty($editor)){
 		header("Location: ../index.php?man=portfolio&op=show&msg=projectEmpty");
 		exit;
 	}
 
-	if ($_FILES['myfile']['size'] == 0 ){
-		header("Location: ../index.php?man=portfolio&op=show&msg=projectImgEmpty");
-		exit;
-	}
-
-
-	
 	if($operation=="add"){
 		//inserimento
+		if ($_FILES['myfile']['size'] == 0 ){
+			header("Location: ../index.php?man=portfolio&op=show&msg=projectImgEmpty");
+			exit;
+		}
 
 		$portfolio->project_title=$_POST['project_title'];
 		$portfolio->main_img=$_FILES['myfile']['name'];
@@ -131,7 +131,7 @@ if(filter_input(INPUT_POST,"subReg")){
 			$stmt1->bindParam(':project_title', $portfolio->project_title);       
 			$stmt1->execute();
 			$row1 = $stmt1->fetch(PDO::FETCH_ASSOC);
-			$portfolio->main_img=$row1['img'];
+			$portfolio->main_img=$row1['main_img'];
 		}
 
 		$portfolio->description=$_POST['editor'];
@@ -140,7 +140,7 @@ if(filter_input(INPUT_POST,"subReg")){
 		$portfolio->category=$_POST['category'];
 		$portfolio->link=$_POST['link'];
 
-		
+
 
 		// update the page
 		if($portfolio->update()){

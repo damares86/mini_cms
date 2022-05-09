@@ -43,7 +43,7 @@
                 if (!is_readable($dir)) return null; 
                 return (count(scandir($dir)) == 2);
               }
-                if( is_dir_empty($dir_gall) ||is_dir_empty(($dir_root)) ){
+                if( !is_dir($dir_gall) || is_dir_empty($dir_gall) ||is_dir_empty(($dir_root)) ){
                     echo "<div class='col'><div class='alert alert-danger'>No galleries found</div></div>";
                 }else{
             foreach (glob("../misc/gallery/img/*") as $file) {

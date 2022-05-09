@@ -111,7 +111,7 @@ $stmt = $settings->showSettings();
        ?>
                         
                         <br><br>
-                    <?=$regport_actual?><img src="../uploads/portfolio/<?=$main_img?>"  style="max-width:200px;">
+                    <?=$regport_actual?><img src="../misc/portfolio/img/<?=$main_img?>"  style="max-width:200px;">
                     <?php
                     }
                     ?>

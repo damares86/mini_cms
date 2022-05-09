@@ -1,28 +1,30 @@
 <?php
 require "../../admin/template/inc/header_gallery.php";
+               
+$file = basename($_SERVER['PHP_SELF']);
+$page_class = pathinfo($file, PATHINFO_FILENAME);
+$gallery=$page_class;
+                
+// Target directory
+$dir = "img/$gallery/";
+
 
 ?>
             <div id="bottomContainer">
                 <div id="content">
+                    <div class='container'>
                     <div class="row">
                         <div class="col-12 pt-5 text-center">
-                            <h2><?=$portfolio->project_title?></h2>
+                            <h2><?=$page_name?></h2>
                         </div>
                     </div>
-                    <div class="row px-5">
+                    <div class="gallery">
+                        <div class="row p-2">
                 <?php
-                $file = basename($_SERVER['PHP_SELF']);
-                $page_class = pathinfo($file, PATHINFO_FILENAME);
                 
-              
                 // Image extensions
                 $image_extensions = array("png","jpg","jpeg","JPG");
-                
-                // INTERCETTARE IL NOME DELLA GALLERIA!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!11
-                $gallery="";
-                
-                // Target directory
-                $dir = "uploads/gallery/$gallery/";
+ 
                 
                 if (is_dir($dir)){
                 
@@ -50,9 +52,11 @@ require "../../admin/template/inc/header_gallery.php";
                                 ?>
 
                                 <!-- Image -->
-                                <a href="<?php echo $image_path; ?>">
-                                <img src="<?php echo $thumbnail_path; ?>" alt="" title=""/>
-                                </a>
+                                <div class="col-md-4 col-lg-3">
+                                    <a href="<?php echo $image_path; ?>">
+                                        <img src="<?php echo $thumbnail_path; ?>" alt="" title="" class="gallery">
+                                    </a>
+                                </div>
                                 <!-- --- -->
                                 <?php
                 
@@ -85,7 +89,8 @@ require "../../admin/template/inc/header_gallery.php";
 
               
          
-                      
+                    </div>
+                    </div>
                 
                     <div class="clearfix"></div>
                 </div>

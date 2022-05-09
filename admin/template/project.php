@@ -28,7 +28,7 @@ require "../../admin/template/inc/header_portfolio.php";
                             <p><?=$portfolio->description?></p>
                             <i class="solid fa-circle-calendar"></i>
                         </div>
-                        <div class="col-lg-4 project_data p-5 mt-5">
+                        <div class="col-lg-4 project_data p-5">
                             <p><b>Client:</b><br> <?=$portfolio->client?></p>
                             <p><b>Completed:</b><br> <?=$portfolio->completed?></p>
                             <?php
