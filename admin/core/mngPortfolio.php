@@ -67,7 +67,7 @@ if(filter_input(INPUT_POST,"subReg")){
 	}
 
 	if ($_FILES['myfile']['size'] == 0 ){
-		header("Location: ../index.php?man=oortfolio&op=show&msg=projectImgEmpty");
+		header("Location: ../index.php?man=portfolio&op=show&msg=projectImgEmpty");
 		exit;
 	}
 
