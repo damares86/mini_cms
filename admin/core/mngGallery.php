@@ -83,7 +83,7 @@ if(filter_input(INPUT_POST,"subReg")){
 	if(filter_input(INPUT_POST,"gall")){
 
 		$gall = filter_input(INPUT_POST,"gall");
-		$path="../../misc/gallery/$gall";
+		$path="../../misc/gallery/img/$gall";
 		$files = scandir($path, SCANDIR_SORT_DESCENDING);
 		$newest_file = $files[0];
 
@@ -99,7 +99,7 @@ if(filter_input(INPUT_POST,"subReg")){
 			$i = $number+1;
 		}
 
-		$target_directory = "../../misc/gallery/$gall/";
+		$target_directory = "../../misc/gallery/img/$gall/";
 
 		$target_file = $target_directory . $_FILES['file']['name'];
 		$file_type = pathinfo($target_file, PATHINFO_EXTENSION);

@@ -343,7 +343,7 @@ class Page{
                     *
                 FROM
                     " . $this->table_name . "
-                WHERE id>6
+                WHERE id>7
                 ORDER BY
                     id DESC
                     LIMIT
@@ -361,7 +361,7 @@ class Page{
                     *
                 FROM
                     " . $this->table_name . "
-                WHERE id BETWEEN 1 AND 6
+                WHERE id BETWEEN 1 AND 7
                 ORDER BY
                     id ASC";  
   
@@ -401,7 +401,7 @@ class Page{
 
     public function countAllCustom(){
     
-        $query = "SELECT id FROM page WHERE id > 6";
+        $query = "SELECT id FROM page WHERE id > 7";
     
         $stmt = $this->conn->prepare( $query );
         $stmt->execute();
