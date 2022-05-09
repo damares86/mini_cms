@@ -108,7 +108,6 @@ if(filter_input(INPUT_POST,"subReg")){
 
 			if(copy('../template/project.php', ''.$dir.'project.php')){
 				rename(''.$dir.'project.php',''.$dir.$str . '.php');
-
 				chmod(''.$dir.$str . '.php',0777);
 				header("Location: ../index.php?man=portfolio&op=show&msg=projectSucc");
 				exit;

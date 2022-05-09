@@ -1,5 +1,5 @@
 <?php
-require "admin/template/inc/header_portfolio.php";
+require "../../admin/template/inc/header_portfolio.php";
 
 ?>
             <div id="bottomContainer">
@@ -20,7 +20,7 @@ require "admin/template/inc/header_portfolio.php";
                     </div>
                     <div class="row px-5">
                         <div class="col-12 img_portfolio">
-                            <img src="uploads/portfolio/<?=$portfolio->main_img?>">
+                            <img src="img/<?=$portfolio->main_img?>">
                         </div>
                     </div>
                     <div class="row p-5">                    
@@ -41,7 +41,7 @@ require "admin/template/inc/header_portfolio.php";
                     </div>
                     <div class="row">
                         <div class="col-12 pt-5 text-center">
-                            <p><a href="portfolio.php" class="button icon solid fa-arrow-circle-left">Back to portfolio</a></p>
+                            <p><a href="../../portfolio.php" class="button icon solid fa-arrow-circle-left">Back to portfolio</a></p>
                         </div>
                     </div>
                     <div class="clearfix"></div>
@@ -49,5 +49,5 @@ require "admin/template/inc/header_portfolio.php";
             </div>
 
 <?php
-require "admin/template/inc/footer.php";
+require "../../admin/template/inc/footer.php";
 ?>

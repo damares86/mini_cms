@@ -37,15 +37,16 @@
         <br>
         <div class="row">
         <?php
-            $dir_gall="../uploads/gallery/";
+            $dir_gall="../misc/gallery/img/";
+            $dir_root="../misc/gallery/";
             function is_dir_empty($dir) {
                 if (!is_readable($dir)) return null; 
                 return (count(scandir($dir)) == 2);
               }
-                if( is_dir_empty($dir_gall) ){
-                    echo "<div class='alert alert-danger'>No galleries found</div>";
+                if( is_dir_empty($dir_gall) ||is_dir_empty(($dir_root)) ){
+                    echo "<div class='col'><div class='alert alert-danger'>No galleries found</div></div>";
                 }else{
-            foreach (glob("../uploads/gallery/*") as $file) {
+            foreach (glob("../misc/gallery/img/*") as $file) {
                 $folder=pathinfo($file, PATHINFO_FILENAME);
                 $gallery= str_replace("_"," ", $folder);
                 $gallery=ucfirst($gallery);
@@ -72,6 +73,16 @@
                                         </div>                                
                                     </div>
                                     <div class="row">
+                                        <div class="col-12 text-center">
+                                            <a href="../misc/gallery/<?=$folder?>.php" class="btn btn-info btn-icon-split btn-sm">
+                                                <span class="icon text-white-50">
+                                                    <i class="fas fa-link"></i>
+                                                </span>
+                                                <span class="text">Link</span>
+                                            </a>   
+                                        </div>
+                                    </div>
+                                    <div class="row mt-3   ">
                                         <div class="col-6 text-right">
                                             <a href="index.php?man=gall&op=edit&name=<?=$folder?>" class="btn btn-warning btn-icon-split btn-sm">
                                                 <span class="icon text-white-50">
@@ -79,7 +90,7 @@
                                                 </span>
                                                 <span class="text"><?=$txt_edit?></span>
                                             </a>   
-                                        </div>
+                                           </div>
                                         <div class="col-6">
                                             <a href="#" class="btn btn-danger btn-icon-split btn-sm" data-toggle="modal" data-target="#delete<?=$folder?>">
                                             <!-- <a href="core/mngGallery.php?gallToDel=<?=$folder?>" class="btn btn-danger btn-icon-split"> -->

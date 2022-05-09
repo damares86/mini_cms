@@ -1,5 +1,5 @@
 <div id="banner-wrapper">
-					<div id="banner" class="box container" style="background-image: url(assets/<?=$theme?>/img/<?=$img?>);">
+					<div id="banner" class="box container" style="background-image: url(<?=$root?>assets/<?=$theme?>/img/<?=$img?>);">
 						<div class="row">
 							<div class="col-7 col-12-medium">
 								<h2><?=$site_name?></h2>

@@ -10,7 +10,7 @@
         $str = preg_replace('/\s+/', '_', $str);
         $str = strtolower($str);
         ?>
-        <li><a href="<?=$str?>.php" ><?php
+        <li><a href="<?=$root?><?=$str?>.php" ><?php
         if($name=='index'){
             echo "Home";
         } else {
@@ -33,7 +33,7 @@
                         $str1 = preg_replace('/\s+/', '_', $str1);
                         $str1 = strtolower($str1);
                         ?>
-                            <li style="white-space: nowrap;"><a href="<?=$str1?>.php" style="display: block;"><?php
+                            <li style="white-space: nowrap;"><a href="<?=$root?><?=$str1?>.php" style="display: block;"><?php
                                 if($row1['pagename']=='index'){
                                     echo "Home";
                                 } else {

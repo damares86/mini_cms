@@ -45,19 +45,27 @@ if(filter_input(INPUT_GET,"gallToDel")){
 			}
 			closedir($folderHandle);
 			rmdir($folderName);
-			header("Location: ../index.php?man=gall&op=show&msg=gallNotDel");
-			exit;
-
-	}
-	$gallToDel = filter_input(INPUT_GET,"gallToDel");
-	$folderName="../../uploads/gallery/$gallToDel";
-	removeFolder($folderName);
+			
+		}
+		$gallToDel = filter_input(INPUT_GET,"gallToDel");
+		$folderName="../../misc/gallery/img/$gallToDel/";
+		removeFolder($folderName);
+			if(unlink("../../misc/gallery/$gallToDel.php")){
+				header("Location: ../index.php?man=gall&op=show&msg=pageGallDel");
+				exit;
+			}else{
+				header("Location: ../index.php?man=gall&op=show&msg=pageGallNotDel");
+				exit;
+			}
+		header("Location: ../index.php?man=gall&op=show&msg=gallNotDel");
+		exit;
+		
 
 }else  if(filter_input(INPUT_GET, "imgToDel")){
 
 	$imgName = filter_input(INPUT_GET, "imgToDel");
 	$gall = filter_input(INPUT_GET, "gall");
-	$filepath = "../../uploads/gallery/$gall/$imgName";
+	$filepath = "../../misc/gallery/img/$gall/$imgName";
 	
 	if(unlink($filepath) || !file_exists(($filepath))){
 		header("Location: ../index.php?man=gall&op=edit&name=$gall&msg=imgDelSucc");
@@ -75,7 +83,7 @@ if(filter_input(INPUT_POST,"subReg")){
 	if(filter_input(INPUT_POST,"gall")){
 
 		$gall = filter_input(INPUT_POST,"gall");
-		$path="../../uploads/gallery/$gall";
+		$path="../../misc/gallery/$gall";
 		$files = scandir($path, SCANDIR_SORT_DESCENDING);
 		$newest_file = $files[0];
 
@@ -91,7 +99,7 @@ if(filter_input(INPUT_POST,"subReg")){
 			$i = $number+1;
 		}
 
-		$target_directory = "../../uploads/gallery/$gall/";
+		$target_directory = "../../misc/gallery/$gall/";
 
 		$target_file = $target_directory . $_FILES['file']['name'];
 		$file_type = pathinfo($target_file, PATHINFO_EXTENSION);
@@ -115,6 +123,7 @@ if(filter_input(INPUT_POST,"subReg")){
 	
         move_uploaded_file($_FILES['file']['tmp_name'],$target_file);
 		chmod($target_file, 0777);
+		
 
 		header("Location: ../index.php?man=gall&op=edit&name=$gall&msg=imgSucc");
 		exit;
@@ -131,10 +140,16 @@ if(filter_input(INPUT_POST,"subReg")){
 		exit;
 	}
 
+	$path="../../misc/gallery/img/";
+	if(!is_dir($path)){
+		mkdir($path);
+		chmod($path,0777);
+	}
+
 	$gallery = $_POST['title'];
 	$dir = preg_replace('/\s+/', '_', $gallery);	
 	$dir = strtolower($dir);
-	$target_directory = "../../uploads/gallery/$dir/";
+	$target_directory = $path.$dir.'/';
 
 	mkdir($target_directory, 0777, true);
 	
@@ -166,10 +181,23 @@ if(filter_input(INPUT_POST,"subReg")){
 	
         move_uploaded_file($_FILES['file']['tmp_name'][$i],$target_file);
 		chmod($target_file, 0777);
+		}
 
-    }
-	header("Location: ../index.php?man=gall&op=show&msg=gallSucc");
-	exit;
+
+		if(copy('../template/gallery.php', '../../misc/gallery/gallery.php')){
+			rename('../../misc/gallery/gallery.php','../../misc/gallery/'.$dir. '.php');
+			
+			$page='../../misc/gallery/'.$dir. '.php';
+			chmod($page,0777);
+
+			header("Location: ../index.php?man=gall&op=show&msg=gallCopySucc");
+			exit;
+		} else {
+			header("Location: ../index.php?man=gall&op=show&msg=gallCopyErr");
+			exit;
+		}
+		header("Location: ../index.php?man=gall&op=show&msg=gallSucc");
+		exit;
 	}
 } else {
 	header("Location: ../index.php?man=gall&op=show&msg=gallErr");

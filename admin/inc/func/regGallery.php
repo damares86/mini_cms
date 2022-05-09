@@ -118,7 +118,7 @@ if($operation=="add"){
         </form>
         </div>
     <?php
-    foreach (glob("../uploads/gallery/$name/*") as $file) {
+    foreach (glob("../misc/gallery/img/$name/*") as $file) {
         
         $img=pathinfo($file, PATHINFO_FILENAME);
         $ext=pathinfo($file, PATHINFO_EXTENSION);

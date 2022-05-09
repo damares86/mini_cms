@@ -65,13 +65,13 @@ $total_rows=$portfolio->countAll();
 
                                 <!-- Box -->
                                     <section class="box feature">
-                                        <a href="<?=$str?>.php" class="image featured"><img src="uploads/portfolio/<?=$main_img?>" alt="" /></a>
+                                        <a href="<?=$str?>.php" class="image featured"><img src="misc/portfolio/img/<?=$main_img?>" alt="" /></a>
                                         <div class="inner">
                                             <header>
                                                 <h2><?=$project_title?></h2>
                                                 <p><?=$client?></p>
                                             </header>
-                                            <p class="text-center"><a href="<?=$str?>.php" class="button icon solid fa-arrow-circle-right">More</a></p>
+                                            <p class="text-center"><a href="misc/portfolio/<?=$str?>.php" class="button icon solid fa-arrow-circle-right">More</a></p>
                                         </div>
                                     </section>
 

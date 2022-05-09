@@ -70,7 +70,7 @@
                 <td><?=$project_title?></td>
                 <td><?=$completed?></td>
                 <td><?=$cat->category_name?></td>
-                <td><a href="../<?=$str?>.php"><?=$port_link?></a></td>
+                <td><a href="../misc/portfolio/<?=$str?>.php"><?=$port_link?></a></td>
                
                 <td>
                 <a href="index.php?man=portfolio&op=edit&idToMod=<?=$row["id"]?>" class="btn btn-warning btn-icon-split">
