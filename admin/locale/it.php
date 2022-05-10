@@ -75,6 +75,7 @@ $alluser_add = "Aggiungi utente";
 $alluser_username = "Username";
 $alluser_email = "Email";
 $alluser_role = "Ruolo";
+$alluser_login = "Ultimo login";
 $alluser_modal_text = "Se vuoi veramente cancellare questo utente clicca \"Ok\".";
 $alluser_nouser = "Nessun utente trovato";
 

@@ -64,7 +64,16 @@
 
                     $str = strtolower($str);
                 ?>
-                <td><a href="../<?=$str?>.php"><?=$allpage_view?></a></td>
+                <td>
+                    <?php
+                    if($id!=7){
+                    ?>
+                    <a href="../<?=$str?>.php"><?=$allpage_view?></a>
+                    <?php
+                    }
+                    ?>
+                </td>
+
                 <td>
                 <a href="index.php?man=page&op=edit&idToMod=<?=$row["id"]?>" class="btn btn-warning btn-icon-split">
                             <span class="icon text-white-50">

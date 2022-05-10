@@ -110,6 +110,22 @@ class Post{
         return $stmt;
     }
 
+    function showLastPosts(){
+        //select all data
+        $query = "SELECT
+                    *
+                FROM
+                    " . $this->table_name . "
+                ORDER BY
+                    modified DESC
+                    LIMIT 3";  
+  
+        $stmt = $this->conn->prepare( $query );
+        $stmt->execute();
+  
+        return $stmt;
+    }
+
     function showTot(){
         //select all data
         $query = "SELECT

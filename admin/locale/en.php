@@ -76,6 +76,7 @@ $alluser_add = "Add new user";
 $alluser_username = "Username";
 $alluser_email = "Email";
 $alluser_role = "Role";
+$alluser_login = "Last login";
 $alluser_modal_text = "If you really want to delete this user click \"Ok\" below.";
 $alluser_nouser = "No users found";
 

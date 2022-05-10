@@ -103,7 +103,7 @@ $stmt = $settings->showSettings();
             
             <br>
             <?php
-                $notToMod=array("2", "3", "4", "5", "6");
+                $notToMod=array("2", "3", "4", "5", "6","7");
 
                 if(!in_array($idToMod, $notToMod)){
          
