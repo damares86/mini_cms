@@ -4,6 +4,7 @@
 
 $txt_submit = "Invia";
 $txt_edit = "Modifica";
+$txt_copy = "Duplica";
 $txt_cancel = "Cancella";
 $txt_delete = "Elimina";
 $txt_logout = "Logout";

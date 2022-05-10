@@ -47,6 +47,7 @@
                     <th scope="col"><?=$allpage_name?></th>
                     <th scope="col"><?=$allpage_link?></th>
                     <th scope="col"><?=$txt_edit?></th>
+                    <th scope="col"><?=$txt_copy?></th>
                     <th scope="col"><?=$txt_delete?></th>
                 </tr>
             </thead>
@@ -73,13 +74,16 @@
                             </span>
                             <span class="text"><?=$txt_edit?></span>
                         </a>   
+                </td>
                 <td>
-                <?php
-                // if($page_name != "index" && $page_name != "Blog" && $page_name != "Post" && $page_name != "Login" && $page_name != "Contact"){
-                    $notToMod=array("index", "Blog", "Post", "Login", "Contact", "Portfolio");
-
-                    if(!in_array($page_name, $notToMod)){
-                ?>
+                <a href="core/mngPage.php?op=copy&idToMod=<?=$row["id"]?>" class="btn btn-info btn-icon-split">
+                            <span class="icon text-white-50">
+                                <i class="fas fa-pen"></i>
+                            </span>
+                            <span class="text"><?=$txt_copy?></span>
+                        </a>   
+                </td>
+                <td>
                         <a href="#" class="btn btn-danger btn-icon-split" data-toggle="modal" data-target="#delete<?=$row['id']?>">
                             <span class="icon text-white-50">
                                 <i class="fas fa-trash"></i>
@@ -112,10 +116,7 @@
                             </div>
                         </div>
                     </div>
-<?php
-            }
 
-            ?>
 
             </tbody>
         </table>

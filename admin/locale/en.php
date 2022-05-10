@@ -4,6 +4,7 @@
 
 $txt_submit = "Submit";
 $txt_edit = "Edit";
+$txt_copy = "Duplicate";
 $txt_cancel = "Cancel";
 $txt_delete = "Delete";
 $txt_logout = "Logout";

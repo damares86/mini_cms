@@ -55,6 +55,32 @@ if(filter_input(INPUT_GET,"idToDel")){
 	}
 }
 
+
+if(filter_input(INPUT_GET,"op")){
+	$idToCopy=filter_input(INPUT_GET,"idToMod");
+
+	$page->id=$idToCopy;
+
+	$page->showById();
+
+	$name =$page->page_name;
+	$name = preg_replace('/\s+/', '_', $name);
+	$name = strtolower($name);
+
+	if(copy('../../'.$name.'.php', '../../'.$name.'_copy.php')){
+		// rename('../../master.php','../../'. $str . '.php');
+		chmod('../../'.$name.'_copy.php',0777);
+		header("Location: ../index.php?man=page&op=show&type=custom&msg=pageCopySucc");
+		exit;
+	 } else {
+		header("Location: ../index.php?man=page&op=show&type=custom&msg=pageCopyErr");
+		exit;
+	 }
+	 
+	
+}
+
+
 if(filter_input(INPUT_POST,"subReg")){
 	$operation=filter_input(INPUT_POST,"operation");
 
