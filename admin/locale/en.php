@@ -403,6 +403,16 @@ $al_catPortfolioSucc = "Category successfully created";
 $al_catPortfolioErr = "Category not created";
 $al_catPortfolioEditSucc = "Category successfully modified";
 $al_catPortfolioEditErr = "Category not modified";
+$al_gallDel = "Gallery deleted";
+$al_pageGallNotDel = "Gallery not deleted";
+$al_imgDelSucc = "Image deleted";
+$al_imgNotDel = "Image not deleted";
+$al_formatErr = "Wrong format. You can only upload \"jpg\", \"JPG\", \"jpeg\", \"png\" image";
+$al_imgSucc = "New image uploaded";
+$al_gallTitleErr = "Gallery title missing";
+$al_gallFileErr = "Image missing";
+$al_gallSucc = "Gallery successfully created";
+$al_gallErr = "Gallery not created";
 
 
 

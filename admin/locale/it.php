@@ -31,7 +31,7 @@ $side_blog = "Blog";
 $side_post = "Post";
 $side_gall = "Gallerie";
 $side_gall_all = "Tutte le gallerie";
-$side_gall_upload = "Upload foto";
+$side_gall_upload = "Carica foto";
 $side_cat = "Categorie";
 $side_settings = "Impostazioni";
 $side_siteset = "Sito";
@@ -176,6 +176,25 @@ $regport_link_placeholder = "Link del progetto";
 $regport_description = "Descrizione";
 
 
+// GALLERY
+
+$gall_title = "Gallerie";
+$gall_box_title = "Tutte le gallerie";
+$gall_add = "Aggiungi una nuova galleria";
+$gall_link = "Link";
+$gall_modal_text = "Se vuoi cancellare questa galleria \"Ok\"";
+
+
+// REG AND EDIT GALLERY
+
+$gall_title_add = "Carica foto";
+$gall_title_edit = "Modifica galleria";
+$gall_name = "Nome della galleria";
+$gall_name_placeholder = "Scegli un nome per la galleria";
+$gall_upload = "Carica foto";
+$gall_desc = "Carica tutte le foto della galleria semplicemente cliccando su \"Scegli file\"";
+$gall_add_image = "Aggiungi un'immagine alla galleria";
+$gall_back ="Torna alle gallerie";
 
 
 
@@ -382,6 +401,16 @@ $al_catPortfolioSucc = "Categoria creata correttamente";
 $al_catPortfolioErr = "Categoria non creata";
 $al_catPortfolioEditSucc = "Categoria modificata correttamente";
 $al_catPortfolioEditErr = "Categoria non modificata";
+$al_gallDel = "Galleria cancellata";
+$al_pageGallNotDel = "Galleria non creata";
+$al_imgDelSucc = "Immagine cancellata";
+$al_imgNotDel = "Immagine non cancellata";
+$al_formatErr = "Formato errato. Puoi caricare solo immagini con formato \"jpg\", \"JPG\", \"jpeg\", \"png\"";
+$al_imgSucc = "Nuova immagine caricata";
+$al_gallTitleErr = "Titolo della galleria mancante";
+$al_gallFileErr = "Immagine mancante";
+$al_gallSucc = "Galleria creata";
+$al_gallErr = "Galleria non creata";
 
 // ALERT WEBSITE
 

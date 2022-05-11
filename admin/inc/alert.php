@@ -622,7 +622,7 @@ if($msg=="userDelSucc"){
     ?>
     <div class="alert alert-warning">
         <button type="button" class="close" data-dismiss="alert">x</button>
-        Gallery deleted
+        <?=$al_gallDel?>
     </div>
 
     <?php    
@@ -638,7 +638,7 @@ if($msg=="userDelSucc"){
     ?>
     <div class="alert alert-danger">
         <button type="button" class="close" data-dismiss="alert">x</button>
-        Gallery not deleted
+        <?=$al_pageGallNotDel?>
     </div>
 
     <?php    
@@ -646,7 +646,7 @@ if($msg=="userDelSucc"){
     ?>
     <div class="alert alert-warning">
         <button type="button" class="close" data-dismiss="alert">x</button>
-        Image deleted
+        <?=$al_imgDelSucc?>
     </div>
 
     <?php    
@@ -654,7 +654,7 @@ if($msg=="userDelSucc"){
     ?>
     <div class="alert alert-daner">
         <button type="button" class="close" data-dismiss="alert">x</button>
-        Image not deleted
+        <?=$al_imgNotDel?>
     </div>
 
     <?php    
@@ -662,7 +662,7 @@ if($msg=="userDelSucc"){
     ?>
     <div class="alert alert-danger">
         <button type="button" class="close" data-dismiss="alert">x</button>
-        Wrong format. You can only upload "jpg", "JPG", "jpeg", "png" image
+        <?=$al_formatErr?>
     </div>
 
     <?php    
@@ -670,7 +670,7 @@ if($msg=="userDelSucc"){
     ?>
     <div class="alert alert-succ">
         <button type="button" class="close" data-dismiss="alert">x</button>
-        New image uploaded
+        <?=$al_imgSucc?>
     </div>
 
     <?php    
@@ -678,7 +678,7 @@ if($msg=="userDelSucc"){
     ?>
     <div class="alert alert-danger">
         <button type="button" class="close" data-dismiss="alert">x</button>
-        Gallery title missing
+        <?=$al_gallTitleErr?>
     </div>
 
     <?php    
@@ -686,7 +686,7 @@ if($msg=="userDelSucc"){
     ?>
     <div class="alert alert-danger">
         <button type="button" class="close" data-dismiss="alert">x</button>
-        Image missing
+        <?=$al_gallFileErr?>
     </div>
 
     <?php    
@@ -694,7 +694,7 @@ if($msg=="userDelSucc"){
     ?>
     <div class="alert alert-danger">
         <button type="button" class="close" data-dismiss="alert">x</button>
-        Wrong format. You can only upload "jpg", "JPG", "jpeg", "png" image
+        <?=$al_formatErr?>
     </div>
 
     <?php    
@@ -702,7 +702,7 @@ if($msg=="userDelSucc"){
     ?>
     <div class="alert alert-success">
         <button type="button" class="close" data-dismiss="alert">x</button>
-        Gallery successfully created
+        <?=$al_gallSucc?>
     </div>
 
     <?php    
@@ -710,7 +710,7 @@ if($msg=="userDelSucc"){
     ?>
     <div class="alert alert-danger">
         <button type="button" class="close" data-dismiss="alert">x</button>
-        Gallery not created
+        <?=$al_gallErr?>
     </div>
 
     <?php    
