@@ -190,14 +190,14 @@ if(filter_input(INPUT_POST,"subReg")){
 			$page='../../misc/gallery/'.$dir. '.php';
 			chmod($page,0777);
 
-			header("Location: ../index.php?man=gall&op=show&msg=gallCopySucc");
+			header("Location: ../index.php?man=gall&op=show&msg=gallSucc");
 			exit;
 		} else {
-			header("Location: ../index.php?man=gall&op=show&msg=gallCopyErr");
+			header("Location: ../index.php?man=gall&op=show&msg=gallErr");
 			exit;
 		}
-		header("Location: ../index.php?man=gall&op=show&msg=gallSucc");
-		exit;
+		// header("Location: ../index.php?man=gall&op=show&msg=gallSucc");
+		// exit;
 	}
 } else {
 	header("Location: ../index.php?man=gall&op=show&msg=gallErr");

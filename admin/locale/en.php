@@ -21,12 +21,17 @@ $side_profile = "Profile";
 $side_users = "Users";
 $side_manage = "Managing site";
 $side_page = "Pages";
+$side_page_default = "Default";
+$side_page_custom = "Custom";
 $side_files = "Files";
 $side_port = "Portfolio";
 $side_project = "Project";
 $side_project_cat = "Project categories";
 $side_blog = "Blog";
 $side_post = "Posts";
+$side_gall = "Galleries";
+$side_gall_all = "All galleries";
+$side_gall_upload = "Upload photos";
 $side_cat = "Categories";
 $side_settings = "Settings";
 $side_siteset = "Site settings";
@@ -171,6 +176,28 @@ $regport_completed_placeholder = "Insert the date in dd/mm/yy format";
 $regport_link = "Link";
 $regport_link_placeholder = "Project's link";
 $regport_description = "Description";
+
+
+
+// GALLERY
+
+$gall_title = "Galleries";
+$gall_box_title = "All galleries";
+$gall_add = "Add a new gallery";
+$gall_link = "Link";
+$gall_modal_text = "If you want to delete this gallery click \"Ok\" below";
+
+
+// REG AND EDIT GALLERY
+
+$gall_title_add = "Upload photos";
+$gall_title_edit = "Edit gallery";
+$gall_name = "Gallery name";
+$gall_name_placeholder = "Choose a name for your gallery";
+$gall_upload = "Upload photos";
+$gall_desc = "Upload all the photo of your gallery by simply clicking on \"Choose file\"";
+$gall_add_image = "Add an image to gallery";
+$gall_back ="Back to galleries";
 
 
 

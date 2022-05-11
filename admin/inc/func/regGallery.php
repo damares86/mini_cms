@@ -2,7 +2,7 @@
 // MODIFICARE SU LOCALE !!!!!!!!!!!!!!!!!!!!
 
 $operation = "add";
-$titolo_form = "Upload photo";
+$titolo_form = $gall_title_add;
 $name ="";
 $gallName="";
 
@@ -10,7 +10,7 @@ if(filter_input(INPUT_GET, "name")){
     $name = filter_input(INPUT_GET, "name");
     $gallName = str_replace('_', ' ', $name);	
 	$gallName = ucfirst($gallName);
-    $titolo_form = "Edit gallery";
+    $titolo_form = $gall_title_edit;
     $operation="mod";
 }
 
@@ -37,9 +37,9 @@ if($operation=="add"){
        <form class="form-horizontal row-fluid" action="core/mngGallery.php" method="POST" enctype="multipart/form-data">
 
             <div class="control-group">
-                <label class="control-label" for="title">Gallery name</label>
+                <label class="control-label" for="title"><?=$gall_name?></label>
                 <div class="controls">
-                    <input type="text" id="title" name="title" placeholder="Choose a name for your gallery" class="span8">
+                    <input type="text" id="title" name="title" placeholder="<?=$gall_name_placeholder?>" class="span8">
                      
                 </div>
             </div>
@@ -47,7 +47,7 @@ if($operation=="add"){
             <div class="control-group" id="uploadFile">
                 <input type="hidden" name="idToMod" value="<?=$idToMod?>" />
 
-                <label class="control-label" for="file">Carica foto</label>
+                <label class="control-label" for="file"><?=$gall_upload?></label>
                 <div class="controls">
                     <input type="file" id="file" name="file[]" multiple>
                 </div>
@@ -66,7 +66,7 @@ if($operation=="add"){
         </form>
         </div>
       <div class="col guide">
-        descrizione
+        <?=$gall_desc?>
       </div>
             </div>
       <?php
@@ -87,7 +87,7 @@ if($operation=="add"){
                 <span class="icon text-white-50">
                     <i class="fas fa-plus"></i>
                 </span>
-                <span class="text">Add an image to gallery</span>
+                <span class="text"><?=$gall_add_image?></span>
             </a>
         </div>
         <?php
@@ -144,7 +144,7 @@ if($operation=="add"){
                         <span aria-hidden="true">×</span>
                     </button>
                 </div>
-                <div class="modal-body">If you want to delete this gallery click "Ok" below</div>
+                <div class="modal-body"><?=$gall_modal_text?></div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal"><?=$txt_cancel?></button>
                     <a class="btn btn-primary" href="core/mngGallery.php?imgToDel=<?=$imgName?>&gall=<?=$name?>">Ok</a>
@@ -163,7 +163,7 @@ if($operation=="add"){
                 <span class="icon text-white-50">
                     <i class="fas fa-arrow-left"></i>
                 </span>
-                <span class="text">Back to galleries</span>
+                <span class="text"><?=$gall_back?></span>
             </a>
         </div>
         </div>

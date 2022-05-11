@@ -21,12 +21,17 @@ $side_profile = "Profilo";
 $side_users = "Utenti";
 $side_manage = "Gestione sito";
 $side_page = "Pagine";
+$side_page_default = "Default";
+$side_page_custom = "Personali";
 $side_files = "Files";
 $side_port = "Portfolio";
 $side_project = "Progetti";
 $side_project_cat = "Categorie progetti";
 $side_blog = "Blog";
 $side_post = "Post";
+$side_gall = "Gallerie";
+$side_gall_all = "Tutte le gallerie";
+$side_gall_upload = "Upload foto";
 $side_cat = "Categorie";
 $side_settings = "Impostazioni";
 $side_siteset = "Sito";
@@ -172,6 +177,9 @@ $regport_description = "Descrizione";
 
 
 
+
+
+
 // POSTS
 
 $post_title = "Post";
@@ -201,7 +209,6 @@ $regpost_desc = "Nella creazione di un post, devi aggiungere un titolo e una cat
 $regpost_desc .= "Ci sono 2 editor: <ul><li><b>Sommario:</b> è l'anteprima del post, che verrà mostrata nella pagina Blog dove vengono mostrati tutti i post</li>";
 $regpost_desc .= "<li><b>Contenuto:</b> è il vero post, verrà mostrato in una pagina dedicata, dopo aver cliccato su \"Continua a leggere->\" ";
 $regpost_desc .= "alla fine del sommario nella pagina Blog</li></ul>";
-
 
 
 // CATEGORIES

@@ -57,8 +57,8 @@
                 </a>
                 <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="index.php?man=page&op=show&type=default">Default</a>
-                        <a class="collapse-item" href="index.php?man=page&op=show&type=custom">Custom</a>
+                        <a class="collapse-item" href="index.php?man=page&op=show&type=default"><?=$side_page_default?></a>
+                        <a class="collapse-item" href="index.php?man=page&op=show&type=custom"><?=$side_page_custom ?></a>
                     </div>
                 </div>
             </li>
@@ -95,12 +95,12 @@
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseFour"
                     aria-expanded="true" aria-controls="collapseFour">
                     <i class="fas fa-fw fa-images"></i>
-                    <span>Galleries</span>
+                    <span><?=$side_gall?></span>
                 </a>
                 <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="index.php?man=gall&op=show">All galleries</a>
-                        <a class="collapse-item" href="index.php?man=gall&op=add">Upload photo</a>
+                        <a class="collapse-item" href="index.php?man=gall&op=show"><?=$side_gall_all?></a>
+                        <a class="collapse-item" href="index.php?man=gall&op=add"><?=$side_gall_upload?></a>
                     </div>
                 </div>
             </li>

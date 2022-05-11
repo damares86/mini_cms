@@ -13,7 +13,7 @@
 ?>
 
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">Galleries</h1>
+                        <h1 class="h3 mb-0 text-gray-800"><?=$gall_title?></h1>
 
                     </div><div class="row">
 
@@ -23,7 +23,7 @@
     <!-- Project Card Example -->
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">All galleries</h6>
+            <h6 class="m-0 font-weight-bold text-primary"><?=$gall_box_title?></h6>
         </div>
         <div class="card-body">
         <div class="align-items-center pt-3 pb-2 mb-3 align-items-center">
@@ -31,7 +31,7 @@
                 <span class="icon text-white-50">
                     <i class="fas fa-plus"></i>
                 </span>
-                <span class="text">Add a new gallery</span>
+                <span class="text"><?=$gall_add?></span>
             </a>
         </div>
         <br>
@@ -115,7 +115,7 @@
                                         <span aria-hidden="true">×</span>
                                     </button>
                                 </div>
-                                <div class="modal-body">If you want to delete this gallery click "Ok" below</div>
+                                <div class="modal-body"><?=$gall_modal_text?></div>
                                 <div class="modal-footer">
                                     <button class="btn btn-secondary" type="button" data-dismiss="modal"><?=$txt_cancel?></button>
                                     <a class="btn btn-primary" href="core/mngGallery.php?gallToDel=<?=$folder?>">Ok</a>

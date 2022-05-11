@@ -618,6 +618,102 @@ if($msg=="userDelSucc"){
     </div>
 
     <?php    
+} else if($msg=="gallDelSucc"||$msg=="pageGallDel"){
+    ?>
+    <div class="alert alert-warning">
+        <button type="button" class="close" data-dismiss="alert">x</button>
+        Gallery deleted
+    </div>
+
+    <?php    
+} else if($msg=="pageGallNotDel"){
+    ?>
+    <div class="alert alert-danger">
+        <button type="button" class="close" data-dismiss="alert">x</button>
+        Gallery not deleted
+    </div>
+
+    <?php    
+} else if($msg=="pageGallNotDel"){
+    ?>
+    <div class="alert alert-danger">
+        <button type="button" class="close" data-dismiss="alert">x</button>
+        Gallery not deleted
+    </div>
+
+    <?php    
+} else if($msg=="imgDelSucc"){
+    ?>
+    <div class="alert alert-warning">
+        <button type="button" class="close" data-dismiss="alert">x</button>
+        Image deleted
+    </div>
+
+    <?php    
+} else if($msg=="imgNotDel"){
+    ?>
+    <div class="alert alert-daner">
+        <button type="button" class="close" data-dismiss="alert">x</button>
+        Image not deleted
+    </div>
+
+    <?php    
+} else if($msg=="formatErr"){
+    ?>
+    <div class="alert alert-danger">
+        <button type="button" class="close" data-dismiss="alert">x</button>
+        Wrong format. You can only upload "jpg", "JPG", "jpeg", "png" image
+    </div>
+
+    <?php    
+} else if($msg=="imgSucc"){
+    ?>
+    <div class="alert alert-succ">
+        <button type="button" class="close" data-dismiss="alert">x</button>
+        New image uploaded
+    </div>
+
+    <?php    
+} else if($msg=="gallTitleErr"){
+    ?>
+    <div class="alert alert-danger">
+        <button type="button" class="close" data-dismiss="alert">x</button>
+        Gallery title missing
+    </div>
+
+    <?php    
+} else if($msg=="gallFileErr"){
+    ?>
+    <div class="alert alert-danger">
+        <button type="button" class="close" data-dismiss="alert">x</button>
+        Image missing
+    </div>
+
+    <?php    
+} else if($msg=="formatErr"){
+    ?>
+    <div class="alert alert-danger">
+        <button type="button" class="close" data-dismiss="alert">x</button>
+        Wrong format. You can only upload "jpg", "JPG", "jpeg", "png" image
+    </div>
+
+    <?php    
+} else if($msg=="gallSucc"){
+    ?>
+    <div class="alert alert-success">
+        <button type="button" class="close" data-dismiss="alert">x</button>
+        Gallery successfully created
+    </div>
+
+    <?php    
+} else if($msg=="gallErr"){
+    ?>
+    <div class="alert alert-danger">
+        <button type="button" class="close" data-dismiss="alert">x</button>
+        Gallery not created
+    </div>
+
+    <?php    
 } else
 
 ?>
