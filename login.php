@@ -181,11 +181,7 @@ require "admin/template/inc/header.php";
 						}
 						$query="DELETE FROM `password_reset_temp` WHERE email = '.$email.'";
 						$stmt=$db->prepare($query);	
-						if($stmt->execute()){
-							return true;
-						}else{
-							return false;
-						}
+						$stmt->execute();
 					}
 					?>
 
