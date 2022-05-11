@@ -25,19 +25,19 @@ require "admin/template/inc/header.php";
 						<?php
 							require "admin/template/inc/alert.php";
 							$op=filter_input(INPUT_GET,"op");
-							if($op==""){
-
-								$stmt=$verify->showAll();
+							
+							$stmt=$verify->showAll();
 								$row=$stmt->fetch(PDO::FETCH_ASSOC);
 								$active=$row['active'];
-
+								
 								$auth="auth";
 								$pass="mngPass";
 								if($active==1){
 									$auth="authRecap";
 									$pass="mngPassRecap";
 								}
-
+								
+								if($op==""){
 
 						?>
 
@@ -204,7 +204,9 @@ require "admin/template/inc/header.php";
 </div>
 					
 
-						</div> 			
+						</div> 		
+	<script src="admin/scripts/my-login.js"></script>
+
 						<?php
 require "admin/template/inc/footer.php";
 ?>
