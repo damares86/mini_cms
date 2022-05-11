@@ -171,7 +171,7 @@ class Page{
 
             $stmt="";
 
-            if($this->type=="custom"){
+            if($this->type=="custom" || $this->id==1){
                 $query = "UPDATE
                         " . $this->table_name . "
                     SET

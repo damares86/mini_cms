@@ -181,7 +181,7 @@ if(filter_input(INPUT_POST,"subReg")){
 
 
 
-		if($page->type=="custom"){
+		if($page->type=="custom" || $page->id==1){
 			$page->layout=$_POST['layout'];
 			$page->theme=$_POST['theme'];
 			$page->block1=$_POST['editor'];
