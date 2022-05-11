@@ -68,7 +68,7 @@
                 ?>
                 <td><a href="../<?=$str?>.php"><?=$allpage_view?></a></td>
                 <td>
-                <a href="index.php?man=page&op=edit&idToMod=<?=$row["id"]?>" class="btn btn-warning btn-icon-split">
+                <a href="index.php?man=page&op=edit&idToMod=<?=$row["id"]?>&type=custom" class="btn btn-warning btn-icon-split">
                             <span class="icon text-white-50">
                                 <i class="fas fa-pen"></i>
                             </span>

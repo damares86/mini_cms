@@ -75,7 +75,7 @@
                 </td>
 
                 <td>
-                <a href="index.php?man=page&op=edit&idToMod=<?=$row["id"]?>" class="btn btn-warning btn-icon-split">
+                <a href="index.php?man=page&op=edit&idToMod=<?=$row["id"]?>&type=default" class="btn btn-warning btn-icon-split">
                             <span class="icon text-white-50">
                                 <i class="fas fa-pen"></i>
                             </span>

@@ -6,6 +6,7 @@ $titoloForm = $regpage_title_add;
 $postToMod="";
 $idToMod="";
 $category_id="";
+$type=filter_input(INPUT_GET, "type");
 
 if(filter_input(INPUT_GET,"idToMod")){
     $idToMod = filter_input(INPUT_GET,"idToMod");
@@ -76,6 +77,7 @@ $stmt = $settings->showSettings();
                 if($operation=="mod"){ 
                     ?>
                     <input type="hidden" name="idToMod" value="<?= $idToMod ?>" />
+                    <input type="hidden" name="type" value="<?= $type ?>" />
                     <?php 
                 } 
                 
@@ -136,7 +138,34 @@ $stmt = $settings->showSettings();
                 }
             ?>
             <br>
+            <?php
+                $display="";
+                $checked="";
+                if($page->header==0){
+                    $display="none";
+            }else{
+                $display="block";
+                $checked="checked";
+            }
 
+
+        ?>
+        <script>
+            function show(i) {
+                document.getElementById(i).style.visibility='visible';
+            }
+        </script>
+        <script>
+            $(document).ready(function(){
+            $("#changeHeader").click(function(){
+                $("#uploadHeader").toggle();
+            });
+            });
+        </script>
+        <input type="checkbox" name="visualSel" value="1" id="changeHeader" <?=$checked?>> Use visual image 
+
+<div id="uploadHeader" class="border-top border-bottom"  style="display:<?=$display?>">
+<br>
             <?php
 $img=$page->img;
 $page_theme="";
@@ -155,15 +184,17 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
                 <div class="controls">
                     <input type="file" id="myfile" name="myfile">
                     <br><br>
-                    <?=$regpage_actual?><img src="../assets/<?=$theme?>/img/<?=$img?>"  style="max-width:200px;">
+                    <?=$regpage_actual?> &nbsp;<img src="../assets/<?=$theme?>/img/<?=$img?>"  style="max-width:200px;">
                 </div>
             </div>
             <br>
+        </div>
             <br>
             <?php
 }
 
 ?>
+<br>
 <input type="hidden" name="theme" value="<?= $page_theme ?>" />
 
             <?php   

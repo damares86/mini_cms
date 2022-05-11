@@ -12,10 +12,12 @@ class Page{
     private $setParam6; 
 
 
+    public $type;
     public $theme;
     public $id;
     public $page_name;
     public $layout;
+    public $header;
     public $img;
     public $in_menu;
     public $item_order;
@@ -73,6 +75,7 @@ class Page{
                 SET
                     page_name = :page_name,
                     layout = :layout,
+                    header = :header,
                     block1 = :block1,
                     block1_bg = :block1_bg,
                     block1_text = :block1_text". $this->setParam2 . $this->setParam3 . $this->setParam4 . $this->setParam5 . $this->setParam6 . "";
@@ -83,6 +86,7 @@ class Page{
         // bind the values
         $stmt->bindParam(':page_name', $this->page_name);       
         $stmt->bindParam(':layout', $this->layout);    
+        $stmt->bindParam(':header', $this->header);    
         $stmt->bindParam(':block1', $this->block1);       
         $stmt->bindParam(':block1_bg', $this->block1_bg);       
         $stmt->bindParam(':block1_text', $this->block1_text);       
@@ -164,53 +168,73 @@ class Page{
                 $this->setParam6 = ", block6 = :block6, block6_bg = :block6_bg, block6_text = :block6_text";
             }
 
-            $query = "UPDATE
-                    " . $this->table_name . "
-                SET
-                layout = :layout,
-                block1 = :block1,
-                block1_bg = :block1_bg,
-                block1_text = :block1_text". $this->setParam2 . $this->setParam3 . $this->setParam4 . $this->setParam5 . $this->setParam6 . "
-                WHERE
-                id = :id";
-      
 
-                // prepare the query
-                $stmt = $this->conn->prepare($query);
-               
+            $stmt="";
 
-                // bind the values
-                $stmt->bindParam(':layout', $this->layout);      
-                $stmt->bindParam(':block1', $this->block1);       
-                $stmt->bindParam(':block1_bg', $this->block1_bg);       
-                $stmt->bindParam(':block1_text', $this->block1_text);       
-                if($this->setParam2){
-                    $stmt->bindParam(':block2', $this->block2);       
-                    $stmt->bindParam(':block2_bg', $this->block2_bg);       
-                    $stmt->bindParam(':block2_text', $this->block2_text);       
-                }
+            if($this->type=="custom"){
+                $query = "UPDATE
+                        " . $this->table_name . "
+                    SET
+                    layout = :layout,
+                    header = :header,
+                    block1 = :block1,
+                    block1_bg = :block1_bg,
+                    block1_text = :block1_text". $this->setParam2 . $this->setParam3 . $this->setParam4 . $this->setParam5 . $this->setParam6 . "
+                    WHERE
+                    id = :id";
+
+                    // prepare the query
+                    $stmt = $this->conn->prepare($query);
                 
-                if($this->setParam3){
-                    $stmt->bindParam(':block3', $this->block3);       
-                    $stmt->bindParam(':block3_bg', $this->block3_bg);       
-                    $stmt->bindParam(':block3_text', $this->block3_text);       
-                }
-                if($this->setParam4){
-                    $stmt->bindParam(':block4', $this->block4);       
-                    $stmt->bindParam(':block4_bg', $this->block4_bg);       
-                    $stmt->bindParam(':block4_text', $this->block4_text);       
-                }
-                if($this->setParam5){
-                    $stmt->bindParam(':block5', $this->block5);       
-                    $stmt->bindParam(':block5_bg', $this->block5_bg);       
-                    $stmt->bindParam(':block5_text', $this->block5_text);       
-                }
-                if($this->setParam6){
-                    $stmt->bindParam(':block6', $this->block6);       
-                    $stmt->bindParam(':block6_bg', $this->block6_bg);       
-                    $stmt->bindParam(':block6_text', $this->block6_text);       
-                }
-                $stmt->bindParam(':id', $this->id);       
+
+                    // bind the values
+                    $stmt->bindParam(':layout', $this->layout);      
+                    $stmt->bindParam(':header', $this->header);      
+                    $stmt->bindParam(':block1', $this->block1);       
+                    $stmt->bindParam(':block1_bg', $this->block1_bg);       
+                    $stmt->bindParam(':block1_text', $this->block1_text);       
+                    if($this->setParam2){
+                        $stmt->bindParam(':block2', $this->block2);       
+                        $stmt->bindParam(':block2_bg', $this->block2_bg);       
+                        $stmt->bindParam(':block2_text', $this->block2_text);       
+                    }
+                    
+                    if($this->setParam3){
+                        $stmt->bindParam(':block3', $this->block3);       
+                        $stmt->bindParam(':block3_bg', $this->block3_bg);       
+                        $stmt->bindParam(':block3_text', $this->block3_text);       
+                    }
+                    if($this->setParam4){
+                        $stmt->bindParam(':block4', $this->block4);       
+                        $stmt->bindParam(':block4_bg', $this->block4_bg);       
+                        $stmt->bindParam(':block4_text', $this->block4_text);       
+                    }
+                    if($this->setParam5){
+                        $stmt->bindParam(':block5', $this->block5);       
+                        $stmt->bindParam(':block5_bg', $this->block5_bg);       
+                        $stmt->bindParam(':block5_text', $this->block5_text);       
+                    }
+                    if($this->setParam6){
+                        $stmt->bindParam(':block6', $this->block6);       
+                        $stmt->bindParam(':block6_bg', $this->block6_bg);       
+                        $stmt->bindParam(':block6_text', $this->block6_text);       
+                    }
+                    $stmt->bindParam(':id', $this->id);       
+
+            }else if($this->type=="default"){
+
+                $query = "UPDATE
+                " . $this->table_name . "
+                    SET
+                    header = :header
+                    WHERE
+                    id = :id";
+
+                    $stmt = $this->conn->prepare($query);
+                    
+                    $stmt->bindParam(':header', $this->header);      
+                    $stmt->bindParam(':id', $this->id);   
+            }
                
         
             // execute the query, also check if query was successful
@@ -426,6 +450,7 @@ class Page{
         $this->id = $row['id'];
         $this->page_name = $row['page_name'];
         $this->layout = $row['layout'];
+        $this->header = $row['header'];
         $this->img = $row['img'];
         $this->block1 = $row['block1'];
         $this->block1_bg = $row['block1_bg'];
@@ -464,6 +489,7 @@ class Page{
         $this->id = $row['id'];
         $this->page_name = $row['page_name'];
         $this->layout = $row['layout'];
+        $this->header = $row['header'];
         $this->img = $row['img'];
         $this->block1 = $row['block1'];
         $this->block1_bg = $row['block1_bg'];

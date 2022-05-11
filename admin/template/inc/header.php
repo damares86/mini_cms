@@ -151,7 +151,20 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
                 ?>  
                 </header>
                 <?php
-                    require "assets/".$theme."/inc/visual.php";
+                    if($page->header==1){
+                    ?>
+                <div id="banner-wrapper">
+					<div id="banner" class="box container" style="background-image: url(<?=$root?>assets/<?=$theme?>/img/<?=$img?>);">
+						<div class="row">
+							<div class="col-7 col-12-medium">
+								<h2><?=$site_name?></h2>
+								<p><?=$site_description?></p>
+							</div>
+						</div>
+					</div>
+				</div>
+                    <?php
+                    }
                 ?> 
             </div>
             <?php

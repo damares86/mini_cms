@@ -83,14 +83,11 @@ if(filter_input(INPUT_GET,"op")){
 
 if(filter_input(INPUT_POST,"subReg")){
 	$operation=filter_input(INPUT_POST,"operation");
+	
+	$page->type = $_POST['type'];
 
-	$editor = preg_replace('/\s+/', '', $_POST['editor']);
-
-	if($_POST['idToMod']!=2){
-		if(!$_POST['page_name']||empty($editor)){
-			header("Location: ../index.php?man=page&op=show&type=custom&msg=pageEmpty");
-			exit;
-		}
+	if($page->type=="custom"){
+		$editor = preg_replace('/\s+/', '', $_POST['editor']);
 	}
 
 	
@@ -103,6 +100,12 @@ if(filter_input(INPUT_POST,"subReg")){
 		$page->block1=$_POST['editor'];
 		$page->block1_bg=$_POST['block1_bg'];
 		$page->block1_text=$_POST['block1_text'];
+		
+		if(isset($_POST['visualSel'])){
+			$page->header=$_POST['visualSel'];
+		} else {
+			$page->header=0;
+		}
 
 		if($_POST['editor2']){
 			$page->block2=$_POST['editor2'];
@@ -155,7 +158,9 @@ if(filter_input(INPUT_POST,"subReg")){
 			exit;
 		}
 	} else if($operation=="mod"){
+		
 		$page->id=$_POST['idToMod'];
+
 		$page->page_name=$_POST['page_name'];
 		if($_FILES['myfile']['name']){
 			$page->img=$_FILES['myfile']['name'];
@@ -167,7 +172,16 @@ if(filter_input(INPUT_POST,"subReg")){
 			$row1 = $stmt1->fetch(PDO::FETCH_ASSOC);
 			$page->img=$row1['img'];
 		}
-		if($_POST['idToMod']!=2){
+
+		if(isset($_POST['visualSel'])){
+			$page->header=$_POST['visualSel'];
+		} else {
+			$page->header=0;
+		}
+
+
+
+		if($page->type=="custom"){
 			$page->layout=$_POST['layout'];
 			$page->theme=$_POST['theme'];
 			$page->block1=$_POST['editor'];
@@ -202,19 +216,18 @@ if(filter_input(INPUT_POST,"subReg")){
 				$page->block6_text=$_POST['block6_text'];
 			}
 		}
-
 		
 
 		// update the page
 		if($page->update()){
-			header("Location: ../index.php?man=page&op=show&type=custom&msg=pageEditSucc");
+			header("Location: ../index.php?man=page&op=show&type=$page->type&msg=pageEditSucc");
 			exit;
 		
 			// empty posted values
 			// $_POST=array();
 		
 		}else{
-			header("Location: ../index.php?man=page&op=show&type=custom&msg=pageEditErr");
+			header("Location: ../index.php?man=page&op=show&type=$page->type&msg=pageEditErr");
 			exit;
 		}
 
@@ -227,7 +240,7 @@ if(filter_input(INPUT_POST,"subReg")){
 
 
 } else {
-	header("Location: ../index.php?man=page&op=show&type=custom&msg=pageEditErr");
+	header("Location: ../index.php?man=page&op=show&type=$$page->type&msg=pageEditErr");
 	exit;
 }
 
