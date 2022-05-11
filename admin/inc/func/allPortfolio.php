@@ -120,7 +120,7 @@
         // paging buttons
         include_once 'inc/paging.php';
     } else{
-        echo "<div class='alert alert-danger'>Nessun progetto trovato</div>";
+        echo "<div class='alert alert-danger'>$port_noproject</div>";
     }
 
 

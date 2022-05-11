@@ -156,6 +156,8 @@ $port_view = "Mostra";
 $port_link = "Link";
 $port_modal_text = "Se vuoi veramente cancellare questo progetto clicca \"Ok\".";
 $port_cat_title = "Categorie del portfolio";
+$port_noproject = "Nessun progetto presente";
+
 
 
 
@@ -183,6 +185,7 @@ $gall_box_title = "Tutte le gallerie";
 $gall_add = "Aggiungi una nuova galleria";
 $gall_link = "Link";
 $gall_modal_text = "Se vuoi cancellare questa galleria \"Ok\"";
+$gall_nogall = "Nessuna galleria presente";
 
 
 // REG AND EDIT GALLERY

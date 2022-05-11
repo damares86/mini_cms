@@ -158,6 +158,7 @@ $port_view = "View";
 $port_link = "Link";
 $port_modal_text = "If you really want to delete this project click \"Ok\" below";
 $port_cat_title = "Portfolio categories";
+$port_noproject = "No project found";
 
 
 
@@ -186,6 +187,7 @@ $gall_box_title = "All galleries";
 $gall_add = "Add a new gallery";
 $gall_link = "Link";
 $gall_modal_text = "If you want to delete this gallery click \"Ok\" below";
+$gall_nogall = "No galleries found";
 
 
 // REG AND EDIT GALLERY

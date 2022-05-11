@@ -44,7 +44,7 @@
                 return (count(scandir($dir)) == 2);
               }
                 if( !is_dir($dir_gall) || is_dir_empty($dir_gall) ||is_dir_empty(($dir_root)) ){
-                    echo "<div class='col'><div class='alert alert-danger'>No galleries found</div></div>";
+                    echo "<div class='col'><div class='alert alert-danger'>$gall_nogall</div></div>";
                 }else{
             foreach (glob("../misc/gallery/img/*") as $file) {
                 $folder=pathinfo($file, PATHINFO_FILENAME);
