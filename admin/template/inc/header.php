@@ -156,10 +156,16 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
                 <div id="banner-wrapper">
 					<div id="banner" class="box container" style="background-image: url(<?=$root?>assets/<?=$theme?>/img/<?=$img?>);">
 						<div class="row">
+                            <?php
+                            if($use_text==1){
+                            ?>
 							<div class="col-7 col-12-medium">
 								<h2><?=$site_name?></h2>
 								<p><?=$site_description?></p>
 							</div>
+                            <?php
+                            }
+                            ?>
 						</div>
 					</div>
 				</div>

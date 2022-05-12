@@ -38,6 +38,12 @@ if(filter_input(INPUT_POST,"subReg")){
 			exit;
 		}
 
+		if(isset($_POST['use_text'])){
+			$settings->use_text = 1;
+		}else{
+			$settings->use_text = 0;
+		}
+
 		$settings->id=$_POST['id'];
 		$settings->site_name=$_POST['site_name'];
 		$settings->site_description=$_POST['site_description'];

@@ -134,6 +134,7 @@ $db->query("CREATE TABLE settings (
   id int(5) NOT NULL AUTO_INCREMENT PRIMARY KEY,
   site_name VARCHAR(255) NOT NULL,
   site_description VARCHAR(255) NOT NULL,
+  use_text INT (1) DEFAULT '1',
   footer VARCHAR(255) NOT NULL,
   dashboard_language VARCHAR(255) NOT NULL,
   theme VARCHAR(255) NOT NULL)");
