@@ -445,6 +445,20 @@ $log_forgot_wrong = "Link errato";
 $log_forgot_new = "Inserisci la nuova password";
 $log_forgot_exp = "Il tuo link non è più valido";
 
+// RESET MAIL
+
+$reset_output1='<html><body>';
+$reset_output1.='<p>Caro utente,</p>';
+$reset_output1.='<p>Clicca sul link seguente per resettare la tua password.</p>';
+$reset_output1.='<p>-------------------------------------------------------------</p>';
+$reset_output2='<p>-------------------------------------------------------------</p>';
+$reset_output2.='<p>Se non funziona copia l\'intero link e incollalo nella barra del browser.
+Il link sarà valido solo per un\'ora.</p>';
+$reset_output2.='<p>Se non hai richiesto il reset della password non è necessaria nessuna azione.</p>';   	
+$reset_output2.='<p>Grazie,</p>';
+$reset_output2.='<p>Mini CMS</p>';
+$reset_output2.='</body></html>';
+
 
 // CONTACT FORM
 

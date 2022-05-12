@@ -448,6 +448,21 @@ $log_forgot_wrong = "Wrong link";
 $log_forgot_new = "Insert your new password";
 $log_forgot_exp = "Your link is expired";
 
+// RESET MAIL
+
+$reset_output1='<html><body>';
+$reset_output1.='<p>Dear user,</p>';
+$reset_output1.='<p>Please click on the following link to reset your password.</p>';
+$reset_output1.='<p>-------------------------------------------------------------</p>';
+$reset_output2='<p>-------------------------------------------------------------</p>';
+$reset_output2.='<p>Please be sure to copy the entire link into your browser.
+The link will expire after 1 hour for security reason.</p>';
+$reset_output2.='<p>If you did not request this forgotten password email, no action 
+is needed, your password will not be reset. However, you may want to log into 
+your account and change your security password as someone may have guessed it.</p>';   	
+$reset_output2.='<p>Thanks,</p>';
+$reset_output2.='<p>Mini CMS</p>';
+$reset_output2.='</body></html>';
 
 // CONTACT FORM
 

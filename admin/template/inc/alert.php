@@ -1,4 +1,5 @@
 <?php
+	
 
 $msg=filter_input(INPUT_GET,"msg");
 
@@ -15,6 +16,12 @@ if($msg=="errSend"){
         <?=$al_mailResetErr?>
     </div>
 
+    <?php    
+} else if($msg=="sentMail"){
+    ?>
+<div class="alert alert-success" role="alert">
+    <?=$log_forgot_sent?>
+</div>
     <?php    
 } else if($msg=="mailNotReg"){
     ?>

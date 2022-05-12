@@ -87,6 +87,7 @@ require "admin/template/inc/header.php";
 
 							<form method="POST" class="my-login-validation" novalidate="" action="admin/core/<?=$pass?>.php">
 								<input type="hidden" name="resetForm" value="resetForm" />
+								<input type="hidden" name="lang" value="<?=$lang?>" />
 
 								<div class="form-group">
 									<label for="email">Email</label>
@@ -105,18 +106,7 @@ require "admin/template/inc/header.php";
 							</form>
 
 							<?php
-								} else if($op=="sentMail"){
-							?>
-
-								<div class="alert alert-success" role="alert">
-									<?=$log_forgot_sent?>
-								</div>
-
-								<a href="login.php"><-- <?=$log_back?></a>
-
-
-							<?php
-							}else if($op=="reset"){
+								} else if($op=="reset"){
 								$email=filter_input(INPUT_GET, "email");
 								$user->email=$email;
 								$token=filter_input(INPUT_GET, "token");
@@ -130,9 +120,7 @@ require "admin/template/inc/header.php";
 							?>
 
 
-								<div class="alert alert-danger" role="alert">
-									<?=$log_forgot_wrong?>
-								</div>
+							
 								<a href="login.php"><-- <?=$log_back?></a>				
 
 
@@ -182,7 +170,7 @@ require "admin/template/inc/header.php";
 						$query="DELETE FROM `password_reset_temp` WHERE email = '.$email.'";
 						$stmt=$db->prepare($query);	
 						$stmt->execute();
-					}
+					} 
 					?>
 
 

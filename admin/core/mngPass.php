@@ -19,6 +19,8 @@ session_start();
 	include("../class/User.php");
 	include("../class/Contact.php");
 
+	$lang=$_POST['lang'];
+	require "../locale/$lang.php";
 	
 	$database = new Database();
 	$db = $database->getConnection();
@@ -104,20 +106,9 @@ session_start();
 				'Reply-To: '.$from."\r\n" .
 				'X-Mailer: PHP/' . phpversion();
 
-				$output='<html><body>';
-				$output.='<p>Dear user,</p>';
-				$output.='<p>Please click on the following link to reset your password.</p>';
-				$output.='<p>-------------------------------------------------------------</p>';
+				$output=$reset_output1;
 				$output.='<p><a href="'.$url.'/login.php?email='.$email.'&token='.$token.'&op=reset" target="_blank">'.$url.'/login.php?email='.$email.'&token='.$token.'&op=reset</a></p>';		
-				$output.='<p>-------------------------------------------------------------</p>';
-				$output.='<p>Please be sure to copy the entire link into your browser.
-				The link will expire after 1 hour for security reason.</p>';
-				$output.='<p>If you did not request this forgotten password email, no action 
-				is needed, your password will not be reset. However, you may want to log into 
-				your account and change your security password as someone may have guessed it.</p>';   	
-				$output.='<p>Thanks,</p>';
-				$output.='<p>Mini CMS</p>';
-				$output.='</body></html>';
+				$output.=$reset_output2;
 				
 				$to= $email; 
 				$subject="Reset password Mini Cms";
