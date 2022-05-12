@@ -61,6 +61,8 @@ if(filter_input(INPUT_GET,"op")){
 
 	$page->id=$idToCopy;
 
+
+
 	$page->showById();
 
 	$name =$page->page_name;
@@ -68,8 +70,9 @@ if(filter_input(INPUT_GET,"op")){
 	$name = strtolower($name);
 
 	if(copy('../../'.$name.'.php', '../../'.$name.'_copy.php')){
-		// rename('../../master.php','../../'. $str . '.php');
 		chmod('../../'.$name.'_copy.php',0777);
+		$page->copyPage();
+
 		header("Location: ../index.php?man=page&op=show&type=custom&msg=pageCopySucc");
 		exit;
 	 } else {
@@ -237,7 +240,7 @@ if(filter_input(INPUT_POST,"subReg")){
 			exit;
 		}
 
-	}
+	} 
 	
 
 

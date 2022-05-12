@@ -256,6 +256,11 @@ class Page{
                     $stmt2->bindParam(':id', $id);       
 
                     if($stmt2->execute()){
+                        $this->page_name = preg_replace('/\s+/', '_', $this->page_name);			
+                        $this->page_name = strtolower($this->page_name);
+
+                        $this->old_page_name = preg_replace('/\s+/', '_', $this->old_page_name);			
+                        $this->old_page_name = strtolower($this->old_page_name);
                         rename('../../'.$this->old_page_name.'.php','../../'. $this->page_name . '.php');
                         chmod('../../'. $this->page_name . '.php',0777);
                         return true;
@@ -307,6 +312,22 @@ class Page{
                 
         }
     
+    }
+
+    function copyPage(){
+        
+        $this->showById();
+
+        $this->page_name = $this->page_name."_copy";
+
+        if($this->insert()){
+            return true;
+        }else {
+            return false;
+        }
+
+
+	
     }
 
     function uploadPhoto(){
