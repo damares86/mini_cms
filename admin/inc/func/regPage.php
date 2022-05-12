@@ -73,6 +73,8 @@ $stmt = $settings->showSettings();
         <input type="hidden" name="operation" value="<?= $operation ?>" />
                 <?php 
       
+      $notTitleToMod=array("1","2", "3", "4", "5", "6","7");
+
 
                 if($operation=="mod"){ 
                     ?>
@@ -86,14 +88,15 @@ $stmt = $settings->showSettings();
              
                 <div class="controls">
                     <?php
-                  if($operation=="mod"){
+                  if(in_array($idToMod, $notTitleToMod)){
                             ?>
                     <strong><?= $page->page_name ?></strong>
                     <input type="hidden" name="page_name" value="<?= $page->page_name ?>" />
                     <?php
                        } else {
-                    ?>
+                           ?>
 
+                    <input type="hidden" name="old_page_name" value="<?= $page->page_name ?>" />
                     <input type="text" id="page_name" name="page_name" placeholder="<?=$regpage_name?>" value="<?=$page->page_name?>" class="span8">
 
                     <?php
@@ -105,8 +108,6 @@ $stmt = $settings->showSettings();
             
             <br>
             <?php
-                $notToMod=array("2", "3", "4", "5", "6","7");
-
                 if(!in_array($idToMod, $notToMod)){
          
             ?>

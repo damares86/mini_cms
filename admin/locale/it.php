@@ -13,7 +13,6 @@ $txt_modal_title = "Sei sicuro?";
 $txt_modal_logout = "Seleziona \"Logout\" se ti vuoi disconnettere.";
 
 
-
 // SIDEBAR
 
 $side_dash = "Dashboard";

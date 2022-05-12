@@ -15,6 +15,7 @@ class Page{
     public $type;
     public $theme;
     public $id;
+    public $old_page_name;
     public $page_name;
     public $layout;
     public $header;
@@ -175,6 +176,7 @@ class Page{
                 $query = "UPDATE
                         " . $this->table_name . "
                     SET
+                    page_name = :page_name,
                     layout = :layout,
                     header = :header,
                     block1 = :block1,
@@ -188,6 +190,7 @@ class Page{
                 
 
                     // bind the values
+                    $stmt->bindParam(':page_name', $this->page_name);      
                     $stmt->bindParam(':layout', $this->layout);      
                     $stmt->bindParam(':header', $this->header);      
                     $stmt->bindParam(':block1', $this->block1);       
@@ -235,10 +238,34 @@ class Page{
                     $stmt->bindParam(':header', $this->header);      
                     $stmt->bindParam(':id', $this->id);   
             }
-               
-        
+
+
             // execute the query, also check if query was successful
             if($stmt->execute()){
+                
+                if($this->old_page_name != $this->page_name){
+                    $query2 = "UPDATE menu SET 
+                    pagename = :page_name
+                    WHERE
+                    id = :id";
+
+                    $id= $this->id-1;
+                    
+                    $stmt2 = $this->conn->prepare($query2);
+                    $stmt2->bindParam(':page_name', $this->page_name);       
+                    $stmt2->bindParam(':id', $id);       
+
+                    if($stmt2->execute()){
+                        rename('../../'.$this->old_page_name.'.php','../../'. $this->page_name . '.php');
+                        chmod('../../'. $this->page_name . '.php',0777);
+                        return true;
+                    }else{
+                        return false;
+                    }
+                    
+                }
+
+
                 $query1="SELECT * FROM ".$this->table_name." WHERE page_name = :page_name LIMIT 0,1";
                 $stmt1 = $this->conn->prepare($query1);
                 $stmt1->bindParam(':page_name', $this->page_name);       

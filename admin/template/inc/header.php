@@ -107,7 +107,7 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
         <link rel="icon" href="assets/<?= $theme ?>/img/favicon.ico">
         <?php
           
-            if($page_class=="index"||$page_class=="blog"||$page_class=="contact"){
+            if($page_class=="index"||$page_class=="blog"||$page->class=="contact"){
                 $page->page_name=$page_class;
             }else{
                 $page->page_name=$page_name;

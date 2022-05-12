@@ -53,11 +53,12 @@ if($man=="settings"){
 
             <div class="control-group">
                 <label class="control-label" for="site_name"><?=$site_sitename?></label>
-             
-
+                <div class="controls">
                     <input type="text" id="site_name" name="site_name" placeholder="<?=$site_sitename?>" class="span12" value="<?= $site_name ?>">
-              
-                            <label class="control-label" for="site_description"><?=$site_sitedescription ?></label>
+                </div>
+            </div>
+            <div class="control-group">
+                 <label class="control-label" for="site_description"><?=$site_sitedescription ?></label>
                 <div class="controls">
 
                     <input type="text" id="site_description" name="site_description" placeholder="<?=$site_sitedescription ?>" class="span8" value="<?= $site_description ?>">

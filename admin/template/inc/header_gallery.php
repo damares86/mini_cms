@@ -72,11 +72,13 @@ $page_name=str_replace("_"," ", $page_name);
 $page_name=ucfirst($page_name);
 $root="../../";
 
+$lang="";
 
 while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
     
     extract($row);
     $theme=$row['theme'];
+    $lang=$row['dashboard_language'];
     
     ?>
 

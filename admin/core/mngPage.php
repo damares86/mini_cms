@@ -182,6 +182,12 @@ if(filter_input(INPUT_POST,"subReg")){
 
 
 		if($page->type=="custom" || $page->id==1){
+
+			if($page->id!=1){
+				$page->old_page_name = $_POST['old_page_name'];
+			}
+			
+			$page->page_name = $_POST['page_name'];				
 			$page->layout=$_POST['layout'];
 			$page->theme=$_POST['theme'];
 			$page->block1=$_POST['editor'];
