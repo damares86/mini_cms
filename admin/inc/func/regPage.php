@@ -16,8 +16,30 @@ if(filter_input(INPUT_GET,"idToMod")){
 $settings = new Settings ($db);
 $stmt = $settings->showSettings();
 
-
+    function is_dir_empty($dir) {
+           if (!is_readable($dir)) return null; 
+             return (count(scandir($dir)) == 2);
+        }
 ?>
+
+<style>
+    .box{
+        display: none;
+    }
+
+</style>
+
+<!-- hyde/show boxes -->
+    <script>
+        $(document).ready(function(){
+            $('input[type="radio"]').click(function(){
+                var inputValue = $(this).attr("value");
+                var targetBox = $("." + inputValue);
+                $(".box").not(targetBox).hide();
+                $(targetBox).show();
+            });
+        });
+    </script>
 
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
                         <h1 class="h3 mb-0 text-gray-800"><?=$titoloForm?></h1>
@@ -77,32 +99,32 @@ $stmt = $settings->showSettings();
       $notToModLayout=array("2", "3", "4", "5", "6","7");
 
 
-                if($operation=="mod"){ 
-                    ?>
+      if($operation=="mod"){ 
+          ?>
                     <input type="hidden" name="idToMod" value="<?= $idToMod ?>" />
-                    <input type="hidden" name="type" value="<?= $type ?>" />
                     <?php 
                 } 
                 
                 ?>
             <div class="control-group">
-             
+                
                 <div class="controls">
                     <?php
                   if(in_array($idToMod, $notToMod)){
-                            ?>
+                      ?>
                     <strong><?= $page->page_name ?></strong>
                     <input type="hidden" name="page_name" value="<?= $page->page_name ?>" />
                     <?php
                        } else {
                            ?>
 
-                    <input type="hidden" name="old_page_name" value="<?= $page->page_name ?>" />
-                    <input type="text" id="page_name" name="page_name" placeholder="<?=$regpage_name?>" value="<?=$page->page_name?>" class="span8">
+<input type="hidden" name="old_page_name" value="<?= $page->page_name ?>" />
+<input type="text" id="page_name" name="page_name" placeholder="<?=$regpage_name?>" value="<?=$page->page_name?>" class="span8">
 
-                    <?php
+<?php
                        }
-                    ?>
+                       ?>
+                       <input type="hidden" name="type" value="<?= $type ?>" />
                      
                 </div>
             </div>
@@ -195,6 +217,7 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
             <?php
 }
 
+
 ?>
 <br>
 <input type="hidden" name="theme" value="<?= $page_theme ?>" />
@@ -202,9 +225,30 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
             <?php   
                 if(!in_array($idToMod, $notToModLayout)){
             ?>
-            <h3><?=$regpage_block?> 1</h3>
+            <h3><?=$regpage_block?> 1</h3><br>
+            <?php
+            // $checked_t1="checked";
+            // $checked_g1="";
+            // $checked_b1="";
+                
+            // if($page->block1_type=="t"){
+            //     $checked_t1="checked";     
+            // } else if($page->block1_type=="b"){
+            //     $checked_b1="checked";     
+            // } else if($page->block1_type=="n"){
+            //     $checked_n1 = "checked";
+            // }
 
-            <textarea id="summernote" name="editor" rows="10">   <?=$page->block1?></textarea>
+        ?>
+        <!-- radio button -->
+        <!-- <label><input type="radio" name="block1[]" value="t1" <?=$checked_t1?>> Text block</label>
+        <label><input type="radio" name="block1[]" value="g1" <?=$checked_g1?>> Gallery</label>
+        <label><input type="radio" name="block1[]" value="b1" <?=$checked_b1?>> Last posts</label>
+        <br><br>-->
+
+    <!-- TEXT BOX -->
+    <!--<div class="t1 box"> -->
+            <textarea id="summernote" name="editor1" rows="10">   <?=$page->block1?></textarea>
             <br>
             <div class="control-group">
             <label for="block1_bg"><?=$regpage_background?></label>
@@ -264,32 +308,143 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
             </select>
             </div>
 
-            <br>
-                 <!-- <input type="submit" class="btn btn-primary" name="subReg" value="Submit">
-        </form> -->
+         <!-- GALLERY BOX -->
+         <!-- <div class="g1 box p-3" style="background-color:#f8f9fc"> 
+            Choose an existing gallery -->
 
+            <?php
+        //     $dir_gall="../misc/gallery/img/";
+        //     $dir_root="../misc/gallery/";
+        
+        //         if( !is_dir($dir_gall) || is_dir_empty($dir_gall) ||is_dir_empty(($dir_root)) ){
+        //             echo "<div class='col'><div class='alert alert-danger'>$gall_nogall</div></div>";
+        //         }else{
+        //             ?>
+                    <!-- <select name="block1_gall"> -->
+                        <?php
+        //                 echo "<option value='none'>none</option>";
+
+        //     foreach (glob("../misc/gallery/img/*") as $file) {
+        //         $folder=pathinfo($file, PATHINFO_FILENAME);
+        //         $gallery= str_replace("_"," ", $folder);
+        //         $gallery=ucfirst($gallery);
+                
+        //         $images= scandir ($file);
+        //         $firstFile = $file ."/". $images[2];// because [0] = "." [1] = ".." 
+
+        //         $selected ="";
+        //         if($page->block1_type==$folder){
+        //             $selected="selected";
+        //         }
+        //         echo "<option value'$folder' $selected>$folder</option>";
+        //     ?>
+
+         <?php
+        //     }
+        // }
+        
+        // ?>
+        <!-- </select>
+        </div> -->
+              
+        <!-- BLOG BOX -->
+        <!-- <div class="b1 box p-3" style="background-color:#f8f9fc">
+             Shows the last three posts from the blog
+        </div> -->
+    <!-- END BLOCK 2 -->
+
+            <br>
             <hr>
             
-        <!-- Editor for block 2 -->
-        <!-- <form class="form-horizontal row-fluid" action="core/mngPage.php" method="post"> -->
-            <input type="hidden" name="operation" value="<?= $operation ?>" />
-                <?php       
+<!-- BLOCK 2 -->
+            <br>
+        <?php
+            $checked_n2="checked";
+            $checked_t2="";
+            $checked_g2="";
+            $checked_b2="";
 
-                if($operation=="mod"){ 
-                    ?>
-                    <input type="hidden" name="idToMod" value="<?= $idToMod ?>" />
-                <?php 
-                } 
+            $type_arr = array("t","b","n");
+                
+            if($page->block2_type=="t"){
+                $checked_t2="checked";                
+                $checked_n2="";
+            } else if($page->block2_type=="b"){
+                $checked_b2="checked";                
+                $checked_n2="";
+            } else if($page->block2_type=="n"){
+                $checked_n2 = "checked";
+            }else if($operation=="mod"&&!in_array($page->block2_type,$type_arr)){
+                $checked_g2 = "checked";
+                $checked_n2 = "";
+            }
 
         ?>
-            
-            <br>
-            <h3><?=$regpage_block?> 2</h3>
+        <h3><?=$regpage_block?> 2</h3><br>
+        <!-- radio button -->
+        <label><input type="radio" name="block2[]" value="n2" <?=$checked_n2?>> None</label>
+        <label><input type="radio" name="block2[]" value="t2" <?=$checked_t2?>> Text block</label>
+        <label><input type="radio" name="block2[]" value="g2" <?=$checked_g2?>> Gallery</label>
+        <label><input type="radio" name="block2[]" value="b2" <?=$checked_b2?>> Last posts</label>
+        <br><br>
+        
+        <!-- EMPTY BOX -->
+        <div class="n2 box">&nbsp;</div>
+
+        <!-- TEXT BOX -->
+        <div class="t2 box">
             <textarea id="summernote2" name="editor2" rows="10" class="summernote position-absolute">   <?=$page->block2?></textarea>
 
             <br>
 
-            <div class="control-group">
+
+        </div>
+
+         <!-- GALLERY BOX -->
+         <div class="g2 box p-3" style="background-color:#f8f9fc"> 
+            Choose an existing gallery
+
+            <?php
+            $dir_gall="../misc/gallery/img/";
+            $dir_root="../misc/gallery/";
+                if( !is_dir($dir_gall) || is_dir_empty($dir_gall) ||is_dir_empty(($dir_root)) ){
+                    echo "<div class='col'><div class='alert alert-danger'>$gall_nogall</div></div>";
+                }else{
+                    ?>
+                    <select name="block2_gall">
+                        <?php
+                        echo "<option value='none'>none</option>";
+
+            foreach (glob("../misc/gallery/img/*") as $file) {
+                $folder=pathinfo($file, PATHINFO_FILENAME);
+                $gallery= str_replace("_"," ", $folder);
+                $gallery=ucfirst($gallery);
+                
+                $images= scandir ($file);
+                $firstFile = $file ."/". $images[2];// because [0] = "." [1] = ".." 
+
+                $selected ="";
+                if($page->block2_type==$folder){
+                    $selected="selected";
+                }
+                echo "<option value'$folder' $selected>$gallery</option>";
+            ?>
+
+        <?php
+            }
+        }
+        
+        ?>
+        </select>
+        </div>
+              
+        <!-- BLOG BOX -->
+        <div class="b2 box p-3" style="background-color:#f8f9fc">
+             Shows the last three posts from the blog
+        </div>
+    <!-- END BLOCK 2 -->
+    <br>
+    <div class="control-group">
             <label for="block2_bg"><?=$regpage_background?></label>
             <?php
                 $color = new Colors($db);
@@ -346,28 +501,97 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
                 ?>
             </select>
             </div>
-                 <!-- <input type="submit" class="btn btn-primary" name="subReg" value="Submit">
-        </form> -->
+<hr>
 
-        <!-- Editor for block 3 -->
-        <!-- <form class="form-horizontal row-fluid" action="core/mngPage.php" method="post"> -->
-            <input type="hidden" name="operation" value="<?= $operation ?>" />
-                <?php       
+<!-- BLOCK 3 -->
+<br>
+        <?php
+            $checked_n3="checked";
+            $checked_t3="";
+            $checked_g3="";
+            $checked_b3="";
 
-                if($operation=="mod"){ 
-                    ?>
-                    <input type="hidden" name="idToMod" value="<?= $idToMod ?>" />
-                <?php 
-                } 
+            $type_arr = array("t","b","n");
+                
+            if($page->block3_type=="t"){
+                $checked_t3="checked";                
+                $checked_n3="";
+            } else if($page->block3_type=="b"){
+                $checked_b3="checked";                
+                $checked_n3="";
+            } else if($page->block3_type=="n"){
+                $checked_n3 = "checked";
+            }else if($operation=="mod"&&!in_array($page->block3_type,$type_arr)){
+                $checked_g3 = "checked";
+                $checked_n3 = "";
+            }
 
         ?>
-            
+        <h3><?=$regpage_block?> 3</h3><br>
+        <!-- radio button -->
+        <label><input type="radio" name="block3[]" value="n3" <?=$checked_n3?>> None</label>
+        <label><input type="radio" name="block3[]" value="t3" <?=$checked_t3?>> Text block</label>
+        <label><input type="radio" name="block3[]" value="g3" <?=$checked_g3?>> Gallery</label>
+        <label><input type="radio" name="block3[]" value="b3" <?=$checked_b3?>> Last posts</label>
+        <br><br>
+        
+        <!-- EMPTY BOX -->
+        <div class="n3 box">&nbsp;</div>
+
+        <!-- TEXT BOX -->
+        <div class="t3 box">
+
             <br>
-            <h3><?=$regpage_block?> 3</h3>
             <textarea id="summernote3" name="editor3" rows="10">   <?=$page->block3?></textarea>
 
             <br>
-            <div class="control-group">
+           
+        </div>
+
+         <!-- GALLERY BOX -->
+         <div class="g3 box p-3" style="background-color:#f8f9fc"> 
+            Choose an existing gallery
+
+            <?php
+            $dir_gall="../misc/gallery/img/";
+            $dir_root="../misc/gallery/";
+                if( !is_dir($dir_gall) || is_dir_empty($dir_gall) ||is_dir_empty(($dir_root)) ){
+                    echo "<div class='col'><div class='alert alert-danger'>$gall_nogall</div></div>";
+                }else{
+                    ?>
+                    <select name="block3_gall">
+                        <?php
+                        echo "<option value='none'>none</option>";
+
+            foreach (glob("../misc/gallery/img/*") as $file) {
+                $folder=pathinfo($file, PATHINFO_FILENAME);
+                $gallery= str_replace("_"," ", $folder);
+                $gallery=ucfirst($gallery);
+                
+                $images= scandir ($file);
+                $firstFile = $file ."/". $images[2];// because [0] = "." [1] = ".." 
+
+                $selected ="";
+                if($page->block3_type==$folder){
+                    $selected="selected";
+                }
+                echo "<option value'$folder' $selected>$gallery</option>";
+            ?>
+
+        <?php
+            }
+        }
+        
+        ?>
+        </select>
+        </div>
+              
+        <!-- BLOG BOX -->
+        <div class="b3 box p-3" style="background-color:#f8f9fc">
+             Shows the last three posts from the blog
+        </div>
+        <br>
+        <div class="control-group">
             <label for="block3_bg"><?=$regpage_background?></label>
             <?php
                 $color = new Colors($db);
@@ -424,27 +648,100 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
                 ?>
             </select>
             </div>
-                 <!-- <input type="submit" class="btn btn-primary" name="subReg" value="Submit">
-        </form> -->
+    <!-- END BLOCK 3 -->
 
-        <!-- Editor for block 4 -->
-        <!-- <form class="form-horizontal row-fluid" action="core/mngPage.php" method="post"> -->
-            <input type="hidden" name="operation" value="<?= $operation ?>" />
-                <?php       
+<hr>
 
-                if($operation=="mod"){ 
-                    ?>
-                    <input type="hidden" name="idToMod" value="<?= $idToMod ?>" />
-                <?php 
-                } 
+<!-- BLOCK 4 -->
+<br>
+        <?php
+            $checked_n4="checked";
+            $checked_t4="";
+            $checked_g4="";
+            $checked_b4="";
+
+            $type_arr = array("t","b","n");
+                
+            if($page->block4_type=="t"){
+                $checked_t4="checked";                
+                $checked_n4="";
+            } else if($page->block4_type=="b"){
+                $checked_b4="checked";                
+                $checked_n4="";
+            } else if($page->block4_type=="n"){
+                $checked_n4 = "checked";
+            }else if($operation=="mod"&&!in_array($page->block4_type,$type_arr)){
+                $checked_g4 = "checked";
+                $checked_n4 = "";
+            }
 
         ?>
+        <h3><?=$regpage_block?> 4</h3><br>
+        <!-- radio button -->
+        <label><input type="radio" name="block4[]" value="n4" <?=$checked_n4?>> None</label>
+        <label><input type="radio" name="block4[]" value="t4" <?=$checked_t4?>> Text block</label>
+        <label><input type="radio" name="block4[]" value="g4" <?=$checked_g4?>> Gallery</label>
+        <label><input type="radio" name="block4[]" value="b4" <?=$checked_b4?>> Last posts</label>
+        <br><br>
+        
+        <!-- EMPTY BOX -->
+        <div class="n4 box">&nbsp;</div>
+
+        <!-- TEXT BOX -->
+        <div class="t4 box">
+
             <br>
-            <h3><?=$regpage_block?> 4</h3>
             <textarea id="summernote4" name="editor4" rows="10">   <?=$page->block4?></textarea>
 
             <br>
-            <div class="control-group">
+
+        </div>
+
+           <!-- GALLERY BOX -->
+           <div class="g4 box p-3" style="background-color:#f8f9fc"> 
+            Choose an existing gallery
+
+            <?php
+            $dir_gall="../misc/gallery/img/";
+            $dir_root="../misc/gallery/";
+                if( !is_dir($dir_gall) || is_dir_empty($dir_gall) ||is_dir_empty(($dir_root)) ){
+                    echo "<div class='col'><div class='alert alert-danger'>$gall_nogall</div></div>";
+                }else{
+                    ?>
+                    <select name="block4_gall">
+                        <?php
+                        echo "<option value='none'>none</option>";
+
+            foreach (glob("../misc/gallery/img/*") as $file) {
+                $folder=pathinfo($file, PATHINFO_FILENAME);
+                $gallery= str_replace("_"," ", $folder);
+                $gallery=ucfirst($gallery);
+                
+                $images= scandir ($file);
+                $firstFile = $file ."/". $images[2];// because [0] = "." [1] = ".." 
+
+                $selected ="";
+                if($page->block4_type==$folder){
+                    $selected="selected";
+                }
+                echo "<option value'$folder' $selected>$gallery</option>";
+            ?>
+
+        <?php
+            }
+        }
+        
+        ?>
+        </select>
+        </div>
+              
+        <!-- BLOG BOX -->
+        <div class="b4 box p-3" style="background-color:#f8f9fc">
+             Shows the last three posts from the blog
+        </div>
+
+        <br>
+        <div class="control-group">
             <label for="block4_bg"><?=$regpage_background?></label>
             <?php
                 $color = new Colors($db);
@@ -501,25 +798,101 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
                 ?>
             </select>
             </div>
+    <!-- END BLOCK 4 -->
 
-               <!-- Editor for block 5 -->
-        <!-- <form class="form-horizontal row-fluid" action="core/mngPage.php" method="post"> -->
-        <input type="hidden" name="operation" value="<?= $operation ?>" />
-                <?php       
+<hr>
 
-                if($operation=="mod"){ 
-                    ?>
-                    <input type="hidden" name="idToMod" value="<?= $idToMod ?>" />
-                <?php 
-                } 
+<!-- BLOCK 5 -->
+<br>
+        <?php
+            $checked_n5="checked";
+            $checked_t5="";
+            $checked_g5="";
+            $checked_b5="";
+
+            $type_arr = array("t","b","n");
+                
+            if($page->block5_type=="t"){
+                $checked_t5="checked";                
+                $checked_n5="";
+            } else if($page->block5_type=="b"){
+                $checked_b5="checked";                
+                $checked_n5="";
+            } else if($page->block5_type=="n"){
+                $checked_n5 = "checked";
+            }else if($operation=="mod"&&!in_array($page->block5_type,$type_arr)){
+                $checked_g5 = "checked";
+                $checked_n5 = "";
+            }
 
         ?>
+        <h3><?=$regpage_block?> 5</h3><br>
+        <!-- radio button -->
+        <label><input type="radio" name="block5[]" value="n5" <?=$checked_n5?>> None</label>
+        <label><input type="radio" name="block5[]" value="t5" <?=$checked_t5?>> Text block</label>
+        <label><input type="radio" name="block5[]" value="g5" <?=$checked_g5?>> Gallery</label>
+        <label><input type="radio" name="block5[]" value="b5" <?=$checked_b5?>> Last posts</label>
+        <br><br>
+        
+        <!-- EMPTY BOX -->
+        <div class="n5 box">&nbsp;</div>
+
+        <!-- TEXT BOX -->
+        <div class="t5 box">
+
             <br>
-            <h3><?=$regpage_block?> 5</h3>
+
             <textarea id="summernote5" name="editor5" rows="10">   <?=$page->block5?></textarea>
 
             <br>
-            <div class="control-group">
+    
+        </div>
+
+           <!-- GALLERY BOX -->
+           <div class="g5 box p-3" style="background-color:#f8f9fc"> 
+            Choose an existing gallery
+
+            <?php
+            $dir_gall="../misc/gallery/img/";
+            $dir_root="../misc/gallery/";
+                if( !is_dir($dir_gall) || is_dir_empty($dir_gall) ||is_dir_empty(($dir_root)) ){
+                    echo "<div class='col'><div class='alert alert-danger'>$gall_nogall</div></div>";
+                }else{
+                    ?>
+                    <select name="block5_gall">
+                        <?php
+                        echo "<option value='none'>none</option>";
+
+            foreach (glob("../misc/gallery/img/*") as $file) {
+                $folder=pathinfo($file, PATHINFO_FILENAME);
+                $gallery= str_replace("_"," ", $folder);
+                $gallery=ucfirst($gallery);
+                
+                $images= scandir ($file);
+                $firstFile = $file ."/". $images[2];// because [0] = "." [1] = ".." 
+
+                $selected ="";
+                if($page->block5_type==$folder){
+                    $selected="selected";
+                }
+                echo "<option value'$folder' $selected>$gallery</option>";
+            ?>
+
+        <?php
+            }
+        }
+        
+        ?>
+        </select>
+        </div>
+              
+        <!-- BLOG BOX -->
+        <div class="b5 box p-3" style="background-color:#f8f9fc">
+             Shows the last three posts from the blog
+        </div>
+
+        <br>
+        <div class="control-group">
             <label for="block5_bg"><?=$regpage_background?></label>
             <?php
                 $color = new Colors($db);
@@ -576,25 +949,101 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
                 ?>
             </select>
             </div>
+    <!-- END BLOCK 5 -->
 
-               <!-- Editor for block 6 -->
-        <!-- <form class="form-horizontal row-fluid" action="core/mngPage.php" method="post"> -->
-        <input type="hidden" name="operation" value="<?= $operation ?>" />
-                <?php       
+<hr>
 
-                if($operation=="mod"){ 
-                    ?>
-                    <input type="hidden" name="idToMod" value="<?= $idToMod ?>" />
-                <?php 
-                } 
+<!-- BLOCK 6 -->
+<br>
+        <?php
+            $checked_n6="checked";
+            $checked_t6="";
+            $checked_g6="";
+            $checked_b6="";
+
+            $type_arr = array("t","b","n");
+                
+            if($page->block6_type=="t"){
+                $checked_t6="checked";                
+                $checked_n6="";
+            } else if($page->block6_type=="b"){
+                $checked_b6="checked";                
+                $checked_n6="";
+            } else if($page->block6_type=="n"){
+                $checked_n6 = "checked";
+            }else if($operation=="mod"&&!in_array($page->block6_type,$type_arr)){
+                $checked_g6 = "checked";
+                $checked_n6 = "";
+            }
 
         ?>
+        <h3><?=$regpage_block?> 6</h3><br>
+        <!-- radio button -->
+        <label><input type="radio" name="block6[]" value="n6" <?=$checked_n6?>> None</label>
+        <label><input type="radio" name="block6[]" value="t6" <?=$checked_t6?>> Text block</label>
+        <label><input type="radio" name="block6[]" value="g6" <?=$checked_g6?>> Gallery</label>
+        <label><input type="radio" name="block6[]" value="b6" <?=$checked_b6?>> Last posts</label>
+        <br><br>
+        
+        <!-- EMPTY BOX -->
+        <div class="n6 box">&nbsp;</div>
+
+        <!-- TEXT BOX -->
+        <div class="t6 box">
+
             <br>
-            <h3><?=$regpage_block?> 6</h3>
+
             <textarea id="summernote6" name="editor6" rows="10">   <?=$page->block6?></textarea>
 
             <br>
-            <div class="control-group">
+
+        </div>
+
+    <!-- GALLERY BOX -->
+    <div class="g6 box p-3" style="background-color:#f8f9fc"> 
+            Choose an existing gallery
+
+            <?php
+            $dir_gall="../misc/gallery/img/";
+            $dir_root="../misc/gallery/";
+                if( !is_dir($dir_gall) || is_dir_empty($dir_gall) ||is_dir_empty(($dir_root)) ){
+                    echo "<div class='col'><div class='alert alert-danger'>$gall_nogall</div></div>";
+                }else{
+                    ?>
+                    <select name="block6_gall">
+                        <?php
+                        echo "<option value='none'>none</option>";
+
+            foreach (glob("../misc/gallery/img/*") as $file) {
+                $folder=pathinfo($file, PATHINFO_FILENAME);
+                $gallery= str_replace("_"," ", $folder);
+                $gallery=ucfirst($gallery);
+                
+                $images= scandir ($file);
+                $firstFile = $file ."/". $images[2];// because [0] = "." [1] = ".." 
+
+                $selected ="";
+                if($page->block6_type==$folder){
+                    $selected="selected";
+                }
+                echo "<option value'$folder' $selected>$gallery</option>";
+            ?>
+
+        <?php
+            }
+        }
+        
+        ?>
+        </select>
+        </div>
+              
+        <!-- BLOG BOX -->
+        <div class="b6 box p-3" style="background-color:#f8f9fc">
+             Shows the last three posts from the blog
+        </div>
+
+        <br>
+        <div class="control-group">
             <label for="block6_bg"><?=$regpage_background?></label>
             <?php
                 $color = new Colors($db);
@@ -651,6 +1100,10 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
                 ?>
             </select>
             </div>
+    <!-- END BLOCK 6 -->
+
+<hr>
+
             <?php
                 }
             ?>
