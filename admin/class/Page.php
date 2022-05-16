@@ -249,13 +249,16 @@ class Page{
                     WHERE
                     id = :id";
 
-                    $id= $this->id-1;
+
+                    $id= $this->id-2;
                     
                     $stmt2 = $this->conn->prepare($query2);
                     $stmt2->bindParam(':page_name', $this->page_name);       
                     $stmt2->bindParam(':id', $id);       
 
+
                     if($stmt2->execute()){
+
                         $this->page_name = preg_replace('/\s+/', '_', $this->page_name);			
                         $this->page_name = strtolower($this->page_name);
 
@@ -263,7 +266,6 @@ class Page{
                         $this->old_page_name = strtolower($this->old_page_name);
                         rename('../../'.$this->old_page_name.'.php','../../'. $this->page_name . '.php');
                         chmod('../../'. $this->page_name . '.php',0777);
-                        return true;
                     }else{
                         return false;
                     }
