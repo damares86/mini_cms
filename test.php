@@ -19,24 +19,32 @@ require "admin/template/inc/header.php";
                     </div>
                     <?php 
                          if($page->block2_type!="n"){
+                             ?>
+                             <div class="block block2 <?=$page_class?>" style="background-color:<?=$page->block2_bg?> !important; color:<?=$page->block2_text?> !important;">
+                             <?php
                              if($page->block2_type=="t"){
                          ?>
-                         <div class="block block2 <?=$page_class?>" style="background-color:<?=$page->block2_bg?> !important; color:<?=$page->block2_text?> !important;">
                          <?php
                              echo $page->block2;
                              ?>  
-                         </div>
                          <?php
                              }else if($page->block2_type=="b"){
                                  $stmt1=$post->showLastPosts();
-                                 echo "<ul>";
+           
                                  while ($row = $stmt1->fetch(PDO::FETCH_ASSOC)){
         
                                     extract($row);
                                     ?>
-                                    <li><b><?=$title?></b><br>
-                                        <?= $modified?>
-                                    </li>
+                                    <div class="row m-1">
+                                        <div class="col-12 col-md-5 img_blog">
+                                            <img src="uploads/img/<?=$main_img?>">
+                                        </div>
+                                        <div class="col-12 col-md-7">
+                                        <b><?=$title?></b><br>
+                                        <a href="post.php?id=<?=$id?>&title=<?=$post_title?>"><?=$blog_continue?> -></a>
+                                        </div>
+                                    </div>
+                               
                                     
                                     <?php
                                  }
@@ -79,7 +87,11 @@ require "admin/template/inc/header.php";
                                         </div>
                             <?php
                              }
+                             ?>
+                             </div>
+                             <?php
                          }
+
                     if($page->block3){
                     ?> 
                     <div class="block block3 <?=$page_class?>" style="background-color:<?=$page->block3_bg?> !important; color:<?=$page->block3_text?> !important;">

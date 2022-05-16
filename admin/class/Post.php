@@ -8,6 +8,7 @@ class Post{
 
     public $id;
     public $main_img;
+    public $new_img;
     public $title;
     public $summary;
     public $content;
@@ -94,6 +95,14 @@ class Post{
       
         // execute the query, also check if query was successful
         if($stmt->execute()){
+            if($this->new_img==1){
+                if($this->uploadPhoto()){
+                    return true;
+                }else{
+                    return false;
+                }
+            }
+
             return true;
 
         }else{
@@ -193,6 +202,21 @@ class Post{
                     id
                     LIMIT
                     {$from_record_num}, {$records_per_page}";  
+  
+        $stmt = $this->conn->prepare( $query );
+        $stmt->execute();
+  
+        return $stmt;
+    }
+
+    function showAllList(){
+        //select all data
+        $query = "SELECT
+                    *
+                FROM
+                    " . $this->table_name . "
+                ORDER BY
+                    id ASC";  
   
         $stmt = $this->conn->prepare( $query );
         $stmt->execute();

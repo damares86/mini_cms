@@ -51,7 +51,7 @@ $url = get_page_url();
             </div>
             <?=$post->content?>
             
-            <br>
+            <br><br>
             <div class="border p-3">
                 <?=$blog_share?>: &nbsp;
                 
