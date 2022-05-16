@@ -44,6 +44,11 @@ $url = get_page_url();
         <p class="metainfo"><?=$blog_category?>: <b><a href="blog.php?cat=<?=$category_id?>"><?=$category_name?></a></b></p>
         <p class="metainfo"><?=$blog_mod?>: <?=$post->modified?></p>
         <div class="blog_content">
+            <div class="row">
+                <div class="col px-5">
+                    <img src="uploads/img/<?=$post->main_img?>" class="w-100"><br>
+                </div>
+            </div>
             <?=$post->content?>
             
             <br>

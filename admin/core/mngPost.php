@@ -66,7 +66,13 @@ if(filter_input(INPUT_POST,"subReg")){
 
 
 	if($operation=="add"){
+		if (!isset($_FILES['myfile'])){
+			header("Location: ../index.php?man=post&op=show&msg=fileEmpty");
+			exit;
+		}
+
 		//inserimento
+		$post->main_img=$_FILES['myfile']['name'];
 		$post->title=$_POST['title'];
 		$post->summary=$_POST['editor'];
 		$post->content=$_POST['editor2'];

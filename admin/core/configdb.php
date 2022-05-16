@@ -123,6 +123,7 @@ $db->query("INSERT INTO roles
 
 $db->query("CREATE TABLE post (
   id int(5) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  main_img VARCHAR(255) NOT NULL,
   title VARCHAR(255) NOT NULL,
   summary text COLLATE utf8_unicode_ci NOT NULL,
   content text COLLATE utf8_unicode_ci NOT NULL,
