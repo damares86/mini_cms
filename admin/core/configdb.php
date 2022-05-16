@@ -154,27 +154,27 @@ $db->query("CREATE TABLE IF NOT EXISTS page
                               layout VARCHAR(255) NOT NULL DEFAULT 'default',
                               header INT (1) DEFAULT '1',
                               img VARCHAR(255) NOT NULL DEFAULT 'visual.jpg',
-                              block1_type VARCHAR(255) DEFAULT 'text',
+                              block1_type VARCHAR(255) DEFAULT 't',
                               block1 text COLLATE utf8_unicode_ci NOT NULL,
                               block1_bg VARCHAR(255) DEFAULT 'none',
                               block1_text VARCHAR(255) DEFAULT '#000000',
-                              block2_type VARCHAR(255) NULL,
+                              block2_type VARCHAR(255)  DEFAULT 'n',
                               block2 text COLLATE utf8_unicode_ci NULL,
                               block2_bg VARCHAR(255) DEFAULT 'none',
                               block2_text VARCHAR(255) DEFAULT '#000000',
-                              block3_type VARCHAR(255) NULL,
+                              block3_type VARCHAR(255)  DEFAULT 'n',
                               block3 text COLLATE utf8_unicode_ci NULL,
                               block3_bg VARCHAR(255) DEFAULT 'none',
                               block3_text VARCHAR(255) DEFAULT '#000000',
-                              block4_type VARCHAR(255) NULL,
+                              block4_type VARCHAR(255)  DEFAULT 'n',
                               block4 text COLLATE utf8_unicode_ci NULL,
                               block4_bg VARCHAR(255) DEFAULT 'none',
                               block4_text VARCHAR(255) DEFAULT '#000000',
-                              block5_type VARCHAR(255) NULL,
+                              block5_type VARCHAR(255) DEFAULT 'n',
                               block5 text COLLATE utf8_unicode_ci NULL,
                               block5_bg VARCHAR(255) DEFAULT 'none',
                               block5_text VARCHAR(255) DEFAULT '#000000',
-                              block6_type VARCHAR(255) NULL,
+                              block6_type VARCHAR(255) DEFAULT 'n',
                               block6 text COLLATE utf8_unicode_ci NULL,
                               block6_bg VARCHAR(255) DEFAULT 'none',
                               block6_text VARCHAR(255) DEFAULT '#000000')
@@ -230,37 +230,37 @@ VALUES ('1','Mini Cms', 'Create your own website','Your footer text','en','damar
 
 $db->query("INSERT INTO page 
 (id, page_name, layout, header, img, block1_type, block1, block1_bg, block1_text, block2_type, block2, block2_bg, block2_text, block3_type,block3, block3_bg, block3_text, block4_type,block4, block4_bg, block4_text,  block5_type,block5, block5_bg, block5_text,  block6_type,block6, block6_bg, block6_text) 
-VALUES ('1','index', 'default', '1', 'visual.jpg', '',  '<p>This is your homepage</p>','none','#000000', '', '', 'none','#000000', '',  '', 'none','#000000', '', '', 'none','#000000', '', '', 'none','#000000', '', '', 'none','#000000')
+VALUES ('1','index', 'default', '1', 'visual.jpg', 't',  '<p>This is your homepage</p>','none','#000000', 'n', '', 'none','#000000', 'n',  '', 'none','#000000', 'n', '', 'none','#000000', 'n', '', 'none','#000000', 'n', '', 'none','#000000')
 ");
 
 $db->query("INSERT INTO page 
 (id, page_name, layout, header, img, block1_type, block1, block1_bg, block1_text, block2_type, block2, block2_bg, block2_text, block3_type,block3, block3_bg, block3_text, block4_type,block4, block4_bg, block4_text,  block5_type,block5, block5_bg, block5_text,  block6_type,block6, block6_bg, block6_text) 
-VALUES ('2','Blog', 'default', '1', 'visual.jpg', '',  '','none','#000000', '', '', 'none','#000000', '',  '', 'none','#000000', '', '', 'none','#000000', '', '', 'none','#000000', '', '', 'none','#000000')
+VALUES ('2','Blog', 'default', '1', 'visual.jpg', 't',  '','none','#000000', 'n', '', 'none','#000000', 'n',  '', 'none','#000000', 'n', '', 'none','#000000', 'n', '', 'none','#000000', 'n', '', 'none','#000000')
 ");
 
 $db->query("INSERT INTO page 
 (id, page_name, layout, header, img, block1_type, block1, block1_bg, block1_text, block2_type, block2, block2_bg, block2_text, block3_type,block3, block3_bg, block3_text, block4_type,block4, block4_bg, block4_text,  block5_type,block5, block5_bg, block5_text,  block6_type,block6, block6_bg, block6_text) 
-VALUES ('3','Post', 'default', '1', 'visual.jpg', '',  '','none','#000000', '', '', 'none','#000000', '',  '', 'none','#000000', '', '', 'none','#000000', '', '', 'none','#000000', '', '', 'none','#000000')
+VALUES ('3','Post', 'default', '1', 'visual.jpg', 't',  '','none','#000000', 'n', '', 'none','#000000', 'n',  '', 'none','#000000', 'n', '', 'none','#000000', 'n', '', 'none','#000000', 'n', '', 'none','#000000')
 ");
 
 $db->query("INSERT INTO page 
 (id, page_name, layout, header, img, block1_type, block1, block1_bg, block1_text, block2_type, block2, block2_bg, block2_text, block3_type,block3, block3_bg, block3_text, block4_type,block4, block4_bg, block4_text,  block5_type,block5, block5_bg, block5_text,  block6_type,block6, block6_bg, block6_text) 
-VALUES ('4','Login', 'default', '1', 'visual.jpg', '',  '','none','#000000', '', '', 'none','#000000', '',  '', 'none','#000000', '', '', 'none','#000000', '', '', 'none','#000000', '', '', 'none','#000000')
+VALUES ('4','Login', 'default', '1', 'visual.jpg', 't',  '','none','#000000', 'n', '', 'none','#000000', 'n',  '', 'none','#000000', 'n', '', 'none','#000000', 'n', '', 'none','#000000', 'n', '', 'none','#000000')
 ");
 
 $db->query("INSERT INTO page 
 (id, page_name, layout, header, img, block1_type, block1, block1_bg, block1_text, block2_type, block2, block2_bg, block2_text, block3_type,block3, block3_bg, block3_text, block4_type,block4, block4_bg, block4_text,  block5_type,block5, block5_bg, block5_text,  block6_type,block6, block6_bg, block6_text) 
-VALUES ('5','Contact', 'default', '1', 'visual.jpg', '',  '','none','#000000', '', '', 'none','#000000', '',  '', 'none','#000000', '', '', 'none','#000000', '', '', 'none','#000000', '', '', 'none','#000000')
+VALUES ('5','Contact', 'default', '1', 'visual.jpg', 't',  '','none','#000000', 'n', '', 'none','#000000', 'n',  '', 'none','#000000', 'n', '', 'none','#000000', 'n', '', 'none','#000000', 'n', '', 'none','#000000')
 ");
 
 $db->query("INSERT INTO page 
 (id, page_name, layout, header, img, block1_type, block1, block1_bg, block1_text, block2_type, block2, block2_bg, block2_text, block3_type,block3, block3_bg, block3_text, block4_type,block4, block4_bg, block4_text,  block5_type,block5, block5_bg, block5_text,  block6_type,block6, block6_bg, block6_text) 
-VALUES ('6','Portfolio', 'default', '1', 'visual.jpg', '',  '','none','#000000', '', '', 'none','#000000', '',  '', 'none','#000000', '', '', 'none','#000000', '', '', 'none','#000000', '', '', 'none','#000000')
+VALUES ('6','Portfolio', 'default', '1', 'visual.jpg', 't',  '','none','#000000', 'n', '', 'none','#000000', 'n',  '', 'none','#000000', 'n', '', 'none','#000000', 'n', '', 'none','#000000', 'n', '', 'none','#000000')
 ");
 
 $db->query("INSERT INTO page 
 (id, page_name, layout, header, img, block1_type, block1, block1_bg, block1_text, block2_type, block2, block2_bg, block2_text, block3_type,block3, block3_bg, block3_text, block4_type,block4, block4_bg, block4_text,  block5_type,block5, block5_bg, block5_text,  block6_type,block6, block6_bg, block6_text) 
-VALUES ('7','Gallery', 'default', '1', 'visual.jpg', '',  '','none','#000000', '', '', 'none','#000000', '',  '', 'none','#000000', '', '', 'none','#000000', '', '', 'none','#000000', '', '', 'none','#000000')
+VALUES ('7','Gallery', 'default', '1', 'visual.jpg', 't',  '','none','#000000', 'n', '', 'none','#000000', 'n',  '', 'none','#000000', 'n', '', 'none','#000000', 'n', '', 'none','#000000', 'n', '', 'none','#000000')
 ");
 
 $db->query("INSERT INTO menu 

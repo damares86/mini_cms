@@ -73,7 +73,8 @@ $stmt = $settings->showSettings();
         <input type="hidden" name="operation" value="<?= $operation ?>" />
                 <?php 
       
-      $notTitleToMod=array("1","2", "3", "4", "5", "6","7");
+      $notToMod=array("1","2", "3", "4", "5", "6","7");
+      $notToModLayout=array("2", "3", "4", "5", "6","7");
 
 
                 if($operation=="mod"){ 
@@ -88,7 +89,7 @@ $stmt = $settings->showSettings();
              
                 <div class="controls">
                     <?php
-                  if(in_array($idToMod, $notTitleToMod)){
+                  if(in_array($idToMod, $notToMod)){
                             ?>
                     <strong><?= $page->page_name ?></strong>
                     <input type="hidden" name="page_name" value="<?= $page->page_name ?>" />
@@ -108,7 +109,7 @@ $stmt = $settings->showSettings();
             
             <br>
             <?php
-                if(!in_array($idToMod, $notToMod)){
+                if(!in_array($idToMod, $notToModLayout)){
          
             ?>
             <div class="control-group">
@@ -199,7 +200,7 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
 <input type="hidden" name="theme" value="<?= $page_theme ?>" />
 
             <?php   
-                if(!in_array($idToMod, $notToMod)){
+                if(!in_array($idToMod, $notToModLayout)){
             ?>
             <h3><?=$regpage_block?> 1</h3>
 
