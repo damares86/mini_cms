@@ -22,29 +22,25 @@
             <hr class="sidebar-divider">
 
             <li class="nav-item">
-                <a class="nav-link" href="index.php?man=users&op=edit&idToMod=<?=$user_id?>">
-                    <i class="fas fa-fw fa-user"></i>
-                    <span><?=$side_profile?></span></a>
-            </li>
-            <?php
-            //if($_SESSION['rolename']=="Admin"){
-            ?>
-            <li class="nav-item">
-                <a class="nav-link" href="index.php?man=users&op=show">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseZero"
+                    aria-expanded="true" aria-controls="collapseZero">
                     <i class="fas fa-fw fa-users"></i>
-                    <span><?=$side_users?></span></a>
+                    <span><?=$side_users?></span>
+                </a>
+                <div id="collapseZero" class="collapse" aria-labelledby="headingZero" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item" href="index.php?man=users&op=edit&idToMod=<?=$user_id?>"><?=$side_profile?></a>
+                        <a class="collapse-item" href="index.php?man=users&op=show"><?=$side_users ?></a>
+                    </div>
+                </div>
             </li>
-            <?php
-            //}
-            ?>
 
+
+ 
 
             <!-- Divider -->
             <hr class="sidebar-divider">
             <!-- Heading -->
-            <div class="sidebar-heading">
-                <?=$side_manage?>
-            </div>
 
             <?php
             if($_SESSION['rolename']!="Contributor"){
@@ -57,8 +53,8 @@
                 </a>
                 <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="index.php?man=page&op=show&type=default"><?=$side_page_default?></a>
                         <a class="collapse-item" href="index.php?man=page&op=show&type=custom"><?=$side_page_custom ?></a>
+                        <a class="collapse-item" href="index.php?man=page&op=show&type=default"><?=$side_page_default?></a>
                     </div>
                 </div>
             </li>
@@ -121,26 +117,24 @@
             ?>
              <!-- Heading -->
              <div class="sidebar-heading">
-             <?=$side_settings?>
+             
             </div>
 
             <li class="nav-item">
-                <a class="nav-link" href="index.php?man=settings">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseFive"
+                    aria-expanded="true" aria-controls="collapseFive">
                     <i class="fas fa-fw fa-wrench"></i>
-                    <span><?=$side_siteset?></span></a>
+                    <span><?=$side_settings?></span>
+                </a>
+                <div id="collapseFive" class="collapse" aria-labelledby="headingFour" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item" href="index.php?man=settings"><?=$side_siteset?></a>
+                        <a class="collapse-item" href="index.php?man=menu"><?=$side_menuset?></a>
+                        <a class="collapse-item" href="index.php?man=color&op=show"><?=$side_themeset?></a>
+                    </div>
+                </div>
             </li>
 
-            <li class="nav-item">
-                <a class="nav-link" href="index.php?man=menu">
-                    <i class="fas fa-fw fa-bars"></i>
-                    <span><?=$side_menuset?></span></a>
-            </li>
-
-            <li class="nav-item">
-                <a class="nav-link" href="index.php?man=color&op=show">
-                    <i class="fas fa-fw fa-palette"></i>
-                    <span><?=$side_themeset?></span></a>
-            </li>
             <?php
             }
             ?>
