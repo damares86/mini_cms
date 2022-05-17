@@ -131,13 +131,32 @@ if(($file=="login.php")||($file=="contact.php")){
         ?>
         <div id="siteContainer" <?=$style?>>
             <div id="topContainer">
-                <header>
-                    <?php
-                    require "".$root."assets/".$theme."/inc/header.php";
+            <header>
+                <?php
+                    require "../../assets/".$theme."/inc/header.php";
                 ?>  
                 </header>
                 <?php
-                    require "../../assets/".$theme."/inc/visual.php";
+                    if($page->header==1){
+                    ?>
+                <div id="banner-wrapper">
+					<div id="banner" class="box container" style="background-image: url(<?=$root?>assets/<?=$theme?>/img/<?=$img?>);">
+						<div class="row">
+                            <?php
+                            if($use_text==1){
+                            ?>
+							<div class="col-7 col-12-medium">
+								<h2><?=$site_name?></h2>
+								<p><?=$site_description?></p>
+							</div>
+                            <?php
+                            }
+                            ?>
+						</div>
+					</div>
+				</div>
+                    <?php
+                    }
                 ?> 
             </div>
             <?php

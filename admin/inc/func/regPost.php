@@ -115,7 +115,7 @@ if(filter_input(INPUT_GET,"idToMod")){
             $img=$post->main_img;
            ?>
             <div class="control-group">
-                <label class="control-label" for="file">Immagine principale del post</label>
+                <label class="control-label" for="file"><?=$regpost_img?></label>
                 <div class="controls">
                     <input type="file" id="myfile" name="myfile">
                     <br><br>

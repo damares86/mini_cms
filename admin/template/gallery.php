@@ -12,6 +12,22 @@ $dir = "img/$gallery/";
 ?>
             <div id="bottomContainer">
                 <div id="content">
+                <?php
+                if (isset($_SESSION['loggedin'])) {
+                    $type="";
+                    if($page->id<8){
+                        $type="default";
+                    }else{
+                        $type="custom";
+                    }
+                    ?>
+                <div class="text-right">
+                    
+                    <a href="admin/index.php?man=gall&op=edit&name=<?=$gallery?>" class="btn btn-primary btn-sm"><b><?=$gall_site_edit?></b></a>
+                </div>
+                    <?php
+                }
+                ?>
                     <div class='container'>
                     <div class="row">
                         <div class="col-12 pt-5 text-center">

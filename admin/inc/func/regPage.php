@@ -186,7 +186,7 @@ $stmt = $settings->showSettings();
             });
             });
         </script>
-        <input type="checkbox" name="visualSel" value="1" id="changeHeader" <?=$checked?>> Use visual image 
+        <input type="checkbox" name="visualSel" value="1" id="changeHeader" <?=$checked?>> <?=$regpage_use_visual?>
 
 <div id="uploadHeader" class="border-top border-bottom"  style="display:<?=$display?>">
 <br>
@@ -382,10 +382,10 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
         ?>
         <h3><?=$regpage_block?> 2</h3><br>
         <!-- radio button -->
-        <label><input type="radio" name="block2[]" value="n2" <?=$checked_n2?>> None</label>
-        <label><input type="radio" name="block2[]" value="t2" <?=$checked_t2?>> Text block</label>
-        <label><input type="radio" name="block2[]" value="g2" <?=$checked_g2?>> Gallery</label>
-        <label><input type="radio" name="block2[]" value="b2" <?=$checked_b2?>> Last posts</label>
+        <label><input type="radio" name="block2[]" value="n2" <?=$checked_n2?>> <?=$regpage_none?></label>
+        <label><input type="radio" name="block2[]" value="t2" <?=$checked_t2?>> <?=$regpage_text_block?></label>
+        <label><input type="radio" name="block2[]" value="g2" <?=$checked_g2?>> <?=$regpage_gall?></label>
+        <label><input type="radio" name="block2[]" value="b2" <?=$checked_b2?>> <?=$regpage_post?></label>
         <br><br>
         
         <!-- EMPTY BOX -->
@@ -402,8 +402,7 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
 
          <!-- GALLERY BOX -->
          <div class="g2 box p-3" style="background-color:#f8f9fc"> 
-            Choose an existing gallery
-
+         <?=$regpage_choose_gall?>
             <?php
             $dir_gall="../misc/gallery/img/";
             $dir_root="../misc/gallery/";
@@ -440,7 +439,7 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
               
         <!-- BLOG BOX -->
         <div class="b2 box p-3" style="background-color:#f8f9fc">
-             Shows the last three posts from the blog
+             <?=$regpage_post_desc?>
         </div>
     <!-- END BLOCK 2 -->
     <br>
@@ -529,10 +528,10 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
         ?>
         <h3><?=$regpage_block?> 3</h3><br>
         <!-- radio button -->
-        <label><input type="radio" name="block3[]" value="n3" <?=$checked_n3?>> None</label>
-        <label><input type="radio" name="block3[]" value="t3" <?=$checked_t3?>> Text block</label>
-        <label><input type="radio" name="block3[]" value="g3" <?=$checked_g3?>> Gallery</label>
-        <label><input type="radio" name="block3[]" value="b3" <?=$checked_b3?>> Last posts</label>
+        <label><input type="radio" name="block3[]" value="n3" <?=$checked_n3?>> <?=$regpage_none?></label>
+        <label><input type="radio" name="block3[]" value="t3" <?=$checked_t3?>> <?=$regpage_text_block?></label>
+        <label><input type="radio" name="block3[]" value="g3" <?=$checked_g3?>> <?=$regpage_gall?></label>
+        <label><input type="radio" name="block3[]" value="b3" <?=$checked_b3?>> <?=$regpage_post?></label>
         <br><br>
         
         <!-- EMPTY BOX -->
@@ -550,7 +549,7 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
 
          <!-- GALLERY BOX -->
          <div class="g3 box p-3" style="background-color:#f8f9fc"> 
-            Choose an existing gallery
+         <?=$regpage_choose_gall?>
 
             <?php
             $dir_gall="../misc/gallery/img/";
@@ -588,7 +587,7 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
               
         <!-- BLOG BOX -->
         <div class="b3 box p-3" style="background-color:#f8f9fc">
-             Shows the last three posts from the blog
+        <?=$regpage_post_desc?>
         </div>
         <br>
         <div class="control-group">
@@ -678,10 +677,10 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
         ?>
         <h3><?=$regpage_block?> 4</h3><br>
         <!-- radio button -->
-        <label><input type="radio" name="block4[]" value="n4" <?=$checked_n4?>> None</label>
-        <label><input type="radio" name="block4[]" value="t4" <?=$checked_t4?>> Text block</label>
-        <label><input type="radio" name="block4[]" value="g4" <?=$checked_g4?>> Gallery</label>
-        <label><input type="radio" name="block4[]" value="b4" <?=$checked_b4?>> Last posts</label>
+        <label><input type="radio" name="block4[]" value="n4" <?=$checked_n4?>> <?=$regpage_none?></label>
+        <label><input type="radio" name="block4[]" value="t4" <?=$checked_t4?>> <?=$regpage_text_block?></label>
+        <label><input type="radio" name="block4[]" value="g4" <?=$checked_g4?>> <?=$regpage_gall?></label>
+        <label><input type="radio" name="block4[]" value="b4" <?=$checked_b4?>> <?=$regpage_post?></label>
         <br><br>
         
         <!-- EMPTY BOX -->
@@ -699,7 +698,7 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
 
            <!-- GALLERY BOX -->
            <div class="g4 box p-3" style="background-color:#f8f9fc"> 
-            Choose an existing gallery
+           <?=$regpage_choose_gall?>
 
             <?php
             $dir_gall="../misc/gallery/img/";
@@ -737,7 +736,7 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
               
         <!-- BLOG BOX -->
         <div class="b4 box p-3" style="background-color:#f8f9fc">
-             Shows the last three posts from the blog
+            <?=$regpage_post_desc?>
         </div>
 
         <br>
@@ -828,10 +827,10 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
         ?>
         <h3><?=$regpage_block?> 5</h3><br>
         <!-- radio button -->
-        <label><input type="radio" name="block5[]" value="n5" <?=$checked_n5?>> None</label>
-        <label><input type="radio" name="block5[]" value="t5" <?=$checked_t5?>> Text block</label>
-        <label><input type="radio" name="block5[]" value="g5" <?=$checked_g5?>> Gallery</label>
-        <label><input type="radio" name="block5[]" value="b5" <?=$checked_b5?>> Last posts</label>
+        <label><input type="radio" name="block5[]" value="n5" <?=$checked_n5?>> <?=$regpage_none?></label>
+        <label><input type="radio" name="block5[]" value="t5" <?=$checked_t5?>> <?=$regpage_text_block?></label>
+        <label><input type="radio" name="block5[]" value="g5" <?=$checked_g5?>> <?=$regpage_gall?></label>
+        <label><input type="radio" name="block5[]" value="b5" <?=$checked_b5?>> <?=$regpage_post?></label>
         <br><br>
         
         <!-- EMPTY BOX -->
@@ -850,7 +849,7 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
 
            <!-- GALLERY BOX -->
            <div class="g5 box p-3" style="background-color:#f8f9fc"> 
-            Choose an existing gallery
+           <?=$regpage_choose_gall?>
 
             <?php
             $dir_gall="../misc/gallery/img/";
@@ -888,7 +887,7 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
               
         <!-- BLOG BOX -->
         <div class="b5 box p-3" style="background-color:#f8f9fc">
-             Shows the last three posts from the blog
+        <?=$regpage_post_desc?>
         </div>
 
         <br>
@@ -979,10 +978,10 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
         ?>
         <h3><?=$regpage_block?> 6</h3><br>
         <!-- radio button -->
-        <label><input type="radio" name="block6[]" value="n6" <?=$checked_n6?>> None</label>
-        <label><input type="radio" name="block6[]" value="t6" <?=$checked_t6?>> Text block</label>
-        <label><input type="radio" name="block6[]" value="g6" <?=$checked_g6?>> Gallery</label>
-        <label><input type="radio" name="block6[]" value="b6" <?=$checked_b6?>> Last posts</label>
+        <label><input type="radio" name="block6[]" value="n6" <?=$checked_n6?>> <?=$regpage_none?></label>
+        <label><input type="radio" name="block6[]" value="t6" <?=$checked_t6?>> <?=$regpage_text_block?></label>
+        <label><input type="radio" name="block6[]" value="g6" <?=$checked_g6?>> <?=$regpage_gall?></label>
+        <label><input type="radio" name="block6[]" value="b6" <?=$checked_b6?>> <?=$regpage_post?></label>
         <br><br>
         
         <!-- EMPTY BOX -->
@@ -1001,7 +1000,7 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
 
     <!-- GALLERY BOX -->
     <div class="g6 box p-3" style="background-color:#f8f9fc"> 
-            Choose an existing gallery
+            <?=$regpage_choose_gall?>
 
             <?php
             $dir_gall="../misc/gallery/img/";
@@ -1039,7 +1038,7 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
               
         <!-- BLOG BOX -->
         <div class="b6 box p-3" style="background-color:#f8f9fc">
-             Shows the last three posts from the blog
+        <?=$regpage_post_desc?> 
         </div>
 
         <br>

@@ -101,14 +101,22 @@ $allpage_nopage = "Nessuna pagina trovata";
 
 $regpage_title_add = "Aggiungi una pagina";
 $regpage_title_edit = "Modifica pagina";
+$regpage_site_edit = "Modifica pagina";
 $regpage_info = "Info sulla creazione delle pagine";
 $regpage_name = "Nome della pagina";
 $regpage_layout = "Scegli il layout della pagina";
+$regpage_use_visual = "Usa immagine del visual";
 $regpage_visual = "Immagine del visual";
 $regpage_actual = "Immagine attuale";
 $regpage_block = "Blocco";
 $regpage_background = "Colore di sfondo";
 $regpage_text = "Colore del testo";
+$regpage_none = "Vuoto";
+$regpage_text_block = "Testo";
+$regpage_gall = "Galleria";
+$regpage_choose_gall = "Scegli una galleria";
+$regpage_post = "Ultimi post";
+$regpage_post_desc = "Mostra gli ultimi tre post dal blog";
 $regpage_desc = "Quando crei una nuova pagina, puoi inserire contenuti in un massimo di <b>6 blocchi</b> (uno per editor). <br><br>";
 $regpage_desc .= "Obbligatorio è solo il Blocco 1, poi puoi scegliere quali blocchi usare (per esempio puoi decidere di usare il blocco 1, 3, 5, 6).<br><br>";
 $regpage_desc .= "Puoi scegliere tra <b>3 diversi layout</b> per il posizionamento dei 6 blocchi, le immagini danno un'idea della disposizione dei blocchi, per scegliere quella che più si adatta alle esigenze della pagina.<br><br>";
@@ -197,7 +205,7 @@ $gall_upload = "Carica foto";
 $gall_desc = "Carica tutte le foto della galleria semplicemente cliccando su \"Scegli file\"";
 $gall_add_image = "Aggiungi un'immagine alla galleria";
 $gall_back ="Torna alle gallerie";
-
+$gall_site_edit = "Modifica galleria";
 
 
 
@@ -224,6 +232,7 @@ $regpost_title_edit = "Modifica post";
 $regpost_info = "Info sulla creazione dei post";
 $regpost_posttitle = "Titolo";
 $regpost_cat = "Categoria";
+$regpost_img = "Immagine principale del post";
 $regpost_summary = "Sommario";
 $regpost_content = "Contenuto";
 $regpost_desc = "Nella creazione di un post, devi aggiungere un titolo e una categoria per il post. (Se ti servono più categorie, vai alla sezione \"Categorie\"). <br><br>";
@@ -476,6 +485,18 @@ $blog_mod = "Ultima modifica";
 $blog_continue = "Continua a leggere";
 $blog_categories = "Categorie";
 $blog_share = "Condividi su";
+$blog_edit = "Modifica post";
+
+
+
+// PORTFOLIO PROJECT
+
+$pro_edit = "Modifica progetto";
+$pro_client = "Cliente";
+$pro_comp = "Completato";
+$pro_cat = "Categoria";
+$pro_goto = "Vai al progetto";
+$pro_back = "Torna al portfolio";
 
 
 // ADMIN AREA

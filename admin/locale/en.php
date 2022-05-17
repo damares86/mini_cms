@@ -103,14 +103,22 @@ $allpage_nopage = "No pages found";
 
 $regpage_title_add = "Add New Page";
 $regpage_title_edit = "Edit Page";
+$regpage_site_edit = "Edit Page";
 $regpage_info = "Page creation info";
 $regpage_name = "Page name";
 $regpage_layout = "Choose page layout";
+$regpage_use_visual = "Use visual image";
 $regpage_visual = "Visual image";
 $regpage_actual = "Actual image";
 $regpage_block = "Block";
 $regpage_background = "Background color";
 $regpage_text = "Text color";
+$regpage_none = "None";
+$regpage_text_block = "Text block";
+$regpage_gall = "Gallery";
+$regpage_choose_gall = "Choose an existing gallery";
+$regpage_post = "Last posts";
+$regpage_post_desc = "Shows the last three posts from the blog";
 $regpage_desc = "When you create a new page, you will have the possibility to insert various content in max <b>6 blocks</b> (one per editor). <br><br>";
 $regpage_desc .= "It's mandatory to insert the Block1, then you can choose which block use (for example, you may insert only block1, block4, block5 and block6).<br><br>";
 $regpage_desc .= "You can choose from <b>three different layout</b> for the six blocks positioning, look at the images to select the best layout for your page.<br><br>";
@@ -200,6 +208,7 @@ $gall_upload = "Upload photos";
 $gall_desc = "Upload all the photo of your gallery by simply clicking on \"Choose file\"";
 $gall_add_image = "Add an image to gallery";
 $gall_back ="Back to galleries";
+$gall_site_edit = "Edit gallery";
 
 
 
@@ -226,6 +235,7 @@ $regpost_info = "Post creation info";
 $regpost_posttitle = "Title";
 $regpost_posttitle_ph = "Post's Title";
 $regpost_cat = "Category";
+$regpost_img = "Main post image";
 $regpost_summary = "Summary";
 $regpost_content = "Content";
 $regpost_desc = "When you create a new post, you can add a title and choose a category for the post. (If you need more categories, go to the \"Categories\" section). <br><br>";
@@ -464,6 +474,8 @@ $reset_output2.='<p>Thanks,</p>';
 $reset_output2.='<p>Mini CMS</p>';
 $reset_output2.='</body></html>';
 
+
+
 // CONTACT FORM
 
 $cont_form_page = "Contact us";
@@ -474,6 +486,8 @@ $cont_form_sub = "Subject";
 $cont_form_msg = "Your message";
 $cont_form_button = "Send";
 
+
+
 // BLOG
 
 $blog_category = "Category";
@@ -481,6 +495,18 @@ $blog_mod = "Last modified on";
 $blog_continue = "Continue reading";
 $blog_categories = "Categories";
 $blog_share = "Share on";
+$blog_edit = "Edit post";
+
+
+
+// PORTFOLIO PROJECT
+
+$pro_edit = "Edit project";
+$pro_client = "Client";
+$pro_comp = "Completed";
+$pro_cat = "Category";
+$pro_goto = "Go to project";
+$pro_back = "Back to portfolio";
 
 // ADMIN AREA
 
