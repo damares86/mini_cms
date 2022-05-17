@@ -123,6 +123,7 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
 		<?php
 
             require "assets/".$theme."/inc/scripts.php";
+            require "admin/inc/func/check.php";
             if(($file=="login.php")||($file=="contact.php")){
                 require "assets/".$theme."/inc/recaptcha.php";
             }

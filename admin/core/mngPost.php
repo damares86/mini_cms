@@ -67,7 +67,7 @@ if(filter_input(INPUT_POST,"subReg")){
 
 	if($operation=="add"){
 		if (!isset($_FILES['myfile'])){
-			header("Location: ../index.php?man=post&op=show&msg=fileEmpty");
+			header("Location: ../index.php?man=post&op=show&msg=imgEmpty");
 			exit;
 		}
 
@@ -79,10 +79,6 @@ if(filter_input(INPUT_POST,"subReg")){
                 
 			extract($row);
 
-//////////////////////////////////////////////////////////////
-//  ALERT DA FARE
-
-/////////////////////////////////
 
 			if($new_title==$title){
 				header("Location: ../index.php?man=post&op=show&msg=titleExist");
@@ -112,11 +108,6 @@ if(filter_input(INPUT_POST,"subReg")){
 		while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
                 
 			extract($row);
-
-//////////////////////////////////////////////////////////////
-//  ALERT DA FARE
-
-/////////////////////////////////
 
 			if($new_title==$title){
 				header("Location: ../index.php?man=post&op=show&msg=titleExist");

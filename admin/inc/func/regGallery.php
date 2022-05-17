@@ -144,6 +144,7 @@ if($operation=="add"){
                         <span aria-hidden="true">×</span>
                     </button>
                 </div>
+                <!-- --------------------------------- -->
                 <div class="modal-body"><?=$gall_modal_text?></div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal"><?=$txt_cancel?></button>

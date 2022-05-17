@@ -138,7 +138,8 @@ $db->query("CREATE TABLE settings (
   use_text INT (1) DEFAULT '1',
   footer VARCHAR(255) NOT NULL,
   dashboard_language VARCHAR(255) NOT NULL,
-  theme VARCHAR(255) NOT NULL)");
+  theme VARCHAR(255) NOT NULL,
+  dm INT (1) DEFAULT 1)");
 
 $db->query("CREATE TABLE IF NOT EXISTS categories
                            ( id INT ( 5 ) NOT NULL AUTO_INCREMENT PRIMARY KEY,
@@ -190,6 +191,8 @@ $db->query("CREATE TABLE IF NOT EXISTS menu
                               childof VARCHAR(255) DEFAULT 'none')
                               ");
 
+chmod("../inc/func/regCheck.php",0777);
+
 $db->query("CREATE TABLE IF NOT EXISTS files
                             ( id INT ( 5 ) NOT NULL AUTO_INCREMENT PRIMARY KEY,
                               filename VARCHAR(255) NOT NULL,
@@ -224,8 +227,8 @@ VALUES ('1','admin', '". $password_hash ."','". $user_email ."','Admin')
 
 
 $db->query("INSERT INTO settings
-(id, site_name, site_description,footer,dashboard_language,theme)
-VALUES ('1','Mini Cms', 'Create your own website','Your footer text','en','damares')
+(id, site_name, site_description,footer,dashboard_language,theme,dm)
+VALUES ('1','Mini Cms', 'Create your own website','Your footer text','en','damares','1')
 ");
 
 

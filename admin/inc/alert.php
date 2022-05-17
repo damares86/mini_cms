@@ -714,6 +714,38 @@ if($msg=="userDelSucc"){
     </div>
 
     <?php    
+} else if($msg=="imgEmpty"){
+    ?>
+    <div class="alert alert-danger">
+        <button type="button" class="close" data-dismiss="alert">x</button>
+        <?=$imgEmpty?>
+    </div>
+
+    <?php    
+} else if($msg=="titleExist"){
+    ?>
+    <div class="alert alert-danger">
+        <button type="button" class="close" data-dismiss="alert">x</button>
+        <?=$titleExist?>
+    </div>
+
+    <?php    
+} else if($msg=="pageCopySucc"){
+    ?>
+    <div class="alert alert-success">
+        <button type="button" class="close" data-dismiss="alert">x</button>
+        <?=$pageCopySucc?>
+    </div>
+
+    <?php    
+} else if($msg=="pageCopyErr"){
+    ?>
+    <div class="alert alert-danger">
+        <button type="button" class="close" data-dismiss="alert">x</button>
+        <?=$pageCopyErr?>
+    </div>
+
+    <?php    
 } else
 
 ?>

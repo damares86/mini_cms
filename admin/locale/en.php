@@ -195,6 +195,7 @@ $gall_box_title = "All galleries";
 $gall_add = "Add a new gallery";
 $gall_link = "Link";
 $gall_modal_text = "If you want to delete this gallery click \"Ok\" below";
+$gall_file_modal_text = "If you want to delete this image click \"Ok\" below";
 $gall_nogall = "No galleries found";
 
 
@@ -269,6 +270,7 @@ $site_title = "Site settings";
 $site_box1_title = "Site details";
 $site_sitename = "Site name";
 $site_sitedescription = "Site description";
+$site_siteshow = "Show name and description in the website";
 $site_footer = "Footer text";
 $site_lang = "Site language";
 $site_box1_desc = "Choose the Site name and the description, that will be shown on the top of the pages and in the browser header and the footer text for the bottom of the page.";
@@ -425,6 +427,10 @@ $al_gallTitleErr = "Gallery title missing";
 $al_gallFileErr = "Image missing";
 $al_gallSucc = "Gallery successfully created";
 $al_gallErr = "Gallery not created";
+$al_imgEmpty = "Image not provided";
+$al_titleExist = "This title already exists";
+$al_pageCopySucc = "Page duplicated";
+$al_pageCopyErr = "Page not duplicated";
 
 
 

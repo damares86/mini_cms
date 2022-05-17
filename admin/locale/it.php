@@ -191,7 +191,8 @@ $gall_title = "Gallerie";
 $gall_box_title = "Tutte le gallerie";
 $gall_add = "Aggiungi una nuova galleria";
 $gall_link = "Link";
-$gall_modal_text = "Se vuoi cancellare questa galleria \"Ok\"";
+$gall_modal_text = "Se vuoi cancellare questa galleria clicca \"Ok\"";
+$gall_file_modal_text = "Se vuoi cancellare questa immagine clicca \"Ok\"";
 $gall_nogall = "Nessuna galleria presente";
 
 
@@ -266,6 +267,7 @@ $site_title = "Impostazioni del sito";
 $site_box1_title = "Dettagli del sito";
 $site_sitename = "Nome del sito";
 $site_sitedescription = "Descrizione del sito";
+$site_siteshow = "Mostra nome e descrizione nel sito";
 $site_footer = "Testo del footer";
 $site_lang = "Lingua del Sito";
 $site_box1_desc = "Scegli il nome e la descrizione del sito, che verranno mostrati in cima alla pagina e nella barra del browser e il testo del footer al fondo della pagina.";
@@ -422,6 +424,10 @@ $al_gallTitleErr = "Titolo della galleria mancante";
 $al_gallFileErr = "Immagine mancante";
 $al_gallSucc = "Galleria creata";
 $al_gallErr = "Galleria non creata";
+$al_imgEmpty = "Immagine non fornita";
+$al_titleExist = "Questo titolo esiste già";
+$al_pageCopySucc = "Pagina duplicata";
+$al_pageCopyErr = "Pagina non duplicata";
 
 // ALERT WEBSITE
 

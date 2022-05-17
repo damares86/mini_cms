@@ -47,8 +47,10 @@ if($man=="settings"){
             if($row['use_text']==1){
                 $checked="checked";
             }
+
+            //////////////////////////////////////////////////////////////////////
             ?>
-            <input type="checkbox" name="use_text" value="1" <?=$checked?>> Show name and description in the website<br><br>
+            <input type="checkbox" name="use_text" value="1" <?=$checked?>> <?=$site_siteshow?><br><br>
 
 
             <div class="control-group">
