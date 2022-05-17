@@ -110,7 +110,7 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
 		<?php
 
 require "$root/assets/".$theme."/inc/scripts.php";
-require "admin/inc/func/check.php";
+require "../../admin/inc/func/check.php";
 if(($file=="login.php")||($file=="contact.php")){
     require "$root/assets/".$theme."/inc/recaptcha.php";
 }
