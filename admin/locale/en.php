@@ -4,6 +4,7 @@
 
 $txt_submit = "Submit";
 $txt_edit = "Edit";
+$txt_copy = "Duplicate";
 $txt_cancel = "Cancel";
 $txt_delete = "Delete";
 $txt_logout = "Logout";
@@ -20,12 +21,17 @@ $side_profile = "Profile";
 $side_users = "Users";
 $side_manage = "Managing site";
 $side_page = "Pages";
+$side_page_default = "Default";
+$side_page_custom = "Custom";
 $side_files = "Files";
 $side_port = "Portfolio";
 $side_project = "Project";
 $side_project_cat = "Project categories";
 $side_blog = "Blog";
 $side_post = "Posts";
+$side_gall = "Galleries";
+$side_gall_all = "All galleries";
+$side_gall_upload = "Upload photos";
 $side_cat = "Categories";
 $side_settings = "Settings";
 $side_siteset = "Site settings";
@@ -76,6 +82,7 @@ $alluser_add = "Add new user";
 $alluser_username = "Username";
 $alluser_email = "Email";
 $alluser_role = "Role";
+$alluser_login = "Last login";
 $alluser_modal_text = "If you really want to delete this user click \"Ok\" below.";
 $alluser_nouser = "No users found";
 
@@ -96,14 +103,22 @@ $allpage_nopage = "No pages found";
 
 $regpage_title_add = "Add New Page";
 $regpage_title_edit = "Edit Page";
+$regpage_site_edit = "Edit Page";
 $regpage_info = "Page creation info";
 $regpage_name = "Page name";
 $regpage_layout = "Choose page layout";
+$regpage_use_visual = "Use visual image";
 $regpage_visual = "Visual image";
 $regpage_actual = "Actual image";
 $regpage_block = "Block";
 $regpage_background = "Background color";
 $regpage_text = "Text color";
+$regpage_none = "None";
+$regpage_text_block = "Text block";
+$regpage_gall = "Gallery";
+$regpage_choose_gall = "Choose an existing gallery";
+$regpage_post = "Last posts";
+$regpage_post_desc = "Shows the last three posts from the blog";
 $regpage_desc = "When you create a new page, you will have the possibility to insert various content in max <b>6 blocks</b> (one per editor). <br><br>";
 $regpage_desc .= "It's mandatory to insert the Block1, then you can choose which block use (for example, you may insert only block1, block4, block5 and block6).<br><br>";
 $regpage_desc .= "You can choose from <b>three different layout</b> for the six blocks positioning, look at the images to select the best layout for your page.<br><br>";
@@ -151,6 +166,7 @@ $port_view = "View";
 $port_link = "Link";
 $port_modal_text = "If you really want to delete this project click \"Ok\" below";
 $port_cat_title = "Portfolio categories";
+$port_noproject = "No project found";
 
 
 
@@ -169,6 +185,31 @@ $regport_completed_placeholder = "Insert the date in dd/mm/yy format";
 $regport_link = "Link";
 $regport_link_placeholder = "Project's link";
 $regport_description = "Description";
+
+
+
+// GALLERY
+
+$gall_title = "Galleries";
+$gall_box_title = "All galleries";
+$gall_add = "Add a new gallery";
+$gall_link = "Link";
+$gall_modal_text = "If you want to delete this gallery click \"Ok\" below";
+$gall_file_modal_text = "If you want to delete this image click \"Ok\" below";
+$gall_nogall = "No galleries found";
+
+
+// REG AND EDIT GALLERY
+
+$gall_title_add = "Upload photos";
+$gall_title_edit = "Edit gallery";
+$gall_name = "Gallery name";
+$gall_name_placeholder = "Choose a name for your gallery";
+$gall_upload = "Upload photos";
+$gall_desc = "Upload all the photo of your gallery by simply clicking on \"Choose file\"";
+$gall_add_image = "Add an image to gallery";
+$gall_back ="Back to galleries";
+$gall_site_edit = "Edit gallery";
 
 
 
@@ -195,6 +236,7 @@ $regpost_info = "Post creation info";
 $regpost_posttitle = "Title";
 $regpost_posttitle_ph = "Post's Title";
 $regpost_cat = "Category";
+$regpost_img = "Main post image";
 $regpost_summary = "Summary";
 $regpost_content = "Content";
 $regpost_desc = "When you create a new post, you can add a title and choose a category for the post. (If you need more categories, go to the \"Categories\" section). <br><br>";
@@ -228,6 +270,7 @@ $site_title = "Site settings";
 $site_box1_title = "Site details";
 $site_sitename = "Site name";
 $site_sitedescription = "Site description";
+$site_siteshow = "Show name and description in the website";
 $site_footer = "Footer text";
 $site_lang = "Site language";
 $site_box1_desc = "Choose the Site name and the description, that will be shown on the top of the pages and in the browser header and the footer text for the bottom of the page.";
@@ -374,6 +417,20 @@ $al_catPortfolioSucc = "Category successfully created";
 $al_catPortfolioErr = "Category not created";
 $al_catPortfolioEditSucc = "Category successfully modified";
 $al_catPortfolioEditErr = "Category not modified";
+$al_gallDel = "Gallery deleted";
+$al_pageGallNotDel = "Gallery not deleted";
+$al_imgDelSucc = "Image deleted";
+$al_imgNotDel = "Image not deleted";
+$al_formatErr = "Wrong format. You can only upload \"jpg\", \"JPG\", \"jpeg\", \"png\" image";
+$al_imgSucc = "New image uploaded";
+$al_gallTitleErr = "Gallery title missing";
+$al_gallFileErr = "Image missing";
+$al_gallSucc = "Gallery successfully created";
+$al_gallErr = "Gallery not created";
+$al_imgEmpty = "Image not provided";
+$al_titleExist = "This title already exists";
+$al_pageCopySucc = "Page duplicated";
+$al_pageCopyErr = "Page not duplicated";
 
 
 
@@ -407,6 +464,23 @@ $log_forgot_wrong = "Wrong link";
 $log_forgot_new = "Insert your new password";
 $log_forgot_exp = "Your link is expired";
 
+// RESET MAIL
+
+$reset_output1='<html><body>';
+$reset_output1.='<p>Dear user,</p>';
+$reset_output1.='<p>Please click on the following link to reset your password.</p>';
+$reset_output1.='<p>-------------------------------------------------------------</p>';
+$reset_output2='<p>-------------------------------------------------------------</p>';
+$reset_output2.='<p>Please be sure to copy the entire link into your browser.
+The link will expire after 1 hour for security reason.</p>';
+$reset_output2.='<p>If you did not request this forgotten password email, no action 
+is needed, your password will not be reset. However, you may want to log into 
+your account and change your security password as someone may have guessed it.</p>';   	
+$reset_output2.='<p>Thanks,</p>';
+$reset_output2.='<p>Mini CMS</p>';
+$reset_output2.='</body></html>';
+
+
 
 // CONTACT FORM
 
@@ -418,6 +492,8 @@ $cont_form_sub = "Subject";
 $cont_form_msg = "Your message";
 $cont_form_button = "Send";
 
+
+
 // BLOG
 
 $blog_category = "Category";
@@ -425,6 +501,18 @@ $blog_mod = "Last modified on";
 $blog_continue = "Continue reading";
 $blog_categories = "Categories";
 $blog_share = "Share on";
+$blog_edit = "Edit post";
+
+
+
+// PORTFOLIO PROJECT
+
+$pro_edit = "Edit project";
+$pro_client = "Client";
+$pro_comp = "Completed";
+$pro_cat = "Category";
+$pro_goto = "Go to project";
+$pro_back = "Back to portfolio";
 
 // ADMIN AREA
 

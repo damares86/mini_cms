@@ -1,11 +1,11 @@
 <?php
+	
 
 $msg=filter_input(INPUT_GET,"msg");
 
 if($msg=="errSend"){
     ?>
     <div class="alert alert-danger">
-        <button type="button" class="close" data-dismiss="alert">x</button>
         <?=$al_errSend?>
     </div>
 
@@ -13,15 +13,19 @@ if($msg=="errSend"){
 } else if($msg=="mailResetErr"){
     ?>
     <div class="alert alert-danger">
-        <button type="button" class="close" data-dismiss="alert">x</button>
         <?=$al_mailResetErr?>
     </div>
 
     <?php    
+} else if($msg=="sentMail"){
+    ?>
+<div class="alert alert-success" role="alert">
+    <?=$log_forgot_sent?>
+</div>
+    <?php    
 } else if($msg=="mailNotReg"){
     ?>
     <div class="alert alert-danger">
-        <button type="button" class="close" data-dismiss="alert">x</button>
         <?=$al_mailNotReg?>
     </div>
 
@@ -29,7 +33,6 @@ if($msg=="errSend"){
 } else if($msg=="pswEmpty"){
     ?>
     <div class="alert alert-danger">
-        <button type="button" class="close" data-dismiss="alert">x</button>
         <?=$al_pswEmpty?>
     </div>
 
@@ -37,7 +40,6 @@ if($msg=="errSend"){
 } else if($msg=="newPass"){
     ?>
     <div class="alert alert-success">
-        <button type="button" class="close" data-dismiss="alert">x</button>
         <?=$al_newPass?>
     </div>
 
@@ -45,7 +47,6 @@ if($msg=="errSend"){
 } else if($msg=="pswEditErr"){
     ?>
     <div class="alert alert-danger">
-        <button type="button" class="close" data-dismiss="alert">x</button>
         <?=$al_pswEditErr?>
     </div>
 
@@ -53,7 +54,6 @@ if($msg=="errSend"){
 } else if($msg=="errResetRequest"){
     ?>
     <div class="alert alert-danger">
-        <button type="button" class="close" data-dismiss="alert">x</button>
         <?=$al_errResetRequest?>
     </div>
 
@@ -61,7 +61,6 @@ if($msg=="errSend"){
 } else if($msg=="noResetDelete"){
     ?>
     <div class="alert alert-danger">
-        <button type="button" class="close" data-dismiss="alert">x</button>
         <?=$al_noResetDelete?>
     </div>
 
@@ -69,7 +68,6 @@ if($msg=="errSend"){
 } else if($msg=="noReset"){
     ?>
     <div class="alert alert-danger">
-        <button type="button" class="close" data-dismiss="alert">x</button>
         <?=$al_noReset?>
     </div>
 
@@ -77,7 +75,6 @@ if($msg=="errSend"){
 } else if($msg=="errRecaptcha"){
     ?>
     <div class="alert alert-danger">
-        <button type="button" class="close" data-dismiss="alert">x</button>
         <?=$al_errRecaptcha?>
     </div>
 
@@ -85,7 +82,6 @@ if($msg=="errSend"){
 } else if($msg=="errPost"){
     ?>
     <div class="alert alert-danger">
-        <button type="button" class="close" data-dismiss="alert">x</button>
         <?=$al_errPost?>
     </div>
 
@@ -93,7 +89,6 @@ if($msg=="errSend"){
 } else if($msg=="contactFormEmpty"){
     ?>
     <div class="alert alert-danger">
-        <button type="button" class="close" data-dismiss="alert">x</button>
         <?=$al_contactFormEmpty?>
     </div>
 
@@ -101,7 +96,6 @@ if($msg=="errSend"){
 } else if($msg=="sentContact"){
     ?>
     <div class="alert alert-success">
-        <button type="button" class="close" data-dismiss="alert">x</button>
         <?=$al_sentContact?>
     </div>
 
@@ -109,7 +103,6 @@ if($msg=="errSend"){
 } else if($msg=="errSendContact"){
     ?>
     <div class="alert alert-danger">
-        <button type="button" class="close" data-dismiss="alert">x</button>
         <?=$al_errSendContact?>
     </div>
 
@@ -117,7 +110,6 @@ if($msg=="errSend"){
 } else if($msg=="errUserPsw"){
     ?>
     <div class="alert alert-danger">
-        <button type="button" class="close" data-dismiss="alert">x</button>
         <?=$al_errUserPsw?>
     </div>
 

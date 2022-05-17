@@ -66,8 +66,29 @@ if(filter_input(INPUT_POST,"subReg")){
 
 
 	if($operation=="add"){
+		if (!isset($_FILES['myfile'])){
+			header("Location: ../index.php?man=post&op=show&msg=imgEmpty");
+			exit;
+		}
+
+		$new_title=$_POST['title'];
+
+		$stmt=$post->showAllList();
+
+		while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
+                
+			extract($row);
+
+
+			if($new_title==$title){
+				header("Location: ../index.php?man=post&op=show&msg=titleExist");
+				exit;
+			}
+		}
 		//inserimento
+
 		$post->title=$_POST['title'];
+		$post->main_img=$_FILES['myfile']['name'];
 		$post->summary=$_POST['editor'];
 		$post->content=$_POST['editor2'];
 		$post->category_id=$_POST['category_id'];
@@ -81,9 +102,37 @@ if(filter_input(INPUT_POST,"subReg")){
 			exit;
 		}
 	} else if($operation=="mod"){
+
+		$new_title=$_POST['title'];
+
+		while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
+                
+			extract($row);
+
+			if($new_title==$title){
+				header("Location: ../index.php?man=post&op=show&msg=titleExist");
+				exit;
+			}
+		}
+
+		$post->title=$_POST['title'];
+
+		if($_FILES['myfile']['name']){
+			$post->main_img=$_FILES['myfile']['name'];
+			$post->new_img=1;
+		}else{
+			$query1="SELECT * FROM post WHERE title = :title LIMIT 0,1";
+			$stmt1 = $db->prepare($query1);
+			$stmt1->bindParam(':title', $post->title);       
+			$stmt1->execute();
+			$row1 = $stmt1->fetch(PDO::FETCH_ASSOC);
+			$post->main_img=$row1['main_img'];
+			$post->new_img=0;
+
+		}
+
 	
 		// modifica post
-		$post->title=$_POST['title'];
 		$post->summary=$_POST['editor'];
 		$post->content=$_POST['editor2'];
 		$post->category_id=$_POST['category_id'];

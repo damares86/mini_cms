@@ -1,0 +1,8 @@
+.block{
+    min-height:100% !important;
+}
+
+.block-row{
+    clear:both;
+    height:auto;
+}

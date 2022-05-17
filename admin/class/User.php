@@ -11,6 +11,7 @@ class User{
     public $password;
     public $rolename;
     public $email;
+    public $last_login;
     public $token;
     public $expDate;
 
@@ -121,6 +122,27 @@ class User{
     
     }
 
+    function updateLog($time){
+        $query="UPDATE 
+        " . $this->table_name . "
+            SET last_login=:last_login 
+            WHERE username = :username";
+
+        $stmt=$this->conn->prepare($query);
+        $stmt->bindParam(':last_login', $time);
+        $stmt->bindParam(':username', $this->username);
+        
+        if($stmt->execute()){
+            return true;
+
+        }else{
+            $this->showError($stmt);
+            return false;
+        }
+
+    }
+
+
 
     public function findToken(){
     
@@ -144,7 +166,7 @@ class User{
 
     function showAll($from_record_num, $records_per_page){
         $query = "SELECT
-                    id, username, email, rolename
+                    *
                 FROM
                 " . $this->table_name . "
                 WHERE NOT
@@ -176,6 +198,7 @@ class User{
         $this->username = $row['username'];
         $this->email = $row['email'];
         $this->rolename = $row['rolename'];
+        $this->last_login = $row['last_login'];
     }
 
     function showByEmail(){

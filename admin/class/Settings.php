@@ -8,9 +8,11 @@ class Settings{
     public $id;
     public $site_name;
     public $site_description;
+    public $use_text;
     public $footer;
     public $dashboard_language;
     public $theme;
+    public $dm;
 
     // constructor
     public function __construct($db){
@@ -25,6 +27,7 @@ class Settings{
                 SET
                     site_name = :site_name,
                     site_description = :site_description,
+                    use_text = :use_text,
                     footer = :footer,
                     dashboard_language = :dashboard_language
                 WHERE
@@ -35,6 +38,7 @@ class Settings{
         // bind the values
         $stmt->bindParam(':site_name', $this->site_name);
         $stmt->bindParam(':site_description', $this->site_description); 
+        $stmt->bindParam(':use_text', $this->use_text); 
         $stmt->bindParam(':footer', $this->footer); 
         $stmt->bindParam(':dashboard_language', $this->dashboard_language); 
         $stmt->bindParam(':id', $this->id);
@@ -51,6 +55,8 @@ class Settings{
         }
     
     }
+
+
 
     function updateTheme(){
         // insert query
@@ -97,6 +103,35 @@ class Settings{
         return $stmt;
     }
 
+    function updateCheck(){
+        // insert query
+        $query = "UPDATE
+                    " . $this->table_name . "
+                SET
+                    dm = :dm
+                WHERE
+                    id = :id";
+    // prepare the query
+        $stmt = $this->conn->prepare($query);
+     
+        // bind the values
+        $stmt->bindParam(':dm', $this->dm);
+        $stmt->bindParam(':id', $this->id);
+        
+                
+      
+        // execute the query, also check if query was successful
+        if($stmt->execute()){
+            return true;
+
+        }else{
+            $this->showError($stmt);
+            return false;
+        }
+    
+    }
+
+    
     function showLang(){
         $query = "SELECT
                     *

@@ -1,18 +1,12 @@
 <?php
 
-require '../phpDebug/src/Debug/Debug.php';   			// if not using composer
+// require '../phpDebug/src/Debug/Debug.php';   			// if not using composer
 
-$debug = new \bdk\Debug(array(
-    'collect' => true,
-    'output' => true,
-));
+// $debug = new \bdk\Debug(array(
+//     'collect' => true,
+//     'output' => true,
+// ));
 
-
-session_start();
-if (!isset($_SESSION['loggedin'])) {
-	header('Location: ../');
-    exit;
-}
 
 // loading class
 include("../class/Database.php");
@@ -30,12 +24,39 @@ $menu = new Menu($db);
 $contact = new Contact($db);
 $verify = new Verify($db);
 
+if(filter_input(INPUT_POST,"subRegCheck")){
+
+	$settings->id=$_POST['id'];
+	if(isset($_POST['dm'])){
+		$settings->dm=0;
+	}else{
+		$settings->dm=1;
+	}
+
+	$settings->updateCheck();
+	header('Location: ../../');
+    exit;
+}
+
+session_start();
+if (!isset($_SESSION['loggedin'])) {
+	header('Location: ../');
+    exit;
+}
+
+
 
 if(filter_input(INPUT_POST,"subReg")){
 
 		if(!$_POST['site_name']||!$_POST['site_description']){
 			header("Location: ../index.php?man=settings&msg=settingsEmpty");
 			exit;
+		}
+
+		if(isset($_POST['use_text'])){
+			$settings->use_text = 1;
+		}else{
+			$settings->use_text = 0;
 		}
 
 		$settings->id=$_POST['id'];

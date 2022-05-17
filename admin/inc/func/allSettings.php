@@ -37,25 +37,38 @@ if($man=="settings"){
             while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
         
                  extract($row);
-       
+                $checked="";
             ?>
 
         <form class="form-horizontal row-fluid" action="core/mngSettings.php" method="POST" enctype="multipart/form-data">
             <input type="hidden" name="id" value="<?= $id ?>" />
+            
+            <?php
+            if($row['use_text']==1){
+                $checked="checked";
+            }
 
-                <label class="control-label" for="site_name"><?=$site_sitename?></label>
-             
+            //////////////////////////////////////////////////////////////////////
+            ?>
+            <input type="checkbox" name="use_text" value="1" <?=$checked?>> <?=$site_siteshow?><br><br>
 
-                    <input type="text" id="site_name" name="site_name" placeholder="<?=$site_sitename?>" class="span12" value="<?= $site_name ?>">
-              
+
             <div class="control-group">
-                            <label class="control-label" for="site_description"><?=$site_sitedescription ?></label>
+                <label class="control-label" for="site_name"><?=$site_sitename?></label>
+                <div class="controls">
+                    <input type="text" id="site_name" name="site_name" placeholder="<?=$site_sitename?>" class="span12" value="<?= $site_name ?>">
+                </div>
+            </div>
+            <div class="control-group">
+                 <label class="control-label" for="site_description"><?=$site_sitedescription ?></label>
                 <div class="controls">
 
                     <input type="text" id="site_description" name="site_description" placeholder="<?=$site_sitedescription ?>" class="span8" value="<?= $site_description ?>">
                         
                 </div>
             </div>
+
+            <br>
 
             <div class="control-group">
                             <label class="control-label" for="footer"><?=$site_footer ?></label>
@@ -65,6 +78,8 @@ if($man=="settings"){
                         
                 </div>
             </div>
+
+            <br>
 
             <div class="control-group">
                             <label class="control-label" for="language"><?=$site_lang?></label>

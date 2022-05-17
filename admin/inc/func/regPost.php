@@ -57,7 +57,7 @@ if(filter_input(INPUT_GET,"idToMod")){
             <br>
            
             <br>
-        <form id="postForm" class="form-horizontal row-fluid" action="core/mngPost.php" method="post"  onsubmit="return postForm()">
+        <form id="postForm" class="form-horizontal row-fluid" action="core/mngPost.php" method="post"  enctype="multipart/form-data" onsubmit="return postForm()">
         <input type="hidden" name="operation" value="<?= $operation ?>" />
                 <?php 
         $post->id = $idToMod;
@@ -72,42 +72,64 @@ if(filter_input(INPUT_GET,"idToMod")){
         $category_id= $post->category_id;
 
         ?>
+
+                <div class="control-group">
+                    <label class="control-label" for="title"><?=$regpost_posttitle?></label>
+                    <div class="controls">
+                        <input type="text" id="title" name="title" placeholder="<?=$regpost_posttitle_ph?>" value="<?=$post->title?>" class="span8">
+                        
+                    </div>
+                </div>
+        
+                <div class="control-group">
+                    <label for="category_id"><?=$regpost_cat?></label>
+                    <?php
+                    $cat = new Categories($db);
+                        $stmt = $cat->showAllList();
+                        $total_rows = $cat->countAll();
+                    
+                        ?>
+                    <select name="category_id">
+                        <?php
+                    
+                    
+                        
+                    
+                        while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
+                
+                            extract($row);
+                        
+                            $selected = "";
+                            if ($id == $category_id) {
+                                $selected = "selected";
+                            }
+                            echo "<option value='{$id}' $selected>{$category_name}</option>";
+
+                        }
+
+                        ?>
+                    </select>
+                </div>
+           <br>
+           <?php
+            $img=$post->main_img;
+           ?>
             <div class="control-group">
-                <label class="control-label" for="title"><?=$regpost_posttitle?></label>
+                <label class="control-label" for="file"><?=$regpost_img?></label>
                 <div class="controls">
-                    <input type="text" id="title" name="title" placeholder="<?=$regpost_posttitle_ph?>" value="<?=$post->title?>" class="span8">
-                     
+                    <input type="file" id="myfile" name="myfile">
+                    <br><br>
+                    <?php
+                    if($operation=="mod"){
+                    ?>
+                    <?=$regpage_actual?> &nbsp;<img src="../uploads/img/<?=$img?>"  style="max-width:200px;">
+                    <?php
+                    }
+                    ?>
                 </div>
             </div>
-            <div class="control-group">
-            <label for="category_id"><?=$regpost_cat?></label>
-            <?php
-            $cat = new Categories($db);
-                $stmt = $cat->showAllList();
-                $total_rows = $cat->countAll();
-              
-                ?>
-            <select name="category_id">
-                <?php
-               
-               
-                
-               
-                while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
-           
-                    extract($row);
-                  
-                    $selected = "";
-                    if ($id == $category_id) {
-                        $selected = "selected";
-                    }
-                    echo "<option value='{$id}' $selected>{$category_name}</option>";
-
-                }
-
-                ?>
-            </select>
-            </div>
+   
+   
             <br>
             <h4><?=$regpost_summary?></h4>
             <textarea id="summernote" name="editor" rows="10">

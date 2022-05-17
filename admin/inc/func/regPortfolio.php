@@ -61,7 +61,7 @@ $stmt = $settings->showSettings();
                        } else {
                     ?>
 
-                    <input type="text" id="project_title" name="project_title" placeholder="<?=$port_name_placeholder?>" value="<?= $portfolio->project_title ?>" class="span8">
+                    <input type="text" id="project_title" name="project_title" placeholder="<?=$regport_name_placeholder?>" value="<?= $portfolio->project_title ?>" class="span8">
 
                     <?php
                        }
@@ -111,7 +111,7 @@ $stmt = $settings->showSettings();
        ?>
                         
                         <br><br>
-                    <?=$regport_actual?><img src="../uploads/portfolio/<?=$main_img?>"  style="max-width:200px;">
+                    <?=$regport_actual?><img src="../misc/portfolio/img/<?=$main_img?>"  style="max-width:200px;">
                     <?php
                     }
                     ?>

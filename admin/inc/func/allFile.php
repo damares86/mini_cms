@@ -42,7 +42,6 @@
         <table class="table table-striped">
             <thead>
                 <tr>
-                    <th scope="col">#</th>
                     <th scope="col"><?=$file_filetitle?></th>
                     <th scope="col"><?=$file_filename?></th>
                     <th scope="col"><?=$file_filelink?></th>
@@ -58,7 +57,6 @@
        
             ?>
             <tr>
-                <td><?=$id?></td>
                 <td><?=$title?></td>
                 <td><?=$filename?></td>
                 <td><a href="../uploads/<?=$filename?>" target="_blank"><?=$file_filelink?></a></td>

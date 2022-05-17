@@ -618,6 +618,134 @@ if($msg=="userDelSucc"){
     </div>
 
     <?php    
+} else if($msg=="gallDelSucc"||$msg=="pageGallDel"){
+    ?>
+    <div class="alert alert-warning">
+        <button type="button" class="close" data-dismiss="alert">x</button>
+        <?=$al_gallDel?>
+    </div>
+
+    <?php    
+} else if($msg=="pageGallNotDel"){
+    ?>
+    <div class="alert alert-danger">
+        <button type="button" class="close" data-dismiss="alert">x</button>
+        Gallery not deleted
+    </div>
+
+    <?php    
+} else if($msg=="pageGallNotDel"){
+    ?>
+    <div class="alert alert-danger">
+        <button type="button" class="close" data-dismiss="alert">x</button>
+        <?=$al_pageGallNotDel?>
+    </div>
+
+    <?php    
+} else if($msg=="imgDelSucc"){
+    ?>
+    <div class="alert alert-warning">
+        <button type="button" class="close" data-dismiss="alert">x</button>
+        <?=$al_imgDelSucc?>
+    </div>
+
+    <?php    
+} else if($msg=="imgNotDel"){
+    ?>
+    <div class="alert alert-daner">
+        <button type="button" class="close" data-dismiss="alert">x</button>
+        <?=$al_imgNotDel?>
+    </div>
+
+    <?php    
+} else if($msg=="formatErr"){
+    ?>
+    <div class="alert alert-danger">
+        <button type="button" class="close" data-dismiss="alert">x</button>
+        <?=$al_formatErr?>
+    </div>
+
+    <?php    
+} else if($msg=="imgSucc"){
+    ?>
+    <div class="alert alert-succ">
+        <button type="button" class="close" data-dismiss="alert">x</button>
+        <?=$al_imgSucc?>
+    </div>
+
+    <?php    
+} else if($msg=="gallTitleErr"){
+    ?>
+    <div class="alert alert-danger">
+        <button type="button" class="close" data-dismiss="alert">x</button>
+        <?=$al_gallTitleErr?>
+    </div>
+
+    <?php    
+} else if($msg=="gallFileErr"){
+    ?>
+    <div class="alert alert-danger">
+        <button type="button" class="close" data-dismiss="alert">x</button>
+        <?=$al_gallFileErr?>
+    </div>
+
+    <?php    
+} else if($msg=="formatErr"){
+    ?>
+    <div class="alert alert-danger">
+        <button type="button" class="close" data-dismiss="alert">x</button>
+        <?=$al_formatErr?>
+    </div>
+
+    <?php    
+} else if($msg=="gallSucc"){
+    ?>
+    <div class="alert alert-success">
+        <button type="button" class="close" data-dismiss="alert">x</button>
+        <?=$al_gallSucc?>
+    </div>
+
+    <?php    
+} else if($msg=="gallErr"){
+    ?>
+    <div class="alert alert-danger">
+        <button type="button" class="close" data-dismiss="alert">x</button>
+        <?=$al_gallErr?>
+    </div>
+
+    <?php    
+} else if($msg=="imgEmpty"){
+    ?>
+    <div class="alert alert-danger">
+        <button type="button" class="close" data-dismiss="alert">x</button>
+        <?=$imgEmpty?>
+    </div>
+
+    <?php    
+} else if($msg=="titleExist"){
+    ?>
+    <div class="alert alert-danger">
+        <button type="button" class="close" data-dismiss="alert">x</button>
+        <?=$titleExist?>
+    </div>
+
+    <?php    
+} else if($msg=="pageCopySucc"){
+    ?>
+    <div class="alert alert-success">
+        <button type="button" class="close" data-dismiss="alert">x</button>
+        <?=$pageCopySucc?>
+    </div>
+
+    <?php    
+} else if($msg=="pageCopyErr"){
+    ?>
+    <div class="alert alert-danger">
+        <button type="button" class="close" data-dismiss="alert">x</button>
+        <?=$pageCopyErr?>
+    </div>
+
+    <?php    
 } else
 
 ?>

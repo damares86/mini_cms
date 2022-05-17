@@ -54,12 +54,14 @@ require "locale/$lang.php";
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
-    <meta name="author" content="">
+    <meta name="author" content="damares86">
+    <link rel="icon" href="assets/img/favicon.ico" type="image/png"/>
 
     <title>Mini Cms - Dashboard</title>
 
     <!-- Custom fonts for this template-->
-    <script src="scripts/jquery-1.9.1.min.js" type="text/javascript"></script> <!-- per le modali -->
+    <!-- per le modali -->
+    <!-- <script src="scripts/jquery-1.9.1.min.js" type="text/javascript"></script> -->
         <script src="scripts/jquery-ui-1.10.1.custom.min.js" type="text/javascript"></script>
     <script src="assets/vendor/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
     <link href="assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">

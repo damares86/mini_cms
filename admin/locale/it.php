@@ -4,13 +4,13 @@
 
 $txt_submit = "Invia";
 $txt_edit = "Modifica";
+$txt_copy = "Duplica";
 $txt_cancel = "Cancella";
 $txt_delete = "Elimina";
 $txt_logout = "Logout";
 $txt_close = "Chiudi";
 $txt_modal_title = "Sei sicuro?";
 $txt_modal_logout = "Seleziona \"Logout\" se ti vuoi disconnettere.";
-
 
 
 // SIDEBAR
@@ -20,12 +20,17 @@ $side_profile = "Profilo";
 $side_users = "Utenti";
 $side_manage = "Gestione sito";
 $side_page = "Pagine";
+$side_page_default = "Default";
+$side_page_custom = "Personali";
 $side_files = "Files";
 $side_port = "Portfolio";
 $side_project = "Progetti";
 $side_project_cat = "Categorie progetti";
 $side_blog = "Blog";
 $side_post = "Post";
+$side_gall = "Gallerie";
+$side_gall_all = "Tutte le gallerie";
+$side_gall_upload = "Carica foto";
 $side_cat = "Categorie";
 $side_settings = "Impostazioni";
 $side_siteset = "Sito";
@@ -75,6 +80,7 @@ $alluser_add = "Aggiungi utente";
 $alluser_username = "Username";
 $alluser_email = "Email";
 $alluser_role = "Ruolo";
+$alluser_login = "Ultimo login";
 $alluser_modal_text = "Se vuoi veramente cancellare questo utente clicca \"Ok\".";
 $alluser_nouser = "Nessun utente trovato";
 
@@ -95,14 +101,22 @@ $allpage_nopage = "Nessuna pagina trovata";
 
 $regpage_title_add = "Aggiungi una pagina";
 $regpage_title_edit = "Modifica pagina";
+$regpage_site_edit = "Modifica pagina";
 $regpage_info = "Info sulla creazione delle pagine";
 $regpage_name = "Nome della pagina";
 $regpage_layout = "Scegli il layout della pagina";
+$regpage_use_visual = "Usa immagine del visual";
 $regpage_visual = "Immagine del visual";
 $regpage_actual = "Immagine attuale";
 $regpage_block = "Blocco";
 $regpage_background = "Colore di sfondo";
 $regpage_text = "Colore del testo";
+$regpage_none = "Vuoto";
+$regpage_text_block = "Testo";
+$regpage_gall = "Galleria";
+$regpage_choose_gall = "Scegli una galleria";
+$regpage_post = "Ultimi post";
+$regpage_post_desc = "Mostra gli ultimi tre post dal blog";
 $regpage_desc = "Quando crei una nuova pagina, puoi inserire contenuti in un massimo di <b>6 blocchi</b> (uno per editor). <br><br>";
 $regpage_desc .= "Obbligatorio è solo il Blocco 1, poi puoi scegliere quali blocchi usare (per esempio puoi decidere di usare il blocco 1, 3, 5, 6).<br><br>";
 $regpage_desc .= "Puoi scegliere tra <b>3 diversi layout</b> per il posizionamento dei 6 blocchi, le immagini danno un'idea della disposizione dei blocchi, per scegliere quella che più si adatta alle esigenze della pagina.<br><br>";
@@ -149,6 +163,8 @@ $port_view = "Mostra";
 $port_link = "Link";
 $port_modal_text = "Se vuoi veramente cancellare questo progetto clicca \"Ok\".";
 $port_cat_title = "Categorie del portfolio";
+$port_noproject = "Nessun progetto presente";
+
 
 
 
@@ -167,6 +183,30 @@ $regport_completed_placeholder = "Inserisci la data in formato gg/mm/aa";
 $regport_link = "Link";
 $regport_link_placeholder = "Link del progetto";
 $regport_description = "Descrizione";
+
+
+// GALLERY
+
+$gall_title = "Gallerie";
+$gall_box_title = "Tutte le gallerie";
+$gall_add = "Aggiungi una nuova galleria";
+$gall_link = "Link";
+$gall_modal_text = "Se vuoi cancellare questa galleria clicca \"Ok\"";
+$gall_file_modal_text = "Se vuoi cancellare questa immagine clicca \"Ok\"";
+$gall_nogall = "Nessuna galleria presente";
+
+
+// REG AND EDIT GALLERY
+
+$gall_title_add = "Carica foto";
+$gall_title_edit = "Modifica galleria";
+$gall_name = "Nome della galleria";
+$gall_name_placeholder = "Scegli un nome per la galleria";
+$gall_upload = "Carica foto";
+$gall_desc = "Carica tutte le foto della galleria semplicemente cliccando su \"Scegli file\"";
+$gall_add_image = "Aggiungi un'immagine alla galleria";
+$gall_back ="Torna alle gallerie";
+$gall_site_edit = "Modifica galleria";
 
 
 
@@ -193,13 +233,13 @@ $regpost_title_edit = "Modifica post";
 $regpost_info = "Info sulla creazione dei post";
 $regpost_posttitle = "Titolo";
 $regpost_cat = "Categoria";
+$regpost_img = "Immagine principale del post";
 $regpost_summary = "Sommario";
 $regpost_content = "Contenuto";
 $regpost_desc = "Nella creazione di un post, devi aggiungere un titolo e una categoria per il post. (Se ti servono più categorie, vai alla sezione \"Categorie\"). <br><br>";
 $regpost_desc .= "Ci sono 2 editor: <ul><li><b>Sommario:</b> è l'anteprima del post, che verrà mostrata nella pagina Blog dove vengono mostrati tutti i post</li>";
 $regpost_desc .= "<li><b>Contenuto:</b> è il vero post, verrà mostrato in una pagina dedicata, dopo aver cliccato su \"Continua a leggere->\" ";
 $regpost_desc .= "alla fine del sommario nella pagina Blog</li></ul>";
-
 
 
 // CATEGORIES
@@ -227,6 +267,7 @@ $site_title = "Impostazioni del sito";
 $site_box1_title = "Dettagli del sito";
 $site_sitename = "Nome del sito";
 $site_sitedescription = "Descrizione del sito";
+$site_siteshow = "Mostra nome e descrizione nel sito";
 $site_footer = "Testo del footer";
 $site_lang = "Lingua del Sito";
 $site_box1_desc = "Scegli il nome e la descrizione del sito, che verranno mostrati in cima alla pagina e nella barra del browser e il testo del footer al fondo della pagina.";
@@ -335,7 +376,7 @@ $al_userEmpty = "Mancano alcuni dati per poter creare l'utente";
 $al_pageDelSucc = "Pagina eliminata";
 $al_pageDelErr = "Pagina non eliminata";
 $al_pageSucc = "Pagina creata";
-$al_pageErr = "Pagina non creatat";
+$al_pageErr = "Pagina non creata";
 $al_pageEditSucc = "Pagina modificata";
 $al_pageEditErr = "Pagina non modificata";
 $al_fileDelSucc = "File eliminato";
@@ -373,6 +414,20 @@ $al_catPortfolioSucc = "Categoria creata correttamente";
 $al_catPortfolioErr = "Categoria non creata";
 $al_catPortfolioEditSucc = "Categoria modificata correttamente";
 $al_catPortfolioEditErr = "Categoria non modificata";
+$al_gallDel = "Galleria cancellata";
+$al_pageGallNotDel = "Galleria non creata";
+$al_imgDelSucc = "Immagine cancellata";
+$al_imgNotDel = "Immagine non cancellata";
+$al_formatErr = "Formato errato. Puoi caricare solo immagini con formato \"jpg\", \"JPG\", \"jpeg\", \"png\"";
+$al_imgSucc = "Nuova immagine caricata";
+$al_gallTitleErr = "Titolo della galleria mancante";
+$al_gallFileErr = "Immagine mancante";
+$al_gallSucc = "Galleria creata";
+$al_gallErr = "Galleria non creata";
+$al_imgEmpty = "Immagine non fornita";
+$al_titleExist = "Questo titolo esiste già";
+$al_pageCopySucc = "Pagina duplicata";
+$al_pageCopyErr = "Pagina non duplicata";
 
 // ALERT WEBSITE
 
@@ -404,6 +459,20 @@ $log_forgot_wrong = "Link errato";
 $log_forgot_new = "Inserisci la nuova password";
 $log_forgot_exp = "Il tuo link non è più valido";
 
+// RESET MAIL
+
+$reset_output1='<html><body>';
+$reset_output1.='<p>Caro utente,</p>';
+$reset_output1.='<p>Clicca sul link seguente per resettare la tua password.</p>';
+$reset_output1.='<p>-------------------------------------------------------------</p>';
+$reset_output2='<p>-------------------------------------------------------------</p>';
+$reset_output2.='<p>Se non funziona copia l\'intero link e incollalo nella barra del browser.
+Il link sarà valido solo per un\'ora.</p>';
+$reset_output2.='<p>Se non hai richiesto il reset della password non è necessaria nessuna azione.</p>';   	
+$reset_output2.='<p>Grazie,</p>';
+$reset_output2.='<p>Mini CMS</p>';
+$reset_output2.='</body></html>';
+
 
 // CONTACT FORM
 
@@ -422,6 +491,18 @@ $blog_mod = "Ultima modifica";
 $blog_continue = "Continua a leggere";
 $blog_categories = "Categorie";
 $blog_share = "Condividi su";
+$blog_edit = "Modifica post";
+
+
+
+// PORTFOLIO PROJECT
+
+$pro_edit = "Modifica progetto";
+$pro_client = "Cliente";
+$pro_comp = "Completato";
+$pro_cat = "Categoria";
+$pro_goto = "Vai al progetto";
+$pro_back = "Torna al portfolio";
 
 
 // ADMIN AREA

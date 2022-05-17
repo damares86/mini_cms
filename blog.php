@@ -40,9 +40,14 @@ require "admin/template/inc/header.php";
                 $post_title = strtolower($post_title);
         ?>
         <h1><?=$title?></h1>
-        <p class="metainfo"><?=$blog_category?>: <b><a href="blog.php?cat=<?=$category_id?>"><?=$category_name?></a></b></p>
-        <p class="metainfo"><?=$blog_mod?>: <?=$modified?></p>
+        <p class="metainfo">*** <?=$blog_category?>: <b><a href="blog.php?cat=<?=$category_id?>"><?=$category_name?></a></b>
+         *** <?=$blog_mod?>: <?=$modified?> ***</p>
         <div class="blog_content">
+        <div class="row">
+                <div class="col px-5">
+                    <img src="uploads/img/<?=$main_img?>" class="w-50 justify-content-center mx-auto"><br>
+                </div>
+            </div>
             <?=$summary?>
             <br>
             <a href="post.php?id=<?=$id?>&title=<?=$post_title?>"><?=$blog_continue?> -></a>

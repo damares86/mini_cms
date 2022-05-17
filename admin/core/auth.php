@@ -38,6 +38,7 @@ if ( !isset($_POST['email'], $_POST['password']) ) {
 
         $email_exists=$user->emailExists();
 
+
         // validate login
         if ($email_exists && password_verify($_POST['password'], $user->password)){
             session_start();
@@ -46,6 +47,10 @@ if ( !isset($_POST['email'], $_POST['password']) ) {
             $_SESSION['user_id'] = $user->id;
             $_SESSION['name'] = $user->username;
             $_SESSION['rolename'] = $user->rolename;
+                    
+            $time=date("Y.m.d, G:i:s");
+
+            $user->updateLog($time);
             
             header("Location: ../");
             exit;

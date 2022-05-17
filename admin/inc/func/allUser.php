@@ -48,10 +48,10 @@ if($total_rows>0){
         <table class="table table-striped">
             <thead>
             <tr>
-                <th scope="col">#</th>
                 <th scope="col"><?=$alluser_username?></th>
                 <th scope="col"><?=$alluser_email?></th>
                 <th scope="col"><?=$alluser_role?></th>
+                <th scope="col"><?=$alluser_login?></th>
                 <th scope="col"><?=$txt_edit?></th>
                 <th scope="col"><?=$txt_delete?></th>
             </tr>
@@ -65,15 +65,14 @@ if($total_rows>0){
     while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
         
                 extract($row);
-               
               
 
                 ?>
             <tr>
-                <td><?=$id?></td>
                 <td><?=$username?></td>
                 <td><?=$email?></td>
                 <td><?=$rolename?></td>
+                <td><?=$last_login?></td>
                 <td>
                         <a href="index.php?man=users&op=edit&idToMod=<?=$row["id"]?>" class="btn btn-warning btn-icon-split">
                             <span class="icon text-white-50">

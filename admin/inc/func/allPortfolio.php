@@ -45,7 +45,6 @@
         <table class="table table-striped">
             <thead>
                 <tr>
-                    <th scope="col">#</th>
                     <th scope="col"><?=$port_project_title ?></th>
                     <th scope="col"><?=$port_completed?></th>
                     <th scope="col"><?=$port_category?></th>
@@ -68,11 +67,10 @@
 
         ?>
             <tr>
-                <td><?=$id?></td>
                 <td><?=$project_title?></td>
                 <td><?=$completed?></td>
                 <td><?=$cat->category_name?></td>
-                <td><a href="../<?=$str?>.php"><?=$port_link?></a></td>
+                <td><a href="../misc/portfolio/<?=$str?>.php"><?=$port_link?></a></td>
                
                 <td>
                 <a href="index.php?man=portfolio&op=edit&idToMod=<?=$row["id"]?>" class="btn btn-warning btn-icon-split">
@@ -122,7 +120,7 @@
         // paging buttons
         include_once 'inc/paging.php';
     } else{
-        echo "<div class='alert alert-danger'>Nessun progetto trovato</div>";
+        echo "<div class='alert alert-danger'>$port_noproject</div>";
     }
 
 

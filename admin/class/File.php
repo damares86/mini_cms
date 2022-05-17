@@ -82,7 +82,7 @@ class File{
                             // prepare the query
                             $stmt = $this->conn->prepare($query);
                             
-                          
+           ;               
                     // sanitize
                     // $this->rolename=htmlspecialchars(strip_tags($this->title));
                 

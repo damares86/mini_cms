@@ -4,6 +4,7 @@ require "inc/header.php";
 
 $manage=filter_input(INPUT_GET,"man");
 $operation=filter_input(INPUT_GET,"op");
+$type=filter_input(INPUT_GET,"type");
 
 
 // $usersCount=GetAllRows($conn,"accounts");
@@ -68,7 +69,11 @@ $user_id=$_SESSION['user_id'];
                                 }
                             }else if($manage=="page"){
                                 if($operation=="show"){
-                                    require "inc/func/allPage.php";
+                                    if($type=="default"){
+                                        require "inc/func/allPage.php";
+                                    } else if($type=="custom"){
+                                        require "inc/func/allPageCustom.php";
+                                    }
                                 } else if($operation=="add"||$operation=="edit"){
                                     require "inc/func/regPage.php";
                                 }
@@ -83,6 +88,12 @@ $user_id=$_SESSION['user_id'];
                                     require "inc/func/allCatPortfolio.php";
                                 } else if($operation=="add"||$operation=="edit"){
                                     require "inc/func/regCatPortfolio.php";
+                                }
+                            }else if($manage=="gall"){
+                                if($operation=="show"){
+                                    require "inc/func/allGallery.php";
+                                } else if($operation=="add"||$operation=="edit"){
+                                    require "inc/func/regGallery.php";
                                 }
                             }else if($manage=="color"){
                                 if($operation=="show"){

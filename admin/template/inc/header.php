@@ -1,11 +1,11 @@
 <?php
 
-require 'admin/phpDebug/src/Debug/Debug.php';   			// if not using composer
+// require 'admin/phpDebug/src/Debug/Debug.php';   			// if not using composer
 
-$debug = new \bdk\Debug(array(
-    'collect' => true,
-    'output' => true,
-));
+// $debug = new \bdk\Debug(array(
+//     'collect' => true,
+//     'output' => true,
+// ));
 
 session_start();
 // loading class
@@ -82,11 +82,14 @@ $page_name=str_replace("_"," ", $page_name);
 $page_name=ucfirst($page_name);
 }
 
+$root="";
+$lang="";
 
 while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
     
     extract($row);
     $theme=$row['theme'];
+    $lang=$row['dashboard_language'];
     
     ?>
 
@@ -105,7 +108,7 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
         <link rel="icon" href="assets/<?= $theme ?>/img/favicon.ico">
         <?php
           
-            if($page_class=="index"||$page_class=="blog"||$page_class=="contact"){
+            if($page_class=="index"||$page_class=="blog"||$page->class=="contact"){
                 $page->page_name=$page_class;
             }else{
                 $page->page_name=$page_name;
@@ -116,9 +119,14 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
 
         ?>
         <link rel="stylesheet" href="admin/template/layout/<?=$page->layout?>.css" />
+        <link href='admin/scripts/simplelightbox/simple-lightbox.min.css' rel='stylesheet' type='text/css'>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script type="text/javascript" src="admin/scripts/simplelightbox/simple-lightbox.jquery.min.js"></script>
+        <link href='admin/template/inc/layout.css' rel='stylesheet' type='text/css'>
 		<?php
 
             require "assets/".$theme."/inc/scripts.php";
+            require "admin/inc/func/check.php";
             if(($file=="login.php")||($file=="contact.php")){
                 require "assets/".$theme."/inc/recaptcha.php";
             }
@@ -148,7 +156,26 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
                 ?>  
                 </header>
                 <?php
-                    require "assets/".$theme."/inc/visual.php";
+                    if($page->header==1){
+                    ?>
+                <div id="banner-wrapper">
+					<div id="banner" class="box container" style="background-image: url(<?=$root?>assets/<?=$theme?>/img/<?=$img?>);">
+						<div class="row">
+                            <?php
+                            if($use_text==1){
+                            ?>
+							<div class="col-7 col-12-medium">
+								<h2><?=$site_name?></h2>
+								<p><?=$site_description?></p>
+							</div>
+                            <?php
+                            }
+                            ?>
+						</div>
+					</div>
+				</div>
+                    <?php
+                    }
                 ?> 
             </div>
             <?php

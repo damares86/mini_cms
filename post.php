@@ -39,14 +39,35 @@ $url = get_page_url();
         $cat->showById();
                         
         $category_name= $cat->category_name;
-        ?>
+
+                if (isset($_SESSION['loggedin'])) {
+                    $type="";
+                    if($page->id<8){
+                        $type="default";
+                    }else{
+                        $type="custom";
+                    }
+                    ?>
+                <div class="text-right">
+                    
+                    <a href="admin/index.php?man=post&op=edit&idToMod=<?=$post_id?>" class="btn btn-primary btn-sm"><b><?=$blog_edit?></b></a>
+                </div>
+                    <?php
+                }
+                ?>
+        <a href="blog.php"><- Back to blog</a>
         <h1><?=$post->title?></h1>
         <p class="metainfo"><?=$blog_category?>: <b><a href="blog.php?cat=<?=$category_id?>"><?=$category_name?></a></b></p>
         <p class="metainfo"><?=$blog_mod?>: <?=$post->modified?></p>
         <div class="blog_content">
+            <div class="row">
+                <div class="col px-5">
+                    <img src="uploads/img/<?=$post->main_img?>" class="w-100"><br>
+                </div>
+            </div>
             <?=$post->content?>
             
-            <br>
+            <br><br>
             <div class="border p-3">
                 <?=$blog_share?>: &nbsp;
                 
