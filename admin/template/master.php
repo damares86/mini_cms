@@ -28,12 +28,19 @@ require "admin/template/inc/header.php";
                     <?php
                 }
                 ?>
-                <div class="block block1 <?=$page_class?>" style="background-color:<?=$page->block1_bg?> !important; color:<?=$page->block1_text?> !important;">
+                <div class="block-row">
+                    <div class="block block1 <?=$page_class?>" style="background-color:<?=$page->block1_bg?> !important; color:<?=$page->block1_text?> !important;">
                         <?php
                         echo $page->block1;
                         ?>            
                     </div>
                     <?php 
+                    if($page->layout=="default"||$page->layout=="variant1"){
+                    ?>
+                </div>
+                <div class="block-row">
+                    <?php
+                    }
                          if($page->block2_type!="n"){
                              ?>
                              <div class="block block2 <?=$page_class?>" style="background-color:<?=$page->block2_bg?> !important; color:<?=$page->block2_text?> !important;">
@@ -104,7 +111,12 @@ require "admin/template/inc/header.php";
                              </div>
                              <?php
                          }
-
+                         if($page->layout=="variant2"){
+                        ?>
+                        </div>
+                        <div class="block-row">
+                        <?php
+                         }
                          if($page->block3_type!="n"){
                             ?>
                             <div class="block block3 <?=$page_class?>" style="background-color:<?=$page->block3_bg?> !important; color:<?=$page->block3_text?> !important;">
@@ -175,7 +187,12 @@ require "admin/template/inc/header.php";
                             </div>
                             <?php
                         }
-
+                        if($page->layout=="default"||$page->layout=="variant2"){
+                            ?>
+                            </div>
+                            <div class="block-row">
+                            <?php
+                             }
                         if($page->block4_type!="n"){
                             ?>
                             <div class="block block4 <?=$page_class?>" style="background-color:<?=$page->block4_bg?> !important; color:<?=$page->block4_text?> !important;">
@@ -246,6 +263,12 @@ require "admin/template/inc/header.php";
                             </div>
                             <?php
                         }
+                        if($page->layout=="variant1"){
+                            ?>
+                            </div>
+                            <div class="block-row">
+                            <?php
+                             }
 
                         if($page->block5_type!="n"){
                             ?>
@@ -390,6 +413,7 @@ require "admin/template/inc/header.php";
                         }
 
                     ?>
+                            </div>
                     <div class="clearfix"></div>
                 </div>
             </div>

@@ -108,6 +108,8 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
         <link href='../../admin/scripts/simplelightbox/simple-lightbox.min.css' rel='stylesheet' type='text/css'>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script type="text/javascript" src="../../admin/scripts/simplelightbox/simple-lightbox.jquery.min.js"></script>
+        <link href='admin/template/inc/layout.css' rel='stylesheet' type='text/css'>
+
 <?php
 
 require "".$root."assets/".$theme."/inc/scripts.php";

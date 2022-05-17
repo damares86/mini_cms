@@ -105,6 +105,8 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
           
           
           ?>
+        <link href='admin/template/inc/layout.css' rel='stylesheet' type='text/css'>
+
 		<?php
 
 require "$root/assets/".$theme."/inc/scripts.php";
