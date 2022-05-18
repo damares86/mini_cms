@@ -1,4 +1,3 @@
-<script src="assets/<?=$theme?>/js/jquery.min.js"></script>
 
 <script src="assets/<?=$theme?>/js/bootstrap.min.js"></script>
 			<script src="assets/<?=$theme?>/js/jquery.dropotron.min.js"></script>
