@@ -1,11 +1,11 @@
 <?php
 
-require '../../admin/phpDebug/src/Debug/Debug.php';   			// if not using composer
+// require '../../admin/phpDebug/src/Debug/Debug.php';   			// if not using composer
 
-$debug = new \bdk\Debug(array(
-    'collect' => true,
-    'output' => true,
-));
+// $debug = new \bdk\Debug(array(
+//     'collect' => true,
+//     'output' => true,
+// ));
 
 session_start();
 
@@ -108,7 +108,7 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
         <link href='../../admin/scripts/simplelightbox/simple-lightbox.min.css' rel='stylesheet' type='text/css'>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script type="text/javascript" src="../../admin/scripts/simplelightbox/simple-lightbox.jquery.min.js"></script>
-        <link href='admin/template/inc/layout.css' rel='stylesheet' type='text/css'>
+        <link href='../../admin/template/inc/layout.css' rel='stylesheet' type='text/css'>
 
 <?php
 

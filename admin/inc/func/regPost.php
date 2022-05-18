@@ -128,8 +128,73 @@ if(filter_input(INPUT_GET,"idToMod")){
                     ?>
                 </div>
             </div>
-   
-   
+   <br>
+
+            <?php
+                $display="";
+                $checked="";
+                if($post->gall=="none"){
+                    $display="none";
+            }else{
+                $display="block";
+                $checked="checked";
+            }
+
+        ?>
+        <script>
+            function show(i) {
+                document.getElementById(i).style.visibility='visible';
+            }
+        </script>
+        <script>
+            $(document).ready(function(){
+            $("#gall").click(function(){
+                $("#addGall").toggle();
+            });
+            });
+        </script>
+        <input type="checkbox" name="selectGall" value="1" id="gall" <?=$checked?>>  Add a gallery to the post
+        <div class="control-group">
+<div id="addGall" class="border-top border-bottom py-3"  style="display:<?=$display?>">
+            Choose an existing gallery
+            <?php
+            $dir_gall="../misc/gallery/img/";
+            $dir_root="../misc/gallery/";
+
+            function is_dir_empty($dir) {
+                if (!is_readable($dir)) return null; 
+                  return (count(scandir($dir)) == 2);
+             }
+
+            if( !is_dir($dir_gall) || is_dir_empty($dir_gall) ||is_dir_empty(($dir_root)) ){
+                    echo "<div class='col'><div class='alert alert-danger'>$gall_nogall</div></div>";
+                }else{
+                    ?>
+                    <select name="gall">
+                        <?php
+                        echo "<option value='none'>none</option>";
+
+            foreach (glob("../misc/gallery/img/*") as $file) {
+                $folder=pathinfo($file, PATHINFO_FILENAME);
+                $gallery= str_replace("_"," ", $folder);
+                $gallery=ucfirst($gallery);
+                
+                $selected ="";
+                if($post->gall==$folder){
+                    $selected="selected";
+                }
+                echo "<option value'$folder' $selected>$gallery</option>";
+            ?>
+
+        <?php
+            }
+        }
+        
+        ?>
+        </select>
+
+</div>   
+        </div>
             <br>
             <h4><?=$regpost_summary?></h4>
             <textarea id="summernote" name="editor" rows="10">

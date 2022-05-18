@@ -23,19 +23,73 @@ $stmt = $settings->showSettings();
 ?>
 
 <style>
-    .box{
+    .box2{
         display: none;
     }
+    .box3{
+        display: none;
+    }
+    .box4{
+        display: none;
+    }
+    .box5{
+        display: none;
+    }
+    .box6{
+        display: none;
+    }
+
 
 </style>
 
 <!-- hyde/show boxes -->
-    <script>
+
+        <script>
         $(document).ready(function(){
-            $('input[type="radio"]').click(function(){
+            $('input[name="block2[]"]').click(function(){
                 var inputValue = $(this).attr("value");
                 var targetBox = $("." + inputValue);
-                $(".box").not(targetBox).hide();
+                $(".box2").not(targetBox).hide();
+                $(targetBox).show();
+            });
+        });
+    </script>
+        <script>
+        $(document).ready(function(){
+            $('input[name="block3[]"]').click(function(){
+                var inputValue = $(this).attr("value");
+                var targetBox = $("." + inputValue);
+                $(".box3").not(targetBox).hide();
+                $(targetBox).show();
+            });
+        });
+    </script>
+        <script>
+        $(document).ready(function(){
+            $('input[name="block4[]"]').click(function(){
+                var inputValue = $(this).attr("value");
+                var targetBox = $("." + inputValue);
+                $(".box4").not(targetBox).hide();
+                $(targetBox).show();
+            });
+        });
+    </script>
+        <script>
+        $(document).ready(function(){
+            $('input[name="block5[]"]').click(function(){
+                var inputValue = $(this).attr("value");
+                var targetBox = $("." + inputValue);
+                $(".box5").not(targetBox).hide();
+                $(targetBox).show();
+            });
+        });
+    </script>
+        <script>
+        $(document).ready(function(){
+            $('input[name="block6[]"]').click(function(){
+                var inputValue = $(this).attr("value");
+                var targetBox = $("." + inputValue);
+                $(".box6").not(targetBox).hide();
                 $(targetBox).show();
             });
         });
@@ -389,10 +443,10 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
         <br><br>
         
         <!-- EMPTY BOX -->
-        <div class="n2 box">&nbsp;</div>
+        <div class="n2 box2">&nbsp;</div>
 
         <!-- TEXT BOX -->
-        <div class="t2 box">
+        <div class="t2 box2">
             <textarea id="summernote2" name="editor2" rows="10" class="summernote position-absolute">   <?=$page->block2?></textarea>
 
             <br>
@@ -401,7 +455,7 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
         </div>
 
          <!-- GALLERY BOX -->
-         <div class="g2 box p-3" style="background-color:#f8f9fc"> 
+         <div class="g2 box2 p-3" style="background-color:#f8f9fc"> 
          <?=$regpage_choose_gall?>
             <?php
             $dir_gall="../misc/gallery/img/";
@@ -438,7 +492,7 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
         </div>
               
         <!-- BLOG BOX -->
-        <div class="b2 box p-3" style="background-color:#f8f9fc">
+        <div class="b2 box2 p-3" style="background-color:#f8f9fc">
              <?=$regpage_post_desc?>
         </div>
     <!-- END BLOCK 2 -->
@@ -535,10 +589,10 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
         <br><br>
         
         <!-- EMPTY BOX -->
-        <div class="n3 box">&nbsp;</div>
+        <div class="n3 box3">&nbsp;</div>
 
         <!-- TEXT BOX -->
-        <div class="t3 box">
+        <div class="t3 box3">
 
             <br>
             <textarea id="summernote3" name="editor3" rows="10">   <?=$page->block3?></textarea>
@@ -548,7 +602,7 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
         </div>
 
          <!-- GALLERY BOX -->
-         <div class="g3 box p-3" style="background-color:#f8f9fc"> 
+         <div class="g3 box3 p-3" style="background-color:#f8f9fc"> 
          <?=$regpage_choose_gall?>
 
             <?php
@@ -586,7 +640,7 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
         </div>
               
         <!-- BLOG BOX -->
-        <div class="b3 box p-3" style="background-color:#f8f9fc">
+        <div class="b3 box3 p-3" style="background-color:#f8f9fc">
         <?=$regpage_post_desc?>
         </div>
         <br>
@@ -684,10 +738,10 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
         <br><br>
         
         <!-- EMPTY BOX -->
-        <div class="n4 box">&nbsp;</div>
+        <div class="n4 box4">&nbsp;</div>
 
         <!-- TEXT BOX -->
-        <div class="t4 box">
+        <div class="t4 box4">
 
             <br>
             <textarea id="summernote4" name="editor4" rows="10">   <?=$page->block4?></textarea>
@@ -697,7 +751,7 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
         </div>
 
            <!-- GALLERY BOX -->
-           <div class="g4 box p-3" style="background-color:#f8f9fc"> 
+           <div class="g4 box4 p-3" style="background-color:#f8f9fc"> 
            <?=$regpage_choose_gall?>
 
             <?php
@@ -735,7 +789,7 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
         </div>
               
         <!-- BLOG BOX -->
-        <div class="b4 box p-3" style="background-color:#f8f9fc">
+        <div class="b4 box4 p-3" style="background-color:#f8f9fc">
             <?=$regpage_post_desc?>
         </div>
 
@@ -834,10 +888,10 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
         <br><br>
         
         <!-- EMPTY BOX -->
-        <div class="n5 box">&nbsp;</div>
+        <div class="n5 box5">&nbsp;</div>
 
         <!-- TEXT BOX -->
-        <div class="t5 box">
+        <div class="t5 box5">
 
             <br>
 
@@ -848,7 +902,7 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
         </div>
 
            <!-- GALLERY BOX -->
-           <div class="g5 box p-3" style="background-color:#f8f9fc"> 
+           <div class="g5 box5 p-3" style="background-color:#f8f9fc"> 
            <?=$regpage_choose_gall?>
 
             <?php
@@ -886,7 +940,7 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
         </div>
               
         <!-- BLOG BOX -->
-        <div class="b5 box p-3" style="background-color:#f8f9fc">
+        <div class="b5 box5 p-3" style="background-color:#f8f9fc">
         <?=$regpage_post_desc?>
         </div>
 
@@ -985,10 +1039,10 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
         <br><br>
         
         <!-- EMPTY BOX -->
-        <div class="n6 box">&nbsp;</div>
+        <div class="n6 box6">&nbsp;</div>
 
         <!-- TEXT BOX -->
-        <div class="t6 box">
+        <div class="t6 box6">
 
             <br>
 
@@ -999,7 +1053,7 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
         </div>
 
     <!-- GALLERY BOX -->
-    <div class="g6 box p-3" style="background-color:#f8f9fc"> 
+    <div class="g6 box6 p-3" style="background-color:#f8f9fc"> 
             <?=$regpage_choose_gall?>
 
             <?php
@@ -1037,7 +1091,7 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
         </div>
               
         <!-- BLOG BOX -->
-        <div class="b6 box p-3" style="background-color:#f8f9fc">
+        <div class="b6 box6 p-3" style="background-color:#f8f9fc">
         <?=$regpage_post_desc?> 
         </div>
 

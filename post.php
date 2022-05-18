@@ -41,12 +41,7 @@ $url = get_page_url();
         $category_name= $cat->category_name;
 
                 if (isset($_SESSION['loggedin'])) {
-                    $type="";
-                    if($page->id<8){
-                        $type="default";
-                    }else{
-                        $type="custom";
-                    }
+   
                     ?>
                 <div class="text-right">
                     
@@ -56,6 +51,7 @@ $url = get_page_url();
                 }
                 ?>
         <a href="blog.php"><- Back to blog</a>
+        <br><br>
         <h1><?=$post->title?></h1>
         <p class="metainfo"><?=$blog_category?>: <b><a href="blog.php?cat=<?=$category_id?>"><?=$category_name?></a></b></p>
         <p class="metainfo"><?=$blog_mod?>: <?=$post->modified?></p>
@@ -66,8 +62,87 @@ $url = get_page_url();
                 </div>
             </div>
             <?=$post->content?>
-            
             <br><br>
+            <?php
+            $gallery=$post->gall;
+            if($gallery!="none"){
+            ?>         <!-- Script -->
+            <script type='text/javascript'>
+            $(document).ready(function(){
+            
+             // Intialize gallery
+             var gallery = $('.gallery a').simpleLightbox();
+            
+            });
+            </script>
+                <div class="gallery">
+                <div class="row p-2">
+                    <?php
+                    
+                    // Image extensions
+                    $image_extensions = array("png","jpg","jpeg","JPG");
+
+                    $dir = "misc/gallery/img/$gallery/";
+                    if (is_dir($dir)){
+                    
+                        if ($dh = opendir($dir)){
+                            $count = 1;
+                    
+                            // Read files
+                            while (($file = readdir($dh)) !== false){
+                    
+                                if($file != '' && $file != '.' && $file != '..'){
+                    
+                                    // Thumbnail image path
+                                    $thumbnail_path = $dir.$file;
+                    
+                                    // Image path
+                                    $image_path = $dir.$file;
+                    
+                                    $thumbnail_ext = pathinfo($thumbnail_path, PATHINFO_EXTENSION);
+                                    $image_ext = pathinfo($image_path, PATHINFO_EXTENSION);
+                    
+                                    // Check its not folder and it is image file
+                                    if(!is_dir($image_path) && 
+                                        in_array($thumbnail_ext,$image_extensions) && 
+                                        in_array($image_ext,$image_extensions)){
+                                    ?>
+
+                                    <!-- Image -->
+                                    <div class="col-md-4 col-lg-3">
+                                        <a href="<?php echo $image_path; ?>">
+                                            <img src="<?php echo $thumbnail_path; ?>" alt="" title="" class="gallery">
+                                        </a>
+                                    </div>
+                                    <!-- --- -->
+                                    <?php
+                    
+                                        // Break
+                                        if( $count%4 == 0){
+                                        ?>
+                                            <div class="clear"></div>
+                                        <?php 
+                                        }
+                                        $count++;
+                                    }
+                                }
+                    
+                            }
+                        closedir($dh);
+                        }
+                    }
+                    ?>
+            </div>
+
+        
+
+      
+ 
+            </div>
+            <?php
+            }
+            ?>
+            
             <div class="border p-3">
                 <?=$blog_share?>: &nbsp;
                 

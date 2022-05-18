@@ -58,19 +58,7 @@
                     </div>
                 </div>
             </li>
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
-                    aria-expanded="true" aria-controls="collapseTwo">
-                    <i class="fas fa-fw fa-image"></i>
-                    <span><?=$side_port?></span>
-                </a>
-                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="index.php?man=portfolio&op=show"><?=$side_project?></a>
-                        <a class="collapse-item" href="index.php?man=catPortfolio&op=show"><?=$side_project_cat?></a>
-                    </div>
-                </div>
-            </li>
+            
             <?php
             }
             ?>
@@ -105,7 +93,25 @@
                     <i class="fas fa-fw fa-folder-open"></i>
                     <span><?=$side_files?></span></a>
                 </li>
-                
+                <?php
+            if($_SESSION['rolename']!="Contributor"){
+            ?>
+                <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
+                    aria-expanded="true" aria-controls="collapseTwo">
+                    <i class="fas fa-fw fa-image"></i>
+                    <span><?=$side_port?></span>
+                </a>
+                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item" href="index.php?man=portfolio&op=show"><?=$side_project?></a>
+                        <a class="collapse-item" href="index.php?man=catPortfolio&op=show"><?=$side_project_cat?></a>
+                    </div>
+                </div>
+            </li>
+            <?php
+            }
+            ?>
                 <!-- Divider -->
                 <hr class="sidebar-divider">
                 <!-- Heading -->

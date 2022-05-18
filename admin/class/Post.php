@@ -8,6 +8,8 @@ class Post{
 
     public $id;
     public $main_img;
+    public $gall;
+    public $gall_q;
     public $new_img;
     public $title;
     public $summary;
@@ -27,6 +29,7 @@ class Post{
                     " . $this->table_name . "
                 SET
                     main_img = :main_img,
+                    gall = :gall,                   
                     title = :title,
                     summary = :summary,
                     content = :content,
@@ -38,11 +41,13 @@ class Post{
        
         // bind the values
         $stmt->bindParam(':main_img', $this->main_img);       
+        $stmt->bindParam(':gall', $this->gall);   
         $stmt->bindParam(':title', $this->title);       
         $stmt->bindParam(':summary', $this->summary);       
         $stmt->bindParam(':content', $this->content);       
         $stmt->bindParam(':category_id', $this->category_id);       
-        
+
+
 
       
         // execute the query, also check if query was successful
@@ -74,6 +79,7 @@ class Post{
                     " . $this->table_name . "
                 SET
                 main_img = :main_img,
+                gall = :gall,
                 title = :title,
                 summary = :summary,
                 content = :content,
@@ -86,6 +92,7 @@ class Post{
                 
                 // bind the values
                 $stmt->bindParam(':main_img', $this->main_img);       
+                $stmt->bindParam(':gall', $this->gall);       
                 $stmt->bindParam(':title', $this->title);   
                 $stmt->bindParam(':summary', $this->summary);
                 $stmt->bindParam(':content', $this->content); 
@@ -279,6 +286,7 @@ class Post{
         
         $this->id = $row['id'];
         $this->main_img = $row['main_img'];
+        $this->gall = $row['gall'];
         $this->title = $row['title'];
         $this->summary = $row['summary'];
         $this->content = $row['content'];
