@@ -133,7 +133,7 @@ if(filter_input(INPUT_GET,"idToMod")){
             <?php
                 $display="";
                 $checked="";
-                if($post->gall=="none"){
+                if(!$post->gall||$post->gall=="none"){
                     $display="none";
             }else{
                 $display="block";
@@ -153,10 +153,10 @@ if(filter_input(INPUT_GET,"idToMod")){
             });
             });
         </script>
-        <input type="checkbox" name="selectGall" value="1" id="gall" <?=$checked?>>  Add a gallery to the post
+        <input type="checkbox" name="selectGall" value="1" id="gall" <?=$checked?>>  <?=$regpost_add_gall?>
         <div class="control-group">
 <div id="addGall" class="border-top border-bottom py-3"  style="display:<?=$display?>">
-            Choose an existing gallery
+            <?=$regpost_gall?>
             <?php
             $dir_gall="../misc/gallery/img/";
             $dir_root="../misc/gallery/";

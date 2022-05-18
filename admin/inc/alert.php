@@ -718,7 +718,7 @@ if($msg=="userDelSucc"){
     ?>
     <div class="alert alert-danger">
         <button type="button" class="close" data-dismiss="alert">x</button>
-        <?=$imgEmpty?>
+        <?=$al_imgEmpty?>
     </div>
 
     <?php    
@@ -726,7 +726,7 @@ if($msg=="userDelSucc"){
     ?>
     <div class="alert alert-danger">
         <button type="button" class="close" data-dismiss="alert">x</button>
-        <?=$titleExist?>
+        <?=$al_titleExist?>
     </div>
 
     <?php    
@@ -734,7 +734,7 @@ if($msg=="userDelSucc"){
     ?>
     <div class="alert alert-success">
         <button type="button" class="close" data-dismiss="alert">x</button>
-        <?=$pageCopySucc?>
+        <?=$al_pageCopySucc?>
     </div>
 
     <?php    
@@ -742,7 +742,7 @@ if($msg=="userDelSucc"){
     ?>
     <div class="alert alert-danger">
         <button type="button" class="close" data-dismiss="alert">x</button>
-        <?=$pageCopyErr?>
+        <?=$al_pageCopyErr?>
     </div>
 
     <?php    
