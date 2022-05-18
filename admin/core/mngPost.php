@@ -70,29 +70,40 @@ if(filter_input(INPUT_POST,"subReg")){
 			header("Location: ../index.php?man=post&op=show&msg=imgEmpty");
 			exit;
 		}
-
 		$new_title=$_POST['title'];
-
+		
 		$stmt=$post->showAllList();
-
+		
 		while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
-                
+			
 			extract($row);
-
-
+			
+			
 			if($new_title==$title){
 				header("Location: ../index.php?man=post&op=show&msg=titleExist");
 				exit;
 			}
 		}
-		//inserimento
 
+		if(isset($_POST['selectGall'])){
+			print_r("ko");
+			exit;
+			$gallery = str_replace(" ","_",$_POST['gall']);
+			$gallery=strtolower($gallery);
+			$post->gall = $gallery;
+		}else{
+			print_r("ok");
+			exit;
+			$post->gall = "none";
+		}
+		
+		//inserimento
 		$post->title=$_POST['title'];
 		$post->main_img=$_FILES['myfile']['name'];
 		$post->summary=$_POST['editor'];
 		$post->content=$_POST['editor2'];
 		$post->category_id=$_POST['category_id'];
-			
+		
 		// create the post
 		if($post->insert()){			
 				header("Location: ../index.php?man=post&op=show&msg=postSucc");
@@ -103,17 +114,6 @@ if(filter_input(INPUT_POST,"subReg")){
 		}
 	} else if($operation=="mod"){
 
-		$new_title=$_POST['title'];
-
-		while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
-                
-			extract($row);
-
-			if($new_title==$title){
-				header("Location: ../index.php?man=post&op=show&msg=titleExist");
-				exit;
-			}
-		}
 
 		$post->title=$_POST['title'];
 
@@ -131,6 +131,14 @@ if(filter_input(INPUT_POST,"subReg")){
 
 		}
 
+		if(isset($_POST['selectGall'])){
+			$gallery = str_replace(" ","_",$_POST['gall']);
+			$gallery=strtolower($gallery);
+			$post->gall = $gallery;
+		}else{
+			$post->gall = "none";
+		}
+		
 	
 		// modifica post
 		$post->summary=$_POST['editor'];

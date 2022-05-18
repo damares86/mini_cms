@@ -1,7 +1,5 @@
 <?php
 
-include("../../class/Database.php");
-include("../../class/Settings.php");
 
 $database = new Database();
 $db = $database->getConnection();
