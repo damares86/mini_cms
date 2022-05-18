@@ -169,6 +169,7 @@ if($operation=="mod"){
                 <label class="control-label" for="password"><?=$prof_password?></label>
                 <div class="controls">
                     <input type="hidden" name="idToMod" value="<?= $idToMod ?>" />
+                    <input type="hidden" name="lang" value="<?= $lang ?>" />
 
                     <input type="text" id="password" name="password" placeholder="Choose the new password" class="span8">
                         

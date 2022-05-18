@@ -92,6 +92,7 @@ require "admin/template/inc/header.php";
                                             </a>
                                         </div>                                
                                     </div>
+                                                   
                                      
                             <?php
                              }
@@ -146,16 +147,28 @@ require "admin/template/inc/header.php";
                
                                ?>
                
-                                    <div class="row">
-                                        <div class="col-12 text-center">
-                                                <h3><b><?=$gallery?></b></h3>
-                                        </div>
-                                        <div class="col-12">
-                                            <a href="misc/gallery/<?=$folder?>.php">
-                                                <img src="<?=$firstFile?>" style="max-width:100%; margin:0 auto;">
-                                            </a>
-                                        </div>                                
-                                    </div>
+                                                    <div class="row">
+                                                       <div class="col-12">
+                                                           <div class="text-s font-weight-bold mb-1">
+                                                               <?=$gallery?>
+                                                            </div>
+                                                       </div>
+                                                   </div>
+                                                   <div class="row my-3 text-center">
+                                                       <div class="col-12">
+                                                           <img src="<?=$firstFile?>" style="height:100px; max-width:100%; margin:0 auto;">
+                                                       </div>                                
+                                                   </div>
+                                                   <div class="row">
+                                                       <div class="col-12 text-center">
+                                                           <a href="../misc/gallery/<?=$folder?>.php" class="btn btn-info btn-icon-split btn-sm">
+                                                               <span class="icon text-white-50">
+                                                                   <i class="fas fa-link"></i>
+                                                               </span>
+                                                               <span class="text">Link</span>
+                                                           </a>   
+                                                       </div>
+                                                   </div>
                                     
                            <?php
                             }
@@ -210,16 +223,28 @@ require "admin/template/inc/header.php";
                 
                                 ?>
                 
-                                    <div class="row">
-                                        <div class="col-12 text-center">
-                                                <h3><b><?=$gallery?></b></h3>
-                                        </div>
-                                        <div class="col-12">
-                                            <a href="misc/gallery/<?=$folder?>.php">
-                                                <img src="<?=$firstFile?>" style="max-width:100%; margin:0 auto;">
-                                            </a>
-                                        </div>                                
-                                    </div>
+                                                     <div class="row">
+                                                        <div class="col-12">
+                                                            <div class="text-s font-weight-bold mb-1">
+                                                                <?=$gallery?>
+                                                             </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row my-3 text-center">
+                                                        <div class="col-12">
+                                                            <img src="<?=$firstFile?>" style="height:100px; max-width:100%; margin:0 auto;">
+                                                        </div>                                
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-12 text-center">
+                                                            <a href="../misc/gallery/<?=$folder?>.php" class="btn btn-info btn-icon-split btn-sm">
+                                                                <span class="icon text-white-50">
+                                                                    <i class="fas fa-link"></i>
+                                                                </span>
+                                                                <span class="text">Link</span>
+                                                            </a>   
+                                                        </div>
+                                                    </div>
                                      
                            <?php
                             }
@@ -275,16 +300,28 @@ require "admin/template/inc/header.php";
                
                                ?>
                
-                                    <div class="row">
-                                        <div class="col-12 text-center">
-                                                <h3><b><?=$gallery?></b></h3>
-                                        </div>
-                                        <div class="col-12">
-                                            <a href="misc/gallery/<?=$folder?>.php">
-                                                <img src="<?=$firstFile?>" style="max-width:100%; margin:0 auto;">
-                                            </a>
-                                        </div>                                
-                                    </div>
+                                                    <div class="row">
+                                                       <div class="col-12">
+                                                           <div class="text-s font-weight-bold mb-1">
+                                                               <?=$gallery?>
+                                                            </div>
+                                                       </div>
+                                                   </div>
+                                                   <div class="row my-3 text-center">
+                                                       <div class="col-12">
+                                                           <img src="<?=$firstFile?>" style="max-width:100%; margin:0 auto;">
+                                                       </div>                                
+                                                   </div>
+                                                   <div class="row">
+                                                       <div class="col-12 text-center">
+                                                           <a href="misc/gallery/<?=$folder?>.php" class="btn btn-info btn-icon-split btn-sm">
+                                                               <span class="icon text-white-50">
+                                                                   <i class="fas fa-link"></i>
+                                                               </span>
+                                                               <span class="text">Link</span>
+                                                           </a>   
+                                                       </div>
+                                                   </div>
                                     
                            <?php
                             }
@@ -334,16 +371,28 @@ require "admin/template/inc/header.php";
                 
                                 ?>
                 
-                                    <div class="row">
-                                        <div class="col-12 text-center">
-                                                <h3><b><?=$gallery?></b></h3>
-                                        </div>
-                                        <div class="col-12">
-                                            <a href="misc/gallery/<?=$folder?>.php">
-                                                <img src="<?=$firstFile?>" style="max-width:100%; margin:0 auto;">
-                                            </a>
-                                        </div>                                
-                                    </div>
+                                                     <div class="row">
+                                                        <div class="col-12">
+                                                            <div class="text-s font-weight-bold mb-1">
+                                                                <?=$gallery?>
+                                                             </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row my-3 text-center">
+                                                        <div class="col-12">
+                                                            <img src="<?=$firstFile?>" style="height:100px; max-width:100%; margin:0 auto;">
+                                                        </div>                                
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-12 text-center">
+                                                            <a href="../misc/gallery/<?=$folder?>.php" class="btn btn-info btn-icon-split btn-sm">
+                                                                <span class="icon text-white-50">
+                                                                    <i class="fas fa-link"></i>
+                                                                </span>
+                                                                <span class="text">Link</span>
+                                                            </a>   
+                                                        </div>
+                                                    </div>
                                      
                            <?php
                             }
