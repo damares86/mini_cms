@@ -40,7 +40,7 @@
             }
             ?>
 
- 
+
 
             <!-- Divider -->
             <hr class="sidebar-divider">
@@ -125,11 +125,6 @@
             <?php
             if($_SESSION['rolename']!="Contributor"){
             ?>
-             <!-- Heading -->
-             <div class="sidebar-heading">
-             
-            </div>
-
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseFive"
                     aria-expanded="true" aria-controls="collapseFive">
@@ -143,6 +138,12 @@
                         <a class="collapse-item" href="index.php?man=color&op=show"><?=$side_themeset?></a>
                     </div>
                 </div>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="index.php?man=plugins&op=show">
+                    <i class="fa fa-puzzle-piece"></i>
+                    <span>Plugins</span>
+                </a>
             </li>
 
             <?php

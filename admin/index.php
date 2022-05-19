@@ -101,6 +101,10 @@ $user_id=$_SESSION['user_id'];
                                 } else if($operation=="add"){
                                     require "inc/func/regColor.php";
                                 }
+                            }else if($manage=="plugins"){
+                                if($operation=="show"){
+                                    require "inc/func/allPlugins.php";
+                                } 
                             }else{  
                         ?>
 

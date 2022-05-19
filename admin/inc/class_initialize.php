@@ -5,6 +5,7 @@ $settings = new Settings($db);
 $role = new Role($db);
 $post = new Post($db);
 $portfolio = new Portfolio($db);
+$plugins = new Plugins($db);
 $page = new Page($db);
 $menu = new Menu($db);
 $file = new File($db);

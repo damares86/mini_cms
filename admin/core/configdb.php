@@ -193,6 +193,13 @@ $db->query("CREATE TABLE IF NOT EXISTS menu
 
 chmod("../inc/func/regCheck.php",0777);
 
+
+$db->query("CREATE TABLE IF NOT EXISTS plugins
+                            ( id INT ( 5 ) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+                              plugin_name VARCHAR(255) NOT NULL,
+                              active INT(1) NOT NULL)
+                              ");
+
 $db->query("CREATE TABLE IF NOT EXISTS files
                             ( id INT ( 5 ) NOT NULL AUTO_INCREMENT PRIMARY KEY,
                               filename VARCHAR(255) NOT NULL,
