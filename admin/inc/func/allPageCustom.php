@@ -1,11 +1,6 @@
 <?php
     require "core/config.php";
 
-	$database = new Database();
-	$db = $database->getConnection();
-
-	$page = new Page($db);
-    
     $stmt = $page->showAllCustom($from_record_num, $records_per_page);
     
     $total_rows=$page->countAllCustom();

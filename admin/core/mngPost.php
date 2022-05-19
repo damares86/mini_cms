@@ -86,14 +86,10 @@ if(filter_input(INPUT_POST,"subReg")){
 		}
 
 		if(isset($_POST['selectGall'])){
-			print_r("ko");
-			exit;
 			$gallery = str_replace(" ","_",$_POST['gall']);
 			$gallery=strtolower($gallery);
 			$post->gall = $gallery;
 		}else{
-			print_r("ok");
-			exit;
 			$post->gall = "none";
 		}
 		

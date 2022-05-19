@@ -32,7 +32,7 @@ if(filter_input(INPUT_GET,"idToMod")){
 
         <?php 
       
-        $categories = new Categories($db);
+        // $categories = new Categories($db);
         $categories->id = $idToMod;
         
 

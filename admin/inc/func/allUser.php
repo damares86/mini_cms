@@ -1,15 +1,5 @@
 <?php
-
-
-
-
     require "core/config.php";
-
-	$database = new Database();
-	$db = $database->getConnection();
-
-	$user = new User($db);
-	$role = new Role($db);
     
     $stmt = $user->showAll($from_record_num, $records_per_page);
 

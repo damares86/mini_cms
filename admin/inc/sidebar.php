@@ -17,7 +17,9 @@
                     <span><?=$side_dash?></span>
                 </a>
             </li>
-
+            <?php
+            if($_SESSION['rolename']!="Contributor"){
+            ?>
             <!-- Divider -->
             <hr class="sidebar-divider">
 
@@ -34,7 +36,9 @@
                     </div>
                 </div>
             </li>
-
+            <?php
+            }
+            ?>
 
  
 

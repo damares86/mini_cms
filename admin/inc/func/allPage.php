@@ -1,10 +1,5 @@
 <?php
     require "core/config.php";
-
-	$database = new Database();
-	$db = $database->getConnection();
-
-	$page = new Page($db);
     
     $stmt = $page->showAllDefault();
     

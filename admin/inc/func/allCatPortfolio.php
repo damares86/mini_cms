@@ -1,14 +1,10 @@
 <?php
     require "core/config.php";
 
-	$database = new Database();
-	$db = $database->getConnection();
-
-	$cat = new Categories_Portfolio($db);
     
-    $stmt = $cat->showAll($from_record_num, $records_per_page);
+    $stmt = $categories_portfolio->showAll($from_record_num, $records_per_page);
 
-    $total_rows=$cat->countAll();
+    $total_rows=$categories_portfolio->countAll();
 
 ?>
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
@@ -51,6 +47,7 @@ if($total_rows>0){
             </thead>
             <tbody>
             <?php
+            
             while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
         
                  extract($row);

@@ -12,7 +12,6 @@ if(filter_input(INPUT_GET,"idToMod")){
     $titoloForm= $regport_title_edit;
     $operation="mod";
 }
-$settings = new Settings ($db);
 $stmt = $settings->showSettings();
 
 ?>

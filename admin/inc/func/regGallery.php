@@ -1,5 +1,4 @@
 <?php
-// MODIFICARE SU LOCALE !!!!!!!!!!!!!!!!!!!!
 
 $operation = "add";
 $titolo_form = $gall_title_add;

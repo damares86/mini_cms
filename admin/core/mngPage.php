@@ -114,9 +114,10 @@ if(filter_input(INPUT_POST,"subReg")){
 		$page->block1_text=$_POST['block1_text'];
 
 		if($_POST['block2'][0]=="g2"){
-			//recupera nome galleria
-			$page->block2_type="g";
-
+			$gallery=$_POST['block2_gall'];
+			$gallery= str_replace(" ","_", $gallery);
+			$gallery=strtolower($gallery);
+			$page->block2_type=$gallery;	
 		}else if($_POST['block2'][0]=="t2"){
 			if($_POST['editor2']){
 				$page->block2=$_POST['editor2'];
@@ -131,9 +132,10 @@ if(filter_input(INPUT_POST,"subReg")){
 		}
 
 		if($_POST['block3'][0]=="g3"){
-			//recupera nome galleria
-			$page->block3_type="g";
-
+			$gallery=$_POST['block3_gall'];
+			$gallery= str_replace(" ","_", $gallery);
+			$gallery=strtolower($gallery);
+			$page->block3_type=$gallery;	
 		}else if($_POST['block3'][0]=="t3"){
 			if($_POST['editor3']){
 				$page->block3=$_POST['editor3'];
@@ -148,9 +150,10 @@ if(filter_input(INPUT_POST,"subReg")){
 		}
 
 		if($_POST['block4'][0]=="g4"){
-			//recupera nome galleria
-			$page->block4_type="g";
-
+			$gallery=$_POST['block4_gall'];
+			$gallery= str_replace(" ","_", $gallery);
+			$gallery=strtolower($gallery);
+			$page->block4_type=$gallery;	
 		}else if($_POST['block4'][0]=="t4"){
 			if($_POST['editor4']){
 				$page->block4=$_POST['editor4'];
@@ -165,9 +168,10 @@ if(filter_input(INPUT_POST,"subReg")){
 		}
 
 		if($_POST['block5'][0]=="g5"){
-			//recupera nome galleria
-			$page->block5_type="g";
-
+			$gallery=$_POST['block5_gall'];
+			$gallery= str_replace(" ","_", $gallery);
+			$gallery=strtolower($gallery);
+			$page->block5_type=$gallery;	
 		}else if($_POST['block5'][0]=="t5"){
 			if($_POST['editor5']){
 				$page->block5=$_POST['editor5'];
@@ -182,9 +186,10 @@ if(filter_input(INPUT_POST,"subReg")){
 		}
 
 		if($_POST['block6'][0]=="g6"){
-			//recupera nome galleria
-			$page->block6_type="g";
-
+			$gallery=$_POST['block6_gall'];
+			$gallery= str_replace(" ","_", $gallery);
+			$gallery=strtolower($gallery);
+			$page->block6_type=$gallery;	
 		}else if($_POST['block6'][0]=="t6"){
 			if($_POST['editor6']){
 				$page->block6=$_POST['editor6'];
@@ -198,7 +203,6 @@ if(filter_input(INPUT_POST,"subReg")){
 			$page->block6_type="n";
 		}
 
-			
 		
 		
 		// create the page

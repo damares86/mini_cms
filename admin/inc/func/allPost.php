@@ -1,11 +1,6 @@
 <?php
     require "core/config.php";
 
-	$database = new Database();
-	$db = $database->getConnection();
-
-	$post = new Post($db);
-    $categories = new Categories($db);
     $stmt = $post->showAll($from_record_num, $records_per_page);
 
     $total_rows=$post->countAll();

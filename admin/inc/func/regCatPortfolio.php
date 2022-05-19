@@ -32,8 +32,7 @@ if(filter_input(INPUT_GET,"idToMod")){
 
         <?php 
       
-        $cat = new Categories_Portfolio($db);
-        $cat->id = $idToMod;
+      $categories_portfolio->id = $idToMod;
         
 
       
@@ -42,7 +41,7 @@ if(filter_input(INPUT_GET,"idToMod")){
                     <input type="hidden" name="idToMod" value="<?= $idToMod ?>" />
                 <?php 
                 } 
-        $cat->showById();
+                $categories_portfolio->showById();
 
         ?>
             <div class="control-group">

@@ -65,7 +65,7 @@ $total_rows=$portfolio->countAll();
 
                                 <!-- Box -->
                                     <section class="box feature">
-                                        <a href="<?=$str?>.php" class="image featured"><img src="misc/portfolio/img/<?=$main_img?>" alt="" /></a>
+                                        <a href="misc/portfolio/<?=$str?>.php" class="image featured"><img src="misc/portfolio/img/<?=$main_img?>" alt="" /></a>
                                         <div class="inner">
                                             <header>
                                                 <h2><?=$project_title?></h2>

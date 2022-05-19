@@ -1,10 +1,6 @@
 <?php
 
 
-$database = new Database();
-$db = $database->getConnection();
-$settings = new Settings ($db);
-
 $stmt =$settings->showSettings();
 
 

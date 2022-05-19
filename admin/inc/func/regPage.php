@@ -13,7 +13,7 @@ if(filter_input(INPUT_GET,"idToMod")){
     $titoloForm=$regpage_title_edit;
     $operation="mod";
 }
-$settings = new Settings ($db);
+
 $stmt = $settings->showSettings();
 
     function is_dir_empty($dir) {

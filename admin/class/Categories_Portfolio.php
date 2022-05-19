@@ -4,7 +4,7 @@ class Categories_Portfolio{
 
 
     private $conn;
-    private $table_name = "categories_portfolioegories";
+    private $table_name = "portfolio_categories";
 
     public $id;
     public $category_name;
@@ -110,7 +110,7 @@ class Categories_Portfolio{
 
     public function countAll(){
     
-        $query = "SELECT id FROM categories_portfolioegories";
+        $query = "SELECT id FROM portfolio_categories";
     
         $stmt = $this->conn->prepare( $query );
         $stmt->execute();

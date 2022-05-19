@@ -10,7 +10,7 @@ $type=filter_input(INPUT_GET,"type");
 // $usersCount=GetAllRows($conn,"accounts");
 // $filesCount=GetAllRows($conn,"files");
 
-$user=$_SESSION['name'];
+$user_name=$_SESSION['name'];
 $user_id=$_SESSION['user_id'];
 
 
@@ -125,7 +125,7 @@ $user_id=$_SESSION['user_id'];
                                     <h6 class="m-0 font-weight-bold text-primary"><?=$home_welcome?></h6>
                                 </div>
                                 <div class="card-body">
-                                <p><?=$home_intro1?> <b><?=$user?></b> <?=$home_intro2?></p>
+                                <p><?=$home_intro1?> <b><?=$user_name?></b> <?=$home_intro2?></p>
                                         <p><?=$home_intro3?></p><br>
                                 </div>
                             </div>

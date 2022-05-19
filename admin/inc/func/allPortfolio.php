@@ -1,12 +1,6 @@
 <?php
     require "core/config.php";
 
-	$database = new Database();
-	$db = $database->getConnection();
-
-	$portfolio = new Portfolio($db);
-	$cat = new Categories_Portfolio($db);
-    
     $stmt = $portfolio->showAll($from_record_num, $records_per_page);
     
     $total_rows=$portfolio->countAll();
@@ -62,14 +56,14 @@
         $str = preg_replace('/\s+/', '_', $str);			
         $str = strtolower($str);
 
-        $cat->id=$category;
-        $cat->showById();
+        $categories_portfolio->id=$category;
+        $categories_portfolio->showById();
 
         ?>
             <tr>
                 <td><?=$project_title?></td>
                 <td><?=$completed?></td>
-                <td><?=$cat->category_name?></td>
+                <td><?=$categories_portfolio->category_name?></td>
                 <td><a href="../misc/portfolio/<?=$str?>.php"><?=$port_link?></a></td>
                
                 <td>

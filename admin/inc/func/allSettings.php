@@ -1,12 +1,6 @@
 <?php
 
-	$database = new Database();
-	$db = $database->getConnection();
 
-    $menu = new Menu($db);
-    $settings = new Settings ($db);
-    $contact = new Contact ($db);
-    $verify = new Verify ($db);
     $stmt = $settings->showSettings();
     $man=filter_input(INPUT_GET,"man");
 if($man=="settings"){
@@ -48,7 +42,6 @@ if($man=="settings"){
                 $checked="checked";
             }
 
-            //////////////////////////////////////////////////////////////////////
             ?>
             <input type="checkbox" name="use_text" value="1" <?=$checked?>> <?=$site_siteshow?><br><br>
 

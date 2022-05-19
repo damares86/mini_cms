@@ -84,7 +84,6 @@ if(filter_input(INPUT_GET,"idToMod")){
                 <div class="control-group">
                     <label for="category_id"><?=$regpost_cat?></label>
                     <?php
-                    $categories = new Categories($db);
                         $stmt = $categories->showAllList();
                         $total_rows = $categories->countAll();
                     

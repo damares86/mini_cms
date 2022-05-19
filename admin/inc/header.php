@@ -1,12 +1,12 @@
 <?php
 
 
-// require 'phpDebug/src/Debug/Debug.php';   			// if not using composer
+require 'phpDebug/src/Debug/Debug.php';   			// if not using composer
 
-// $debug = new \bdk\Debug(array(
-//     'collect' => true,
-//     'output' => true,
-// ));
+$debug = new \bdk\Debug(array(
+    'collect' => true,
+    'output' => true,
+));
 
 session_start();
 
@@ -31,6 +31,7 @@ $db = $database->getConnection();
 $files=glob("class/*.php", GLOB_BRACE);
 rsort($files); 
 
+if(!is_file('inc/class_initialize.php')){
 $file_handle = fopen('inc/class_initialize.php', 'w');
 fwrite($file_handle, '<?php');
 fwrite($file_handle, "\n");
@@ -42,8 +43,12 @@ foreach ($files as $filename) {
     fwrite($file_handle, "\n");
 }
 fwrite($file_handle,"?>");
+chmod('inc/class_initialize.php',0777);
+
+}
 
 include "inc/class_initialize.php";
+
 
 $total_user=$user->countAll();
 $total_post=$post->countAll();
