@@ -19,7 +19,7 @@ $total_rows=$portfolio->countAll();
                                                 }
                                                 ?>">All (<?=$total_rows?>)</a>
                                         <?php
-                                            $stmt1=$portfolio_cat->showAllList();
+                                            $stmt1=$categories_portfolio->showAllList();
                                             while ($row1 = $stmt1->fetch(PDO::FETCH_ASSOC)){
             
                                                 extract($row1);

@@ -27,18 +27,18 @@ $url = get_page_url();
         $db = $database->getConnection();
     
         $post = new Post($db);
-        $cat = new Categories($db);
+        $categories = new Categories($db);
 
         $post_id=filter_input(INPUT_GET,"id");
 
         $post->id=$post_id;
         $post->showById();
         $category_id = $post->category_id;
-        $cat->id = $post->category_id;
+        $categories->id = $post->category_id;
 
-        $cat->showById();
+        $categories->showById();
                         
-        $category_name= $cat->category_name;
+        $category_name= $categories->category_name;
 
                 if (isset($_SESSION['loggedin'])) {
    

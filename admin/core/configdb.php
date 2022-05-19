@@ -334,12 +334,12 @@ $db->query("CREATE TABLE IF NOT EXISTS portfolio
                               link VARCHAR(255) NOT NULL)
                               ");
 
-$db->query("CREATE TABLE IF NOT EXISTS portfolio_categories
+$db->query("CREATE TABLE IF NOT EXISTS categories_portfolioegories
                            ( id INT ( 5 ) NOT NULL AUTO_INCREMENT PRIMARY KEY,
                              category_name VARCHAR(255) NOT NULL)");
 
 
-$db->query("INSERT INTO portfolio_categories
+$db->query("INSERT INTO categories_portfolioegories
                             (id, category_name)
                             VALUES ('1','Web design')
                             ");

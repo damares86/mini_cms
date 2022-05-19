@@ -30,7 +30,7 @@ $post = new Post($db);
 $user = new User($db);
 $page = new Page($db);
 $portfolio = new Portfolio($db);
-$portfolio_cat = new Categories_Portfolio($db);
+$categories_portfolio = new Categories_Portfolio($db);
 $menu = new Menu($db);
 $settings = new Settings($db);
 $verify = new Verify($db);
@@ -129,7 +129,7 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
             require "assets/".$theme."/inc/scripts.php";
             require "admin/inc/func/check.php";
             if(($file=="login.php")||($file=="contact.php")){
-                require "assets/".$theme."/inc/recaptcha.php";
+                require "admin/template/inc/recaptcha.php";
             }
         ?>
         <meta name="viewport" content="width=device-width, initial-scale=1" />

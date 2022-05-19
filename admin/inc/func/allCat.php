@@ -4,11 +4,11 @@
 	$database = new Database();
 	$db = $database->getConnection();
 
-	$cat = new Categories($db);
+	$categories = new Categories($db);
     
-    $stmt = $cat->showAll($from_record_num, $records_per_page);
+    $stmt = $categories->showAll($from_record_num, $records_per_page);
 
-    $total_rows=$cat->countAll();
+    $total_rows=$categories->countAll();
 
 ?>
 <div class="d-sm-flex align-items-center justify-content-between mb-4">

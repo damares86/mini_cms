@@ -5,7 +5,7 @@
 	$db = $database->getConnection();
 
 	$post = new Post($db);
-    $cat = new Categories($db);
+    $categories = new Categories($db);
     $stmt = $post->showAll($from_record_num, $records_per_page);
 
     $total_rows=$post->countAll();
@@ -56,11 +56,11 @@
             while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
         
                  extract($row);
-                 $cat->id = $category_id;
+                 $categories->id = $category_id;
 
-                 $cat->showById();
+                 $categories->showById();
                                  
-                 $category_name= $cat->category_name;
+                 $category_name= $categories->category_name;
 
                  $post_title= preg_replace('/\s+/', '_', $title);
                  $post_title = strtolower($post_title);
