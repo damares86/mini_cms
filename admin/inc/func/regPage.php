@@ -94,23 +94,9 @@ $stmt = $settings->showSettings();
         $page->showById();
         ?>
         <style>
-            .box3{
-                display:none;
+            .box2{
+                display: none;
             }
-            /* .box3.b3{
-                display:none;
-            } */
-            <?php
-            if($page->block3_type=="b"){
-                ?>
-           .box3.b3{
-                display:block;
-            }
-            <?php
-            }
-            ?>
-
-            
             .box3{
                 display: none;
             }
@@ -448,7 +434,41 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
                 $checked_n2 = "";
             }
 
-        ?>
+            if($checked_t2=="checked"){
+                ?>
+            <style>
+           .box2.t2{
+                display:block;
+            }
+            </style>
+            <?php
+            } else if($checked_t2=="checked"){
+            ?> 
+            <style>
+            .box2.t2{
+                 display:block;
+             }
+             </style>
+             <?php
+             } else if($checked_g2=="checked"){
+             ?> 
+             <style>
+             .box2.g2{
+                  display:block;
+              }
+              </style>
+              <?php
+              } else if($checked_b2=="checked"){
+              ?>
+               <style>
+             .box2.b2{
+                  display:block;
+              }
+              </style>
+              <?php
+              }
+              ?>
+
         <h3><?=$regpage_block?> 2</h3><br>
         <!-- radio button -->
         <label><input type="radio" name="block2[]" value="n2" <?=$checked_n2?>> <?=$regpage_none?></label>
@@ -594,7 +614,41 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
                 $checked_n3 = "";
             }
 
-        ?>
+            if($checked_t3=="checked"){
+                ?>
+            <style>
+           .box3.t3{
+                display:block;
+            }
+            </style>
+            <?php
+            } else if($checked_t3=="checked"){
+            ?> 
+            <style>
+            .box3.t3{
+                 display:block;
+             }
+             </style>
+             <?php
+             } else if($checked_g3=="checked"){
+             ?> 
+             <style>
+             .box3.g3{
+                  display:block;
+              }
+              </style>
+              <?php
+              } else if($checked_b3=="checked"){
+              ?>
+               <style>
+             .box3.b3{
+                  display:block;
+              }
+              </style>
+              <?php
+              }
+              ?>
+
         <h3><?=$regpage_block?> 3</h3><br>
         <!-- radio button -->
         <label><input type="radio" name="block3[]" value="n3" <?=$checked_n3?>> <?=$regpage_none?></label>
@@ -743,7 +797,41 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
                 $checked_n4 = "";
             }
 
-        ?>
+            if($checked_t4=="checked"){
+                ?>
+            <style>
+           .box4.t4{
+                display:block;
+            }
+            </style>
+            <?php
+            } else if($checked_t4=="checked"){
+            ?> 
+            <style>
+            .box4.t4{
+                 display:block;
+             }
+             </style>
+             <?php
+             } else if($checked_g4=="checked"){
+             ?> 
+             <style>
+             .box4.g4{
+                  display:block;
+              }
+              </style>
+              <?php
+              } else if($checked_b4=="checked"){
+              ?>
+               <style>
+             .box4.b4{
+                  display:block;
+              }
+              </style>
+              <?php
+              }
+              ?>
+              
         <h3><?=$regpage_block?> 4</h3><br>
         <!-- radio button -->
         <label><input type="radio" name="block4[]" value="n4" <?=$checked_n4?>> <?=$regpage_none?></label>
@@ -893,8 +981,42 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
                 $checked_n5 = "";
             }
 
-        ?>
-        <h3><?=$regpage_block?> 5</h3><br>
+            if($checked_t5=="checked"){
+                ?>
+            <style>
+           .box5.t5{
+                display:block;
+            }
+            </style>
+            <?php
+            } else if($checked_t5=="checked"){
+            ?> 
+            <style>
+            .box5.t5{
+                 display:block;
+             }
+             </style>
+             <?php
+             } else if($checked_g5=="checked"){
+             ?> 
+             <style>
+             .box5.g5{
+                  display:block;
+              }
+              </style>
+              <?php
+              } else if($checked_b5=="checked"){
+              ?>
+               <style>
+             .box5.b5{
+                  display:block;
+              }
+              </style>
+              <?php
+              }
+              ?>
+
+<h3><?=$regpage_block?> 5</h3><br>
         <!-- radio button -->
         <label><input type="radio" name="block5[]" value="n5" <?=$checked_n5?>> <?=$regpage_none?></label>
         <label><input type="radio" name="block5[]" value="t5" <?=$checked_t5?>> <?=$regpage_text_block?></label>
@@ -1043,6 +1165,41 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
                 $checked_g6 = "checked";
                 $checked_n6 = "";
             }
+
+            if($checked_t6=="checked"){
+                ?>
+            <style>
+           .box6.t6{
+                display:block;
+            }
+            </style>
+            <?php
+            } else if($checked_t6=="checked"){
+            ?> 
+            <style>
+            .box6.t6{
+                 display:block;
+             }
+             </style>
+             <?php
+             } else if($checked_g6=="checked"){
+             ?> 
+             <style>
+             .box6.g6{
+                  display:block;
+              }
+              </style>
+              <?php
+              } else if($checked_b6=="checked"){
+              ?>
+               <style>
+             .box6.b6{
+                  display:block;
+              }
+              </style>
+              <?php
+              }             
+
 
         ?>
         <h3><?=$regpage_block?> 6</h3><br>
