@@ -34,7 +34,7 @@
                 return (count(scandir($dir)) == 2);
               }
                 if( !is_dir($dir) || is_dir_empty($dir) ||is_dir_empty(($dir)) ){
-                    echo "<div class='col'><div class='alert alert-danger'>$gall_nogall</div></div>";
+                    echo "<div class='col'><div class='alert alert-danger'>No plugins found</div></div>";
                 }else{
 
                 ?>
@@ -55,15 +55,22 @@
                         $plugin_name= str_replace("_"," ", $folder);
                         $plugin_name=ucfirst($plugin_name);
                         $plugins->plugin_name=$plugin_name;
+                        $plugins->showByName();
                         $btn_install="btn-info";
                         $install="Install";
                         $btn_enable="btn-success";
                         $enable="Enable";
                         $op_enable="enable";
-                        if($plugins->showByName()){
+                        $background="";
+                        if($plugins->id){                            
                             $btn_install="btn-danger";
                             $install="Remove";
+                            $box_enabled="D";
+                            $box_enabled_color="danger";
                             if($plugins->active==1){
+                                $box_enabled="E";
+                                $box_enabled_color="success";
+                                $background="style='background-color:#bdeeff;'";
                                 $btn_enable="btn-warning";
                                 $enable="Disable";
                                 $op_enable="disable";
@@ -74,8 +81,10 @@
 
 
         ?>
-            <tr>
-                <td><?=$plugin_name?></td>
+            <tr <?=$background?>>
+                <td>
+                    <span class="bg-<?=$box_enabled_color?> p-1 text-white"><?=$box_enabled?></span>
+                    <?=$plugin_name?></td>
                 <td>Descrizione</td>
                 <td>
                     <a href="plugins/<?=$folder?>/installer.php" class="btn <?=$btn_install?> btn-icon-split">
@@ -86,12 +95,18 @@
                     </a>
                 </td>
                 <td>
+                    <?php
+                    if($plugins->id){
+                    ?>
                     <a href="core/mngPlugins.php?name=<?=$plugin_name?>&op=<?=$op_enable?>" class="btn <?=$btn_enable?> btn-icon-split">
                         <span class="icon text-white-50">
                             <i class="fas fa-pen"></i>
                         </span>
                         <span class="text"><?=$enable?></span>
                     </a>
+                    <?php
+                    }
+                    ?>
                 </td>
               
                 <!-- <td>

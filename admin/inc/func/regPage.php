@@ -22,25 +22,7 @@ $stmt = $settings->showSettings();
         }
 ?>
 
-<style>
-    .box2{
-        display: none;
-    }
-    .box3{
-        display: none;
-    }
-    .box4{
-        display: none;
-    }
-    .box5{
-        display: none;
-    }
-    .box6{
-        display: none;
-    }
 
-
-</style>
 
 <!-- hyde/show boxes -->
 
@@ -111,6 +93,39 @@ $stmt = $settings->showSettings();
 
         $page->showById();
         ?>
+        <style>
+            .box3{
+                display:none;
+            }
+            /* .box3.b3{
+                display:none;
+            } */
+            <?php
+            if($page->block3_type=="b"){
+                ?>
+           .box3.b3{
+                display:block;
+            }
+            <?php
+            }
+            ?>
+
+            
+            .box3{
+                display: none;
+            }
+            .box4{
+                display: none;
+            }
+            .box5{
+                display: none;
+            }
+            .box6{
+                display: none;
+            }
+
+
+        </style>
 
         </div>
         <div class="card-body">

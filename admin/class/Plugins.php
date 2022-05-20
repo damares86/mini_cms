@@ -138,7 +138,6 @@ class Plugins{
         $this->id = $row['id'];
         $this->plugin_name = $row['plugin_name'];
         $this->active = $row['active'];
-        return true;
     }
 
     // function showAllList(){
