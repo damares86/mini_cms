@@ -3,7 +3,7 @@
     
     $stmt = $page->showAllDefault();
     
-    $total_rows=$page->countAll();
+    $total_rows=$page->countAllDefault();
 
 ?>
 

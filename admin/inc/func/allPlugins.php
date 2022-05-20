@@ -1,6 +1,7 @@
 <?php
     require "core/config.php";
 
+
 ?>
 
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
@@ -62,11 +63,13 @@
                         $enable="Enable";
                         $op_enable="enable";
                         $background="";
+                        $url = "plugins/$folder/installer.php";
                         if($plugins->id){                            
                             $btn_install="btn-danger";
                             $install="Remove";
                             $box_enabled="D";
                             $box_enabled_color="danger";
+                            $url = "core/mngPlugins.php?op=del&name=$folder";
                             if($plugins->active==1){
                                 $box_enabled="E";
                                 $box_enabled_color="success";
@@ -83,11 +86,10 @@
         ?>
             <tr <?=$background?>>
                 <td>
-                    <span class="bg-<?=$box_enabled_color?> p-1 text-white"><?=$box_enabled?></span>
-                    <?=$plugin_name?></td>
-                <td>Descrizione</td>
+                    <span class="bg-<?=$box_enabled_color?> p-1 text-white"><?=$box_enabled?></span> &nbsp; &nbsp;<?=$plugin_name?></td>
+                <td><?=$plugins->description?></td>
                 <td>
-                    <a href="plugins/<?=$folder?>/installer.php" class="btn <?=$btn_install?> btn-icon-split">
+                    <a href="<?=$url?>" class="btn <?=$btn_install?> btn-icon-split">
                         <span class="icon text-white-50">
                             <i class="fas fa-pen"></i>
                         </span>

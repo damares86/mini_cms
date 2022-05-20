@@ -8,6 +8,7 @@ class Plugins{
 
     public $id;
     public $plugin_name;
+    public $description;
     public $active;
 
     // constructor
@@ -23,7 +24,8 @@ class Plugins{
                     " . $this->table_name . "
                 SET
                     plugin_name = :plugin_name,
-                    active = :active";
+                    description = :description,
+                    active = 0";
     
         // prepare the query
         $stmt = $this->conn->prepare($query);
@@ -31,7 +33,8 @@ class Plugins{
     
         // bind the values
         $stmt->bindParam(':plugin_name', $this->plugin_name);
-        $stmt->bindParam(':active', $this->active);
+        $stmt->bindParam(':description', $this->description);
+        
         
         // execute the query, also check if query was successful
         if($stmt->execute()){
@@ -44,34 +47,6 @@ class Plugins{
     }
 
 
-    function update(){
-        // insert query
-        $query = "UPDATE
-                    " . $this->table_name . "
-                SET
-                    plugin_name = :plugin_name,
-                    active = :active
-                WHERE
-                    id = :id";
-    // prepare the query
-        $stmt = $this->conn->prepare($query);
-     
-        // bind the values
-        $stmt->bindParam(':plugin_name', $this->plugin_name);
-        $stmt->bindParam(':active', $this->active);
-        $stmt->bindParam(':id', $this->id);
-                
-      
-        // execute the query, also check if query was successful
-        if($stmt->execute()){
-            return true;
-
-        }else{
-            $this->showError($stmt);
-            return false;
-        }
-    
-    }
 
     function updateActive(){
         // insert query
@@ -80,13 +55,13 @@ class Plugins{
                 SET
                     active = :active
                 WHERE
-                    id = :id";
+                    plugin_name = :plugin_name";
     // prepare the query
         $stmt = $this->conn->prepare($query);
      
         // bind the values
         $stmt->bindParam(':active', $this->active);
-        $stmt->bindParam(':id', $this->id);
+        $stmt->bindParam(':plugin_name', $this->plugin_name);
                 
       
         // execute the query, also check if query was successful
@@ -137,110 +112,38 @@ class Plugins{
     
         $this->id = $row['id'];
         $this->plugin_name = $row['plugin_name'];
+        $this->description = $row['description'];
         $this->active = $row['active'];
     }
 
-    // function showAllList(){
-    //     //select all data
-    //     $query = "SELECT
-    //                 id, color
-    //             FROM
-    //                 " . $this->table_name . "
-    //             ORDER BY
-    //                 color";  
-  
-    //     $stmt = $this->conn->prepare( $query );
-    //     $stmt->execute();
-  
-    //     return $stmt;
-    // }
 
-    // public function countAll(){
+    function delete(){
     
-    //     $query = "SELECT id FROM color";
+    $query = "DELETE FROM " . $this->table_name . " WHERE plugin_name = :plugin_name";
     
-    //     $stmt = $this->conn->prepare( $query );
-    //     $stmt->execute();
-    
-    //     $num = $stmt->rowCount();
-    
-    //     return $num;
-    // }
+    $stmt = $this->conn->prepare($query);
+    $stmt->bindParam(':plugin_name', $this->plugin_name);
 
-//     function showById(){
-//         $query = "SELECT *
-//         FROM " . $this->table_name . "
-//         WHERE id = ?
-//         LIMIT 0,1";
-  
-//         $stmt = $this->conn->prepare( $query );
-//         $stmt->bindParam(1, $this->id);
-//         $stmt->execute();
-    
-//         $row = $stmt->fetch(PDO::FETCH_ASSOC);
-    
-//         $this->id = $row['id'];
-//         $this->username = $row['username'];
-//         $this->email = $row['email'];
-//         $this->rolename = $row['rolename'];
-//     }
+    if($stmt->execute()){
+        return true;
+    }else{
+        return false;
+    }
+}
 
+function deletePage(){
+    
+    $query = "DELETE FROM default_page WHERE page_name = :plugin_name";
+    
+    $stmt = $this->conn->prepare($query);
+    $stmt->bindParam(':plugin_name', $this->plugin_name);
 
-//     function colorExists(){
-    
-//         // query to check if email exists
-//         $query = "SELECT id, color
-//                 FROM " . $this->table_name . "
-//                 WHERE color = ?
-//                 LIMIT 0,1";
-    
-//         // prepare the query
-//         $stmt = $this->conn->prepare( $query );
-    
-//         // sanitize
-//         $this->color=htmlspecialchars(strip_tags($this->color));
-    
-//         // bind given email value
-//         $stmt->bindParam(1, $this->color);
-    
-//         // execute the query
-//         $stmt->execute();
-    
-//         // get number of rows
-//         $num = $stmt->rowCount();
-    
-//         // if email exists, assign values to object properties for easy access and use for php sessions
-//         if($num>0){
-    
-//             // get record details / values
-//             $row = $stmt->fetch(PDO::FETCH_ASSOC);
-    
-//             // assign values to object properties
-//             $this->id = $row['id'];
-//             $this->status = $row['color'];
-    
-//             // return true because email exists in the database
-//             return true;
-//         }
-    
-//         // return false if email does not exist in the database
-//         return false;
-//     }
-
-//  // delete the role
-//  function delete(){
-    
-//     $query = "DELETE FROM " . $this->table_name . " WHERE id = ?";
-    
-//     $stmt = $this->conn->prepare($query);
-//     $stmt->bindParam(1, $this->id);
-
-//     if($result = $stmt->execute()){
-//         return true;
-//     }else{
-//         return false;
-//     }
-// }
+    if($stmt->execute()){
+        return true;
+    }else{
+        return false;
+    }
+}
 
 
 }
