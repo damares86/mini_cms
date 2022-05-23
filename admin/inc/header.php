@@ -1,12 +1,12 @@
 <?php
 
 
-// require 'phpDebug/src/Debug/Debug.php';   			// if not using composer
+require 'phpDebug/src/Debug/Debug.php';   			// if not using composer
 
-// $debug = new \bdk\Debug(array(
-//     'collect' => true,
-//     'output' => true,
-// ));
+$debug = new \bdk\Debug(array(
+    'collect' => true,
+    'output' => true,
+));
 
 session_start();
 
@@ -57,8 +57,8 @@ $total_post=$post->countAll();
 $stmt=$settings->showLang();
 $lang=$settings->dashboard_language;
 
-foreach (glob("locale/$lang/*.php") as $file){
-    require "$file";
+foreach (glob("locale/$lang/*.php") as $row){
+    require "$row";
 }
 
 

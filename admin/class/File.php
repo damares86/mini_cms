@@ -114,11 +114,11 @@ class File{
     function showAll(){
         //select all data
         $query = "SELECT
-                    *
-                FROM
-                    " . $this->table_name . "
-                ORDER BY
-                    id";  
+        *
+    FROM
+        " . $this->table_name . "
+    ORDER BY
+        id ";  
   
         $stmt = $this->conn->prepare( $query );
         $stmt->execute();

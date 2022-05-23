@@ -1,7 +1,7 @@
 <?php
     require "core/config.php";
 
-    $stmt = $file->showAll($from_record_num, $records_per_page);
+    $stmt = $file->showAll();
 
     $total_rows=$file->countAll();
 
