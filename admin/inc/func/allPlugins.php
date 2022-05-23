@@ -59,23 +59,27 @@
                         $plugins->showByName();
                         $btn_install="btn-info";
                         $install="Install";
+                        $icon="fas fa-plus";
                         $btn_enable="btn-success";
                         $enable="Enable";
+                        $enable_icon = "fa fa-check";
                         $op_enable="enable";
                         $background="";
                         $url = "plugins/$folder/installer.php?op=add";
                         if($plugins->id){                            
                             $btn_install="btn-danger";
                             $install="Remove";
+                            $icon="fas fa-trash";
                             $box_enabled="D";
                             $box_enabled_color="danger";
-                            $url = "plugins/$folder/installer.php?op=del";
+                            $url = "plugins/$folder/installer.php?op=del&name=$folder";
                             if($plugins->active==1){
                                 $box_enabled="E";
                                 $box_enabled_color="success";
                                 $background="style='background-color:#bdeeff;'";
                                 $btn_enable="btn-warning";
                                 $enable="Disable";
+                                $enable_icon = "fa fa-times";
                                 $op_enable="disable";
                             }
                         }
@@ -89,9 +93,20 @@
                     <span class="bg-<?=$box_enabled_color?> p-1 text-white"><?=$box_enabled?></span> &nbsp; &nbsp;<?=$plugin_name?></td>
                 <td><?=$plugins->description?></td>
                 <td>
+                    <?php
+                    if($plugins->id){
+                    ?>
+                        <a href="#" class="btn <?=$btn_install?> btn-icon-split" data-toggle="modal" data-target="#delete<?=$folder?>">
+
+                    <?php
+                    }else{
+                    ?>
                     <a href="<?=$url?>" class="btn <?=$btn_install?> btn-icon-split">
+                    <?php
+                    }
+                    ?>
                         <span class="icon text-white-50">
-                            <i class="fas fa-pen"></i>
+                            <i class="<?=$icon?>"></i>
                         </span>
                         <span class="text"><?=$install?></span>
                     </a>
@@ -102,7 +117,7 @@
                     ?>
                     <a href="core/mngPlugins.php?name=<?=$plugin_name?>&op=<?=$op_enable?>" class="btn <?=$btn_enable?> btn-icon-split">
                         <span class="icon text-white-50">
-                            <i class="fas fa-pen"></i>
+                            <i class="<?=$enable_icon?>"></i>
                         </span>
                         <span class="text"><?=$enable?></span>
                     </a>
@@ -123,7 +138,7 @@
             </td> -->
             </tr>
                           <!-- Delete Modal-->
-                          <div class="modal fade" id="delete<?=$id?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                          <div class="modal fade" id="delete<?=$folder?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
                         aria-hidden="true">
                         <div class="modal-dialog" role="document">
                             <div class="modal-content">
@@ -133,10 +148,11 @@
                                         <span aria-hidden="true">×</span>
                                     </button>
                                 </div>
-                                <div class="modal-body"><?=$port_modal_text?></div>
+                                <div class="modal-body">Se vuoi veramente cancellare questo plugin clicca "Ok".<br><br>
+                                NOTA BENE: tutti i file legati al plugin verranno cancellati!</div>
                                 <div class="modal-footer">
                                     <button class="btn btn-secondary" type="button" data-dismiss="modal"><?=$txt_cancel?></button>
-                                    <a class="btn btn-primary" href="core/mngPortfolio.php?idToDel=<?=$id?>">Ok</a>
+                                    <a class="btn btn-primary" href="<?=$url?>">Ok</a>
                                 </div>
                             </div>
                         </div>

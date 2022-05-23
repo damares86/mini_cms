@@ -24,6 +24,13 @@ require "config.php";
 
 $plugins->plugin_name = $plugin_name;
 $plugins->description=$description;
+$plugins->icon=$sidebar_icon;
+$plugins->title=$sidebar_title;
+$plugins->sub_show_title=$sidebar_sub_show_title;
+$plugins->sub_show_link=$sidebar_sub_show_link;
+$plugins->sub_add_title=$sidebar_sub_add_title;
+$plugins->sub_add_link=$sidebar_sub_add_link;
+
 $op = filter_input(INPUT_GET,"op");
 
 if($op=="del"){
@@ -39,9 +46,15 @@ if($op=="del"){
         /////////////////////////////////////////////////////////////////
         $error=0;
 
-        // DELETE CLASS
+        // DELETE CLASSES
         if(is_file("../../class/Portfolio.php")){
             if(!unlink("../../class/Portfolio.php")){
+                $error++;
+            }
+        }
+
+        if(is_file("../../class/Categories_Portfolio.php")){
+            if(!unlink("../../class/Categories_Portfolio.php")){
                 $error++;
             }
         }
@@ -97,6 +110,20 @@ if($op=="del"){
             }
         }
 
+        // DELETE LOCALE IT
+        if(is_file("../../locale/en/portfolio_en.php")){
+            if(!unlink("../../locale/en/portfolio_en.php")){
+                $error++;
+            }
+        }
+
+        // DELETE LOCALE IT
+        if(is_file("../../locale/it/portfolio_it.php")){
+            if(!unlink("../../locale/it/portfolio_it.php")){
+                $error++;
+            }
+        }
+
         // DELETE DEFAULT PAGE
         if(is_file("../../../portfolio.php")){
             if($plugins->deletePage())
@@ -106,6 +133,9 @@ if($op=="del"){
             }else{
                 $error++;
             }
+        
+        // DROP TABLES
+        $db->query("DROP TABLE `portfolio`, `portfolio_categories`");
             
             unlink("../../inc/class_initialize.php");
             if($error==0){
@@ -115,6 +145,10 @@ if($op=="del"){
                 header("Location: ../../index.php?man=plugins&op=show&msg=pluginDelErr");
                 exit;
             }
+
+////////////////////////////////////////////////////////////////
+//  RIMOZIONE PROGETTI? METTERE ALERT NEI PLUGIN
+////////////////////////////////////////////////////////////////
 
             } else{
                 // header KO
@@ -126,9 +160,15 @@ if($op=="del"){
             
             $error=0;
 
-            // CLASS
+            // CLASSES
             if(copy('class/Portfolio.php', '../../class/Portfolio.php')){
-                chmod('../../class/'.$plugin_name.'.php',0777);
+                chmod('../../class/Portfolio.php',0777);
+            }else{
+                $error++;
+            }
+
+            if(copy('class/Categories_Portfolio.php', '../../class/Categories_Portfolio.php')){
+                chmod('../../class/Categories_Portfolio.php',0777);
             }else{
                 $error++;
             }
@@ -190,6 +230,43 @@ if($op=="del"){
                 }else{
                     $error++;
                 }
+
+            // LOCALE EN
+            if(copy('locale/en/portfolio_en.php', '../../locale/en/portfolio_en.php')){
+                chmod('../../locale/en/portfolio_en.php',0777);
+                }else{
+                    $error++;
+                }
+
+            // LOCALE IT
+            if(copy('locale/it/portfolio_it.php', '../../locale/it/portfolio_it.php')){
+                chmod('../../locale/it/portfolio_it.php',0777);
+                }else{
+                    $error++;
+                }
+
+            // CREATE TABLES AND DEFAULT CATEGORY
+
+            $db->query("CREATE TABLE IF NOT EXISTS portfolio
+            ( id INT ( 5 ) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+                project_title VARCHAR(255) NOT NULL,
+                main_img VARCHAR(255) NOT NULL DEFAULT 'visual.jpg',
+                description text COLLATE utf8_unicode_ci NOT NULL,
+                client VARCHAR(255) NOT NULL,
+                completed date NOT NULL,
+                category INT NOT NULL,
+                link VARCHAR(255) NOT NULL)
+                ");
+
+            $db->query("CREATE TABLE IF NOT EXISTS portfolio_categories
+                        ( id INT ( 5 ) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+                            category_name VARCHAR(255) NOT NULL)");
+
+
+            $db->query("INSERT INTO portfolio_categories
+                            (id, category_name)
+                            VALUES ('1','Web design')
+                            ");
     
     
 

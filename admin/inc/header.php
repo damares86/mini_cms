@@ -61,7 +61,6 @@ foreach (glob("locale/$lang/*.php") as $row){
     require "$row";
 }
 
-
 ?>
 <!DOCTYPE html>
 <html lang="en">

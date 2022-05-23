@@ -9,6 +9,12 @@ class Plugins{
     public $id;
     public $plugin_name;
     public $description;
+    public $icon;
+    public $title;
+    public $sub_show_title;
+    public $sub_show_link;
+    public $sub_add_title;
+    public $sub_add_link;
     public $active;
 
     // constructor
@@ -18,13 +24,19 @@ class Plugins{
 
     // create new role record
     function create(){
-    
+
         // insert query
         $query = "INSERT INTO
                     " . $this->table_name . "
                 SET
                     plugin_name = :plugin_name,
                     description = :description,
+                    icon = :icon,
+                    title = :title,
+                    sub_show_title = :sub_show_title, 
+                    sub_show_link = :sub_show_link,
+                    sub_add_title = :sub_add_title, 
+                    sub_add_link = :sub_add_link,
                     active = 0";
     
         // prepare the query
@@ -34,6 +46,12 @@ class Plugins{
         // bind the values
         $stmt->bindParam(':plugin_name', $this->plugin_name);
         $stmt->bindParam(':description', $this->description);
+        $stmt->bindParam(':icon', $this->icon);
+        $stmt->bindParam(':title', $this->title);
+        $stmt->bindParam(':sub_show_title', $this->sub_show_title);
+        $stmt->bindParam(':sub_show_link', $this->sub_show_link);
+        $stmt->bindParam(':sub_add_title', $this->sub_add_title);
+        $stmt->bindParam(':sub_add_link', $this->sub_add_link);
         
         
         // execute the query, also check if query was successful
@@ -152,6 +170,12 @@ class Plugins{
         $this->id = $row['id'];
         $this->plugin_name = $row['plugin_name'];
         $this->description = $row['description'];
+        $this->icon = $row['icon'];
+        $this->title = $row['title'];
+        $this->sub_show_title = $row['sub_show_title'];
+        $this->sub_show_link = $row['sub_show_link'];
+        $this->sub_add_title = $row['sub_add_title'];
+        $this->sub_add_link = $row['sub_add_link'];
         $this->active = $row['active'];
     }
 

@@ -73,7 +73,7 @@
                 <td>
                 <a href="core/mngPage.php?op=copy&idToMod=<?=$row["id"]?>" class="btn btn-info btn-icon-split">
                             <span class="icon text-white-50">
-                                <i class="fas fa-pen"></i>
+                                <i class="fas fa-files-o"></i>
                             </span>
                             <span class="text"><?=$txt_copy?></span>
                         </a>   

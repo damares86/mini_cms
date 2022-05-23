@@ -81,18 +81,6 @@ $user_id=$_SESSION['user_id'];
                                         require "inc/func/regPageCustom.php";
                                     }
                                 }
-                            }else if($manage=="portfolio"){
-                                if($operation=="show"){
-                                    require "inc/func/allPortfolio.php";
-                                } else if($operation=="add"||$operation=="edit"){
-                                    require "inc/func/regPortfolio.php";
-                                }
-                            }else if($manage=="catPortfolio"){
-                                if($operation=="show"){
-                                    require "inc/func/allCatPortfolio.php";
-                                } else if($operation=="add"||$operation=="edit"){
-                                    require "inc/func/regCatPortfolio.php";
-                                }
                             }else if($manage=="gall"){
                                 if($operation=="show"){
                                     require "inc/func/allGallery.php";
@@ -109,7 +97,19 @@ $user_id=$_SESSION['user_id'];
                                 if($operation=="show"){
                                     require "inc/func/allPlugins.php";
                                 } 
-                            }else{  
+                            }else if($manage=="portfolio"){
+                                if($operation=="show"){
+                                    require "inc/func/allPortfolio.php";
+                                } else if($operation=="add"||$operation=="edit"){
+                                    require "inc/func/regPortfolio.php";
+                                }
+                            }else if($manage=="catPortfolio"){
+                                if($operation=="show"){
+                                    require "inc/func/allCatPortfolio.php";
+                                } else if($operation=="add"||$operation=="edit"){
+                                    require "inc/func/regCatPortfolio.php";
+                                }
+                            }else {
                         ?>
 
                     <!-- Page Heading -->
