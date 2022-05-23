@@ -240,6 +240,15 @@ $db->query("CREATE TABLE IF NOT EXISTS plugins
                               active INT(1) NOT NULL)
                               ");
 
+$db->query("CREATE TABLE IF NOT EXISTS view_home
+                            ( id INT ( 5 ) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+                              name_function VARCHAR(255) NOT NULL,
+                              name_file VARCHAR(255) NOT NULL,
+                              all INT (1),
+                              reg INT (1),
+                              edit INT (1))
+                              ");
+
 $db->query("CREATE TABLE IF NOT EXISTS files
                             ( id INT ( 5 ) NOT NULL AUTO_INCREMENT PRIMARY KEY,
                               filename VARCHAR(255) NOT NULL,
