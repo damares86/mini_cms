@@ -8,7 +8,7 @@ require "admin/template/inc/header.php";
                 $page->page_name="index";
                 $page_class="index";
                 
-                $stmt=$page->showByName();
+                // $stmt=$page->showByNameDefault();
                 ?>
                 <div id="content">
                 <div class="block block1 <?=$page_class?>" style="background-color:<?=$page->block1_bg?> !important; color:<?=$page->block1_text?> !important;">

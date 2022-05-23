@@ -56,7 +56,10 @@ $total_post=$post->countAll();
 
 $stmt=$settings->showLang();
 $lang=$settings->dashboard_language;
-require "locale/$lang.php";
+
+foreach (glob("locale/$lang/*.php") as $file){
+    require "$file";
+}
 
 
 ?>

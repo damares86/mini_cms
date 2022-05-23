@@ -80,7 +80,7 @@ if($man=="settings"){
 
                 <select name="language">
                 <?php
-                $lang =glob("locale/*.php", GLOB_BRACE);
+                $lang =glob("locale/*", GLOB_BRACE);
 
             foreach ($lang as $file) {
                     $language=pathinfo($file, PATHINFO_FILENAME);

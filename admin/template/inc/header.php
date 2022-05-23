@@ -48,11 +48,15 @@ chmod('admin/inc/class_initialize.php',0777);
 include "admin/inc/class_initialize.php";
 
 
-$stmt=$settings->showSettings();
+$stmt2=$settings->showSettings();
 
-$stmt1=$settings->showLang();
+$stmt3=$settings->showLang();
 $lang=$settings->dashboard_language;
-require "admin/locale/$lang.php";
+
+
+foreach (glob("admin/locale/$lang/*.php") as $file){
+    require "$file";
+}
 
 // prendo il nome del file (con estensione)
 $file = basename($_SERVER['PHP_SELF']);
@@ -98,7 +102,7 @@ $page_name=ucfirst($page_name);
 $root="";
 $lang="";
 
-while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
+while ($row = $stmt2->fetch(PDO::FETCH_ASSOC)){
     
     extract($row);
     $theme=$row['theme'];
@@ -121,12 +125,33 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
         <link rel="icon" href="assets/<?= $theme ?>/img/favicon.ico">
         <?php
           
-            if($page_class=="index"||$page_class=="blog"||$page->class=="contact"){
+
+            if($page_class=="index"||$page_class=="blog"||$page_class=="contact"){
                 $page->page_name=$page_class;
             }else{
                 $page->page_name=$page_name;
             }
-            $stmt1=$page->showByName();
+            
+            $default="";
+            $showDefault=$page->showAllDefault();
+            $name="";
+            if($file=="index.php"){
+                $name="index";
+            }else{
+                $name=ucfirst($page_class);
+            }
+            foreach($showDefault as $row){
+                if($name==$row['page_name']){
+                    $default=1;
+                }
+            }
+
+            if($default==1){
+                $stmt=$page->showByNameDefault();
+            }else{
+                $stmt=$page->showByName();
+            }
+
             $img=$page->img;
 
 

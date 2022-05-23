@@ -51,7 +51,9 @@ $stmt=$settings->showSettings();
 
 $stmt1=$settings->showLang();
 $lang=$settings->dashboard_language;
-require "../../admin/locale/$lang.php";
+foreach (glob("../../admin/locale/$lang/*.php") as $file){
+    require "$file";
+}
 
 // prendo il nome del file (con estensione)
 $file = basename($_SERVER['PHP_SELF']);
@@ -111,8 +113,23 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
           
           
           $page->page_name='Gallery';
-          
-          $stmt1=$page->showByName();
+        //   $default="";
+        //   $showDefault=$page->showAllDefault();
+        //   $name="";
+        //   if($file=="index.php"){
+        //       $name="index";
+        //   }else{
+        //       $name=ucfirst($page_class);
+        //   }
+        //   foreach($showDefault as $row){
+        //       if($name==$row['page_name']){
+        //           $default=1;
+        //       }
+        //   }
+
+              $stmt=$page->showByNameDefault();
+       
+
           $img=$page->img;
           
           

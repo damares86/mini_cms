@@ -50,7 +50,9 @@ $stmt=$settings->showSettings();
 
 $stmt1=$settings->showLang();
 $lang=$settings->dashboard_language;
-require "../../admin/locale/$lang.php";
+foreach (glob("../../admin/locale/$lang/*.php") as $file){
+    require "$file";
+}
 
 // prendo il nome del file (con estensione)
 $file = basename($_SERVER['PHP_SELF']);
@@ -110,8 +112,8 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
           
           
           $page->page_name='Portfolio';
-          
-          $stmt1=$page->showByName();
+          $stmt=$page->showByNameDefault();
+      
           $img=$page->img;
           
           

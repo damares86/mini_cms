@@ -15,8 +15,8 @@
 
         
         <?php
-            require "assets/".$theme."/inc/cookie.php";
-            require "assets/".$theme."/inc/footerScript.php";
+            // require "assets/".$theme."/inc/cookie.php";
+            // require "assets/".$theme."/inc/footerScript.php";
         ?>
 
 
