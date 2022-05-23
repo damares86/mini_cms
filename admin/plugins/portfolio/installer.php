@@ -86,9 +86,9 @@ if($op=="del"){
 
 
         // DELETE DEFAULT PAGE
-        if(is_file("../../$name.php")){
+        if(is_file("../../../portfolio.php")){
             if($plugins->deletePage())
-                if(unlink("../../$name.php")){
+                if(unlink("../../../portfolio.php")){
                     // ok
                 }else{
                     // ko
@@ -98,7 +98,7 @@ if($op=="del"){
             }
             
             unlink("../inc/class_initialize.php");
-            header("Location: ../index.php?man=plugins&op=show&msg=pluginSucc");
+            header("Location: ../../index.php?man=plugins&op=show&msg=pluginSucc");
             exit;
 
             } else{
@@ -109,7 +109,7 @@ if($op=="del"){
 
         if($plugins->create()){
             // CLASS
-            if(copy('class/'.$plugin_name.'.php', '../../class/'.$plugin_name.'.php')){
+            if(copy('class/Portfolio.php', '../../class/Portfolio.php')){
                 chmod('../../class/'.$plugin_name.'.php',0777);
             }else{
                 print_r("ko_class");
@@ -117,28 +117,37 @@ if($op=="del"){
             }
 
             // ALL
-            if(copy('all/all'.$plugin_name.'.php', '../../inc/func/all'.$plugin_name.'.php')){
-                chmod('../../inc/func/all'.$plugin_name.'.php',0777);
+            if(copy('all/allPortfolio.php', '../../inc/func/allPortfolio.php')){
+                chmod('../../inc/func/allPortfolio.php',0777);
             }else{
                 print_r("ko_all");
                 exit;
             }
 
             // ALL
-            if(copy('reg/reg'.$plugin_name.'.php', '../../inc/func/reg'.$plugin_name.'.php')){
-                chmod('../../inc/func/reg'.$plugin_name.'.php',0777);
+            if(copy('reg/regPortfolio.php', '../../inc/func/regPortfolio.php')){
+                chmod('../../inc/func/regPortfolio.php',0777);
             }else{
                 print_r("ko_reg");
                 exit;
             }
 
             // MNG
-            if(copy('mng/mng'.$plugin_name.'.php', '../../core/mng'.$plugin_name.'.php')){
-                chmod('../../core/mng'.$plugin_name.'.php',0777);
+            if(copy('mng/mngPortfolio.php', '../../core/mngPortfolio.php')){
+                chmod('../../core/mngPortfolio.php',0777);
             }else{
                 print_r("ko_mng");
                 exit;
             }
+
+            // MNG
+            if(copy('page/portfolio.php', '../../../portfolio.php')){
+            chmod('../../../portfolio.php',0777);
+            }else{
+                print_r("ko_mng");
+                exit;
+            }
+    
 
             // LOCAL
 

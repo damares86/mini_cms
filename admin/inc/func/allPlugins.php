@@ -63,13 +63,13 @@
                         $enable="Enable";
                         $op_enable="enable";
                         $background="";
-                        $url = "plugins/$folder/installer.php";
+                        $url = "plugins/$folder/installer.php?op=add";
                         if($plugins->id){                            
                             $btn_install="btn-danger";
                             $install="Remove";
                             $box_enabled="D";
                             $box_enabled_color="danger";
-                            $url = "core/mngPlugins.php?op=del&name=$folder";
+                            $url = "plugins/$folder/installer.php?op=del";
                             if($plugins->active==1){
                                 $box_enabled="E";
                                 $box_enabled_color="success";

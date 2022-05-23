@@ -148,37 +148,16 @@ $stmt = $settings->showSettings();
 
         <form id="postForm" class="form-horizontal row-fluid" action="core/mngPage.php" method="post" onsubmit="return postForm()"  enctype="multipart/form-data">
         <input type="hidden" name="operation" value="<?= $operation ?>" />
-                <?php 
-      
-      $notToMod=array("1","2", "3", "4", "5", "6","7");
-      $notToModLayout=array("2", "3", "4", "5", "6","7");
-
-
-      if($operation=="mod"){ 
-          ?>
+               
                     <input type="hidden" name="idToMod" value="<?= $idToMod ?>" />
-                    <?php 
-                } 
-                
-                ?>
+            
             <div class="control-group">
                 
                 <div class="controls">
-                    <?php
-                  if(in_array($idToMod, $notToMod)){
-                      ?>
+
                     <strong><?= $page->page_name ?></strong>
                     <input type="hidden" name="page_name" value="<?= $page->page_name ?>" />
-                    <?php
-                       } else {
-                           ?>
-
-<input type="hidden" name="old_page_name" value="<?= $page->page_name ?>" />
-<input type="text" id="page_name" name="page_name" placeholder="<?=$regpage_name?>" value="<?=$page->page_name?>" class="span8">
-
-<?php
-                       }
-                       ?>
+            
                        <input type="hidden" name="type" value="<?= $type ?>" />
                      
                 </div>
@@ -186,7 +165,7 @@ $stmt = $settings->showSettings();
             
             <br>
             <?php
-                if(!in_array($idToMod, $notToModLayout)){
+                if($idToMod==1){
          
             ?>
             <div class="control-group">
@@ -278,7 +257,7 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
 <input type="hidden" name="theme" value="<?= $page_theme ?>" />
 
             <?php   
-                if(!in_array($idToMod, $notToModLayout)){
+                if($idToMod==1){
             ?>
             <h3><?=$regpage_block?> 1</h3><br>
             <?php
