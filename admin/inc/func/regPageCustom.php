@@ -91,7 +91,7 @@ $stmt = $settings->showSettings();
         <?php
         $page->id = $idToMod;
 
-        $page->showByIdDefault();
+        $page->showById();
         ?>
         <style>
             .box2{

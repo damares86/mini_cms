@@ -75,7 +75,11 @@ $user_id=$_SESSION['user_id'];
                                         require "inc/func/allPageCustom.php";
                                     }
                                 } else if($operation=="add"||$operation=="edit"){
-                                    require "inc/func/regPage.php";
+                                    if($type=="default"){
+                                        require "inc/func/regPage.php";
+                                    } else if($type=="custom"){
+                                        require "inc/func/regPageCustom.php";
+                                    }
                                 }
                             }else if($manage=="portfolio"){
                                 if($operation=="show"){
