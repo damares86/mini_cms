@@ -43,10 +43,10 @@ require "../../admin/template/inc/header_portfolio.php";
                             <p><b><?=$pro_client?>:</b><br> <?=$portfolio->client?></p>
                             <p><b><?=$pro_comp?>:</b><br> <?=$portfolio->completed?></p>
                             <?php
-                            $cat->id=$portfolio->category;
-                            $cat->showById();
+                            $categories_portfolio->id=$portfolio->category;
+                            $categories_portfolio->showById();
                             ?>
-                            <p><b><?=$pro_cat?>:</b><br> <?=$cat->category_name?></p>
+                            <p><b><?=$pro_cat?>:</b><br> <?=$categories_portfolio->category_name?></p>
                             <p><a href="<?=$portfolio->link?>" class="button icon solid fa-arrow-circle-right"><?=$pro_goto?></a></p>
                         </div>
                     </div>

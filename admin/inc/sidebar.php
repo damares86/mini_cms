@@ -17,7 +17,9 @@
                     <span><?=$side_dash?></span>
                 </a>
             </li>
-
+            <?php
+            if($_SESSION['rolename']!="Contributor"){
+            ?>
             <!-- Divider -->
             <hr class="sidebar-divider">
 
@@ -34,14 +36,16 @@
                     </div>
                 </div>
             </li>
+            <?php
+            }
+            ?>
 
 
- 
 
             <!-- Divider -->
             <hr class="sidebar-divider">
             <!-- Heading -->
-
+            <div class="sidebar-heading"><?=$site_manage?></div>
             <?php
             if($_SESSION['rolename']!="Contributor"){
             ?>
@@ -96,20 +100,60 @@
                 <?php
             if($_SESSION['rolename']!="Contributor"){
             ?>
-                <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
-                    aria-expanded="true" aria-controls="collapseTwo">
-                    <i class="fas fa-fw fa-image"></i>
-                    <span><?=$side_port?></span>
+                
+
+            <!-- Divider -->
+            <hr class="sidebar-divider">
+            <!-- Heading -->
+            <div class="sidebar-heading"><?=$side_plugin?></div>
+
+            <li class="nav-item">
+                <a class="nav-link" href="index.php?man=plugins&op=show">
+                    <i class="fas fa-puzzle-piece"></i>
+                    <span><?=$side_manage_plugins?></span>
                 </a>
-                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="index.php?man=portfolio&op=show"><?=$side_project?></a>
-                        <a class="collapse-item" href="index.php?man=catPortfolio&op=show"><?=$side_project_cat?></a>
-                    </div>
-                </div>
             </li>
             <?php
+            $stmt2=$plugins->showAll();
+            foreach($stmt2 as $row){
+                $title=$row['title'];
+                $show_title=$row['sub_show_title'];
+                $add_title=$row['sub_add_title'];
+                if($row['active']==1){
+            ?>
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
+                    aria-expanded="true" aria-controls="collapseTwo">
+                    <i class="<?=$row['icon']?>"></i>
+                    <span>
+                        <?php
+                        echo $$title;
+                        ?>
+                    </span>
+                </a>
+                <?php
+                if(!is_null($row['sub_show_title'])){
+                ?>
+                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item" href="<?=$row['sub_show_link']?>"><?=$$show_title?></a>
+                        <?php
+                        if(!is_null($row['sub_add_title'])){
+                            ?>
+                        <a class="collapse-item" href="<?=$row['sub_add_link']?>"><?=$$add_title?></a>
+                        <?php
+                        }
+                        ?>
+                    </div>
+                </div>
+                <?php
+                }
+                ?>
+            </li>
+            
+            <?php
+            }
+        }
             }
             ?>
                 <!-- Divider -->
@@ -121,11 +165,6 @@
             <?php
             if($_SESSION['rolename']!="Contributor"){
             ?>
-             <!-- Heading -->
-             <div class="sidebar-heading">
-             
-            </div>
-
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseFive"
                     aria-expanded="true" aria-controls="collapseFive">
@@ -140,6 +179,7 @@
                     </div>
                 </div>
             </li>
+           
 
             <?php
             }

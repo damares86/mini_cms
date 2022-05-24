@@ -1,14 +1,9 @@
 <?php
     require "core/config.php";
-
-	$database = new Database();
-	$db = $database->getConnection();
-
-	$page = new Page($db);
     
     $stmt = $page->showAllDefault();
     
-    $total_rows=$page->countAll();
+    $total_rows=$page->countAllDefault();
 
 ?>
 

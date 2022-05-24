@@ -172,4 +172,3 @@ if(filter_input(INPUT_POST,"subReg")){
 exit;
 
 ?>
-

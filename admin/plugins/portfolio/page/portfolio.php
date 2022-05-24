@@ -19,7 +19,7 @@ $total_rows=$portfolio->countAll();
                                                 }
                                                 ?>">All (<?=$total_rows?>)</a>
                                         <?php
-                                            $stmt1=$portfolio_cat->showAllList();
+                                            $stmt1=$categories_portfolio->showAllList();
                                             while ($row1 = $stmt1->fetch(PDO::FETCH_ASSOC)){
             
                                                 extract($row1);
@@ -65,7 +65,7 @@ $total_rows=$portfolio->countAll();
 
                                 <!-- Box -->
                                     <section class="box feature">
-                                        <a href="<?=$str?>.php" class="image featured"><img src="misc/portfolio/img/<?=$main_img?>" alt="" /></a>
+                                        <a href="misc/portfolio/<?=$str?>.php" class="image featured"><img src="misc/portfolio/img/<?=$main_img?>" alt="" /></a>
                                         <div class="inner">
                                             <header>
                                                 <h2><?=$project_title?></h2>

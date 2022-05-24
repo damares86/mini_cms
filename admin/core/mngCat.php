@@ -9,24 +9,6 @@
 
 
 
-
-
-
-
-/////////////////////////////////////////////////////////////////////////////////
-
-//////   CONTROLLARE SE ESISTONO DEI POST CON LA CATEGORIA PRIMA DI CANCELLARLA
-
-/////////////////////////////////////////////////////////////////////////////////
-
-
-
-
-
-
-
-
-
 session_start();
 if (!isset($_SESSION['loggedin'])) {
     header('Location: ../');
@@ -42,14 +24,14 @@ if (!isset($_SESSION['loggedin'])) {
 	$database = new Database();
 	$db = $database->getConnection();
 
-	$cat = new Categories($db);
+	$categories = new Categories($db);
 	$post = new Post($db);
 
 if(filter_input(INPUT_GET,"idToDel")){
 	
 	$idToDel = filter_input(INPUT_GET,"idToDel");
 	
-	$cat->id=$idToDel;
+	$categories->id=$idToDel;
 	
 	$countPost = 0;
 
@@ -73,7 +55,7 @@ if(filter_input(INPUT_GET,"idToDel")){
 		exit;
 	}else{
 		// delete the category
-		if($cat->delete()){
+		if($categories->delete()){
 			header("Location: ../index.php?man=cat&op=show&msg=catDelSucc");
 			exit;
 			
@@ -98,19 +80,19 @@ if(filter_input(INPUT_POST,"subReg")){
 		exit;
 	}
 	
-	$cat->category_name=$_POST['category_name'];
+	$categories->category_name=$_POST['category_name'];
 
 	if($operation=="add"){
 		//inserimento
 
-		if($cat->catExists()){
+		if($categories->catExists()){
 			header("Location: ../index.php?man=cat&op=show&msg=catExists");
 		} else {
 
-			$cat->category_name=$_POST['category_name'];
+			$categories->category_name=$_POST['category_name'];
 			
 			// create the user
-			if($cat->create()){
+			if($categories->create()){
 				header("Location: ../index.php?man=cat&op=show&msg=catSucc");
 				exit;
 			
@@ -124,10 +106,10 @@ if(filter_input(INPUT_POST,"subReg")){
 		}
 	} else if($operation=="mod"){
 
-		$cat->id = $_POST['idToMod'];
+		$categories->id = $_POST['idToMod'];
 
 		// update the post
-		if($cat->update()){
+		if($categories->update()){
 			header("Location: ../index.php?man=cat&op=show&msg=catEditSucc");
 			exit;
 		

@@ -24,22 +24,35 @@ function autoloader($class){
 $database = new Database();
 $db = $database->getConnection();
 
-$post = new Post($db);
-$user = new User($db);
-$page = new Page($db);
-$portfolio = new Portfolio($db);
-$cat = new Categories_Portfolio($db);
-$menu = new Menu($db);
-$settings = new Settings($db);
-$verify = new Verify($db);
+$files=glob("../../admin/class/*.php", GLOB_BRACE);
+rsort($files); 
 
+if(!is_file('../../admin/inc/class_initialize.php')){
+$file_handle = fopen('../../admin/inc/class_initialize.php', 'w');
+fwrite($file_handle, '<?php');
+fwrite($file_handle, "\n");
+foreach ($files as $filename) {
+    $nomefile = pathinfo($filename);
+    $file=$nomefile['filename'];
+    $file_var = strtolower($file);
+    fwrite($file_handle, '$'.$file_var.' = new '.$file.'($db);');
+    fwrite($file_handle, "\n");
+}
+fwrite($file_handle,"?>");
+chmod('../../admin/inc/class_initialize.php',0777);
+
+}
+
+include "../../admin/inc/class_initialize.php";
 
 
 $stmt=$settings->showSettings();
 
 $stmt1=$settings->showLang();
 $lang=$settings->dashboard_language;
-require "../../admin/locale/$lang.php";
+foreach (glob("../../admin/locale/$lang/*.php") as $file){
+    require "$file";
+}
 
 // prendo il nome del file (con estensione)
 $file = basename($_SERVER['PHP_SELF']);
@@ -99,8 +112,8 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
           
           
           $page->page_name='Portfolio';
-          
-          $stmt1=$page->showByName();
+          $stmt=$page->showByNameDefault();
+      
           $img=$page->img;
           
           

@@ -26,20 +26,37 @@ function autoloader($class){
 $database = new Database();
 $db = $database->getConnection();
 
-$post = new Post($db);
-$user = new User($db);
-$page = new Page($db);
-$portfolio = new Portfolio($db);
-$portfolio_cat = new Categories_Portfolio($db);
-$menu = new Menu($db);
-$settings = new Settings($db);
-$verify = new Verify($db);
+$files=glob("admin/class/*.php", GLOB_BRACE);
+rsort($files); 
 
-$stmt=$settings->showSettings();
+if(!is_file('admin/inc/class_initialize.php')){
+$file_handle = fopen('admin/inc/class_initialize.php', 'w');
+fwrite($file_handle, '<?php');
+fwrite($file_handle, "\n");
+foreach ($files as $filename) {
+    $nomefile = pathinfo($filename);
+    $file=$nomefile['filename'];
+    $file_var = strtolower($file);
+    fwrite($file_handle, '$'.$file_var.' = new '.$file.'($db);');
+    fwrite($file_handle, "\n");
+}
+fwrite($file_handle,"?>");
+chmod('admin/inc/class_initialize.php',0777);
 
-$stmt1=$settings->showLang();
+}
+
+include "admin/inc/class_initialize.php";
+
+
+$stmt2=$settings->showSettings();
+
+$stmt3=$settings->showLang();
 $lang=$settings->dashboard_language;
-require "admin/locale/$lang.php";
+
+
+foreach (glob("admin/locale/$lang/*.php") as $file){
+    require "$file";
+}
 
 // prendo il nome del file (con estensione)
 $file = basename($_SERVER['PHP_SELF']);
@@ -85,7 +102,7 @@ $page_name=ucfirst($page_name);
 $root="";
 $lang="";
 
-while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
+while ($row = $stmt2->fetch(PDO::FETCH_ASSOC)){
     
     extract($row);
     $theme=$row['theme'];
@@ -108,12 +125,33 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
         <link rel="icon" href="assets/<?= $theme ?>/img/favicon.ico">
         <?php
           
-            if($page_class=="index"||$page_class=="blog"||$page->class=="contact"){
+
+            if($page_class=="index"||$page_class=="blog"||$page_class=="contact"){
                 $page->page_name=$page_class;
             }else{
                 $page->page_name=$page_name;
             }
-            $stmt1=$page->showByName();
+            
+            $default="";
+            $showDefault=$page->showAllDefault();
+            $name="";
+            if($file=="index.php"){
+                $name="index";
+            }else{
+                $name=ucfirst($page_class);
+            }
+            foreach($showDefault as $row){
+                if($name==$row['page_name']){
+                    $default=1;
+                }
+            }
+
+            if($default==1){
+                $stmt=$page->showByNameDefault();
+            }else{
+                $stmt=$page->showByName();
+            }
+
             $img=$page->img;
 
 
@@ -129,7 +167,7 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
             require "assets/".$theme."/inc/scripts.php";
             require "admin/inc/func/check.php";
             if(($file=="login.php")||($file=="contact.php")){
-                require "assets/".$theme."/inc/recaptcha.php";
+                require "admin/template/inc/recaptcha.php";
             }
         ?>
         <meta name="viewport" content="width=device-width, initial-scale=1" />

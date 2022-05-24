@@ -1,7 +1,7 @@
 
 <?php
 
-$stmt = $cat->showAllList();
+$stmt = $categories->showAllList();
 
         while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
     

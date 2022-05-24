@@ -1,12 +1,7 @@
 <?php
     require "core/config.php";
 
-	$database = new Database();
-	$db = $database->getConnection();
-
-	
-    
-    $stmt = $file->showAll($from_record_num, $records_per_page);
+    $stmt = $file->showAll();
 
     $total_rows=$file->countAll();
 

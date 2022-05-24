@@ -24,25 +24,42 @@ function autoloader($class){
 	include("class/$class.php");
 }
 
+
 $database = new Database();
 $db = $database->getConnection();
 
-$user = new User($db);
+$files=glob("class/*.php", GLOB_BRACE);
+rsort($files); 
+
+if(!is_file('inc/class_initialize.php')){
+$file_handle = fopen('inc/class_initialize.php', 'w');
+fwrite($file_handle, '<?php');
+fwrite($file_handle, "\n");
+foreach ($files as $filename) {
+    $nomefile = pathinfo($filename);
+    $file=$nomefile['filename'];
+    $file_var = strtolower($file);
+    fwrite($file_handle, '$'.$file_var.' = new '.$file.'($db);');
+    fwrite($file_handle, "\n");
+}
+fwrite($file_handle,"?>");
+chmod('inc/class_initialize.php',0777);
+
+}
+
+include "inc/class_initialize.php";
+
+
 $total_user=$user->countAll();
-$role = new Role($db);
-$post = new Post($db);
 $total_post=$post->countAll();
-$page = new Page($db);
-$portfolio = new Portfolio($db);
-$portfolio_cat = new Categories_Portfolio($db);
-$contact = new Contact($db);
-$settings = new Settings($db);
-$file = new File($db);
+
 
 $stmt=$settings->showLang();
 $lang=$settings->dashboard_language;
-require "locale/$lang.php";
 
+foreach (glob("locale/$lang/*.php") as $row){
+    require "$row";
+}
 
 ?>
 <!DOCTYPE html>

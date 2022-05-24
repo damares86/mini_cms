@@ -1,11 +1,11 @@
 <?php
 
-// require '../phpDebug/src/Debug/Debug.php';   			// if not using composer
+require '../phpDebug/src/Debug/Debug.php';   			// if not using composer
 
-// $debug = new \bdk\Debug(array(
-//     'collect' => true,
-//     'output' => true,
-// ));
+$debug = new \bdk\Debug(array(
+    'collect' => true,
+    'output' => true,
+));
 
 
 
@@ -26,14 +26,14 @@ if (!isset($_SESSION['loggedin'])) {
 	$database = new Database();
 	$db = $database->getConnection();
 
-	$cat = new Categories_Portfolio($db);
+	$categories_portfolio = new Categories_Portfolio($db);
 	$portfolio = new Portfolio($db);
 
 if(filter_input(INPUT_GET,"idToDel")){
 	
 	$idToDel = filter_input(INPUT_GET,"idToDel");
 	
-	$cat->id=$idToDel;
+	$categories_portfolio->id=$idToDel;
 	
 	$countProject = 0;
 
@@ -57,7 +57,7 @@ if(filter_input(INPUT_GET,"idToDel")){
 		exit;
 	}else{
 		// delete the category
-		if($cat->delete()){
+		if($categories_portfolio->delete()){
 			header("Location: ../index.php?man=catPortfolio&op=show&msg=catPortfolioDelSucc");
 			exit;
 			
@@ -82,19 +82,20 @@ if(filter_input(INPUT_POST,"subReg")){
 		exit;
 	}
 	
-	$cat->category_name=$_POST['category_name'];
+	$categories_portfolio->category_name=$_POST['category_name'];
 
 	if($operation=="add"){
 		//inserimento
-
-		if($cat->catExists()){
+		
+		if($categories_portfolio->catExists()){
 			header("Location: ../index.php?man=catPortfolio&op=show&msg=catPortfolioExists");
 		} else {
+			
+			$categories_portfolio->category_name=$_POST['category_name'];
 
-			$cat->category_name=$_POST['category_name'];
 			
 			// create the user
-			if($cat->create()){
+			if($categories_portfolio->create()){
 				header("Location: ../index.php?man=catPortfolio&op=show&msg=catPortfolioSucc");
 				exit;
 			
@@ -108,10 +109,10 @@ if(filter_input(INPUT_POST,"subReg")){
 		}
 	} else if($operation=="mod"){
 
-		$cat->id = $_POST['idToMod'];
+		$categories_portfolio->id = $_POST['idToMod'];
 
 		// update the post
-		if($cat->update()){
+		if($categories_portfolio->update()){
 			header("Location: ../index.php?man=catPortfolio&op=show&msg=catPortfolioEditSucc");
 			exit;
 		

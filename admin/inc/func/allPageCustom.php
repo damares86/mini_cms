@@ -1,11 +1,6 @@
 <?php
     require "core/config.php";
 
-	$database = new Database();
-	$db = $database->getConnection();
-
-	$page = new Page($db);
-    
     $stmt = $page->showAllCustom($from_record_num, $records_per_page);
     
     $total_rows=$page->countAllCustom();
@@ -26,7 +21,7 @@
             <h6 class="m-0 font-weight-bold text-primary"><?=$allpage_box_title?></h6>
         </div>
         <div class="card-body">
-            <a href="index.php?man=page&op=add" class="btn btn-success btn-icon-split">
+            <a href="index.php?man=page&op=add&type=custom" class="btn btn-success btn-icon-split">
                 <span class="icon text-white-50">
                     <i class="fas fa-plus"></i>
                 </span>
@@ -78,7 +73,7 @@
                 <td>
                 <a href="core/mngPage.php?op=copy&idToMod=<?=$row["id"]?>" class="btn btn-info btn-icon-split">
                             <span class="icon text-white-50">
-                                <i class="fas fa-pen"></i>
+                                <i class="fas fa-files-o"></i>
                             </span>
                             <span class="text"><?=$txt_copy?></span>
                         </a>   

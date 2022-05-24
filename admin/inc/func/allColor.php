@@ -1,13 +1,6 @@
 <?php
     require "core/config.php";
 
-	$database = new Database();
-	$db = $database->getConnection();
-
-	$colors = new Colors($db);
-    $settings = new Settings($db);
-    
-
     $stmt = $settings->showSettings();
     
 

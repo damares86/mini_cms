@@ -1,15 +1,6 @@
 <?php
     require "core/config.php";
 
-	$database = new Database();
-	$db = $database->getConnection();
-
-	
-    
-    $stmt = $file->showAll($from_record_num, $records_per_page);
-
-    $total_rows=$file->countAll();
-
 ?>
 
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
