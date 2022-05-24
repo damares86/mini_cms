@@ -261,9 +261,7 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
 <br>
 <input type="hidden" name="theme" value="<?= $page_theme ?>" />
 
-            <?php   
-                if(!in_array($idToMod, $notToModLayout)){
-            ?>
+  
             <h3><?=$regpage_block?> 1</h3><br>
             <?php
             // $checked_t1="checked";
@@ -1313,11 +1311,7 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
 
 <hr>
 
-            <?php
-                }
-            ?>
-
-            <br>
+                        <br>
                  <input type="submit" class="btn btn-primary" name="subReg" value="<?=$txt_submit?>">
         </form>
         

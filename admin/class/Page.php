@@ -10,6 +10,7 @@ class Page{
     private $setParam4;
     private $setParam5;
     private $setParam6; 
+    private $table;
 
 
     public $type;
@@ -17,6 +18,7 @@ class Page{
     public $id;
     public $old_page_name;
     public $page_name;
+    public $no_mod;
     public $layout;
     public $header;
     public $img;
@@ -82,6 +84,7 @@ class Page{
         " . $this->table_name . "
         SET
         page_name = :page_name,
+        no_mod = :no_mod,
         layout = :layout,
         header = :header,
         block1_type = :block1_type,
@@ -109,6 +112,7 @@ class Page{
         
         // bind the values
         $stmt->bindParam(':page_name', $this->page_name);       
+        $stmt->bindParam(':no_mod', $this->no_mod);       
         $stmt->bindParam(':layout', $this->layout);    
         $stmt->bindParam(':header', $this->header);    
         $stmt->bindParam(':block1_type', $this->block1_type);       
@@ -179,7 +183,15 @@ class Page{
 
 
     function update(){
-        if($this->id!=2){
+
+        if($this->type=="default"){
+            $this->table="default_page";
+        }else if($this->type=="custom"){
+            $this->table="page";
+        }
+
+
+        if($this->type=="custom"||($this->type=="default"&&$this->id==1)){
             if($this->block2){
                 $this->setParam2 = ", block2 = :block2";
                 
@@ -204,11 +216,11 @@ class Page{
 
             $stmt="";
 
-            if($this->type=="custom" || $this->id==1){
                 $query = "UPDATE
-                " . $this->table_name . "
+                " . $this->table . "
                 SET
                 page_name = :page_name,
+                no_mod = :no_mod,
                 layout = :layout,
                 header = :header,
                 block1_type = :block1_type,
@@ -236,6 +248,7 @@ class Page{
                 
                 // bind the values
                 $stmt->bindParam(':page_name', $this->page_name);       
+                $stmt->bindParam(':no_mod', $this->no_mod);       
                 $stmt->bindParam(':layout', $this->layout);    
                 $stmt->bindParam(':header', $this->header);    
                 $stmt->bindParam(':block1_type', $this->block1_type);       
@@ -280,7 +293,7 @@ class Page{
                 $stmt->bindParam(':id', $this->id);    
 
 
-            }else if($this->type=="default"){
+            }else if($this->type=="default"&&$this->id!=1){
 
                 $query = "UPDATE
                     default_page
@@ -298,14 +311,21 @@ class Page{
 
             // execute the query, also check if query was successful
             if($stmt->execute()){
-              
                 if($this->old_page_name != $this->page_name){
+                    $query3="SELECT * FROM menu WHERE pagename = :page_name LIMIT 0,1";
+                    $stmt3 = $this->conn->prepare($query3);
+                    $stmt3->bindParam(':page_name', $this->old_page_name);       
+                    $stmt3->execute();
+                    $row3 = $stmt3->fetch(PDO::FETCH_ASSOC);
+                    $id=$row3['id'];
+
+
                     $query2 = "UPDATE menu SET 
                     pagename = :page_name
                     WHERE
                     id = :id";
 
-                    $id= $this->id-2;
+                    // $id= $this->id-2;
                     
                     $stmt2 = $this->conn->prepare($query2);
                     $stmt2->bindParam(':page_name', $this->page_name);       
@@ -327,9 +347,8 @@ class Page{
                     }
                     
                 }
-     
 
-                $query1="SELECT * FROM ".$this->table_name." WHERE page_name = :page_name LIMIT 0,1";
+                $query1="SELECT * FROM ".$this->table." WHERE page_name = :page_name LIMIT 0,1";
                 $stmt1 = $this->conn->prepare($query1);
                 $stmt1->bindParam(':page_name', $this->page_name);       
                 $stmt1->execute();
@@ -353,24 +372,24 @@ class Page{
                 $this->showError($stmt);
                 return false;
             }
-        } else {
-            $query1="SELECT * FROM default_page WHERE page_name = :page_name LIMIT 0,1";
-                $stmt1 = $this->conn->prepare($query1);
-                $stmt1->bindParam(':page_name', $this->page_name);       
-                $stmt1->execute();
-                $row1 = $stmt1->fetch(PDO::FETCH_ASSOC);
-                $actualImage=$row1['img'];
-                if(($this->img)==$actualImage){
-                    return true;
-                }else{
-                    if($this->uploadPhoto()){
-                        return true;
-                    }else{
-                        return false;
-                    }
-                }
+        // } else {
+        //     $query1="SELECT * FROM default_page WHERE page_name = :page_name LIMIT 0,1";
+        //         $stmt1 = $this->conn->prepare($query1);
+        //         $stmt1->bindParam(':page_name', $this->page_name);       
+        //         $stmt1->execute();
+        //         $row1 = $stmt1->fetch(PDO::FETCH_ASSOC);
+        //         $actualImage=$row1['img'];
+        //         if(($this->img)==$actualImage){
+        //             return true;
+        //         }else{
+        //             if($this->uploadPhoto()){
+        //                 return true;
+        //             }else{
+        //                 return false;
+        //             }
+        //         }
                 
-        }
+        // }
     
     }
 
@@ -555,6 +574,7 @@ class Page{
     
         $this->id = $row['id'];
         $this->page_name = $row['page_name'];
+        $this->no_mod = $row['no_mod'];
         $this->layout = $row['layout'];
         $this->header = $row['header'];
         $this->img = $row['img'];
@@ -600,6 +620,7 @@ class Page{
 
         $this->id = $row['id'];
         $this->page_name = $row['page_name'];
+        $this->no_mod = $row['no_mod'];
         $this->layout = $row['layout'];
         $this->header = $row['header'];
         $this->img = $row['img'];

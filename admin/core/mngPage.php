@@ -97,6 +97,7 @@ if(filter_input(INPUT_POST,"subReg")){
 	if($operation=="add"){
 		//inserimento
 		$page->page_name=$_POST['page_name'];
+		$page->no_mod=0;
 		$page->layout=$_POST['layout'];
 		$page->theme=$_POST['theme'];
 		$page->img=$_FILES['myfile']['name'];
@@ -226,21 +227,34 @@ if(filter_input(INPUT_POST,"subReg")){
 			exit;
 		}
 	} else if($operation=="mod"){
-		
 		$page->id=$_POST['idToMod'];
-
+		
 		$page->page_name=$_POST['page_name'];
+		$page->old_page_name = $_POST['old_page_name'];
+		$name=$page->page_name;
+		if($page->old_page_name != $page->page_name){
+			$name=$page->old_page_name;
+
+		}
+
 		if($_FILES['myfile']['name']){
 			$page->img=$_FILES['myfile']['name'];
-		}else {
+		}else if($page->type=="custom") {
 			$query1="SELECT * FROM page WHERE page_name = :page_name LIMIT 0,1";
 			$stmt1 = $db->prepare($query1);
-			$stmt1->bindParam(':page_name', $page->page_name);       
+			$stmt1->bindParam(':page_name', $name);       
+			$stmt1->execute();
+			$row1 = $stmt1->fetch(PDO::FETCH_ASSOC);
+			$page->img=$row1['img'];
+		}else if($page->type=="default") {
+			$query1="SELECT * FROM default_page WHERE page_name = :page_name LIMIT 0,1";
+			$stmt1 = $db->prepare($query1);
+			$stmt1->bindParam(':page_name', $name);       
 			$stmt1->execute();
 			$row1 = $stmt1->fetch(PDO::FETCH_ASSOC);
 			$page->img=$row1['img'];
 		}
-
+		
 
 		if(isset($_POST['visualSel'])){
 			$page->header=$_POST['visualSel'];
@@ -248,9 +262,8 @@ if(filter_input(INPUT_POST,"subReg")){
 			$page->header=0;
 		}
 		
-		
-		if($page->type=="custom" || $page->id==1){
-			
+
+		if($page->type=="custom" || (($page->type=="default")&&($page->id==1))){
 			if($page->id!=1){
 				$page->old_page_name = $_POST['old_page_name'];
 			}
@@ -261,18 +274,17 @@ if(filter_input(INPUT_POST,"subReg")){
 			// $page->img=$_FILES['myfile']['name'];
 			
 			
-			
-			if(isset($_POST['visualSel'])){
-				$page->header=$_POST['visualSel'];
-			} else {
-				$page->header=0;
-			}
+			// if(isset($_POST['visualSel'])){
+			// 	$page->header=$_POST['visualSel'];
+			// } else {
+			// 	$page->header=0;
+			// }
 			
 			$page->block1_type = "t";
 			$page->block1=$_POST['editor1'];
 			$page->block1_bg=$_POST['block1_bg'];
 			$page->block1_text=$_POST['block1_text'];
-			
+		
 			
 			if($_POST['block2'][0]=="g2"){
 				$gallery=$_POST['block2_gall'];

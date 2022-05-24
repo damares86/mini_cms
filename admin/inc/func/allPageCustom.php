@@ -51,7 +51,6 @@
             while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
         
         extract($row);
-        if($id!=3){
         ?>
             <tr>
                 <td><?=$page_name?></td>
@@ -73,7 +72,7 @@
                 <td>
                 <a href="core/mngPage.php?op=copy&idToMod=<?=$row["id"]?>" class="btn btn-info btn-icon-split">
                             <span class="icon text-white-50">
-                                <i class="fas fa-files-o"></i>
+                                <i class="fas fa-clone"></i>
                             </span>
                             <span class="text"><?=$txt_copy?></span>
                         </a>   
@@ -107,7 +106,7 @@
                   </div>
                 <?php
                 }
-            }
+    
                 ?>
             </td>
             </tr>
