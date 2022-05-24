@@ -23,6 +23,7 @@ $page = new Page($db);
 require "config.php";
 
 $plugins->plugin_name = $plugin_name;
+$plugins->second_page = $second_page;
 $plugins->description=$description;
 $plugins->icon=$sidebar_icon;
 $plugins->title=$sidebar_title;
@@ -41,9 +42,6 @@ if($op=="del"){
 
     if($plugins->delete()){
         
-        /////////////////////////////////////////////////////////////////
-        // RIMOZIONE DA TABELLA DELLA SIDEBAR E DELL'INDEX
-        /////////////////////////////////////////////////////////////////
         $error=0;
 
         // DELETE CLASSES
@@ -136,18 +134,46 @@ if($op=="del"){
         
         // DROP TABLES
         $db->query("DROP TABLE `portfolio`, `portfolio_categories`");
-            
-            unlink("../../inc/class_initialize.php");
-            if($error==0){
+
+        function removeFolder($folderName) {
+			if (is_dir($folderName))
+			$folderHandle = opendir($folderName);
+
+			// if (!$folderHandle){
+			// 	header("Location: ../index.php?man=gall&op=show&msg=gallDelSucc");
+			// 	exit;
+			// }
+
+			while($file = readdir($folderHandle)) {
+				if ($file != "." && $file != "..") {
+						if (!is_dir($folderName."/".$file))
+							unlink($folderName."/".$file);
+						else
+							removeFolder($folderName.'/'.$file);
+				}
+			}
+			closedir($folderHandle);
+			rmdir($folderName);
+			
+		}
+
+		$folderName="../../../misc/portfolio/";
+		
+        unlink("../../inc/class_initialize.php");
+
+			if(removeFolder($folderName)){
                 header("Location: ../../index.php?man=plugins&op=show&msg=pluginDelSucc");
                 exit;
-            }else{
+			}else{
                 header("Location: ../../index.php?man=plugins&op=show&msg=pluginDelErr");
                 exit;
-            }
+			}
+
+		
+
 
 ////////////////////////////////////////////////////////////////
-//  RIMOZIONE PROGETTI? METTERE ALERT NEI PLUGIN
+// METTERE ALERT NEI PLUGIN
 ////////////////////////////////////////////////////////////////
 
             } else{
@@ -268,8 +294,7 @@ if($op=="del"){
                             VALUES ('1','Web design')
                             ");
     
-    
-
+   
             // LOCAL
 
             unlink("../../inc/class_initialize.php");

@@ -1,8 +1,10 @@
 <?php
 require "inc/header.php";
 
-
-$manage=filter_input(INPUT_GET,"man");
+$manage="home";
+if(filter_input(INPUT_GET,"man")){
+    $manage=filter_input(INPUT_GET,"man");
+}
 $operation=filter_input(INPUT_GET,"op");
 $type=filter_input(INPUT_GET,"type");
 
@@ -38,28 +40,26 @@ $user_id=$_SESSION['user_id'];
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
                 <?php
+                                ////////////////////////////////////////////////////////////
+                                ///////////////// CARTELLA ALERT
+                                ////////////////////////////////////////////////////////////
                                 require "inc/alert.php";
-                            
+                            $stmt1=$home->showAll();
 
-                            if($manage=="post"){
-                                if($operation=="show"){
-                                    require "inc/func/allPost.php";
-                                } else if($operation=="add"||$operation=="edit"){
-                                    require "inc/func/regPost.php";
-                                } 
-                            } else if($manage=="users"){
+                       
+                        if($manage=="users"){ // fuori 
                                 if($operation=="show"){
                                     require "inc/func/allUser.php";
                                 } else if($operation=="add"||$operation=="edit"){
                                     require "inc/func/regUser.php";
                                 }
-                            } else if($manage=="files"){
+                            } else if($manage=="files"){//fuori
                                 if($operation=="show")
                                  require "inc/func/allFile.php";
                                 else if($operation=="add"||$operation=="edit"){
                                  require "inc/func/regFile.php";
                                 }
-                            }else if($manage=="settings"||$manage=="menu"){
+                            }else if($manage=="settings"||$manage=="menu"){// fuori
                                 require "inc/func/allSettings.php";
                             }else if($manage=="cat"){
                                 if($operation=="show"){
@@ -67,7 +67,7 @@ $user_id=$_SESSION['user_id'];
                                 } else if($operation=="add"||$operation=="edit"){
                                     require "inc/func/regCat.php";
                                 }
-                            }else if($manage=="page"){
+                            }else if($manage=="page"){ // fuori
                                 if($operation=="show"){
                                     if($type=="default"){
                                         require "inc/func/allPage.php";
@@ -81,160 +81,162 @@ $user_id=$_SESSION['user_id'];
                                         require "inc/func/regPageCustom.php";
                                     }
                                 }
-                            }else if($manage=="gall"){
+                            }else if($manage=="gall"){// fuori
                                 if($operation=="show"){
                                     require "inc/func/allGallery.php";
                                 } else if($operation=="add"||$operation=="edit"){
                                     require "inc/func/regGallery.php";
                                 }
-                            }else if($manage=="color"){
-                                if($operation=="show"){
-                                    require "inc/func/allColor.php";
-                                } else if($operation=="add"){
-                                    require "inc/func/regColor.php";
-                                }
-                            }else if($manage=="plugins"){
+                            }else if($manage=="plugins"){ // portfolio
                                 if($operation=="show"){
                                     require "inc/func/allPlugins.php";
                                 } 
-                            }else if($manage=="portfolio"){
-                                if($operation=="show"){
-                                    require "inc/func/allPortfolio.php";
-                                } else if($operation=="add"||$operation=="edit"){
-                                    require "inc/func/regPortfolio.php";
-                                }
                             }else if($manage=="catPortfolio"){
                                 if($operation=="show"){
                                     require "inc/func/allCatPortfolio.php";
                                 } else if($operation=="add"||$operation=="edit"){
                                     require "inc/func/regCatPortfolio.php";
                                 }
-                            }else {
-                        ?>
-
-                    <!-- Page Heading -->
-                    <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800"><?=$home_title?></h1>
-                    </div>
-
-                    
-                    <!-- Content Row -->
-
-                    
-                    <!-- Content Row -->
-                    <div class="row">
-
-                        <!-- Content Column -->
-                        <div class="col-lg-8 mb-4">
-
-                            <!-- Project Card Example -->
-                            <div class="card shadow mb-4">
-                                <div class="card-header py-3">
-                                    <h6 class="m-0 font-weight-bold text-primary"><?=$home_welcome?></h6>
-                                </div>
-                                <div class="card-body">
-                                <p><?=$home_intro1?> <b><?=$user_name?></b> <?=$home_intro2?></p>
-                                        <p><?=$home_intro3?></p><br>
-                                </div>
-                            </div>
-
-                            <!-- Color System -->
-                            <div class="row">
-                            <div class="col-xl-4 col-md-6 mb-4">
-                            <div class="card border-left-primary shadow h-100 py-2">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                               <?=$home_tab1?></div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800"><?=$total_user?></div>
-                                        </div>
-                                        <div class="col-auto">
-                                            <i class="fas fa-users fa-2x text-gray-300"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Earnings (Monthly) Card Example -->
-                        <div class="col-xl-4 col-md-6 mb-4">
-                            <div class="card border-left-success shadow h-100 py-2">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                                                <?=$home_tab2?></div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800"><?=$total_post?></div>
-                                        </div>
-                                        <div class="col-auto">
-                                            <i class="fas fa-marker fa-2x text-gray-300"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <?php
-                        $settings=new Settings($db);
-                        $stmt = $settings->showSettings();
-                        while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
+                            }else if($manage=="home"){
+                                ?>
         
-                            extract($row);
-                        ?>
-                             <!-- Earnings (Monthly) Card Example -->
-                        <div class="col-xl-4 col-md-6 mb-4">
-                            <div class="card border-left-info shadow h-100 py-2">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                                                <?=$home_tab3?></div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800"><?=$theme?></div>
+                            <!-- Page Heading -->
+                            <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                                <h1 class="h3 mb-0 text-gray-800"><?=$home_title?></h1>
+                            </div>
+        
+                            
+                            <!-- Content Row -->
+        
+                            
+                            <!-- Content Row -->
+                            <div class="row">
+        
+                                <!-- Content Column -->
+                                <div class="col-lg-8 mb-4">
+        
+                                    <!-- Project Card Example -->
+                                    <div class="card shadow mb-4">
+                                        <div class="card-header py-3">
+                                            <h6 class="m-0 font-weight-bold text-primary"><?=$home_welcome?></h6>
                                         </div>
-                                        <div class="col-auto">
-                                            <i class="fas fa-image fa-2x text-gray-300"></i>
+                                        <div class="card-body">
+                                        <p><?=$home_intro1?> <b><?=$user_name?></b> <?=$home_intro2?></p>
+                                                <p><?=$home_intro3?></p><br>
+                                        </div>
+                                    </div>
+        
+                                    <!-- Color System -->
+                                    <div class="row">
+                                    <div class="col-xl-4 col-md-6 mb-4">
+                                    <div class="card border-left-primary shadow h-100 py-2">
+                                        <div class="card-body">
+                                            <div class="row no-gutters align-items-center">
+                                                <div class="col mr-2">
+                                                    <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                                       <?=$home_tab1?></div>
+                                                    <div class="h5 mb-0 font-weight-bold text-gray-800"><?=$total_user?></div>
+                                                </div>
+                                                <div class="col-auto">
+                                                    <i class="fas fa-users fa-2x text-gray-300"></i>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
-                        <?php
-                        }
-                        ?>
-
-                       
+        
+                                <!-- Earnings (Monthly) Card Example -->
+                                <div class="col-xl-4 col-md-6 mb-4">
+                                    <div class="card border-left-success shadow h-100 py-2">
+                                        <div class="card-body">
+                                            <div class="row no-gutters align-items-center">
+                                                <div class="col mr-2">
+                                                    <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                                        <?=$home_tab2?></div>
+                                                    <div class="h5 mb-0 font-weight-bold text-gray-800"><?=$total_post?></div>
+                                                </div>
+                                                <div class="col-auto">
+                                                    <i class="fas fa-marker fa-2x text-gray-300"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <?php
+                                $settings=new Settings($db);
+                                $stmt = $settings->showSettings();
+                                while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
+                
+                                    extract($row);
+                                ?>
+                                     <!-- Earnings (Monthly) Card Example -->
+                                <div class="col-xl-4 col-md-6 mb-4">
+                                    <div class="card border-left-info shadow h-100 py-2">
+                                        <div class="card-body">
+                                            <div class="row no-gutters align-items-center">
+                                                <div class="col mr-2">
+                                                    <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                                        <?=$home_tab3?></div>
+                                                    <div class="h5 mb-0 font-weight-bold text-gray-800"><?=$theme?></div>
+                                                </div>
+                                                <div class="col-auto">
+                                                    <i class="fas fa-image fa-2x text-gray-300"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <?php
+                                }
+                                ?>
+        
                                
-                            </div>
-
-                        </div>
-
-                        <div class="col-lg-4 mb-4">
-
-                            <!-- Illustrations -->
-                            <div class="card shadow mb-4">
-                                <div class="card-header py-3">
-                                    <h6 class="m-0 font-weight-bold text-primary"><?=$home_quicklink?></h6>
+                                       
+                                    </div>
+        
                                 </div>
-                                <div class="card-body"> 
-                                    <p>
-                                        <a href="https://minicms.altervista.org/" target="_blank">&rarr; Mini Cms</a>:
-                                        <?=$home_link1?>
-                                    </p>
-                                    <p>
-                                        <a href="https://github.com/damares86/mini_cms" target="_blank">&rarr; GitHub</a>:
-                                        <?=$home_link1?>
-                                    </p>
+        
+                                <div class="col-lg-4 mb-4">
+        
+                                    <!-- Illustrations -->
+                                    <div class="card shadow mb-4">
+                                        <div class="card-header py-3">
+                                            <h6 class="m-0 font-weight-bold text-primary"><?=$home_quicklink?></h6>
+                                        </div>
+                                        <div class="card-body"> 
+                                            <p>
+                                                <a href="https://minicms.altervista.org/" target="_blank">&rarr; Mini Cms</a>:
+                                                <?=$home_link1?>
+                                            </p>
+                                            <p>
+                                                <a href="https://github.com/damares86/mini_cms" target="_blank">&rarr; GitHub</a>:
+                                                <?=$home_link1?>
+                                            </p>
+                                        </div>
+                                    </div>
+        
+                                 
+        
                                 </div>
                             </div>
-
-                         
-
-                        </div>
-                    </div>
-
-                <?php
+        
+                        <?php
+                                    }else if($stmt1){
+                                while ($row = $stmt1->fetch(PDO::FETCH_ASSOC)){
+                                    
+                                    extract($row);
+                                    
+                                    $name_page = ucfirst($name_function);
+                                    if($manage=="$name_function"){
+                                        if($operation=="show"){
+                                            require "inc/func/all$name_page.php";
+                                        } else if($operation=="add"||$operation=="edit"){
+                                            require "inc/func/reg$name_page.php";
+                                        } 
+                                    }
                             }
-                ?>
+                        } 
+                        ?>
                 </div>
                 <!-- /.container-fluid -->
 

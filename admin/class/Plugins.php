@@ -8,6 +8,7 @@ class Plugins{
 
     public $id;
     public $plugin_name;
+    public $second_page;
     public $description;
     public $icon;
     public $title;
@@ -30,6 +31,7 @@ class Plugins{
                     " . $this->table_name . "
                 SET
                     plugin_name = :plugin_name,
+                    second_page = :second_page,
                     description = :description,
                     icon = :icon,
                     title = :title,
@@ -45,6 +47,7 @@ class Plugins{
     
         // bind the values
         $stmt->bindParam(':plugin_name', $this->plugin_name);
+        $stmt->bindParam(':second_page', $this->second_page);
         $stmt->bindParam(':description', $this->description);
         $stmt->bindParam(':icon', $this->icon);
         $stmt->bindParam(':title', $this->title);
@@ -169,6 +172,7 @@ class Plugins{
     
         $this->id = $row['id'];
         $this->plugin_name = $row['plugin_name'];
+        $this->second_page = $row['second_page'];
         $this->description = $row['description'];
         $this->icon = $row['icon'];
         $this->title = $row['title'];

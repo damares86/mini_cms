@@ -109,8 +109,8 @@
 
             <li class="nav-item">
                 <a class="nav-link" href="index.php?man=plugins&op=show">
-                    <i class="fa fa-puzzle-piece"></i>
-                    <span>Add Plugins</span>
+                    <i class="fas fa-puzzle-piece"></i>
+                    <span>Manage Plugins</span>
                 </a>
             </li>
             <?php

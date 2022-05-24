@@ -5,6 +5,7 @@
 // titolo e descrizione per la tabella dei plugin
 
 $plugin_name = "Portfolio";
+$second_page = "catPortfolio";
 $folder = "portfolio";
 $description = "Breve descrizione";
 

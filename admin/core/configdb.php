@@ -151,68 +151,68 @@ $db->query("INSERT INTO categories
                             ");
 
 $db->query("CREATE TABLE IF NOT EXISTS page
-                            ( id INT ( 5 ) NOT NULL AUTO_INCREMENT PRIMARY KEY,
-                              page_name VARCHAR(255) NOT NULL,
-                              layout VARCHAR(255) NOT NULL DEFAULT 'default',
-                              header INT (1) DEFAULT '1',
-                              img VARCHAR(255) NOT NULL DEFAULT 'visual.jpg',
-                              block1_type VARCHAR(255) DEFAULT 't',
-                              block1 text COLLATE utf8_unicode_ci NOT NULL,
-                              block1_bg VARCHAR(255) DEFAULT 'none',
-                              block1_text VARCHAR(255) DEFAULT '#000000',
-                              block2_type VARCHAR(255)  DEFAULT 'n',
-                              block2 text COLLATE utf8_unicode_ci NULL,
-                              block2_bg VARCHAR(255) DEFAULT 'none',
-                              block2_text VARCHAR(255) DEFAULT '#000000',
-                              block3_type VARCHAR(255)  DEFAULT 'n',
-                              block3 text COLLATE utf8_unicode_ci NULL,
-                              block3_bg VARCHAR(255) DEFAULT 'none',
-                              block3_text VARCHAR(255) DEFAULT '#000000',
-                              block4_type VARCHAR(255)  DEFAULT 'n',
-                              block4 text COLLATE utf8_unicode_ci NULL,
-                              block4_bg VARCHAR(255) DEFAULT 'none',
-                              block4_text VARCHAR(255) DEFAULT '#000000',
-                              block5_type VARCHAR(255) DEFAULT 'n',
-                              block5 text COLLATE utf8_unicode_ci NULL,
-                              block5_bg VARCHAR(255) DEFAULT 'none',
-                              block5_text VARCHAR(255) DEFAULT '#000000',
-                              block6_type VARCHAR(255) DEFAULT 'n',
-                              block6 text COLLATE utf8_unicode_ci NULL,
-                              block6_bg VARCHAR(255) DEFAULT 'none',
-                              block6_text VARCHAR(255) DEFAULT '#000000')
-                              ");
+              ( id INT ( 5 ) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+                page_name VARCHAR(255) NOT NULL,
+                layout VARCHAR(255) NOT NULL DEFAULT 'default',
+                header INT (1) DEFAULT '1',
+                img VARCHAR(255) NOT NULL DEFAULT 'visual.jpg',
+                block1_type VARCHAR(255) DEFAULT 't',
+                block1 text COLLATE utf8_unicode_ci NOT NULL,
+                block1_bg VARCHAR(255) DEFAULT 'none',
+                block1_text VARCHAR(255) DEFAULT '#000000',
+                block2_type VARCHAR(255)  DEFAULT 'n',
+                block2 text COLLATE utf8_unicode_ci NULL,
+                block2_bg VARCHAR(255) DEFAULT 'none',
+                block2_text VARCHAR(255) DEFAULT '#000000',
+                block3_type VARCHAR(255)  DEFAULT 'n',
+                block3 text COLLATE utf8_unicode_ci NULL,
+                block3_bg VARCHAR(255) DEFAULT 'none',
+                block3_text VARCHAR(255) DEFAULT '#000000',
+                block4_type VARCHAR(255)  DEFAULT 'n',
+                block4 text COLLATE utf8_unicode_ci NULL,
+                block4_bg VARCHAR(255) DEFAULT 'none',
+                block4_text VARCHAR(255) DEFAULT '#000000',
+                block5_type VARCHAR(255) DEFAULT 'n',
+                block5 text COLLATE utf8_unicode_ci NULL,
+                block5_bg VARCHAR(255) DEFAULT 'none',
+                block5_text VARCHAR(255) DEFAULT '#000000',
+                block6_type VARCHAR(255) DEFAULT 'n',
+                block6 text COLLATE utf8_unicode_ci NULL,
+                block6_bg VARCHAR(255) DEFAULT 'none',
+                block6_text VARCHAR(255) DEFAULT '#000000')
+                ");
 
 $db->query("CREATE TABLE IF NOT EXISTS default_page
-( id INT ( 5 ) NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  page_name VARCHAR(255) NOT NULL,
-  layout VARCHAR(255) NOT NULL DEFAULT 'default',
-  header INT (1) DEFAULT '1',
-  img VARCHAR(255) NOT NULL DEFAULT 'visual.jpg',
-  block1_type VARCHAR(255) DEFAULT 't',
-  block1 text COLLATE utf8_unicode_ci NOT NULL,
-  block1_bg VARCHAR(255) DEFAULT 'none',
-  block1_text VARCHAR(255) DEFAULT '#000000',
-  block2_type VARCHAR(255)  DEFAULT 'n',
-  block2 text COLLATE utf8_unicode_ci NULL,
-  block2_bg VARCHAR(255) DEFAULT 'none',
-  block2_text VARCHAR(255) DEFAULT '#000000',
-  block3_type VARCHAR(255)  DEFAULT 'n',
-  block3 text COLLATE utf8_unicode_ci NULL,
-  block3_bg VARCHAR(255) DEFAULT 'none',
-  block3_text VARCHAR(255) DEFAULT '#000000',
-  block4_type VARCHAR(255)  DEFAULT 'n',
-  block4 text COLLATE utf8_unicode_ci NULL,
-  block4_bg VARCHAR(255) DEFAULT 'none',
-  block4_text VARCHAR(255) DEFAULT '#000000',
-  block5_type VARCHAR(255) DEFAULT 'n',
-  block5 text COLLATE utf8_unicode_ci NULL,
-  block5_bg VARCHAR(255) DEFAULT 'none',
-  block5_text VARCHAR(255) DEFAULT '#000000',
-  block6_type VARCHAR(255) DEFAULT 'n',
-  block6 text COLLATE utf8_unicode_ci NULL,
-  block6_bg VARCHAR(255) DEFAULT 'none',
-  block6_text VARCHAR(255) DEFAULT '#000000')
-  ");
+              ( id INT ( 5 ) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+                page_name VARCHAR(255) NOT NULL,
+                layout VARCHAR(255) NOT NULL DEFAULT 'default',
+                header INT (1) DEFAULT '1',
+                img VARCHAR(255) NOT NULL DEFAULT 'visual.jpg',
+                block1_type VARCHAR(255) DEFAULT 't',
+                block1 text COLLATE utf8_unicode_ci NOT NULL,
+                block1_bg VARCHAR(255) DEFAULT 'none',
+                block1_text VARCHAR(255) DEFAULT '#000000',
+                block2_type VARCHAR(255)  DEFAULT 'n',
+                block2 text COLLATE utf8_unicode_ci NULL,
+                block2_bg VARCHAR(255) DEFAULT 'none',
+                block2_text VARCHAR(255) DEFAULT '#000000',
+                block3_type VARCHAR(255)  DEFAULT 'n',
+                block3 text COLLATE utf8_unicode_ci NULL,
+                block3_bg VARCHAR(255) DEFAULT 'none',
+                block3_text VARCHAR(255) DEFAULT '#000000',
+                block4_type VARCHAR(255)  DEFAULT 'n',
+                block4 text COLLATE utf8_unicode_ci NULL,
+                block4_bg VARCHAR(255) DEFAULT 'none',
+                block4_text VARCHAR(255) DEFAULT '#000000',
+                block5_type VARCHAR(255) DEFAULT 'n',
+                block5 text COLLATE utf8_unicode_ci NULL,
+                block5_bg VARCHAR(255) DEFAULT 'none',
+                block5_text VARCHAR(255) DEFAULT '#000000',
+                block6_type VARCHAR(255) DEFAULT 'n',
+                block6 text COLLATE utf8_unicode_ci NULL,
+                block6_bg VARCHAR(255) DEFAULT 'none',
+                block6_text VARCHAR(255) DEFAULT '#000000')
+                ");
 
 
 $db->query("CREATE TABLE IF NOT EXISTS menu
@@ -230,6 +230,7 @@ chmod("../inc/func/regCheck.php",0777);
 $db->query("CREATE TABLE IF NOT EXISTS plugins
                             ( id INT ( 5 ) NOT NULL AUTO_INCREMENT PRIMARY KEY,
                               plugin_name VARCHAR(255) NOT NULL,
+                              second_page VARCHAR(255) NULL,
                               description VARCHAR(255) NOT NULL,
                               icon VARCHAR(255) NOT NULL,
                               title VARCHAR(255) NOT NULL,
@@ -241,13 +242,19 @@ $db->query("CREATE TABLE IF NOT EXISTS plugins
                               ");
 
 $db->query("CREATE TABLE IF NOT EXISTS view_home
-                            ( id INT ( 5 ) NOT NULL AUTO_INCREMENT PRIMARY KEY,
-                              name_function VARCHAR(255) NOT NULL,
-                              name_file VARCHAR(255) NOT NULL,
-                              all INT (1),
-                              reg INT (1),
-                              edit INT (1))
-                              ");
+                ( id INT ( 5 ) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+                  name_function VARCHAR(255) NOT NULL");
+
+$db->query("INSERT INTO view_home
+          (id, name_function)
+          VALUES ('1','post')
+          ");
+
+$db->query("INSERT INTO view_home
+          (id, name_function)
+          VALUES ('2','color')
+          ");
+
 
 $db->query("CREATE TABLE IF NOT EXISTS files
                             ( id INT ( 5 ) NOT NULL AUTO_INCREMENT PRIMARY KEY,

@@ -11,36 +11,51 @@ $debug = new \bdk\Debug(array(
 // loading class
 include("../class/Database.php");
 include("../class/Plugins.php");
+include("../class/Home.php");
 
 
 $database = new Database();
 $db = $database->getConnection();
 
 $plugins = new Plugins($db);
+$home = new Home($db);
 
 $op=filter_input(INPUT_GET,"op");
 
 $plugin_name=filter_input(INPUT_GET,"name");
 
+$plugins->plugin_name=$plugin_name;
         
-  if($op=="enable"||$op=="disable"){
-        $plugins->plugin_name=$plugin_name;
-        $plugins->active="0";
-        if($op=="enable"){
-            $plugins->active=1;
-        }else if($op=="disable"){
-            $plugins->active=0;
+  if($op=="enable"){
+        $plugins->active=1;
+        if($plugins->updateActive()){   
+            $plugin_name=strtolower($plugin_name);
+            $home->name_function=$plugin_name;
+
+            if($home->create()){
+
+                header("Location: ../index.php?man=plugins&op=show&msg=pluginEnSucc");
+                exit;
+            } else{
+                header("Location: ../index.php?man=plugins&op=show&msg=pluginEnErr");
+                exit;
+            }
         }
-        
-        if($plugins->updateActive()){
-            header("Location: ../index.php?man=plugins&op=show&msg=pluginStatSucc");
-            exit;
-        }else{
-            header("Location: ../index.php?man=plugins&op=show&msg=pluginStatErr");
-            exit;   
-        }
+    }else if($op="disable"){
+        $plugins->active=0;
+        if($plugins->updateActive()){     
+            $plugin_name=strtolower($plugin_name);
+            $home->name_function=$plugin_name;
 
 
+            if($home->delete()){
+                header("Location: ../index.php?man=plugins&op=show&msg=pluginEnSucc");
+                exit;
+            } else{
+                header("Location: ../index.php?man=plugins&op=show&msg=pluginEnErr");
+                exit;
+            }
+        }
     }
         
 
