@@ -12,6 +12,7 @@ $debug = new \bdk\Debug(array(
 include("../../class/Database.php");
 include("../../class/Plugins.php");
 include("../../class/Page.php");
+include("../../class/Home.php");
 
 
 $database = new Database();
@@ -19,6 +20,7 @@ $db = $database->getConnection();
 
 $plugins = new Plugins($db);
 $page = new Page($db);
+$home = new Home($db);
 
 require "config.php";
 
@@ -131,10 +133,24 @@ if($op=="del"){
             }else{
                 $error++;
             }
+
+
+        // DELETE ALERT
+        if(is_file('../../inc/alert/portfolio_alert.php')){
+            if(!unlink('../../inc/alert/portfolio_alert.php')){
+                $error++;
+            }
+        }
         
         // DROP TABLES
         $db->query("DROP TABLE `portfolio`, `portfolio_categories`");
 
+        $home->name_function="portfolio";
+        $home->delete();
+        
+        $home->name_function="catPortfolio";
+        $home->delete();
+        
         function removeFolder($folderName) {
 			if (is_dir($folderName))
 			$folderHandle = opendir($folderName);
@@ -170,15 +186,10 @@ if($op=="del"){
 			}
 
 		
-
-
-////////////////////////////////////////////////////////////////
-// METTERE ALERT NEI PLUGIN
-////////////////////////////////////////////////////////////////
-
-            } else{
-                // header KO
-        }
+            }else{
+                header("Location: ../../index.php?man=plugins&op=show&msg=pluginDelErr");
+                exit;
+			}
 
     } else if($op=="add"){
 
@@ -271,6 +282,14 @@ if($op=="del"){
                     $error++;
                 }
 
+            
+            // ALERT
+            if(copy('alert/portfolio_alert.php', '../../inc/alert/portfolio_alert.php')){
+                chmod('../../inc/alert/portfolio_alert.php',0777);
+                }else{
+                    $error++;
+                }
+
             // CREATE TABLES AND DEFAULT CATEGORY
 
             $db->query("CREATE TABLE IF NOT EXISTS portfolio
@@ -307,7 +326,7 @@ if($op=="del"){
             }
 
         }else{
-            print_r("ko");
+            header("Location: ../../index.php?man=plugins&op=show&msg=pluginErr");
             exit;
         }
     }

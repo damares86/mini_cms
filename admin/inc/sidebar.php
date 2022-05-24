@@ -45,7 +45,7 @@
             <!-- Divider -->
             <hr class="sidebar-divider">
             <!-- Heading -->
-            <div class="sidebar-heading">Gestione sito</div>
+            <div class="sidebar-heading"><?=$site_manage?></div>
             <?php
             if($_SESSION['rolename']!="Contributor"){
             ?>
@@ -105,12 +105,12 @@
             <!-- Divider -->
             <hr class="sidebar-divider">
             <!-- Heading -->
-            <div class="sidebar-heading">Plugins</div>
+            <div class="sidebar-heading"><?=$side_plugin?></div>
 
             <li class="nav-item">
                 <a class="nav-link" href="index.php?man=plugins&op=show">
                     <i class="fas fa-puzzle-piece"></i>
-                    <span>Manage Plugins</span>
+                    <span><?=$side_manage_plugins?></span>
                 </a>
             </li>
             <?php

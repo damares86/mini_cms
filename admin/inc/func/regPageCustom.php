@@ -162,8 +162,6 @@ $stmt = $settings->showSettings();
             <div class="control-group">
                 
                 <div class="controls">
-                    <strong><?= $page->page_name ?></strong>
-                    <input type="hidden" name="page_name" value="<?= $page->page_name ?>" />
                    
 
 <input type="hidden" name="old_page_name" value="<?= $page->page_name ?>" />

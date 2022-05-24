@@ -35,15 +35,18 @@ $user_id=$_SESSION['user_id'];
             <div id="content">
 
                <?php
+                
                     require "inc/topbar.php";
                ?>
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
                 <?php
-                                ////////////////////////////////////////////////////////////
-                                ///////////////// CARTELLA ALERT
-                                ////////////////////////////////////////////////////////////
-                                require "inc/alert.php";
+                            $alert=glob("inc/alert/*.php", GLOB_BRACE);
+
+                            foreach($alert as $row){
+                                require "$row";
+                            }
+            
                             $stmt1=$home->showAll();
 
                        
@@ -91,12 +94,6 @@ $user_id=$_SESSION['user_id'];
                                 if($operation=="show"){
                                     require "inc/func/allPlugins.php";
                                 } 
-                            }else if($manage=="catPortfolio"){
-                                if($operation=="show"){
-                                    require "inc/func/allCatPortfolio.php";
-                                } else if($operation=="add"||$operation=="edit"){
-                                    require "inc/func/regCatPortfolio.php";
-                                }
                             }else if($manage=="home"){
                                 ?>
         

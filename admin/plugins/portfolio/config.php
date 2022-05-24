@@ -7,7 +7,7 @@
 $plugin_name = "Portfolio";
 $second_page = "catPortfolio";
 $folder = "portfolio";
-$description = "Breve descrizione";
+$description = "It creates a portfolio and manages your projects. It can show all projects, with filters by categories, or show a single project with all its data.";
 
 $sidebar_icon="fas fa-fw fa-image";
 $sidebar_title = 'side_port';

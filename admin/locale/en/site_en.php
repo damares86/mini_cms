@@ -34,6 +34,8 @@ $side_settings = "Settings";
 $side_siteset = "Site settings";
 $side_menuset = "Menu settings";
 $side_themeset = "Theme settings";
+$side_plugin = "Plugins";
+$side_manage_plugins = "Manage plugins";
 
 
 // HOME PAGE
@@ -229,6 +231,26 @@ $regcat_name = "Category name";
 $regcat_name_ph = "Choose a category name";
 
 
+// PLUGINS
+
+$plugin_title = "Plugins";
+$plugin_box_title = "All plugins";
+$plugin_name = "Plugin name";
+$plugin_desc = "Description";
+$plugin_manage = "Manage";
+$plugin_enable = "Enable / Disable";
+$plugin_E = "E";
+$plugin_D = "D";
+$plugin_btn_install = "Install";
+$plugin_btn_remove = "Remove";
+$plugin_btn_enable = "Enable";
+$plugin_btn_disable = "Disable";
+$plugin_modal_text = "If you really want to delete this plugin click \"Ok\" below.<br><br>NOTE: every file related to this plugin will be deleted!";
+
+
+
+
+
 // SITE SETTINGS
 
 $site_title = "Site settings";
@@ -365,23 +387,6 @@ $al_setContactErr = "Contact emails not updated";
 $al_keyEmpty = "You must insert both keys";
 $al_setKeySucc = "reCAPTCHA keys updated";
 $al_setKeyErr = "reCAPTCHA keys not updated";
-$al_projectDelSucc = "Project successfully deleted";
-$al_projectDelErr = "Project not deleted";
-$al_projectEmpty = "Please fill all the fields";
-$al_projectImgEmpty = "Main image missing";
-$al_projectSucc = "Project successfully created";
-$al_projectErr = "Project not created";
-$al_projectEditSucc = "Project successfully modified";
-$al_projectEditErr = "Project not modified";
-$al_catPortfolioDelExist = "Category not deleted, there are some projects that use it";
-$al_catPortfolioDelSucc = "Category deleted";
-$al_catPortfolioDelErr = "Category not deleted";
-$al_catPortfolioEmpty = "Category name missing";
-$al_catPortfolioExists = "Category already exists";
-$al_catPortfolioSucc = "Category successfully created";
-$al_catPortfolioErr = "Category not created";
-$al_catPortfolioEditSucc = "Category successfully modified";
-$al_catPortfolioEditErr = "Category not modified";
 $al_gallDel = "Gallery deleted";
 $al_pageGallNotDel = "Gallery not deleted";
 $al_imgDelSucc = "Image deleted";
@@ -396,6 +401,14 @@ $al_imgEmpty = "Image not provided";
 $al_titleExist = "This title already exists";
 $al_pageCopySucc = "Page duplicated";
 $al_pageCopyErr = "Page not duplicated";
+$al_pluginEnSucc = "Plugin enabled";
+$al_pluginEnErr = "Plugin not enabled";
+$al_pluginDisSucc = "Plugin disabled";
+$al_pluginDisErr = "Plugin not disabled";
+$al_pluginDelSucc = "Plugin deleted";
+$al_pluginDelErr = "Plugin not deleted";
+$al_pluginSucc = "Plugin installed";
+$al_pluginErr = "Plugin not installed. Try to delete the folder and upload it again.";
 
 
 

@@ -5,7 +5,7 @@
 ?>
 
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">Plugins</h1>
+                        <h1 class="h3 mb-0 text-gray-800"><?=$plugin_title?></h1>
 
                     </div><div class="row">
 
@@ -15,7 +15,7 @@
     <!-- Project Card Example -->
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">All plugins</h6>
+            <h6 class="m-0 font-weight-bold text-primary"><?=$plugin_box_title?></h6>
         </div>
         <div class="card-body">
         <!-- <div class="align-items-center pt-3 pb-2 mb-3 align-items-center">
@@ -43,42 +43,45 @@
 <table class="table table-striped">
             <thead>
                 <tr>
-                    <th scope="col">Plugin name</th>
-                    <th scope="col">Description</th>
-                    <th scope="col">Manage</th>
-                    <th scope="col">Enable/Disable</th>
+                    <th scope="col"><?=$plugin_name?></th>
+                    <th scope="col"><?=$plugin_desc?></th>
+                    <th scope="col"><?=$plugin_manage?></th>
+                    <th scope="col"><?=$plugin_enable?></th>
                 </tr>
             </thead>
             <tbody>
             <?php
                     foreach (glob("$dir/*") as $file) {
                         $folder=pathinfo($file, PATHINFO_FILENAME);
+                        require "plugins/$folder/config.php";
                         $plugin_name= str_replace("_"," ", $folder);
                         $plugin_name=ucfirst($plugin_name);
                         $plugins->plugin_name=$plugin_name;
                         $plugins->showByName();
+                        $desc=$description;
                         $btn_install="btn-info";
-                        $install="Install";
+                        $install=$plugin_btn_install;
                         $icon="fas fa-plus";
                         $btn_enable="btn-success";
-                        $enable="Enable";
+                        $enable=$plugin_btn_enable;
                         $enable_icon = "fa fa-check";
                         $op_enable="enable";
                         $background="";
                         $url = "plugins/$folder/installer.php?op=add";
-                        if($plugins->id){                            
+                        if($plugins->id){       
+                            $desc= $plugins->description;
                             $btn_install="btn-danger";
-                            $install="Remove";
+                            $install=$plugin_btn_remove;
                             $icon="fas fa-trash";
-                            $box_enabled="D";
+                            $box_enabled=$plugin_D;
                             $box_enabled_color="danger";
                             $url = "plugins/$folder/installer.php?op=del&name=$folder";
                             if($plugins->active==1){
-                                $box_enabled="E";
+                                $box_enabled=$plugin_E;
                                 $box_enabled_color="success";
                                 $background="style='background-color:#bdeeff;'";
                                 $btn_enable="btn-warning";
-                                $enable="Disable";
+                                $enable=$plugin_btn_disable;
                                 $enable_icon = "fa fa-times";
                                 $op_enable="disable";
                             }
@@ -91,7 +94,7 @@
             <tr <?=$background?>>
                 <td>
                     <span class="bg-<?=$box_enabled_color?> p-1 text-white"><?=$box_enabled?></span> &nbsp; &nbsp;<?=$plugin_name?></td>
-                <td><?=$plugins->description?></td>
+                <td><?=$desc?></td>
                 <td>
                     <?php
                     if($plugins->id){
@@ -148,8 +151,7 @@
                                         <span aria-hidden="true">×</span>
                                     </button>
                                 </div>
-                                <div class="modal-body">Se vuoi veramente cancellare questo plugin clicca "Ok".<br><br>
-                                NOTA BENE: tutti i file legati al plugin verranno cancellati!</div>
+                                <div class="modal-body"><?=$plugin_modal_text?></div>
                                 <div class="modal-footer">
                                     <button class="btn btn-secondary" type="button" data-dismiss="modal"><?=$txt_cancel?></button>
                                     <a class="btn btn-primary" href="<?=$url?>">Ok</a>

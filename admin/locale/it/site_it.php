@@ -33,6 +33,8 @@ $side_settings = "Impostazioni";
 $side_siteset = "Sito";
 $side_menuset = "Menu";
 $side_themeset = "Tema";
+$side_plugin = "Plugins";
+$side_manage_plugins = "Gestione plugins";
 
 
 // HOME PAGE
@@ -226,6 +228,23 @@ $regcat_name = "Nome della categoria";
 $regcat_name_ph = "Scegli un nome per la categoria";
 
 
+// PLUGINS
+
+$plugin_title = "Plugins";
+$plugin_box_title = "Tutti i plugins";
+$plugin_name = "Nome del plugin";
+$plugin_desc = "Descrizione";
+$plugin_manage = "Gestisci";
+$plugin_enable = "Attiva / Disattiva";
+$plugin_E = "A";
+$plugin_D = "D";
+$plugin_btn_install = "Installa";
+$plugin_btn_remove = "Rimuovi";
+$plugin_btn_enable = "Attiva";
+$plugin_btn_disable = "Disattiva";
+$plugin_modal_text = "Se vuoi veramente cancellare questo plugin clicca \"Ok\".<br><br>NOTA BENE: tutti i file legati al plugin verranno cancellati!";
+
+
 // SITE SETTINGS
 
 $site_title = "Impostazioni del sito";
@@ -363,23 +382,6 @@ $al_setContactErr = "Indirizzi email non modificati";
 $al_keyEmpty = "Devi inserire entrambe le chiavi";
 $al_setKeySucc = "Chiavi reCAPTCHA modificate";
 $al_setKeyErr = "Chiavi reCAPTCHA non modificate";
-$al_projectDelSucc = "Progetto cancellato";
-$al_projectDelErr = "Progetto non cancellato";
-$al_projectEmpty = "Devi riempire tutti i campi";
-$al_projectImgEmpty = "Manca l'immagine del progetto";
-$al_projectSucc = "Progetto creato correttamente";
-$al_projectErr = "Progetto non creato";
-$al_projectEditSucc = "Progetto modificato correttamente";
-$al_projectEditErr = "Progetto non modificato";
-$al_catPortfolioDelExist = "Categoria non cancellata, ci sono dei progetti che la utilizzano";
-$al_catPortfolioDelSucc = "Categoria cancellata";
-$al_catPortfolioDelErr = "Categoria non cancellata";
-$al_catPortfolioEmpty = "Nome della categoria mancante";
-$al_catPortfolioExists = "La categoria esiste già";
-$al_catPortfolioSucc = "Categoria creata correttamente";
-$al_catPortfolioErr = "Categoria non creata";
-$al_catPortfolioEditSucc = "Categoria modificata correttamente";
-$al_catPortfolioEditErr = "Categoria non modificata";
 $al_gallDel = "Galleria cancellata";
 $al_pageGallNotDel = "Galleria non creata";
 $al_imgDelSucc = "Immagine cancellata";
@@ -394,6 +396,14 @@ $al_imgEmpty = "Immagine non fornita";
 $al_titleExist = "Questo titolo esiste già";
 $al_pageCopySucc = "Pagina duplicata";
 $al_pageCopyErr = "Pagina non duplicata";
+$al_pluginEnSucc = "Plugin attivato";
+$al_pluginEnErr = "Plugin non attivato";
+$al_pluginDisSucc = "Plugin disattivato";
+$al_pluginDisErr = "Plugin non disattivato";
+$al_pluginDelSucc = "Plugin cancellato";
+$al_pluginDelErr = "Plugin non cancellato";
+$al_pluginSucc = "Plugin installato";
+$al_pluginErr = "Plugin non installato. Prova ad eliminare la cartella e caricarla nuovamente.";
 
 // ALERT WEBSITE
 

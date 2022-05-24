@@ -15,8 +15,6 @@ $port_cat_title = "Categorie del portfolio";
 $port_noproject = "Nessun progetto presente";
 
 
-
-
 // REG AND EDIT PORTFOLIO
 
 $regport_title_add = "Aggiungi un nuovo progetto";
@@ -38,5 +36,25 @@ $regport_description = "Descrizione";
 $side_port = "Portfolio";
 $side_project = "Progetti";
 $side_project_cat = "Categorie progetti";
+
+//ALERT
+
+$al_projectDelSucc = "Progetto cancellato";
+$al_projectDelErr = "Progetto non cancellato";
+$al_projectEmpty = "Devi riempire tutti i campi";
+$al_projectImgEmpty = "Manca l'immagine del progetto";
+$al_projectSucc = "Progetto creato correttamente";
+$al_projectErr = "Progetto non creato";
+$al_projectEditSucc = "Progetto modificato correttamente";
+$al_projectEditErr = "Progetto non modificato";
+$al_catPortfolioDelExist = "Categoria non cancellata, ci sono dei progetti che la utilizzano";
+$al_catPortfolioDelSucc = "Categoria cancellata";
+$al_catPortfolioDelErr = "Categoria non cancellata";
+$al_catPortfolioEmpty = "Nome della categoria mancante";
+$al_catPortfolioExists = "La categoria esiste già";
+$al_catPortfolioSucc = "Categoria creata correttamente";
+$al_catPortfolioErr = "Categoria non creata";
+$al_catPortfolioEditSucc = "Categoria modificata correttamente";
+$al_catPortfolioEditErr = "Categoria non modificata";
 
 ?>
