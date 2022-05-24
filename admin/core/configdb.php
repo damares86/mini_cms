@@ -243,7 +243,7 @@ $db->query("CREATE TABLE IF NOT EXISTS plugins
 
 $db->query("CREATE TABLE IF NOT EXISTS view_home
                 ( id INT ( 5 ) NOT NULL AUTO_INCREMENT PRIMARY KEY,
-                  name_function VARCHAR(255) NOT NULL");
+                  name_function VARCHAR(255) NOT NULL)");
 
 $db->query("INSERT INTO view_home
           (id, name_function)

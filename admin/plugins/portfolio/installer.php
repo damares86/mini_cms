@@ -177,7 +177,7 @@ if($op=="del"){
 		
         unlink("../../inc/class_initialize.php");
 
-			if(removeFolder($folderName)){
+			if(removeFolder($folderName)||!is_dir($folderName)){
                 header("Location: ../../index.php?man=plugins&op=show&msg=pluginDelSucc");
                 exit;
 			}else{
@@ -187,7 +187,7 @@ if($op=="del"){
 
 		
             }else{
-                header("Location: ../../index.php?man=plugins&op=show&msg=pluginDelErr");
+                header("Location: ../../index.php?man=plugins&op=show&msg=pluginDelErr1");
                 exit;
 			}
 
