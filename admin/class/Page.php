@@ -359,8 +359,6 @@ class Page{
                 $actualImage=$row1['img'];
                 if($this->header!=0){
                     if(($this->img)==$actualImage){
-                        print_r("ko");
-                        exit;
                         return true;
                     }else{
 

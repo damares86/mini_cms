@@ -112,20 +112,22 @@ if(filter_input(INPUT_POST,"subReg")){
 
 
 		$post->title=$_POST['title'];
+		$post->id=$_POST['idToMod'];
 
 		if($_FILES['myfile']['name']){
 			$post->main_img=$_FILES['myfile']['name'];
 			$post->new_img=1;
 		}else{
-			$query1="SELECT * FROM post WHERE title = :title LIMIT 0,1";
+			$query1="SELECT * FROM post WHERE id = :id LIMIT 0,1";
 			$stmt1 = $db->prepare($query1);
-			$stmt1->bindParam(':title', $post->title);       
+			$stmt1->bindParam(':id', $post->id);       
 			$stmt1->execute();
 			$row1 = $stmt1->fetch(PDO::FETCH_ASSOC);
 			$post->main_img=$row1['main_img'];
 			$post->new_img=0;
-
+			
 		}
+
 
 		if(isset($_POST['selectGall'])){
 			$gallery = str_replace(" ","_",$_POST['gall']);
@@ -152,7 +154,7 @@ if(filter_input(INPUT_POST,"subReg")){
 				// $_POST=array();
 			
 			}else{
-				header("Location: ../index.php?msg=man=post&op=show&postEditErr");
+				header("Location: ../index.php?man=post&op=show&msg=postEditErr");
 				exit;
 			}
 
