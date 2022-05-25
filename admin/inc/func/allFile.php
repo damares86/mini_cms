@@ -1,7 +1,7 @@
 <?php
     require "core/config.php";
 
-    $stmt = $file->showAll();
+    $stmt = $file->showAll($from_record_num, $records_per_page);
 
     $total_rows=$file->countAll();
 
@@ -102,7 +102,7 @@
         
         <?php
         // paging buttons
-        include_once 'paging.php';
+        include_once 'inc/paging.php';
     }
       
     // tell the user there are no products

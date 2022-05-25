@@ -21,15 +21,16 @@
                 $menu->childof=$name;
                 $num=$menu->countChildInMenu();
                 if($num>0){
-                $stmt1=$menu->showAllChildInMenu();
+                $stmt1=$menu->showAllChildInMenu();         
+        
                 ?>
                 <ul>
                 <?php
                   while ($row1 = $stmt1->fetch(PDO::FETCH_ASSOC)){
-                        
                         extract($row1);
                         
                         $str1=$row1['pagename'];
+               
                         $str1 = preg_replace('/\s+/', '_', $str1);
                         $str1 = strtolower($str1);
                         ?>

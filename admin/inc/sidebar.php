@@ -45,7 +45,7 @@
             <!-- Divider -->
             <hr class="sidebar-divider">
             <!-- Heading -->
-            <div class="sidebar-heading"><?=$site_manage?></div>
+            <div class="sidebar-heading"><?=$side_manage?></div>
             <?php
             if($_SESSION['rolename']!="Contributor"){
             ?>

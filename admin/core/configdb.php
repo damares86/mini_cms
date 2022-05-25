@@ -153,6 +153,7 @@ $db->query("INSERT INTO categories
 $db->query("CREATE TABLE IF NOT EXISTS page
               ( id INT ( 5 ) NOT NULL AUTO_INCREMENT PRIMARY KEY,
                 page_name VARCHAR(255) NOT NULL,
+                no_mod INT (1) DEFAULT '0',
                 layout VARCHAR(255) NOT NULL DEFAULT 'default',
                 header INT (1) DEFAULT '1',
                 img VARCHAR(255) NOT NULL DEFAULT 'visual.jpg',
@@ -320,14 +321,10 @@ $db->query("INSERT INTO default_page
 VALUES ('5','Contact', 'default', '1', 'visual.jpg', 't',  '','none','#000000', 'n', '', 'none','#000000', 'n',  '', 'none','#000000', 'n', '', 'none','#000000', 'n', '', 'none','#000000', 'n', '', 'none','#000000')
 ");
 
-$db->query("INSERT INTO default_page 
-(id, page_name, layout, header, img, block1_type, block1, block1_bg, block1_text, block2_type, block2, block2_bg, block2_text, block3_type,block3, block3_bg, block3_text, block4_type,block4, block4_bg, block4_text,  block5_type,block5, block5_bg, block5_text,  block6_type,block6, block6_bg, block6_text) 
-VALUES ('6','Portfolio', 'default', '1', 'visual.jpg', 't',  '','none','#000000', 'n', '', 'none','#000000', 'n',  '', 'none','#000000', 'n', '', 'none','#000000', 'n', '', 'none','#000000', 'n', '', 'none','#000000')
-");
 
 $db->query("INSERT INTO default_page 
 (id, page_name, layout, header, img, block1_type, block1, block1_bg, block1_text, block2_type, block2, block2_bg, block2_text, block3_type,block3, block3_bg, block3_text, block4_type,block4, block4_bg, block4_text,  block5_type,block5, block5_bg, block5_text,  block6_type,block6, block6_bg, block6_text) 
-VALUES ('7','Gallery', 'default', '1', 'visual.jpg', 't',  '','none','#000000', 'n', '', 'none','#000000', 'n',  '', 'none','#000000', 'n', '', 'none','#000000', 'n', '', 'none','#000000', 'n', '', 'none','#000000')
+VALUES ('6','Gallery', 'default', '1', 'visual.jpg', 't',  '','none','#000000', 'n', '', 'none','#000000', 'n',  '', 'none','#000000', 'n', '', 'none','#000000', 'n', '', 'none','#000000', 'n', '', 'none','#000000')
 ");
 
 $db->query("INSERT INTO menu 
@@ -348,11 +345,6 @@ VALUES ('3','Login', '1','0','1','none')
 $db->query("INSERT INTO menu 
 (id, pagename, inmenu,itemorder,parent,childof) 
 VALUES ('4','Contact', '0','0','1','none')
-");
-
-$db->query("INSERT INTO menu 
-(id, pagename, inmenu,itemorder,parent,childof) 
-VALUES ('5','Portfolio', '0','0','1','none')
 ");
 
 $db->query("CREATE TABLE `password_reset_temp` (

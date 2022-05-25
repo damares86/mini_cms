@@ -59,46 +59,47 @@ class Plugins{
         
         // execute the query, also check if query was successful
         if($stmt->execute()){
-            $query1= "INSERT INTO  default_page      
-            SET
-            page_name = :page_name,
-            layout = 'default',
-            header = 1,
-            img = 'visual.jpg',
-            block1_type = 't',
-            block1 = 'text',
-            block1_bg = 'none',
-            block1_text = 'none',
-            block2_type = 't', 
-            block2_bg = 'none', 
-            block2_text = 'none', block2 =  ' text', 
-            block3_type = 't', 
-            block3_text = 'none', 
-            block3_bg = 'none', block3 =  ' text', 
-            block4_type = 't', 
-            block4_text = 'none', 
-            block4_bg = 'none', block4 =  'text ', 
-            block5_type = 't', 
-            block5_text = 'none', 
-            block5_bg = 'none', block5 =  ' text', 
-            block6_type = 't', 
-            block6_text = 'none', 
-            block6_bg = 'none', block6 =  ' text'";
+        //     $query1= "INSERT INTO  page      
+        //     SET
+        //     page_name = :page_name,
+        //     no_mod = 1,
+        //     layout = 'default',
+        //     header = 1,
+        //     img = 'visual.jpg',
+        //     block1_type = 't',
+        //     block1 = 'text',
+        //     block1_bg = 'none',
+        //     block1_text = 'none',
+        //     block2_type = 't', 
+        //     block2_bg = 'none', 
+        //     block2_text = 'none', block2 =  ' text', 
+        //     block3_type = 't', 
+        //     block3_text = 'none', 
+        //     block3_bg = 'none', block3 =  ' text', 
+        //     block4_type = 't', 
+        //     block4_text = 'none', 
+        //     block4_bg = 'none', block4 =  'text ', 
+        //     block5_type = 't', 
+        //     block5_text = 'none', 
+        //     block5_bg = 'none', block5 =  ' text', 
+        //     block6_type = 't', 
+        //     block6_text = 'none', 
+        //     block6_bg = 'none', block6 =  ' text'";
 
-             // prepare the query
-        $stmt1 = $this->conn->prepare($query1);
+        //      // prepare the query
+        // $stmt1 = $this->conn->prepare($query1);
         
-        // bind the values
-        $stmt1->bindParam(':page_name', $this->plugin_name);       
+        // // bind the values
+        // $stmt1->bindParam(':page_name', $this->plugin_name);       
         
-        if($stmt1->execute()){
+        // if($stmt1->execute()){
             return true;
-        }else{
-            print_r("ko page");
-            exit;
-            $this->showError($stmt1);
-            return false;
-        }
+        // }else{
+        //     print_r("ko page");
+        //     exit;
+        //     $this->showError($stmt1);
+        //     return false;
+        // }
     
     }else{
         $this->showError($stmt);
@@ -126,6 +127,49 @@ class Plugins{
       
         // execute the query, also check if query was successful
         if($stmt->execute()){
+            if($this->active==1){
+                $query1= "INSERT INTO  page      
+                SET
+                page_name = :page_name,
+                no_mod = 1,
+                layout = 'default',
+                header = 1,
+                img = 'visual.jpg',
+                block1_type = 't',
+                block1 = 'text',
+                block1_bg = 'none',
+                block1_text = 'none',
+                block2_type = 't', 
+                block2_bg = 'none', 
+                block2_text = 'none', block2 =  ' text', 
+                block3_type = 't', 
+                block3_text = 'none', 
+                block3_bg = 'none', block3 =  ' text', 
+                block4_type = 't', 
+                block4_text = 'none', 
+                block4_bg = 'none', block4 =  'text ', 
+                block5_type = 't', 
+                block5_text = 'none', 
+                block5_bg = 'none', block5 =  ' text', 
+                block6_type = 't', 
+                block6_text = 'none', 
+                block6_bg = 'none', block6 =  ' text'";
+
+                    // prepare the query
+                $stmt1 = $this->conn->prepare($query1);
+                
+                // bind the values
+                $stmt1->bindParam(':page_name', $this->plugin_name);  
+                
+                if($stmt1->execute()){
+                    return true;
+                }else{
+                    return false;
+                }
+            } else if($this->active==0){
+                $this->deletePage();
+            }
+
             return true;
 
         }else{
@@ -200,7 +244,7 @@ class Plugins{
 
 function deletePage(){
     
-    $query = "DELETE FROM default_page WHERE page_name = :plugin_name";
+    $query = "DELETE FROM page WHERE page_name = :plugin_name";
     
     $stmt = $this->conn->prepare($query);
     $stmt->bindParam(':plugin_name', $this->plugin_name);

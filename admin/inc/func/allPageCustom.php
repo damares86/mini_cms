@@ -51,7 +51,6 @@
             while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
         
         extract($row);
-        if($id!=3){
         ?>
             <tr>
                 <td><?=$page_name?></td>
@@ -63,28 +62,49 @@
                 ?>
                 <td><a href="../<?=$str?>.php"><?=$allpage_view?></a></td>
                 <td>
+                    <?php
+                    if($no_mod==0){
+                        ?>
+
                 <a href="index.php?man=page&op=edit&idToMod=<?=$row["id"]?>&type=custom" class="btn btn-warning btn-icon-split">
                             <span class="icon text-white-50">
                                 <i class="fas fa-pen"></i>
                             </span>
                             <span class="text"><?=$txt_edit?></span>
                         </a>   
+                    <?php
+                    }
+                    ?>
                 </td>
-                <td>
+                <td>                
+                    <?php
+                    if($no_mod==0){
+                    ?>
+
                 <a href="core/mngPage.php?op=copy&idToMod=<?=$row["id"]?>" class="btn btn-info btn-icon-split">
                             <span class="icon text-white-50">
-                                <i class="fas fa-files-o"></i>
+                                <i class="fas fa-clone"></i>
                             </span>
                             <span class="text"><?=$txt_copy?></span>
-                        </a>   
+                        </a>  
+                        <?php
+                    }
+                    ?> 
                 </td>
                 <td>
+                    <?php
+                        if($no_mod==0){
+                    ?>
+
                         <a href="#" class="btn btn-danger btn-icon-split" data-toggle="modal" data-target="#delete<?=$row['id']?>">
                             <span class="icon text-white-50">
                                 <i class="fas fa-trash"></i>
                             </span>
                             <span class="text"><?=$txt_delete?></span>
                         </a> 
+                        <?php
+                    }
+                    ?>
                 
                         <!-- Delete Modal-->
                         <div class="modal fade" id="delete<?=$row['id']?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
@@ -107,7 +127,7 @@
                   </div>
                 <?php
                 }
-            }
+    
                 ?>
             </td>
             </tr>

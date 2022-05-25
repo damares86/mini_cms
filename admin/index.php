@@ -207,7 +207,7 @@ $user_id=$_SESSION['user_id'];
                                             </p>
                                             <p>
                                                 <a href="https://github.com/damares86/mini_cms" target="_blank">&rarr; GitHub</a>:
-                                                <?=$home_link1?>
+                                                <?=$home_link2?>
                                             </p>
                                         </div>
                                     </div>
