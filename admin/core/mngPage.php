@@ -34,15 +34,15 @@ if(filter_input(INPUT_GET,"idToDel")){
 	$page->id=$idToDel;
 	$page->showById();
 	$menu->pagename=$page->page_name;
-
+	
 	$str=$page->page_name;
 	$str = preg_replace('/\s+/', '_', $str);
 	$str = strtolower($str);
 	$filepath = "../../" . $str . ".php";
 
+
 	if(unlink($filepath) || !file_exists(($filepath))){
 		if($page->delete()){
-			$menu->delete();
 			header("Location: ../index.php?man=page&op=show&type=custom&msg=pageDelSucc");
 			exit;
 

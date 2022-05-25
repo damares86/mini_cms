@@ -748,18 +748,19 @@ class Page{
 
  // delete the post
  function delete(){
+
+    $name=$this->page_name;
     
     $query = "DELETE FROM " . $this->table_name . " WHERE id = ?";
     
     $stmt = $this->conn->prepare($query);
     $stmt->bindParam(1, $this->id);
 
-    if($result = $stmt->execute()){
+    if($stmt->execute()){
+        $query1 = "DELETE FROM menu WHERE pagename = :pagename";
         
-        $query1 = "DELETE FROM menu WHERE id = ?";
-    
         $stmt1 = $this->conn->prepare($query1);
-        $stmt1->bindParam(1, $this->id);
+        $stmt1->bindParam(":pagename", $name);
         if($stmt1->execute()){
             return true;
         }else{

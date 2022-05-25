@@ -150,6 +150,10 @@ if($op=="del"){
         
         $home->name_function="catPortfolio";
         $home->delete();
+
+        $plugins->plugin_name=$name;
+        $plugins->deletePage();
+
         
         function removeFolder($folderName) {
 			if (is_dir($folderName))
