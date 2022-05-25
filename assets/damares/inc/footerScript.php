@@ -1,5 +1,6 @@
 
 <script src="assets/<?=$theme?>/js/bootstrap.min.js"></script>
+
 			<script src="assets/<?=$theme?>/js/jquery.dropotron.min.js"></script>
 			<script src="assets/<?=$theme?>/js/browser.min.js"></script>
 			<script src="assets/<?=$theme?>/js/breakpoints.min.js"></script>

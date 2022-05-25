@@ -23,7 +23,7 @@ class Menu{
     function insert(){
         $query="INSERT INTO menu SET pagename = :page_name";
         $stmt = $this->conn->prepare($query);
-        $stmt->bindParam(':page_name', $this->page_name);       
+        $stmt->bindParam(':page_name', $this->pagename);       
         if($stmt->execute()){
             return true;
         }else{
@@ -135,7 +135,6 @@ class Menu{
                     childof = :childof AND inmenu = 1 AND parent = 0
                 ORDER BY
                     itemorder";  
-                    
                     
         $stmt = $this->conn->prepare( $query );
         $stmt->bindParam(':childof', $this->childof);       

@@ -157,6 +157,8 @@ $stmt = $settings->showSettings();
 
                     <strong><?= $page->page_name ?></strong>
                     <input type="hidden" name="page_name" value="<?= $page->page_name ?>" />
+                    <input type="hidden" name="old_page_name" value="<?= $page->page_name ?>" />
+                    <input type="hidden" name="no_mod" value="<?= $page->no_mod ?>" />
             
                        <input type="hidden" name="type" value="<?= $type ?>" />
                      

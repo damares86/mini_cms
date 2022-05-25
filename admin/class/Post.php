@@ -206,7 +206,7 @@ class Post{
                 FROM
                     " . $this->table_name . "
                 ORDER BY
-                    id
+                    modified DESC
                     LIMIT
                     {$from_record_num}, {$records_per_page}";  
   
@@ -223,7 +223,7 @@ class Post{
                 FROM
                     " . $this->table_name . "
                 ORDER BY
-                    id ASC";  
+                    id DESC";  
   
         $stmt = $this->conn->prepare( $query );
         $stmt->execute();
@@ -297,10 +297,12 @@ class Post{
     function showByCatId(){
         $query = "SELECT *
         FROM " . $this->table_name . "
-        WHERE category_id = ?";
+        WHERE category_id = ?
+        ORDER BY modified DESC";
         $stmt = $this->conn->prepare( $query );
         $stmt->bindParam(1, $this->category_id);
         $stmt->execute();
+
         
         return $stmt;
    

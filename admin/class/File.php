@@ -111,14 +111,16 @@ class File{
     }
 
 
-    function showAll(){
+    function showAll($from_record_num, $records_per_page){
         //select all data
         $query = "SELECT
         *
     FROM
         " . $this->table_name . "
     ORDER BY
-        id ";  
+        id 
+        LIMIT
+        {$from_record_num}, {$records_per_page}";  
   
         $stmt = $this->conn->prepare( $query );
         $stmt->execute();

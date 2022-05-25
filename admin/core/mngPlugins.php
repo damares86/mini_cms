@@ -12,6 +12,7 @@ $debug = new \bdk\Debug(array(
 include("../class/Database.php");
 include("../class/Plugins.php");
 include("../class/Home.php");
+include("../class/Menu.php");
 
 
 $database = new Database();
@@ -19,6 +20,7 @@ $db = $database->getConnection();
 
 $plugins = new Plugins($db);
 $home = new Home($db);
+$menu = new Menu($db);
 
 $op=filter_input(INPUT_GET,"op");
 
@@ -38,14 +40,21 @@ $plugins->plugin_name=$plugin_name;
                 if($second_page){
                     $home->name_function=$second_page;
                     if($home->create()){
-                        header("Location: ../index.php?man=plugins&op=show&msg=pluginEnSucc");
-                        exit;
+                        $menu->pagename=$plugin_name;
+                        
+                        if($menu->insert()){
+                            header("Location: ../index.php?man=plugins&op=show&msg=pluginEnSucc");
+                            exit;
+                        }else{
+                            header("Location: ../index.php?man=plugins&op=show&msg=pluginEnErr1");
+                            exit;
+                        }
                     }else{
-                        header("Location: ../index.php?man=plugins&op=show&msg=pluginEnErr");
+                        header("Location: ../index.php?man=plugins&op=show&msg=pluginEnErr2");
                         exit;
                     }
             } else{
-                header("Location: ../index.php?man=plugins&op=show&msg=pluginEnErr");
+                header("Location: ../index.php?man=plugins&op=show&msg=pluginEnErr3");
                 exit;
             }
         }
@@ -60,12 +69,21 @@ $plugins->plugin_name=$plugin_name;
                 if($second_page){
                     $home->name_function=$second_page;
                     if($home->delete()){
-                        header("Location: ../index.php?man=plugins&op=show&msg=pluginDisSucc");
-                        exit;
+                        $menu->pagename=$plugin_name;
+                        if($menu->delete()){
+                            header("Location: ../index.php?man=plugins&op=show&msg=pluginDisSucc");
+                            exit;
+                        }else{
+                            header("Location: ../index.php?man=plugins&op=show&msg=pluginDisErr");
+                            exit;
+                        }
                     } else{
                         header("Location: ../index.php?man=plugins&op=show&msg=pluginDisErr");
                         exit;
                     }
+                }else{
+                    header("Location: ../index.php?man=plugins&op=show&msg=pluginDisErr");
+                    exit;
                 }
             }
         }

@@ -9,7 +9,7 @@ require "admin/template/inc/header.php";
 
                 $page->page_name=$page_name;
                 
-                // $stmt=$page->showByName();
+                $stmt=$page->showByName();
                 ?>
                 <div id="content">
                 <?php
