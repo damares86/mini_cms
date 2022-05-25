@@ -66,12 +66,12 @@ if(filter_input(INPUT_GET,"idToMod")){
                 if($operation=="mod"){ 
                     ?>
                     <input type="hidden" name="idToMod" value="<?= $idToMod ?>" />
-                <?php 
+                    <?php 
                 } 
-        $post->showById();
-        $category_id= $post->category_id;
-
-        ?>
+                $post->showById();
+                $category_id= $post->category_id;
+                
+                ?>
 
                 <div class="control-group">
                     <label class="control-label" for="title"><?=$regpost_posttitle?></label>
