@@ -449,8 +449,7 @@ $reset_output1.='<p>Dear user,</p>';
 $reset_output1.='<p>Please click on the following link to reset your password.</p>';
 $reset_output1.='<p>-------------------------------------------------------------</p>';
 $reset_output2='<p>-------------------------------------------------------------</p>';
-$reset_output2.='<p>Please be sure to copy the entire link into your browser.
-The link will expire after 1 hour for security reason.</p>';
+$reset_output2.='<p>Please be sure to copy the entire link into your browser. The link will expire after 1 hour for security reason.</p>';
 $reset_output2.='<p>If you did not request this forgotten password email, no action 
 is needed, your password will not be reset. However, you may want to log into 
 your account and change your security password as someone may have guessed it.</p>';   	
@@ -475,7 +474,7 @@ $cont_form_button = "Send";
 // BLOG
 
 $blog_category = "Category";
-$blog_mod = "Last modified on";
+$blog_mod = "Published";
 $blog_continue = "Continue reading";
 $blog_categories = "Categories";
 $blog_share = "Share on";

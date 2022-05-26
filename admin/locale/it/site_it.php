@@ -442,8 +442,7 @@ $reset_output1.='<p>Caro utente,</p>';
 $reset_output1.='<p>Clicca sul link seguente per resettare la tua password.</p>';
 $reset_output1.='<p>-------------------------------------------------------------</p>';
 $reset_output2='<p>-------------------------------------------------------------</p>';
-$reset_output2.='<p>Se non funziona copia l\'intero link e incollalo nella barra del browser.
-Il link sarà valido solo per un\'ora.</p>';
+$reset_output2.='<p>Se non funziona copia l\'intero link e incollalo nella barra del browser. Il link sarà valido solo per un\'ora.</p>';
 $reset_output2.='<p>Se non hai richiesto il reset della password non è necessaria nessuna azione.</p>';   	
 $reset_output2.='<p>Grazie,</p>';
 $reset_output2.='<p>Mini CMS</p>';
@@ -463,7 +462,7 @@ $cont_form_button = "Invia";
 // BLOG
 
 $blog_category = "Categoria";
-$blog_mod = "Ultima modifica";
+$blog_mod = "Pubblicato";
 $blog_continue = "Continua a leggere";
 $blog_categories = "Categorie";
 $blog_share = "Condividi su";
