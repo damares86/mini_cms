@@ -159,12 +159,14 @@
                             </div>
                         </div>
                     </div>
+        <?php
+                    }
+                    ?>
 
 
             </tbody>
         </table>
         <?php
-                    }
         // paging buttons
         include_once 'inc/paging.php';
  

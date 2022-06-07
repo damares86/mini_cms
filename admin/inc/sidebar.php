@@ -115,6 +115,7 @@
             </li>
             <?php
             $stmt2=$plugins->showAll();
+            $counter=1;
             foreach($stmt2 as $row){
                 $title=$row['title'];
                 $show_title=$row['sub_show_title'];
@@ -122,8 +123,8 @@
                 if($row['active']==1){
             ?>
             <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
-                    aria-expanded="true" aria-controls="collapseTwo">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapse<?=$counter?>"
+                    aria-expanded="true" aria-controls="collapse<?=$counter?>">
                     <i class="<?=$row['icon']?>"></i>
                     <span>
                         <?php
@@ -134,7 +135,7 @@
                 <?php
                 if(!is_null($row['sub_show_title'])){
                 ?>
-                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                <div id="collapse<?=$counter?>" class="collapse" aria-labelledby="heading<?=$counter?>" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <a class="collapse-item" href="<?=$row['sub_show_link']?>"><?=$$show_title?></a>
                         <?php
@@ -153,6 +154,7 @@
             
             <?php
             }
+            $counter++;
         }
             }
             ?>
