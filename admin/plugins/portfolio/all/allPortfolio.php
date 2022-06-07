@@ -87,14 +87,9 @@
                             <span class="text"><?=$txt_delete?></span>
                         </a> 
                 
-                <?php
-                }
-           
-                ?>
-            </td>
-            </tr>
-                          <!-- Delete Modal-->
-                          <div class="modal fade" id="delete<?=$id?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                        </td>
+                        <!-- Delete Modal-->
+                        <div class="modal fade" id="delete<?=$id?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
                         aria-hidden="true">
                         <div class="modal-dialog" role="document">
                             <div class="modal-content">
@@ -112,6 +107,12 @@
                             </div>
                         </div>
                     </div>
+                <?php
+                }
+           
+                ?>
+            </tr>
+                          
 
 
             </tbody>

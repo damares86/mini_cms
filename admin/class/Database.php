@@ -1,9 +1,9 @@
 <?php
 class Database{
-private $db_name="cms_class";
-private $username="root";
-private $password="Salomon-86";
-private $host="localhost";
+public $db_name="cms_class";
+public $username="root";
+public $password="Salomon-86";
+public $host="localhost";
 public $conn;
 
 public function getConnection(){

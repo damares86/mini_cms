@@ -24,7 +24,6 @@ function autoloader($class){
 	include("class/$class.php");
 }
 
-
 $database = new Database();
 $db = $database->getConnection();
 
