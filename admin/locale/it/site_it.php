@@ -233,6 +233,8 @@ $regcat_name_ph = "Scegli un nome per la categoria";
 $plugin_title = "Plugins";
 $plugin_box_title = "Tutti i plugins";
 $plugin_name = "Nome del plugin";
+$plugin_upload = "Upload plugin";
+$plugin_no ="Nessun plugin presente";
 $plugin_desc = "Descrizione";
 $plugin_manage = "Gestisci";
 $plugin_enable = "Attiva / Disattiva";
@@ -404,6 +406,9 @@ $al_pluginDelSucc = "Plugin cancellato";
 $al_pluginDelErr = "Plugin non cancellato";
 $al_pluginSucc = "Plugin installato";
 $al_pluginErr = "Plugin non installato. Prova ad eliminare la cartella e caricarla nuovamente.";
+$al_pluginUploadSucc = "Plugin caricato";
+$al_pluginUploadErr = "Plugin non caricato";
+
 
 // ALERT WEBSITE
 

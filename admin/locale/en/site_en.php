@@ -236,6 +236,8 @@ $regcat_name_ph = "Choose a category name";
 $plugin_title = "Plugins";
 $plugin_box_title = "All plugins";
 $plugin_name = "Plugin name";
+$plugin_no ="No plugins found";
+$plugin_upload = "Upload plugin";
 $plugin_desc = "Description";
 $plugin_manage = "Manage";
 $plugin_enable = "Enable / Disable";
@@ -409,6 +411,8 @@ $al_pluginDelSucc = "Plugin deleted";
 $al_pluginDelErr = "Plugin not deleted";
 $al_pluginSucc = "Plugin installed";
 $al_pluginErr = "Plugin not installed. Try to delete the folder and upload it again.";
+$al_pluginUploadSucc = "Plugin successfully uploaded";
+$al_pluginUploadErr = "Plugin not uploaded";
 
 
 

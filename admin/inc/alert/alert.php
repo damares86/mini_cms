@@ -674,6 +674,22 @@ if($msg=="userDelSucc"){
     </div>
 
     <?php    
+} else if($msg=="pluginUploadSucc"){
+    ?>
+    <div class="alert alert-success">
+        <button type="button" class="close" data-dismiss="alert">x</button>
+        <?=$al_pluginUploadSucc?>
+    </div>
+
+    <?php    
+} else if($msg=="pluginUploadErr"){
+    ?>
+    <div class="alert alert-danger">
+        <button type="button" class="close" data-dismiss="alert">x</button>
+        <?=$al_pluginUploadErr?>
+    </div>
+
+    <?php    
 } else
 
 ?>
