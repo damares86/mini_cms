@@ -1,6 +1,6 @@
 <?php
 class Database{
-public $db_name="cms_class";
+public $db_name="minicms";
 public $username="root";
 public $password="Salomon-86";
 public $host="localhost";

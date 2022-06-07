@@ -1,12 +1,24 @@
 <?php
 // Database configuration
-$host = "localhost";
-$username = "root";
-$password = "Salomon-86";
-$database_name = "cms_class";
+
+require '../../phpDebug/src/Debug/Debug.php';   			// if not using composer
+
+$debug = new \bdk\Debug(array(
+    'collect' => true,
+    'output' => true,
+));
+
+
+include("../../class/Database.php");
+$database = new Database();
+
+$server = $database->host;
+$user = $database->username;
+$pass = $database->password;
+$database_name = $database->db_name;
 
 // Get connection object and set the charset
-$conn = mysqli_connect($host, $username, $password, $database_name);
+$conn = mysqli_connect($server, $user, $pass, $database_name);
 $conn->set_charset("utf8");
 
 
@@ -78,5 +90,5 @@ if(!empty($sqlScript))
     ob_clean();
     flush();
     readfile($backup_file_name);
-    // exec('rm ' . $backup_file_name); 
+    exec('rm ' . $backup_file_name); 
 }

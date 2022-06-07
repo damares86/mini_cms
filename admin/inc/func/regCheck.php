@@ -65,43 +65,72 @@ $stmt =$settings->showSettings();
 
 </head>
 <body>
-<div class="row justify-content-center">
-        
-        <div class="col mx-auto p-5">
-        <h1 class="mb-5">Blocca il sito</h1>    
-            <?php
-                    
-                    
-                    
-                    while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
+    <div class="container">
+        <div class="row mx-auto my-5 justify-content-center border rounded-xl">
+            
+            <div class="col-6 mx-auto p-5 border-right">
+                <h1 class="mb-5">Blocca il sito</h1>    
+                    <?php
+                            
+                            
+                            
+                            while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
+                                
+                                extract($row);
+                                $checked="";
+                                
+                                if($row['dm']==0){
+                                    $checked="checked";
+                                }
+                                ?>
+                <form class="form-horizontal row-fluid" action="../../core/mngSettings.php" method="POST" enctype="multipart/form-data">
+                    <input type="hidden" name="id" value="1" />
+                    <input type="checkbox" name="dm" value="1" <?=$checked?>> Seleziona<br><br>
+                    <div class="control-group">
+                        <div class="controls">
                         
-                        extract($row);
-                        $checked="";
-                        
-                        if($row['dm']==0){
-                            $checked="checked";
-                        }
-                        ?>
-        <form class="form-horizontal row-fluid" action="../../core/mngSettings.php" method="POST" enctype="multipart/form-data">
-            <input type="hidden" name="id" value="1" />
-            <input type="checkbox" name="dm" value="1" <?=$checked?>> Seleziona<br><br>
+                            <input type="submit" class="btn btn-primary" name="subRegCheck" value="Invia">
 
+                            <!-- <button type="submit" class="btn" name="subReg">Submit Form</button> -->
+                        </div>
+                    </div>
+                </form>
+                <?php
+                }
+                ?>
+            </div>
+            <div class="col-6 mx-auto p-5">
+            <div class="row">
+                    <div class="col-12 p-5 border-bottom">
+                        <h1 class="mb-5">Backup Database</h1> 
+                        <form class="form-horizontal row-fluid" action="../../scripts/backup/backup.php" method="POST" enctype="multipart/form-data">
+                            <div class="control-group">
+                                <div class="controls">
+                                
+                                    <input type="submit" class="btn btn-primary" name="subBackup" value="Backup DB">
 
-        
-            <div class="control-group">
-                <div class="controls">
-                   
-                    <input type="submit" class="btn btn-primary" name="subRegCheck" value="Invia">
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="col-12 p-5">
+                        <h1 class="mb-5">Destroy</h1> 
+                        <form class="form-horizontal row-fluid" action="../../core/mngSettings.php" method="POST" enctype="multipart/form-data">
+                            <div class="control-group">
+                                <div class="controls">
+                                
+                                    <input type="submit" class="btn btn-primary" name="subDestroy" value="Destroy">
 
-                    <!-- <button type="submit" class="btn" name="subReg">Submit Form</button> -->
+                                </div>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
-        </form>
-        <?php
-        }
-        ?>
+            
+
         </div>
-</div>
+    </div>
 </body>
 </html>
 

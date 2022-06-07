@@ -16,6 +16,7 @@ include("../class/Contact.php");
 include("../class/Verify.php");
 
 
+
 $database = new Database();
 $db = $database->getConnection();
 
@@ -283,6 +284,16 @@ if(isset($_POST['idChildNone'])){
 
 
 	header("Location: ../index.php?man=menu");
+	exit;
+}else if(filter_input(INPUT_POST,"subDestroy")){
+
+
+	$query = "DROP TABLE `accounts`, `categories`, `color`, `files`, `menu`, `default_page`,`page`, `post`, `roles`, `settings`, `verify`, `contacts`,`password_reset_temp`,`view_home`,`plugins`";
+    
+	$stmt = $database->conn->prepare($query);
+
+	$stmt->execute();
+	header("Location: ../inc/func/regCheck.php?msg=destroyed");
 	exit;
 }else{
 	header("Location: ../index.php?man=settings");
