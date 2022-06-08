@@ -82,7 +82,7 @@ if(filter_input(INPUT_GET,"name")){
                         exit;
                     }
                 }else{
-                    header("Location: ../index.php?man=plugins&op=show&msg=pluginDisErr");
+                    header("Location: ../index.php?man=plugins&op=show&msg=pluginDisSucc");
                     exit;
                 }
             }

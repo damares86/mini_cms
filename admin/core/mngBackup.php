@@ -136,5 +136,8 @@ function zipData($source, $destination) {
     readfile($zipFile);
     exec('rm ' . $zipFile); 
 
+}else{
+    header("Location: ../index.php?man=backup&op=add&msg=backupErr");
+    exit;
 }
 

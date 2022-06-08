@@ -103,7 +103,15 @@
         ?>
             <tr <?=$background?>>
                 <td>
-                    <span class="bg-<?=$box_enabled_color?> p-1 text-white"><?=$box_enabled?></span> &nbsp; &nbsp;<?=$plugin_name?></td>
+                    <?php
+                    if($plugins->id){
+                    ?>
+                    
+                    <span class="bg-<?=$box_enabled_color?> p-1 text-white"><?=$box_enabled?></span> &nbsp; &nbsp;
+                    <?php
+                    }
+                    ?>
+<?=$plugin_name?></td>
                 <td><?=$desc?></td>
                 <td>
                     <?php

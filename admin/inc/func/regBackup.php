@@ -1,6 +1,6 @@
 
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">Backup</h1>
+                        <h1 class="h3 mb-0 text-gray-800"><?=$backup_title?></h1>
 
                     </div><div class="row">
 
@@ -13,8 +13,8 @@
         <div class="card-body">
   <div class="row">
       <div class="col">
-          <h3>Effettua il backup del tuo sito</h3>
-          <p>Semplicemente clicca sul pulsante qui sotto per iniziare il backup</p>
+          <h3><?=$backup_box_title?></h3>
+          <p><?=$backup_box_text?></p>
           <br>
        <form class="form-horizontal row-fluid" action="core/mngBackup.php" method="POST" enctype="multipart/form-data">
          <div class="control-group">
@@ -28,7 +28,7 @@
         </form>
         </div>
       <div class="col guide">
-        Descrizione
+        <?=$backup_desc?>
       </div>
   </div>
     </div>
