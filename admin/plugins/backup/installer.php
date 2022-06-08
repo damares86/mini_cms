@@ -47,139 +47,49 @@ if($op=="del"){
         
         $error=0;
 
-        // DELETE CLASSES
-        if(is_file("../../class/Portfolio.php")){
-            if(!unlink("../../class/Portfolio.php")){
+        if(is_file("../../inc/alert/backup_alert.php")){
+            if(!unlink("../../inc/alert/backup_alert.php")){
                 $error++;
             }
         }
 
-        if(is_file("../../class/Categories_Portfolio.php")){
-            if(!unlink("../../class/Categories_Portfolio.php")){
+        if(is_file("../../inc/func/regBackup.php")){
+            if(!unlink("../../inc/func/regBackup.php")){
                 $error++;
             }
         }
 
-        // DELETE MNG
-        if(is_file("../../core/mngPortfolio.php")){
-            if(!unlink("../../core/mngPortfolio.php")){
+        if(is_file("../../locale/en/backup_en.php")){
+            if(!unlink("../../locale/en/backup_en.php")){
                 $error++;
             }
         }
 
-        // DELETE MNG CAT
-        if(is_file("../../core/mngCatPortfolio.php")){
-            if(!unlink("../../core/mngCatPortfolio.php")){
+        if(is_file("../../locale/it/backup_it.php")){
+            if(!unlink("../../locale/it/backup_it.php")){
                 $error++;
             }
         }
 
-        // DELETE ALL
-        if(is_file("../../inc/func/allPortfolio.php")){
-            if(!unlink("../../inc/func/allPortfolio.php")){
+        if(is_file("../../core/mngBackup.php")){
+            if(!unlink("../../core/mngBackup.php")){
                 $error++;
             }
         }
 
-
-        // DELETE REG
-        if(is_file("../../inc/func/regPortfolio.php")){
-            if(!unlink("../../inc/func/regPortfolio.php")){
+        if(is_file("../../core/restore_db.php")){
+            if(!unlink("../../core/restore_db.php")){
                 $error++;
             }
         }
 
-
-        // DELETE TEMPLATE
-        if(is_file("../../template/project.php")){
-            if(!unlink("../../template/project.php")){
-                $error++;
-            }
-        }
-
-       // DELETE REG CAT
-        if(is_file("../../inc/func/regCatPortfolio.php")){
-            if(!unlink("../../inc/func/regCatPortfolio.php")){
-                $error++;
-            }
-        }
-
-        // DELETE ALL
-        if(is_file("../../inc/func/allCatPortfolio.php")){
-            if(!unlink("../../inc/func/allCatPortfolio.php")){
-                $error++;
-            }
-        }
-
-        // DELETE LOCALE IT
-        if(is_file("../../locale/en/portfolio_en.php")){
-            if(!unlink("../../locale/en/portfolio_en.php")){
-                $error++;
-            }
-        }
-
-        // DELETE LOCALE IT
-        if(is_file("../../locale/it/portfolio_it.php")){
-            if(!unlink("../../locale/it/portfolio_it.php")){
-                $error++;
-            }
-        }
-
-        // DELETE DEFAULT PAGE
-        if(is_file("../../../portfolio.php")){
-            if($plugins->deletePage())
-                if(!unlink("../../../portfolio.php")){
-                    $error++;
-                }
-            }else{
-                $error++;
-            }
-
-
-        // DELETE ALERT
-        if(is_file('../../inc/alert/portfolio_alert.php')){
-            if(!unlink('../../inc/alert/portfolio_alert.php')){
-                $error++;
-            }
-        }
         
-        $home->name_function="portfolio";
+        $home->name_function="backup";
         $home->delete();
         
-        $home->name_function="catPortfolio";
-        $home->delete();
 
-        $plugins->plugin_name=$name;
-        $plugins->deletePage();
 
-        
-        function removeFolder($folderName) {
-			if (is_dir($folderName))
-			$folderHandle = opendir($folderName);
-
-			// if (!$folderHandle){
-			// 	header("Location: ../index.php?man=gall&op=show&msg=gallDelSucc");
-			// 	exit;
-			// }
-
-			while($file = readdir($folderHandle)) {
-				if ($file != "." && $file != "..") {
-						if (!is_dir($folderName."/".$file))
-							unlink($folderName."/".$file);
-						else
-							removeFolder($folderName.'/'.$file);
-				}
-			}
-			closedir($folderHandle);
-			rmdir($folderName);
-			
-		}
-
-		$folderName="../../../misc/portfolio/";
-		
-        unlink("../../inc/class_initialize.php");
-
-			if(removeFolder($folderName)||!is_dir($folderName)){
+			if($home->delete()){
                 header("Location: ../../index.php?man=plugins&op=show&msg=pluginDelSucc");
                 exit;
 			}else{
@@ -234,17 +144,13 @@ if($op=="del"){
             }else{
                 $error++;
             }
-
-            // RESTORE
-            if(copy('page/restore.php', '../../../restore.php')){
-                chmod('../../../restore.php',0777);
+    
+            if(copy('config/restore_db.php', '../../core/restore_db.php')){
+                chmod('../../core/restore_db.php',0777);
             }else{
                 $error++;
             }
-        
-
     
-   
             // LOCAL
 
             unlink("../../inc/class_initialize.php");

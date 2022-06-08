@@ -82,6 +82,7 @@ if(!empty($sqlScript))
 
     copy('backup.sql', "../backup.sql");
     exec('rm ' . $backup_file_name); 
+    copy("../plugins/backup/page/restore.php","../../restore.php");
 
     ini_set('max_execution_time', 600);
 ini_set('memory_limit','1024M');
@@ -135,6 +136,8 @@ function zipData($source, $destination) {
     flush();
     readfile($zipFile);
     exec('rm ' . $zipFile); 
+    exec('rm ../../restore.php'); 
+    exec('rm backup.sql'); 
 
 }else{
     header("Location: ../index.php?man=backup&op=add&msg=backupErr");
