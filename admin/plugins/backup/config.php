@@ -5,6 +5,7 @@
 // titolo e descrizione per la tabella dei plugin
 
 $plugin_name = "Backup";
+$link="index.php?man=backup&op=add";
 $folder = "backup";
 $description = "Allows you to create a backup clone of your website with a db dump.";
 

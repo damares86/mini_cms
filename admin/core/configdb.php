@@ -231,6 +231,7 @@ chmod("../inc/func/regCheck.php",0777);
 $db->query("CREATE TABLE IF NOT EXISTS plugins
                             ( id INT ( 5 ) NOT NULL AUTO_INCREMENT PRIMARY KEY,
                               plugin_name VARCHAR(255) NOT NULL,
+                              link VARCHAR(255) DEFAULT NULL,
                               second_page VARCHAR(255) NULL,
                               description VARCHAR(255) NOT NULL,
                               icon VARCHAR(255) NOT NULL,

@@ -121,8 +121,12 @@
                 $show_title=$row['sub_show_title'];
                 $add_title=$row['sub_add_title'];
                 if($row['active']==1){
+               
             ?>
             <li class="nav-item">
+            <?php
+                if(!is_null($row['sub_show_title'])){
+                ?>
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapse<?=$counter?>"
                     aria-expanded="true" aria-controls="collapse<?=$counter?>">
                     <i class="<?=$row['icon']?>"></i>
@@ -132,9 +136,7 @@
                         ?>
                     </span>
                 </a>
-                <?php
-                if(!is_null($row['sub_show_title'])){
-                ?>
+            
                 <div id="collapse<?=$counter?>" class="collapse" aria-labelledby="heading<?=$counter?>" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <a class="collapse-item" href="<?=$row['sub_show_link']?>"><?=$$show_title?></a>
@@ -148,11 +150,20 @@
                     </div>
                 </div>
                 <?php
-                }
+                }else{
                 ?>
+                 <a class="nav-link" href="<?=$row['link']?>">
+                    <i class="<?=$row['icon']?>"></i>
+                    <span>
+                        <?php
+                        echo $$title;
+                        ?>
+                    </span>
+                </a>
             </li>
             
             <?php
+                }
             }
             $counter++;
         }

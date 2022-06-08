@@ -191,7 +191,7 @@ if($op=="del"){
 
 		
             }else{
-                header("Location: ../../index.php?man=plugins&op=show&msg=pluginDelErr1");
+                header("Location: ../../index.php?man=plugins&op=show&msg=pluginDelErr");
                 exit;
 			}
 
