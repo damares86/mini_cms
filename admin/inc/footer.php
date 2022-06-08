@@ -7,4 +7,4 @@
                 </div>
             </footer>
             <!-- End of Footer -->
-			<script src="admin//script/my-login.js"></script>
+			<script src="admin/script/my-login.js"></script>

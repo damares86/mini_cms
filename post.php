@@ -40,6 +40,10 @@ $url = get_page_url();
                         
         $category_name= $categories->category_name;
 
+        $time = $post->modified;
+        $newTime = date("d/m/Y",strtotime($time));
+   
+
                 if (isset($_SESSION['loggedin'])) {
    
                     ?>
@@ -54,10 +58,10 @@ $url = get_page_url();
         <br><br>
         <h1><?=$post->title?></h1>
         <p class="metainfo"><?=$blog_category?>: <b><a href="blog.php?cat=<?=$category_id?>"><?=$category_name?></a></b></p>
-        <p class="metainfo"><?=$blog_mod?>: <?=$post->modified?></p>
+        <p class="metainfo"><?=$blog_mod?>: <?=$newTime?></p>
         <div class="blog_content">
             <div class="row">
-                <div class="col px-5">
+                <div class="col px-5 mb-5">
                     <img src="uploads/img/<?=$post->main_img?>" class="w-100"><br>
                 </div>
             </div>
@@ -149,7 +153,7 @@ $url = get_page_url();
             <a href="https://twitter.com/share?url=<?=$url?>" target="_blank" onclick="window.open(this.href,'window','width=640,height=480,resizable,scrollbars') ;return false;">
             <i class="fab fa-twitter"></i></a>
 
-                        &nbsp; &nbsp; <a href="https://www.facebook.com/sharer.php?u=<?=$url?>">
+                        &nbsp; &nbsp; <a href="https://www.facebook.com/sharer.php?u=<?=$url?>" target="_blank" onclick="window.open(this.href,'window','width=640,height=480,resizable,scrollbars') ;return false;">
                         <i class="fab fa-facebook"></i></a>
                         <!-- <a href="http://www.linkedin.com/shareArticle?mini=true&url=<?=$url?>">
                             <i class="fa fa-linkedin" data-toggle="tooltip" title="" data-original-title="Linkedin">linkedin</i>

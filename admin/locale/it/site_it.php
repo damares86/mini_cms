@@ -233,6 +233,8 @@ $regcat_name_ph = "Scegli un nome per la categoria";
 $plugin_title = "Plugins";
 $plugin_box_title = "Tutti i plugins";
 $plugin_name = "Nome del plugin";
+$plugin_upload = "Upload plugin";
+$plugin_no ="Nessun plugin presente";
 $plugin_desc = "Descrizione";
 $plugin_manage = "Gestisci";
 $plugin_enable = "Attiva / Disattiva";
@@ -404,6 +406,9 @@ $al_pluginDelSucc = "Plugin cancellato";
 $al_pluginDelErr = "Plugin non cancellato";
 $al_pluginSucc = "Plugin installato";
 $al_pluginErr = "Plugin non installato. Prova ad eliminare la cartella e caricarla nuovamente.";
+$al_pluginUploadSucc = "Plugin caricato";
+$al_pluginUploadErr = "Plugin non caricato";
+
 
 // ALERT WEBSITE
 
@@ -442,8 +447,7 @@ $reset_output1.='<p>Caro utente,</p>';
 $reset_output1.='<p>Clicca sul link seguente per resettare la tua password.</p>';
 $reset_output1.='<p>-------------------------------------------------------------</p>';
 $reset_output2='<p>-------------------------------------------------------------</p>';
-$reset_output2.='<p>Se non funziona copia l\'intero link e incollalo nella barra del browser.
-Il link sarà valido solo per un\'ora.</p>';
+$reset_output2.='<p>Se non funziona copia l\'intero link e incollalo nella barra del browser. Il link sarà valido solo per un\'ora.</p>';
 $reset_output2.='<p>Se non hai richiesto il reset della password non è necessaria nessuna azione.</p>';   	
 $reset_output2.='<p>Grazie,</p>';
 $reset_output2.='<p>Mini CMS</p>';
@@ -463,7 +467,7 @@ $cont_form_button = "Invia";
 // BLOG
 
 $blog_category = "Categoria";
-$blog_mod = "Ultima modifica";
+$blog_mod = "Pubblicato";
 $blog_continue = "Continua a leggere";
 $blog_categories = "Categorie";
 $blog_share = "Condividi su";

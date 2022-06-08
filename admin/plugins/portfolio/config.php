@@ -5,6 +5,8 @@
 // titolo e descrizione per la tabella dei plugin
 
 $plugin_name = "Portfolio";
+$link="";
+$page_exist=1;
 $second_page = "catPortfolio";
 $folder = "portfolio";
 $description = "It creates a portfolio and manages your projects. It can show all projects, with filters by categories, or show a single project with all its data.";

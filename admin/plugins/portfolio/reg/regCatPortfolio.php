@@ -47,7 +47,7 @@ if(filter_input(INPUT_GET,"idToMod")){
             <div class="control-group">
                 <label class="control-label" for="category_name"><?=$regcat_name?></label>
                 <div class="controls">
-                    <input type="text" id="category_name" name="category_name" placeholder="<?=$regcat_name_ph?>" value="<?=$cat->category_name?>" class="span8">
+                    <input type="text" id="category_name" name="category_name" placeholder="<?=$regcat_name_ph?>" value="<?=$categories_portfolio->category_name?>" class="span8">
                      
                 </div>
             </div>

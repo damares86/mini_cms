@@ -24,7 +24,6 @@ function autoloader($class){
 	include("class/$class.php");
 }
 
-
 $database = new Database();
 $db = $database->getConnection();
 
@@ -60,6 +59,7 @@ $lang=$settings->dashboard_language;
 foreach (glob("locale/$lang/*.php") as $row){
     require "$row";
 }
+
 
 ?>
 <!DOCTYPE html>

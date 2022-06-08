@@ -1,6 +1,6 @@
 <?php
 // MODIFICARE SU LOCALE !!!!!!!!!!!!!!!!!!!!
-$addfile_title = $addfile_title_add;
+$addfile_title = $addfile_title;
 $idToMod="";
 $file->id="";
 

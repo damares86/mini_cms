@@ -213,7 +213,7 @@ class Portfolio{
                 FROM
                     " . $this->table_name . "
                 ORDER BY
-                    id DESC
+                    completed DESC
                     LIMIT
                     {$from_record_num}, {$records_per_page}";  
   

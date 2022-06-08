@@ -18,14 +18,24 @@
             <h6 class="m-0 font-weight-bold text-primary"><?=$plugin_box_title?></h6>
         </div>
         <div class="card-body">
-        <!-- <div class="align-items-center pt-3 pb-2 mb-3 align-items-center">
-            <a href="index.php?man=gall&op=add" class="btn btn-success btn-icon-split">
-                <span class="icon text-white-50">
-                    <i class="fas fa-plus"></i>
-                </span>
-                <span class="text">Upload plugin</span>
-            </a>
-        </div> -->
+            <form class="form-horizontal row-fluid" action="core/mngPlugins.php" method="POST" enctype="multipart/form-data">
+                <div class="control-group" id="uploadPlugin">
+
+                    <label class="control-label" for="file"><?=$plugin_upload?></label>
+                    <div class="controls">
+                        <input type="file" id="zip_file" name="zip_file">
+                    </div>
+                    
+                </div>
+                <div class="control-group">
+                <div class="controls">
+                   
+                    <input type="submit" class="btn btn-primary" name="submit" value="<?=$txt_submit?>">
+
+                </div>
+            </div>
+            </form>
+
         <br>
         <div class="row">
         <?php
@@ -35,7 +45,7 @@
                 return (count(scandir($dir)) == 2);
               }
                 if( !is_dir($dir) || is_dir_empty($dir) ||is_dir_empty(($dir)) ){
-                    echo "<div class='col'><div class='alert alert-danger'>No plugins found</div></div>";
+                    echo "<div class='col'><div class='alert alert-danger'>$plugin_no</div></div>";
                 }else{
 
                 ?>
@@ -93,7 +103,15 @@
         ?>
             <tr <?=$background?>>
                 <td>
-                    <span class="bg-<?=$box_enabled_color?> p-1 text-white"><?=$box_enabled?></span> &nbsp; &nbsp;<?=$plugin_name?></td>
+                    <?php
+                    if($plugins->id){
+                    ?>
+                    
+                    <span class="bg-<?=$box_enabled_color?> p-1 text-white"><?=$box_enabled?></span> &nbsp; &nbsp;
+                    <?php
+                    }
+                    ?>
+<?=$plugin_name?></td>
                 <td><?=$desc?></td>
                 <td>
                     <?php
@@ -128,17 +146,7 @@
                     }
                     ?>
                 </td>
-              
-                <!-- <td>
-                        <a href="#" class="btn btn-danger btn-icon-split" data-toggle="modal" data-target="#delete<?=$id?>">
-                            <span class="icon text-white-50">
-                                <i class="fas fa-trash"></i>
-                            </span>
-                            <span class="text"><?=$txt_delete?></span>
-                        </a> 
-                
 
-            </td> -->
             </tr>
                           <!-- Delete Modal-->
                           <div class="modal fade" id="delete<?=$folder?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
@@ -159,12 +167,14 @@
                             </div>
                         </div>
                     </div>
+        <?php
+                    }
+                    ?>
 
 
             </tbody>
         </table>
         <?php
-                    }
         // paging buttons
         include_once 'inc/paging.php';
  

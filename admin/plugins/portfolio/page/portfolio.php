@@ -42,7 +42,14 @@ $total_rows=$portfolio->countAll();
                                 <div class="row">
                                 <?php
 
-                                    require "admin/core/config.php";
+                                    // page given in URL parameter, default page is one
+                                    $pageNum = isset($_GET['page']) ? $_GET['page'] : 1; 
+
+                                    // set number of records per page
+                                    $records_per_page = 6;
+                                    
+                                    // calculate for the query LIMIT clause
+                                    $from_record_num = ($records_per_page * $pageNum) - $records_per_page;
 
                                     $portfolio = new Portfolio($db);
                                     if(!filter_input(INPUT_GET,"cat")){

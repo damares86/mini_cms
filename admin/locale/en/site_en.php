@@ -236,6 +236,8 @@ $regcat_name_ph = "Choose a category name";
 $plugin_title = "Plugins";
 $plugin_box_title = "All plugins";
 $plugin_name = "Plugin name";
+$plugin_no ="No plugins found";
+$plugin_upload = "Upload plugin";
 $plugin_desc = "Description";
 $plugin_manage = "Manage";
 $plugin_enable = "Enable / Disable";
@@ -409,6 +411,8 @@ $al_pluginDelSucc = "Plugin deleted";
 $al_pluginDelErr = "Plugin not deleted";
 $al_pluginSucc = "Plugin installed";
 $al_pluginErr = "Plugin not installed. Try to delete the folder and upload it again.";
+$al_pluginUploadSucc = "Plugin successfully uploaded";
+$al_pluginUploadErr = "Plugin not uploaded";
 
 
 
@@ -449,8 +453,7 @@ $reset_output1.='<p>Dear user,</p>';
 $reset_output1.='<p>Please click on the following link to reset your password.</p>';
 $reset_output1.='<p>-------------------------------------------------------------</p>';
 $reset_output2='<p>-------------------------------------------------------------</p>';
-$reset_output2.='<p>Please be sure to copy the entire link into your browser.
-The link will expire after 1 hour for security reason.</p>';
+$reset_output2.='<p>Please be sure to copy the entire link into your browser. The link will expire after 1 hour for security reason.</p>';
 $reset_output2.='<p>If you did not request this forgotten password email, no action 
 is needed, your password will not be reset. However, you may want to log into 
 your account and change your security password as someone may have guessed it.</p>';   	
@@ -475,7 +478,7 @@ $cont_form_button = "Send";
 // BLOG
 
 $blog_category = "Category";
-$blog_mod = "Last modified on";
+$blog_mod = "Published";
 $blog_continue = "Continue reading";
 $blog_categories = "Categories";
 $blog_share = "Share on";

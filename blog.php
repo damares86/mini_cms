@@ -38,10 +38,14 @@ require "admin/template/inc/header.php";
 
                 $post_title= preg_replace('/\s+/', '_', $title);
                 $post_title = strtolower($post_title);
+
+			    $time = $modified;
+				$newTime = date("d/m/Y",strtotime($time));
+
         ?>
         <h1><?=$title?></h1>
         <p class="metainfo">*** <?=$blog_category?>: <b><a href="blog.php?cat=<?=$category_id?>"><?=$category_name?></a></b>
-         *** <?=$blog_mod?>: <?=$modified?> ***</p>
+         *** <?=$blog_mod?>: <?=$newTime?> ***</p>
         <div class="blog_content">
         <div class="row">
                 <div class="col px-5">
