@@ -26,14 +26,12 @@ require "config.php";
 
 $plugins->plugin_name = $plugin_name;
 $plugins->link = $link;
+$plugins->page_exist = $page_exist;
 $plugins->second_page = $second_page;
 $plugins->description=$description;
 $plugins->icon=$sidebar_icon;
 $plugins->title=$sidebar_title;
 $plugins->sub_show_title=$sidebar_sub_show_title;
-$plugins->sub_show_link=$sidebar_sub_show_link;
-$plugins->sub_add_title=$sidebar_sub_add_title;
-$plugins->sub_add_link=$sidebar_sub_add_link;
 
 $op = filter_input(INPUT_GET,"op");
 

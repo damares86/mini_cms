@@ -9,6 +9,7 @@ class Plugins{
     public $id;
     public $plugin_name;
     public $link;
+    public $page_exist;
     public $second_page;
     public $description;
     public $icon;
@@ -91,7 +92,7 @@ class Plugins{
       
         // execute the query, also check if query was successful
         if($stmt->execute()){
-            if($this->active==1){
+            if($this->active==1 && $this->page_exist>0){
                 $query1= "INSERT INTO  page      
                 SET
                 page_name = :page_name,

@@ -26,6 +26,7 @@ require "config.php";
 
 $plugins->plugin_name = $plugin_name;
 $plugins->second_page = $second_page;
+$plugins->page_exist = $page_exist;
 $plugins->description=$description;
 $plugins->icon=$sidebar_icon;
 $plugins->title=$sidebar_title;

@@ -11,7 +11,8 @@ $description = "Allows you to create a backup clone of your website with a db du
 
 $sidebar_icon="fa fa-database";
 $sidebar_title = 'side_backup';
-// $sidebar_sub_show_title = 'side_project';
+$sidebar_sub_show_title = NULL;
+$page_exist = 0;
 // $sidebar_sub_show_link ="index.php?man=portfolio&op=show";
 // $sidebar_sub_add_title = 'side_project_cat';
 // $sidebar_sub_add_link ="index.php?man=catPortfolio&op=show";
