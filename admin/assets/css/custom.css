@@ -12,9 +12,13 @@ body{
 
 .logo img{
     object-fit: contain;
-    height: 30%;
-    width:30%;
+    height: 35%;
+    width:35%;
     
+}
+
+.logo{
+    padding: 1%;;
 }
 
 .navbar{

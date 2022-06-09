@@ -1,7 +1,7 @@
 <ul class="navbar-nav sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="../">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center shadow bg-white" href="../">
                 <div class="logo">
                     <img src="assets/img/logo.svg">
                 </div>
