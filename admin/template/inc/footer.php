@@ -9,7 +9,7 @@
                             </div>
                         </div>
                     </div>
-                <p class="copyright" style="font-size:0.7em;">Mini Cms - a project by <a href="https://github.com/damares86">damares86</a></p>
+                <p class="copyright" style="font-size:0.7em;">Made with Mini Cms - a project by <a href="https://www.davidemasera.it">davidemasera</a></p>
             </footer>
         </div>
 
