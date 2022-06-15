@@ -67,23 +67,30 @@ if(filter_input(INPUT_GET,"name")){
 
 
             if($home->delete()){
-                if($second_page){
-                    $home->name_function=$second_page;
-                    if($home->delete()){
-                        $menu->pagename=$plugin_name;
-                        if($menu->delete()){
-                            header("Location: ../index.php?man=plugins&op=show&msg=pluginDisSucc");
-                            exit;
-                        }else{
+                $menu->pagename=$plugin_name;
+   
+                if($menu->delete()){
+                    if($second_page){
+                        $home->name_function=$second_page;
+                        if($home->delete()){
+                            $menu->pagename=$plugin_name;
+                            if($menu->delete()){
+                                header("Location: ../index.php?man=plugins&op=show&msg=pluginDisSucc");
+                                exit;
+                            }else{
+                                header("Location: ../index.php?man=plugins&op=show&msg=pluginDisErr");
+                                exit;
+                            }
+                        } else{
                             header("Location: ../index.php?man=plugins&op=show&msg=pluginDisErr");
                             exit;
                         }
-                    } else{
-                        header("Location: ../index.php?man=plugins&op=show&msg=pluginDisErr");
-                        exit;
                     }
-                }else{
                     header("Location: ../index.php?man=plugins&op=show&msg=pluginDisSucc");
+                    exit;
+                   
+                }else{
+                    header("Location: ../index.php?man=plugins&op=show&msg=pluginDisErr");
                     exit;
                 }
             }
