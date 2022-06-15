@@ -85,6 +85,16 @@ $password_hash = password_hash($password, PASSWORD_DEFAULT);
 
 $user=new User($db);
 
+if(!is_file('../core/site.php')){
+  $file_handle = fopen('../core/site.php', 'w');
+  fwrite($file_handle, '<?php');
+  fwrite($file_handle, "\n");
+  fwrite($file_handle, '$site= "'.$_SERVER['SERVER_NAME'].'";');
+  fwrite($file_handle, "\n");
+  fwrite($file_handle, '?>');
+}
+
+chmod('../core/site.php',0777);
 
 /////////////////////////////////////////////////////////////
 
