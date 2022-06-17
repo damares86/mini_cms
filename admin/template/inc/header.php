@@ -50,7 +50,7 @@ include "admin/inc/class_initialize.php";
 
 $stmt2=$settings->showSettings();
 
-$stmt3=$settings->showLang();
+$stmt3=$settings->showLangAndName();
 $lang=$settings->dashboard_language;
 
 
@@ -198,7 +198,7 @@ while ($row = $stmt2->fetch(PDO::FETCH_ASSOC)){
                     if($page->header==1){
                     ?>
                 <div id="banner-wrapper">
-					<div id="banner" class="box container" style="background-image: url(<?=$root?>assets/<?=$theme?>/img/<?=$img?>);">
+					<div id="banner" class="box container" style="background-image: url(<?=$root?>uploads/img/<?=$img?>);">
 						<div class="row">
                             <?php
                             if($use_text==1){

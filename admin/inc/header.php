@@ -53,7 +53,7 @@ $total_user=$user->countAll();
 $total_post=$post->countAll();
 
 
-$stmt=$settings->showLang();
+$stmt=$settings->showLangAndName();
 $lang=$settings->dashboard_language;
 
 foreach (glob("locale/$lang/*.php") as $row){
@@ -75,7 +75,7 @@ foreach (glob("locale/$lang/*.php") as $row){
     <meta name="author" content="damares86">
     <link rel="icon" href="assets/img/favicon.ico" type="image/png"/>
 
-    <title>Mini Cms - Dashboard</title>
+    <title>Dashboard "<?=$settings->site_name?>"</title>
 
     <!-- Custom fonts for this template-->
     <!-- per le modali -->
