@@ -50,7 +50,7 @@ include "inc/class_initialize.php";
 
 
 $total_user=$user->countAll();
-$total_post=$post->countAll();
+
 
 
 $stmt=$settings->showLangAndName();
@@ -93,7 +93,7 @@ foreach (glob("locale/$lang/*.php") as $row){
         <link rel="stylesheet" href="scripts/farbtastic/farbtastic.css" type="text/css" />
 
             <!-- <script src="https://cdn.ckeditor.com/4.11.2/standard/ckeditor.js"></script> -->
-            <link href="scripts/summernote/summernote.css" rel="stylesheet">
+            <link href="assets/css/summernote.min.css" rel="stylesheet">
 
             <!-- Custom styles for this template-->
             <!-- <link href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet">-->

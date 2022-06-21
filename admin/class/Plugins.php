@@ -93,10 +93,9 @@ class Plugins{
         // execute the query, also check if query was successful
         if($stmt->execute()){
             if($this->active==1 && $this->page_exist>0){
-                $query1= "INSERT INTO  page      
+                $query1= "INSERT INTO  default_page      
                 SET
                 page_name = :page_name,
-                no_mod = 1,
                 layout = 'default',
                 header = 1,
                 img = 'visual.jpg',
@@ -210,7 +209,7 @@ class Plugins{
 
 function deletePage(){
     
-    $query = "DELETE FROM page WHERE page_name = :plugin_name";
+    $query = "DELETE FROM default_page WHERE page_name = :plugin_name";
     
     $stmt = $this->conn->prepare($query);
     $stmt->bindParam(':plugin_name', $this->plugin_name);

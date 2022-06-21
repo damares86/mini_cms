@@ -60,6 +60,12 @@ class Page{
     // create new role record
     function insert(){
 
+        if($this->type=="default"){
+            $this->table="default_page";
+        }else if($this->type=="custom"){
+            $this->table="page";
+        }
+
         if($this->block2){
             $this->setParam2 = ", block2 = :block2";
             
@@ -746,6 +752,13 @@ class Page{
 
  // delete the post
  function delete(){
+
+    if($this->type=="default"){
+        $this->table="default_page";
+    }else if($this->type=="custom"){
+        $this->table="page";
+        $this->setNo_mod = ", no_mod = :no_mod";
+    }
 
     $name=$this->page_name;
     
