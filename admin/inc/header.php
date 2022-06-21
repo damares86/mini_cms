@@ -50,10 +50,10 @@ include "inc/class_initialize.php";
 
 
 $total_user=$user->countAll();
-$total_post=$post->countAll();
 
 
-$stmt=$settings->showLang();
+
+$stmt=$settings->showLangAndName();
 $lang=$settings->dashboard_language;
 
 foreach (glob("locale/$lang/*.php") as $row){
@@ -61,9 +61,10 @@ foreach (glob("locale/$lang/*.php") as $row){
 }
 
 
+
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="<?=$lang?>">
 
 <head>
 
@@ -71,10 +72,10 @@ foreach (glob("locale/$lang/*.php") as $row){
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
-    <meta name="author" content="damares86">
+    <meta name="author" content="Dm WebLab">
     <link rel="icon" href="assets/img/favicon.ico" type="image/png"/>
 
-    <title>Mini Cms - Dashboard</title>
+    <title>Dashboard "<?=$settings->site_name?>"</title>
 
     <!-- Custom fonts for this template-->
     <!-- per le modali -->
@@ -92,7 +93,7 @@ foreach (glob("locale/$lang/*.php") as $row){
         <link rel="stylesheet" href="scripts/farbtastic/farbtastic.css" type="text/css" />
 
             <!-- <script src="https://cdn.ckeditor.com/4.11.2/standard/ckeditor.js"></script> -->
-            <link href="scripts/summernote/summernote.css" rel="stylesheet">
+            <link href="assets/css/summernote.min.css" rel="stylesheet">
 
             <!-- Custom styles for this template-->
             <!-- <link href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet">-->

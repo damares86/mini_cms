@@ -16,6 +16,10 @@ if(filter_input(INPUT_GET,"idToMod")){
 
 $stmt = $settings->showSettings();
 
+$plugins->plugin_name="Post";
+$plugins->showByName();
+$postActive=$plugins->active;
+
     function is_dir_empty($dir) {
            if (!is_readable($dir)) return null; 
              return (count(scandir($dir)) == 2);
@@ -247,7 +251,7 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
                 <div class="controls">
                     <input type="file" id="myfile" name="myfile">
                     <br><br>
-                    <?=$regpage_actual?> &nbsp;<img src="../assets/<?=$theme?>/img/<?=$img?>"  style="max-width:200px;">
+                    <?=$regpage_actual?> &nbsp;<img src="../uploads/img/<?=$img?>"  style="max-width:200px;">
                 </div>
             </div>
             <br>
@@ -456,7 +460,14 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
         <label><input type="radio" name="block2[]" value="n2" <?=$checked_n2?>> <?=$regpage_none?></label>
         <label><input type="radio" name="block2[]" value="t2" <?=$checked_t2?>> <?=$regpage_text_block?></label>
         <label><input type="radio" name="block2[]" value="g2" <?=$checked_g2?>> <?=$regpage_gall?></label>
+        <?php
+
+        if($postActive==1){
+        ?>
         <label><input type="radio" name="block2[]" value="b2" <?=$checked_b2?>> <?=$regpage_post?></label>
+        <?php
+        }
+        ?>
         <br><br>
         
         <!-- EMPTY BOX -->
@@ -636,7 +647,14 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
         <label><input type="radio" name="block3[]" value="n3" <?=$checked_n3?>> <?=$regpage_none?></label>
         <label><input type="radio" name="block3[]" value="t3" <?=$checked_t3?>> <?=$regpage_text_block?></label>
         <label><input type="radio" name="block3[]" value="g3" <?=$checked_g3?>> <?=$regpage_gall?></label>
+        <?php
+
+        if($postActive==1){
+        ?>
         <label><input type="radio" name="block3[]" value="b3" <?=$checked_b3?>> <?=$regpage_post?></label>
+        <?php
+        }
+        ?>
         <br><br>
         
         <!-- EMPTY BOX -->
@@ -819,7 +837,14 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
         <label><input type="radio" name="block4[]" value="n4" <?=$checked_n4?>> <?=$regpage_none?></label>
         <label><input type="radio" name="block4[]" value="t4" <?=$checked_t4?>> <?=$regpage_text_block?></label>
         <label><input type="radio" name="block4[]" value="g4" <?=$checked_g4?>> <?=$regpage_gall?></label>
+        <?php
+
+        if($postActive==1){
+        ?>
         <label><input type="radio" name="block4[]" value="b4" <?=$checked_b4?>> <?=$regpage_post?></label>
+        <?php
+        }
+        ?>
         <br><br>
         
         <!-- EMPTY BOX -->
@@ -1003,7 +1028,14 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
         <label><input type="radio" name="block5[]" value="n5" <?=$checked_n5?>> <?=$regpage_none?></label>
         <label><input type="radio" name="block5[]" value="t5" <?=$checked_t5?>> <?=$regpage_text_block?></label>
         <label><input type="radio" name="block5[]" value="g5" <?=$checked_g5?>> <?=$regpage_gall?></label>
+        <?php
+
+        if($postActive==1){
+        ?>
         <label><input type="radio" name="block5[]" value="b5" <?=$checked_b5?>> <?=$regpage_post?></label>
+        <?php
+        }
+        ?>
         <br><br>
         
         <!-- EMPTY BOX -->
@@ -1189,7 +1221,14 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
         <label><input type="radio" name="block6[]" value="n6" <?=$checked_n6?>> <?=$regpage_none?></label>
         <label><input type="radio" name="block6[]" value="t6" <?=$checked_t6?>> <?=$regpage_text_block?></label>
         <label><input type="radio" name="block6[]" value="g6" <?=$checked_g6?>> <?=$regpage_gall?></label>
+        <?php
+
+        if($postActive==1){
+        ?>
         <label><input type="radio" name="block6[]" value="b6" <?=$checked_b6?>> <?=$regpage_post?></label>
+        <?php
+        }
+        ?>
         <br><br>
         
         <!-- EMPTY BOX -->

@@ -66,19 +66,7 @@
             <?php
             }
             ?>
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseThree"
-                    aria-expanded="true" aria-controls="collapseThree">
-                    <i class="fas fa-fw fa-marker"></i>
-                    <span><?=$side_blog?></span>
-                </a>
-                <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="index.php?man=post&op=show"><?=$side_post?></a>
-                        <a class="collapse-item" href="index.php?man=cat&op=show"><?=$side_cat?></a>
-                    </div>
-                </div>
-            </li>
+   
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseFour"
                     aria-expanded="true" aria-controls="collapseFour">

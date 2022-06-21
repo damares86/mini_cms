@@ -85,6 +85,16 @@ $password_hash = password_hash($password, PASSWORD_DEFAULT);
 
 $user=new User($db);
 
+if(!is_file('../core/site.php')){
+  $file_handle = fopen('../core/site.php', 'w');
+  fwrite($file_handle, '<?php');
+  fwrite($file_handle, "\n");
+  fwrite($file_handle, '$site= "'.$_SERVER['SERVER_NAME'].'";');
+  fwrite($file_handle, "\n");
+  fwrite($file_handle, '?>');
+}
+
+chmod('../core/site.php',0777);
 
 /////////////////////////////////////////////////////////////
 
@@ -249,12 +259,7 @@ $db->query("CREATE TABLE IF NOT EXISTS view_home
 
 $db->query("INSERT INTO view_home
           (id, name_function)
-          VALUES ('1','post')
-          ");
-
-$db->query("INSERT INTO view_home
-          (id, name_function)
-          VALUES ('2','color')
+          VALUES ('1','color')
           ");
 
 
@@ -304,28 +309,18 @@ VALUES ('1','index', 'default', '1', 'visual.jpg', 't',  '<p>This is your homepa
 
 $db->query("INSERT INTO default_page 
 (id, page_name, layout, header, img, block1_type, block1, block1_bg, block1_text, block2_type, block2, block2_bg, block2_text, block3_type,block3, block3_bg, block3_text, block4_type,block4, block4_bg, block4_text,  block5_type,block5, block5_bg, block5_text,  block6_type,block6, block6_bg, block6_text) 
-VALUES ('2','Blog', 'default', '1', 'visual.jpg', 't',  '','none','#000000', 'n', '', 'none','#000000', 'n',  '', 'none','#000000', 'n', '', 'none','#000000', 'n', '', 'none','#000000', 'n', '', 'none','#000000')
+VALUES ('2','Login', 'default', '1', 'visual.jpg', 't',  '','none','#000000', 'n', '', 'none','#000000', 'n',  '', 'none','#000000', 'n', '', 'none','#000000', 'n', '', 'none','#000000', 'n', '', 'none','#000000')
 ");
 
 $db->query("INSERT INTO default_page 
 (id, page_name, layout, header, img, block1_type, block1, block1_bg, block1_text, block2_type, block2, block2_bg, block2_text, block3_type,block3, block3_bg, block3_text, block4_type,block4, block4_bg, block4_text,  block5_type,block5, block5_bg, block5_text,  block6_type,block6, block6_bg, block6_text) 
-VALUES ('3','Post', 'default', '1', 'visual.jpg', 't',  '','none','#000000', 'n', '', 'none','#000000', 'n',  '', 'none','#000000', 'n', '', 'none','#000000', 'n', '', 'none','#000000', 'n', '', 'none','#000000')
-");
-
-$db->query("INSERT INTO default_page 
-(id, page_name, layout, header, img, block1_type, block1, block1_bg, block1_text, block2_type, block2, block2_bg, block2_text, block3_type,block3, block3_bg, block3_text, block4_type,block4, block4_bg, block4_text,  block5_type,block5, block5_bg, block5_text,  block6_type,block6, block6_bg, block6_text) 
-VALUES ('4','Login', 'default', '1', 'visual.jpg', 't',  '','none','#000000', 'n', '', 'none','#000000', 'n',  '', 'none','#000000', 'n', '', 'none','#000000', 'n', '', 'none','#000000', 'n', '', 'none','#000000')
-");
-
-$db->query("INSERT INTO default_page 
-(id, page_name, layout, header, img, block1_type, block1, block1_bg, block1_text, block2_type, block2, block2_bg, block2_text, block3_type,block3, block3_bg, block3_text, block4_type,block4, block4_bg, block4_text,  block5_type,block5, block5_bg, block5_text,  block6_type,block6, block6_bg, block6_text) 
-VALUES ('5','Contact', 'default', '1', 'visual.jpg', 't',  '','none','#000000', 'n', '', 'none','#000000', 'n',  '', 'none','#000000', 'n', '', 'none','#000000', 'n', '', 'none','#000000', 'n', '', 'none','#000000')
+VALUES ('3','Contact', 'default', '1', 'visual.jpg', 't',  '','none','#000000', 'n', '', 'none','#000000', 'n',  '', 'none','#000000', 'n', '', 'none','#000000', 'n', '', 'none','#000000', 'n', '', 'none','#000000')
 ");
 
 
 $db->query("INSERT INTO default_page 
 (id, page_name, layout, header, img, block1_type, block1, block1_bg, block1_text, block2_type, block2, block2_bg, block2_text, block3_type,block3, block3_bg, block3_text, block4_type,block4, block4_bg, block4_text,  block5_type,block5, block5_bg, block5_text,  block6_type,block6, block6_bg, block6_text) 
-VALUES ('6','Gallery', 'default', '1', 'visual.jpg', 't',  '','none','#000000', 'n', '', 'none','#000000', 'n',  '', 'none','#000000', 'n', '', 'none','#000000', 'n', '', 'none','#000000', 'n', '', 'none','#000000')
+VALUES ('4','Gallery', 'default', '1', 'visual.jpg', 't',  '','none','#000000', 'n', '', 'none','#000000', 'n',  '', 'none','#000000', 'n', '', 'none','#000000', 'n', '', 'none','#000000', 'n', '', 'none','#000000')
 ");
 
 $db->query("INSERT INTO menu 
@@ -333,19 +328,15 @@ $db->query("INSERT INTO menu
 VALUES ('1','index', '0','0','1','none')
 ");
 
+
 $db->query("INSERT INTO menu 
 (id, pagename, inmenu,itemorder,parent,childof) 
-VALUES ('2','Blog', '0','0','1','none')
+VALUES ('2','Login', '1','0','1','none')
 ");
 
 $db->query("INSERT INTO menu 
 (id, pagename, inmenu,itemorder,parent,childof) 
-VALUES ('3','Login', '1','0','1','none')
-");
-
-$db->query("INSERT INTO menu 
-(id, pagename, inmenu,itemorder,parent,childof) 
-VALUES ('4','Contact', '0','0','1','none')
+VALUES ('3','Contact', '0','0','1','none')
 ");
 
 $db->query("CREATE TABLE `password_reset_temp` (

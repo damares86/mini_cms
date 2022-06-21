@@ -132,7 +132,7 @@ class Settings{
     }
 
     
-    function showLang(){
+    function showLangAndName(){
         $query = "SELECT
                     *
                 FROM
@@ -144,6 +144,7 @@ class Settings{
         $row = $stmt->fetch(PDO::FETCH_ASSOC);
     
         $this->dashboard_language = $row['dashboard_language'];
+        $this->site_name = $row['site_name'];
     }
 
    

@@ -3,9 +3,9 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8">
-	<meta name="author" content="damares86">
+	<meta name="author" content="DM WebLab">
 	<meta name="viewport" content="width=device-width,initial-scale=1">
-	<title>Mini Cms by damares86</title>
+	<title>Mini Cms by DM WebLab</title>
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 	<link rel="stylesheet" type="text/css" href="admin/assets/css/my-login.css">
 </head>
@@ -79,7 +79,7 @@
 					
 					</div>
 					<div class="footer">
-						Created by &copy; <a href="https://github.com/damares86">damares86</a>
+						Created by &copy; <a href="https://www.dmweblab.com">Dm WebLab</a>
 					</div>
 				</div>
 			</div>
