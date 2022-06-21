@@ -64,7 +64,7 @@ foreach (glob("locale/$lang/*.php") as $row){
 
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="<?=$lang?>">
 
 <head>
 
@@ -72,7 +72,7 @@ foreach (glob("locale/$lang/*.php") as $row){
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
-    <meta name="author" content="damares86">
+    <meta name="author" content="Dm WebLab">
     <link rel="icon" href="assets/img/favicon.ico" type="image/png"/>
 
     <title>Dashboard "<?=$settings->site_name?>"</title>

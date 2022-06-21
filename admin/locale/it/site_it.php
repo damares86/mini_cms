@@ -48,7 +48,7 @@ $home_quicklink = "Link rapidi";
 $home_link1 = "Il sito ufficiale di Mini Cms";
 $home_link2 = "Il repository GitHub del progetto";
 $home_tab1 = "Utenti";
-$home_tab2 = "Post";
+$home_tab2 = "Lingua";
 $home_tab3 = "Il tuo tema";
 
 

@@ -49,7 +49,7 @@ $home_quicklink = "Quick links";
 $home_link1 = "The official website of Mini Cms";
 $home_link2 = "The GitHub repository of the project";
 $home_tab1 = "Users";
-$home_tab2 = "Posts";
+$home_tab2 = "Language";
 $home_tab3 = "Your theme";
 
 
