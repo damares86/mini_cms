@@ -97,20 +97,48 @@ if(filter_input(INPUT_POST,"subReg")){
 	if($operation=="add"){
 		//inserimento
 
-		$arr=array(
+		$arr0=array(
 			"name"		=> $_POST['page_name'],
 			"no_mod"	=> 0,
 			"layout"	=> $_POST['layout'],
-			"theme"		=> $_POST['theme'],
-			"block1_type"=> 't',
-			"block1"	=> $_POST['editor1'],
-			"block1_bg"	=> $_POST['block1_bg'],
-			"block1_text"=>$_POST['block1_text']
+			"theme"		=> $_POST['theme']
 		);
 
-		$json=json_encode($arr);
+		// $json0=json_encode($arr0);
 		$file="test.json";
+		// file_put_contents($file, $json, FILE_APPEND);
+
+
+		$arr1=array(
+			"block1"=>array(
+				"block1_type"=> 't',
+				"block1"	=> $_POST['editor1'],
+				"block1_bg"	=> $_POST['block1_bg'],
+				"block1_text"=>$_POST['block1_text']
+				)
+			);
+
+		// $json1=json_encode($arr1);
+
+		// file_put_contents($file, $json, FILE_APPEND);
+
+		$arr2=array(
+			"block2"=>array(
+				"block2_type"=> 't',
+				"block2"	=> $_POST['editor2'],
+				"block2_bg"	=> $_POST['block2_bg'],
+				"block2_text"=>$_POST['block2_text']
+			)
+		);
+
+		$arr_tot=array($arr0,$arr1,$arr2);
+		$json=json_encode($arr_tot);
+
+		
 		file_put_contents($file, $json, FILE_APPEND);
+		chmod("test.json",0777);
+
+
 		exit;
 		// $page->page_name=$_POST['page_name'];
 		// $page->no_mod=0;
