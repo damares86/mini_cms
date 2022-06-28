@@ -24,7 +24,7 @@
 
 
 <script>
-var count=1;
+var count=2;
 $("#btn").click(function(){
   
   $("#container").append(addNewRow(count));
@@ -41,7 +41,7 @@ function addNewRow(count){
             '$checked_g'+count+'="";'+
             '$checked_b'+count+'="";'+
             '$type_arr = array("t","b","n");'+                
-            'if($page->block'+count+'_type=="t"){'+
+            'if($page->block'+count+'\_type=="t"){'+
                 '$checked_t'+count+'="checked";'+
                 '$checked_n'+count+'="";'+
             '} else if($page->block'+count+'_type=="b"){'+
