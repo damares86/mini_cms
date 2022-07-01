@@ -1,1 +1,4 @@
-[{"name":"Chi siamo","no_mod":0,"layout":"default","theme":"damares"},{"block1":{"block1_type":"t","block1":"fsd fdsf sdaf sdaf sadf&nbsp;","block1_bg":"#000000","block1_text":"#ffffff"}},{"block1":{"block2_type":"t","block2":"&nbsp;sdafsadaf sdaf fd","block2_bg":"#000000","block2_text":"#ffffff"}}]
+[{"name":"Chi siamo","no_mod":0,"layout":"default","theme":"damares"},
+    {"block1":
+        {"block1_type":"t","block1":"fsd fdsf sdaf sdaf sadf&nbsp;","block1_bg":"#000000","block1_text":"#ffffff"}},
+    {"block2":{"block2_type":"t","block2":"&nbsp;sdafsadaf sdaf fd","block2_bg":"#000000","block2_text":"#ffffff"}}]

@@ -27,6 +27,31 @@ if (!isset($_SESSION['loggedin'])) {
 	$page = new Page($db);
 	$menu = new Menu($db);
 
+
+
+if(filter_input(INPUT_POST,"addBlock")){
+	$counter=filter_input(INPUT_POST,"counter");
+	for($i=1;$i<=$counter;$i++){
+		$var="block$i";
+		$$var=filter_input(INPUT_POST,"$var");
+
+		$var_b_session="sess_block$i";
+		$_SESSION[''.$var_b_session.'']=$$var;
+	}
+	$counter++;
+	header("Location: ../index.php?man=page&op=add&type=custom&count=$counter&more=yes");
+	exit;
+
+
+}else if(filter_input(INPUT_GET,"subReg")){
+	
+}
+
+exit;
+
+
+
+
 if(filter_input(INPUT_GET,"idToDel")){
 	
 	$idToDel = filter_input(INPUT_GET,"idToDel");

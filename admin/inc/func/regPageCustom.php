@@ -20,68 +20,17 @@ $plugins->plugin_name="Post";
 $plugins->showByName();
 $postActive=$plugins->active;
 
+function is_dir_empty($dir) {
+       if (!is_readable($dir)) return null; 
+         return (count(scandir($dir)) == 2);
+    }
 
 
-    function is_dir_empty($dir) {
-           if (!is_readable($dir)) return null; 
-             return (count(scandir($dir)) == 2);
-        }
+
+
 ?>
 
 
-
-<!-- hyde/show boxes -->
-
-        <script>
-        $(document).ready(function(){
-            $('input[name="block2[]"]').click(function(){
-                var inputValue = $(this).attr("value");
-                var targetBox = $("." + inputValue);
-                $(".box2").not(targetBox).hide();
-                $(targetBox).show();
-            });
-        });
-    </script>
-        <script>
-        $(document).ready(function(){
-            $('input[name="block3[]"]').click(function(){
-                var inputValue = $(this).attr("value");
-                var targetBox = $("." + inputValue);
-                $(".box3").not(targetBox).hide();
-                $(targetBox).show();
-            });
-        });
-    </script>
-        <script>
-        $(document).ready(function(){
-            $('input[name="block4[]"]').click(function(){
-                var inputValue = $(this).attr("value");
-                var targetBox = $("." + inputValue);
-                $(".box4").not(targetBox).hide();
-                $(targetBox).show();
-            });
-        });
-    </script>
-        <script>
-        $(document).ready(function(){
-            $('input[name="block5[]"]').click(function(){
-                var inputValue = $(this).attr("value");
-                var targetBox = $("." + inputValue);
-                $(".box5").not(targetBox).hide();
-                $(targetBox).show();
-            });
-        });
-    </script>
-        <script>
-        $(document).ready(function(){
-            $('input[name="block6[]"]').click(function(){
-                var inputValue = $(this).attr("value");
-                var targetBox = $("." + inputValue);
-                $(".box6").not(targetBox).hide();
-                $(targetBox).show();
-            });
-        });
-    </script>
 
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
                         <h1 class="h3 mb-0 text-gray-800"><?=$titoloForm?></h1>
@@ -94,30 +43,7 @@ $postActive=$plugins->active;
     <!-- Project Card Example -->
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-        <?php
-        $page->id = $idToMod;
-
-        $page->showByIdDefault();
-        ?>
-        <style>
-            .box2{
-                display: none;
-            }
-            .box3{
-                display: none;
-            }
-            .box4{
-                display: none;
-            }
-            .box5{
-                display: none;
-            }
-            .box6{
-                display: none;
-            }
-
-
-        </style>
+  
 
         </div>
         <div class="card-body">
@@ -153,6 +79,67 @@ $postActive=$plugins->active;
             <br>
 
         <form id="postForm" class="form-horizontal row-fluid" action="core/mngPage.php" method="post" enctype="multipart/form-data">
+           <?php
+
+                ////////////////////////////////////////////////////////
+
+                // SESSION VARIABILES
+
+                $counter="1";
+                if(filter_input(INPUT_GET,"count")){
+                    $counter=filter_input(INPUT_GET,"count");
+                }
+
+                if($operation=="add"){
+                    // $page->page_name="";
+                    // $page->layout="";
+                    // $page->img="";
+
+
+                    if(isset($_REQUEST['more'])&&$_REQUEST['more']=="yes"){
+                        $page->page_name=$_SESSION['sess_page_name'];
+                        $page->layout=$_SESSION['sess_layout'];
+                        $page->img=$_SESSION['sess_img'];
+                    }
+                }
+
+
+                for($i=1;$i<=$counter;$i++){    
+                    
+                    echo "Blocco $i <br>";
+                    $var="block$i";
+                    $var_b="";
+                    // $$var="ok $i";
+                    // echo $$var."<br>";
+                    if(isset($_REQUEST['more'])&&$_REQUEST['more']=="yes"){
+                        // $var_b="content$i";
+                        $var_b_session="sess_block$i";
+                        // $$var_b="";
+                        $var_b = ($_SESSION[''.$var_b_session.'']);
+                        // echo $$var_b."<br>";
+                    }
+                    ?>
+                        <input type="text" class="form-control" id="<?=$var?>" name="<?=$var?>" value="<?= $var_b ?>">
+                        <input type="hidden" name="counter" value="<?= $counter ?>" />
+
+                    <?php
+                }
+            ?>
+
+<input type="submit" class="btn btn-primary" name="addBlock" value="Aggiungi blocco">
+<br><br>
+<input type="submit" class="btn btn-primary" name="subReg" value="<?=$txt_submit?>">
+
+        </form>
+            <?php
+
+                exit;
+            ?>
+
+
+
+
+
         <input type="hidden" name="operation" value="<?= $operation ?>" />
                
                     <input type="hidden" name="idToMod" value="<?= $idToMod ?>" />
