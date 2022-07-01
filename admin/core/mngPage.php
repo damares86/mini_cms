@@ -43,7 +43,7 @@ if(filter_input(INPUT_POST,"addBlock")){
 	exit;
 
 
-}else if(filter_input(INPUT_GET,"subReg")){
+}else if(filter_input(INPUT_POST,"subReg")){
 	
 }
 
