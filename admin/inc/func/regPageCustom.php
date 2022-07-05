@@ -46,6 +46,11 @@ function is_dir_empty($dir) {
   
 
         </div>
+        <?php
+        $page->id = $idToMod;
+
+        $page->showById();
+        ?>
         <div class="card-body">
  
             <a href="#" class="btn btn-primary btn-icon-split" data-toggle="modal" data-target="#infoPage">
@@ -105,7 +110,7 @@ function is_dir_empty($dir) {
             
             <br>
             <?php
-                if($idToMod==1){
+                // if($idToMod==1){
          
             ?>
             <div class="control-group">
@@ -133,7 +138,7 @@ function is_dir_empty($dir) {
             </div>
             <br>
             <?php
-                }
+                // }
             ?>
             <br>
             <?php
@@ -221,6 +226,16 @@ if($operation=="add"){
 
 
 for($i=1;$i<=$counter;$i++){    
+    echo "<style>";
+    echo "\n";        
+    echo ".box$i{";
+    echo "\n";        
+    echo "display: none;";
+    echo "\n";        
+    echo "}";
+    echo "\n";        
+    echo "</style>";
+    echo "\n";        
     
     ?>
             <h3><?=$regpage_block?> <?=$i?></h3><br>
@@ -238,8 +253,113 @@ for($i=1;$i<=$counter;$i++){
         $var_b = ($_SESSION[''.$var_b_session.'']);
         // echo $$var_b."<br>";
     }
-    ?>
-          <textarea id="summernote<?=$i?>" name="editor<?=$i?>" rows="10">   <?=$page->$var?></textarea>
+    
+/////////////////////////////////////////////////////////////////////////// 
+      //  DA FARE DA QUI IN POI
+        echo "<script>";
+        echo "\n";        
+        echo "$(document).ready(function(){";
+        echo "\n";        
+        echo '$(\'input[name="block'.$i.'[]"]\').click(function(){';
+        echo "\n";        
+        echo "var inputValue = $(this).attr(\"value\");";
+        echo "\n";        
+        echo "var targetBox = $(\".\" + inputValue);";
+        echo "\n";        
+        echo "$('.box$i').not(targetBox).hide();";
+        echo "\n";        
+        echo "$(targetBox).show();";
+        echo "\n";        
+        echo "});";
+        echo "\n";        
+        echo "});";
+        echo "\n";        
+        echo "</script>";
+        echo "\n";        
+
+
+        $none="checked_n$i";
+        $text="checked_t$i";
+        $gall="checked_g$i";
+        $blog="checked_b$i";
+        $page_class="page";
+        $block_type='block'.$i.'_type';
+
+        
+        $$none="checked";
+        $$text="";
+        $$gall="";
+        $$blog="";
+        
+        $type_arr = array("t","b","n");
+        
+        if($page->$block_type=="t"){
+            $$text="checked";                
+            $$none="";
+        } else if($page->$block_type=="b"){
+            $$blog="checked";                
+            $$none="";
+        } else if($page->$block_type=="n"){
+            $$none = "checked";
+        }else if($operation=="mod"&&!in_array($page->$block_type,$type_arr)){
+            $$gall = "checked";
+            $$none = "";
+        }
+
+            if($$text=="checked"){
+              
+                echo "<style>";
+                echo "\n";        
+                echo ".box$i.t$i{";
+                echo "\n";        
+                echo "display:block;";
+                echo "\n";        
+                echo "}";
+                echo "\n";        
+                echo "</style>";
+            } else if($checked_g2=="checked"){
+                echo "<style>";
+                echo "\n";        
+                echo ".box$i.g$i{";
+                echo "\n";        
+                echo "display:block;";
+                echo "\n";        
+                echo "}";
+                echo "\n";        
+                echo "</style>";
+              } else if($checked_b2=="checked"){
+                echo "<style>";
+                echo "\n";        
+                echo ".box$i.b$i{";
+                echo "\n";        
+                echo "display:block;";
+                echo "\n";        
+                echo "}";
+                echo "\n";        
+                echo "</style>";
+              }
+              ?>
+
+        <!-- radio button -->
+        <label><input type="radio" name="block<?=$i?>[]" value="n<?=$i?>" <?=$$none?>> <?=$regpage_none?></label>
+        <label><input type="radio" name="block<?=$i?>[]" value="t<?=$i?>" <?=$$text?>> <?=$regpage_text_block?></label>
+        <label><input type="radio" name="block<?=$i?>[]" value="g<?=$i?>" <?=$$gall?>> <?=$regpage_gall?></label>
+        <?php
+
+        if($postActive==1){
+        ?>
+        <label><input type="radio" name="block2[]" value="b2" <?=$$blog?>> <?=$regpage_post?></label>
+        <?php
+        }
+        ?>
+        <br><br>
+        
+        <!-- EMPTY BOX -->
+        <div class="n<?=$i?> box<?=$i?>">&nbsp;</div>
+
+        <!-- TEXT BOX -->
+        <div class="t<?=$i?> box<?=$i?>">
+            <textarea id="summernote<?=$i?>" name="editor<?=$i?>" rows="10">   <?=$page->$var?></textarea>
             <br>
             <div class="control-group">
             <label for="block<?=$i?>_bg"><?=$regpage_background?></label>
@@ -298,6 +418,59 @@ for($i=1;$i<=$counter;$i++){
                 ?>
             </select>
             </div>
+
+
+        </div>
+
+         <!-- GALLERY BOX -->
+         <div class="g<?=$i?> box<?=$i?> p-3" style="background-color:#f8f9fc"> 
+         <?=$regpage_choose_gall?>
+            <?php
+            $dir_gall="../misc/gallery/img/";
+            $dir_root="../misc/gallery/";
+                if( !is_dir($dir_gall) || is_dir_empty($dir_gall) ||is_dir_empty(($dir_root)) ){
+                    echo "<div class='col'><div class='alert alert-danger'>$gall_nogall</div></div>";
+                }else{
+                    ?>
+                    <select name="block<?=$i?>_gall">
+                        <?php
+                        echo "<option value='none'>none</option>";
+
+            foreach (glob("../misc/gallery/img/*") as $file) {
+                $folder=pathinfo($file, PATHINFO_FILENAME);
+                $gallery= str_replace("_"," ", $folder);
+                $gallery=ucfirst($gallery);
+                
+                $images= scandir ($file);
+                $firstFile = $file ."/". $images[2];// because [0] = "." [1] = ".." 
+
+                $selected ="";
+                if($page->$block_type==$folder){
+                    $selected="selected";
+                }
+                echo "<option value'$folder' $selected>$gallery</option>";
+            ?>
+
+        <?php
+            }
+        }
+        
+        ?>
+        </select>
+        </div>
+              
+        <!-- BLOG BOX -->
+        <div class="b<?=$i?> box<?=$i?> p-3" style="background-color:#f8f9fc">
+             <?=$regpage_post_desc?>
+        </div>
+
+
+<!-- //////////////////////////////////////////////////////////////////////////// -->
+
+
+  
+            <hr>
+            <br>
         
         <?php
 }
