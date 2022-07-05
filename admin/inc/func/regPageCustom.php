@@ -79,62 +79,7 @@ function is_dir_empty($dir) {
             <br>
 
         <form id="postForm" class="form-horizontal row-fluid" action="core/mngPage.php" method="post" enctype="multipart/form-data">
-           <?php
 
-                ////////////////////////////////////////////////////////
-
-                // SESSION VARIABILES
-
-                $counter="1";
-                if(filter_input(INPUT_GET,"count")){
-                    $counter=filter_input(INPUT_GET,"count");
-                }
-
-                if($operation=="add"){
-                    // $page->page_name="";
-                    // $page->layout="";
-                    // $page->img="";
-
-
-                    if(isset($_REQUEST['more'])&&$_REQUEST['more']=="yes"){
-                        $page->page_name=$_SESSION['sess_page_name'];
-                        $page->layout=$_SESSION['sess_layout'];
-                        $page->img=$_SESSION['sess_img'];
-                    }
-                }
-
-
-                for($i=1;$i<=$counter;$i++){    
-                    
-                    echo "Blocco $i <br>";
-                    $var="block$i";
-                    $var_b="";
-                    // $$var="ok $i";
-                    // echo $$var."<br>";
-                    if(isset($_REQUEST['more'])&&$_REQUEST['more']=="yes"){
-                        // $var_b="content$i";
-                        $var_b_session="sess_block$i";
-                        // $$var_b="";
-                        $var_b = ($_SESSION[''.$var_b_session.'']);
-                        // echo $$var_b."<br>";
-                    }
-                    ?>
-                        <input type="text" class="form-control" id="<?=$var?>" name="<?=$var?>" value="<?= $var_b ?>">
-                        <input type="hidden" name="counter" value="<?= $counter ?>" />
-
-                    <?php
-                }
-            ?>
-
-<input type="submit" class="btn btn-primary" name="addBlock" value="Aggiungi blocco">
-<br><br>
-<input type="submit" class="btn btn-primary" name="subReg" value="<?=$txt_submit?>">
-
-        </form>
-            <?php
-
-                exit;
-            ?>
 
 
 
@@ -250,21 +195,61 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
 ?>
 <br>
 <input type="hidden" name="theme" value="<?= $page_theme ?>" />
+<?php
 
-          
-            <h3><?=$regpage_block?> 1</h3><br>
+////////////////////////////////////////////////////////
 
-            <textarea id="summernote" name="editor1" rows="10">   <?=$page->block1?></textarea>
+// SESSION VARIABILES
+
+$counter="1";
+if(filter_input(INPUT_GET,"count")){
+    $counter=filter_input(INPUT_GET,"count");
+}
+
+if($operation=="add"){
+    // $page->page_name="";
+    // $page->layout="";
+    // $page->img="";
+
+
+    if(isset($_REQUEST['more'])&&$_REQUEST['more']=="yes"){
+        $page->page_name=$_SESSION['sess_page_name'];
+        $page->layout=$_SESSION['sess_layout'];
+        $page->img=$_SESSION['sess_img'];
+    }
+}
+
+
+for($i=1;$i<=$counter;$i++){    
+    
+    ?>
+            <h3><?=$regpage_block?> <?=$i?></h3><br>
+
+
+    <?php
+    $var="block$i";
+    $var_b="";
+    // $$var="ok $i";
+    // echo $$var."<br>";
+    if(isset($_REQUEST['more'])&&$_REQUEST['more']=="yes"){
+        // $var_b="content$i";
+        $var_b_session="sess_block$i";
+        // $$var_b="";
+        $var_b = ($_SESSION[''.$var_b_session.'']);
+        // echo $$var_b."<br>";
+    }
+    ?>
+          <textarea id="summernote<?=$i?>" name="editor<?=$i?>" rows="10">   <?=$page->$var?></textarea>
             <br>
             <div class="control-group">
-            <label for="block1_bg"><?=$regpage_background?></label>
+            <label for="block<?=$i?>_bg"><?=$regpage_background?></label>
             <?php
                 $color = new Colors($db);
                 $stmt = $color->showAllList();
                 $total_rows = $color->countAll();
               
                 ?>
-            <select name="block1_bg">
+            <select name="block<?=$i?>_bg">
                 <?php
                
                 echo "<option value='none'>none</option>";
@@ -285,14 +270,14 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
                 ?>
             </select>
             <br><br>
-            <label for="block1_text"><?=$regpage_text?></label>
+            <label for="block<?=$i?>_text"><?=$regpage_text?></label>
             <?php
                 $color = new Colors($db);
                 $stmt = $color->showAllList();
                 $total_rows = $color->countAll();
               
                 ?>
-            <select name="block1_text">
+            <select name="block<?=$i?>_text">
                 <?php
                
                 echo "<option value='none'>none</option>";
@@ -313,32 +298,26 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
                 ?>
             </select>
             </div>
+        
+        <?php
+}
+?>
+<input type="hidden" name="counter" value="<?= $counter ?>" />
+
+<input type="submit" class="btn btn-primary" name="addBlock" value="Aggiungi blocco">
+<br><br>
+
+
+          
+
+         
 
             
 
             <br>
             <hr>
             
-<!-- <button id="btnAdd">Add row</button>
-<br><br>
 
-    
-            <script>
-var count=2;
-$("#btnAdd").click(function(){
-  
-  $("#postForm").append(addNewRow(count));
-  count++;
-
-});
-
-function addNewRow(count){
-  var newrow='<!-- BLOCK '+count+' -->'+
-            '<br>'+
-            'ciao'+count+'';
-  return newrow;
-}
-</script> -->
 
             <br>
                  <input type="submit" class="btn btn-primary" name="subReg" value="<?=$txt_submit?>">

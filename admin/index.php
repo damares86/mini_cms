@@ -299,104 +299,56 @@ $user_id=$_SESSION['user_id'];
     <script src="scripts/common.js" type="text/javascript"></script>
 
 <!-- <script src="scripts/summernote/summernote.min.js"></script> -->
+<?php
+for($i=1;$i<=$counter;$i++){
+
+echo '<script type="text/javascript">';
+echo "\n";
+echo '$(document).ready(function() {';
+echo "\n";
+echo "$('#summernote$i').summernote({";
+echo "\n";
+echo 'toolbar: [';
+echo "\n";
+echo "['style', ['style','bold', 'italic', 'underline', 'clear']],";
+echo "\n";
+echo "['font', ['strikethrough', 'superscript', 'subscript']],";
+echo "\n";
+echo "['color', ['color']],";
+echo "\n";
+echo "['para', ['ul', 'ol', 'paragraph']],";
+echo "\n";
+echo "['insert', [ 'ajaxfileupload', 'link', 'video', 'table']],";
+echo "\n";
+echo "['misc', ['codeview']]";
+echo "\n";
+echo '],';
+echo "\n";
+echo "dialogsInBody: true,";
+echo "\n";
+echo "height: '300px',";
+echo "\n";
+echo "styleWithSpan: false";
+echo "\n";
+echo "});";
+echo "\n";
+echo '})';
+echo "\n";
+echo '</script>';
+
+}
+?>
 
 <script type="text/javascript">
-$(document).ready(function() {
-	$('#summernote').summernote({
-        toolbar: [
-     ['style', ['style','bold', 'italic', 'underline', 'clear']],
-     ['font', ['strikethrough', 'superscript', 'subscript']],
-     ['color', ['color']],
-     ['para', ['ul', 'ol', 'paragraph']],
-     ['insert', [ 'ajaxfileupload', 'link', 'video', 'table']],
-     ['misc', ['codeview']]
-   ],
-   dialogsInBody: true,
-		height: "300px",
-		styleWithSpan: false
-	});
-
-$('#summernote2').summernote({
-    toolbar: [
-     ['style', ['style','bold', 'italic', 'underline', 'clear']],
-     ['font', ['strikethrough', 'superscript', 'subscript']],
-     ['color', ['color']],
-     ['para', ['ul', 'ol', 'paragraph']],
-     ['insert', [ 'ajaxfileupload', 'link', 'video', 'table']],
-     ['misc', ['codeview']]
-   ],
-   dialogsInBody: true,
-   height: "300px",
-		styleWithSpan: false,
-	});
-
-$('#summernote3').summernote({
-    toolbar: [
-     ['style', ['style','bold', 'italic', 'underline', 'clear']],
-     ['font', ['strikethrough', 'superscript', 'subscript']],
-     ['color', ['color']],
-     ['para', ['ul', 'ol', 'paragraph']],
-     ['insert', [ 'ajaxfileupload', 'link', 'video', 'table']],
-     ['misc', ['codeview']]
-   ],
-   dialogsInBody: true,
-		height: "300px",
-		styleWithSpan: false
-	});
-
-$('#summernote4').summernote({
-    toolbar: [
-     ['style', ['style','bold', 'italic', 'underline', 'clear']],
-     ['font', ['strikethrough', 'superscript', 'subscript']],
-     ['color', ['color']],
-     ['para', ['ul', 'ol', 'paragraph']],
-     ['insert', [ 'ajaxfileupload', 'link', 'video', 'table']],
-     ['misc', ['codeview']]
-   ],
-   dialogsInBody: true,
-		height: "300px",
-		styleWithSpan: false
-	});
-
-$('#summernote5').summernote({
-    toolbar: [
-     ['style', ['style','bold', 'italic', 'underline', 'clear']],
-     ['font', ['strikethrough', 'superscript', 'subscript']],
-     ['color', ['color']],
-     ['para', ['ul', 'ol', 'paragraph']],
-     ['insert', [ 'ajaxfileupload', 'link', 'video', 'table']],
-     ['misc', ['codeview']]
-   ],
-   dialogsInBody: true,
-		height: "300px",
-		styleWithSpan: false
-	});
-
-$('#summernote6').summernote({
-    toolbar: [
-     ['style', ['style','bold', 'italic', 'underline', 'clear']],
-     ['font', ['strikethrough', 'superscript', 'subscript']],
-     ['color', ['color']],
-     ['para', ['ul', 'ol', 'paragraph']],
-     ['insert', [ 'ajaxfileupload', 'link', 'video', 'table']],
-     ['misc', ['codeview']]
-   ],
-   dialogsInBody: true,
-		height: "300px",
-		styleWithSpan: false
-	});
-
- 
-});
-
 function postForm() {
+    <?php
+    for($i=1;$i<=$counter;$i++){
+    ?>
 
-	$('textarea[name="editor"]').html($('#summernote').code());
-	$('textarea[name="editor2"]').html($('#summernote2').code());
-	$('textarea[name="editor3"]').html($('#summernote3').code());
-	$('textarea[name="editor4"]').html($('#summernote4').code());
-	$('textarea[name="editor5"]').html($('#summernote5').code());
-	$('textarea[name="editor6"]').html($('#summernote6').code());
+	$('textarea[name="editor<?=$i?>"]').html($('#summernote<?=$i?>').code());
+    <?php
+    }
+    ?>
 }
 </script>
 </body>
