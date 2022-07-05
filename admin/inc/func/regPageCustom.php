@@ -87,6 +87,26 @@ function is_dir_empty($dir) {
 
 
 
+<?php
+        $counter="1";
+if(filter_input(INPUT_GET,"count")){
+    $counter=filter_input(INPUT_GET,"count");
+}
+
+if($operation=="add"){
+    // $page->page_name="";
+    // $page->layout="";
+    // $page->img="";
+
+
+    if(isset($_REQUEST['more'])&&$_REQUEST['more']=="yes"){
+        $page->page_name=$_SESSION['sess_page_name'];
+        $page->layout=$_SESSION['sess_layout'];
+        $page->img=$_SESSION['sess_img'];
+    }
+}
+
+?>
 
 
 
@@ -97,10 +117,12 @@ function is_dir_empty($dir) {
             <div class="control-group">
                 
                 <div class="controls">
-
                     <strong><?= $page->page_name ?></strong>
-                    <input type="hidden" name="page_name" value="<?= $page->page_name ?>" />
+                    
                     <input type="hidden" name="old_page_name" value="<?= $page->page_name ?>" />
+                    <input type="text" id="page_name" name="page_name" placeholder="<?=$regpage_name?>" value="<?=$page->page_name?>" class="span8">
+
+                    
                     <input type="hidden" name="no_mod" value="<?= $page->no_mod ?>" />
             
                        <input type="hidden" name="type" value="<?= $type ?>" />
@@ -109,10 +131,7 @@ function is_dir_empty($dir) {
             </div>
             
             <br>
-            <?php
-                // if($idToMod==1){
-         
-            ?>
+
             <div class="control-group">
                 <label class="control-label" for="layout">
                     <?=$regpage_layout?>
@@ -137,9 +156,7 @@ function is_dir_empty($dir) {
                 </div>
             </div>
             <br>
-            <?php
-                // }
-            ?>
+
             <br>
             <?php
                 $display="";
@@ -205,24 +222,6 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
 ////////////////////////////////////////////////////////
 
 // SESSION VARIABILES
-
-$counter="1";
-if(filter_input(INPUT_GET,"count")){
-    $counter=filter_input(INPUT_GET,"count");
-}
-
-if($operation=="add"){
-    // $page->page_name="";
-    // $page->layout="";
-    // $page->img="";
-
-
-    if(isset($_REQUEST['more'])&&$_REQUEST['more']=="yes"){
-        $page->page_name=$_SESSION['sess_page_name'];
-        $page->layout=$_SESSION['sess_layout'];
-        $page->img=$_SESSION['sess_img'];
-    }
-}
 
 
 for($i=1;$i<=$counter;$i++){    
@@ -317,7 +316,7 @@ for($i=1;$i<=$counter;$i++){
                 echo "}";
                 echo "\n";        
                 echo "</style>";
-            } else if($checked_g2=="checked"){
+            } else if($$gall=="checked"){
                 echo "<style>";
                 echo "\n";        
                 echo ".box$i.g$i{";
@@ -327,7 +326,7 @@ for($i=1;$i<=$counter;$i++){
                 echo "}";
                 echo "\n";        
                 echo "</style>";
-              } else if($checked_b2=="checked"){
+              } else if($blog=="checked"){
                 echo "<style>";
                 echo "\n";        
                 echo ".box$i.b$i{";
@@ -348,7 +347,7 @@ for($i=1;$i<=$counter;$i++){
 
         if($postActive==1){
         ?>
-        <label><input type="radio" name="block2[]" value="b2" <?=$$blog?>> <?=$regpage_post?></label>
+        <label><input type="radio" name="block<?=$i?>[]" value="b<?=$i?>" <?=$$blog?>> <?=$regpage_post?></label>
         <?php
         }
         ?>
@@ -361,7 +360,57 @@ for($i=1;$i<=$counter;$i++){
         <div class="t<?=$i?> box<?=$i?>">
             <textarea id="summernote<?=$i?>" name="editor<?=$i?>" rows="10">   <?=$page->$var?></textarea>
             <br>
-            <div class="control-group">
+            
+
+
+        </div>
+
+         <!-- GALLERY BOX -->
+         <div class="g<?=$i?> box<?=$i?> p-3" style="background-color:#f8f9fc"> 
+         <?=$regpage_choose_gall?>
+            <?php
+            $dir_gall="../misc/gallery/img/";
+            $dir_root="../misc/gallery/";
+                if( !is_dir($dir_gall) || is_dir_empty($dir_gall) ||is_dir_empty(($dir_root)) ){
+                    echo "<div class='col'><div class='alert alert-danger'>$gall_nogall</div></div>";
+                }else{
+                    ?>
+                    <select name="block<?=$i?>_gall">
+                        <?php
+                        echo "<option value='none'>none</option>";
+
+            foreach (glob("../misc/gallery/img/*") as $file) {
+                $folder=pathinfo($file, PATHINFO_FILENAME);
+                $gallery= str_replace("_"," ", $folder);
+                $gallery=ucfirst($gallery);
+                
+                $images= scandir ($file);
+                $firstFile = $file ."/". $images[2];// because [0] = "." [1] = ".." 
+
+                $selected ="";
+                if($page->$block_type==$folder){
+                    $selected="selected";
+                }
+                echo "<option value'$folder' $selected>$gallery</option>";
+            ?>
+
+        <?php
+            }
+        }
+        
+        ?>
+        </select>
+        </div>
+              
+        <!-- BLOG BOX -->
+        <div class="b<?=$i?> box<?=$i?> p-3" style="background-color:#f8f9fc">
+             <?=$regpage_post_desc?>
+        </div>
+
+
+<!-- //////////////////////////////////////////////////////////////////////////// -->
+
+<div class="control-group">
             <label for="block<?=$i?>_bg"><?=$regpage_background?></label>
             <?php
                 $color = new Colors($db);
@@ -418,56 +467,6 @@ for($i=1;$i<=$counter;$i++){
                 ?>
             </select>
             </div>
-
-
-        </div>
-
-         <!-- GALLERY BOX -->
-         <div class="g<?=$i?> box<?=$i?> p-3" style="background-color:#f8f9fc"> 
-         <?=$regpage_choose_gall?>
-            <?php
-            $dir_gall="../misc/gallery/img/";
-            $dir_root="../misc/gallery/";
-                if( !is_dir($dir_gall) || is_dir_empty($dir_gall) ||is_dir_empty(($dir_root)) ){
-                    echo "<div class='col'><div class='alert alert-danger'>$gall_nogall</div></div>";
-                }else{
-                    ?>
-                    <select name="block<?=$i?>_gall">
-                        <?php
-                        echo "<option value='none'>none</option>";
-
-            foreach (glob("../misc/gallery/img/*") as $file) {
-                $folder=pathinfo($file, PATHINFO_FILENAME);
-                $gallery= str_replace("_"," ", $folder);
-                $gallery=ucfirst($gallery);
-                
-                $images= scandir ($file);
-                $firstFile = $file ."/". $images[2];// because [0] = "." [1] = ".." 
-
-                $selected ="";
-                if($page->$block_type==$folder){
-                    $selected="selected";
-                }
-                echo "<option value'$folder' $selected>$gallery</option>";
-            ?>
-
-        <?php
-            }
-        }
-        
-        ?>
-        </select>
-        </div>
-              
-        <!-- BLOG BOX -->
-        <div class="b<?=$i?> box<?=$i?> p-3" style="background-color:#f8f9fc">
-             <?=$regpage_post_desc?>
-        </div>
-
-
-<!-- //////////////////////////////////////////////////////////////////////////// -->
-
-
   
             <hr>
             <br>

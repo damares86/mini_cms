@@ -32,11 +32,55 @@ if (!isset($_SESSION['loggedin'])) {
 if(filter_input(INPUT_POST,"addBlock")){
 	$counter=filter_input(INPUT_POST,"counter");
 	for($i=1;$i<=$counter;$i++){
-		$var="block$i";
-		$$var=filter_input(INPUT_POST,"$var");
+		
+		$_SESSION['sess_page_name']=$_POST['page_name'];
+		$_SESSION['sess_layout']=$_POST['layout'];
+		if($_FILES['myfile']){
+			$_SESSION['sess_img']=$_FILES['myfile']['name'];
+		}
+		$_SESSION['sess_no_mod']=0;
+		$_SESSION['sess_theme']=$_POST['theme'];
 
-		$var_b_session="sess_block$i";
-		$_SESSION[''.$var_b_session.'']=$$var;
+		if(isset($_POST['visualSel'])){
+			$_SESSION['sess_header']=$_POST['visualSel'];
+		} else {
+			$_SESSION['sess_header']=0;
+		}		
+
+		$block_name="block$i";
+
+		$sess_bg="sess_bg_$i";
+		$_SESSION[''.$sess_bg.'']=$_POST[''.$block_name.'_bg'];
+
+		$sess_text="sess_text_$i";
+		$_SESSION[''.$sess_text.'']=$_POST[''.$block_name.'_text'];
+
+		print_r($_SESSION['sess_text_1']);
+		exit;
+
+		// TYPE
+
+		$$block_name=$_POST[''.$block_name.''][0];
+		$sess_type="sess_type_$i";
+		
+		if($$block_name=="t$i"){
+			$_SESSION[''.$sess_type.'']="t";
+			$_SESSION['sess_editor'.$i.'']=$_POST['editor'.$i.''];
+		} else if($$block_name=="g$i"){
+			$gallery=$_POST[''.$block_name.'_gall'];
+			$gallery= str_replace(" ","_", $gallery);
+			$gallery=strtolower($gallery);
+			$_SESSION[''.$sess_type.'']=$gallery;
+		} else if($$block_name=="b$i"){
+			$_SESSION[''.$sess_type.'']="b";
+		} else if($$block_name=="n$i"){
+			$_SESSION[''.$sess_type.'']="n";
+		}
+
+	
+		print_r($_SESSION['sess_type_1']);
+		exit;
+
 	}
 	$counter++;
 	header("Location: ../index.php?man=page&op=add&type=custom&count=$counter&more=yes");
