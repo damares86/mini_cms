@@ -243,7 +243,13 @@ for($i=1;$i<=$counter;$i++){
                 if($i!=1){
             ?>
             <span style="font-weight:bold; font-size: 1.5em;"><?=$regpage_block?> <?=$i?></span> &nbsp; &nbsp;
-            <button type="submit" class="btn btn-primary d-inline" name="rmBlock" value="<?=$i?>">Rimuovi blocco</button><br><br>
+            <button type="submit" class="btn btn-danger btn-icon-split" name="rmBlock" value="<?=$i?>">
+                <span class="icon text-white-50">
+                    <i class="fas fa-trash"></i>
+                </span>
+                <span class="text">Rimuovi blocco</span>
+            </button><br><br>
+            <!-- <button type="submit" class="btn btn-primary d-inline" name="rmBlock" value="<?=$i?>">Rimuovi blocco</button><br><br> -->
             <?php
                 }else{
             ?>
@@ -496,13 +502,17 @@ for($i=1;$i<=$counter;$i++){
 ?>
 <input type="hidden" name="counter" value="<?= $counter ?>" />
 
-<input type="submit" class="btn btn-primary" name="addBlock" value="Aggiungi blocco">
+
+
+<button type="submit" class="btn btn-success btn-icon-split" name="addBlock" value="<?=$i?>">
+    <span class="icon text-white-50">
+        <i class="fas fa-plus"></i>
+    </span>
+    <span class="text">Aggiungi un blocco</span>
+</button>
 <br><br>
 
 
-          
-
-         
 
             
 
