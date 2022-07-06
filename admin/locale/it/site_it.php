@@ -302,6 +302,7 @@ $al_colorSucc = "Colore creato";
 $al_colorErr = "Colore non creato";
 $al_colorEmpty = "Colore mancante";
 $al_pageEmpty = "Manca il nome della pagina o il primo blocco";
+$al_pageDataMissing = "Compila tutti i campi della pagina";
 $al_pswEmpty = "Nuova password non fornita";
 $al_postTitleEmpty = "Manca il titolo del post";
 $al_postEmpty = "Errore post: sia il sommario che il contenuto devono essere presenti";

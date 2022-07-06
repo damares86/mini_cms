@@ -102,10 +102,10 @@ if($operation=="add"){
     if(isset($_REQUEST['more'])&&$_REQUEST['more']=="yes"){
         $page->page_name=$_SESSION['sess_page_name'];
         $page->layout=$_SESSION['sess_layout'];
-        $page->img=$_SESSION['sess_img'];
+        $page->header=$_SESSION['sess_header'];
+        // $page->img=$_SESSION['sess_img'];
     }
 }
-
 ?>
 
 
@@ -237,21 +237,25 @@ for($i=1;$i<=$counter;$i++){
     echo "\n";        
     
     ?>
-            <h3><?=$regpage_block?> <?=$i?></h3><br>
+            
+        
+            <?php
+                if($i!=1){
+            ?>
+            <span style="font-weight:bold; font-size: 1.5em;"><?=$regpage_block?> <?=$i?></span> &nbsp; &nbsp;
+            <button type="submit" class="btn btn-primary d-inline" name="rmBlock" value="<?=$i?>">Rimuovi blocco</button><br><br>
+            <?php
+                }else{
+            ?>
+                <span style="font-weight:bold; font-size: 1.5em;"><?=$regpage_block?> <?=$i?></span><br>
+            <?php
+                }
+            ?>
 
 
     <?php
     $var="block$i";
-    $var_b="";
-    // $$var="ok $i";
-    // echo $$var."<br>";
-    if(isset($_REQUEST['more'])&&$_REQUEST['more']=="yes"){
-        // $var_b="content$i";
-        $var_b_session="sess_block$i";
-        // $$var_b="";
-        $var_b = ($_SESSION[''.$var_b_session.'']);
-        // echo $$var_b."<br>";
-    }
+
     
 /////////////////////////////////////////////////////////////////////////// 
       //  DA FARE DA QUI IN POI
@@ -282,8 +286,10 @@ for($i=1;$i<=$counter;$i++){
         $gall="checked_g$i";
         $blog="checked_b$i";
         $page_class="page";
-        $block_type='block'.$i.'_type';
 
+        $block_type='block'.$i.'_type';
+		$sess_type="sess_type_$i";
+        $page->$block_type=$_SESSION[''.$sess_type.''];
         
         $$none="checked";
         $$text="";
@@ -300,7 +306,7 @@ for($i=1;$i<=$counter;$i++){
             $$none="";
         } else if($page->$block_type=="n"){
             $$none = "checked";
-        }else if($operation=="mod"&&!in_array($page->$block_type,$type_arr)){
+        }else if(!in_array($page->$block_type,$type_arr)){
             $$gall = "checked";
             $$none = "";
         }
@@ -358,6 +364,10 @@ for($i=1;$i<=$counter;$i++){
 
         <!-- TEXT BOX -->
         <div class="t<?=$i?> box<?=$i?>">
+            <?php
+            $name="block$i";
+            $page->$name=$_SESSION['sess_editor'.$i.''];
+            ?>
             <textarea id="summernote<?=$i?>" name="editor<?=$i?>" rows="10">   <?=$page->$var?></textarea>
             <br>
             
@@ -410,6 +420,16 @@ for($i=1;$i<=$counter;$i++){
 
 <!-- //////////////////////////////////////////////////////////////////////////// -->
 
+<?php
+        $block_bg='block'.$i.'_bg';
+		$sess_bg="sess_bg_$i";
+        $page->$block_bg=$_SESSION[''.$sess_bg.''];
+
+        $block_text='block'.$i.'_text';
+		$sess_text="sess_text_$i";
+        $page->$block_text=$_SESSION[''.$sess_text.''];
+?>
+
 <div class="control-group">
             <label for="block<?=$i?>_bg"><?=$regpage_background?></label>
             <?php
@@ -429,7 +449,7 @@ for($i=1;$i<=$counter;$i++){
                     extract($row);
                   
                     $selected = "";
-                    if ($color == $page->block1_bg) {
+                    if ($color == $page->$block_bg) {
                         $selected = "selected";
                     }
                     echo "<option value='{$color}' $selected style='background-color:{$color}'>{$color}</option>";
@@ -457,7 +477,7 @@ for($i=1;$i<=$counter;$i++){
                     extract($row);
                   
                     $selected = "";
-                    if ($color == $page->block1_text) {
+                    if ($color == $page->$block_text) {
                         $selected = "selected";
                     }
                     echo "<option value='{$color}' $selected style='background-color:{$color}'>{$color}</option>";

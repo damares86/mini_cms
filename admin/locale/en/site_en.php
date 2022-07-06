@@ -306,6 +306,7 @@ $al_colorErr = "Color not created";
 $al_catEmpty = "Category name missing";
 $al_colorEmpty = "Color missing";
 $al_pageEmpty = "Page name or first block missing";
+$al_pageDataMissing = "Please fill all the fields of the page";
 $al_pswEmpty = "New password missing";
 $al_postTitleEmpty = "Post title missing";
 $al_postEmpty = "Post error: you have to fill both summary and content";

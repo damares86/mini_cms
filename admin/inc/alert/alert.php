@@ -129,6 +129,14 @@ if($msg=="userDelSucc"){
     </div>
 
     <?php    
+} else if($msg=="pageDataMissing"){
+    ?>
+    <div class="alert alert-danger">
+        <button type="button" class="close" data-dismiss="alert">x</button>
+        <?=$al_pageDataMissing?>
+    </div>
+
+    <?php    
 } else if($msg=="pswEmpty"){
     ?>
     <div class="alert alert-danger">

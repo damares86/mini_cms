@@ -28,67 +28,128 @@ if (!isset($_SESSION['loggedin'])) {
 	$menu = new Menu($db);
 
 
+function initCheckSessVar(){
 
-if(filter_input(INPUT_POST,"addBlock")){
+	$_SESSION['error']=0;
+
 	$counter=filter_input(INPUT_POST,"counter");
-	for($i=1;$i<=$counter;$i++){
-		
+
+	if(filter_input(INPUT_POST,"rmBlock")){
+		$remove=filter_input(INPUT_POST,"rmBlock");
+	}
+
+	if(!empty($_POST['page_name'])){
 		$_SESSION['sess_page_name']=$_POST['page_name'];
+	}else{
+		$_SESSION['error']++;
+	}
+
+	if(isset($_POST['layout'])){
 		$_SESSION['sess_layout']=$_POST['layout'];
-		if($_FILES['myfile']){
-			$_SESSION['sess_img']=$_FILES['myfile']['name'];
+	}else{
+		$_SESSION['error']++;
+	}
+
+	if($_FILES['myfile']){
+		$_SESSION['sess_img']=$_FILES['myfile']['name'];
+	}
+
+	$_SESSION['sess_no_mod']=0;
+	$_SESSION['sess_theme']=$_POST['theme'];
+
+	if(isset($_POST['visualSel'])){
+		$_SESSION['sess_header']=$_POST['visualSel'];
+	} else {
+		$_SESSION['sess_header']=0;
+	}		
+
+	for($i=1;$i<=$counter;$i++){
+		$i_real=$i;
+		
+		if(isset($remove)&&$remove<=$i){
+			$i_real++;
 		}
-		$_SESSION['sess_no_mod']=0;
-		$_SESSION['sess_theme']=$_POST['theme'];
 
-		if(isset($_POST['visualSel'])){
-			$_SESSION['sess_header']=$_POST['visualSel'];
-		} else {
-			$_SESSION['sess_header']=0;
-		}		
 
-		$block_name="block$i";
-
+		$block_name="block$i_real";
 		$sess_bg="sess_bg_$i";
 		$_SESSION[''.$sess_bg.'']=$_POST[''.$block_name.'_bg'];
 
 		$sess_text="sess_text_$i";
 		$_SESSION[''.$sess_text.'']=$_POST[''.$block_name.'_text'];
 
-		print_r($_SESSION['sess_text_1']);
-		exit;
 
 		// TYPE
 
 		$$block_name=$_POST[''.$block_name.''][0];
 		$sess_type="sess_type_$i";
 		
-		if($$block_name=="t$i"){
+		if($$block_name=="t$i_real"){
 			$_SESSION[''.$sess_type.'']="t";
-			$_SESSION['sess_editor'.$i.'']=$_POST['editor'.$i.''];
-		} else if($$block_name=="g$i"){
+			$editor = preg_replace('/\s+/', '', $_POST['editor'.$i_real.'']);
+			if(!empty($editor)){
+				$_SESSION['sess_editor'.$i.'']=$_POST['editor'.$i_real.''];
+			}else{
+				$_SESSION['error']++;
+			}
+		} else if($$block_name=="g$i_real"){
 			$gallery=$_POST[''.$block_name.'_gall'];
 			$gallery= str_replace(" ","_", $gallery);
 			$gallery=strtolower($gallery);
 			$_SESSION[''.$sess_type.'']=$gallery;
-		} else if($$block_name=="b$i"){
+		} else if($$block_name=="b$i_real"){
 			$_SESSION[''.$sess_type.'']="b";
-		} else if($$block_name=="n$i"){
+		} else if($$block_name=="n$i_real"){
 			$_SESSION[''.$sess_type.'']="n";
 		}
 
-	
-		print_r($_SESSION['sess_type_1']);
-		exit;
-
 	}
+
+
+}
+
+
+if(filter_input(INPUT_POST,"addBlock")){
+	$counter=filter_input(INPUT_POST,"counter");
+	
+	initCheckSessVar();
+	
+	$msg="";
+	if($_SESSION['error']!=0){
+		$msg="&msg=pageDataMissing";
+	}
+
 	$counter++;
-	header("Location: ../index.php?man=page&op=add&type=custom&count=$counter&more=yes");
+	
+	header("Location: ../index.php?man=page&op=add&type=custom&count=$counter&more=yes$msg");
 	exit;
 
 
-}else if(filter_input(INPUT_POST,"subReg")){
+}else if(filter_input(INPUT_POST,"rmBlock")){
+	$counter=filter_input(INPUT_POST,"counter");
+
+	initCheckSessVar();
+	$counter--;
 	
+	$msg="";
+	if($_SESSION['error']!=0){
+		$msg="&msg=pageDataMissing";
+	}
+
+	
+	header("Location: ../index.php?man=page&op=add&type=custom&count=$counter&more=yes$msg");
+	exit;
+
+}else if(filter_input(INPUT_POST,"subReg")){
+	$counter=filter_input(INPUT_POST,"counter");
+	
+	initCheckSessVar();
+	
+	if($_SESSION['error']!=0){
+		header("Location: ../index.php?man=page&op=add&type=custom&count=$counter&more=yes&msg=pageDataMissing");
+		exit;
+	}
+
 }
 
 exit;
