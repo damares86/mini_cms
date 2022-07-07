@@ -515,9 +515,6 @@ for($i=1;$i<=$counter;$i++){
 
 
             
-
-            <br>
-            <hr>
             
 
 
