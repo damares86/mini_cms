@@ -110,6 +110,16 @@ if($operation=="add"){
         $page->header=$_SESSION['sess_header'];
         // $page->img=$_SESSION['sess_img'];
     }
+}else if($operation=="mod"&&!isset($_REQUEST['more'])){
+        $name=$page->page_name;
+        $name=preg_replace("/\s+/", "_", $name);
+        $name=strtolower($name);
+
+        $json_file = 'inc/pages/'.$name.'.json';
+        $data = file_get_contents($json_file);
+        $json_arr = json_decode($data, true);
+
+        $page-> modCheckSessVar($json_arr);
 }
 ?>
 
@@ -124,8 +134,8 @@ if($operation=="add"){
                 <div class="controls">
                     <strong><?= $_SESSION["sess_old_page_name"] ?></strong>
                     
-                    <input type="hidden" name="old_page_name" value="<?= $page->page_name ?>" />
-                    <input type="text" id="page_name" name="page_name" placeholder="<?=$regpage_name?>" value="<?=$page->page_name?>" class="span8">
+                    <input type="hidden" name="old_page_name" value="<?= $_SESSION["sess_old_page_name"] ?>" />
+                    <input type="text" id="page_name" name="page_name" placeholder="<?=$regpage_name?>" value="<?=$_SESSION['sess_page_name']?>" class="span8">
 
                     
                     <input type="hidden" name="no_mod" value="<?= $page->no_mod ?>" />
@@ -292,9 +302,7 @@ for($i=1;$i<=$counter;$i++){
     <?php
     $var="block$i";
 
-    
-/////////////////////////////////////////////////////////////////////////// 
-      //  DA FARE DA QUI IN POI
+
         echo "<script>";
         echo "\n";        
         echo "$(document).ready(function(){";
@@ -447,8 +455,8 @@ for($i=1;$i<=$counter;$i++){
         
         ?>
         </select>
+        
         </div>
-              
         <!-- BLOG BOX -->
         <div class="b<?=$i?> box<?=$i?> p-3" style="background-color:#f8f9fc">
              <?=$regpage_post_desc?>
@@ -466,7 +474,7 @@ for($i=1;$i<=$counter;$i++){
 		$sess_text="sess_text_$i";
         $page->$block_text=$_SESSION[''.$sess_text.''];
 ?>
-
+<br>
 <div class="control-group">
             <label for="block<?=$i?>_bg"><?=$regpage_background?></label>
             <?php
