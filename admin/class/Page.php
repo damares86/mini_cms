@@ -31,7 +31,124 @@ class Page{
         $this->conn = $db;
     }
 
+    function initCheckSessVar(){
 
+        $_SESSION['error']=0;
+    
+        $counter=filter_input(INPUT_POST,"counter");
+    
+        if(filter_input(INPUT_POST,"rmBlock")){
+            $remove=filter_input(INPUT_POST,"rmBlock");
+        }
+    
+        if(!empty($_POST['page_name'])){
+            $_SESSION['sess_page_name']=$_POST['page_name'];
+        }else{
+            $_SESSION['error']++;
+        }
+    
+        if(isset($_POST['use_name'])){
+            $_SESSION["sess_use_name"]=1;
+        }else{
+            $_SESSION["sess_use_name"]=0;
+        }
+    
+        if(isset($_POST['use_desc'])){
+            $_SESSION["sess_use_desc"]=1;
+        }else{
+            $_SESSION["sess_use_desc"]=0;
+        }
+    
+        if(isset($_POST['layout'])){
+            $_SESSION['sess_layout']=$_POST['layout'];
+        }else{
+            $_SESSION['error']++;
+        }
+    
+        if($_FILES['myfile']['size']!=0){
+            $_SESSION['sess_img']=$_FILES['myfile']['name'];
+        }
+    
+        $_SESSION['sess_no_mod']=0;
+        $_SESSION['sess_theme']=$_POST['theme'];
+    
+        if(isset($_POST['visualSel'])){
+            $_SESSION['sess_header']=$_POST['visualSel'];
+        } else {
+            $_SESSION['sess_header']=0;
+        }		
+    
+        for($i=1;$i<=$counter;$i++){
+            $i_real=$i;
+            
+            if(isset($remove)&&$remove<=$i){
+                $i_real++;
+            }
+    
+    
+            $block_name="block$i_real";
+            $sess_bg="sess_bg_$i";
+            $_SESSION[''.$sess_bg.'']=$_POST[''.$block_name.'_bg'];
+    
+            $sess_text="sess_text_$i";
+            $_SESSION[''.$sess_text.'']=$_POST[''.$block_name.'_text'];
+    
+    
+            // TYPE
+    
+            $$block_name=$_POST[''.$block_name.''][0];
+            $sess_type="sess_type_$i";
+            
+            if($$block_name=="t$i_real"){
+                $_SESSION[''.$sess_type.'']="t";
+                $editor = preg_replace('/\s+/', '', $_POST['editor'.$i_real.'']);
+                if(!empty($editor)){
+                    $_SESSION['sess_editor'.$i.'']=$_POST['editor'.$i_real.''];
+                }else{
+                    $_SESSION['error']++;
+                }
+            } else if($$block_name=="g$i_real"){
+                $gallery=$_POST[''.$block_name.'_gall'];
+                $gallery= str_replace(" ","_", $gallery);
+                $gallery=strtolower($gallery);
+                $_SESSION[''.$sess_type.'']=$gallery;
+            } else if($$block_name=="b$i_real"){
+                $_SESSION[''.$sess_type.'']="b";
+            } else if($$block_name=="n$i_real"){
+                $_SESSION[''.$sess_type.'']="n";
+            }
+    
+        }
+    
+    
+    }
+
+
+    function destroyCheckSessVar(){
+        $_SESSION['error']=0;
+        unset($_SESSION['sess_page_name']);
+        unset($_SESSION['sess_old_page_name']);
+        unset($_SESSION['sess_use_name']);
+        unset($_SESSION['sess_use_desc']);
+        unset($_SESSION['sess_sess_layout']);
+        unset($_SESSION['sess_img']);
+        unset($_SESSION['sess_no_mod']);
+        unset($_SESSION['sess_theme']);
+        unset($_SESSION['sess_header']);
+        $count=$_SESSION['counter'];
+        for($i=1;$i<=$count;$i++){
+            $sess_bg="sess_bg_$i";
+            $sess_text="sess_text_$i";
+            $sess_type="sess_type_$i";
+            unset($_SESSION["$sess_type"]);
+            unset($_SESSION["sess_editor$i"]);
+            unset($_SESSION[''.$sess_bg.'']);
+            unset($_SESSION[''.$sess_text.'']);
+        }
+    
+    }
+
+    
     function insert(){
     if($this->type=="default"){
         $this->table="default_page";

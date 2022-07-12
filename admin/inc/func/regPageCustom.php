@@ -51,6 +51,10 @@ function is_dir_empty($dir) {
 
         $page->showById();
 
+        if(!isset($_SESSION["sess_old_page_name"])){
+            $_SESSION["sess_old_page_name"]= $page->page_name;
+        }
+
         ?>
         <div class="card-body">
  
@@ -118,7 +122,7 @@ if($operation=="add"){
             <div class="control-group">
                 
                 <div class="controls">
-                    <strong><?= $page->page_name ?></strong>
+                    <strong><?= $_SESSION["sess_old_page_name"] ?></strong>
                     
                     <input type="hidden" name="old_page_name" value="<?= $page->page_name ?>" />
                     <input type="text" id="page_name" name="page_name" placeholder="<?=$regpage_name?>" value="<?=$page->page_name?>" class="span8">

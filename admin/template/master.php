@@ -18,7 +18,6 @@ require "admin/template/inc/header.php";
                     ?>
                 <div class="text-right">
                     
-                    <!-- <a href="admin/index.php?man=page&op=edit&idToMod=<?=$page->id?>&type=<?=$type?>" class="btn btn-primary btn-sm"><b><?=$regpage_site_edit?></b></a> -->
                     <a href="admin/index.php?man=page&op=edit&idToMod=<?=$page->id?>" class="btn btn-primary btn-sm"><b><?=$regpage_site_edit?></b></a>
                 </div>
                     <?php
