@@ -140,7 +140,7 @@ if($operation=="add"){
                     
                     <input type="hidden" name="no_mod" value="<?= $page->no_mod ?>" />
             
-                       <input type="hidden" name="type" value="<?= $type ?>" />
+                       <input type="hidden" name="type" value="custom" />
                      
                 </div>
             </div>
@@ -463,7 +463,6 @@ for($i=1;$i<=$counter;$i++){
         </div>
 
 
-<!-- //////////////////////////////////////////////////////////////////////////// -->
 
 <?php
         $block_bg='block'.$i.'_bg';

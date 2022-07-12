@@ -75,17 +75,24 @@ if(filter_input(INPUT_POST,"addBlock")){
 	}
 
 	
-
+	
 	$operation=filter_input(INPUT_POST,"operation");
 	
 	if($operation=="mod"){
+		
 		$page->id=$_POST['idToMod'];
 		
 		$page->page_name=$_POST['page_name'];
 		$page->old_page_name = $_POST['old_page_name'];
-
+		
 		$new =$_POST['page_name'];
+		$new=preg_replace("/\s+/", "_", $new);
+        $new=strtolower($new);
+
 		$old = $_POST['old_page_name'];
+		$old=preg_replace("/\s+/", "_", $old);
+        $old=strtolower($old);
+
 		if(is_file("../inc/pages/$new.json")){
 			unlink("../inc/pages/$new.json");
 			exit;
@@ -98,7 +105,8 @@ if(filter_input(INPUT_POST,"addBlock")){
 		if($page->old_page_name != $page->page_name){
 			$name=$page->old_page_name;
 		}
-
+		
+	
 		
 		if($_FILES['myfile']['name']){
 			$page->img=$_FILES['myfile']['name'];
@@ -117,11 +125,19 @@ if(filter_input(INPUT_POST,"addBlock")){
 			$row1 = $stmt1->fetch(PDO::FETCH_ASSOC);
 			$page->img=$row1['img'];
 		}
+
+
 		
+	}else if($operation="add"){
+		$page->page_name = $_SESSION['sess_page_name'];
+		if(isset($_SESSION['sess_img'])){
+			$page->img=$_SESSION['sess_img'];
+		}else{
+			$page->img="visual.jpg";
+		}
 	}
 
 	$page->type = $_POST['type'];
-	$page->page_name = $_SESSION['sess_page_name'];
 	$page->no_mod=$_SESSION['sess_no_mod'];
 	$page->layout=$_SESSION['sess_layout'];
 	$page->header=$_SESSION['sess_header'];
@@ -129,11 +145,6 @@ if(filter_input(INPUT_POST,"addBlock")){
 	$page->use_desc=$_SESSION['sess_use_desc'];
 	$page->counter=$_SESSION['counter'];
 
-	if(isset($_SESSION['sess_img'])){
-		$page->img=$_SESSION['sess_img'];
-	}else{
-		$page->img="visual.jpg";
-	}
 
 
 		$arr0=array(
@@ -169,6 +180,8 @@ if(filter_input(INPUT_POST,"addBlock")){
 			$arr_tot[]=$$array_name;
 		}
 
+	
+
 		$page_name=preg_replace('/\s+/', '_',$_SESSION['sess_page_name']);
 		$page_name=strtolower($page_name);
 
@@ -178,33 +191,54 @@ if(filter_input(INPUT_POST,"addBlock")){
 		file_put_contents($file, $json, FILE_APPEND);
 		chmod($file,0777);
 
+	
+
 		// create the page
-		if($page->insert()){
+		if($operation=="add"){
+			print_r("ko");
+			exit;
+			if($page->insert()){
 
-			$str=$page->page_name;
-			$str = preg_replace('/\s+/', '_', $str);
+				$str=$page->page_name;
+				$str = preg_replace('/\s+/', '_', $str);
+				
+				$str = strtolower($str);
+
+				if(copy('../template/master.php', '../../master.php')){
+					rename('../../master.php','../../'. $str . '.php');
+					chmod('../../'. $str . '.php',0777);
+
+					$page->destroyCheckSessVar();
+
+					header("Location: ../index.php?man=page&op=show&type=custom&msg=pageSucc");
+					exit;
+				} else {
+					echo "ko";
+				}
 			
-			$str = strtolower($str);
+			}else{
+				header("Location: ../index.php?man=page&op=show&type=custom&msg=pageErr");
+				exit;
+			}
+		}else if($operation=="mod"){
 
-			if(copy('../template/master.php', '../../master.php')){
-				rename('../../master.php','../../'. $str . '.php');
-				chmod('../../'. $str . '.php',0777);
-
+			if($page->update()){
 				$page->destroyCheckSessVar();
 
-				header("Location: ../index.php?man=page&op=show&type=custom&msg=pageSucc");
+				header("Location: ../index.php?man=page&op=show&type=$page->type&msg=pageEditSucc");
 				exit;
-			 } else {
-				 echo "ko";
-			 }
-		
-		}else{
-			header("Location: ../index.php?man=page&op=show&type=custom&msg=pageErr");
-			exit;
+			
+				// empty posted values
+				// $_POST=array();
+			
+			}else{
+				header("Location: ../index.php?man=page&op=show&type=$page->type&msg=pageEditErr");
+				exit;
+			}
 		}
 
 }
-
+print_r("no");
 exit;
 
 

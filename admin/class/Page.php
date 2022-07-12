@@ -97,8 +97,6 @@ class Page{
             // TYPE
     
             $$block_name=$_POST[''.$block_name.''][0];
-            print_r($$block_name);
-            exit;
             $sess_type="sess_type_$i";
             
             if($$block_name=="t$i_real"){
@@ -246,37 +244,20 @@ class Page{
 
 
     function update(){
+
         if($this->type=="default"){
             $this->table="default_page";
         }else if($this->type=="custom"){
             $this->table="page";
             $this->setNo_mod = ", no_mod = :no_mod";
         }
+
         
-        if($this->type=="custom"||($this->type=="default"&&$this->id==1)){
+        if($this->type=="custom"){
+            print_r("ok");
+            exit;
+    
             
-       
-            if($this->block2){
-                $this->setParam2 = ", block2 = :block2";
-                
-            } 
-            
-            if($this->block3){
-                $this->setParam3 = ", block3 = :block3";
-            }
-            
-            if($this->block4){
-                $this->setParam4 = ", block4 = :block4";
-            }
-
-            if($this->block5){
-                $this->setParam5 = ", block5 = :block5";
-            }
-            
-            if($this->block6){
-                $this->setParam6 = ", block6 = :block6";
-            }
-
 
             $stmt="";
 
@@ -286,25 +267,9 @@ class Page{
                 page_name = :page_name".$this->setNo_mod.",
                 layout = :layout,
                 header = :header,
-                block1_type = :block1_type,
-                block1 = :block1,
-                block1_bg = :block1_bg,
-                block1_text = :block1_text,
-                block2_type = :block2_type, 
-                block2_bg = :block2_bg, 
-                block2_text = :block2_text". $this->setParam2 .", 
-                block3_type = :block3_type, 
-                block3_text = :block3_text, 
-                block3_bg = :block3_bg". $this->setParam3 .", 
-                block4_type = :block4_type, 
-                block4_text = :block4_text, 
-                block4_bg = :block4_bg". $this->setParam4 .", 
-                block5_type = :block5_type, 
-                block5_text = :block5_text, 
-                block5_bg = :block5_bg". $this->setParam5 .", 
-                block6_type = :block6_type, 
-                block6_text = :block6_text, 
-                block6_bg = :block6_bg". $this->setParam6 . " WHERE id = :id";
+                use_name = :use_name,
+                use_desc = :use_desc,
+                counter = :counter WHERE id = :id";
               
                 // prepare the query
                 $stmt = $this->conn->prepare($query);
@@ -316,47 +281,9 @@ class Page{
                 }
                 $stmt->bindParam(':layout', $this->layout);    
                 $stmt->bindParam(':header', $this->header);    
-                $stmt->bindParam(':block1_type', $this->block1_type);       
-                $stmt->bindParam(':block1', $this->block1);       
-                $stmt->bindParam(':block1_bg', $this->block1_bg);       
-                $stmt->bindParam(':block1_text', $this->block1_text);       
-                
-                $stmt->bindParam(':block2_type', $this->block2_type);       
-                if($this->block2){
-                    $stmt->bindParam(':block2', $this->block2);       
-                }
-                $stmt->bindParam(':block2_bg', $this->block2_bg);       
-                $stmt->bindParam(':block2_text', $this->block2_text);       
-
-                $stmt->bindParam(':block3_type', $this->block3_type);       
-                if($this->block3){
-                    $stmt->bindParam(':block3', $this->block3);       
-                }
-                $stmt->bindParam(':block3_bg', $this->block3_bg);       
-                $stmt->bindParam(':block3_text', $this->block3_text);       
-
-                $stmt->bindParam(':block4_type', $this->block4_type);       
-                if($this->block4){
-                    $stmt->bindParam(':block4', $this->block4);       
-                }
-                $stmt->bindParam(':block4_bg', $this->block4_bg);       
-                $stmt->bindParam(':block4_text', $this->block4_text);       
-
-                $stmt->bindParam(':block5_type', $this->block5_type);          
-                if($this->block5){
-                    $stmt->bindParam(':block5', $this->block5);       
-                }
-                $stmt->bindParam(':block5_bg', $this->block5_bg);       
-                $stmt->bindParam(':block5_text', $this->block5_text);       
-            
-                $stmt->bindParam(':block6_type', $this->block6_type);       
-                if($this->block6){
-                    $stmt->bindParam(':block6', $this->block6);       
-                }
-                $stmt->bindParam(':block6_bg', $this->block6_bg);       
-                $stmt->bindParam(':block6_text', $this->block6_text);       
-                $stmt->bindParam(':id', $this->id);    
-
+                $stmt->bindParam(':use_name', $this->use_name);    
+                $stmt->bindParam(':use_desc', $this->use_desc);    
+                $stmt->bindParam(':counter', $this->counter);  
             }else if($this->type=="default"&&$this->id!=1){
 
                 $query = "UPDATE
@@ -372,7 +299,8 @@ class Page{
                     $stmt->bindParam(':id', $this->id);   
             }
 		
-
+print_r("ko");
+exit;
             // execute the query, also check if query was successful
             if($stmt->execute()){
 
