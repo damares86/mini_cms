@@ -264,7 +264,6 @@ if($man=="settings"){
 </div>
     </div>
 </div>
-</div>
 
 
 <?php
@@ -510,8 +509,9 @@ if($man=="settings"){
             </div>
         </form>
     </div>
-</div>
 </div></div>
 <?php
 }
 ?>
+</div>
+</div>

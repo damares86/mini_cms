@@ -44,13 +44,25 @@ function initCheckSessVar(){
 		$_SESSION['error']++;
 	}
 
+	if(isset($_POST['use_name'])){
+		$_SESSION["sess_use_name"]=1;
+	}else{
+		$_SESSION["sess_use_name"]=0;
+	}
+
+	if(isset($_POST['use_desc'])){
+		$_SESSION["sess_use_desc"]=1;
+	}else{
+		$_SESSION["sess_use_desc"]=0;
+	}
+
 	if(isset($_POST['layout'])){
 		$_SESSION['sess_layout']=$_POST['layout'];
 	}else{
 		$_SESSION['error']++;
 	}
 
-	if($_FILES['myfile']){
+	if($_FILES['myfile']['size']!=0){
 		$_SESSION['sess_img']=$_FILES['myfile']['name'];
 	}
 
@@ -108,6 +120,29 @@ function initCheckSessVar(){
 
 }
 
+function destroyCheckSessVar(){
+	$_SESSION['error']=0;
+	unset($_SESSION['sess_page_name']);
+	unset($_SESSION['sess_use_name']);
+	unset($_SESSION['sess_use_desc']);
+	unset($_SESSION['sess_sess_layout']);
+	unset($_SESSION['sess_img']);
+	unset($_SESSION['sess_no_mod']);
+	unset($_SESSION['sess_theme']);
+	unset($_SESSION['sess_header']);
+	$count=$_SESSION['counter'];
+	for($i=1;$i<=$count;$i++){
+		$sess_bg="sess_bg_$i";
+		$sess_text="sess_text_$i";
+		$sess_type="sess_type_$i";
+		unset($_SESSION["$sess_type"]);
+		unset($_SESSION["sess_editor$i"]);
+		unset($_SESSION[''.$sess_bg.'']);
+		unset($_SESSION[''.$sess_text.'']);
+	}
+
+}
+
 
 if(filter_input(INPUT_POST,"addBlock")){
 	$counter=filter_input(INPUT_POST,"counter");
@@ -120,6 +155,7 @@ if(filter_input(INPUT_POST,"addBlock")){
 	}
 
 	$counter++;
+	$_SESSION['counter']=$counter;
 	
 	header("Location: ../index.php?man=page&op=add&type=custom&count=$counter&more=yes$msg");
 	exit;
@@ -130,6 +166,8 @@ if(filter_input(INPUT_POST,"addBlock")){
 
 	initCheckSessVar();
 	$counter--;
+	$_SESSION['counter']=$counter;
+
 	
 	$msg="";
 	if($_SESSION['error']!=0){
@@ -150,12 +188,67 @@ if(filter_input(INPUT_POST,"addBlock")){
 		exit;
 	}
 
-	// 	DA QUI L'INSERIMENTO NEL JSON E POI NEL DB
+	
 
 	$operation=filter_input(INPUT_POST,"operation");
 	
+	if($operation=="mod"){
+		$page->id=$_POST['idToMod'];
+		
+		$page->page_name=$_POST['page_name'];
+		$page->old_page_name = $_POST['old_page_name'];
+
+		$new =$_POST['page_name'];
+		$old = $_POST['old_page_name'];
+		if(is_file("../inc/pages/$new.json")){
+			unlink("../inc/pages/$new.json");
+			exit;
+		}else if(is_file("../inc/pages/$old.json")){
+			unlink("../inc/pages/$old.json");
+			exit;
+		}
+		
+		$name=$page->page_name;
+		if($page->old_page_name != $page->page_name){
+			$name=$page->old_page_name;
+		}
+
+		
+		if($_FILES['myfile']['name']){
+			$page->img=$_FILES['myfile']['name'];
+		}else if($page->type=="custom") {
+			$query1="SELECT * FROM page WHERE page_name = :page_name LIMIT 0,1";
+			$stmt1 = $db->prepare($query1);
+			$stmt1->bindParam(':page_name', $name);       
+			$stmt1->execute();
+			$row1 = $stmt1->fetch(PDO::FETCH_ASSOC);
+			$page->img=$row1['img'];
+		}else if($page->type=="default") {
+			$query1="SELECT * FROM default_page WHERE page_name = :page_name LIMIT 0,1";
+			$stmt1 = $db->prepare($query1);
+			$stmt1->bindParam(':page_name', $name);       
+			$stmt1->execute();
+			$row1 = $stmt1->fetch(PDO::FETCH_ASSOC);
+			$page->img=$row1['img'];
+		}
+		
+	}
+
 	$page->type = $_POST['type'];
-	if($operation=="add"){
+	$page->page_name = $_SESSION['sess_page_name'];
+	$page->no_mod=$_SESSION['sess_no_mod'];
+	$page->layout=$_SESSION['sess_layout'];
+	$page->header=$_SESSION['sess_header'];
+	$page->use_name=$_SESSION['sess_use_name'];
+	$page->use_desc=$_SESSION['sess_use_desc'];
+	$page->counter=$_SESSION['counter'];
+
+	if(isset($_SESSION['sess_img'])){
+		$page->img=$_SESSION['sess_img'];
+	}else{
+		$page->img="visual.jpg";
+	}
+
 	
 
 		$arr0=array(
@@ -163,7 +256,7 @@ if(filter_input(INPUT_POST,"addBlock")){
 			"no_mod"	=> $_SESSION['sess_no_mod'],
 			"layout"	=> $_SESSION['sess_layout'],
 			"theme"		=> $_SESSION['sess_theme'],
-			"img"		=> $_SESSION['sess_img'],
+			"img"		=> $page->img,
 			"header"	=> $_SESSION['sess_header']
 		);
 
@@ -201,23 +294,44 @@ if(filter_input(INPUT_POST,"addBlock")){
 			$arr_tot[]=$$array_name;
 		}
 
- 		$file=''.$_SESSION['sess_page_name'].'.json';
+		$page_name=preg_replace('/\s+/', '_',$_SESSION['sess_page_name']);
+		$page_name=strtolower($page_name);
+
+ 		$file='../inc/pages/'.$page_name.'.json';
 		$json=json_encode($arr_tot);
 
 		file_put_contents($file, $json, FILE_APPEND);
-		chmod("test.json",0777);
+		chmod($file,0777);
 
-		// "block1"=>array(
-		// 	"block1_type"=> 't',
-		// 	"block1"	=> $_POST['editor1'],
-		// 	"block1_bg"	=> $_POST['block1_bg'],
-		// 	"block1_text"=>$_POST['block1_text']
-		// 	)
+		// create the page
+		if($page->insert()){
+
+			$str=$page->page_name;
+			$str = preg_replace('/\s+/', '_', $str);
+			
+			$str = strtolower($str);
+
+			if(copy('../template/master.php', '../../master.php')){
+				rename('../../master.php','../../'. $str . '.php');
+				chmod('../../'. $str . '.php',0777);
+
+				destroyCheckSessVar();
+
+				header("Location: ../index.php?man=page&op=show&type=custom&msg=pageSucc");
+				exit;
+			 } else {
+				 echo "ko";
+			 }
 		
+		}else{
+			header("Location: ../index.php?man=page&op=show&type=custom&msg=pageErr");
+			exit;
+		}
 
 
+		// DISTRUGGERE VARIABILI DI SESSIONE
 
-	}
+
 }
 
 exit;

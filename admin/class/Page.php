@@ -5,11 +5,6 @@ class Page{
 
     private $conn;
     private $table_name = "page";
-    private $setParam2;
-    private $setParam3;
-    private $setParam4;
-    private $setParam5;
-    private $setParam6; 
     private $table;
     private $setNo_mod;
 
@@ -20,100 +15,42 @@ class Page{
     public $old_page_name;
     public $page_name;
     public $no_mod;
+    public $use_name;
+    public $use_desc;
     public $layout;
     public $header;
     public $img;
+    public $counter;
     public $in_menu;
     public $item_order;
     public $parent;
     public $child_of;
-    public $block1_type;
-    public $block1;
-    public $block1_bg;
-    public $block1_text;
-    public $block2_type;
-    public $block2;
-    public $block2_bg;
-    public $block2_text;
-    public $block3_type;
-    public $block3;
-    public $block3_bg;
-    public $block3_text;
-    public $block4_type;
-    public $block4;
-    public $block4_bg;
-    public $block4_text;
-    public $block5_type;
-    public $block5;
-    public $block5_bg;
-    public $block5_text;
-    public $block6_type;
-    public $block6;
-    public $block6_bg;
-    public $block6_text;
 
     // constructor
     public function __construct($db){
         $this->conn = $db;
     }
 
-    // create new role record
+
     function insert(){
-
-        if($this->type=="default"){
-            $this->table="default_page";
-        }else if($this->type=="custom"){
-            $this->table="page";
-        }
-
-        if($this->block2){
-            $this->setParam2 = ", block2 = :block2";
-            
-        } 
-        
-        if($this->block3){
-            $this->setParam3 = ", block3 = :block3";
-        }
-        
-        if($this->block4){
-            $this->setParam4 = ", block4 = :block4";
-        }
-
-        if($this->block5){
-            $this->setParam5 = ", block5 = :block5";
-        }
-        
-        if($this->block6){
-            $this->setParam6 = ", block6 = :block6";
-        }
-        // insert query
-        $query = "INSERT INTO
+    if($this->type=="default"){
+        $this->table="default_page";
+    }else if($this->type=="custom"){
+        $this->table="page";
+    }
+    
+    // insert query
+    $query = "INSERT INTO
         " . $this->table_name . "
         SET
         page_name = :page_name,
         no_mod = :no_mod,
         layout = :layout,
         header = :header,
-        block1_type = :block1_type,
-        block1 = :block1,
-        block1_bg = :block1_bg,
-        block1_text = :block1_text,
-        block2_type = :block2_type, 
-        block2_bg = :block2_bg, 
-        block2_text = :block2_text". $this->setParam2 .", 
-        block3_type = :block3_type, 
-        block3_text = :block3_text, 
-        block3_bg = :block3_bg". $this->setParam3 .", 
-        block4_type = :block4_type, 
-        block4_text = :block4_text, 
-        block4_bg = :block4_bg". $this->setParam4 .", 
-        block5_type = :block5_type, 
-        block5_text = :block5_text, 
-        block5_bg = :block5_bg". $this->setParam5 .", 
-        block6_type = :block6_type, 
-        block6_text = :block6_text, 
-        block6_bg = :block6_bg". $this->setParam6 ."";
-      
+        use_name = :use_name,
+        use_desc = :use_desc,
+        counter = :counter";
+     
         // prepare the query
         $stmt = $this->conn->prepare($query);
         
@@ -122,46 +59,10 @@ class Page{
         $stmt->bindParam(':no_mod', $this->no_mod);       
         $stmt->bindParam(':layout', $this->layout);    
         $stmt->bindParam(':header', $this->header);    
-        $stmt->bindParam(':block1_type', $this->block1_type);       
-        $stmt->bindParam(':block1', $this->block1);       
-        $stmt->bindParam(':block1_bg', $this->block1_bg);       
-        $stmt->bindParam(':block1_text', $this->block1_text);       
+        $stmt->bindParam(':use_name', $this->use_name);    
+        $stmt->bindParam(':use_desc', $this->use_desc);    
+        $stmt->bindParam(':counter', $this->counter);    
         
-        $stmt->bindParam(':block2_type', $this->block2_type);       
-        if($this->block2){
-            $stmt->bindParam(':block2', $this->block2);       
-        }
-        $stmt->bindParam(':block2_bg', $this->block2_bg);       
-        $stmt->bindParam(':block2_text', $this->block2_text);       
-
-        $stmt->bindParam(':block3_type', $this->block3_type);       
-        if($this->block3){
-            $stmt->bindParam(':block3', $this->block3);       
-        }
-        $stmt->bindParam(':block3_bg', $this->block3_bg);       
-        $stmt->bindParam(':block3_text', $this->block3_text);       
-
-        $stmt->bindParam(':block4_type', $this->block4_type);       
-        if($this->block4){
-            $stmt->bindParam(':block4', $this->block4);       
-        }
-        $stmt->bindParam(':block4_bg', $this->block4_bg);       
-        $stmt->bindParam(':block4_text', $this->block4_text);       
-
-        $stmt->bindParam(':block5_type', $this->block5_type);          
-        if($this->block5){
-            $stmt->bindParam(':block5', $this->block5);       
-        }
-        $stmt->bindParam(':block5_bg', $this->block5_bg);       
-        $stmt->bindParam(':block5_text', $this->block5_text);       
-    
-        $stmt->bindParam(':block6_type', $this->block6_type);       
-        if($this->block6){
-            $stmt->bindParam(':block6', $this->block6);       
-        }
-        $stmt->bindParam(':block6_bg', $this->block6_bg);       
-        $stmt->bindParam(':block6_text', $this->block6_text);      
-  
         // execute the query, also check if query was successful
         if($stmt->execute()){
             $this->uploadPhoto();

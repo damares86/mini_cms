@@ -50,6 +50,7 @@ function is_dir_empty($dir) {
         $page->id = $idToMod;
 
         $page->showById();
+
         ?>
         <div class="card-body">
  
@@ -156,7 +157,32 @@ if($operation=="add"){
                 </div>
             </div>
             <br>
+            <div class="control-group">
 
+            <hr>
+            <?php
+                $checked_name="checked";
+                $checked_desc="checked";
+                if(isset($_SESSION['sess_use_name'])&&$_SESSION['sess_use_name']==0){
+                    $checked_name="";
+                }
+
+                if(isset($_SESSION['sess_use_desc'])&&$_SESSION['sess_use_desc']==0){
+                    $checked_desc="";
+                }
+
+    
+                while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
+        
+                    extract($row);
+            ?>
+            <input type="checkbox" name="use_name" value="1" <?=$checked_name?>> Use site name (<b><?=$site_name?></b>)<br><br>
+            <input type="checkbox" name="use_desc" value="1" <?=$checked_desc?>> Use site description (<b><?=$site_description?></b>)<br>
+            <?php
+                // }
+                ?>
+                <hr>
+            </div>
             <br>
             <?php
                 $display="";
@@ -190,9 +216,9 @@ if($operation=="add"){
 $img=$page->img;
 $page_theme="";
 
-while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
+// while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
 
-     extract($row);
+//      extract($row);
 
      $page_theme=$theme;
      if(!($page->img)){
@@ -303,7 +329,7 @@ for($i=1;$i<=$counter;$i++){
         $$blog="";
         
         $type_arr = array("t","b","n");
-        
+        if($operation=="mod"||(isset($_SESSION[''.$sess_type.'']))){
         if($page->$block_type=="t"){
             $$text="checked";                
             $$none="";
@@ -316,6 +342,7 @@ for($i=1;$i<=$counter;$i++){
             $$gall = "checked";
             $$none = "";
         }
+    }
 
             if($$text=="checked"){
               
