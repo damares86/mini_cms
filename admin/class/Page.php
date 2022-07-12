@@ -517,10 +517,8 @@ class Page{
         $query = "SELECT *
         FROM " . $this->table_name . "
         WHERE page_name = :page_name
-        LIMIT 0,1";
+        LIMIT 0,1";      
         
-
-
         $stmt = $this->conn->prepare( $query );
         $stmt->bindParam(':page_name', $this->page_name);       
         $stmt->execute();
@@ -532,33 +530,10 @@ class Page{
         $this->no_mod = $row['no_mod'];
         $this->layout = $row['layout'];
         $this->header = $row['header'];
+        $this->use_name = $row['use_name'];
+        $this->use_desc = $row['use_desc'];
         $this->img = $row['img'];
-        $this->block1_type = $row['block1_type'];
-        $this->block1 = $row['block1'];
-        $this->block1_bg = $row['block1_bg'];
-        $this->block1_text = $row['block1_text'];
-        $this->block2_type = $row['block2_type'];
-        $this->block2 = $row['block2'];
-        $this->block2_bg = $row['block2_bg'];
-        $this->block2_text = $row['block2_text'];
-        $this->block3_type = $row['block3_type'];
-        $this->block3 = $row['block3'];
-        $this->block3_bg = $row['block3_bg'];
-        $this->block3_text = $row['block3_text'];
-        $this->block4_type = $row['block4_type'];
-        $this->block4 = $row['block4'];
-        $this->block4_bg = $row['block4_bg'];
-        $this->block4_text = $row['block4_text'];
-        $this->block5_type = $row['block5_type'];
-        $this->block5 = $row['block5'];
-        $this->block5_bg = $row['block5_bg'];
-        $this->block5_text = $row['block5_text'];
-        $this->block6_type = $row['block6_type'];
-        $this->block6 = $row['block6'];
-        $this->block6_bg = $row['block6_bg'];
-        $this->block6_text = $row['block6_text'];
-
-
+        $this->counter = $row['counter']; 
     }
 
     function showByIdDefault(){

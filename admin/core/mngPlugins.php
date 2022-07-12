@@ -33,10 +33,10 @@ if(filter_input(INPUT_GET,"name")){
     $plugins->plugin_name=$plugin_name;
     $plugins->page_exist=$page_exist;
   if($op=="enable"){
+
         $plugins->active=1;
         if($plugins->updateActive()){   
             $home->name_function=$name;
-
             if($home->create()){
                 if($second_page){
                     $home->name_function=$second_page;

@@ -17,7 +17,6 @@ class Home{
 
     // create new role record
     function create(){
-
         // insert query
         $query = "INSERT INTO
                     " . $this->table_name . "

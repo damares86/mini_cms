@@ -251,15 +251,18 @@ if(filter_input(INPUT_POST,"addBlock")){
 
 	
 
-		$arr0=array(
-			"name"		=> $_SESSION['sess_page_name'],
-			"no_mod"	=> $_SESSION['sess_no_mod'],
-			"layout"	=> $_SESSION['sess_layout'],
-			"theme"		=> $_SESSION['sess_theme'],
-			"img"		=> $page->img,
-			"header"	=> $_SESSION['sess_header']
-		);
+		// $arr0=array(
+		// 	"name"		=> $_SESSION['sess_page_name'],
+		// 	"no_mod"	=> $_SESSION['sess_no_mod'],
+		// 	"layout"	=> $_SESSION['sess_layout'],
+		// 	"theme"		=> $_SESSION['sess_theme'],
+		// 	"img"		=> $page->img,
+		// 	"header"	=> $_SESSION['sess_header']
+		// );
 
+		$arr0=array(
+			"name"		=> $_SESSION['sess_page_name']
+		);
 
 
 		for($i=1;$i<=$counter;$i++){
@@ -269,21 +272,17 @@ if(filter_input(INPUT_POST,"addBlock")){
 			$array_name="arr$i";
 			if($_SESSION["$sess_type"]=="t"){
 				$$array_name=array(
-					"block$i" =>array(
 						'block'.$i.'_type' 	=> $_SESSION["$sess_type"], 
 						'block'.$i.''		=> $_SESSION["sess_editor$i"],
 						'block'.$i.'_bg'	=> $_SESSION[''.$sess_bg.''],
 						'block'.$i.'_text'  => $_SESSION[''.$sess_text.'']
-					)
 				);
 			}else{
 				$$array_name=array(
-					"block$i" =>array(
 						'block'.$i.'_type' 	=> $_SESSION["$sess_type"],
 						'block'.$i.'_bg'	=> $_SESSION[''.$sess_bg.''],
 						'block'.$i.'_text'  => $_SESSION[''.$sess_text.'']
-					)
-			);
+				);
 		}
 	}
 
