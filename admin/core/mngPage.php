@@ -74,83 +74,30 @@ if(filter_input(INPUT_POST,"addBlock")){
 		exit;
 	}
 
-	
+	$page->type=$_POST['type'];
 	
 	$operation=filter_input(INPUT_POST,"operation");
 	
-	if($operation=="mod"){
-		
-		$page->id=$_POST['idToMod'];
-		
-		$page->page_name=$_POST['page_name'];
-		$page->old_page_name = $_POST['old_page_name'];
-		
-		$new =$_POST['page_name'];
-		$new=preg_replace("/\s+/", "_", $new);
-        $new=strtolower($new);
+	if($operation=="add"){
 
-		$old = $_POST['old_page_name'];
-		$old=preg_replace("/\s+/", "_", $old);
-        $old=strtolower($old);
-
-		if(is_file("../inc/pages/$new.json")){
-			unlink("../inc/pages/$new.json");
-			exit;
-		}else if(is_file("../inc/pages/$old.json")){
-			unlink("../inc/pages/$old.json");
-			exit;
-		}
-		
-		$name=$page->page_name;
-		if($page->old_page_name != $page->page_name){
-			$name=$page->old_page_name;
-		}
-		
-	
-		
-		if($_FILES['myfile']['name']){
-			$page->img=$_FILES['myfile']['name'];
-		}else if($page->type=="custom") {
-			$query1="SELECT * FROM page WHERE page_name = :page_name LIMIT 0,1";
-			$stmt1 = $db->prepare($query1);
-			$stmt1->bindParam(':page_name', $name);       
-			$stmt1->execute();
-			$row1 = $stmt1->fetch(PDO::FETCH_ASSOC);
-			$page->img=$row1['img'];
-		}else if($page->type=="default") {
-			$query1="SELECT * FROM default_page WHERE page_name = :page_name LIMIT 0,1";
-			$stmt1 = $db->prepare($query1);
-			$stmt1->bindParam(':page_name', $name);       
-			$stmt1->execute();
-			$row1 = $stmt1->fetch(PDO::FETCH_ASSOC);
-			$page->img=$row1['img'];
-		}
-
-
-		
-	}else if($operation="add"){
 		$page->page_name = $_SESSION['sess_page_name'];
+
 		if(isset($_SESSION['sess_img'])){
 			$page->img=$_SESSION['sess_img'];
 		}else{
 			$page->img="visual.jpg";
 		}
-	}
 
-	$page->type = $_POST['type'];
-	$page->no_mod=$_SESSION['sess_no_mod'];
-	$page->layout=$_SESSION['sess_layout'];
-	$page->header=$_SESSION['sess_header'];
-	$page->use_name=$_SESSION['sess_use_name'];
-	$page->use_desc=$_SESSION['sess_use_desc'];
-	$page->counter=$_SESSION['counter'];
-
-
+		$page->no_mod=$_SESSION['sess_no_mod'];
+		$page->layout=$_SESSION['sess_layout'];
+		$page->header=$_SESSION['sess_header'];
+		$page->use_name=$_SESSION['sess_use_name'];
+		$page->use_desc=$_SESSION['sess_use_desc'];
+		$page->counter=$_SESSION['counter'];
 
 		$arr0=array(
 			"name"		=> $_SESSION['sess_page_name']
 		);
-
 
 		for($i=1;$i<=$counter;$i++){
 			$sess_type="sess_type_$i";
@@ -170,8 +117,8 @@ if(filter_input(INPUT_POST,"addBlock")){
 						'block'.$i.'_bg'	=> $_SESSION[''.$sess_bg.''],
 						'block'.$i.'_text'  => $_SESSION[''.$sess_text.'']
 				);
+			}
 		}
-	}
 
 		$arr_tot=array($arr0);
 
@@ -179,7 +126,6 @@ if(filter_input(INPUT_POST,"addBlock")){
 			$array_name="arr$i";
 			$arr_tot[]=$$array_name;
 		}
-
 	
 
 		$page_name=preg_replace('/\s+/', '_',$_SESSION['sess_page_name']);
@@ -191,53 +137,156 @@ if(filter_input(INPUT_POST,"addBlock")){
 		file_put_contents($file, $json, FILE_APPEND);
 		chmod($file,0777);
 
-	
-
-		// create the page
-		if($operation=="add"){
-			print_r("ko");
-			exit;
 			if($page->insert()){
 
-				$str=$page->page_name;
-				$str = preg_replace('/\s+/', '_', $str);
-				
-				$str = strtolower($str);
-
-				if(copy('../template/master.php', '../../master.php')){
-					rename('../../master.php','../../'. $str . '.php');
-					chmod('../../'. $str . '.php',0777);
-
-					$page->destroyCheckSessVar();
-
-					header("Location: ../index.php?man=page&op=show&type=custom&msg=pageSucc");
-					exit;
-				} else {
-					echo "ko";
-				}
+			$str=$page->page_name;
+			$str = preg_replace('/\s+/', '_', $str);
 			
-			}else{
+			$str = strtolower($str);
+
+			if(copy('../template/master.php', '../../master.php')){
+				rename('../../master.php','../../'. $str . '.php');
+				chmod('../../'. $str . '.php',0777);
+
+				$page->destroyCheckSessVar();
+
+				header("Location: ../index.php?man=page&op=show&type=custom&msg=pageSucc");
+				exit;
+			} else {
 				header("Location: ../index.php?man=page&op=show&type=custom&msg=pageErr");
 				exit;
 			}
-		}else if($operation=="mod"){
+		
+		}else{
+			header("Location: ../index.php?man=page&op=show&type=custom&msg=pageErr");
+			exit;
+		}
+	}else if($operation=="mod"){
+		
+		$page->id=$_POST['idToMod'];
+		
+		$page->page_name=$_POST['page_name'];
+		$page->old_page_name = $_POST['old_page_name'];
 
-			if($page->update()){
-				$page->destroyCheckSessVar();
+		$new =$_POST['page_name'];
+		$new=preg_replace("/\s+/", "_", $new);
+        $new=strtolower($new);
+	
+		$old = $_POST['old_page_name'];
+		$old=preg_replace("/\s+/", "_", $old);
+        $old=strtolower($old);
 
-				header("Location: ../index.php?man=page&op=show&type=$page->type&msg=pageEditSucc");
-				exit;
-			
-				// empty posted values
-				// $_POST=array();
-			
-			}else{
-				header("Location: ../index.php?man=page&op=show&type=$page->type&msg=pageEditErr");
-				exit;
-			}
+		if(is_file("../inc/pages/$new.json")){
+			rename("../inc/pages/$new.json",'../inc/pages/'.$new.'_tmp.json');
+		}else if(is_file("../inc/pages/$old.json")){
+			rename("../inc/pages/$old.json",'../inc/pages/'.$old.'_tmp.json');
+		}
+		
+		$name=$page->page_name;
+		if($page->old_page_name != $page->page_name){
+			$name=$page->old_page_name;
 		}
 
+		$page->no_mod=$_SESSION['sess_no_mod'];
+		$page->layout=$_SESSION['sess_layout'];
+		$page->header=$_SESSION['sess_header'];
+		$page->use_name=$_SESSION['sess_use_name'];
+		$page->use_desc=$_SESSION['sess_use_desc'];
+		$page->counter=$_SESSION['counter'];
+	
+		if($_FILES['myfile']['name']){
+			$page->img=$_FILES['myfile']['name'];
+		}else if($page->type=="custom") {
+			$query1="SELECT * FROM page WHERE page_name = :page_name LIMIT 0,1";
+			$stmt1 = $db->prepare($query1);
+			$stmt1->bindParam(':page_name', $name);       
+			$stmt1->execute();
+			$row1 = $stmt1->fetch(PDO::FETCH_ASSOC);
+			$page->img=$row1['img'];
+		}else if($page->type=="default") {
+			$query1="SELECT * FROM default_page WHERE page_name = :page_name LIMIT 0,1";
+			$stmt1 = $db->prepare($query1);
+			$stmt1->bindParam(':page_name', $name);       
+			$stmt1->execute();
+			$row1 = $stmt1->fetch(PDO::FETCH_ASSOC);
+			$page->img=$row1['img'];
+		}
+
+
+
+		if($page->update()){
+
+			$arr0=array(
+				"name"		=> $_SESSION['sess_page_name']
+			);
+	
+			for($i=1;$i<=$counter;$i++){
+				$sess_type="sess_type_$i";
+				$sess_bg="sess_bg_$i";
+				$sess_text="sess_text_$i";
+				$array_name="arr$i";
+				if($_SESSION["$sess_type"]=="t"){
+					$$array_name=array(
+							'block'.$i.'_type' 	=> $_SESSION["$sess_type"], 
+							'block'.$i.''		=> $_SESSION["sess_editor$i"],
+							'block'.$i.'_bg'	=> $_SESSION[''.$sess_bg.''],
+							'block'.$i.'_text'  => $_SESSION[''.$sess_text.'']
+					);
+				}else{
+					$$array_name=array(
+							'block'.$i.'_type' 	=> $_SESSION["$sess_type"],
+							'block'.$i.'_bg'	=> $_SESSION[''.$sess_bg.''],
+							'block'.$i.'_text'  => $_SESSION[''.$sess_text.'']
+					);
+				}
+			}
+	
+			$arr_tot=array($arr0);
+	
+			for($i=1;$i<=$counter;$i++){
+				$array_name="arr$i";
+				$arr_tot[]=$$array_name;
+			}
+		
+	
+			$page_name=preg_replace('/\s+/', '_',$_SESSION['sess_page_name']);
+			$page_name=strtolower($page_name);
+	
+			$file='../inc/pages/'.$page_name.'.json';
+			$json=json_encode($arr_tot);
+	
+			if(file_put_contents($file, $json, FILE_APPEND)){
+				chmod($file,0777);
+				if(is_file('../inc/pages/'.$new.'_tmp.json')){
+					unlink('../inc/pages/'.$new.'_tmp.json');
+				}else if(is_file('../inc/pages/'.$old.'_tmp.json')){
+					unlink('../inc/pages/'.$old.'_tmp.json');
+				}
+
+			}else{
+				if(is_file('../inc/pages/'.$new.'_tmp.json')){
+					rename('../inc/pages/'.$new.'_tmp.json',"../inc/pages/$name.json");
+				}else if(is_file('../inc/pages/'.$old.'_tmp.json')){
+					rename('../inc/pages/'.$old.'_tmp.json',"../inc/pages/$name.json");
+				}
+			}
+
+			$page->destroyCheckSessVar();
+
+			header("Location: ../index.php?man=page&op=show&type=$page->type&msg=pageEditSucc");
+			exit;
+		
+			// empty posted values
+			// $_POST=array();
+		
+		}else{
+			header("Location: ../index.php?man=page&op=show&type=$page->type&msg=pageEditErr");
+			exit;
+		}
+	}
+
 }
+
 print_r("no");
 exit;
 

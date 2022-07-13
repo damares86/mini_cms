@@ -101,7 +101,7 @@ class Page{
             
             if($$block_name=="t$i_real"){
                 $_SESSION[''.$sess_type.'']="t";
-                $editor = preg_replace('/\s+/', '', $_POST['editor'.$i_real.'']);
+                $editor = preg_replace('/^\s+/', '', $_POST['editor'.$i_real.'']);
                 if(!empty($editor)){
                     $_SESSION['sess_editor'.$i.'']=$_POST['editor'.$i_real.''];
                 }else{
@@ -254,9 +254,6 @@ class Page{
 
         
         if($this->type=="custom"){
-            print_r("ok");
-            exit;
-    
             
 
             $stmt="";
@@ -284,6 +281,8 @@ class Page{
                 $stmt->bindParam(':use_name', $this->use_name);    
                 $stmt->bindParam(':use_desc', $this->use_desc);    
                 $stmt->bindParam(':counter', $this->counter);  
+                $stmt->bindParam(':id', $this->id);   
+
             }else if($this->type=="default"&&$this->id!=1){
 
                 $query = "UPDATE
@@ -298,12 +297,9 @@ class Page{
                     $stmt->bindParam(':header', $this->header);      
                     $stmt->bindParam(':id', $this->id);   
             }
-		
-print_r("ko");
-exit;
+
             // execute the query, also check if query was successful
             if($stmt->execute()){
-
                 if($this->old_page_name != $this->page_name){
                     $query3="SELECT * FROM menu WHERE pagename = :page_name LIMIT 0,1";
                     $stmt3 = $this->conn->prepare($query3);
@@ -340,7 +336,6 @@ exit;
                     }
                     
                 }
-
                 $query1="SELECT * FROM ".$this->table." WHERE page_name = :page_name LIMIT 0,1";
                 $stmt1 = $this->conn->prepare($query1);
                 $stmt1->bindParam(':page_name', $this->page_name);       
@@ -362,6 +357,7 @@ exit;
                 return true;
 
             }else{
+
                 $this->showError($stmt);
                 return false;
             }

@@ -153,7 +153,7 @@ if($operation=="add"){
                 </label>
                 <div class="controls">
                     <?php
-                    $pageLayout=$page->layout;
+                    $pageLayout=$_SESSION['sess_layout'];
                    
                     foreach (glob("template/layout/*") as $file) {
                         if( is_file($file) ){
