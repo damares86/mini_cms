@@ -41,12 +41,14 @@ class Page{
             $remove=filter_input(INPUT_POST,"rmBlock");
         }
     
+
         if(!empty($_POST['page_name'])){
             $_SESSION['sess_page_name']=$_POST['page_name'];
         }else{
             $_SESSION['error']++;
         }
-    
+ 
+
         if(isset($_POST['use_name'])){
             $_SESSION["sess_use_name"]=1;
         }else{
@@ -70,6 +72,9 @@ class Page{
         }
     
         $_SESSION['sess_no_mod']=0;
+        if($_SESSION['sess_page_name']=="index"){
+            $_SESSION['sess_no_mod']=1;
+        }
         $_SESSION['sess_theme']=$_POST['theme'];
     
         if(isset($_POST['visualSel'])){
@@ -251,14 +256,13 @@ class Page{
             $this->table="page";
             $this->setNo_mod = ", no_mod = :no_mod";
         }
-
         
         if($this->type=="custom"){
             
-
+            
             $stmt="";
-
-                $query = "UPDATE
+            
+            $query = "UPDATE
                 " . $this->table . "
                 SET
                 page_name = :page_name".$this->setNo_mod.",
@@ -267,6 +271,7 @@ class Page{
                 use_name = :use_name,
                 use_desc = :use_desc,
                 counter = :counter WHERE id = :id";
+                
               
                 // prepare the query
                 $stmt = $this->conn->prepare($query);
@@ -299,8 +304,11 @@ class Page{
             }
 
             // execute the query, also check if query was successful
-            if($stmt->execute()){
+            if($stmt->execute()){            
+
                 if($this->old_page_name != $this->page_name){
+                    print_r($this->old_page_name);
+                    exit;
                     $query3="SELECT * FROM menu WHERE pagename = :page_name LIMIT 0,1";
                     $stmt3 = $this->conn->prepare($query3);
                     $stmt3->bindParam(':page_name', $this->old_page_name);       
@@ -336,6 +344,9 @@ class Page{
                     }
                     
                 }
+
+         
+
                 $query1="SELECT * FROM ".$this->table." WHERE page_name = :page_name LIMIT 0,1";
                 $stmt1 = $this->conn->prepare($query1);
                 $stmt1->bindParam(':page_name', $this->page_name);       
@@ -357,7 +368,6 @@ class Page{
                 return true;
 
             }else{
-
                 $this->showError($stmt);
                 return false;
             }

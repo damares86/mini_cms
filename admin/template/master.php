@@ -10,6 +10,8 @@ require "admin/template/inc/header.php";
                 $page->page_name=$page_name;
                 
                 $stmt=$page->showByName();
+                $type="custom";
+                $count=$page->counter;
                 ?>
                 <div id="content">
                 <?php
@@ -18,7 +20,7 @@ require "admin/template/inc/header.php";
                     ?>
                 <div class="text-right">
                     
-                    <a href="admin/index.php?man=page&op=edit&idToMod=<?=$page->id?>" class="btn btn-primary btn-sm"><b><?=$regpage_site_edit?></b></a>
+                    <a href="admin/index.php?man=page&op=edit&idToMod=<?=$page->id?>&type=<?=$type?>&count=<?=$count?>" class="btn btn-primary btn-sm"><b><?=$regpage_site_edit?></b></a>
                 </div>
                     <?php
                 }

@@ -175,12 +175,10 @@ $db->query("CREATE TABLE IF NOT EXISTS page
 $db->query("CREATE TABLE IF NOT EXISTS default_page
               ( id INT ( 5 ) NOT NULL AUTO_INCREMENT PRIMARY KEY,
                 page_name VARCHAR(255) NOT NULL,
-                layout VARCHAR(255) NOT NULL DEFAULT 'default',
                 header INT (1) DEFAULT '1',
                 use_name INT (1) DEFAULT '1',
                 use_desc INT (1) DEFAULT '1',
-                img VARCHAR(255) NOT NULL DEFAULT 'visual.jpg',
-                counter INT(5) DEFAULT '1')
+                img VARCHAR(255) NOT NULL DEFAULT 'visual.jpg')
                 ");
 
 
@@ -265,19 +263,19 @@ VALUES ('1','index', '1', 'default', '1', '1', '1', 'visual.jpg', '1')
 ");
 
 $db->query("INSERT INTO default_page 
-(id, page_name, layout, header, use_name, use_desc, img, counter) 
-VALUES ('1','Login', 'default', '1', '1', '1', 'visual.jpg', '1')
+(id, page_name, header, use_name, use_desc, img) 
+VALUES ('1','Login', '1', '1', '1', 'visual.jpg')
 ");
 
 $db->query("INSERT INTO default_page 
-(id, page_name, layout, header, use_name, use_desc, img, counter) 
-VALUES ('2','Contact', 'default', '1', '1', '1', 'visual.jpg', '1')
+(id, page_name, header, use_name, use_desc, img) 
+VALUES ('2','Contact', '1', '1', '1', 'visual.jpg')
 ");
 
 
 $db->query("INSERT INTO default_page 
-(id, page_name, layout, header, use_name, use_desc, img, counter) 
-VALUES ('4','Gallery', 'default', '1', '1', '1', 'visual.jpg', '1')
+(id, page_name, header, use_name, use_desc, img) 
+VALUES ('3','Gallery', '1', '1', '1', 'visual.jpg')
 ");
 
 $db->query("INSERT INTO menu 

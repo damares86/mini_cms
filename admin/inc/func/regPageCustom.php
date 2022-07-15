@@ -51,11 +51,12 @@ function is_dir_empty($dir) {
 
         $page->showById();
 
-        if(!isset($_SESSION["sess_old_page_name"])){
-            $_SESSION["sess_old_page_name"]= $page->page_name;
-        }
+        // if(!isset($_SESSION["sess_old_page_name"])){
+        //     $_SESSION["sess_old_page_name"]= $page->page_name;
+        // }
 
         ?>
+
         <div class="card-body">
  
             <a href="#" class="btn btn-primary btn-icon-split" data-toggle="modal" data-target="#infoPage">
@@ -102,6 +103,9 @@ if($operation=="add"){
     // $page->page_name="";
     // $page->layout="";
     // $page->img="";
+    if(!isset($_REQUEST['more'])){
+        $page->destroyCheckSessVar();
+    }
 
 
     if(isset($_REQUEST['more'])&&$_REQUEST['more']=="yes"){
@@ -111,6 +115,8 @@ if($operation=="add"){
         // $page->img=$_SESSION['sess_img'];
     }
 }else if($operation=="mod"&&!isset($_REQUEST['more'])){
+        $page->destroyCheckSessVar();
+        $_SESSION["sess_old_page_name"]= $page->page_name;
         $name=$page->page_name;
         $name=preg_replace("/\s+/", "_", $name);
         $name=strtolower($name);
@@ -132,11 +138,22 @@ if($operation=="add"){
             <div class="control-group">
                 
                 <div class="controls">
-                    <strong><?= $_SESSION["sess_old_page_name"] ?></strong>
-                    
+                    <strong><?php echo $_SESSION["sess_old_page_name"] ?></strong>
                     <input type="hidden" name="old_page_name" value="<?= $_SESSION["sess_old_page_name"] ?>" />
-                    <input type="text" id="page_name" name="page_name" placeholder="<?=$regpage_name?>" value="<?=$_SESSION['sess_page_name']?>" class="span8">
 
+                    <?php
+                        if($operation=="mod"&&$page->page_name == "index"){
+                            print_r("ciao");
+                            exit;
+                    ?>
+                        <input type="hidden" name="page_name" value="<?= $page->page_name?>" />
+                    <?php
+                        }else{
+                    ?>
+                    <input type="text" id="page_name" name="page_name" placeholder="<?=$regpage_name?>" value="<?=$_SESSION['sess_page_name']?>" class="span8">
+                    <?php
+                        }
+                    ?>
                     
                     <input type="hidden" name="no_mod" value="<?= $page->no_mod ?>" />
             
@@ -539,6 +556,7 @@ for($i=1;$i<=$counter;$i++){
 }
 ?>
 <input type="hidden" name="counter" value="<?= $counter ?>" />
+
 
 
 
