@@ -200,16 +200,22 @@ while ($row = $stmt2->fetch(PDO::FETCH_ASSOC)){
                 <div id="banner-wrapper">
 					<div id="banner" class="box container" style="background-image: url(<?=$root?>uploads/img/<?=$img?>);">
 						<div class="row">
-                            <?php
-                            if($use_text==1){
-                            ?>
 							<div class="col-7 col-12-medium">
+                            <?php
+                            if($page->use_name==1){
+                            ?>
 								<h2><?=$site_name?></h2>
+                            <?php
+                            }
+                            
+                            if($page->use_desc==1){
+                            ?>
+
 								<p><?=$site_description?></p>
-							</div>
                             <?php
                             }
                             ?>
+							</div>
 						</div>
 					</div>
 				</div>

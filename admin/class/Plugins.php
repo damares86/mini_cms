@@ -97,12 +97,10 @@ class Plugins{
                 $query1= "INSERT INTO  default_page      
                 SET
                 page_name = :page_name,
-                layout = 'default',
                 header = 1,
-                img = 'visual.jpg',
                 use_name = 1,
                 use_desc = 1,
-                counter = 1";
+                img = 'visual.jpg'";
 
                     // prepare the query
                 $stmt1 = $this->conn->prepare($query1);

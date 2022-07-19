@@ -143,8 +143,6 @@ if($operation=="add"){
 
                     <?php
                         if($operation=="mod"&&$page->page_name == "index"){
-                            print_r("ciao");
-                            exit;
                     ?>
                         <input type="hidden" name="page_name" value="<?= $page->page_name?>" />
                     <?php

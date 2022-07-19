@@ -3,18 +3,7 @@
 require "admin/template/inc/header.php";
 
 
-// if(!is_file('admin/class/Database.php')){
-// 	require "admin/inc/dbdata.php";
 
-// }
-
-// session_start();
-
-
-// if (isset($_SESSION['loggedin'])) {
-	// 	header('Location: admin/');
-	// 	exit;
-	// }
 	?>
 
 <div id="bottomContainer">
