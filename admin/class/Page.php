@@ -186,6 +186,7 @@ class Page{
             unset($_SESSION[''.$sess_bg.'']);
             unset($_SESSION[''.$sess_text.'']);
         }
+        unset($_SESSION['counter']);
     
     }
 
@@ -288,27 +289,54 @@ class Page{
                 $stmt->bindParam(':counter', $this->counter);  
                 $stmt->bindParam(':id', $this->id);   
 
-            }else if($this->type=="default"&&$this->id!=1){
+            }else if($this->type=="default"){
 
+           
                 $query = "UPDATE
                     default_page
                     SET
-                    header = :header
+                    header = :header,
+                    use_name = :use_name,
+                    use_desc = :use_desc
                     WHERE
                     id = :id";
 
                     $stmt = $this->conn->prepare($query);
                     
                     $stmt->bindParam(':header', $this->header);      
+                    $stmt->bindParam(':use_name', $this->use_name);      
+                    $stmt->bindParam(':use_desc', $this->use_desc);      
                     $stmt->bindParam(':id', $this->id);   
+
+                    if($stmt->execute()){  
+                        $query1="SELECT * FROM ".$this->table." WHERE page_name = :page_name LIMIT 0,1";
+                        $stmt1 = $this->conn->prepare($query1);
+                        $stmt1->bindParam(':page_name', $this->page_name);       
+                        $stmt1->execute();
+                        $row1 = $stmt1->fetch(PDO::FETCH_ASSOC);
+                        $actualImage=$row1['img'];
+                        if($this->header!=0){
+                            if(($this->img)==$actualImage){
+                                return true;
+                            }else{
+        
+                                if($this->uploadPhoto()){
+                                    return true;
+                                }else{
+                                    return false;
+                                }
+                            }
+                        }
+                        return true;
+                    }else{
+                        return false;
+                    }
             }
 
             // execute the query, also check if query was successful
-            if($stmt->execute()){            
+            if($stmt->execute()){    
 
                 if($this->old_page_name != $this->page_name){
-                    print_r($this->old_page_name);
-                    exit;
                     $query3="SELECT * FROM menu WHERE pagename = :page_name LIMIT 0,1";
                     $stmt3 = $this->conn->prepare($query3);
                     $stmt3->bindParam(':page_name', $this->old_page_name);       

@@ -66,6 +66,17 @@ if (!isset($_SESSION['loggedin'])) {
 
 if(filter_input(INPUT_POST,"addBlock")){
 	$counter=filter_input(INPUT_POST,"counter");
+	$operation=filter_input(INPUT_POST,"operation");
+	if($operation=="mod"){
+		$op="edit";
+	}else{
+		$op="add";
+	}
+	$idText="";
+	if(filter_input(INPUT_POST,"idToMod")){
+		$id=filter_input(INPUT_POST,"idToMod");
+		$idText="&idToMod=$id";
+	}
 	
 	$page->initCheckSessVar();
 	
@@ -77,12 +88,23 @@ if(filter_input(INPUT_POST,"addBlock")){
 	$counter++;
 	$_SESSION['counter']=$counter;
 	
-	header("Location: ../index.php?man=page&op=add&type=custom&count=$counter&more=yes$msg");
+	header("Location: ../index.php?man=page&op=$op&type=custom$idText&count=$counter&more=yes$msg");
 	exit;
 
 
 }else if(filter_input(INPUT_POST,"rmBlock")){
 	$counter=filter_input(INPUT_POST,"counter");
+	$operation=filter_input(INPUT_POST,"operation");
+	if($operation=="mod"){
+		$op="edit";
+	}else{
+		$op="add";
+	}
+	$idText="";
+	if(filter_input(INPUT_POST,"idToMod")){
+		$id=filter_input(INPUT_POST,"idToMod");
+		$idText="&idToMod=$id";
+	}
 
 	$page->initCheckSessVar();
 
@@ -97,18 +119,90 @@ if(filter_input(INPUT_POST,"addBlock")){
 	}
 
 	
-	header("Location: ../index.php?man=page&op=add&type=custom&count=$counter&more=yes$msg");
+	header("Location: ../index.php?man=page&op=$op&type=custom$idText&count=$counter&more=yes$msg");
 	exit;
+
+}else if(filter_input(INPUT_GET,"op")){
+
+	$idToCopy=filter_input(INPUT_GET,"idToMod");
+
+	$page->id=$idToCopy;
+
+	$page->showById();
+
+	$name =$page->page_name;
+	$name = preg_replace('/\s+/', '_', $name);
+	$name = strtolower($name);
+
+	if(copy('../../'.$name.'.php', '../../'.$name.'_copy.php')){
+		chmod('../../'.$name.'_copy.php',0777);
+		if(copy('../inc/pages/'.$name.'.json','../inc/pages/'.$name.'_copy.json')){
+
+			$page->copyPage();
+
+			header("Location: ../index.php?man=page&op=show&type=custom&msg=pageCopySucc");
+			exit;
+		}else {
+			header("Location: ../index.php?man=page&op=show&type=custom&msg=pageCopyErr");
+			exit;
+		 }
+	 } else {
+		header("Location: ../index.php?man=page&op=show&type=custom&msg=pageCopyErr");
+		exit;
+	 }
 
 }else if(filter_input(INPUT_POST,"subReg")){
 
 	$type=filter_input(INPUT_POST,"type");
 
 	if($type=="default"){
-		print_r("ok");
-		exit;
 
-		$idToMod=filter_input
+		$page->type=filter_input(INPUT_POST,"type");
+
+		$idToMod=filter_input(INPUT_POST,"idToMod");
+
+		$page->id=$idToMod;
+
+		$page->page_name=$_POST['page_name'];
+		if(isset($_POST['use_name'])){
+			$page->use_name=1;
+		}else{
+			$page->use_name=0;
+		}
+
+		if(isset($_POST['use_desc'])){
+			$page->use_desc=1;
+		}else{
+			$page->use_desc=0;
+		}
+
+		if(isset($_POST['visualSel'])){
+			$page->header=1;
+		}else{
+			$page->header=0;
+		}
+		
+		if($_FILES['myfile']['name']){
+			$page->img=$_FILES['myfile']['name'];
+		}else{
+			$query1="SELECT * FROM default_page WHERE page_name = :page_name LIMIT 0,1";
+			$stmt1 = $db->prepare($query1);
+			$stmt1->bindParam(':page_name', $page->page_name);       
+			$stmt1->execute();
+			$row1 = $stmt1->fetch(PDO::FETCH_ASSOC);
+			$page->img=$row1['img'];
+		}
+
+		if($page->update()){
+			header("Location: ../index.php?man=page&op=show&type=default&msg=pageEditSucc");
+			exit;
+		}else{
+			header("Location: ../index.php?man=page&op=show&type=default&msg=pageEditErr");
+			exit;
+		}
+
+
+
 	}
 
 
@@ -152,13 +246,21 @@ if(filter_input(INPUT_POST,"addBlock")){
 			$sess_bg="sess_bg_$i";
 			$sess_text="sess_text_$i";
 			$array_name="arr$i";
+
+			// if($_SESSION["$sess_type"]=="n"){
+			// 	// $i--;
+			// 	$i=$i-1;
+			// 	break;
+			// }else 
 			if($_SESSION["$sess_type"]=="t"){
+				$editor = preg_replace('/^\s+/', '', $_SESSION["sess_editor$i"]);
 				$$array_name=array(
 						'block'.$i.'_type' 	=> $_SESSION["$sess_type"], 
-						'block'.$i.''		=> $_SESSION["sess_editor$i"],
+						'block'.$i.''		=> $editor,
 						'block'.$i.'_bg'	=> $_SESSION[''.$sess_bg.''],
 						'block'.$i.'_text'  => $_SESSION[''.$sess_text.'']
 				);
+	
 			}else{
 				$$array_name=array(
 						'block'.$i.'_type' 	=> $_SESSION["$sess_type"],
@@ -276,7 +378,7 @@ if(filter_input(INPUT_POST,"addBlock")){
 					$sess_bg="sess_bg_$i";
 					$sess_text="sess_text_$i";
 					$array_name="arr$i";
-					if($_SESSION["$sess_type"]=="t"){
+				if($_SESSION["$sess_type"]=="t"){
 						$$array_name=array(
 								'block'.$i.'_type' 	=> $_SESSION["$sess_type"], 
 								'block'.$i.''		=> $_SESSION["sess_editor$i"],

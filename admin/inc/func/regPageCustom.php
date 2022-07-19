@@ -98,7 +98,7 @@ function is_dir_empty($dir) {
 if(filter_input(INPUT_GET,"count")){
     $counter=filter_input(INPUT_GET,"count");
 }
-
+$_SESSION['counter']=$counter;
 if($operation=="add"){
     // $page->page_name="";
     // $page->layout="";
