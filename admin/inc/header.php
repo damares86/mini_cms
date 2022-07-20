@@ -50,6 +50,7 @@ include "inc/class_initialize.php";
 
 
 $total_user=$user->countAll();
+$total_pages=$page->countAllCustom();
 
 
 

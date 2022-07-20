@@ -36,14 +36,7 @@ if($man=="settings"){
 
         <form class="form-horizontal row-fluid" action="core/mngSettings.php" method="POST" enctype="multipart/form-data">
             <input type="hidden" name="id" value="<?= $id ?>" />
-            
-            <?php
-            if($row['use_text']==1){
-                $checked="checked";
-            }
 
-            ?>
-            <input type="checkbox" name="use_text" value="1" <?=$checked?>> <?=$site_siteshow?><br><br>
 
 
             <div class="control-group">

@@ -163,23 +163,17 @@ $user_id=$_SESSION['user_id'];
                                         </div>
                                     </a>
                                 </div>
-                                <?php
-                                $settings=new Settings($db);
-                                $stmt = $settings->showSettings();
-                                while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
-                
-                                    extract($row);
-                                ?>
+             
                                      <!-- Earnings (Monthly) Card Example -->
                                 <div class="col-xl-4 col-md-6 mb-4">
-                                    <a href="index.php?man=color&op=show">
+                                    <a href="index.php?man=page&op=show&type=custom">
                                             <div class="card border-left-info shadow h-100 py-2">
                                                 <div class="card-body">
                                                     <div class="row no-gutters align-items-center">
                                                         <div class="col mr-2">
                                                             <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
                                                                 <?=$home_tab3?></div>
-                                                            <div class="h5 mb-0 font-weight-bold text-gray-800"><?=$theme?></div>
+                                                            <div class="h5 mb-0 font-weight-bold text-gray-800"><?=$total_pages?></div>
                                                         </div>
                                                         <div class="col-auto">
                                                             <i class="fas fa-image fa-2x text-gray-300"></i>
@@ -189,10 +183,7 @@ $user_id=$_SESSION['user_id'];
                                             </div>
                                         </a>
                                     </div>
-                                <?php
-                                }
-                                ?>
-        
+
                                
                                        
                                     </div>
@@ -208,11 +199,11 @@ $user_id=$_SESSION['user_id'];
                                         </div>
                                         <div class="card-body"> 
                                             <p>
-                                                <a href="https://minicms.altervista.org/" target="_blank">&rarr; Mini Cms</a>:
+                                                <a href="https://docs.google.com/document/d/1ueqfbE5TEzNY-HnbNTx3_yq-gbmd0OuvLpVuREQzqwA/edit?usp=sharing" target="_blank">&rarr; Mini Cms</a>:
                                                 <?=$home_link1?>
                                             </p>
                                             <p>
-                                                <a href="https://github.com/damares86/mini_cms" target="_blank">&rarr; GitHub</a>:
+                                                <a href="https://www.dmweblab.com/" target="_blank">&rarr; DM WebLab</a>:
                                                 <?=$home_link2?>
                                             </p>
                                         </div>
