@@ -205,8 +205,8 @@ if($operation=="add"){
         
                     extract($row);
             ?>
-            <input type="checkbox" name="use_name" value="1" <?=$checked_name?>> Use site name (<b><?=$site_name?></b>)<br><br>
-            <input type="checkbox" name="use_desc" value="1" <?=$checked_desc?>> Use site description (<b><?=$site_description?></b>)<br>
+            <input type="checkbox" name="use_name" value="1" <?=$checked_name?>> <?=$regpage_use_name?> (<b><?=$site_name?></b>)<br><br>
+            <input type="checkbox" name="use_desc" value="1" <?=$checked_desc?>> <?=$regpage_use_description?> (<b><?=$site_description?></b>)<br>
             <?php
                 // }
                 ?>
@@ -302,7 +302,7 @@ for($i=1;$i<=$counter;$i++){
                 <span class="icon text-white-50">
                     <i class="fas fa-trash"></i>
                 </span>
-                <span class="text">Rimuovi blocco</span>
+                <span class="text"><?=$regpage_rm_block?></span>
             </button><br><br>
             <!-- <button type="submit" class="btn btn-primary d-inline" name="rmBlock" value="<?=$i?>">Rimuovi blocco</button><br><br> -->
             <?php
@@ -562,7 +562,7 @@ for($i=1;$i<=$counter;$i++){
     <span class="icon text-white-50">
         <i class="fas fa-plus"></i>
     </span>
-    <span class="text">Aggiungi un blocco</span>
+    <span class="text"><?=$regpage_add_block?></span>
 </button>
 <br><br>
 
