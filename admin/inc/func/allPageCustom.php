@@ -63,10 +63,10 @@
                 <td><a href="../<?=$str?>.php"><?=$allpage_view?></a></td>
                 <td>
                     <?php
-                    if($no_mod==0){
+                    if($no_mod==0||$page_name=="index"){
                         ?>
 
-                <a href="index.php?man=page&op=edit&idToMod=<?=$row["id"]?>&type=custom" class="btn btn-warning btn-icon-split">
+                <a href="index.php?man=page&op=edit&idToMod=<?=$row["id"]?>&type=custom&count=<?=$row["counter"]?>" class="btn btn-warning btn-icon-split">
                             <span class="icon text-white-50">
                                 <i class="fas fa-pen"></i>
                             </span>
@@ -78,7 +78,7 @@
                 </td>
                 <td>                
                     <?php
-                    if($no_mod==0){
+                    if($no_mod==0||$page_name=="index"){
                     ?>
 
                 <a href="core/mngPage.php?op=copy&idToMod=<?=$row["id"]?>" class="btn btn-info btn-icon-split">

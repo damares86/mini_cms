@@ -5,11 +5,6 @@ class Page{
 
     private $conn;
     private $table_name = "page";
-    private $setParam2;
-    private $setParam3;
-    private $setParam4;
-    private $setParam5;
-    private $setParam6; 
     private $table;
     private $setNo_mod;
 
@@ -20,100 +15,201 @@ class Page{
     public $old_page_name;
     public $page_name;
     public $no_mod;
+    public $use_name;
+    public $use_desc;
     public $layout;
     public $header;
     public $img;
+    public $counter;
     public $in_menu;
     public $item_order;
     public $parent;
     public $child_of;
-    public $block1_type;
-    public $block1;
-    public $block1_bg;
-    public $block1_text;
-    public $block2_type;
-    public $block2;
-    public $block2_bg;
-    public $block2_text;
-    public $block3_type;
-    public $block3;
-    public $block3_bg;
-    public $block3_text;
-    public $block4_type;
-    public $block4;
-    public $block4_bg;
-    public $block4_text;
-    public $block5_type;
-    public $block5;
-    public $block5_bg;
-    public $block5_text;
-    public $block6_type;
-    public $block6;
-    public $block6_bg;
-    public $block6_text;
 
     // constructor
     public function __construct($db){
         $this->conn = $db;
     }
 
-    // create new role record
-    function insert(){
+    function initCheckSessVar(){
 
-        if($this->type=="default"){
-            $this->table="default_page";
-        }else if($this->type=="custom"){
-            $this->table="page";
+        $_SESSION['error']=0;
+    
+        $counter=filter_input(INPUT_POST,"counter");
+    
+        if(filter_input(INPUT_POST,"rmBlock")){
+            $remove=filter_input(INPUT_POST,"rmBlock");
         }
+    
 
-        if($this->block2){
-            $this->setParam2 = ", block2 = :block2";
+        if(!empty($_POST['page_name'])){
+            $_SESSION['sess_page_name']=$_POST['page_name'];
+        }else{
+            $_SESSION['error']++;
+        }
+ 
+
+        if(isset($_POST['use_name'])){
+            $_SESSION["sess_use_name"]=1;
+        }else{
+            $_SESSION["sess_use_name"]=0;
+        }
+    
+        if(isset($_POST['use_desc'])){
+            $_SESSION["sess_use_desc"]=1;
+        }else{
+            $_SESSION["sess_use_desc"]=0;
+        }
+    
+        if(isset($_POST['layout'])){
+            $_SESSION['sess_layout']=$_POST['layout'];
+        }else{
+            $_SESSION['error']++;
+        }
+    
+        if($_FILES['myfile']['size']!=0){
+            $_SESSION['sess_img']=$_FILES['myfile']['name'];
+        }
+    
+        $_SESSION['sess_no_mod']=0;
+        if($_SESSION['sess_page_name']=="index"){
+            $_SESSION['sess_no_mod']=1;
+        }
+        $_SESSION['sess_theme']=$_POST['theme'];
+    
+        if(isset($_POST['visualSel'])){
+            $_SESSION['sess_header']=$_POST['visualSel'];
+        } else {
+            $_SESSION['sess_header']=0;
+        }		
+    
+        for($i=1;$i<=$counter;$i++){
+            $i_real=$i;
             
-        } 
-        
-        if($this->block3){
-            $this->setParam3 = ", block3 = :block3";
+            if(isset($remove)&&$remove<=$i){
+                $i_real++;
+            }
+    
+    
+            $block_name="block$i_real";
+            $sess_bg="sess_bg_$i";
+            $_SESSION[''.$sess_bg.'']=$_POST[''.$block_name.'_bg'];
+    
+            $sess_text="sess_text_$i";
+            $_SESSION[''.$sess_text.'']=$_POST[''.$block_name.'_text'];
+    
+    
+            // TYPE
+    
+            $$block_name=$_POST[''.$block_name.''][0];
+            $sess_type="sess_type_$i";
+            
+            if($$block_name=="t$i_real"){
+                $_SESSION[''.$sess_type.'']="t";
+                $editor = preg_replace('/^\s+/', '', $_POST['editor'.$i_real.'']);
+                if(!empty($editor)){
+                    $_SESSION['sess_editor'.$i.'']=$_POST['editor'.$i_real.''];
+                }else{
+                    $_SESSION['error']++;
+                }
+            } else if($$block_name=="g$i_real"){
+                $gallery=$_POST[''.$block_name.'_gall'];
+                $gallery= str_replace(" ","_", $gallery);
+                $gallery=strtolower($gallery);
+                $_SESSION[''.$sess_type.'']=$gallery;
+            } else if($$block_name=="b$i_real"){
+                $_SESSION[''.$sess_type.'']="b";
+            } else if($$block_name=="n$i_real"){
+                $_SESSION[''.$sess_type.'']="n";
+            }
+    
         }
-        
-        if($this->block4){
-            $this->setParam4 = ", block4 = :block4";
-        }
+    
+    
+    }
 
-        if($this->block5){
-            $this->setParam5 = ", block5 = :block5";
+    function modCheckSessVar($json_arr){
+
+        $_SESSION['error']=0;
+    
+        $counter=filter_input(INPUT_GET,"count");
+    
+        $_SESSION['sess_page_name']=$this->page_name;
+        $_SESSION["sess_use_name"]=$this->use_name;
+        $_SESSION["sess_use_desc"]=$this->use_desc;
+        $_SESSION['sess_layout']=$this->layout;
+        $_SESSION['sess_img']=$this->img;
+        $_SESSION['sess_no_mod']=$this->no_mod;
+        $_SESSION['sess_theme']=$this->theme;
+        $_SESSION['sess_header']=$this->header;
+    
+        for($i=1;$i<=$counter;$i++){       
+    
+            $block_name="block$i";
+            $sess_bg="sess_bg_$i";
+            $_SESSION[''.$sess_bg.'']=$json_arr[$i]['block'.$i.'_bg'];
+    
+            $sess_text="sess_text_$i";
+            $_SESSION[''.$sess_text.'']=$json_arr[$i]['block'.$i.'_text'];
+    
+    
+            // TYPE
+    
+            $$block_name=$_POST[''.$block_name.''][0];
+            $sess_type="sess_type_$i";
+            $_SESSION[''.$sess_type.'']=$json_arr[$i]['block'.$i.'_type'];
+            
+            if($_SESSION[''.$sess_type.'']=="t"){
+                $_SESSION['sess_editor'.$i.'']=$json_arr[$i]['block'.$i.''];
+                }    
         }
-        
-        if($this->block6){
-            $this->setParam6 = ", block6 = :block6";
+    }
+
+    function destroyCheckSessVar(){
+        $_SESSION['error']=0;
+        unset($_SESSION['sess_page_name']);
+        unset($_SESSION['sess_old_page_name']);
+        unset($_SESSION['sess_use_name']);
+        unset($_SESSION['sess_use_desc']);
+        unset($_SESSION['sess_sess_layout']);
+        unset($_SESSION['sess_img']);
+        unset($_SESSION['sess_no_mod']);
+        unset($_SESSION['sess_theme']);
+        unset($_SESSION['sess_header']);
+        $count=$_SESSION['counter'];
+        for($i=1;$i<=$count;$i++){
+            $sess_bg="sess_bg_$i";
+            $sess_text="sess_text_$i";
+            $sess_type="sess_type_$i";
+            unset($_SESSION["$sess_type"]);
+            unset($_SESSION["sess_editor$i"]);
+            unset($_SESSION[''.$sess_bg.'']);
+            unset($_SESSION[''.$sess_text.'']);
         }
-        // insert query
-        $query = "INSERT INTO
+        unset($_SESSION['counter']);
+    
+    }
+
+    
+    function insert(){
+    if($this->type=="default"){
+        $this->table="default_page";
+    }else if($this->type=="custom"){
+        $this->table="page";
+    }
+    
+    // insert query
+    $query = "INSERT INTO
         " . $this->table_name . "
         SET
         page_name = :page_name,
         no_mod = :no_mod,
         layout = :layout,
         header = :header,
-        block1_type = :block1_type,
-        block1 = :block1,
-        block1_bg = :block1_bg,
-        block1_text = :block1_text,
-        block2_type = :block2_type, 
-        block2_bg = :block2_bg, 
-        block2_text = :block2_text". $this->setParam2 .", 
-        block3_type = :block3_type, 
-        block3_text = :block3_text, 
-        block3_bg = :block3_bg". $this->setParam3 .", 
-        block4_type = :block4_type, 
-        block4_text = :block4_text, 
-        block4_bg = :block4_bg". $this->setParam4 .", 
-        block5_type = :block5_type, 
-        block5_text = :block5_text, 
-        block5_bg = :block5_bg". $this->setParam5 .", 
-        block6_type = :block6_type, 
-        block6_text = :block6_text, 
-        block6_bg = :block6_bg". $this->setParam6 ."";
-      
+        use_name = :use_name,
+        use_desc = :use_desc,
+        counter = :counter";
+     
         // prepare the query
         $stmt = $this->conn->prepare($query);
         
@@ -122,46 +218,10 @@ class Page{
         $stmt->bindParam(':no_mod', $this->no_mod);       
         $stmt->bindParam(':layout', $this->layout);    
         $stmt->bindParam(':header', $this->header);    
-        $stmt->bindParam(':block1_type', $this->block1_type);       
-        $stmt->bindParam(':block1', $this->block1);       
-        $stmt->bindParam(':block1_bg', $this->block1_bg);       
-        $stmt->bindParam(':block1_text', $this->block1_text);       
+        $stmt->bindParam(':use_name', $this->use_name);    
+        $stmt->bindParam(':use_desc', $this->use_desc);    
+        $stmt->bindParam(':counter', $this->counter);    
         
-        $stmt->bindParam(':block2_type', $this->block2_type);       
-        if($this->block2){
-            $stmt->bindParam(':block2', $this->block2);       
-        }
-        $stmt->bindParam(':block2_bg', $this->block2_bg);       
-        $stmt->bindParam(':block2_text', $this->block2_text);       
-
-        $stmt->bindParam(':block3_type', $this->block3_type);       
-        if($this->block3){
-            $stmt->bindParam(':block3', $this->block3);       
-        }
-        $stmt->bindParam(':block3_bg', $this->block3_bg);       
-        $stmt->bindParam(':block3_text', $this->block3_text);       
-
-        $stmt->bindParam(':block4_type', $this->block4_type);       
-        if($this->block4){
-            $stmt->bindParam(':block4', $this->block4);       
-        }
-        $stmt->bindParam(':block4_bg', $this->block4_bg);       
-        $stmt->bindParam(':block4_text', $this->block4_text);       
-
-        $stmt->bindParam(':block5_type', $this->block5_type);          
-        if($this->block5){
-            $stmt->bindParam(':block5', $this->block5);       
-        }
-        $stmt->bindParam(':block5_bg', $this->block5_bg);       
-        $stmt->bindParam(':block5_text', $this->block5_text);       
-    
-        $stmt->bindParam(':block6_type', $this->block6_type);       
-        if($this->block6){
-            $stmt->bindParam(':block6', $this->block6);       
-        }
-        $stmt->bindParam(':block6_bg', $this->block6_bg);       
-        $stmt->bindParam(':block6_text', $this->block6_text);      
-  
         // execute the query, also check if query was successful
         if($stmt->execute()){
             $this->uploadPhoto();
@@ -190,6 +250,7 @@ class Page{
 
 
     function update(){
+
         if($this->type=="default"){
             $this->table="default_page";
         }else if($this->type=="custom"){
@@ -197,58 +258,21 @@ class Page{
             $this->setNo_mod = ", no_mod = :no_mod";
         }
         
-        if($this->type=="custom"||($this->type=="default"&&$this->id==1)){
+        if($this->type=="custom"){
             
-       
-            if($this->block2){
-                $this->setParam2 = ", block2 = :block2";
-                
-            } 
             
-            if($this->block3){
-                $this->setParam3 = ", block3 = :block3";
-            }
-            
-            if($this->block4){
-                $this->setParam4 = ", block4 = :block4";
-            }
-
-            if($this->block5){
-                $this->setParam5 = ", block5 = :block5";
-            }
-            
-            if($this->block6){
-                $this->setParam6 = ", block6 = :block6";
-            }
-
-
             $stmt="";
-
-                $query = "UPDATE
+            
+            $query = "UPDATE
                 " . $this->table . "
                 SET
                 page_name = :page_name".$this->setNo_mod.",
                 layout = :layout,
                 header = :header,
-                block1_type = :block1_type,
-                block1 = :block1,
-                block1_bg = :block1_bg,
-                block1_text = :block1_text,
-                block2_type = :block2_type, 
-                block2_bg = :block2_bg, 
-                block2_text = :block2_text". $this->setParam2 .", 
-                block3_type = :block3_type, 
-                block3_text = :block3_text, 
-                block3_bg = :block3_bg". $this->setParam3 .", 
-                block4_type = :block4_type, 
-                block4_text = :block4_text, 
-                block4_bg = :block4_bg". $this->setParam4 .", 
-                block5_type = :block5_type, 
-                block5_text = :block5_text, 
-                block5_bg = :block5_bg". $this->setParam5 .", 
-                block6_type = :block6_type, 
-                block6_text = :block6_text, 
-                block6_bg = :block6_bg". $this->setParam6 . " WHERE id = :id";
+                use_name = :use_name,
+                use_desc = :use_desc,
+                counter = :counter WHERE id = :id";
+                
               
                 // prepare the query
                 $stmt = $this->conn->prepare($query);
@@ -260,65 +284,57 @@ class Page{
                 }
                 $stmt->bindParam(':layout', $this->layout);    
                 $stmt->bindParam(':header', $this->header);    
-                $stmt->bindParam(':block1_type', $this->block1_type);       
-                $stmt->bindParam(':block1', $this->block1);       
-                $stmt->bindParam(':block1_bg', $this->block1_bg);       
-                $stmt->bindParam(':block1_text', $this->block1_text);       
-                
-                $stmt->bindParam(':block2_type', $this->block2_type);       
-                if($this->block2){
-                    $stmt->bindParam(':block2', $this->block2);       
-                }
-                $stmt->bindParam(':block2_bg', $this->block2_bg);       
-                $stmt->bindParam(':block2_text', $this->block2_text);       
+                $stmt->bindParam(':use_name', $this->use_name);    
+                $stmt->bindParam(':use_desc', $this->use_desc);    
+                $stmt->bindParam(':counter', $this->counter);  
+                $stmt->bindParam(':id', $this->id);   
 
-                $stmt->bindParam(':block3_type', $this->block3_type);       
-                if($this->block3){
-                    $stmt->bindParam(':block3', $this->block3);       
-                }
-                $stmt->bindParam(':block3_bg', $this->block3_bg);       
-                $stmt->bindParam(':block3_text', $this->block3_text);       
+            }else if($this->type=="default"){
 
-                $stmt->bindParam(':block4_type', $this->block4_type);       
-                if($this->block4){
-                    $stmt->bindParam(':block4', $this->block4);       
-                }
-                $stmt->bindParam(':block4_bg', $this->block4_bg);       
-                $stmt->bindParam(':block4_text', $this->block4_text);       
-
-                $stmt->bindParam(':block5_type', $this->block5_type);          
-                if($this->block5){
-                    $stmt->bindParam(':block5', $this->block5);       
-                }
-                $stmt->bindParam(':block5_bg', $this->block5_bg);       
-                $stmt->bindParam(':block5_text', $this->block5_text);       
-            
-                $stmt->bindParam(':block6_type', $this->block6_type);       
-                if($this->block6){
-                    $stmt->bindParam(':block6', $this->block6);       
-                }
-                $stmt->bindParam(':block6_bg', $this->block6_bg);       
-                $stmt->bindParam(':block6_text', $this->block6_text);       
-                $stmt->bindParam(':id', $this->id);    
-
-            }else if($this->type=="default"&&$this->id!=1){
-
+           
                 $query = "UPDATE
                     default_page
                     SET
-                    header = :header
+                    header = :header,
+                    use_name = :use_name,
+                    use_desc = :use_desc
                     WHERE
                     id = :id";
 
                     $stmt = $this->conn->prepare($query);
                     
                     $stmt->bindParam(':header', $this->header);      
+                    $stmt->bindParam(':use_name', $this->use_name);      
+                    $stmt->bindParam(':use_desc', $this->use_desc);      
                     $stmt->bindParam(':id', $this->id);   
+
+                    if($stmt->execute()){  
+                        $query1="SELECT * FROM ".$this->table." WHERE page_name = :page_name LIMIT 0,1";
+                        $stmt1 = $this->conn->prepare($query1);
+                        $stmt1->bindParam(':page_name', $this->page_name);       
+                        $stmt1->execute();
+                        $row1 = $stmt1->fetch(PDO::FETCH_ASSOC);
+                        $actualImage=$row1['img'];
+                        if($this->header!=0){
+                            if(($this->img)==$actualImage){
+                                return true;
+                            }else{
+        
+                                if($this->uploadPhoto()){
+                                    return true;
+                                }else{
+                                    return false;
+                                }
+                            }
+                        }
+                        return true;
+                    }else{
+                        return false;
+                    }
             }
-		
 
             // execute the query, also check if query was successful
-            if($stmt->execute()){
+            if($stmt->execute()){    
 
                 if($this->old_page_name != $this->page_name){
                     $query3="SELECT * FROM menu WHERE pagename = :page_name LIMIT 0,1";
@@ -356,6 +372,8 @@ class Page{
                     }
                     
                 }
+
+         
 
                 $query1="SELECT * FROM ".$this->table." WHERE page_name = :page_name LIMIT 0,1";
                 $stmt1 = $this->conn->prepare($query1);
@@ -573,7 +591,19 @@ class Page{
         FROM " . $this->table_name . "
         WHERE id = ?
         LIMIT 0,1";
-  
+     
+        // prepare the query
+        $stmt = $this->conn->prepare($query);
+        
+        // bind the values
+        $stmt->bindParam(':page_name', $this->page_name);       
+        $stmt->bindParam(':no_mod', $this->no_mod);       
+        $stmt->bindParam(':layout', $this->layout);    
+        $stmt->bindParam(':header', $this->header);    
+        $stmt->bindParam(':use_name', $this->use_name);    
+        $stmt->bindParam(':use_desc', $this->use_desc);    
+        $stmt->bindParam(':counter', $this->counter);  
+         
         $stmt = $this->conn->prepare( $query );
         $stmt->bindParam(1, $this->id);
         $stmt->execute();
@@ -586,40 +616,18 @@ class Page{
         $this->layout = $row['layout'];
         $this->header = $row['header'];
         $this->img = $row['img'];
-        $this->block1_type = $row['block1_type'];
-        $this->block1 = $row['block1'];
-        $this->block1_bg = $row['block1_bg'];
-        $this->block1_text = $row['block1_text'];
-        $this->block2_type = $row['block2_type'];
-        $this->block2 = $row['block2'];
-        $this->block2_bg = $row['block2_bg'];
-        $this->block2_text = $row['block2_text'];
-        $this->block3_type = $row['block3_type'];
-        $this->block3 = $row['block3'];
-        $this->block3_bg = $row['block3_bg'];
-        $this->block3_text = $row['block3_text'];
-        $this->block4_type = $row['block4_type'];
-        $this->block4 = $row['block4'];
-        $this->block4_bg = $row['block4_bg'];
-        $this->block4_text = $row['block4_text'];
-        $this->block5_type = $row['block5_type'];
-        $this->block5 = $row['block5'];
-        $this->block5_bg = $row['block5_bg'];
-        $this->block5_text = $row['block5_text'];
-        $this->block6_type = $row['block6_type'];
-        $this->block6 = $row['block6'];
-        $this->block6_bg = $row['block6_bg'];
-        $this->block6_text = $row['block6_text'];
+        $this->use_name = $row['use_name'];
+        $this->use_desc = $row['use_desc'];
+        $this->counter = $row['counter'];
+        
     }
 
     function showByName(){
         $query = "SELECT *
         FROM " . $this->table_name . "
         WHERE page_name = :page_name
-        LIMIT 0,1";
+        LIMIT 0,1";      
         
-
-
         $stmt = $this->conn->prepare( $query );
         $stmt->bindParam(':page_name', $this->page_name);       
         $stmt->execute();
@@ -631,33 +639,10 @@ class Page{
         $this->no_mod = $row['no_mod'];
         $this->layout = $row['layout'];
         $this->header = $row['header'];
+        $this->use_name = $row['use_name'];
+        $this->use_desc = $row['use_desc'];
         $this->img = $row['img'];
-        $this->block1_type = $row['block1_type'];
-        $this->block1 = $row['block1'];
-        $this->block1_bg = $row['block1_bg'];
-        $this->block1_text = $row['block1_text'];
-        $this->block2_type = $row['block2_type'];
-        $this->block2 = $row['block2'];
-        $this->block2_bg = $row['block2_bg'];
-        $this->block2_text = $row['block2_text'];
-        $this->block3_type = $row['block3_type'];
-        $this->block3 = $row['block3'];
-        $this->block3_bg = $row['block3_bg'];
-        $this->block3_text = $row['block3_text'];
-        $this->block4_type = $row['block4_type'];
-        $this->block4 = $row['block4'];
-        $this->block4_bg = $row['block4_bg'];
-        $this->block4_text = $row['block4_text'];
-        $this->block5_type = $row['block5_type'];
-        $this->block5 = $row['block5'];
-        $this->block5_bg = $row['block5_bg'];
-        $this->block5_text = $row['block5_text'];
-        $this->block6_type = $row['block6_type'];
-        $this->block6 = $row['block6'];
-        $this->block6_bg = $row['block6_bg'];
-        $this->block6_text = $row['block6_text'];
-
-
+        $this->counter = $row['counter']; 
     }
 
     function showByIdDefault(){
@@ -676,31 +661,10 @@ class Page{
         $this->page_name = $row['page_name'];
         $this->layout = $row['layout'];
         $this->header = $row['header'];
+        $this->use_name = $row['use_name'];
+        $this->use_desc = $row['use_desc'];
         $this->img = $row['img'];
-        $this->block1_type = $row['block1_type'];
-        $this->block1 = $row['block1'];
-        $this->block1_bg = $row['block1_bg'];
-        $this->block1_text = $row['block1_text'];
-        $this->block2_type = $row['block2_type'];
-        $this->block2 = $row['block2'];
-        $this->block2_bg = $row['block2_bg'];
-        $this->block2_text = $row['block2_text'];
-        $this->block3_type = $row['block3_type'];
-        $this->block3 = $row['block3'];
-        $this->block3_bg = $row['block3_bg'];
-        $this->block3_text = $row['block3_text'];
-        $this->block4_type = $row['block4_type'];
-        $this->block4 = $row['block4'];
-        $this->block4_bg = $row['block4_bg'];
-        $this->block4_text = $row['block4_text'];
-        $this->block5_type = $row['block5_type'];
-        $this->block5 = $row['block5'];
-        $this->block5_bg = $row['block5_bg'];
-        $this->block5_text = $row['block5_text'];
-        $this->block6_type = $row['block6_type'];
-        $this->block6 = $row['block6'];
-        $this->block6_bg = $row['block6_bg'];
-        $this->block6_text = $row['block6_text'];
+        $this->counter = $row['counter']; 
     }
 
     function showByNameDefault(){
@@ -721,31 +685,10 @@ class Page{
         $this->page_name = $row['page_name'];
         $this->layout = $row['layout'];
         $this->header = $row['header'];
+        $this->use_name = $row['use_name'];
+        $this->use_desc = $row['use_desc'];
         $this->img = $row['img'];
-        $this->block1_type = $row['block1_type'];
-        $this->block1 = $row['block1'];
-        $this->block1_bg = $row['block1_bg'];
-        $this->block1_text = $row['block1_text'];
-        $this->block2_type = $row['block2_type'];
-        $this->block2 = $row['block2'];
-        $this->block2_bg = $row['block2_bg'];
-        $this->block2_text = $row['block2_text'];
-        $this->block3_type = $row['block3_type'];
-        $this->block3 = $row['block3'];
-        $this->block3_bg = $row['block3_bg'];
-        $this->block3_text = $row['block3_text'];
-        $this->block4_type = $row['block4_type'];
-        $this->block4 = $row['block4'];
-        $this->block4_bg = $row['block4_bg'];
-        $this->block4_text = $row['block4_text'];
-        $this->block5_type = $row['block5_type'];
-        $this->block5 = $row['block5'];
-        $this->block5_bg = $row['block5_bg'];
-        $this->block5_text = $row['block5_text'];
-        $this->block6_type = $row['block6_type'];
-        $this->block6 = $row['block6'];
-        $this->block6_bg = $row['block6_bg'];
-        $this->block6_text = $row['block6_text'];
+        $this->counter = $row['counter']; 
 
 
     }

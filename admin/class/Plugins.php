@@ -75,6 +75,7 @@ class Plugins{
 
 
     function updateActive(){
+
         // insert query
         $query = "UPDATE
                     " . $this->table_name . "
@@ -96,28 +97,10 @@ class Plugins{
                 $query1= "INSERT INTO  default_page      
                 SET
                 page_name = :page_name,
-                layout = 'default',
                 header = 1,
-                img = 'visual.jpg',
-                block1_type = 't',
-                block1 = 'text',
-                block1_bg = 'none',
-                block1_text = 'none',
-                block2_type = 't', 
-                block2_bg = 'none', 
-                block2_text = 'none', block2 =  ' text', 
-                block3_type = 't', 
-                block3_text = 'none', 
-                block3_bg = 'none', block3 =  ' text', 
-                block4_type = 't', 
-                block4_text = 'none', 
-                block4_bg = 'none', block4 =  'text ', 
-                block5_type = 't', 
-                block5_text = 'none', 
-                block5_bg = 'none', block5 =  ' text', 
-                block6_type = 't', 
-                block6_text = 'none', 
-                block6_bg = 'none', block6 =  ' text'";
+                use_name = 1,
+                use_desc = 1,
+                img = 'visual.jpg'";
 
                     // prepare the query
                 $stmt1 = $this->conn->prepare($query1);

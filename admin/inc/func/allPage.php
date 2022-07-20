@@ -40,7 +40,7 @@
             <thead>
                 <tr>
                     <th scope="col"><?=$allpage_name?></th>
-                    <th scope="col"><?=$allpage_link?></th>
+                    <!-- <th scope="col"><?=$allpage_link?></th> -->
                     <th scope="col"><?=$txt_edit?></th>
                 </tr>
             </thead>
@@ -59,15 +59,15 @@
 
                     $str = strtolower($str);
                 ?>
-                <td>
+                <!-- <td>
                     <?php
-                    if($id!=7){
+                    // if($id!=7){
                     ?>
                     <a href="../<?=$str?>.php"><?=$allpage_view?></a>
                     <?php
-                    }
+                    // }
                     ?>
-                </td>
+                </td> -->
 
                 <td>
                 <a href="index.php?man=page&op=edit&idToMod=<?=$row["id"]?>&type=default" class="btn btn-warning btn-icon-split">

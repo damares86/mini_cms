@@ -163,23 +163,17 @@ $user_id=$_SESSION['user_id'];
                                         </div>
                                     </a>
                                 </div>
-                                <?php
-                                $settings=new Settings($db);
-                                $stmt = $settings->showSettings();
-                                while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
-                
-                                    extract($row);
-                                ?>
+             
                                      <!-- Earnings (Monthly) Card Example -->
                                 <div class="col-xl-4 col-md-6 mb-4">
-                                    <a href="index.php?man=color&op=show">
+                                    <a href="index.php?man=page&op=show&type=custom">
                                             <div class="card border-left-info shadow h-100 py-2">
                                                 <div class="card-body">
                                                     <div class="row no-gutters align-items-center">
                                                         <div class="col mr-2">
                                                             <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
                                                                 <?=$home_tab3?></div>
-                                                            <div class="h5 mb-0 font-weight-bold text-gray-800"><?=$theme?></div>
+                                                            <div class="h5 mb-0 font-weight-bold text-gray-800"><?=$total_pages?></div>
                                                         </div>
                                                         <div class="col-auto">
                                                             <i class="fas fa-image fa-2x text-gray-300"></i>
@@ -189,10 +183,7 @@ $user_id=$_SESSION['user_id'];
                                             </div>
                                         </a>
                                     </div>
-                                <?php
-                                }
-                                ?>
-        
+
                                
                                        
                                     </div>
@@ -208,11 +199,11 @@ $user_id=$_SESSION['user_id'];
                                         </div>
                                         <div class="card-body"> 
                                             <p>
-                                                <a href="https://minicms.altervista.org/" target="_blank">&rarr; Mini Cms</a>:
+                                                <a href="https://docs.google.com/document/d/1ueqfbE5TEzNY-HnbNTx3_yq-gbmd0OuvLpVuREQzqwA/edit?usp=sharing" target="_blank">&rarr; Mini Cms</a>:
                                                 <?=$home_link1?>
                                             </p>
                                             <p>
-                                                <a href="https://github.com/damares86/mini_cms" target="_blank">&rarr; GitHub</a>:
+                                                <a href="https://www.dmweblab.com/" target="_blank">&rarr; DM WebLab</a>:
                                                 <?=$home_link2?>
                                             </p>
                                         </div>
@@ -299,104 +290,56 @@ $user_id=$_SESSION['user_id'];
     <script src="scripts/common.js" type="text/javascript"></script>
 
 <!-- <script src="scripts/summernote/summernote.min.js"></script> -->
+<?php
+for($i=1;$i<=$counter;$i++){
+
+echo '<script type="text/javascript">';
+echo "\n";
+echo '$(document).ready(function() {';
+echo "\n";
+echo "$('#summernote$i').summernote({";
+echo "\n";
+echo 'toolbar: [';
+echo "\n";
+echo "['style', ['style','bold', 'italic', 'underline', 'clear']],";
+echo "\n";
+echo "['font', ['strikethrough', 'superscript', 'subscript']],";
+echo "\n";
+echo "['color', ['color']],";
+echo "\n";
+echo "['para', ['ul', 'ol', 'paragraph']],";
+echo "\n";
+echo "['insert', [ 'ajaxfileupload', 'link', 'video', 'table']],";
+echo "\n";
+echo "['misc', ['codeview']]";
+echo "\n";
+echo '],';
+echo "\n";
+echo "dialogsInBody: true,";
+echo "\n";
+echo "height: '300px',";
+echo "\n";
+echo "styleWithSpan: false";
+echo "\n";
+echo "});";
+echo "\n";
+echo '})';
+echo "\n";
+echo '</script>';
+
+}
+?>
 
 <script type="text/javascript">
-$(document).ready(function() {
-	$('#summernote').summernote({
-        toolbar: [
-     ['style', ['style','bold', 'italic', 'underline', 'clear']],
-     ['font', ['strikethrough', 'superscript', 'subscript']],
-     ['color', ['color']],
-     ['para', ['ul', 'ol', 'paragraph']],
-     ['insert', [ 'ajaxfileupload', 'link', 'video', 'table']],
-     ['misc', ['codeview']]
-   ],
-   dialogsInBody: true,
-		height: "300px",
-		styleWithSpan: false
-	});
-
-$('#summernote2').summernote({
-    toolbar: [
-     ['style', ['style','bold', 'italic', 'underline', 'clear']],
-     ['font', ['strikethrough', 'superscript', 'subscript']],
-     ['color', ['color']],
-     ['para', ['ul', 'ol', 'paragraph']],
-     ['insert', [ 'ajaxfileupload', 'link', 'video', 'table']],
-     ['misc', ['codeview']]
-   ],
-   dialogsInBody: true,
-   height: "300px",
-		styleWithSpan: false,
-	});
-
-$('#summernote3').summernote({
-    toolbar: [
-     ['style', ['style','bold', 'italic', 'underline', 'clear']],
-     ['font', ['strikethrough', 'superscript', 'subscript']],
-     ['color', ['color']],
-     ['para', ['ul', 'ol', 'paragraph']],
-     ['insert', [ 'ajaxfileupload', 'link', 'video', 'table']],
-     ['misc', ['codeview']]
-   ],
-   dialogsInBody: true,
-		height: "300px",
-		styleWithSpan: false
-	});
-
-$('#summernote4').summernote({
-    toolbar: [
-     ['style', ['style','bold', 'italic', 'underline', 'clear']],
-     ['font', ['strikethrough', 'superscript', 'subscript']],
-     ['color', ['color']],
-     ['para', ['ul', 'ol', 'paragraph']],
-     ['insert', [ 'ajaxfileupload', 'link', 'video', 'table']],
-     ['misc', ['codeview']]
-   ],
-   dialogsInBody: true,
-		height: "300px",
-		styleWithSpan: false
-	});
-
-$('#summernote5').summernote({
-    toolbar: [
-     ['style', ['style','bold', 'italic', 'underline', 'clear']],
-     ['font', ['strikethrough', 'superscript', 'subscript']],
-     ['color', ['color']],
-     ['para', ['ul', 'ol', 'paragraph']],
-     ['insert', [ 'ajaxfileupload', 'link', 'video', 'table']],
-     ['misc', ['codeview']]
-   ],
-   dialogsInBody: true,
-		height: "300px",
-		styleWithSpan: false
-	});
-
-$('#summernote6').summernote({
-    toolbar: [
-     ['style', ['style','bold', 'italic', 'underline', 'clear']],
-     ['font', ['strikethrough', 'superscript', 'subscript']],
-     ['color', ['color']],
-     ['para', ['ul', 'ol', 'paragraph']],
-     ['insert', [ 'ajaxfileupload', 'link', 'video', 'table']],
-     ['misc', ['codeview']]
-   ],
-   dialogsInBody: true,
-		height: "300px",
-		styleWithSpan: false
-	});
-
- 
-});
-
 function postForm() {
+    <?php
+    for($i=1;$i<=$counter;$i++){
+    ?>
 
-	$('textarea[name="editor"]').html($('#summernote').code());
-	$('textarea[name="editor2"]').html($('#summernote2').code());
-	$('textarea[name="editor3"]').html($('#summernote3').code());
-	$('textarea[name="editor4"]').html($('#summernote4').code());
-	$('textarea[name="editor5"]').html($('#summernote5').code());
-	$('textarea[name="editor6"]').html($('#summernote6').code());
+	$('textarea[name="editor<?=$i?>"]').html($('#summernote<?=$i?>').code());
+    <?php
+    }
+    ?>
 }
 </script>
 </body>
