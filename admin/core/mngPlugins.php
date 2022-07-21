@@ -148,7 +148,12 @@ if(filter_input(INPUT_POST,"submit")){
             header("Location: ../index.php?man=plugins&op=show&msg=pluginUploadFormatErr");
             exit;
         }
-    
+        
+        $path="../plugins/";
+        if(!is_dir($path)){
+            mkdir($path);
+            chmod($path,0777);
+        }
         $target_path = "../plugins/".$filename;  // change this to the correct site path
         if(move_uploaded_file($source, $target_path)) {
             $zip = new ZipArchive();
