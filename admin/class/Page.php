@@ -116,13 +116,15 @@ class Page{
                     $_SESSION['error']++;
                 }
             } else if($$block_name=="p$i_real"){
-                // if($operation=="add"||($operation=="mod"&&isset($_FILES['pict'.$i_real.'']['name']))){
-                //     $picture=$_FILES['pict'.$i_real.'']['name'];
-                //     $picture_tmp=$_FILES['pict'.$i_real.'']['tmp_name'];
-                //     $_SESSION[''.$sess_type.'']="p";
-                //     $_SESSION['sess_pict_'.$i_real.'']=$picture;
-                //     $_SESSION['sess_pict_'.$i_real.'_tmp']=$picture_tmp;
-                // }
+                    $_SESSION[''.$sess_type.'']="p";
+                if($operation=="add"||($operation=="mod"&&$_FILES['pict'.$i_real.'']['name'])){
+                    $picture=$_FILES['pict'.$i_real.'']['name'];
+                    $picture_tmp=$_FILES['pict'.$i_real.'']['tmp_name'];
+                    $_SESSION['sess_pict_'.$i_real.'']=$picture;
+                    $_SESSION['sess_pict_'.$i_real.'_tmp']=$picture_tmp;
+                }else{
+                    $_SESSION['sess_pict_'.$i_real.'']=$_POST['old_img_'.$i_real.''];
+                }
             } else if($$block_name=="g$i_real"){
                 $gallery=$_POST[''.$block_name.'_gall'];
                 $gallery= str_replace(" ","_", $gallery);
@@ -175,6 +177,7 @@ class Page{
                 $_SESSION['sess_editor'.$i.'']=$json_arr[$i]['block'.$i.''];
             } else if($_SESSION[''.$sess_type.'']=="p"){
                 $_SESSION['sess_pict_'.$i.'']=$json_arr[$i]['block'.$i.'_pict'];
+
             }
 
         }

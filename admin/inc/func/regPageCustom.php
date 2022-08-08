@@ -454,8 +454,10 @@ for($i=1;$i<=$counter;$i++){
                 <label class="control-label" for="file">Immagine</label>
                 <div class="controls">
                     <?php
-
-                    $picture=$json_arr[$i]['block'.$i.'_pict']
+                     $picture=$_SESSION['sess_pict_'.$i.''];
+                    // $picture=$json_arr[$i]['block'.$i.'_pict'];
+                    // print_r($picture);
+                    // exit;
                     
                     ?>
                     <input type="file" id="pict<?=$i?>" name="pict<?=$i?>" value="<?=$picture?>">
