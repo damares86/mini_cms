@@ -15,7 +15,7 @@ if (!isset($_SESSION['loggedin'])) {
     exit;
 }
 
-
+require "inc/version.php";
 // loading class
 
 spl_autoload_register('autoloader');

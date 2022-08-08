@@ -31,13 +31,13 @@ if(!is_file('../class/Database.php')){
   fwrite($file_handle, "\n");
   fwrite($file_handle, "class Database{");
   fwrite($file_handle, "\n");
-  fwrite($file_handle, 'private $db_name="'.$db_name.'";');
+  fwrite($file_handle, 'public $db_name="'.$db_name.'";');
   fwrite($file_handle, "\n");
-  fwrite($file_handle, 'private $username="'.$username.'";');
+  fwrite($file_handle, 'public $username="'.$username.'";');
   fwrite($file_handle, "\n");
-  fwrite($file_handle, 'private $password="'.$db_password.'";');
+  fwrite($file_handle, 'public $password="'.$db_password.'";');
   fwrite($file_handle, "\n");
-  fwrite($file_handle, 'private $host="'.$host.'";');
+  fwrite($file_handle, 'public $host="'.$host.'";');
   fwrite($file_handle, "\n");
   fwrite($file_handle, 'public $conn;');
   fwrite($file_handle, "\n");

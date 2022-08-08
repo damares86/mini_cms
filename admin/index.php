@@ -309,7 +309,7 @@ echo "['color', ['color']],";
 echo "\n";
 echo "['para', ['ul', 'ol', 'paragraph']],";
 echo "\n";
-echo "['insert', [ 'ajaxfileupload', 'link', 'video', 'table']],";
+echo "['insert', ['link', 'table']],";
 echo "\n";
 echo "['misc', ['codeview']]";
 echo "\n";

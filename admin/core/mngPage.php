@@ -220,8 +220,6 @@ if(filter_input(INPUT_POST,"addBlock")){
 	$operation=filter_input(INPUT_POST,"operation");
 
 	if($operation=="add"){
-
-
 		$page->page_name = $_SESSION['sess_page_name'];
 
 		if(isset($_SESSION['sess_img'])){
@@ -252,7 +250,24 @@ if(filter_input(INPUT_POST,"addBlock")){
 			// 	$i=$i-1;
 			// 	break;
 			// }else 
-			if($_SESSION["$sess_type"]=="t"){
+
+			if($_SESSION["$sess_type"]=="p"){
+				if($_SESSION['sess_pict_'.$i.'']){
+					$page->img=$_SESSION['sess_pict_'.$i.''];
+					$page->img_tmp=$_SESSION['sess_pict_'.$i.'_tmp'];
+				}else{
+					$page->img=$_FILES['pict'.$i.'']['name'];
+					$page->img_tmp=$_FILES['pict'.$i.'']['tmp_name'];
+				}
+				$page->uploadPicture();
+				$$array_name=array(
+					'block'.$i.'_type' 	=> $_SESSION["$sess_type"],
+					'block'.$i.'_pict' 	=> $_SESSION['sess_pict_'.$i.''],
+					'block'.$i.'_bg'	=> $_SESSION[''.$sess_bg.''],
+					'block'.$i.'_text'  => $_SESSION[''.$sess_text.'']
+				);
+
+			}else if($_SESSION["$sess_type"]=="t"){
 				$editor = preg_replace('/^\s+/', '', $_SESSION["sess_editor$i"]);
 				$$array_name=array(
 						'block'.$i.'_type' 	=> $_SESSION["$sess_type"], 
@@ -384,6 +399,22 @@ if(filter_input(INPUT_POST,"addBlock")){
 								'block'.$i.''		=> $_SESSION["sess_editor$i"],
 								'block'.$i.'_bg'	=> $_SESSION[''.$sess_bg.''],
 								'block'.$i.'_text'  => $_SESSION[''.$sess_text.'']
+						);
+					}else if($_SESSION["$sess_type"]=="p"){
+						if($_FILES['pict'.$i.'']['name']){
+							$page->img=$_FILES['pict'.$i.'']['name'];
+							$page->img_tmp=$_FILES['pict'.$i.'']['tmp_name'];
+							$page->uploadPicture();
+							$pict=$_FILES['pict'.$i.'']['name'];
+						}else{
+							$pict=$_POST['old_img_'.$i.''];
+						}
+						
+						$$array_name=array(
+							'block'.$i.'_type' 	=> $_SESSION["$sess_type"],
+							'block'.$i.'_pict' 	=> $pict,
+							'block'.$i.'_bg'	=> $_SESSION[''.$sess_bg.''],
+							'block'.$i.'_text'  => $_SESSION[''.$sess_text.'']
 						);
 					}else{
 						$$array_name=array(

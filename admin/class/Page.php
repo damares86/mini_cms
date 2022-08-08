@@ -20,6 +20,7 @@ class Page{
     public $layout;
     public $header;
     public $img;
+    public $img_tmp;
     public $counter;
     public $in_menu;
     public $item_order;
@@ -32,8 +33,9 @@ class Page{
     }
 
     function initCheckSessVar(){
-
+        
         $_SESSION['error']=0;
+        $operation=$_POST['operation'];
     
         $counter=filter_input(INPUT_POST,"counter");
     
@@ -103,14 +105,25 @@ class Page{
     
             $$block_name=$_POST[''.$block_name.''][0];
             $sess_type="sess_type_$i";
-            
+
             if($$block_name=="t$i_real"){
                 $_SESSION[''.$sess_type.'']="t";
                 $editor = preg_replace('/^\s+/', '', $_POST['editor'.$i_real.'']);
                 if(!empty($editor)){
                     $_SESSION['sess_editor'.$i.'']=$_POST['editor'.$i_real.''];
+
                 }else{
                     $_SESSION['error']++;
+                }
+            } else if($$block_name=="p$i_real"){
+                    $_SESSION[''.$sess_type.'']="p";
+                if($operation=="add"||($operation=="mod"&&$_FILES['pict'.$i_real.'']['name'])){
+                    $picture=$_FILES['pict'.$i_real.'']['name'];
+                    $picture_tmp=$_FILES['pict'.$i_real.'']['tmp_name'];
+                    $_SESSION['sess_pict_'.$i_real.'']=$picture;
+                    $_SESSION['sess_pict_'.$i_real.'_tmp']=$picture_tmp;
+                }else{
+                    $_SESSION['sess_pict_'.$i_real.'']=$_POST['old_img_'.$i_real.''];
                 }
             } else if($$block_name=="g$i_real"){
                 $gallery=$_POST[''.$block_name.'_gall'];
@@ -158,10 +171,15 @@ class Page{
             $$block_name=$_POST[''.$block_name.''][0];
             $sess_type="sess_type_$i";
             $_SESSION[''.$sess_type.'']=$json_arr[$i]['block'.$i.'_type'];
+
             
             if($_SESSION[''.$sess_type.'']=="t"){
                 $_SESSION['sess_editor'.$i.'']=$json_arr[$i]['block'.$i.''];
-                }    
+            } else if($_SESSION[''.$sess_type.'']=="p"){
+                $_SESSION['sess_pict_'.$i.'']=$json_arr[$i]['block'.$i.'_pict'];
+
+            }
+
         }
     }
 
@@ -185,6 +203,7 @@ class Page{
             unset($_SESSION["sess_editor$i"]);
             unset($_SESSION[''.$sess_bg.'']);
             unset($_SESSION[''.$sess_text.'']);
+            unset($_SESSION['sess_pict_'.$i.'']);
         }
         unset($_SESSION['counter']);
     
@@ -446,7 +465,6 @@ class Page{
                 // exit;
                 $file_type = pathinfo($target_file, PATHINFO_EXTENSION);
                 $file_upload_error_messages="";
-                
                 $allowed_file_types=array("jpg", "png");
                 if(!in_array($file_type, $allowed_file_types)){
                     header("Location: ../index.php?man=page&op=show&msg=formatImgErr");
@@ -513,6 +531,55 @@ class Page{
                 }   
         	}
    
+
+            function uploadPicture(){
+                if($this->img){
+                    $target_directory = "../../uploads/img/";
+                    $target_file = $target_directory . $this->img;
+
+                    if(!file_exists($target_file)){
+                        $file_type = pathinfo($target_file, PATHINFO_EXTENSION);
+                        $file_upload_error_messages="";
+                        $allowed_file_types=array("jpg", "png", "jpeg");
+                        if(!in_array($file_type, $allowed_file_types)){
+                            header("Location: ../index.php?man=page&op=show&msg=formatImgErr");
+                            exit;
+                            // $file_upload_error_messages.="<div>Only .zip, .doc, .docx,.pdf files are allowed.</div>";
+                            //exit;
+                        }
+                        
+                        if(file_exists($target_file)){
+                            // $file_upload_error_messages.="File already exists";
+                        }
+                        
+                        // make sure submitted file is not too large, can't be larger than 5 MB
+                        // if($_FILES['myfile']['size'] > (5120000)){
+                            //     $file_upload_error_messages.="<div>Doc must be less than 5 MB in size.</div>";
+                            // }
+                            
+                            // make sure the 'uploads' folder exists
+                            // if not, create it
+                            if(!is_dir($target_directory)){
+                                mkdir($target_directory, 0777, true);
+                            }else{
+                                chmod($target_directory, 0777);
+                            }
+                        
+                        if(empty($file_upload_error_messages)){
+                            
+                            
+                            // the physical file on a temporary uploads directory on the server
+                            $file = $this->img_tmp;
+                            
+                    
+                            if (move_uploaded_file($file, $target_file)) {
+                                chmod($target_file, 0777);
+                                
+                            }
+                        }
+                    }
+                }
+            }
 
     function showAllCustom($from_record_num, $records_per_page){
         //select all data
