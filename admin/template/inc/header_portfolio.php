@@ -17,6 +17,8 @@ if(!is_file("../../admin/class/Database.php")){
 }
 spl_autoload_register('autoloader');
 
+require "../../admin/inc/version.php";
+
 function autoloader($class){
     include("../../admin/class/$class.php");
 }

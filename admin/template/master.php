@@ -43,6 +43,12 @@ require "admin/template/inc/header.php";
                      
                                 echo $json_arr[$i]['block'.$i.''];
 
+                             }else if($json_arr[$i]['block'.$i.'_type']=="p"){
+                                $pict=$json_arr[$i]['block'.$i.'_pict'];
+                                ?>
+
+                                <img src="uploads/img/<?=$pict?>">
+                                <?php
                              }else if($json_arr[$i]['block'.$i.'_type']=="b"){
 
                                 $stmt1=$post->showLastPosts();

@@ -99,6 +99,10 @@ if(filter_input(INPUT_GET,"count")){
     $counter=filter_input(INPUT_GET,"count");
 }
 $_SESSION['counter']=$counter;
+?>
+<input type="hidden" name="counter" value="<?= $counter ?>" />
+
+<?php
 if($operation=="add"){
     // $page->page_name="";
     // $page->layout="";
@@ -315,6 +319,7 @@ for($i=1;$i<=$counter;$i++){
 
 
     <?php
+ 
     $var="block$i";
 
 
@@ -341,6 +346,7 @@ for($i=1;$i<=$counter;$i++){
 
 
         $none="checked_n$i";
+        $pict="checked_p$i";
         $text="checked_t$i";
         $gall="checked_g$i";
         $blog="checked_b$i";
@@ -349,16 +355,24 @@ for($i=1;$i<=$counter;$i++){
         $block_type='block'.$i.'_type';
 		$sess_type="sess_type_$i";
         $page->$block_type=$_SESSION[''.$sess_type.''];
-        
+
+    
+
         $$none="checked";
+        $$pict="";
         $$text="";
         $$gall="";
         $$blog="";
         
-        $type_arr = array("t","b","n");
+        $type_arr = array("t","b","n","p");
+        
         if($operation=="mod"||(isset($_SESSION[''.$sess_type.'']))){
+            
         if($page->$block_type=="t"){
             $$text="checked";                
+            $$none="";
+        } else if($page->$block_type=="p"){
+            $$pict="checked";                
             $$none="";
         } else if($page->$block_type=="b"){
             $$blog="checked";                
@@ -392,7 +406,17 @@ for($i=1;$i<=$counter;$i++){
                 echo "}";
                 echo "\n";        
                 echo "</style>";
-              } else if($blog=="checked"){
+              } else if($$pict=="checked"){
+                echo "<style>";
+                echo "\n";        
+                echo ".box$i.p$i{";
+                echo "\n";        
+                echo "display:block;";
+                echo "\n";        
+                echo "}";
+                echo "\n";        
+                echo "</style>";
+              }else if($blog=="checked"){
                 echo "<style>";
                 echo "\n";        
                 echo ".box$i.b$i{";
@@ -407,6 +431,7 @@ for($i=1;$i<=$counter;$i++){
 
         <!-- radio button -->
         <label><input type="radio" name="block<?=$i?>[]" value="n<?=$i?>" <?=$$none?>> <?=$regpage_none?></label>
+        <label><input type="radio" name="block<?=$i?>[]" value="p<?=$i?>" <?=$$pict?>> Immagine</label>
         <label><input type="radio" name="block<?=$i?>[]" value="t<?=$i?>" <?=$$text?>> <?=$regpage_text_block?></label>
         <label><input type="radio" name="block<?=$i?>[]" value="g<?=$i?>" <?=$$gall?>> <?=$regpage_gall?></label>
         <?php
@@ -422,6 +447,36 @@ for($i=1;$i<=$counter;$i++){
         <!-- EMPTY BOX -->
         <div class="n<?=$i?> box<?=$i?>">&nbsp;</div>
 
+
+        <!-- PICTURE BOX -->
+        <div class="p<?=$i?> box<?=$i?>">
+            <div class="control-group">
+                <label class="control-label" for="file">Immagine</label>
+                <div class="controls">
+                    <?php
+
+                    $picture=$json_arr[$i]['block'.$i.'_pict']
+                    
+                    ?>
+                    <input type="file" id="pict<?=$i?>" name="pict<?=$i?>" value="<?=$picture?>">
+                    <br><br>
+
+                    <input type="hidden" name="old_img_<?=$i?>" value="<?= $picture ?>" />
+
+                    <?php
+                    
+                    if($operation=="mod"){
+                    ?>
+                    <?=$regpage_actual?> &nbsp;<img src="../uploads/img/<?=$picture?>"  style="max-width:200px;">
+                    <?php
+                    }
+?>
+                </div>
+            </div>
+            <br>
+        </div>
+        
+
         <!-- TEXT BOX -->
         <div class="t<?=$i?> box<?=$i?>">
             <?php
@@ -430,7 +485,6 @@ for($i=1;$i<=$counter;$i++){
             ?>
             <textarea id="summernote<?=$i?>" name="editor<?=$i?>" rows="10">   <?=$page->$var?></textarea>
             <br>
-            
 
 
         </div>
@@ -553,7 +607,6 @@ for($i=1;$i<=$counter;$i++){
         <?php
 }
 ?>
-<input type="hidden" name="counter" value="<?= $counter ?>" />
 
 
 

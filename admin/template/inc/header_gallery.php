@@ -21,6 +21,8 @@ function autoloader($class){
     include("../../admin/class/$class.php");
 }
 
+require "../../admin/inc/version.php";
+
 $database = new Database();
 $db = $database->getConnection();
 
