@@ -115,6 +115,7 @@ $regpage_add_block = "Aggiungi blocco";
 $regpage_background = "Colore di sfondo";
 $regpage_text = "Colore del testo";
 $regpage_none = "Vuoto";
+$regpage_picture = "Immagine";
 $regpage_text_block = "Testo";
 $regpage_gall = "Galleria";
 $regpage_choose_gall = "Scegli una galleria";

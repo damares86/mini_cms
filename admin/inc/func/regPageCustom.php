@@ -431,7 +431,7 @@ for($i=1;$i<=$counter;$i++){
 
         <!-- radio button -->
         <label><input type="radio" name="block<?=$i?>[]" value="n<?=$i?>" <?=$$none?>> <?=$regpage_none?></label>
-        <label><input type="radio" name="block<?=$i?>[]" value="p<?=$i?>" <?=$$pict?>> Immagine</label>
+        <label><input type="radio" name="block<?=$i?>[]" value="p<?=$i?>" <?=$$pict?>> <?=$regpage_picture?></label>
         <label><input type="radio" name="block<?=$i?>[]" value="t<?=$i?>" <?=$$text?>> <?=$regpage_text_block?></label>
         <label><input type="radio" name="block<?=$i?>[]" value="g<?=$i?>" <?=$$gall?>> <?=$regpage_gall?></label>
         <?php
@@ -451,7 +451,7 @@ for($i=1;$i<=$counter;$i++){
         <!-- PICTURE BOX -->
         <div class="p<?=$i?> box<?=$i?>">
             <div class="control-group">
-                <label class="control-label" for="file">Immagine</label>
+                <label class="control-label" for="file"><?=$regpage_picture?></label>
                 <div class="controls">
                     <?php
                      $picture=$_SESSION['sess_pict_'.$i.''];
