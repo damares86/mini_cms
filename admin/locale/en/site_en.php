@@ -118,6 +118,7 @@ $regpage_background = "Background color";
 $regpage_text = "Text color";
 $regpage_none = "None";
 $regpage_text_block = "Text block";
+$regpage_picture = "Image";
 $regpage_gall = "Gallery";
 $regpage_choose_gall = "Choose an existing gallery";
 $regpage_post = "Last posts";
