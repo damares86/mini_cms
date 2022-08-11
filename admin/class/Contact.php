@@ -7,8 +7,8 @@ class Contact{
     private $table_name = "contacts";
 
     public $id;
-    public $reset;
-    public $inbox;
+    public $label;
+    public $email;
 
     // constructor
     public function __construct($db){
@@ -22,19 +22,19 @@ class Contact{
         $query = "INSERT INTO
                     " . $this->table_name . "
                 SET
-                    reset = :reset,
-                    inbox = :inbox";
+                    label = :label,
+                    email = :email";
     
         // prepare the query
         $stmt = $this->conn->prepare($query);
     
         // sanitize
-        $this->color=htmlspecialchars(strip_tags($this->reset));
-        $this->color=htmlspecialchars(strip_tags($this->inbox));
+        $this->color=htmlspecialchars(strip_tags($this->label));
+        $this->color=htmlspecialchars(strip_tags($this->email));
     
         // bind the values
-        $stmt->bindParam(':reset', $this->reset);
-        $stmt->bindParam(':inbox', $this->inbox);
+        $stmt->bindParam(':label', $this->label);
+        $stmt->bindParam(':email', $this->email);
         
         // execute the query, also check if query was successful
         if($stmt->execute()){
@@ -53,16 +53,14 @@ class Contact{
         $query = "UPDATE
                     " . $this->table_name . "
                 SET
-                    reset = :reset,
-                    inbox = :inbox
+                    email = :email
                 WHERE
                     id = :id";
     // prepare the query
         $stmt = $this->conn->prepare($query);
      
         // bind the values
-        $stmt->bindParam(':reset', $this->reset);
-        $stmt->bindParam(':inbox', $this->inbox);
+        $stmt->bindParam(':email', $this->email);
         $stmt->bindParam(':id', $this->id);
                 
       
@@ -100,110 +98,36 @@ class Contact{
         return $stmt;
     }
 
-
-    // function showAllList(){
-    //     //select all data
-    //     $query = "SELECT
-    //                 id, color
-    //             FROM
-    //                 " . $this->table_name . "
-    //             ORDER BY
-    //                 color";  
+    function showAllContacts(){
+        
+        //select all data
+        $query = "SELECT
+                    *
+                FROM
+                    " . $this->table_name . "
+                    WHERE NOT id=1
+                ORDER BY
+                    id";  
   
-    //     $stmt = $this->conn->prepare( $query );
-    //     $stmt->execute();
+        $stmt = $this->conn->prepare( $query );
+        $stmt->execute();
   
-    //     return $stmt;
-    // }
+        return $stmt;
+    }
 
-    // public function countAll(){
+    function delete(){
+        
+        $query = "DELETE FROM " . $this->table_name . " WHERE id = :id";
+        
+        $stmt = $this->conn->prepare($query);
+        $stmt->bindParam(":id", $this->id);
     
-    //     $query = "SELECT id FROM color";
-    
-    //     $stmt = $this->conn->prepare( $query );
-    //     $stmt->execute();
-    
-    //     $num = $stmt->rowCount();
-    
-    //     return $num;
-    // }
-
-//     function showById(){
-//         $query = "SELECT *
-//         FROM " . $this->table_name . "
-//         WHERE id = ?
-//         LIMIT 0,1";
-  
-//         $stmt = $this->conn->prepare( $query );
-//         $stmt->bindParam(1, $this->id);
-//         $stmt->execute();
-    
-//         $row = $stmt->fetch(PDO::FETCH_ASSOC);
-    
-//         $this->id = $row['id'];
-//         $this->username = $row['username'];
-//         $this->email = $row['email'];
-//         $this->rolename = $row['rolename'];
-//     }
-
-
-//     function colorExists(){
-    
-//         // query to check if email exists
-//         $query = "SELECT id, color
-//                 FROM " . $this->table_name . "
-//                 WHERE color = ?
-//                 LIMIT 0,1";
-    
-//         // prepare the query
-//         $stmt = $this->conn->prepare( $query );
-    
-//         // sanitize
-//         $this->color=htmlspecialchars(strip_tags($this->color));
-    
-//         // bind given email value
-//         $stmt->bindParam(1, $this->color);
-    
-//         // execute the query
-//         $stmt->execute();
-    
-//         // get number of rows
-//         $num = $stmt->rowCount();
-    
-//         // if email exists, assign values to object properties for easy access and use for php sessions
-//         if($num>0){
-    
-//             // get record details / values
-//             $row = $stmt->fetch(PDO::FETCH_ASSOC);
-    
-//             // assign values to object properties
-//             $this->id = $row['id'];
-//             $this->status = $row['color'];
-    
-//             // return true because email exists in the database
-//             return true;
-//         }
-    
-//         // return false if email does not exist in the database
-//         return false;
-//     }
-
-//  // delete the role
-//  function delete(){
-    
-//     $query = "DELETE FROM " . $this->table_name . " WHERE id = ?";
-    
-//     $stmt = $this->conn->prepare($query);
-//     $stmt->bindParam(1, $this->id);
-
-//     if($result = $stmt->execute()){
-//         return true;
-//     }else{
-//         return false;
-//     }
-// }
-
+        if($stmt->execute()){
+            return true;
+        }else{
+            $this->showError($stmt);
+            return false;
+        }  
+    }
 
 }
-
-?>

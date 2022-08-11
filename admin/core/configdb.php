@@ -146,7 +146,7 @@ $db->query("CREATE TABLE settings (
   site_name VARCHAR(255) NOT NULL,
   site_description VARCHAR(255) NOT NULL,
   use_text INT (1) DEFAULT '1',
-  footer VARCHAR(255) NOT NULL,
+  footer TEXT NOT NULL,
   dashboard_language VARCHAR(255) NOT NULL,
   theme VARCHAR(255) NOT NULL,
   dm INT (1) DEFAULT 1)");
@@ -316,13 +316,18 @@ VALUES ('1','PUBLIC_KEY', 'SECRET_KEY', '0')
 
 $db->query("CREATE TABLE `contacts` (
   `id` INT ( 5 ) NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  `reset` varchar(250) NOT NULL,
-  `inbox` varchar(250) NOT NULL
+  `label` varchar(255) NOT NULL,
+  `email` varchar(255) NOT NULL
 )");
 
 $db->query("INSERT INTO contacts 
-(id, reset, inbox) 
-VALUES ('1','noreply@yoursite.com', 'info@yoursite.com')
+(id, label, email) 
+VALUES ('1','noreply', 'noreply@yoursite.com')
+");
+
+$db->query("INSERT INTO contacts 
+(id, label, email) 
+VALUES ('2','Info', 'info@yoursite.com')
 ");
 
 

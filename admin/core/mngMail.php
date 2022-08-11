@@ -39,11 +39,14 @@ session_start();
 	$subject=$_POST['subject'];
 
 
-	$stmt=$contact->showAll();
-	$row=$stmt->fetch(PDO::FETCH_ASSOC);
-	$from=$row['inbox'];
-	$to=$row['inbox'];
+	// $stmt=$contact->showAll();
+	// $row=$stmt->fetch(PDO::FETCH_ASSOC);
+	// $from=$row['inbox'];
+	// $to=$row['inbox'];
 
+	$from=$_POST['contact'];
+	$to=$_POST['contact'];
+	
 	// To send HTML mail, the Content-type header must be set
 	$headers  = 'MIME-Version: 1.0' . "\r\n";
 	$headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
