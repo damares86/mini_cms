@@ -146,7 +146,7 @@ $db->query("CREATE TABLE settings (
   site_name VARCHAR(255) NOT NULL,
   site_description VARCHAR(255) NOT NULL,
   use_text INT (1) DEFAULT '1',
-  footer VARCHAR(255) NOT NULL,
+  footer TEXT NOT NULL,
   dashboard_language VARCHAR(255) NOT NULL,
   theme VARCHAR(255) NOT NULL,
   dm INT (1) DEFAULT 1)");

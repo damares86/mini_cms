@@ -63,7 +63,7 @@ if(filter_input(INPUT_POST,"subReg")){
 		$settings->id=$_POST['id'];
 		$settings->site_name=$_POST['site_name'];
 		$settings->site_description=$_POST['site_description'];
-		$settings->footer=$_POST['footer'];
+		$settings->footer=$_POST['editor1'];
 		$settings->dashboard_language=$_POST['language'];
 		
 		// update the settings

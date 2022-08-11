@@ -57,10 +57,11 @@ if($man=="settings"){
             <br>
 
             <div class="control-group">
-                            <label class="control-label" for="footer"><?=$site_footer ?></label>
+                            <label class="control-label" for="footer"><?=$site_footer ?></label><br><br>
                 <div class="controls">
-
-                    <input type="text" id="footer" name="footer" placeholder="<?=$site_footer ?>" class="span8" value="<?= $footer ?>">
+                    <textarea id="summernote1" name="editor1" rows="10">  
+                        <?= $footer ?>
+                    </textarea>
                         
                 </div>
             </div>
