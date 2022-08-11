@@ -1,3 +1,3 @@
 <?php
-$site= "www.boots.local";
+$site= "";
 ?>

@@ -353,7 +353,39 @@ if($msg=="userDelSucc"){
     </div>
 
     <?php    
-} else if($msg=="keyEmpty"){
+} else if($msg=="setMailSucc"){
+    ?>
+    <div class="alert alert-success">
+        <button type="button" class="close" data-dismiss="alert">x</button>
+        <?=$al_setMailSucc?>
+    </div>
+
+    <?php    
+} else if($msg=="setMailErr"){
+    ?>
+    <div class="alert alert-danger">
+        <button type="button" class="close" data-dismiss="alert">x</button>
+        <?=$al_setMailErr?>
+    </div>
+
+    <?php    
+}  else if($msg=="mailDelSucc"){
+    ?>
+    <div class="alert alert-warning">
+        <button type="button" class="close" data-dismiss="alert">x</button>
+        <?=$al_mailDelSucc?>
+    </div>
+
+    <?php    
+} else if($msg=="mailDelErr"){
+    ?>
+    <div class="alert alert-danger">
+        <button type="button" class="close" data-dismiss="alert">x</button>
+        <?=$al_mailDelErr?>
+    </div>
+
+    <?php    
+}  else if($msg=="keyEmpty"){
     ?>
     <div class="alert alert-danger">
         <button type="button" class="close" data-dismiss="alert">x</button>

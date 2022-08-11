@@ -38,6 +38,23 @@ require "admin/template/inc/header.php";
 									<label for="email"><?=$cont_form_email?></label>
 									<input id="email" class="form-control" name="email" value="" required autofocus>
 								</div>
+
+								<div class="form-group">
+									<label for="contact">Scrivi a</label>
+									<select name="contact">
+									<?php
+										$stmt1=$contact->showAllContacts();
+										while ($row1 = $stmt1->fetch(PDO::FETCH_ASSOC)){
+											extract($row1);
+										
+											echo "<option value='".$row1['email']."'>".$row1['label']."</option>";
+
+										
+									}
+										?>
+									</select>
+								</div>
+
 								<div class="form-group">
 									<label for="subject"><?=$cont_form_sub?></label>
 									<input id="subject" class="form-control" name="subject" value="" required autofocus>

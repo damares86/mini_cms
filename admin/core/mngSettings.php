@@ -45,6 +45,19 @@ if (!isset($_SESSION['loggedin'])) {
     exit;
 }
 
+if(filter_input(INPUT_GET,"idToDel")){
+	$idToDel=filter_input(INPUT_GET,"idToDel");
+	$contact->id=$idToDel;
+
+	if($contact->delete()){
+		header("Location: ../index.php?man=settings&msg=mailDelSucc");
+		exit;
+	}else{
+		header("Location: ../index.php?man=settings&msg=mailDelErr");
+		exit;
+	}
+
+}
 
 
 if(filter_input(INPUT_POST,"subReg")){
@@ -81,14 +94,36 @@ if(filter_input(INPUT_POST,"subReg")){
 
 } else if(filter_input(INPUT_POST,"subMail")){
 
-	if(!$_POST['reset']||!$_POST['inbox']){
+	if(!$_POST['label']||!$_POST['email']){
 		header("Location: ../index.php?man=settings&msg=contactEmpty");
 		exit;
 	}
 
 	$contact->id=$_POST['id'];
-	$contact->reset=$_POST['reset'];
-	$contact->inbox=$_POST['inbox'];
+	$contact->label=$_POST['label'];
+	$contact->email=$_POST['email'];
+	// update the settings
+	if($contact->create()){
+		header("Location: ../index.php?man=settings&msg=setMailSucc");
+		exit;
+	
+		// empty posted values
+		// $_POST=array();
+	
+	}else{
+		header("Location: ../index.php?man=settings&msg=setMailErr");
+		exit;
+	}
+
+}else if(filter_input(INPUT_POST,"subReset")){
+
+	if(!$_POST['reset']){
+		header("Location: ../index.php?man=settings&msg=contactEmpty");
+		exit;
+	}
+
+	$contact->id=1;
+	$contact->email=$_POST['reset'];
 	// update the settings
 	if($contact->update()){
 		header("Location: ../index.php?man=settings&msg=setContactSucc");

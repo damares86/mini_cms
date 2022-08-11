@@ -23,7 +23,7 @@ if($man=="settings"){
            
            
         <div class="row">
-    <div class="col">
+    <div class="col-8">
         
         <?php
 
@@ -107,7 +107,7 @@ if($man=="settings"){
             </div>
         </form>
         </div>
-    <div class="col rounded guide mx-3">
+    <div class="col-3 rounded guide mx-3">
         <?=$site_box1_desc ?>
         
     </div>
@@ -128,55 +128,133 @@ if($man=="settings"){
         <div class="card-body">
            
         <div class="row">
-    <div class="col">
+    <div class="col-7">
         
-        <?php
+      
 
-            $stmt1=$contact->showAll();
-    
-            while ($row1 = $stmt1->fetch(PDO::FETCH_ASSOC)){
+            <!-- <input type="hidden" name="id" value="<?= $row1['id']?>" /> -->
+            <div class="control-group">
+                <div class="controls">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col"><?=$site_label?></th>
+                            <th scope="col">Email</th>
+                            <th scope="col"><?=$txt_delete?></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    <?php
+
+                    $stmt1=$contact->showAll();
+
+                    $reset="";
+
+                    
+                    while ($row1 = $stmt1->fetch(PDO::FETCH_ASSOC)){
+                                                
+                    extract($row1);
+                    if($row1['id']==1){
+                        $reset=$row1['email'];
+                    }
+
+                    if($row1['id']!=1){
+                    ?>
+                    <tr>
+                        <td><?=$row1['label']?></td>
+                        <td><?=$row1['email']?></td>
+                        <td>                 
+
+                            <a href="#" class="btn btn-danger btn-icon-split" data-toggle="modal" data-target="#delete<?=$row1['id']?>">
+                                <span class="icon text-white-50">
+                                    <i class="fas fa-trash"></i>
+                                </span>
+                                <span class="text"><?=$txt_delete?></span>
+                            </a> 
+                                
+                            <!-- Delete Modal-->
+                            <div class="modal fade" id="delete<?=$row1['id']?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                                aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel"><b><?=$txt_modal_title?></b></h5>
+                                            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">×</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body"><?=$allpage_modal_text?></div>
+                                        <div class="modal-footer">
+                                            <button class="btn btn-secondary" type="button" data-dismiss="modal"><?=$txt_cancel?></button>
+                                            <a class="btn btn-primary" href="core/mngSettings.php?idToDel=<?=$row1["id"]?>">Ok</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+            
+                        </td>
+                    </tr>
+                    <?php
+                    }
+                }
+                    ?>
+                    </tbody>
+                </table>
+                </div>
+            </div>
+            <hr>
+            <b><?=$site_email?></b><br><br>
+            <form class="form-horizontal row-fluid" action="core/mngSettings.php" method="POST" enctype="multipart/form-data">
         
-                 extract($row1);
-       
-            ?>
+            <div class="control-group">
+                <label class="control-label" for="label"><?=$site_label?></label>
+                <div class="controls">
+                    <input type="text" id="label" name="label" placeholder="<?=$site_label_ph?>" class="span12">
+                </div>
+            </div>
+
+            <div class="control-group">
+                <label class="control-label" for="email">Email</label>
+                <div class="controls">
+                    <input type="text" id="email" name="email" placeholder="<?=$site_inbox_ph?>" class="span12" value="">
+                </div>
+            </div>
+
+            <div class="control-group">
+                <div class="controls">
+                    <input type="submit" class="btn btn-primary" name="subMail" value="<?=$txt_submit?>">
+                </div>
+            </div>
+        </form>
+
+        <hr>
+            <b><?=$site_reset?></b><br><br>
 
         <form class="form-horizontal row-fluid" action="core/mngSettings.php" method="POST" enctype="multipart/form-data">
-            <input type="hidden" name="id" value="<?= $row1['id']?>" />
-            <div class="control-group">
 
-                <label class="control-label" for="inbox"><?=$site_inbox?></label>
-                <div class="controls">
-             
-
-                    <input type="text" id="inbox" name="inbox" placeholder="<?=$site_inbox_ph?>" class="span12" value="<?= $row1['inbox']  ?>">
-                    </div>
-            </div>
-   <br>
             <div class="control-group">
-                            <label class="control-label" for="reset"><?=$site_reset?></label>
+                            <label class="control-label" for="reset">Email</label>
                 <div class="controls">
 
-                    <input type="text" id="reset" name="reset" placeholder="<?=$site_reset_ph?>" class="span8" value="<?= $row1['reset'] ?>">
+                    <input type="text" id="reset" name="reset" placeholder="<?=$site_reset_ph?>" class="span8" value="<?= $reset ?>">
                         
                 </div>
             </div>
    
             <br>
-            <?php
-            }   
-?>
-<br>
+            <br>
+         
             <div class="control-group">
                 <div class="controls">
                    
-                    <input type="submit" class="btn btn-primary" name="subMail" value="<?=$txt_submit?>">
+                    <input type="submit" class="btn btn-primary" name="subReset" value="<?=$txt_submit?>">
 
                     <!-- <button type="submit" class="btn" name="subReg">Submit Form</button> -->
                 </div>
             </div>
         </form>
         </div>
-    <div class="col rounded guide mx-3">
+    <div class="col-4 rounded guide mx-3">
         <?=$site_box2_desc?>
     </div>
 </div>
