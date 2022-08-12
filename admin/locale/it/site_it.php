@@ -420,6 +420,7 @@ $cont_form_page = "Contattaci";
 $cont_form_title = "Contattaci";
 $cont_form_name = "Il tuo nome";
 $cont_form_email = "La tua mail";
+$cont_form_select_email = "Scrivi a:";
 $cont_form_sub = "Oggetto";
 $cont_form_msg = "Il tuo messaggio";
 $cont_form_button = "Invia";
