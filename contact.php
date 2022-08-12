@@ -40,7 +40,7 @@ require "admin/template/inc/header.php";
 								</div>
 
 								<div class="form-group">
-									<label for="contact">Scrivi a</label>
+									<label for="contact"><?=$cont_form_select_email?></label>
 									<select name="contact">
 									<?php
 										$stmt1=$contact->showAllContacts();

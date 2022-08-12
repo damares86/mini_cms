@@ -429,6 +429,7 @@ $cont_form_page = "Contact us";
 $cont_form_title = "Contact us";
 $cont_form_name = "Your name";
 $cont_form_email = "Your email";
+$cont_form_select_email = "Send mail to:";
 $cont_form_sub = "Subject";
 $cont_form_msg = "Your message";
 $cont_form_button = "Send";
