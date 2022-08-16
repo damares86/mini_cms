@@ -327,6 +327,40 @@ echo '})';
 echo "\n";
 echo '</script>';
 
+echo '<script type="text/javascript">';
+echo "\n";
+echo '$(document).ready(function() {';
+echo "\n";
+echo "$('#info_editor_$i').summernote({";
+echo "\n";
+echo 'toolbar: [';
+echo "\n";
+echo "['style', ['style','bold', 'italic', 'underline', 'clear']],";
+echo "\n";
+echo "['font', ['strikethrough', 'superscript', 'subscript']],";
+echo "\n";
+echo "['color', ['color']],";
+echo "\n";
+echo "['para', ['ul', 'ol', 'paragraph']],";
+echo "\n";
+echo "['insert', ['link', 'table']],";
+echo "\n";
+echo "['misc', ['codeview']]";
+echo "\n";
+echo '],';
+echo "\n";
+echo "dialogsInBody: true,";
+echo "\n";
+echo "height: '300px',";
+echo "\n";
+echo "styleWithSpan: false";
+echo "\n";
+echo "});";
+echo "\n";
+echo '})';
+echo "\n";
+echo '</script>';
+
 }
 ?>
 

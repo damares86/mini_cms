@@ -116,6 +116,7 @@ $regpage_rm_block = "Remove block";
 $regpage_add_block = "Add block";
 $regpage_background = "Background color";
 $regpage_text = "Text color";
+$regpage_info_block = "Info box";
 $regpage_none = "None";
 $regpage_text_block = "Text block";
 $regpage_picture = "Image";

@@ -233,7 +233,7 @@ if(filter_input(INPUT_POST,"addBlock")){
 		$page->header=$_SESSION['sess_header'];
 		$page->use_name=$_SESSION['sess_use_name'];
 		$page->use_desc=$_SESSION['sess_use_desc'];
-		$page->counter=$_SESSION['counter'];
+		$page->counter=$_POST['counter'];
 
 		$arr0=array(
 			"name"		=> $_SESSION['sess_page_name']
@@ -263,6 +263,24 @@ if(filter_input(INPUT_POST,"addBlock")){
 				$$array_name=array(
 					'block'.$i.'_type' 	=> $_SESSION["$sess_type"],
 					'block'.$i.'_pict' 	=> $_SESSION['sess_pict_'.$i.''],
+					'block'.$i.'_bg'	=> $_SESSION[''.$sess_bg.''],
+					'block'.$i.'_text'  => $_SESSION[''.$sess_text.'']
+				);
+
+			}else if($_SESSION["$sess_type"]=="i"){
+				if($_SESSION['sess_pict_info_'.$i.'']){
+					$page->img=$_SESSION['sess_pict_info_'.$i.''];
+					$page->img_tmp=$_SESSION['sess_pict_info_'.$i.'_tmp'];
+				}else{
+					$page->img=$_FILES['info'.$i.'']['name'];
+					$page->img_tmp=$_FILES['info'.$i.'']['tmp_name'];
+				}
+				$page->uploadPicture();
+				$editor = preg_replace('/^\s+/', '', $_SESSION["sess_info_editor$i"]);
+				$$array_name=array(
+					'block'.$i.'_type' 	=> $_SESSION["$sess_type"],
+					'block'.$i.'_info' 	=> $page->img,
+					'block'.$i.'_desc' 	=> $editor,
 					'block'.$i.'_bg'	=> $_SESSION[''.$sess_bg.''],
 					'block'.$i.'_text'  => $_SESSION[''.$sess_text.'']
 				);
@@ -416,6 +434,23 @@ if(filter_input(INPUT_POST,"addBlock")){
 							'block'.$i.'_bg'	=> $_SESSION[''.$sess_bg.''],
 							'block'.$i.'_text'  => $_SESSION[''.$sess_text.'']
 						);
+					}else if($_SESSION["$sess_type"]=="i"){
+						if($_FILES['info'.$i.'']['name']){
+							$page->img=$_FILES['info'.$i.'']['name'];
+							$page->img_tmp=$_FILES['info'.$i.'']['tmp_name'];
+							$page->uploadPicture();
+							$info=$_FILES['info'.$i.'']['name'];
+						}else{
+							$info=$_POST['old_info_'.$i.''];
+						}
+						
+						$$array_name=array(
+							'block'.$i.'_type' 	=> $_SESSION["$sess_type"],
+							'block'.$i.'_info' 	=> $info,
+							'block'.$i.'_desc' 	=> $_SESSION["sess_info_editor$i"],
+							'block'.$i.'_bg'	=> $_SESSION[''.$sess_bg.''],
+							'block'.$i.'_text'  => $_SESSION[''.$sess_text.'']
+						);
 					}else{
 						$$array_name=array(
 								'block'.$i.'_type' 	=> $_SESSION["$sess_type"],
@@ -472,8 +507,5 @@ if(filter_input(INPUT_POST,"addBlock")){
 				header("Location: ../index.php?man=page&op=show&type=$page->type&msg=pageEditErr");
 				exit;
 			}
-		}else if($type=="default"){
-			print_r("ok");
-			exit;
 		}
-	}
+}
