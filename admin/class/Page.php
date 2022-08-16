@@ -68,9 +68,19 @@ class Page{
         }else{
             $_SESSION['error']++;
         }
-    
+
+        if(isset($_POST['visualSel'])){
+            $_SESSION['sess_header']=$_POST['visualSel'];
+        } else {
+            $_SESSION['sess_header']=0;
+        }	
+
         if($_FILES['myfile']['size']!=0){
+            $this->img=$_FILES['myfile']['name'];
+            $this->uploadPhoto();
             $_SESSION['sess_img']=$_FILES['myfile']['name'];
+        }else{
+            $_SESSION['sess_img']=$_POST['actual_image'];
         }
     
         $_SESSION['sess_no_mod']=0;
@@ -79,16 +89,19 @@ class Page{
         }
         $_SESSION['sess_theme']=$_POST['theme'];
     
-        if(isset($_POST['visualSel'])){
-            $_SESSION['sess_header']=$_POST['visualSel'];
-        } else {
-            $_SESSION['sess_header']=0;
-        }		
+ 	
     
         for($i=1;$i<=$counter;$i++){
             $i_real=$i;
             
+
             if(isset($remove)&&$remove<=$i){
+                if($_SESSION['sess_pict_'.$i.'']){
+                    unlink("../../uploads/img/".$_SESSION['sess_pict_'.$i.'']."");
+                }
+                if($_SESSION['sess_pict_info_'.$i.'']){
+                    unlink("../../uploads/img/".$_SESSION['sess_pict_info_'.$i.'']."");
+                }
                 $i_real++;
             }
     
@@ -117,11 +130,11 @@ class Page{
                 }
             } else if($$block_name=="p$i_real"){
                     $_SESSION[''.$sess_type.'']="p";
-                if($operation=="add"||($operation=="mod"&&$_FILES['pict'.$i_real.'']['name'])){
-                    $picture=$_FILES['pict'.$i_real.'']['name'];
-                    $picture_tmp=$_FILES['pict'.$i_real.'']['tmp_name'];
-                    $_SESSION['sess_pict_'.$i_real.'']=$picture;
-                    $_SESSION['sess_pict_'.$i_real.'_tmp']=$picture_tmp;
+                if($_FILES['pict'.$i_real.'']['name']){
+                    $this->img=$_FILES['pict'.$i_real.'']['name'];
+                    $this->img_tmp=$_FILES['pict'.$i_real.'']['tmp_name'];
+                    $this->uploadPicture();
+                    $_SESSION['sess_pict_'.$i_real.'']=$_FILES['pict'.$i_real.'']['name'];
                 }else{
                     $_SESSION['sess_pict_'.$i_real.'']=$_POST['old_img_'.$i_real.''];
                 }
@@ -134,11 +147,11 @@ class Page{
                 }else{
                     $_SESSION['error']++;
                 }
-                if($operation=="add"||($operation=="mod"&&$_FILES['info'.$i_real.'']['name'])){
-                    $info_picture=$_FILES['info'.$i_real.'']['name'];
-                    $info_picture_tmp=$_FILES['info'.$i_real.'']['tmp_name'];
-                    $_SESSION['sess_pict_info_'.$i_real.'']=$info_picture;
-                    $_SESSION['sess_pict_info_'.$i_real.'_tmp']=$info_picture_tmp;
+                if($_FILES['info'.$i_real.'']['name']){
+                    $this->img=$_FILES['info'.$i_real.'']['name'];
+                    $this->img_tmp=$_FILES['info'.$i_real.'']['tmp_name'];
+                    $this->uploadPicture();
+                    $_SESSION['sess_pict_info_'.$i_real.'']=$_FILES['info'.$i_real.'']['name'];
                 }else{
                     $_SESSION['sess_pict_info_'.$i_real.'']=$_POST['old_info_'.$i_real.''];
                 }
