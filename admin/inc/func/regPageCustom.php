@@ -256,7 +256,11 @@ $page_theme="";
 
      $page_theme=$theme;
      if(!($page->img)){
-         $img="visual.jpg";
+        if($_SESSION['sess_img']){
+            $img=$_SESSION['sess_img'];
+        }else{
+            $img="visual.jpg";
+        }
      }
 ?>
             <div class="control-group">
@@ -265,6 +269,9 @@ $page_theme="";
                     <input type="file" id="myfile" name="myfile">
                     <br><br>
                     <?=$regpage_actual?> &nbsp;<img src="../uploads/img/<?=$img?>"  style="max-width:200px;">
+
+                    <input type="hidden" name="actual_image" value="<?= $img ?>" />
+
                 </div>
             </div>
             <br>
@@ -484,9 +491,9 @@ for($i=1;$i<=$counter;$i++){
 
                     <?php
                     
-                    if($operation=="mod"){
+                    if($operation=="mod"||isset($_SESSION['sess_pict_'.$i.''])){
                     ?>
-                    <?=$regpage_actual?> &nbsp;<img src="../uploads/img/<?=$picture?>"  style="max-width:200px;">
+                    <?=$regpage_actual?> &nbsp;<img src="../uploads/img/<?=$picture?>"  style="max-width:200px; margin: 1em;">
                     <?php
                     }
 ?>
@@ -525,9 +532,9 @@ for($i=1;$i<=$counter;$i++){
 
                     <?php
                     
-                    if($operation=="mod"&&isset($_SESSION['sess_pict_info_'.$i.''])){
+                    if($operation=="mod"||isset($_SESSION['sess_pict_info_'.$i.''])){
                     ?>
-                    <?=$regpage_actual?> &nbsp;<img src="../uploads/img/<?=$info_picture?>"  style="max-width:200px;">
+                    <?=$regpage_actual?> &nbsp;<img src="../uploads/img/<?=$info_picture?>"  style="max-width:200px; margin: 1em;">
                     <?php
                     }
                     ?>

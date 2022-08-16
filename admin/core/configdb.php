@@ -130,17 +130,6 @@ $db->query("INSERT INTO roles
                             VALUES ('3','Contributor')
                             ");
 
-
-$db->query("CREATE TABLE post (
-  id int(5) NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  main_img VARCHAR(255) NOT NULL,
-  gall VARCHAR(255) NOT NULL,
-  title VARCHAR(255) NOT NULL,
-  summary text COLLATE utf8_unicode_ci NOT NULL,
-  content text COLLATE utf8_unicode_ci NOT NULL,
-  modified datetime NOT NULL,
-  category_id INT (5) NOT NULL)");
-
 $db->query("CREATE TABLE settings (
   id int(5) NOT NULL AUTO_INCREMENT PRIMARY KEY,
   site_name VARCHAR(255) NOT NULL,
@@ -150,15 +139,6 @@ $db->query("CREATE TABLE settings (
   dashboard_language VARCHAR(255) NOT NULL,
   theme VARCHAR(255) NOT NULL,
   dm INT (1) DEFAULT 1)");
-
-$db->query("CREATE TABLE IF NOT EXISTS categories
-                           ( id INT ( 5 ) NOT NULL AUTO_INCREMENT PRIMARY KEY,
-                             category_name VARCHAR(255) NOT NULL)");
-
-$db->query("INSERT INTO categories
-                            (id, category_name)
-                            VALUES ('1','Misc')
-                            ");
 
 $db->query("CREATE TABLE IF NOT EXISTS page
               ( id INT ( 5 ) NOT NULL AUTO_INCREMENT PRIMARY KEY,
