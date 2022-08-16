@@ -100,6 +100,7 @@ if(filter_input(INPUT_GET,"count")){
 }
 $_SESSION['counter']=$counter;
 ?>
+
 <input type="hidden" name="counter" value="<?= $counter ?>" />
 
 <?php
@@ -350,6 +351,7 @@ for($i=1;$i<=$counter;$i++){
         $text="checked_t$i";
         $gall="checked_g$i";
         $blog="checked_b$i";
+        $info="checked_i$i";
         $page_class="page";
 
         $block_type='block'.$i.'_type';
@@ -363,8 +365,9 @@ for($i=1;$i<=$counter;$i++){
         $$text="";
         $$gall="";
         $$blog="";
+        $$info="";
         
-        $type_arr = array("t","b","n","p");
+        $type_arr = array("t","b","n","p","i");
         
         if($operation=="mod"||(isset($_SESSION[''.$sess_type.'']))){
             
@@ -377,9 +380,12 @@ for($i=1;$i<=$counter;$i++){
         } else if($page->$block_type=="b"){
             $$blog="checked";                
             $$none="";
+        } else if($page->$block_type=="i"){
+            $$info="checked";                
+            $$none="";
         } else if($page->$block_type=="n"){
             $$none = "checked";
-        }else if(!in_array($page->$block_type,$type_arr)){
+        } else if(!in_array($page->$block_type,$type_arr)){
             $$gall = "checked";
             $$none = "";
         }
@@ -416,10 +422,20 @@ for($i=1;$i<=$counter;$i++){
                 echo "}";
                 echo "\n";        
                 echo "</style>";
-              }else if($blog=="checked"){
+              }else if($$blog=="checked"){
                 echo "<style>";
                 echo "\n";        
                 echo ".box$i.b$i{";
+                echo "\n";        
+                echo "display:block;";
+                echo "\n";        
+                echo "}";
+                echo "\n";        
+                echo "</style>";
+              }else if($$info=="checked"){
+                echo "<style>";
+                echo "\n";        
+                echo ".box$i.i$i{";
                 echo "\n";        
                 echo "display:block;";
                 echo "\n";        
@@ -433,6 +449,7 @@ for($i=1;$i<=$counter;$i++){
         <label><input type="radio" name="block<?=$i?>[]" value="n<?=$i?>" <?=$$none?>> <?=$regpage_none?></label>
         <label><input type="radio" name="block<?=$i?>[]" value="p<?=$i?>" <?=$$pict?>> <?=$regpage_picture?></label>
         <label><input type="radio" name="block<?=$i?>[]" value="t<?=$i?>" <?=$$text?>> <?=$regpage_text_block?></label>
+        <label><input type="radio" name="block<?=$i?>[]" value="i<?=$i?>" <?=$$info?>> <?=$regpage_info_block?> </label>
         <label><input type="radio" name="block<?=$i?>[]" value="g<?=$i?>" <?=$$gall?>> <?=$regpage_gall?></label>
         <?php
 
@@ -486,6 +503,40 @@ for($i=1;$i<=$counter;$i++){
             $page->$name=$_SESSION['sess_editor'.$i.''];
             ?>
             <textarea id="summernote<?=$i?>" name="editor<?=$i?>" rows="10">   <?=$page->$var?></textarea>
+            <br>
+
+
+        </div>
+
+        <!-- INFO BOX -->
+        <div class="i<?=$i?> box<?=$i?>">
+            <div class="controls">
+                    <?php
+                     $info_picture=$_SESSION['sess_pict_info_'.$i.''];
+                    // $picture=$json_arr[$i]['block'.$i.'_pict'];
+                    // print_r($picture);
+                    // exit;
+                    
+                    ?>
+                    <input type="file" id="info<?=$i?>" name="info<?=$i?>" value="<?=$info_picture?>">
+                    <br><br>
+
+                    <input type="hidden" name="old_info_<?=$i?>" value="<?= $info_picture ?>" />
+
+                    <?php
+                    
+                    if($operation=="mod"&&isset($_SESSION['sess_pict_info_'.$i.''])){
+                    ?>
+                    <?=$regpage_actual?> &nbsp;<img src="../uploads/img/<?=$info_picture?>"  style="max-width:200px;">
+                    <?php
+                    }
+                    ?>
+                </div>
+                <?php
+                $desc="block".$i."_desc";
+                $page->$desc=$_SESSION['sess_info_editor'.$i.''];
+                ?>
+            <textarea id="info_editor_<?=$i?>" name="info_editor<?=$i?>" rows="10">   <?=$page->$desc?></textarea>
             <br>
 
 

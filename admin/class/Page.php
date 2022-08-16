@@ -125,6 +125,23 @@ class Page{
                 }else{
                     $_SESSION['sess_pict_'.$i_real.'']=$_POST['old_img_'.$i_real.''];
                 }
+            }  else if($$block_name=="i$i_real"){
+                $_SESSION[''.$sess_type.'']="i";
+                $editor = preg_replace('/^\s+/', '', $_POST['info_editor'.$i_real.'']);
+                if(!empty($editor)){
+                    $_SESSION['sess_info_editor'.$i.'']=$_POST['info_editor'.$i_real.''];
+
+                }else{
+                    $_SESSION['error']++;
+                }
+                if($operation=="add"||($operation=="mod"&&$_FILES['info'.$i_real.'']['name'])){
+                    $info_picture=$_FILES['info'.$i_real.'']['name'];
+                    $info_picture_tmp=$_FILES['info'.$i_real.'']['tmp_name'];
+                    $_SESSION['sess_pict_info_'.$i_real.'']=$info_picture;
+                    $_SESSION['sess_pict_info_'.$i_real.'_tmp']=$info_picture_tmp;
+                }else{
+                    $_SESSION['sess_pict_info_'.$i_real.'']=$_POST['old_info_'.$i_real.''];
+                }
             } else if($$block_name=="g$i_real"){
                 $gallery=$_POST[''.$block_name.'_gall'];
                 $gallery= str_replace(" ","_", $gallery);
@@ -178,6 +195,9 @@ class Page{
             } else if($_SESSION[''.$sess_type.'']=="p"){
                 $_SESSION['sess_pict_'.$i.'']=$json_arr[$i]['block'.$i.'_pict'];
 
+            } else if($_SESSION[''.$sess_type.'']=="i"){
+                $_SESSION['sess_pict_info_'.$i.'']=$json_arr[$i]['block'.$i.'_info'];
+                $_SESSION['sess_info_editor'.$i.'']=$json_arr[$i]['block'.$i.'_desc'];
             }
 
         }
@@ -201,9 +221,11 @@ class Page{
             $sess_type="sess_type_$i";
             unset($_SESSION["$sess_type"]);
             unset($_SESSION["sess_editor$i"]);
+            unset($_SESSION["sess_info_editor$i"]);
             unset($_SESSION[''.$sess_bg.'']);
             unset($_SESSION[''.$sess_text.'']);
             unset($_SESSION['sess_pict_'.$i.'']);
+            unset($_SESSION['sess_pict_info_'.$i.'']);
         }
         unset($_SESSION['counter']);
     

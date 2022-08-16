@@ -117,6 +117,7 @@ $regpage_text = "Colore del testo";
 $regpage_none = "Vuoto";
 $regpage_picture = "Immagine";
 $regpage_text_block = "Testo";
+$regpage_info_block = "Box info";
 $regpage_gall = "Galleria";
 $regpage_choose_gall = "Scegli una galleria";
 $regpage_post = "Ultimi post";
