@@ -93,13 +93,7 @@ function is_dir_empty($dir) {
 
 
 
-<?php
-        $counter="1";
-if(filter_input(INPUT_GET,"count")){
-    $counter=filter_input(INPUT_GET,"count");
-}
-$_SESSION['counter']=$counter;
-?>
+
 
 <input type="hidden" name="counter" value="<?= $counter ?>" />
 
