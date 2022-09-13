@@ -1,5 +1,5 @@
 <?php
-
+$counter=$_SESSION['counter'];
 $operation = "add";
 $titoloForm = $regpage_title_add;
 
@@ -284,7 +284,6 @@ $page_theme="";
 
 // SESSION VARIABILES
 
-
 for($i=1;$i<=$counter;$i++){    
     echo "<style>";
     echo "\n";        
@@ -503,7 +502,7 @@ for($i=1;$i<=$counter;$i++){
             $name="block$i";
             $page->$name=$_SESSION['sess_editor'.$i.''];
             ?>
-            <textarea id="summernote<?=$i?>" name="editor<?=$i?>" rows="10">   <?=$page->$var?></textarea>
+            <textarea id="editor<?=$i?>" name="editor<?=$i?>" rows="10">   <?=$page->$var?></textarea>
             <br>
 
 

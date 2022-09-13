@@ -160,18 +160,26 @@ const example_image_upload_handler = (blobInfo, progress) => new Promise((resolv
 });
 </script>
 
-<!-- foreach counter -->
 <script>
+<?php
+
+for($i=1;$i<=$counter;$i++){
+  ?>
 tinymce.init({
-  selector: 'textarea#mytextarea1',
+  selector: 'textarea#editor<?=$i?>',
   images_upload_handler: example_image_upload_handler,
   plugins: 'image code',
   toolbar: 'undo redo | blocks | ' +
   'bold italic backcolor | alignleft aligncenter ' +
   'alignright alignjustify | link image | bullist numlist outdent indent | ' +
-  'removeformat | code',  // change this value according to your HTML
+  'removeformat | code',
 
 });
+
+<?php
+}
+
+?>
 
 </script>
 
