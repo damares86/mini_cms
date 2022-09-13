@@ -273,7 +273,6 @@ $user_id=$_SESSION['user_id'];
     </div>
 
     <!-- Bootstrap core JavaScript-->
-    <!-- <script src="assets/vendor/jquery/jquery.min.js"></script> -->
     <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
     <!-- Core plugin JavaScript-->
@@ -289,88 +288,13 @@ $user_id=$_SESSION['user_id'];
     
     <script src="scripts/common.js" type="text/javascript"></script>
 
-<!-- <script src="scripts/summernote/summernote.min.js"></script> -->
-<?php
-for($i=1;$i<=$counter;$i++){
-
-echo '<script type="text/javascript">';
-echo "\n";
-echo '$(document).ready(function() {';
-echo "\n";
-echo "$('#summernote$i').summernote({";
-echo "\n";
-echo 'toolbar: [';
-echo "\n";
-echo "['style', ['style','bold', 'italic', 'underline', 'clear']],";
-echo "\n";
-echo "['font', ['strikethrough', 'superscript', 'subscript']],";
-echo "\n";
-echo "['color', ['color']],";
-echo "\n";
-echo "['para', ['ul', 'ol', 'paragraph']],";
-echo "\n";
-echo "['insert', ['link', 'table']],";
-echo "\n";
-echo "['misc', ['codeview']]";
-echo "\n";
-echo '],';
-echo "\n";
-echo "dialogsInBody: true,";
-echo "\n";
-echo "height: '300px',";
-echo "\n";
-echo "styleWithSpan: false";
-echo "\n";
-echo "});";
-echo "\n";
-echo '})';
-echo "\n";
-echo '</script>';
-
-echo '<script type="text/javascript">';
-echo "\n";
-echo '$(document).ready(function() {';
-echo "\n";
-echo "$('#info_editor_$i').summernote({";
-echo "\n";
-echo 'toolbar: [';
-echo "\n";
-echo "['style', ['style','bold', 'italic', 'underline', 'clear']],";
-echo "\n";
-echo "['font', ['strikethrough', 'superscript', 'subscript']],";
-echo "\n";
-echo "['color', ['color']],";
-echo "\n";
-echo "['para', ['ul', 'ol', 'paragraph']],";
-echo "\n";
-echo "['insert', ['link', 'table']],";
-echo "\n";
-echo "['misc', ['codeview']]";
-echo "\n";
-echo '],';
-echo "\n";
-echo "dialogsInBody: true,";
-echo "\n";
-echo "height: '300px',";
-echo "\n";
-echo "styleWithSpan: false";
-echo "\n";
-echo "});";
-echo "\n";
-echo '})';
-echo "\n";
-echo '</script>';
-
-}
-?>
-
 <script type="text/javascript">
 function postForm() {
     <?php
     for($i=1;$i<=$counter;$i++){
     ?>
 
-	$('textarea[name="editor<?=$i?>"]').html($('#summernote<?=$i?>').code());
+	$('textarea[name="editor<?=$i?>"]').html($('#editor<?=$i?>').code());
     <?php
     }
     ?>
