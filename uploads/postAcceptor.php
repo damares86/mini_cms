@@ -7,7 +7,7 @@
   /*********************************************
    * Change this line to set the upload folder *
    *********************************************/
-  $imageFolder = "../../uploads/img/";
+  $imageFolder = "img/";
 
 //   if (isset($_SERVER['HTTP_ORIGIN'])) {
 //     // same-origin requests won't set an origin. If the origin is set, it must be valid.
@@ -54,6 +54,9 @@
     // Determine the base URL
     $protocol = isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == 'on' ? "https://" : "http://";
     $baseurl = $protocol . $_SERVER["HTTP_HOST"] . rtrim(dirname($_SERVER['REQUEST_URI']), "/") . "/";
+
+    // print_r($baseurl);
+    // exit;
 
     // Respond to the successful upload with JSON.
     // Use a location key to specify the path to the saved image resource.

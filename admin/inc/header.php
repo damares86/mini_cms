@@ -122,7 +122,7 @@ $_SESSION['counter']=$counter;
 const example_image_upload_handler = (blobInfo, progress) => new Promise((resolve, reject) => {
   const xhr = new XMLHttpRequest();
   xhr.withCredentials = false;
-  xhr.open('POST', 'core/postAcceptor.php');
+  xhr.open('POST', '../uploads/postAcceptor.php');
 
   xhr.upload.onprogress = (e) => {
     progress(e.loaded / e.total * 100);
