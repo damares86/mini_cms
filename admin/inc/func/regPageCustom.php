@@ -1,5 +1,5 @@
 <?php
-
+$counter=$_SESSION['counter'];
 $operation = "add";
 $titoloForm = $regpage_title_add;
 
@@ -93,13 +93,7 @@ function is_dir_empty($dir) {
 
 
 
-<?php
-        $counter="1";
-if(filter_input(INPUT_GET,"count")){
-    $counter=filter_input(INPUT_GET,"count");
-}
-$_SESSION['counter']=$counter;
-?>
+
 
 <input type="hidden" name="counter" value="<?= $counter ?>" />
 
@@ -289,7 +283,6 @@ $page_theme="";
 ////////////////////////////////////////////////////////
 
 // SESSION VARIABILES
-
 
 for($i=1;$i<=$counter;$i++){    
     echo "<style>";
@@ -509,7 +502,7 @@ for($i=1;$i<=$counter;$i++){
             $name="block$i";
             $page->$name=$_SESSION['sess_editor'.$i.''];
             ?>
-            <textarea id="summernote<?=$i?>" name="editor<?=$i?>" rows="10">   <?=$page->$var?></textarea>
+            <textarea id="editor<?=$i?>" name="editor<?=$i?>" rows="10">   <?=$page->$var?></textarea>
             <br>
 
 

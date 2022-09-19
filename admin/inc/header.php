@@ -108,12 +108,79 @@ foreach (glob("locale/$lang/*.php") as $row){
             <script src="scripts/summernote-ext-ajaxfileupload.js"></script>
             <link href="assets/css/sb-admin-2.min.css" rel="stylesheet">
             <link href="assets/css/custom.css" rel="stylesheet">
-            <script>
-    // $(document).ready(function(){
-    //     $(".btn").click(function(){
-    //         $("#myModal").modal('show');
-    //     });
-    // });
+            <script src="scripts/tinymce/js/tinymce/tinymce.min.js" referrerpolicy="origin"></script>
+
+            <?php
+        $counter="1";
+if(filter_input(INPUT_GET,"count")){
+    $counter=filter_input(INPUT_GET,"count");
+}
+$_SESSION['counter']=$counter;
+?>
+
+<script>
+const example_image_upload_handler = (blobInfo, progress) => new Promise((resolve, reject) => {
+  const xhr = new XMLHttpRequest();
+  xhr.withCredentials = false;
+  xhr.open('POST', '../uploads/postAcceptor.php');
+
+  xhr.upload.onprogress = (e) => {
+    progress(e.loaded / e.total * 100);
+  };
+
+  xhr.onload = () => {
+    if (xhr.status === 403) {
+      reject({ message: 'HTTP Error: ' + xhr.status, remove: true });
+      return;
+    }
+
+    if (xhr.status < 200 || xhr.status >= 300) {
+      reject('HTTP Error: ' + xhr.status);
+      return;
+    }
+
+    const json = JSON.parse(xhr.responseText);
+
+    if (!json || typeof json.location != 'string') {
+      reject('Invalid JSON: ' + xhr.responseText);
+      return;
+    }
+
+    resolve(json.location);
+  };
+
+  xhr.onerror = () => {
+    reject('Image upload failed due to a XHR Transport error. Code: ' + xhr.status);
+  };
+
+  const formData = new FormData();
+  formData.append('file', blobInfo.blob(), blobInfo.filename());
+
+  xhr.send(formData);
+});
+</script>
+
+<script>
+<?php
+
+for($i=1;$i<=$counter;$i++){
+  ?>
+tinymce.init({
+  selector: 'textarea#editor<?=$i?>',
+  images_upload_handler: example_image_upload_handler,
+  plugins: 'link image code',
+  toolbar: 'undo redo | blocks | ' +
+  'bold italic backcolor | alignleft aligncenter ' +
+  'alignright alignjustify | link image | bullist numlist outdent indent | ' +
+  'removeformat | code',
+
+});
+
+<?php
+}
+
+?>
+
 </script>
 
 </head>
