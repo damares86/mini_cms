@@ -426,27 +426,6 @@ $cont_form_sub = "Oggetto";
 $cont_form_msg = "Il tuo messaggio";
 $cont_form_button = "Invia";
 
-// BLOG
-
-$blog_category = "Categoria";
-$blog_mod = "Pubblicato";
-$blog_continue = "Continua a leggere";
-$blog_categories = "Categorie";
-$blog_share = "Condividi su";
-$blog_edit = "Modifica post";
-
-
-
-// PORTFOLIO PROJECT
-
-$pro_edit = "Modifica progetto";
-$pro_client = "Cliente";
-$pro_comp = "Completato";
-$pro_cat = "Categoria";
-$pro_goto = "Vai al progetto";
-$pro_back = "Torna al portfolio";
-
-
 // ADMIN AREA
 
 $goToAdmin = "Vai al pannello di amministrazione";

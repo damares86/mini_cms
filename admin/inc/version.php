@@ -1,3 +1,3 @@
 <?php
-    $mc_version="5.4";
+    $mc_version="5.5";
 ?>

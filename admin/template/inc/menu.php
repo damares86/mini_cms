@@ -1,5 +1,6 @@
 <ul>
     <?php
+
     $stmt=$menu->showAllParent();
     while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
         extract($row);
@@ -13,13 +14,16 @@
         <li><a href="<?=$root?><?=$str?>.php" ><?php
         if($name=='index'){
             echo "Home";
-        } else {
+        } else if($name=="Post"||$name=="Blog"){
+            echo "Blog";
+        }else{
         echo $name;
         }?></a>
         <?php
                 
                 $menu->childof=$name;
                 $num=$menu->countChildInMenu();
+                
                 if($num>0){
                 $stmt1=$menu->showAllChildInMenu();         
         
@@ -28,9 +32,11 @@
                 <?php
                   while ($row1 = $stmt1->fetch(PDO::FETCH_ASSOC)){
                         extract($row1);
-                        
                         $str1=$row1['pagename'];
-               
+                        
+                        if($name=="Post"||$name=="Blog"){
+                            $str1="blog";
+                        }
                         $str1 = preg_replace('/\s+/', '_', $str1);
                         $str1 = strtolower($str1);
                         ?>
