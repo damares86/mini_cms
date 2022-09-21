@@ -435,28 +435,6 @@ $cont_form_sub = "Subject";
 $cont_form_msg = "Your message";
 $cont_form_button = "Send";
 
-
-
-// BLOG
-
-$blog_category = "Category";
-$blog_mod = "Published";
-$blog_continue = "Continue reading";
-$blog_categories = "Categories";
-$blog_share = "Share on";
-$blog_edit = "Edit post";
-
-
-
-// PORTFOLIO PROJECT
-
-$pro_edit = "Edit project";
-$pro_client = "Client";
-$pro_comp = "Completed";
-$pro_cat = "Category";
-$pro_goto = "Go to project";
-$pro_back = "Back to portfolio";
-
 // ADMIN AREA
 
 $goToAdmin = "Go to Admin Area";
