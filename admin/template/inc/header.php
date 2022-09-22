@@ -1,11 +1,11 @@
 <?php
 
-// require 'admin/phpDebug/src/Debug/Debug.php';   			// if not using composer
+require 'admin/phpDebug/src/Debug/Debug.php';   			// if not using composer
 
-// $debug = new \bdk\Debug(array(
-//     'collect' => true,
-//     'output' => true,
-// ));
+$debug = new \bdk\Debug(array(
+    'collect' => true,
+    'output' => true,
+));
 
 session_start();
 // loading class
@@ -82,6 +82,8 @@ if($file=="login.php"){
     }
 }
 
+$root="";
+
 if($file=="index.php"){
     $page_name="Home";
     $page_class = pathinfo($file, PATHINFO_FILENAME);
@@ -91,6 +93,7 @@ if($file=="index.php"){
 }else if($file=="contact.php"){
     $page_name=$cont_form_page;
     $page_class="contact";
+}else if($file=="blog.php"){
 }else{
 // mi prendo solo il nome senza l'estensione
 $page_name = pathinfo($file, PATHINFO_FILENAME);
@@ -101,8 +104,42 @@ $page_name=str_replace("_"," ", $page_name);
 $page_name=ucfirst($page_name);
 }
 
-$root="";
 $lang="";
+
+if($page_class=="index"||$page_class=="blog"||$page_class=="contact"){
+    $page->page_name=$page_class;
+}else{
+    $page->page_name=$page_name;
+}
+
+$default="";
+$showDefault=$page->showAllDefault();
+$name="";
+if($file=="index.php"){
+    $name="index";
+}else{
+    $name=ucfirst($page_class);
+}
+foreach($showDefault as $row){
+    if($name==$row['page_name']){
+        $default=1;
+    }
+}
+
+if($default==1){
+    $stmt=$page->showByNameDefault();
+}else{
+    $stmt=$page->showByName();
+}
+
+
+$img="";
+if($file!="post.php"){
+    $img=$post->main_img;
+}else{
+    $img=$page->img;
+}
+
 
 while ($row = $stmt2->fetch(PDO::FETCH_ASSOC)){
     
@@ -123,41 +160,34 @@ while ($row = $stmt2->fetch(PDO::FETCH_ASSOC)){
             ==========================================================================
         -->
 		<meta charset="utf-8">
+        <meta name="author" content="dmweblab" />
+
+        <!-- FACEBOOK and LINKEDIN meta tag -->
+        <meta property="og:title" content="<?=$site_name?>">
+        <meta property="og:description" content="<?=$site_description?>">
+        <meta property="og:url" content="<?=$url?>" />
+        <meta property="og:image" content="uploads/img/<?=$img?>">
+        <meta property="og:image:type" content="image/jpeg">
+        <meta property="og:image:width" content="1200">
+        <meta property="og:image:height" content="800">
+
+        <!-- TWITTER meta tag -->
+        <meta name="twitter:card" value="summary">
+        <meta name="twitter:title" content="<?=$site_name?>"> 
+        <meta name="twitter:description" content="<?=$site_description?>"> 
+        <meta name="twitter:site" content="<?=$url?>"/>
+        <meta name="twitter:image" content="uploads/img/<?=$img?>"> 
+        
+
 		<title><?=$page_name?> - <?=$site_name?></title>
         <link rel="icon" href="assets/<?= $theme ?>/img/favicon.ico">
         <?php
           
 
-            if($page_class=="index"||$page_class=="blog"||$page_class=="contact"){
-                $page->page_name=$page_class;
-            }else{
-                $page->page_name=$page_name;
-            }
-            
-            $default="";
-            $showDefault=$page->showAllDefault();
-            $name="";
-            if($file=="index.php"){
-                $name="index";
-            }else{
-                $name=ucfirst($page_class);
-            }
-            foreach($showDefault as $row){
-                if($name==$row['page_name']){
-                    $default=1;
-                }
-            }
-
-            if($default==1){
-                $stmt=$page->showByNameDefault();
-            }else{
-                $stmt=$page->showByName();
-            }
-
-            $img=$page->img;
 
 
         ?>
+        
         <link rel="stylesheet" href="admin/template/layout/<?=$page->layout?>.css" />
         <link rel="stylesheet" href="admin/assets/css/my-login.css" />
         <link href='admin/scripts/simplelightbox/simple-lightbox.min.css' rel='stylesheet' type='text/css'>
