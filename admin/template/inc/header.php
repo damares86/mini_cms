@@ -134,7 +134,7 @@ if($default==1){
 
 
 $img="";
-if($file!="post.php"){
+if($file=="post.php"){
     $img=$post->main_img;
 }else{
     $img=$page->img;

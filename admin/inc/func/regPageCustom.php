@@ -536,7 +536,7 @@ for($i=1;$i<=$counter;$i++){
                 $desc="block".$i."_desc";
                 $page->$desc=$_SESSION['sess_info_editor'.$i.''];
                 ?>
-            <textarea id="info_editor_<?=$i?>" name="info_editor<?=$i?>" rows="10">   <?=$page->$desc?></textarea>
+            <textarea id="editor<?=$i?>" name="info_editor<?=$i?>" rows="10">   <?=$page->$desc?></textarea>
             <br>
 
 
