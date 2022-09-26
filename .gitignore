@@ -1,5 +1,0 @@
-# ignore database.php
-admin/class/Database.php
-
-#ignore site.php
-admin/core/site.php

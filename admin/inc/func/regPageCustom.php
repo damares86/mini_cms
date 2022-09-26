@@ -185,45 +185,7 @@ if($operation=="add"){
                 </div>
             </div>
             <br>
-            <div class="control-group">
 
-            <hr>
-            <?php
-                $checked_name="checked";
-                $checked_desc="checked";
-                if(isset($_SESSION['sess_use_name'])&&$_SESSION['sess_use_name']==0){
-                    $checked_name="";
-                }
-
-                if(isset($_SESSION['sess_use_desc'])&&$_SESSION['sess_use_desc']==0){
-                    $checked_desc="";
-                }
-
-    
-                while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
-        
-                    extract($row);
-            ?>
-            <input type="checkbox" name="use_name" value="1" <?=$checked_name?>> <?=$regpage_use_name?> (<b><?=$site_name?></b>)<br><br>
-            <input type="checkbox" name="use_desc" value="1" <?=$checked_desc?>> <?=$regpage_use_description?> (<b><?=$site_description?></b>)<br>
-            <?php
-                // }
-                ?>
-                <hr>
-            </div>
-            <br>
-            <?php
-                $display="";
-                $checked="";
-                if($page->header==0){
-                    $display="none";
-            }else{
-                $display="block";
-                $checked="checked";
-            }
-
-
-        ?>
         <script>
             function show(i) {
                 document.getElementById(i).style.visibility='visible';
@@ -236,6 +198,18 @@ if($operation=="add"){
             });
             });
         </script>
+        <?php
+    $display="";
+    $checked="";
+    if($page->header==0){
+        $display="none";
+}else{
+    $display="block";
+    $checked="checked";
+}
+
+
+?> 
         <input type="checkbox" name="visualSel" value="1" id="changeHeader" <?=$checked?>> <?=$regpage_use_visual?>
 
 <div id="uploadHeader" class="border-top border-bottom"  style="display:<?=$display?>">
@@ -269,7 +243,36 @@ $page_theme="";
                 </div>
             </div>
             <br>
-        </div>
+   
+        <div class="control-group">
+
+<hr>
+<?php
+    $checked_name="checked";
+    $checked_desc="checked";
+    if(isset($_SESSION['sess_use_name'])&&$_SESSION['sess_use_name']==0){
+        $checked_name="";
+    }
+
+    if(isset($_SESSION['sess_use_desc'])&&$_SESSION['sess_use_desc']==0){
+        $checked_desc="";
+    }
+
+
+    while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
+
+        extract($row);
+?>
+<input type="checkbox" name="use_name" value="1" <?=$checked_name?>> <?=$regpage_use_name?> (<b><?=$site_name?></b>)<br><br>
+<input type="checkbox" name="use_desc" value="1" <?=$checked_desc?>> <?=$regpage_use_description?> (<b><?=$site_description?></b>)<br>
+<?php
+    // }
+    ?>
+    <hr>
+</div>
+</div>
+<br>
+
             <br>
             <?php
 }

@@ -123,11 +123,11 @@ $db->query("INSERT INTO roles
 
 $db->query("INSERT INTO roles
                             (id, rolename)
-                            VALUES ('2','Editor')
+                            VALUES ('2','Manager')
                             ");
 $db->query("INSERT INTO roles
                             (id, rolename)
-                            VALUES ('3','Contributor')
+                            VALUES ('3','Editor')
                             ");
 
 $db->query("CREATE TABLE settings (

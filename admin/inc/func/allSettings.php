@@ -21,6 +21,7 @@ if($man=="settings"){
         </div>
         <div class="card-body">
            
+        
            
         <div class="row">
     <div class="col-8">
@@ -54,19 +55,8 @@ if($man=="settings"){
                 </div>
             </div>
 
-            <br>
 
-            <div class="control-group">
-                            <label class="control-label" for="footer"><?=$site_footer ?></label><br><br>
-                <div class="controls">
-                    <textarea id="editor1" name="editor1" rows="10">  
-                        <?= $footer ?>
-                    </textarea>
-                        
-                </div>
-            </div>
-
-            <br>
+            <hr>
 
             <div class="control-group">
                             <label class="control-label" for="language"><?=$site_lang?></label>
@@ -92,6 +82,19 @@ if($man=="settings"){
                 </div>
             </div>
    
+            <hr>
+            <div class="control-group">
+                            <label class="control-label" for="footer"><?=$site_footer ?></label><br><br>
+                <div class="controls">
+                    <textarea id="editor1" name="editor1" rows="10">  
+                        <?= $footer ?>
+                    </textarea>
+                        
+                </div>
+            </div>
+
+            <br>
+
             
             <?php
             } 
