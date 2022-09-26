@@ -18,7 +18,7 @@
                 </a>
             </li>
             <?php
-            if($_SESSION['rolename']!="Contributor"){
+            if($_SESSION['rolename']!="Editor"){
             ?>
             <!-- Divider -->
             <hr class="sidebar-divider">
@@ -46,9 +46,7 @@
             <hr class="sidebar-divider">
             <!-- Heading -->
             <div class="sidebar-heading"><?=$side_manage?></div>
-            <?php
-            if($_SESSION['rolename']!="Contributor"){
-            ?>
+          
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseOne"
                     aria-expanded="true" aria-controls="collapseOne">
@@ -63,10 +61,7 @@
                 </div>
             </li>
             
-            <?php
-            }
-            ?>
-   
+    
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseFour"
                     aria-expanded="true" aria-controls="collapseFour">
@@ -94,14 +89,18 @@
             <hr class="sidebar-divider">
             <!-- Heading -->
             <div class="sidebar-heading"><?=$side_plugin?></div>
-
+        <?php
+            if($_SESSION['rolename']!="Editor"){
+        ?>
             <li class="nav-item">
                 <a class="nav-link" href="index.php?man=plugins&op=show">
                     <i class="fas fa-puzzle-piece"></i>
                     <span><?=$side_manage_plugins?></span>
                 </a>
             </li>
-            <?php
+        <?php
+        }
+                
             $stmt2=$plugins->showAll();
             $counter=1;
             foreach($stmt2 as $row){
@@ -109,7 +108,8 @@
                 $show_title=$row['sub_show_title'];
                 $add_title=$row['sub_add_title'];
                 if($row['active']==1){
-               
+              
+                    if(($title=="Blog"&&$_SESSION['rolename']=="Editor")||($_SESSION['rolename']=="Manager")){
             ?>
             <li class="nav-item">
             <?php
@@ -151,6 +151,7 @@
             </li>
             
             <?php
+                }
                 }
             }
             $counter++;
