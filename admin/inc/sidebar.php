@@ -109,7 +109,7 @@
                 $add_title=$row['sub_add_title'];
                 if($row['active']==1){
               
-                    if(($title=="Blog"&&$_SESSION['rolename']=="Editor")||($_SESSION['rolename']=="Manager")){
+                    if((($title=="side_blog")&&($_SESSION['rolename']=="Editor"))||(($title=="side_blog")&&($_SESSION['rolename']=="Manager"))||$_SESSION['rolename']!="Editor"){
             ?>
             <li class="nav-item">
             <?php
