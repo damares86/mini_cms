@@ -1,11 +1,11 @@
 <?php
 
-// require '../../admin/phpDebug/src/Debug/Debug.php';   			// if not using composer
+require '../../admin/phpDebug/src/Debug/Debug.php';   			// if not using composer
 
-// $debug = new \bdk\Debug(array(
-//     'collect' => true,
-//     'output' => true,
-// ));
+$debug = new \bdk\Debug(array(
+    'collect' => true,
+    'output' => true,
+));
 
 session_start();
 
@@ -120,12 +120,12 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
           
           
           ?>
-        <link href='admin/template/inc/layout.css' rel='stylesheet' type='text/css'>
+        <link href='<?=$root?>admin/template/inc/layout.css' rel='stylesheet' type='text/css'>
 
 		<?php
 
 require "$root/assets/".$theme."/inc/scripts.php";
-require "../../admin/inc/func/check.php";
+// require "../../admin/inc/func/check.php";
 if(($file=="login.php")||($file=="contact.php")){
     require "$root/assets/".$theme."/inc/recaptcha.php";
 }
