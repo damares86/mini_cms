@@ -1,8 +1,21 @@
 <?php
 require "admin/template/inc/header.php";
 
-$id_cat=filter_input(INPUT_GET,"cat");
-$total_rows=$portfolio->countAll();
+require "admin/core/config.php";
+
+
+$id_cat="";
+$total_rows="";
+
+if(filter_input(INPUT_GET,"cat")){
+    $id_cat=filter_input(INPUT_GET,"cat");
+    $stmt = $portfolio->showByCatId($id_cat,$from_record_num, $records_per_page);
+    $total_rows=$portfolio->countSelected();
+}else{           
+    $stmt = $portfolio->showAll($from_record_num, $records_per_page);
+    $total_rows=$portfolio->countAll();
+}
+
 ?>
             <div id="bottomContainer">
                 <div id="content">
@@ -17,7 +30,8 @@ $total_rows=$portfolio->countAll();
                                                 }else{
                                                     echo "active";
                                                 }
-                                                ?>">All (<?=$total_rows?>)</a>
+                                                $rows_all=$portfolio->countAll();
+                                                ?>">All (<?=$rows_all?>)</a>
                                         <?php
                                             $stmt1=$categories_portfolio->showAllList();
                                             while ($row1 = $stmt1->fetch(PDO::FETCH_ASSOC)){
@@ -35,9 +49,10 @@ $total_rows=$portfolio->countAll();
                                                     }
                                                 }
 
+
                                                 ?>
                                         <a href="?cat=<?=$row1['id']?>" id="<?=$row1['id']?>" class="button <?php
-                                                if($id_cat==$id){
+                                                if($id_cat==$row1['id']){
                                                     echo "active";
                                                 }else{
                                                     echo "inactive";
@@ -51,41 +66,11 @@ $total_rows=$portfolio->countAll();
                                 <div class="row">
                                 <?php
 
-                                    // page given in URL parameter, default page is one
-                                    $pageNum = isset($_GET['page']) ? $_GET['page'] : 1; 
-
-                                    // set number of records per page
-                                    $records_per_page = 6;
-                                    
-                                    // calculate for the query LIMIT clause
-                                    $from_record_num = ($records_per_page * $pageNum) - $records_per_page;
-
-                                    $portfolio = new Portfolio($db);
-                                    if(!$id_cat){
-                                        $stmt = $portfolio->showAll($from_record_num, $records_per_page);
-                                    // }else{
-                                //         $stmt3=$portfolio->showCat();
-                                //         while($row3=$stmt3->fetch(PDO::FETCH_ASSOC)){
-                                //             extract($row3);
-                                            
-                                //             $count=0;
-
-                                //             $catArr=explode(",",$row3['category']);
-                                //             if(in_array($id_cat,$catArr)){
-                                //                 $count++;
-                                //             }
-
-                                //             if($count>0){
-
-
-
-                                //     $portfolio->id=$row3['id'];
-                                //     $stmt = $portfolio->showById();
-                                  
                                     while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
             
                                         extract($row);
-
+                                        $categories->id = $row['category'];	
+                                        $catArr=explode(",",$row['category']);
 
                                         $str=$project_title;
                                         $str = preg_replace('/\s+/', '_', $str);			
@@ -108,10 +93,8 @@ $total_rows=$portfolio->countAll();
 
                                 </div>
                                 <?php
-                                //     }
-                                // }
                                 }
-                            } 
+                      
                                 ?>
                             </div>
                             <div class="row mt-3">

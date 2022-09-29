@@ -534,14 +534,11 @@ class Portfolio{
 
     }
 
-    //////////////////////////////////////////////////////////////////////////////////
-    //  DA FIXARE DA QUI
-    //////////////////////////////////////////////////////////////////////////////////
 
     function showByCatId($cat_id,$from_record_num, $records_per_page){
 
         // drop if exist
-        $query2="DROP TEMPORARY TABLE temp_post";
+        $query2="DROP TEMPORARY TABLE temp_portfolio";
 
         $stmt2 = $this->conn->prepare( $query2 );
         $stmt2->execute();
@@ -555,15 +552,15 @@ class Portfolio{
         
         // create temporary table
 
-        $query2="CREATE TEMPORARY TABLE temp_post(
-                id int(5) NOT NULL PRIMARY KEY,
+        $query2="CREATE TEMPORARY TABLE temp_portfolio(
+                id INT ( 5 ) NOT NULL PRIMARY KEY,
+                project_title VARCHAR(255) NOT NULL,
                 main_img VARCHAR(255) NOT NULL,
-                title VARCHAR(255) NOT NULL,
-                summary text COLLATE utf8_unicode_ci NOT NULL,
-                content text COLLATE utf8_unicode_ci NOT NULL,
-                author VARCHAR(255) NOT NULL,
-                modified datetime NOT NULL,
-                category_id text (255) NOT NULL)";
+                description text COLLATE utf8_unicode_ci NOT NULL,
+                client VARCHAR(255) NOT NULL,
+                completed date NOT NULL,
+                category VARCHAR(255) NULL,
+                link VARCHAR(255) NOT NULL)";
 
         $stmt2 = $this->conn->prepare( $query2 );
         $stmt2->execute();
@@ -571,41 +568,44 @@ class Portfolio{
         // insert record in temporary table
         while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
 
-            $catArr=explode(",",$row['category_id']);
+            extract($row);
+
+            $catArr=explode(",",$row['category']);
             
             if(in_array($cat_id,$catArr)){
-                $this->id=$row['id'];
+                // $this->id=$row['id'];
                
                 $query3="INSERT INTO
-                temp_post 
+                temp_portfolio
 
                  SET
                      id = :id,
+                     project_title = :project_title,
                      main_img = :main_img,          
-                     title = :title,
-                     summary = :summary,
-                     content = :content,
-                     modified = :modified,
-                     category_id = :category_id";
+                     description = :description,
+                     client = :client,
+                     completed = :completed,
+                     category = :category,
+                     link = :link";
                 
                 // prepare the query
                 $stmt3 = $this->conn->prepare($query3); 
                 $stmt3->bindParam('id', $row['id']);
+                $stmt3->bindParam(':project_title', $row['project_title']);       
                 $stmt3->bindParam(':main_img', $row['main_img']);   
-                $stmt3->bindParam(':title', $row['title']);       
-                $stmt3->bindParam(':summary', $row['summary']);       
-                $stmt3->bindParam(':content', $row['content']);       
-                $stmt3->bindParam(':author', $row['author']);       
-                $stmt3->bindParam(':modified', $row['modified']);       
-                $stmt3->bindParam(':category_id', $row['category_id']);    
+                $stmt3->bindParam(':description', $row['description']);       
+                $stmt3->bindParam(':client', $row['client']);       
+                $stmt3->bindParam(':completed', $row['completed']);       
+                $stmt3->bindParam(':category', $row['category']);       
+                $stmt3->bindParam(':link', $row['link']);    
 
-                // $stmt3->execute();                 
-                $stmt3->execute();
+                $stmt3->execute();   
+
             }
         }
         
             $query1 = "SELECT *
-            FROM temp_post ORDER BY modified DESC
+            FROM temp_portfolio ORDER BY completed DESC
                     LIMIT
                     {$from_record_num}, {$records_per_page}";
 
@@ -617,67 +617,19 @@ class Portfolio{
         
     }
 
-    public function countSelected($cat_id){
-
-        $query = "SELECT *
-        FROM " . $this->table_name . "";
-
-        $stmt = $this->conn->prepare( $query );
-        $stmt->execute();
-
-        while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
-
-            $catArr=explode(",",$row['category_id']);
-            
-            if(in_array($cat_id,$catArr)){
-                $this->id=$row['id'];
-               
-                $query3="INSERT INTO
-                temp_post 
-
-                 SET
-                     id = :id,
-                     main_img = :main_img,          
-                     title = :title,
-                     summary = :summary,
-                     content = :content,
-                     author = :author,
-                     modified = :modified,
-                     category_id = :category_id";
-                
-                // prepare the query
-                $stmt3 = $this->conn->prepare($query3); 
-                $stmt3->bindParam('id', $row['id']);
-                $stmt3->bindParam(':main_img', $row['main_img']);   
-                $stmt3->bindParam(':title', $row['title']);       
-                $stmt3->bindParam(':summary', $row['summary']);       
-                $stmt3->bindParam(':content', $row['content']);       
-                $stmt3->bindParam(':author', $row['author']);       
-                $stmt3->bindParam(':modified', $row['modified']);       
-                $stmt3->bindParam(':category_id', $row['category_id']);    
-
-                // $stmt3->execute();                 
-                $stmt3->execute();
-            }
-        }
+    public function countSelected(){
 
         $query1 = "SELECT *
-        FROM temp_post";
+        FROM temp_portfolio";
 
         $stmt1 = $this->conn->prepare( $query1 );
       
         $stmt1->execute();
-    
+
         $num = $stmt1->rowCount();
-    
+  
         return $num;
     }
-
-
-
-    //////////////////////////////////////////////////////////////////////////////////
-    //  FINO A QUI
-    //////////////////////////////////////////////////////////////////////////////////
 
 
 
