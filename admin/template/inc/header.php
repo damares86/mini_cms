@@ -1,11 +1,11 @@
 <?php
 
-// require 'admin/phpDebug/src/Debug/Debug.php';   			// if not using composer
+require 'admin/phpDebug/src/Debug/Debug.php';   			// if not using composer
 
-// $debug = new \bdk\Debug(array(
-//     'collect' => true,
-//     'output' => true,
-// ));
+$debug = new \bdk\Debug(array(
+    'collect' => true,
+    'output' => true,
+));
 
 session_start();
 // loading class
@@ -129,16 +129,12 @@ foreach($showDefault as $row){
 if($default==1){
     $stmt=$page->showByNameDefault();
 }else{
+
     $stmt=$page->showByName();
 }
 
 
-$img="";
-if($file=="post.php"){
-    $img=$post->main_img;
-}else{
     $img=$page->img;
-}
 
 
 while ($row = $stmt2->fetch(PDO::FETCH_ASSOC)){

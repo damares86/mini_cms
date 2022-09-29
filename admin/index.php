@@ -49,6 +49,7 @@ $user_id=$_SESSION['user_id'];
             
                             $stmt1=$home->showAll();
 
+                           
                        
                         if($manage=="users"){ // fuori 
                                 if($operation=="show"){
@@ -217,7 +218,6 @@ $user_id=$_SESSION['user_id'];
                         <?php
                                     }else if($stmt1){
                                 while ($row = $stmt1->fetch(PDO::FETCH_ASSOC)){
-                                    
                                     extract($row);
                                     
                                     $name_page = ucfirst($name_function);
