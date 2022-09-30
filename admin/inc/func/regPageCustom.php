@@ -99,13 +99,9 @@ function is_dir_empty($dir) {
 
 <?php
 if($operation=="add"){
-    // $page->page_name="";
-    // $page->layout="";
-    // $page->img="";
     if(!isset($_REQUEST['more'])){
         $page->destroyCheckSessVar();
     }
-
 
     if(isset($_REQUEST['more'])&&$_REQUEST['more']=="yes"){
         $page->page_name=$_SESSION['sess_page_name'];
@@ -214,18 +210,13 @@ if($operation=="add"){
 $img=$page->img;
 $page_theme="";
 
-// while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
-
-//      extract($row);
-
      $page_theme=$theme;
-     if(!($page->img)){
+     
         if($_SESSION['sess_img']){
             $img=$_SESSION['sess_img'];
         }else{
             $img="visual.jpg";
         }
-     }
 ?>
             <div class="control-group">
                 <label class="control-label" for="file"><?=$regpage_visual?></label>
@@ -368,8 +359,8 @@ for($i=1;$i<=$counter;$i++){
         
         $type_arr = array("t","b","n","p","i");
         
-        if($operation=="mod"||(isset($_SESSION[''.$sess_type.'']))){
-            
+        
+        if(isset($_SESSION[''.$sess_type.''])){
         if($page->$block_type=="t"){
             $$text="checked";                
             $$none="";
@@ -470,7 +461,8 @@ for($i=1;$i<=$counter;$i++){
                 <label class="control-label" for="file"><?=$regpage_picture?></label>
                 <div class="controls">
                     <?php
-                     $picture=$_SESSION['sess_pict_'.$i.''];
+
+                    $picture=$_SESSION['sess_pict_'.$i.''];
                     // $picture=$json_arr[$i]['block'.$i.'_pict'];
                     // print_r($picture);
                     // exit;
@@ -483,7 +475,7 @@ for($i=1;$i<=$counter;$i++){
 
                     <?php
                     
-                    if($operation=="mod"||isset($_SESSION['sess_pict_'.$i.''])){
+                    if(!empty($_SESSION['sess_pict_'.$i.''])){
                     ?>
                     <?=$regpage_actual?> &nbsp;<img src="../uploads/img/<?=$picture?>"  style="max-width:200px; margin: 1em;">
                     <?php
@@ -524,7 +516,7 @@ for($i=1;$i<=$counter;$i++){
 
                     <?php
                     
-                    if($operation=="mod"||isset($_SESSION['sess_pict_info_'.$i.''])){
+                    if(!empty($_SESSION['sess_pict_info_'.$i.''])){
                     ?>
                     <?=$regpage_actual?> &nbsp;<img src="../uploads/img/<?=$info_picture?>"  style="max-width:200px; margin: 1em;">
                     <?php

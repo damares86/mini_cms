@@ -237,11 +237,11 @@ if(filter_input(INPUT_POST,"addBlock")){
 
 			if($_SESSION["$sess_type"]=="p"){
 				if($_SESSION['sess_pict_'.$i.'']){
-					$page->img=$_SESSION['sess_pict_'.$i.''];
-					$page->img_tmp=$_SESSION['sess_pict_'.$i.'_tmp'];
+					$page->img_pict=$_SESSION['sess_pict_'.$i.''];
+					$page->img_tmp_pict=$_SESSION['sess_pict_'.$i.'_tmp'];
 				}else{
-					$page->img=$_FILES['pict'.$i.'']['name'];
-					$page->img_tmp=$_FILES['pict'.$i.'']['tmp_name'];
+					$page->img_pict=$_FILES['pict'.$i.'']['name'];
+					$page->img_tmp_pict=$_FILES['pict'.$i.'']['tmp_name'];
 				}
 				$page->uploadPicture();
 				$$array_name=array(
@@ -253,13 +253,13 @@ if(filter_input(INPUT_POST,"addBlock")){
 
 			}else if($_SESSION["$sess_type"]=="i"){
 				if($_SESSION['sess_pict_info_'.$i.'']){
-					$page->img=$_SESSION['sess_pict_info_'.$i.''];
-					$page->img_tmp=$_SESSION['sess_pict_info_'.$i.'_tmp'];
+					$page->img_info=$_SESSION['sess_pict_info_'.$i.''];
+					$page->img_tmp_info=$_SESSION['sess_pict_info_'.$i.'_tmp'];
 				}else{
-					$page->img=$_FILES['info'.$i.'']['name'];
-					$page->img_tmp=$_FILES['info'.$i.'']['tmp_name'];
+					$page->img_info=$_FILES['info'.$i.'']['name'];
+					$page->img_tmp_info=$_FILES['info'.$i.'']['tmp_name'];
 				}
-				$page->uploadPicture();
+				$page->uploadInfo();
 				$editor = preg_replace('/^\s+/', '', $_SESSION["sess_info_editor$i"]);
 				$$array_name=array(
 					'block'.$i.'_type' 	=> $_SESSION["$sess_type"],
@@ -350,12 +350,7 @@ if(filter_input(INPUT_POST,"addBlock")){
 			if($_FILES['myfile']['name']){
 				$page->img=$_FILES['myfile']['name'];
 			}else if($page->type=="custom") {
-				$query1="SELECT * FROM page WHERE page_name = :page_name LIMIT 0,1";
-				$stmt1 = $db->prepare($query1);
-				$stmt1->bindParam(':page_name', $name);       
-				$stmt1->execute();
-				$row1 = $stmt1->fetch(PDO::FETCH_ASSOC);
-				$page->img=$row1['img'];
+				$page->img= $_SESSION['sess_img'];
 			}else if($page->type=="default") {
 				$query1="SELECT * FROM default_page WHERE page_name = :page_name LIMIT 0,1";
 				$stmt1 = $db->prepare($query1);
@@ -387,8 +382,8 @@ if(filter_input(INPUT_POST,"addBlock")){
 						);
 					}else if($_SESSION["$sess_type"]=="p"){
 						if($_FILES['pict'.$i.'']['name']){
-							$page->img=$_FILES['pict'.$i.'']['name'];
-							$page->img_tmp=$_FILES['pict'.$i.'']['tmp_name'];
+							$page->img_pict=$_FILES['pict'.$i.'']['name'];
+							$page->img_tmp_pict=$_FILES['pict'.$i.'']['tmp_name'];
 							$page->uploadPicture();
 							$pict=$_FILES['pict'.$i.'']['name'];
 						}else{
@@ -403,9 +398,9 @@ if(filter_input(INPUT_POST,"addBlock")){
 						);
 					}else if($_SESSION["$sess_type"]=="i"){
 						if($_FILES['info'.$i.'']['name']){
-							$page->img=$_FILES['info'.$i.'']['name'];
-							$page->img_tmp=$_FILES['info'.$i.'']['tmp_name'];
-							$page->uploadPicture();
+							$page->img_info=$_FILES['info'.$i.'']['name'];
+							$page->img_tmp_info=$_FILES['info'.$i.'']['tmp_name'];
+							$page->uploadInfo();
 							$info=$_FILES['info'.$i.'']['name'];
 						}else{
 							$info=$_POST['old_info_'.$i.''];

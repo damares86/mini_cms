@@ -21,6 +21,10 @@ class Page{
     public $header;
     public $img;
     public $img_tmp;
+    public $img_pict;
+    public $img_tmp_pict;
+    public $img_info;
+    public $img_tmp_info;
     public $counter;
     public $in_menu;
     public $item_order;
@@ -132,8 +136,8 @@ class Page{
             } else if($$block_name=="p$i_real"){
                     $_SESSION[''.$sess_type.'']="p";
                 if($_FILES['pict'.$i_real.'']['name']){
-                    $this->img=$_FILES['pict'.$i_real.'']['name'];
-                    $this->img_tmp=$_FILES['pict'.$i_real.'']['tmp_name'];
+                    $this->img_pict=$_FILES['pict'.$i_real.'']['name'];
+                    $this->img_tmp_pict=$_FILES['pict'.$i_real.'']['tmp_name'];
                     $this->uploadPicture();
                     $_SESSION['sess_pict_'.$i_real.'']=$_FILES['pict'.$i_real.'']['name'];
                 }else{
@@ -149,8 +153,8 @@ class Page{
                     $_SESSION['error']++;
                 }
                 if($_FILES['info'.$i_real.'']['name']){
-                    $this->img=$_FILES['info'.$i_real.'']['name'];
-                    $this->img_tmp=$_FILES['info'.$i_real.'']['tmp_name'];
+                    $this->img_info=$_FILES['info'.$i_real.'']['name'];
+                    $this->img_tmp_info=$_FILES['info'.$i_real.'']['tmp_name'];
                     $this->uploadPicture();
                     $_SESSION['sess_pict_info_'.$i_real.'']=$_FILES['info'.$i_real.'']['name'];
                 }else{
@@ -564,9 +568,9 @@ class Page{
    
 
             function uploadPicture(){
-                if($this->img){
+                if($this->img_pict){
                     $target_directory = "../../uploads/img/";
-                    $target_file = $target_directory . $this->img;
+                    $target_file = $target_directory . $this->img_pict;
 
                     if(!file_exists($target_file)){
                         $file_type = pathinfo($target_file, PATHINFO_EXTENSION);
@@ -600,7 +604,57 @@ class Page{
                             
                             
                             // the physical file on a temporary uploads directory on the server
-                            $file = $this->img_tmp;
+                            $file = $this->img_tmp_pict;
+                            
+                    
+                            if (move_uploaded_file($file, $target_file)) {
+                                chmod($target_file, 0777);
+                                
+                            }
+                        }
+                    }
+                }
+            }
+
+
+            function uploadInfo(){
+                if($this->img_info){
+                    $target_directory = "../../uploads/img/";
+                    $target_file = $target_directory . $this->img_info;
+
+                    if(!file_exists($target_file)){
+                        $file_type = pathinfo($target_file, PATHINFO_EXTENSION);
+                        $file_upload_error_messages="";
+                        $allowed_file_types=array("jpg", "png", "jpeg");
+                        if(!in_array($file_type, $allowed_file_types)){
+                            header("Location: ../index.php?man=page&op=show&msg=formatImgErr");
+                            exit;
+                            // $file_upload_error_messages.="<div>Only .zip, .doc, .docx,.pdf files are allowed.</div>";
+                            //exit;
+                        }
+                        
+                        if(file_exists($target_file)){
+                            // $file_upload_error_messages.="File already exists";
+                        }
+                        
+                        // make sure submitted file is not too large, can't be larger than 5 MB
+                        // if($_FILES['myfile']['size'] > (5120000)){
+                            //     $file_upload_error_messages.="<div>Doc must be less than 5 MB in size.</div>";
+                            // }
+                            
+                            // make sure the 'uploads' folder exists
+                            // if not, create it
+                            if(!is_dir($target_directory)){
+                                mkdir($target_directory, 0777, true);
+                            }else{
+                                chmod($target_directory, 0777);
+                            }
+                        
+                        if(empty($file_upload_error_messages)){
+                            
+                            
+                            // the physical file on a temporary uploads directory on the server
+                            $file = $this->img_tmp_info;
                             
                     
                             if (move_uploaded_file($file, $target_file)) {
