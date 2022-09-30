@@ -26,6 +26,7 @@ class Page{
     public $item_order;
     public $parent;
     public $child_of;
+    public $content;
 
     // constructor
     public function __construct($db){
@@ -262,7 +263,8 @@ class Page{
         header = :header,
         use_name = :use_name,
         use_desc = :use_desc,
-        counter = :counter";
+        counter = :counter,
+        content = :content";
      
         // prepare the query
         $stmt = $this->conn->prepare($query);
@@ -275,6 +277,7 @@ class Page{
         $stmt->bindParam(':use_name', $this->use_name);    
         $stmt->bindParam(':use_desc', $this->use_desc);    
         $stmt->bindParam(':counter', $this->counter);    
+        $stmt->bindParam(':content', $this->content);    
         
         // execute the query, also check if query was successful
         if($stmt->execute()){
@@ -314,7 +317,17 @@ class Page{
         
         if($this->type=="custom"){
             
-            
+            $query1="UPDATE ".$this->table_name."
+                SET content = NULL
+                WHERE id = :id";
+
+                $stmt1 = $this->conn->prepare($query1);
+
+                $stmt1->bindParam(':id', $this->id);   
+
+                $stmt1->execute();            
+
+
             $stmt="";
             
             $query = "UPDATE
@@ -325,7 +338,8 @@ class Page{
                 header = :header,
                 use_name = :use_name,
                 use_desc = :use_desc,
-                counter = :counter WHERE id = :id";
+                counter = :counter,
+                content = :content WHERE id = :id";
                 
               
                 // prepare the query
@@ -341,6 +355,7 @@ class Page{
                 $stmt->bindParam(':use_name', $this->use_name);    
                 $stmt->bindParam(':use_desc', $this->use_desc);    
                 $stmt->bindParam(':counter', $this->counter);  
+                $stmt->bindParam(':content', $this->content);  
                 $stmt->bindParam(':id', $this->id);   
 
             }else if($this->type=="default"){
@@ -404,7 +419,6 @@ class Page{
                     WHERE
                     id = :id";
 
-                    // $id= $this->id-2;
                     
                     $stmt2 = $this->conn->prepare($query2);
                     $stmt2->bindParam(':page_name', $this->page_name);       
@@ -453,25 +467,7 @@ class Page{
                 $this->showError($stmt);
                 return false;
             }
-        // } else {
-        //     $query1="SELECT * FROM default_page WHERE page_name = :page_name LIMIT 0,1";
-        //         $stmt1 = $this->conn->prepare($query1);
-        //         $stmt1->bindParam(':page_name', $this->page_name);       
-        //         $stmt1->execute();
-        //         $row1 = $stmt1->fetch(PDO::FETCH_ASSOC);
-        //         $actualImage=$row1['img'];
-        //         if(($this->img)==$actualImage){
-        //             return true;
-        //         }else{
-        //             if($this->uploadPhoto()){
-        //                 return true;
-        //             }else{
-        //                 return false;
-        //             }
-        //         }
-                
-        // }
-    
+
     }
 
     function copyPage(){
@@ -693,19 +689,7 @@ class Page{
         FROM " . $this->table_name . "
         WHERE id = ?
         LIMIT 0,1";
-     
-        // prepare the query
-        $stmt = $this->conn->prepare($query);
-        
-        // bind the values
-        $stmt->bindParam(':page_name', $this->page_name);       
-        $stmt->bindParam(':no_mod', $this->no_mod);       
-        $stmt->bindParam(':layout', $this->layout);    
-        $stmt->bindParam(':header', $this->header);    
-        $stmt->bindParam(':use_name', $this->use_name);    
-        $stmt->bindParam(':use_desc', $this->use_desc);    
-        $stmt->bindParam(':counter', $this->counter);  
-         
+              
         $stmt = $this->conn->prepare( $query );
         $stmt->bindParam(1, $this->id);
         $stmt->execute();
@@ -721,6 +705,7 @@ class Page{
         $this->use_name = $row['use_name'];
         $this->use_desc = $row['use_desc'];
         $this->counter = $row['counter'];
+        $this->content = $row['content'];
         
     }
 
@@ -745,6 +730,7 @@ class Page{
         $this->use_desc = $row['use_desc'];
         $this->img = $row['img'];
         $this->counter = $row['counter']; 
+        $this->content = $row['content']; 
     }
 
     function showByIdDefault(){
