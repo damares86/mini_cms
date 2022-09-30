@@ -39,11 +39,9 @@ if (!isset($_SESSION['loggedin'])) {
 			$str = preg_replace('/\s+/', '_', $str);
 			$str = strtolower($str);
 			$filepath = "../../" . $str . ".php";
-			$json="../inc/pages/$str.json";
 		
 		
 			if(unlink($filepath) || !file_exists(($filepath))){
-				if(unlink($json) || !file_exists(($json))){
 					if($page->delete()){
 						header("Location: ../index.php?man=page&op=show&type=custom&msg=pageDelSucc");
 						exit;
@@ -52,10 +50,7 @@ if (!isset($_SESSION['loggedin'])) {
 						header("Location: ../index.php?man=page&op=show&type=custom&msg=pageDelErr");
 						exit;
 					}
-				}else{
-					header("Location: ../index.php?man=page&op=show&type=custom&msg=pageDelErr1");
-					exit;
-				}
+
 			} else {
 				echo "file not deleted";
 			}
@@ -108,7 +103,6 @@ if(filter_input(INPUT_POST,"addBlock")){
 
 	$page->initCheckSessVar();
 
-	// initCheckSessVar();
 	$counter--;
 	$_SESSION['counter']=$counter;
 
@@ -136,8 +130,6 @@ if(filter_input(INPUT_POST,"addBlock")){
 
 	if(copy('../../'.$name.'.php', '../../'.$name.'_copy.php')){
 		chmod('../../'.$name.'_copy.php',0777);
-		if(copy('../inc/pages/'.$name.'.json','../inc/pages/'.$name.'_copy.json')){
-
 			$page->copyPage();
 
 			header("Location: ../index.php?man=page&op=show&type=custom&msg=pageCopySucc");
@@ -146,10 +138,6 @@ if(filter_input(INPUT_POST,"addBlock")){
 			header("Location: ../index.php?man=page&op=show&type=custom&msg=pageCopyErr");
 			exit;
 		 }
-	 } else {
-		header("Location: ../index.php?man=page&op=show&type=custom&msg=pageCopyErr");
-		exit;
-	 }
 
 }else if(filter_input(INPUT_POST,"subReg")){
 
@@ -245,11 +233,7 @@ if(filter_input(INPUT_POST,"addBlock")){
 			$sess_text="sess_text_$i";
 			$array_name="arr$i";
 
-			// if($_SESSION["$sess_type"]=="n"){
-			// 	// $i--;
-			// 	$i=$i-1;
-			// 	break;
-			// }else 
+
 
 			if($_SESSION["$sess_type"]=="p"){
 				if($_SESSION['sess_pict_'.$i.'']){
@@ -317,8 +301,7 @@ if(filter_input(INPUT_POST,"addBlock")){
  		$file='../inc/pages/'.$page_name.'.json';
 		$json=json_encode($arr_tot);
 
-		file_put_contents($file, $json, FILE_APPEND);
-		chmod($file,0777);
+		$page->content=$json;
 
 			if($page->insert()){
 
@@ -349,24 +332,8 @@ if(filter_input(INPUT_POST,"addBlock")){
 			$page->id=$_POST['idToMod'];
 			
 			$page->page_name=$_POST['page_name'];
-			$page->old_page_name = $_POST['old_page_name'];
-
-			$new =$_POST['page_name'];
-			$new=preg_replace("/\s+/", "_", $new);
-			$new=strtolower($new);
+			$page->old_page_name = $_POST['old_page_name'];	
 		
-			$old = $_POST['old_page_name'];
-			$old=preg_replace("/\s+/", "_", $old);
-			$old=strtolower($old);
-
-			if(is_file("../inc/pages/$new.json")){
-				rename("../inc/pages/$new.json",'../inc/pages/'.$new.'_tmp.json');
-			}else if(is_file("../inc/pages/$old.json")){
-				rename("../inc/pages/$old.json",'../inc/pages/'.$old.'_tmp.json');
-			}
-			
-		
-
 			$name=$page->page_name;
 			if($page->old_page_name != $page->page_name){
 				$name=$page->old_page_name;
@@ -400,7 +367,7 @@ if(filter_input(INPUT_POST,"addBlock")){
 
 
 
-			if($page->update()){
+			
 
 				$arr0=array(
 					"name"		=> $_SESSION['sess_page_name']
@@ -468,44 +435,21 @@ if(filter_input(INPUT_POST,"addBlock")){
 				}
 			
 		
-				$page_name=preg_replace('/\s+/', '_',$_SESSION['sess_page_name']);
-				$page_name=strtolower($page_name);
-		
-				$file='../inc/pages/'.$page_name.'.json';
+			
 
 				$json=json_encode($arr_tot);
-		
-				if(file_put_contents($file, $json, FILE_APPEND)){
-					chmod($file,0777);
-					if(is_file('../inc/pages/'.$new.'_tmp.json')){
 
-						unlink('../inc/pages/'.$new.'_tmp.json');
-					}else if(is_file('../inc/pages/'.$old.'_tmp.json')){
+				$page->content=$json;
 
-						unlink('../inc/pages/'.$old.'_tmp.json');
-					}
+				if($page->update()){
 
+					$page->destroyCheckSessVar();
+
+					header("Location: ../index.php?man=page&op=show&type=$page->type&msg=pageEditSucc");
+					exit;
 				}else{
-					if(is_file('../inc/pages/'.$new.'_tmp.json')){
-
-						rename('../inc/pages/'.$new.'_tmp.json',"../inc/pages/$name.json");
-					}else if(is_file('../inc/pages/'.$old.'_tmp.json')){
-
-						rename('../inc/pages/'.$old.'_tmp.json',"../inc/pages/$name.json");
-					}
+					header("Location: ../index.php?man=page&op=show&type=$page->type&msg=pageEditErr");
+					exit;
 				}
-
-				$page->destroyCheckSessVar();
-
-				header("Location: ../index.php?man=page&op=show&type=$page->type&msg=pageEditSucc");
-				exit;
-			
-				// empty posted values
-				// $_POST=array();
-			
-			}else{
-				header("Location: ../index.php?man=page&op=show&type=$page->type&msg=pageEditErr");
-				exit;
-			}
 		}
 }

@@ -24,11 +24,9 @@ require "admin/template/inc/header.php";
                 </div>
                     <?php
                 }
-
-                $json_file = 'admin/inc/pages/'.$page_class.'.json';
-                $data = file_get_contents($json_file);
+                
+                $data = $page->content;
                 $json_arr = json_decode($data, true);
-
 
                 $counter=$page->counter;
                

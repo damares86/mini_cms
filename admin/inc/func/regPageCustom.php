@@ -116,12 +116,8 @@ if($operation=="add"){
 }else if($operation=="mod"&&!isset($_REQUEST['more'])){
         $page->destroyCheckSessVar();
         $_SESSION["sess_old_page_name"]= $page->page_name;
-        $name=$page->page_name;
-        $name=preg_replace("/\s+/", "_", $name);
-        $name=strtolower($name);
 
-        $json_file = 'inc/pages/'.$name.'.json';
-        $data = file_get_contents($json_file);
+        $data=$page->content;
         $json_arr = json_decode($data, true);
 
         $page-> modCheckSessVar($json_arr);
