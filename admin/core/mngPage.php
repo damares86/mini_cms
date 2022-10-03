@@ -314,6 +314,8 @@ if(filter_input(INPUT_POST,"addBlock")){
 				rename('../../master.php','../../'. $str . '.php');
 				chmod('../../'. $str . '.php',0777);
 
+				$page->counter=$counter;
+
 				$page->destroyCheckSessVar();
 
 				header("Location: ../index.php?man=page&op=show&type=custom&msg=pageSucc");
@@ -437,6 +439,8 @@ if(filter_input(INPUT_POST,"addBlock")){
 				$page->content=$json;
 
 				if($page->update()){
+					
+					$page->counter=$counter;
 
 					$page->destroyCheckSessVar();
 

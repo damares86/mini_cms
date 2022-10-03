@@ -227,7 +227,7 @@ class Page{
         unset($_SESSION['sess_old_page_name']);
         unset($_SESSION['sess_use_name']);
         unset($_SESSION['sess_use_desc']);
-        unset($_SESSION['sess_sess_layout']);
+        unset($_SESSION['sess_layout']);
         unset($_SESSION['sess_img']);
         unset($_SESSION['sess_no_mod']);
         unset($_SESSION['sess_theme']);
@@ -245,7 +245,7 @@ class Page{
             unset($_SESSION['sess_pict_'.$i.'']);
             unset($_SESSION['sess_pict_info_'.$i.'']);
         }
-        unset($_SESSION['counter']);
+        // unset($_SESSION['counter']);
     
     }
 
