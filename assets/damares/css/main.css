@@ -2503,7 +2503,8 @@ BLOG LAYOUT
 				transition: transform 0.5s ease;
 				display: block;
 				height: 44px;
-				left: 0;
+				right: 0;
+				left: 90%;
 				position: fixed;
 				top: 0;
 				width: 100%;
@@ -2556,17 +2557,17 @@ BLOG LAYOUT
 				-webkit-backface-visibility: hidden;
 				-ms-backface-visibility: hidden;
 				backface-visibility: hidden;
-				-moz-transform: translateX(-275px);
-				-webkit-transform: translateX(-275px);
-				-ms-transform: translateX(-275px);
-				transform: translateX(-275px);
+				-moz-transform: translateX(+275px);
+				-webkit-transform: translateX(+275px);
+				-ms-transform: translateX(+275px);
+				transform: translateX(+275px);
 				-moz-transition: -moz-transform 0.5s ease;
 				-webkit-transition: -webkit-transform 0.5s ease;
 				-ms-transition: -ms-transform 0.5s ease;
 				transition: transform 0.5s ease;
 				display: block;
 				height: 100%;
-				left: 0;
+				right: 0;
 				overflow-y: auto;
 				position: fixed;
 				top: 0;
@@ -2628,10 +2629,10 @@ BLOG LAYOUT
 			}
 
 			body.navPanel-visible #navToggle {
-				-moz-transform: translateX(275px);
-				-webkit-transform: translateX(275px);
-				-ms-transform: translateX(275px);
-				transform: translateX(275px);
+				-moz-transform: translateX(-275px);
+				-webkit-transform: translateX(-275px);
+				-ms-transform: translateX(-275px);
+				transform: translateX(-275px);
 			}
 
 			body.navPanel-visible #navPanel {
