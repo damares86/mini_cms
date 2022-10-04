@@ -113,7 +113,12 @@ if($operation=="add"){
         $page->destroyCheckSessVar();
         $_SESSION["sess_old_page_name"]= $page->page_name;
 
-        $data=$page->content;
+        $name=$page->page_name;
+        $name=preg_replace("/\s+/", "_", $name);
+        $name=strtolower($name);
+
+        $json_file = 'inc/pages/'.$name.'.json';
+        $data = file_get_contents($json_file);
         $json_arr = json_decode($data, true);
 
         $page-> modCheckSessVar($json_arr);
@@ -207,16 +212,61 @@ if($operation=="add"){
 <div id="uploadHeader" class="border-top border-bottom"  style="display:<?=$display?>">
 <br>
             <?php
+            
 $img=$page->img;
 $page_theme="";
 
-     $page_theme=$theme;
-     
-        if($_SESSION['sess_img']){
-            $img=$_SESSION['sess_img'];
-        }else{
-            $img="visual.jpg";
-        }
+$checkedImg="";
+$checkedGall="";
+
+$box_name="";
+if($_SESSION['sess_gall_select']==1){
+    $checkedGall="checked";
+    $checkedImg="";
+    $box_name=".visual_gall";
+}else  if(!isset($img)||pathinfo($img, PATHINFO_EXTENSION)||($_SESSION['sess_img_select']==1)){
+    $checkedGall="";
+    $checkedImg="checked";
+    $box_name=".visual_img";
+}
+// print_r($_SESSION['sess_gall_select']);
+// exit;
+?>
+
+
+<label><input type="radio" name="visual[]" value="visual_img" <?=$checkedImg?>> <?=$regpage_visual_img?></label>
+<label><input type="radio" name="visual[]" value="visual_gall" <?=$checkedGall?>> <?=$regpage_visual_gall?></label>
+<br><br>
+
+<style>
+.box_visual{display:none};
+</style>
+
+<script>
+$(document).ready(function(){
+$('input[name="visual[]"]').click(function(){
+var inputValue = $(this).attr("value");
+var targetBox = $("." + inputValue);
+$('.box_visual').not(targetBox).hide();
+$(targetBox).show();
+});
+});
+</script>
+
+<style>
+<?=$box_name?> {display: block;}
+</style>
+
+<div class="box_visual visual_img">
+    
+<?php
+    //  $page_theme=$theme;
+    if(pathinfo($page->img, PATHINFO_EXTENSION)){
+        $img=$_SESSION['sess_img'];
+    }else{
+        $img="visual.jpg";
+    }
+ 
 ?>
             <div class="control-group">
                 <label class="control-label" for="file"><?=$regpage_visual?></label>
@@ -230,10 +280,53 @@ $page_theme="";
                 </div>
             </div>
             <br>
+            </div>
+
+        <div class="box_visual visual_gall">
+            <div class="control-group">
+                <label class="control-label" for="file"><?=$regpage_choose_gall?></label>
+        
+                    <?php
+                    $dir_gall="../misc/gallery/img/";
+                    $dir_root="../misc/gallery/";
+     
+                        if( !is_dir($dir_gall) || is_dir_empty($dir_gall) ||is_dir_empty(($dir_root)) ){
+                            echo "<div class='col'><div class='alert alert-danger'>$gall_nogall</div></div>";
+                        }else{
+                            ?>
+                            <select name="visual_gallery">
+                                <?php
+                                echo "<option value='none'>none</option>";
+
+                    foreach (glob("../misc/gallery/img/*") as $file) {
+                        $folder=pathinfo($file, PATHINFO_FILENAME);
+                        $gallery= str_replace("_"," ", $folder);
+                        $gallery=ucfirst($gallery);
+                        
+                        $images= scandir ($file);
+                        $firstFile = $file ."/". $images[2];// because [0] = "." [1] = ".." 
+
+                        $selected ="";
+                        if($page->$block_type==$folder||$_SESSION['sess_img']==$gallery){
+                            $selected="selected";
+                        }
+                        echo "<option value'$folder' $selected>$gallery</option>";
+                    ?>
+
+                <?php
+                    }
+                }
+                
+                ?>
+                            </select>
+        </div>
+        </div>
    
+<br>
+<hr>
         <div class="control-group">
 
-<hr>
+
 <?php
     $checked_name="checked";
     $checked_desc="checked";
