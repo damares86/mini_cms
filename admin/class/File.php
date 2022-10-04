@@ -48,9 +48,13 @@ class File{
                 // make sure the 'uploads' folder exists
                 // if not, create it
                 if(!is_dir($target_directory)){
+                    $oldmask = umask(0);
                     mkdir($target_directory, 0777, true);
+                    umask($oldmask);
                 }else{
+                    $oldmask = umask(0);
                     chmod($target_directory, 0777);
+                    umask($oldmask);
                 }
             
             if(empty($file_upload_error_messages)){
@@ -61,8 +65,9 @@ class File{
       
                 
 				if (move_uploaded_file($file, $target_file)) {
-
+                    $oldmask = umask(0);
                     chmod($target_file, 0777);
+                    umask($oldmask);
                     $query="";
                     if($this->operation=="add"){
                     $query = "INSERT INTO
@@ -182,7 +187,9 @@ class File{
             // make sure the 'uploads' folder exists
             // if not, create it
             if(!is_dir($target_directory)){
+                $oldmask = umask(0);
                 mkdir($target_directory, 0777, true);
+                umask($oldmask);
             }
 
             // if $file_upload_error_messages is still empty

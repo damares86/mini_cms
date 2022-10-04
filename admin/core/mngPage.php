@@ -28,32 +28,37 @@ if (!isset($_SESSION['loggedin'])) {
 	$menu = new Menu($db);
 
 	if(filter_input(INPUT_GET,"idToDel")){
-	
-			$idToDel = filter_input(INPUT_GET,"idToDel");
-			
-			$page->id=$idToDel;
-			$page->showById();
-			$menu->pagename=$page->page_name;
-			
-			$str=$page->page_name;
-			$str = preg_replace('/\s+/', '_', $str);
-			$str = strtolower($str);
-			$filepath = "../../" . $str . ".php";
-		
-		
-			if(unlink($filepath) || !file_exists(($filepath))){
-					if($page->delete()){
-						header("Location: ../index.php?man=page&op=show&type=custom&msg=pageDelSucc");
-						exit;
-			
-					}else{
-						header("Location: ../index.php?man=page&op=show&type=custom&msg=pageDelErr");
-						exit;
-					}
 
-			} else {
-				echo "file not deleted";
+		$idToDel = filter_input(INPUT_GET,"idToDel");
+			
+		$page->id=$idToDel;
+		$page->showById();
+		$menu->pagename=$page->page_name;
+		
+		$str=$page->page_name;
+		$str = preg_replace('/\s+/', '_', $str);
+		$str = strtolower($str);
+		$filepath = "../../" . $str . ".php";
+		$json="../inc/pages/$str.json";
+	
+	
+		if(unlink($filepath) || !file_exists(($filepath))){
+			if(unlink($json) || !file_exists(($json))){
+				if($page->delete()){
+					header("Location: ../index.php?man=page&op=show&type=custom&msg=pageDelSucc");
+					exit;
+		
+				}else{
+					header("Location: ../index.php?man=page&op=show&type=custom&msg=pageDelErr");
+					exit;
+				}
+			}else{
+				header("Location: ../index.php?man=page&op=show&type=custom&msg=pageDelErr1");
+				exit;
 			}
+		} else {
+			echo "file not deleted";
+		}
 		}
 
 
@@ -117,7 +122,6 @@ if(filter_input(INPUT_POST,"addBlock")){
 	exit;
 
 }else if(filter_input(INPUT_GET,"op")){
-
 	$idToCopy=filter_input(INPUT_GET,"idToMod");
 
 	$page->id=$idToCopy;
@@ -130,6 +134,8 @@ if(filter_input(INPUT_POST,"addBlock")){
 
 	if(copy('../../'.$name.'.php', '../../'.$name.'_copy.php')){
 		chmod('../../'.$name.'_copy.php',0777);
+		if(copy('../inc/pages/'.$name.'.json','../inc/pages/'.$name.'_copy.json')){
+
 			$page->copyPage();
 
 			header("Location: ../index.php?man=page&op=show&type=custom&msg=pageCopySucc");
@@ -138,6 +144,10 @@ if(filter_input(INPUT_POST,"addBlock")){
 			header("Location: ../index.php?man=page&op=show&type=custom&msg=pageCopyErr");
 			exit;
 		 }
+	 } else {
+		header("Location: ../index.php?man=page&op=show&type=custom&msg=pageCopyErr");
+		exit;
+	 }
 
 }else if(filter_input(INPUT_POST,"subReg")){
 
@@ -169,17 +179,23 @@ if(filter_input(INPUT_POST,"addBlock")){
 		}else{
 			$page->header=0;
 		}
-		
-		if($_FILES['myfile']['name']){
-			$page->img=$_FILES['myfile']['name'];
-		}else{
-			$query1="SELECT * FROM default_page WHERE page_name = :page_name LIMIT 0,1";
-			$stmt1 = $db->prepare($query1);
-			$stmt1->bindParam(':page_name', $page->page_name);       
-			$stmt1->execute();
-			$row1 = $stmt1->fetch(PDO::FETCH_ASSOC);
-			$page->img=$row1['img'];
+
+		if($_POST['visual'][0]=="visual_img"){
+			if($_FILES['myfile']['name']){
+				$page->img=$_FILES['myfile']['name'];
+			}else{
+				$query1="SELECT * FROM default_page WHERE page_name = :page_name LIMIT 0,1";
+				$stmt1 = $db->prepare($query1);
+				$stmt1->bindParam(':page_name', $page->page_name);       
+				$stmt1->execute();
+				$row1 = $stmt1->fetch(PDO::FETCH_ASSOC);
+				$page->img=$row1['img'];
+			}
+		}else if($_POST['visual'][0]=="visual_gall"){
+			$page->visual_gall=1;
+			$page->img=$_POST['visual_gallery'];
 		}
+		
 
 		if($page->update()){
 			header("Location: ../index.php?man=page&op=show&type=default&msg=pageEditSucc");
@@ -210,10 +226,16 @@ if(filter_input(INPUT_POST,"addBlock")){
 	if($operation=="add"){
 		$page->page_name = $_SESSION['sess_page_name'];
 
-		if(isset($_SESSION['sess_img'])){
-			$page->img=$_SESSION['sess_img'];
-		}else{
-			$page->img="visual.jpg";
+		if($_POST['visual'][0]=="visual_img"){
+			$page->visual_img=1;
+			if(isset($_SESSION['sess_img'])){
+				$page->img=$_SESSION['sess_img'];
+			}else{
+				$page->img="visual.jpg";
+			}
+		}else if($_POST['visual'][0]=="visual_gall"){
+			$page->visual_gall=1;
+			$page->img=$_POST['visual_gallery'];
 		}
 
 		$page->no_mod=$_SESSION['sess_no_mod'];
@@ -294,14 +316,14 @@ if(filter_input(INPUT_POST,"addBlock")){
 			$arr_tot[]=$$array_name;
 		}
 	
-
 		$page_name=preg_replace('/\s+/', '_',$_SESSION['sess_page_name']);
 		$page_name=strtolower($page_name);
 
  		$file='../inc/pages/'.$page_name.'.json';
 		$json=json_encode($arr_tot);
 
-		$page->content=$json;
+		file_put_contents($file, $json, FILE_APPEND);
+		chmod($file,0777);
 
 			if($page->insert()){
 
@@ -331,15 +353,31 @@ if(filter_input(INPUT_POST,"addBlock")){
 		}
 	}else if($operation=="mod"){
 		
-			$page->id=$_POST['idToMod'];
+		$page->id=$_POST['idToMod'];
 			
-			$page->page_name=$_POST['page_name'];
-			$page->old_page_name = $_POST['old_page_name'];	
+		$page->page_name=$_POST['page_name'];
+		$page->old_page_name = $_POST['old_page_name'];
+
+		$new =$_POST['page_name'];
+		$new=preg_replace("/\s+/", "_", $new);
+		$new=strtolower($new);
+	
+		$old = $_POST['old_page_name'];
+		$old=preg_replace("/\s+/", "_", $old);
+		$old=strtolower($old);
+
+		if(is_file("../inc/pages/$new.json")){
+			rename("../inc/pages/$new.json",'../inc/pages/'.$new.'_tmp.json');
+		}else if(is_file("../inc/pages/$old.json")){
+			rename("../inc/pages/$old.json",'../inc/pages/'.$old.'_tmp.json');
+		}
 		
 			$name=$page->page_name;
+
 			if($page->old_page_name != $page->page_name){
 				$name=$page->old_page_name;
 			}
+
 		
 			$page->no_mod=$_SESSION['sess_no_mod'];
 			$page->layout=$_SESSION['sess_layout'];
@@ -347,24 +385,30 @@ if(filter_input(INPUT_POST,"addBlock")){
 			$page->use_name=$_SESSION['sess_use_name'];
 			$page->use_desc=$_SESSION['sess_use_desc'];
 			$page->counter=$_POST['counter'];
-		
-				
-			if($_FILES['myfile']['name']){
-				$page->img=$_FILES['myfile']['name'];
-			}else if($page->type=="custom") {
-				$page->img= $_SESSION['sess_img'];
-			}else if($page->type=="default") {
-				$query1="SELECT * FROM default_page WHERE page_name = :page_name LIMIT 0,1";
-				$stmt1 = $db->prepare($query1);
-				$stmt1->bindParam(':page_name', $name);       
-				$stmt1->execute();
-				$row1 = $stmt1->fetch(PDO::FETCH_ASSOC);
-				$page->img=$row1['img'];
+
+			if($_POST['visual'][0]=="visual_img"){
+				$page->visual_img=1;				
+				if($_FILES['myfile']['name']){
+					$page->img=$_FILES['myfile']['name'];
+				}else if($page->type=="custom") {
+					$page->img= $_SESSION['sess_img'];
+				}
+			}else if($_POST['visual'][0]=="visual_gall"){
+				$page->visual_gall=1;
+				$page->img=$_POST['visual_gallery'];
 			}
+			// else if($page->type=="default") {
+			// 	$query1="SELECT * FROM default_page WHERE page_name = :page_name LIMIT 0,1";
+			// 	$stmt1 = $db->prepare($query1);
+			// 	$stmt1->bindParam(':page_name', $name);       
+			// 	$stmt1->execute();
+			// 	$row1 = $stmt1->fetch(PDO::FETCH_ASSOC);
+			// 	$page->img=$row1['img'];
+			// }
 
 
 
-			
+			if($page->update()){
 
 				$arr0=array(
 					"name"		=> $_SESSION['sess_page_name']
@@ -384,8 +428,8 @@ if(filter_input(INPUT_POST,"addBlock")){
 						);
 					}else if($_SESSION["$sess_type"]=="p"){
 						if($_FILES['pict'.$i.'']['name']){
-							$page->img_pict=$_FILES['pict'.$i.'']['name'];
-							$page->img_tmp_pict=$_FILES['pict'.$i.'']['tmp_name'];
+							$page->img=$_FILES['pict'.$i.'']['name'];
+							$page->img_tmp=$_FILES['pict'.$i.'']['tmp_name'];
 							$page->uploadPicture();
 							$pict=$_FILES['pict'.$i.'']['name'];
 						}else{
@@ -400,9 +444,9 @@ if(filter_input(INPUT_POST,"addBlock")){
 						);
 					}else if($_SESSION["$sess_type"]=="i"){
 						if($_FILES['info'.$i.'']['name']){
-							$page->img_info=$_FILES['info'.$i.'']['name'];
-							$page->img_tmp_info=$_FILES['info'.$i.'']['tmp_name'];
-							$page->uploadInfo();
+							$page->img=$_FILES['info'.$i.'']['name'];
+							$page->img_tmp=$_FILES['info'.$i.'']['tmp_name'];
+							$page->uploadPicture();
 							$info=$_FILES['info'.$i.'']['name'];
 						}else{
 							$info=$_POST['old_info_'.$i.''];
@@ -432,23 +476,46 @@ if(filter_input(INPUT_POST,"addBlock")){
 				}
 			
 		
-			
+				$page_name=preg_replace('/\s+/', '_',$_SESSION['sess_page_name']);
+				$page_name=strtolower($page_name);
+		
+				$file='../inc/pages/'.$page_name.'.json';
 
 				$json=json_encode($arr_tot);
+		
+				if(file_put_contents($file, $json, FILE_APPEND)){
+					chmod($file,0777);
+					if(is_file('../inc/pages/'.$new.'_tmp.json')){
 
-				$page->content=$json;
+						unlink('../inc/pages/'.$new.'_tmp.json');
+					}else if(is_file('../inc/pages/'.$old.'_tmp.json')){
 
-				if($page->update()){
-					
-					$page->counter=$counter;
+						unlink('../inc/pages/'.$old.'_tmp.json');
+					}
 
-					$page->destroyCheckSessVar();
-
-					header("Location: ../index.php?man=page&op=show&type=$page->type&msg=pageEditSucc");
-					exit;
 				}else{
-					header("Location: ../index.php?man=page&op=show&type=$page->type&msg=pageEditErr");
-					exit;
+					if(is_file('../inc/pages/'.$new.'_tmp.json')){
+
+						rename('../inc/pages/'.$new.'_tmp.json',"../inc/pages/$name.json");
+					}else if(is_file('../inc/pages/'.$old.'_tmp.json')){
+
+						rename('../inc/pages/'.$old.'_tmp.json',"../inc/pages/$name.json");
+					}
 				}
+
+				$page->destroyCheckSessVar();
+
+				header("Location: ../index.php?man=page&op=show&type=$page->type&msg=pageEditSucc");
+				exit;
+			
+				// empty posted values
+				// $_POST=array();
+			
+			}else{
+
+
+				header("Location: ../index.php?man=page&op=show&type=$page->type&msg=pageEditErr");
+				exit;
+			}
 		}
 }

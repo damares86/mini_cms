@@ -142,16 +142,19 @@ if(filter_input(INPUT_POST,"subReg")){
 
 	$path="../../misc/gallery/img/";
 	if(!is_dir($path)){
-		mkdir($path);
-		chmod($path,0777);
+		$oldmask = umask(0);
+		mkdir($path,0777,true);
+		umask($oldmask);
 	}
 
 	$gallery = $_POST['title'];
 	$dir = preg_replace('/\s+/', '_', $gallery);	
 	$dir = strtolower($dir);
 	$target_directory = $path.$dir.'/';
-
+	
+	$oldmask = umask(0);
 	mkdir($target_directory, 0777, true);
+	umask($oldmask);
 	
 	$countfiles = count($_FILES['file']['name']);
 

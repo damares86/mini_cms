@@ -1,11 +1,11 @@
 <?php
 
-// require 'admin/phpDebug/src/Debug/Debug.php';   			// if not using composer
+require 'admin/phpDebug/src/Debug/Debug.php';   			// if not using composer
 
-// $debug = new \bdk\Debug(array(
-//     'collect' => true,
-//     'output' => true,
-// ));
+$debug = new \bdk\Debug(array(
+    'collect' => true,
+    'output' => true,
+));
 
 session_start();
 // loading class
@@ -177,12 +177,7 @@ while ($row = $stmt2->fetch(PDO::FETCH_ASSOC)){
 
 		<title><?=$page_name?> - <?=$site_name?></title>
         <link rel="icon" href="assets/<?= $theme ?>/img/favicon.ico">
-        <?php
-          
 
-
-
-        ?>
         
         <link rel="stylesheet" href="admin/template/layout/<?=$page->layout?>.css" />
         <link rel="stylesheet" href="admin/assets/css/my-login.css" />
@@ -192,16 +187,23 @@ while ($row = $stmt2->fetch(PDO::FETCH_ASSOC)){
         <link href='admin/template/inc/layout.css' rel='stylesheet' type='text/css'>
 		<?php
 
-            require "assets/".$theme."/inc/scripts.php";
-            require "admin/inc/func/check.php";
-            if(($file=="login.php")||($file=="contact.php")){
-                require "admin/template/inc/recaptcha.php";
-            }
-        ?>
+require "assets/".$theme."/inc/scripts.php";
+require "admin/inc/func/check.php";
+if(($file=="login.php")||($file=="contact.php")){
+    require "admin/template/inc/recaptcha.php";
+}
+?>
+<link rel="stylesheet" href="admin/assets/css/carousel.css" />  
         <meta name="viewport" content="width=device-width, initial-scale=1" />
 	</head>
 
 	<body>
+            <script type='text/javascript'>
+                $(document).ready(function(){                
+                    // Intialize gallery
+                    var gallery = $('.gallery a').simpleLightbox();                    
+                    });
+                </script>
         <?php
             $style="";
             if(isset($_SESSION['loggedin'])){
@@ -224,11 +226,14 @@ while ($row = $stmt2->fetch(PDO::FETCH_ASSOC)){
                 </header>
                 <?php
                     if($page->header==1){
-                    ?>
+                        ?>
                 <div id="banner-wrapper">
-					<div id="banner" class="box container" style="background-image: url(<?=$root?>uploads/img/<?=$img?>);">
+                <?php    
+                if(pathinfo($page->img, PATHINFO_EXTENSION)){
+                ?>
+                    <div id="banner" class="box container" style="background-image: url(<?=$root?>uploads/img/<?=$img?>);">
 						<div class="row">
-							<div class="col-7 col-12-medium">
+                            <div class="col-7 col-12-medium">
                             <?php
                             if($page->use_name==1){
                             ?>
@@ -246,6 +251,75 @@ while ($row = $stmt2->fetch(PDO::FETCH_ASSOC)){
 							</div>
 						</div>
 					</div>
+                <?php
+                }else{
+                        $gallery_name_visual=$page->img;
+                        $folder_visual= str_replace(" ","_", $gallery_name_visual);
+                        $folder_visual=strtolower($folder_visual);
+                ?>
+                        <script>
+                            $('#myVisualCarousel').carousel({
+                                interval: 2000,
+                                cycle: true
+                            })
+                        </script>
+
+                            <div id="#myVisualCarousel" class="carousel slide" data-ride="carousel">
+                                <ol class="carousel-indicators">
+                                <?php
+
+                                $dirCarousel="misc/gallery/img/$folder_visual/";
+
+                                $idx=0;
+                                foreach (glob($dirCarousel."*") as $file) {
+                                    
+                                    $active="";
+                                    if($idx==0){
+                                    $active="class=\"active\"";
+                                    }
+                                
+                                ?>
+                                <li data-target="#myVisualCarousel" data-slide-to="<?=$idx?>" <?=$class?>></li>
+                                <?php
+
+                                    $idx++;
+                                }
+                                ?>
+                                </ol>
+                                <div class="carousel-inner">
+
+                                <?php
+                                $idx=0;
+                                foreach (glob($dirCarousel."*") as $file) {
+                                    $img=pathinfo($file, PATHINFO_FILENAME);
+                                    $ext=pathinfo($file, PATHINFO_EXTENSION);
+                                    $imgName=$img.".".$ext;
+
+                                    $active="";
+                                    if($idx==0){
+                                    $active="active";
+                                    }
+
+                                    $numberArr=array('first','second','third','fourth','fifth','sixth','seventh','eighth','ninth','tenth');
+
+                                    $number=$numberArr[$idx];
+
+                                    ?>
+                                <div class="carousel-item <?=$active?>">
+                                    <img class="<?=$number?>-slide" src="<?=$dirCarousel?>/<?=$imgName?>" alt="<?=$number?> slide">
+                                </div>
+                                <?php
+                                $idx++;
+                                }
+                                ?>
+                                
+                                </div>
+                                
+                            </div>
+                <?php
+                $idx=0;
+                }
+                ?>
 				</div>
                     <?php
                     }

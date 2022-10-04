@@ -19,6 +19,8 @@ class Page{
     public $use_desc;
     public $layout;
     public $header;
+    public $visual_img;
+    public $visual_gall;
     public $img;
     public $img_tmp;
     public $img_pict;
@@ -30,7 +32,6 @@ class Page{
     public $item_order;
     public $parent;
     public $child_of;
-    public $content;
 
     // constructor
     public function __construct($db){
@@ -67,6 +68,8 @@ class Page{
         }else{
             $_SESSION["sess_use_desc"]=0;
         }
+
+        $_SESSION['sess_page_type']==$_POST['type'];
     
         if(isset($_POST['layout'])){
             $_SESSION['sess_layout']=$_POST['layout'];
@@ -80,14 +83,26 @@ class Page{
             $_SESSION['sess_header']=0;
         }	
 
-        if($_FILES['myfile']['size']!=0){
-            $this->img=$_FILES['myfile']['name'];
-            $this->uploadPhoto();
-            $_SESSION['sess_img']=$_FILES['myfile']['name'];
-        }else{
-            $_SESSION['sess_img']=$_POST['actual_image'];
-        }
-    
+        if($_POST['visual'][0]=="visual_img"){
+            $_SESSION['sess_img_select']=1;
+            $_SESSION['sess_gall_select']=0;
+            if($_FILES['myfile']['size']!=0){
+                $this->img=$_FILES['myfile']['name'];
+                $this->uploadPhoto();
+                $_SESSION['sess_img']=$_FILES['myfile']['name'];
+            }else{
+                $_SESSION['sess_img']=$_POST['actual_image'];
+            }
+		}else if($_POST['visual'][0]=="visual_gall"){
+            $_SESSION['sess_img_select']=0;
+            $_SESSION['sess_gall_select']=1;
+            $folder=$_POST['visual_gallery'];
+            $gallery= str_replace("_"," ", $folder);
+            $gallery=ucfirst($gallery);
+			$_SESSION['sess_img']=$gallery;
+		}
+
+           
         $_SESSION['sess_no_mod']=0;
         if($_SESSION['sess_page_name']=="index"){
             $_SESSION['sess_no_mod']=1;
@@ -187,6 +202,11 @@ class Page{
         $_SESSION["sess_use_desc"]=$this->use_desc;
         $_SESSION['sess_layout']=$this->layout;
         $_SESSION['sess_img']=$this->img;
+        if(pathinfo($this->img, PATHINFO_EXTENSION)){
+            $_SESSION['sess_img_select']=1;
+        }else{
+            $_SESSION['sess_gall_select']=1;
+        }
         $_SESSION['sess_no_mod']=$this->no_mod;
         $_SESSION['sess_theme']=$this->theme;
         $_SESSION['sess_header']=$this->header;
@@ -232,6 +252,9 @@ class Page{
         unset($_SESSION['sess_no_mod']);
         unset($_SESSION['sess_theme']);
         unset($_SESSION['sess_header']);
+        unset($_SESSION['sess_page_type']);
+        unset($_SESSION['sess_img_select']);
+        unset( $_SESSION['sess_gall_select']);
         $count=$_SESSION['counter'];
         for($i=1;$i<=$count;$i++){
             $sess_bg="sess_bg_$i";
@@ -267,8 +290,7 @@ class Page{
         header = :header,
         use_name = :use_name,
         use_desc = :use_desc,
-        counter = :counter,
-        content = :content";
+        counter = :counter";
      
         // prepare the query
         $stmt = $this->conn->prepare($query);
@@ -281,11 +303,26 @@ class Page{
         $stmt->bindParam(':use_name', $this->use_name);    
         $stmt->bindParam(':use_desc', $this->use_desc);    
         $stmt->bindParam(':counter', $this->counter);    
-        $stmt->bindParam(':content', $this->content);    
         
         // execute the query, also check if query was successful
         if($stmt->execute()){
-            $this->uploadPhoto();
+
+            if($this->visual_img==1){
+                $this->uploadPhoto();
+            }else if($this->visual_gall==1){
+                $query2 = "UPDATE " . $this->table . "
+                        SET
+                        img = :img
+                        WHERE page_name = :page_name";
+
+                // prepare the query
+                $stmt2 = $this->conn->prepare($query2);
+                // bind the values
+                $stmt2->bindParam(':img', $this->img);
+                $stmt2->bindParam(':page_name', $this->page_name);  
+                
+                $stmt2->execute();
+            }
 
             $query1="INSERT INTO menu SET pagename = :page_name";
             $stmt1 = $this->conn->prepare($query1);
@@ -321,17 +358,6 @@ class Page{
         
         if($this->type=="custom"){
             
-            $query1="UPDATE ".$this->table_name."
-                SET content = NULL
-                WHERE id = :id";
-
-                $stmt1 = $this->conn->prepare($query1);
-
-                $stmt1->bindParam(':id', $this->id);   
-
-                $stmt1->execute();            
-
-
             $stmt="";
             
             $query = "UPDATE
@@ -342,8 +368,7 @@ class Page{
                 header = :header,
                 use_name = :use_name,
                 use_desc = :use_desc,
-                counter = :counter,
-                content = :content WHERE id = :id";
+                counter = :counter WHERE id = :id";
                 
               
                 // prepare the query
@@ -359,8 +384,7 @@ class Page{
                 $stmt->bindParam(':use_name', $this->use_name);    
                 $stmt->bindParam(':use_desc', $this->use_desc);    
                 $stmt->bindParam(':counter', $this->counter);  
-                $stmt->bindParam(':content', $this->content);  
-                $stmt->bindParam(':id', $this->id);   
+                $stmt->bindParam(':id', $this->id); 
 
             }else if($this->type=="default"){
 
@@ -392,12 +416,32 @@ class Page{
                             if(($this->img)==$actualImage){
                                 return true;
                             }else{
-        
-                                if($this->uploadPhoto()){
-                                    return true;
-                                }else{
-                                    return false;
+                                if($this->visual_img==1){
+                                    if($this->uploadPhoto()){
+                                        return true;
+                                    }else{
+                                        return false;
+                                    }
+                                }else if($this->visual_gall==1){
+                                    $query2 = "UPDATE " . $this->table . "
+                                            SET
+                                            img = :img
+                                            WHERE page_name = :page_name";
+                    
+                                    // prepare the query
+                                    $stmt2 = $this->conn->prepare($query2);
+                                    // bind the values
+                                    $stmt2->bindParam(':img', $this->img);
+                                    $stmt2->bindParam(':page_name', $this->page_name);  
+                                    
+                                    if($stmt2->execute()){
+                                        return true;
+                                    }else{
+                                        $this->showError($stmt);
+                                        return false;
+                                    }
                                 }
+                             
                             }
                         }
                         return true;
@@ -457,22 +501,40 @@ class Page{
                     if(($this->img)==$actualImage){
                         return true;
                     }else{
-
-                        if($this->uploadPhoto()){
-                            return true;
-                        }else{
-                            return false;
+                        if($this->visual_img==1){
+                            if($this->uploadPhoto()){
+                                return true;
+                            }else{
+                                return false;
+                            }
+                        }else if($this->visual_gall==1){
+                            $query2 = "UPDATE " . $this->table . "
+                                    SET
+                                    img = :img
+                                    WHERE page_name = :page_name";
+            
+                            // prepare the query
+                            $stmt2 = $this->conn->prepare($query2);
+                            // bind the values
+                            $stmt2->bindParam(':img', $this->img);
+                            $stmt2->bindParam(':page_name', $this->page_name);  
+                            
+                            if($stmt2->execute()){
+                                return true;
+                            }else{
+                                $this->showError($stmt);
+                                return false;
+                            }
                         }
+                     
                     }
                 }
-                return true;
 
-            }else{
-                $this->showError($stmt);
-                return false;
-            }
-
+    }else{
+        $this->showError($stmt);
+        return false;
     }
+}
 
     function copyPage(){
         
@@ -502,7 +564,7 @@ class Page{
                 $file_upload_error_messages="";
                 $allowed_file_types=array("jpg", "png");
                 if(!in_array($file_type, $allowed_file_types)){
-                    header("Location: ../index.php?man=page&op=show&msg=formatImgErr");
+                    header("Location: ../index.php?man=page&op=show&type=".$this->type."&msg=formatImgErr");
                     exit;
                     // $file_upload_error_messages.="<div>Only .zip, .doc, .docx,.pdf files are allowed.</div>";
                     //exit;
@@ -759,7 +821,6 @@ class Page{
         $this->use_name = $row['use_name'];
         $this->use_desc = $row['use_desc'];
         $this->counter = $row['counter'];
-        $this->content = $row['content'];
         
     }
 
@@ -784,7 +845,6 @@ class Page{
         $this->use_desc = $row['use_desc'];
         $this->img = $row['img'];
         $this->counter = $row['counter']; 
-        $this->content = $row['content']; 
     }
 
     function showByIdDefault(){

@@ -11,6 +11,12 @@ $operation="mod";
 
 $stmt = $settings->showSettings();
 
+function is_dir_empty($dir) {
+    if (!is_readable($dir)) return null; 
+      return (count(scandir($dir)) == 2);
+ }
+
+
     
 ?>
 
@@ -135,30 +141,120 @@ $stmt = $settings->showSettings();
 
 <div id="uploadHeader" class="border-bottom"  style="display:<?=$display?>">
 <br>
+
+<?php
+            
+            $img=$page->img;
+            $page_theme="";
+            
+            $checkedImg="";
+            $checkedGall="";
+            
+            $box_name="";
+            if(!isset($img)||pathinfo($img, PATHINFO_EXTENSION)){
+                $checkedGall="";
+                $checkedImg="checked";
+                $box_name=".visual_img";
+            }else{
+                $checkedGall="checked";
+                $checkedImg="";
+                $box_name=".visual_gall";
+            }
+            // print_r($_SESSION['sess_gall_select']);
+            // exit;
+            ?>
+            
+            
+            <label><input type="radio" name="visual[]" value="visual_img" <?=$checkedImg?>> Immagine </label>
+            <label><input type="radio" name="visual[]" value="visual_gall" <?=$checkedGall?>> Galleria </label>
+            <br><br>
+            
+            <style>
+            .box_visual{display:none};
+            </style>
+            
+            <script>
+            $(document).ready(function(){
+            $('input[name="visual[]"]').click(function(){
+            var inputValue = $(this).attr("value");
+            var targetBox = $("." + inputValue);
+            $('.box_visual').not(targetBox).hide();
+            $(targetBox).show();
+            });
+            });
+            </script>
+            
+            <style>
+            <?=$box_name?> {display: block;}
+            </style>
+            
+            <div class="box_visual visual_img">
+                
             <?php
-$img=$page->img;
-$page_theme="";
-
-
-
-     $page_theme=$theme;
-     if(!($page->img)){
-         $img="visual.jpg";
-     }
-?>
-            <div class="control-group">
-                <label class="control-label" for="file"><?=$regpage_visual?></label>
-                <div class="controls">
-                    <input type="file" id="myfile" name="myfile">
-                    <br><br>
-                    <?=$regpage_actual?> &nbsp;<img src="../uploads/img/<?=$img?>"  style="max-width:200px;">
-                </div>
-            </div>
+                //  $page_theme=$theme;
+                if(pathinfo($page->img, PATHINFO_EXTENSION)){
+                    $img=$page->img;
+                }else{
+                    $img="visual.jpg";
+                }
+             
+            ?>
+                        <div class="control-group">
+                            <label class="control-label" for="file"><?=$regpage_visual?></label>
+                            <div class="controls">
+                                <input type="file" id="myfile" name="myfile">
+                                <br><br>
+                                <?=$regpage_actual?> &nbsp;<img src="../uploads/img/<?=$img?>"  style="max-width:200px;">
+            
+                                <input type="hidden" name="actual_image" value="<?= $img ?>" />
+            
+                            </div>
+                        </div>
+                        <br>
+                        </div>
+            
+                    <div class="box_visual visual_gall">
+                        <div class="control-group">
+                            <label class="control-label" for="file"><?=$regpage_choose_gall?></label>
+                    
+                                <?php
+                                $dir_gall="../misc/gallery/img/";
+                                $dir_root="../misc/gallery/";
+                 
+                                    if( !is_dir($dir_gall) || is_dir_empty($dir_gall) ||is_dir_empty(($dir_root)) ){
+                                        echo "<div class='col'><div class='alert alert-danger'>$gall_nogall</div></div>";
+                                    }else{
+                                        ?>
+                                        <select name="visual_gallery">
+                                            <?php
+                                            echo "<option value='none'>none</option>";
+            
+                                foreach (glob("../misc/gallery/img/*") as $file) {
+                                    $folder=pathinfo($file, PATHINFO_FILENAME);
+                                    $gallery= str_replace("_"," ", $folder);
+                                    $gallery=ucfirst($gallery);
+                                    
+                                    $images= scandir ($file);
+                                    $firstFile = $file ."/". $images[2];// because [0] = "." [1] = ".." 
+            
+                                    $selected ="";
+                                    if($page->$block_type==$folder||$_SESSION['sess_img']==$gallery){
+                                        $selected="selected";
+                                    }
+                                    echo "<option value'$folder' $selected>$gallery</option>";
+                                ?>
+            
+                            <?php
+                                }
+                            }
+                            
+                            ?>
+                                        </select>
+                    </div>
+                    </div>
+               
             <br>
-
-        </div>
-            <br>
-<br>
+</div>
 
 
 

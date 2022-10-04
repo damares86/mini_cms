@@ -27,7 +27,8 @@ require "admin/template/inc/header.php";
                 }
 
                 
-                $data = $page->content;
+                $json_file = 'admin/inc/pages/index.json';
+                $data = file_get_contents($json_file);
                 $json_arr = json_decode($data, true);
 
 
@@ -36,7 +37,10 @@ require "admin/template/inc/header.php";
                 for($i=1;$i<=$counter;$i++){
 
                 ?>
-                
+
+
+                 
+             
                 <div class="block block<?=$i?> <?=$page_class?>" style="background-color:<?=$json_arr[$i]['block'.$i.'_bg']?> !important; color:<?=$json_arr[$i]['block'.$i.'_text']?> !important;">
 
                 <?php
@@ -72,27 +76,84 @@ require "admin/template/inc/header.php";
                                     <?php
                                 }
                          }else{
-                                $gallery_name=$json_arr[$i]['block'.$i.'_type'];
+                            $folder_name=$json_arr[$i]['block'.$i.'_type'];
+                            $gallery_name=str_replace("_"," ",$folder_name);
+                            $gallery_name=ucfirst($gallery_name);
+                            ?>
+                            <script>
+                            $('#myCarousel<?php echo $i?>').carousel({
+                                interval: 2000,
+                                cycle: true
+                            })
+                        </script>
+
+                        <div id="titleCarousel<?=$i?>">
+                            <h2>
+                                <?=$gallery_name?> 
+                            </h2>
+                        </div>
+                        <div id="myCarousel<?=$i?>" class="carousel slide gallery" data-ride="carousel">
+                            <ol class="carousel-indicators">
+                            <?php
+
+                            $dirCarousel="misc/gallery/img/$folder_name/";
+
+                            $idx=0;
+                            foreach (glob($dirCarousel."*") as $file) {
+                                
+                                $active="";
+                                if($idx==0){
+                                $active="class=\"active\"";
+                                }
                             
-                                $dir="misc/gallery/img/$gallery_name";
-                                $images= scandir ($dir);
-                                $firstFile = $dir ."/". $images[2];// because [0] = "." [1] = ".." 
-                                $folder=$json_arr[$i]['block'.$i.'_type'];
-                                $gallery=str_replace("_"," ",$folder);
-                                $gallery=ucfirst($gallery);
-                
+                            ?>
+                            <li data-target="#myCarousel<?=$i?>" data-slide-to="<?=$i?>" <?=$class?>></li>
+                            <?php
+
+                                $idx++;
+                            }
+                            ?>
+                            </ol>
+                            <div class="carousel-inner">
+
+                            <?php
+                            $idx=0;
+                            foreach (glob($dirCarousel."*") as $file) {
+                                $img=pathinfo($file, PATHINFO_FILENAME);
+                                $ext=pathinfo($file, PATHINFO_EXTENSION);
+                                $imgName=$img.".".$ext;
+
+                                $active="";
+                                if($idx==0){
+                                $active="active";
+                                }
+
+                                $numberArr=array('first','second','third','fourth','fifth','sixth','seventh','eighth','ninth','tenth');
+
+                                $number=$numberArr[$i];
+
                                 ?>
-                
-                                    <div class="row">
-                                        <div class="col-12 text-center">
-                                                <h3><b><?=$gallery?></b></h3>
-                                        </div>
-                                        <div class="col-12">
-                                            <a href="misc/gallery/<?=$folder?>.php">
-                                                <img src="<?=$firstFile?>" style="max-width:100%; margin:0 auto;">
-                                            </a>
-                                        </div>                                
-                                    </div>
+                            <div class="carousel-item <?=$active?>">
+                                <a href="<?=$dirCarousel?>/<?=$imgName?>">
+                                    <img class="<?=$number?>-slide" src="<?=$dirCarousel?>/<?=$imgName?>" alt="<?=$number?> slide" class="gallery">
+                                </a>
+                            </div>
+                            <?php
+                            $idx++;
+                            }
+                            ?>
+                            
+                            </div>
+                            <a class="carousel-control-prev" href="#myCarousel<?=$i?>" role="button" data-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="sr-only">Previous</span>
+                            </a>
+                            <a class="carousel-control-next" href="#myCarousel<?=$i?>" role="button" data-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="sr-only">Next</span>
+                            </a>
+                        </div>
+
                         <?php
                          }
                          ?>
