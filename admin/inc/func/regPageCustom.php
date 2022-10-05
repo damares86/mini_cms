@@ -269,7 +269,7 @@ $(targetBox).show();
  
 ?>
             <div class="control-group">
-                <label class="control-label" for="file"><?=$regpage_visual?></label>
+                <label class="control-label" for="file"><?=$regpage_visual_img_label?></label>
                 <div class="controls">
                     <input type="file" id="myfile" name="myfile">
                     <br><br>
@@ -284,16 +284,16 @@ $(targetBox).show();
 
         <div class="box_visual visual_gall">
             <div class="control-group">
-                <label class="control-label" for="file"><?=$regpage_choose_gall?></label>
-        
-                    <?php
+                
+                <?php
                     $dir_gall="../misc/gallery/img/";
                     $dir_root="../misc/gallery/";
-     
-                        if( !is_dir($dir_gall) || is_dir_empty($dir_gall) ||is_dir_empty(($dir_root)) ){
-                            echo "<div class='col'><div class='alert alert-danger'>$gall_nogall</div></div>";
-                        }else{
-                            ?>
+                    
+                    if( !is_dir($dir_gall) || is_dir_empty($dir_gall) ||is_dir_empty(($dir_root)) ){
+                        echo "<div class='col'><div class='alert alert-danger'>$gall_nogall</div></div>";
+                    }else{
+                        ?>
+                        <label class="control-label" for="file"><?=$regpage_choose_gall?></label>
                             <select name="visual_gallery">
                                 <?php
                                 echo "<option value='none'>none</option>";
