@@ -110,6 +110,7 @@ $regpage_use_name = "Use site name";
 $regpage_use_description = "Use site description";
 $regpage_use_visual = "Use visual";
 $regpage_visual_img = "Image";
+$regpage_visual_img_label = "Visual image";
 $regpage_visual_gall = "Gallery";
 $regpage_actual = "Actual image";
 $regpage_block = "Block";

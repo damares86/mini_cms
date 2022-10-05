@@ -27,6 +27,11 @@ body {
     height:12em;
     background-color: transparent;
   }
+
+/* #myVisualCarousel .carousel-item{
+  height:20em;
+} */
+
   .carousel-item > img {
     position: absolute;
     top: 0;
