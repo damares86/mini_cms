@@ -24,23 +24,24 @@ $dir="../../misc/";
 
 rmdir_recursive($dir);
 
-$page_arr=array("contact.php","index.php","login.php");
+$page_arr=array("contact","index","login");
 
 foreach (glob("../../*.php") as $row){
-  if(!in_array($row,$page_arr)){
+    $file = pathinfo($row);
+    $filename = $file['filename'];
+  if(!in_array($filename,$page_arr)){
     unlink($row);
   }
 }
-
 
 foreach (glob("../inc/pages/*") as $row){
   unlink($row);
 }
 
+rmdir("../inc/pages");
 
-
-unlink("./class/Database.php");
-unlink("../core/Site.php");
+unlink("../class/Database.php");
+unlink("site.php");
 unlink("../inc/class_initialize.php");
 
 
