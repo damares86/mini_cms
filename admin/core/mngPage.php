@@ -268,7 +268,7 @@ if(filter_input(INPUT_POST,"addBlock")){
 				$page->uploadPicture();
 				$$array_name=array(
 					'block'.$i.'_type' 	=> $_SESSION["$sess_type"],
-					'block'.$i.'_pict' 	=> $_SESSION['sess_pict_'.$i.''],
+					'block'.$i.'_pict' 	=> $page->img_pict,
 					'block'.$i.'_bg'	=> $_SESSION[''.$sess_bg.''],
 					'block'.$i.'_text'  => $_SESSION[''.$sess_text.'']
 				);
@@ -285,7 +285,7 @@ if(filter_input(INPUT_POST,"addBlock")){
 				$editor = preg_replace('/^\s+/', '', $_SESSION["sess_info_editor$i"]);
 				$$array_name=array(
 					'block'.$i.'_type' 	=> $_SESSION["$sess_type"],
-					'block'.$i.'_info' 	=> $page->img,
+					'block'.$i.'_info' 	=> $page->img_info,
 					'block'.$i.'_desc' 	=> $editor,
 					'block'.$i.'_bg'	=> $_SESSION[''.$sess_bg.''],
 					'block'.$i.'_text'  => $_SESSION[''.$sess_text.'']
