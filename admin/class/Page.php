@@ -529,6 +529,7 @@ class Page{
                      
                     }
                 }
+                return true;
 
     }else{
         $this->showError($stmt);
