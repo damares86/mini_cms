@@ -214,6 +214,12 @@ $db->query("INSERT INTO view_home
           VALUES ('1','color')
           ");
 
+$db->query("CREATE TABLE IF NOT EXISTS popup
+( id INT ( 5 ) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  title VARCHAR(255) NOT NULL,
+  content TEXT NOT NULL,
+  pagename VARCHAR(255) NOT NULL)");
+
 
 $db->query("CREATE TABLE IF NOT EXISTS files
                             ( id INT ( 5 ) NOT NULL AUTO_INCREMENT PRIMARY KEY,

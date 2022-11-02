@@ -32,6 +32,7 @@ class Page{
     public $item_order;
     public $parent;
     public $child_of;
+    public $page_arr;
 
     // constructor
     public function __construct($db){
@@ -746,6 +747,7 @@ class Page{
         return $stmt;
     }
 
+    
     function showAllDefault(){
         //select all data
         $query = "SELECT
@@ -757,10 +759,47 @@ class Page{
   
         $stmt = $this->conn->prepare( $query );
         $stmt->execute();
-  
+        
         return $stmt;
     }
 
+    function showAllPages(){
+        //select all data
+        $query = "SELECT
+                    *
+                FROM
+                    page
+                ORDER BY
+                    id DESC";  
+    
+        $stmt = $this->conn->prepare( $query );
+        $stmt->execute();
+        $all_pages=array();
+        
+        foreach($stmt as $row){
+            $all_pages[]=$row['page_name'];
+        }
+
+        $query1 = "SELECT
+                *
+            FROM
+                default_page
+            ORDER BY
+                id DESC";  
+
+        $stmt1 = $this->conn->prepare( $query1 );
+        $stmt1->execute();
+                
+        foreach($stmt1 as $row1){
+            $all_pages[]=$row1['page_name'];
+        }
+
+        print_r($all_pages);
+        exit;
+
+        return $stmt;
+    }
+    
     function showMenu(){
         //select all data
         $query = "SELECT
