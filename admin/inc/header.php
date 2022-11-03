@@ -162,7 +162,7 @@ for($i=1;$i<=$counter;$i++){
 tinymce.init({
   selector: 'textarea#editor<?=$i?>',
   images_upload_handler: example_image_upload_handler,
-  plugins: 'link image code',
+  plugins: 'link image code lists',
   toolbar: 'undo redo | blocks | ' +
   'bold italic backcolor | alignleft aligncenter ' +
   'alignright alignjustify | link image | bullist numlist outdent indent | ' +

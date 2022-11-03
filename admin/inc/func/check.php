@@ -25,7 +25,7 @@ if($dm==0){
     exit;
 }
 
-if($site!=$_SERVER['SERVER_NAME']){
+if(!in_array($_SERVER['SERVER_NAME'],$site)){
     ?>
     </head>
     
