@@ -89,7 +89,7 @@ if(!is_file('../core/site.php')){
   $file_handle = fopen('../core/site.php', 'w');
   fwrite($file_handle, '<?php');
   fwrite($file_handle, "\n");
-  fwrite($file_handle, '$site= "'.$_SERVER['SERVER_NAME'].'";');
+  fwrite($file_handle, '$site=array("'.$_SERVER['SERVER_NAME'].'");');
   fwrite($file_handle, "\n");
   fwrite($file_handle, '?>');
 }
