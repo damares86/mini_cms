@@ -274,12 +274,6 @@ $db->query("INSERT INTO default_page
 VALUES ('2','Contact', '1', '1', '1', 'visual.jpg')
 ");
 
-
-$db->query("INSERT INTO default_page 
-(id, page_name, header, use_name, use_desc, img) 
-VALUES ('3','Gallery', '1', '1', '1', 'visual.jpg')
-");
-
 $db->query("INSERT INTO menu 
 (id, pagename, inmenu,itemorder,parent,childof) 
 VALUES ('1','index', '0','0','1','none')

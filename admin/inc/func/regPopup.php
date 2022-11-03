@@ -1,18 +1,28 @@
 <?php
 $operation = "add";
-$titoloForm = "Add a new Popup"; ////////////////////
+$titoloForm = $popup_add_title;
 
 $popToMod="";
 $idToMod="";
 
 if(filter_input(INPUT_GET,"idToMod")){
     $idToMod = filter_input(INPUT_GET,"idToMod");
-    $titoloForm="Edit a popup"; /////////////////////////
+    $titoloForm= $popup_mod_title;
     $operation="mod";
 }
 
 $all_pages=$page->showAllPages();
 
+if($operation=="add"){
+    if(!isset($_REQUEST['more'])){
+        $page->destroyPopupSessVar();
+    }
+}else if($operation=="mod"&&!isset($_REQUEST['more'])){
+        $page->destroyPopupSessVar();
+        $page->id_popup=$idToMod;
+        $page->showPopupById();
+        $page-> modPopupSessVar();
+}
 
 ?>
 
@@ -32,87 +42,62 @@ $all_pages=$page->showAllPages();
   
 
         </div>
-        <?php
-        $page->id = $idToMod;
 
-        $page->showById();
-
-        // if(!isset($_SESSION["sess_old_page_name"])){
-        //     $_SESSION["sess_old_page_name"]= $page->page_name;
-        // }
-
-        ?>
 
         <div class="card-body">
  
            
             <br>
 
-        <form id="postForm" class="form-horizontal row-fluid" action="core/mngPage.php" method="post" enctype="multipart/form-data">
+        <form id="postForm" class="form-horizontal row-fluid" action="core/mngPopup.php" method="post" enctype="multipart/form-data">
 
-
-<?php
-// if($operation=="add"){
-//     if(!isset($_REQUEST['more'])){
-//         $page->destroyCheckSessVar();
-//     }
-
-//     if(isset($_REQUEST['more'])&&$_REQUEST['more']=="yes"){
-//         $page->page_name=$_SESSION['sess_page_name'];
-//         $page->layout=$_SESSION['sess_layout'];
-//         $page->header=$_SESSION['sess_header'];
-//         // $page->img=$_SESSION['sess_img'];
-//     }
-// }else if($operation=="mod"&&!isset($_REQUEST['more'])){
-//         $page->destroyCheckSessVar();
-//         $_SESSION["sess_old_page_name"]= $page->page_name;
-
-//         $name=$page->page_name;
-//         $name=preg_replace("/\s+/", "_", $name);
-//         $name=strtolower($name);
-
-//         $json_file = 'inc/pages/'.$name.'.json';
-//         $data = file_get_contents($json_file);
-//         $json_arr = json_decode($data, true);
-
-//         $page-> modCheckSessVar($json_arr);
-// }
-?>
-
-
-
-        <input type="hidden" name="operation" value="<?= $operation ?>" />
+            <input type="hidden" name="operation" value="<?= $operation ?>" />
                
-                    <input type="hidden" name="idToMod" value="<?= $idToMod ?>" />
+            <input type="hidden" name="idToMod" value="<?= $idToMod ?>" />
             
             <div class="control-group">
-                <div class="control-label">
-                    Popup title
-                </div>
+                <label class="control-label">
+                <?=$popup_tab_title?>
+                </label>
                 <div class="controls">
-<!--   -------------////////////////////////////////////////////////// -->
-                    <input type="text" id="page_name" name="page_name" placeholder="Titolo del popup" value="<?=$_SESSION['sess_popup_name']?>" class="span8">                     
-                </div>
+<input type="text" id="title" name="title" placeholder="<?=$popup_title_ph?>" value="<?=$_SESSION['sess_popup_title']?>" class="span8">                     
+</div>
             </div>
-
+            
         <div class="control-group">
-
-
-
-        <span style="font-weight:bold; font-size: 1.5em;">Contenuto</span> &nbsp; &nbsp;<br><br>
-
-        <!-- TEXT BOX -->
-        <div class="t1 box1">
-            <?php
-            $name="block$i";
-            $page->$name=$_SESSION['sess_editor'.$i.''];
-            ?>
-            <textarea id="editor1" name="editor1" rows="10">   <?=$page->$var?></textarea>
-            <br>
-
-
+            <span style="font-weight:bold; font-size: 1.5em;"><?=$popup_content?></span> &nbsp; &nbsp;<br><br>
+            <!-- TEXT BOX -->
+            <div class="t1 box1">
+                <textarea id="editor1" name="editor1" rows="10">   <?=$_SESSION['sess_popup_editor']?></textarea>
+                <br>
+            </div>
         </div>
+        <div class="control-group">            
+            <label class="control-label">
+                <?=$popup_onpage?>
+            </label>
+            <div class="controls">
+                <select name="pagename">
+                <?php
+                    $count=count($all_pages);
+                    for($i=0;$i<$count;$i++){
+                        $selected="";
+                        $pagename=$all_pages[$i];
+                        $filename=strtolower($pagename);
+                        $filename=str_replace(" ","_",$filename);
+                        if($filename==$_SESSION['sess_popup_page_name']){
+                            $selected="selected";
+                        }
+                ?>
 
+                    <option value='<?=$filename?>' <?=$selected?>><?=$pagename?></option>;
+
+                <?php
+                    }
+                ?>
+                </select>
+            </div>
+        </div>
             <br>
                  <input type="submit" class="btn btn-primary" name="subReg" value="<?=$txt_submit?>">
         </form>
