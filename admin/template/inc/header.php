@@ -184,6 +184,8 @@ while ($row = $stmt2->fetch(PDO::FETCH_ASSOC)){
         <link href='admin/scripts/simplelightbox/simple-lightbox.min.css' rel='stylesheet' type='text/css'>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script type="text/javascript" src="admin/scripts/simplelightbox/simple-lightbox.jquery.min.js"></script>
+<script src="assets/<?=$theme?>/js/bootstrap.min.js"></script>
+
         <link href='admin/template/inc/layout.css' rel='stylesheet' type='text/css'>
 		<?php
 
@@ -198,6 +200,38 @@ if(($file=="login.php")||($file=="contact.php")){
 	</head>
 
 	<body>
+
+    <?php
+    $page->page_popup=$name;
+    $page->id_popup=0;
+    $popup=$page->showPopupByPage();
+    if($page->id_popup!=0){
+    ?>
+
+    <script>
+        $(document).ready(function(){
+            $("#myPopup").modal('show');
+        });
+    </script>
+
+    <div id="myPopup" class="modal fade popup <?=$name?>">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title"><?=$page->title_popup?></h5>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <?=$page->editor_popup?>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <?php
+}
+
+    ?>
             <script type='text/javascript'>
                 $(document).ready(function(){                
                     // Intialize gallery

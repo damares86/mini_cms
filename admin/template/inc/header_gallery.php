@@ -153,6 +153,7 @@ if(($file=="login.php")||($file=="contact.php")){
 	</head>
     
 	<body>
+    
         <?php
             $style="";
             if(isset($_SESSION['loggedin'])){

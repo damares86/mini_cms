@@ -133,6 +133,22 @@ $regpage_desc .= "<b>Colore di sfondo e del testo</b><br> Ogni bloccho può aver
 $regpage_desc .= "Se vuoi aggiungere più colori disponibili, vai alla sezione \"Impostazioni -> Tema\".";
 
 
+// POPUP
+
+$popup_title="Popup";
+$popup_box_title="Tutti i popup";
+$popup_add="Aggiungi un nuovo popup";
+$popup_tab_title = "Nome popup";
+$popup_onpage="Sulla pagina";
+$popup_link="Link";
+$popup_nopopup="Nessun popup trovato";
+$popup_modal_text="Se vuoi cancellare questo popup clicca \"Ok\"";
+$popup_add_title = "Aggiungi un popup";
+$popup_mod_title = "Modifica popup";
+$popup_title_ph = "Titolo del popup";
+$popup_content = "Contenuto";
+
+
 // FILES 
 
 $file_title = "Gestione file";
@@ -371,6 +387,12 @@ $al_pluginSucc = "Plugin installato";
 $al_pluginErr = "Plugin non installato. Prova ad eliminare la cartella e caricarla nuovamente.";
 $al_pluginUploadSucc = "Plugin caricato";
 $al_pluginUploadErr = "Plugin non caricato";
+$al_popupDelSucc="Popup eliminato correttamente";
+$al_popupDelErr="Popup non eliminato";
+$al_popupSucc="Popup creato correttamente";
+$al_popupErr="Popup non creato";
+$al_popupModSucc="Popup modificato correttamente";
+$al_popupModErr="Popup non modificato";
 
 
 // ALERT WEBSITE

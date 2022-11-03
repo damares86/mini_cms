@@ -49,7 +49,6 @@
             while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
         
         extract($row);
-        if($id!=3){
         ?>
             <tr>
                 <td><?=$page_name?></td>
@@ -76,7 +75,6 @@
             </tr>
                           
 <?php
-            }
         }
 
             ?>

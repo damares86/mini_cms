@@ -57,6 +57,7 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         <a class="collapse-item" href="index.php?man=page&op=show&type=custom"><?=$side_page_custom ?></a>
                         <a class="collapse-item" href="index.php?man=page&op=show&type=default"><?=$side_page_default?></a>
+                        <a class="collapse-item" href="index.php?man=page&op=show&type=popup">PopUp</a>
                     </div>
                 </div>
             </li>
