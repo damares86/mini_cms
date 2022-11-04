@@ -20,6 +20,10 @@ $plugins->plugin_name="Post";
 $plugins->showByName();
 $postActive=$plugins->active;
 
+$plugins->plugin_name="Quotes";
+$plugins->showByName();
+$quotesActive=$plugins->active;
+
 function is_dir_empty($dir) {
        if (!is_readable($dir)) return null; 
          return (count(scandir($dir)) == 2);
@@ -435,6 +439,7 @@ for($i=1;$i<=$counter;$i++){
         $gall="checked_g$i";
         $blog="checked_b$i";
         $info="checked_i$i";
+        $quotes="checked_q$i";
         $page_class="page";
 
         $block_type='block'.$i.'_type';
@@ -448,6 +453,7 @@ for($i=1;$i<=$counter;$i++){
         $$text="";
         $$gall="";
         $$blog="";
+        $$quotes="";
         $$info="";
         
         $type_arr = array("t","b","n","p","i");
@@ -466,6 +472,8 @@ for($i=1;$i<=$counter;$i++){
         } else if($page->$block_type=="i"){
             $$info="checked";                
             $$none="";
+        } else if($page->$block_type=="q"){
+            $$quotes = "checked";
         } else if($page->$block_type=="n"){
             $$none = "checked";
         } else if(!in_array($page->$block_type,$type_arr)){
@@ -525,6 +533,16 @@ for($i=1;$i<=$counter;$i++){
                 echo "}";
                 echo "\n";        
                 echo "</style>";
+              }else if($$quotes=="checked"){
+                echo "<style>";
+                echo "\n";        
+                echo ".box$i.q$i{";
+                echo "\n";        
+                echo "display:block;";
+                echo "\n";        
+                echo "}";
+                echo "\n";        
+                echo "</style>";
               }
               ?>
 
@@ -541,6 +559,12 @@ for($i=1;$i<=$counter;$i++){
         <label><input type="radio" name="block<?=$i?>[]" value="b<?=$i?>" <?=$$blog?>> <?=$regpage_post?></label>
         <?php
         }
+        if($quotesActive==1){
+            ?>
+            <label><input type="radio" name="block<?=$i?>[]" value="q<?=$i?>" <?=$$quotes?>> Quotes</label>
+            <?php
+            }
+            
         ?>
         <br><br>
         
@@ -663,6 +687,25 @@ for($i=1;$i<=$counter;$i++){
         </select>
         
         </div>
+
+        <!-- QUOTES BOX -->
+        <div class="q<?=$i?> box<?=$i?>">
+            <?php
+            $name="block$i";
+            $page->$name=$_SESSION['sess_editor'.$i.''];
+            if( !is_file("inc/quotes.json")){
+                echo "<div class='col'><div class='alert alert-danger'>$gall_nogall</div></div>";
+            }else{
+                ?>
+            <div class="py-3 font-weight-bold">Shows the quotes you inserted in Quotes plugin</div>
+            <?php
+            }
+            ?>
+            <br>
+
+
+        </div>
+
         <!-- BLOG BOX -->
         <div class="b<?=$i?> box<?=$i?> p-3" style="background-color:#f8f9fc">
              <?=$regpage_post_desc?>

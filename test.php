@@ -49,44 +49,6 @@ require "admin/template/inc/header.php";
 
                                 <img src="uploads/img/<?=$pict?>">
                                 <?php
-                             }else if($json_arr[$i]['block'.$i.'_type']=="q"){
-                                if(is_file("admin/inc/quotes.json")){
-                                    $json_file = 'admin/inc/quotes.json';
-                                    $data = file_get_contents($json_file);
-                                    $quotes = json_decode($data, true);
-                                    $countQuotes=count($quotes);
-                                    ?>
-                                    <div class="slideshow-container">
-                                        <?php
-
-                                    for($i=0;$i<$countQuotes;$i++){
-                                        ?>
-                                        <div class="mySlides">
-                                        <q><?=$quotes[$i]['quote']?></q>
-                                        <p class="author"><?=$quotes[$i]['author']?></p>
-                                        </div>
-                                    <?php
-                                    }
-                                    ?>
-
-                                        <a class="prev" onclick="plusSlides(-1)">❮</a>
-                                        <a class="next" onclick="plusSlides(1)">❯</a>
-
-                                        </div>
-                                        
-                                        <div class="dot-container">
-                                        <span class="dot" onclick="currentSlide(1)"></span> 
-                                        <span class="dot" onclick="currentSlide(2)"></span> 
-                                        <span class="dot" onclick="currentSlide(3)"></span> 
-                                        </div>
-                                    <?php
-                                }else{
-                                    ?>
-
-                                    <p>No quotes found</p>
-
-                                    <?php
-                                }
                              }else if($json_arr[$i]['block'.$i.'_type']=="i"){
                                 $info=$json_arr[$i]['block'.$i.'_info'];
                                 ?>

@@ -142,6 +142,11 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
         <link href='../../admin/template/inc/layout.css' rel='stylesheet' type='text/css'>
 
 <?php
+foreach (glob("../admin/template/inc/css/*.css") as $file){
+    ?>
+    <link href='<?=$file?>' rel='stylesheet' type='text/css'>
+<?php
+}
 
 require "".$root."assets/".$theme."/inc/scripts.php";
 require "../../admin/inc/func/check.php";

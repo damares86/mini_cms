@@ -16,6 +16,11 @@
         
         <?php
             require "assets/".$theme."/inc/cookie.php";
+            foreach (glob("admin/scripts/var/*.js") as $file){
+                ?>
+			    <script src="<?=$file?>"></script>
+            <?php
+            }
             require "assets/".$theme."/inc/footerScript.php";
         ?>
 
