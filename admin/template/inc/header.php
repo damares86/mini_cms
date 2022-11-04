@@ -186,8 +186,12 @@ while ($row = $stmt2->fetch(PDO::FETCH_ASSOC)){
         <script type="text/javascript" src="admin/scripts/simplelightbox/simple-lightbox.jquery.min.js"></script>
 <script src="assets/<?=$theme?>/js/bootstrap.min.js"></script>
 
-        <link href='admin/template/inc/layout.css' rel='stylesheet' type='text/css'>
-		<?php
+<?php
+foreach (glob("admin/template/inc/css/*.css") as $file){
+    ?>
+    <link href='<?=$file?>' rel='stylesheet' type='text/css'>
+<?php
+}
 
 require "assets/".$theme."/inc/scripts.php";
 require "admin/inc/func/check.php";
