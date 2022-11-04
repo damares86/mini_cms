@@ -10,7 +10,7 @@
 ?>
 
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800"><?=$file_title?></h1>
+                        <h1 class="h3 mb-0 text-gray-800"><?=$quote_title?></h1>
 
                     </div><div class="row">
 
@@ -20,20 +20,20 @@
     <!-- Project Card Example -->
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary"><?=$file_box_title?></h6>
+            <h6 class="m-0 font-weight-bold text-primary"><?=$quote_box_title?></h6>
         </div>
         <div class="card-body">
         <form class="form-horizontal row-fluid" action="core/mngQuote.php" method="POST">
             <div class="control-group">
-                <label class="control-label" for="quote">Quote</label>
+                <label class="control-label" for="quote"><?=$quote_quoteAdd?></label>
                 <div class="controls">
-                    <input type="text" id="quote" name="quote" placeholder="Insert the quote here" value="" class="span8">
+                    <input type="text" id="quote" name="quote" placeholder="<?=$quote_quoteAdd_ph?>" value="" class="span8">
                 </div>
             </div>
             <div class="control-group">
-                <label class="control-label" for="author">Author</label>
+                <label class="control-label" for="author"><?=$quote_authorAdd?></label>
                 <div class="controls">
-                    <input type="text" id="author" name="author" placeholder="Insert the author name" value="" class="span8">
+                    <input type="text" id="author" name="author" placeholder="<?=$quote_authorAdd_ph?>" value="" class="span8">
                 </div>
             </div>
             <div class="control-group">
@@ -53,8 +53,8 @@
         <table class="table table-striped">
             <thead>
                 <tr>
-                    <th scope="col">Author</th>
-                    <th scope="col">Quote</th>
+                    <th scope="col"><?=$quote_authorAdd?></th>
+                    <th scope="col"><?=$quote_quoteAdd?></th>
                     <th scope="col"><?=$txt_delete?></th>
                 </tr>
             </thead>
@@ -86,7 +86,7 @@
                                         <span aria-hidden="true">×</span>
                                     </button>
                                 </div>
-                                <div class="modal-body"><?=$file_modal_text?></div>
+                                <div class="modal-body"><?=$quote_modal_text?></div>
                                 <div class="modal-footer">
                                     <button class="btn btn-secondary" type="button" data-dismiss="modal"><?=$txt_cancel?></button>
                                     <a class="btn btn-primary" href="core/mngQuote.php?idToDel=<?=$quotes[$i]['id'] ?>">Ok</a>
@@ -106,8 +106,7 @@
         // paging buttons
         include_once 'inc/paging.php';
     } else{
-        //////////////////////////////////////////////////////////////////////////////////////////////
-        echo "<div class='alert alert-danger'>Nessuna citazione</div>";
+        echo "<div class='alert alert-danger'>$quote_noquote</div>";
     }
 
 

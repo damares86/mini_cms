@@ -48,6 +48,8 @@ if(filter_input(INPUT_GET,"idToDel")){
 			unlink('../inc/quotes_tmp.json');
 		}else{
 			rename("../inc/quotes_tmp.json","../inc/quotes.json");
+			header("Location: ../index.php?man=quotes&op=show&msg=quoteDelErr");
+			exit;
 		}
 
 		header("Location: ../index.php?man=quotes&op=show&msg=quoteDelSucc");
@@ -94,12 +96,13 @@ if(filter_input(INPUT_POST,"subReg")){
 	if(file_put_contents($file, $json, FILE_APPEND)){
 		chmod($file,0777);
 		unlink('../inc/quotes_tmp.json');
+		header("Location: ../index.php?man=quotes&op=show&msg=quoteSucc");
+		exit;
 	}else{
 		rename("../inc/quotes_tmp.json","../inc/quotes.json");
+		header("Location: ../index.php?man=quotes&op=show&msg=quoteErr");
+		exit;
 	}
 
-	header("Location: ../index.php?man=quotes&op=show&msg=quoteSucc");
-	exit;
+	
 }
-
-///////////////////////////////	
