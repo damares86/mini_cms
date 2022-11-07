@@ -59,11 +59,11 @@ require "admin/template/inc/header.php";
                                     <div class="slideshow-container">
                                         <?php
 
-                                    for($i=0;$i<$countQuotes;$i++){
+                                    for($idx=0;$idx<$countQuotes;$idx++){
                                         ?>
                                         <div class="mySlides">
-                                        <q><?=$quotes[$i]['quote']?></q>
-                                        <p class="author"><?=$quotes[$i]['author']?></p>
+                                        <q><?=$quotes[$idx]['quote']?></q>
+                                        <p class="author"><?=$quotes[$idx]['author']?></p>
                                         </div>
                                     <?php
                                     }
@@ -83,7 +83,7 @@ require "admin/template/inc/header.php";
                                 }else{
                                     ?>
 
-                                    <p>No quotes found</p>
+                                    <p><?=$quote_noquote?></p>
 
                                     <?php
                                 }
