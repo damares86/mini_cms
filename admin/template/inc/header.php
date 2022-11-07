@@ -206,10 +206,10 @@ if(($file=="login.php")||($file=="contact.php")){
 	<body>
 
     <?php
-    $page->page_popup=$name;
-    $page->id_popup=0;
-    $popup=$page->showPopupByPage();
-    if($page->id_popup!=0){
+    $popup->page_popup=$name;
+    $popup->id_popup=0;
+    $popup_exist=$popup->showPopupByPage();
+    if($popup->id_popup!=0){
     ?>
 
     <script>
@@ -222,11 +222,11 @@ if(($file=="login.php")||($file=="contact.php")){
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title"><?=$page->title_popup?></h5>
+                    <h5 class="modal-title"><?=$popup->title_popup?></h5>
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                 </div>
                 <div class="modal-body">
-                    <?=$page->editor_popup?>
+                    <?=$popup->editor_popup?>
                 </div>
             </div>
         </div>
