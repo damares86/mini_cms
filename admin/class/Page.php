@@ -186,6 +186,8 @@ class Page{
                 $_SESSION[''.$sess_type.'']=$gallery;
             } else if($$block_name=="b$i_real"){
                 $_SESSION[''.$sess_type.'']="b";
+            } else if($$block_name=="q$i_real"){
+                $_SESSION[''.$sess_type.'']="q";
             } else if($$block_name=="n$i_real"){
                 $_SESSION[''.$sess_type.'']="n";
             }
