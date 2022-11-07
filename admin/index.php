@@ -77,16 +77,12 @@ $user_id=$_SESSION['user_id'];
                                         require "inc/func/allPage.php";
                                     } else if($type=="custom"){
                                         require "inc/func/allPageCustom.php";
-                                    } else if($type=="popup"){
-                                        require "inc/func/allPopup.php";
                                     }
                                 } else if($operation=="add"||$operation=="edit"){
                                     if($type=="default"){
                                         require "inc/func/regPage.php";
                                     } else if($type=="custom"){
                                         require "inc/func/regPageCustom.php";
-                                    } else if($type=="popup"){
-                                        require "inc/func/regPopup.php";
                                     }
                                 }
                             }else if($manage=="gall"){// fuori
