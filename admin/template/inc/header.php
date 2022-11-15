@@ -1,11 +1,11 @@
 <?php
 
-// require 'admin/phpDebug/src/Debug/Debug.php';   			// if not using composer
+require 'admin/phpDebug/src/Debug/Debug.php';   			// if not using composer
 
-// $debug = new \bdk\Debug(array(
-//     'collect' => true,
-//     'output' => true,
-// ));
+$debug = new \bdk\Debug(array(
+    'collect' => true,
+    'output' => true,
+));
 
 session_start();
 // loading class
@@ -206,6 +206,7 @@ if(($file=="login.php")||($file=="contact.php")){
 	<body>
 
     <?php
+    if(is_file("admin/class/Popup.php")){
     $popup->page_popup=$name;
     $popup->id_popup=0;
     $popup_exist=$popup->showPopupByPage();
@@ -234,6 +235,7 @@ if(($file=="login.php")||($file=="contact.php")){
 
     <?php
 }
+    }
 
     ?>
             <script type='text/javascript'>
