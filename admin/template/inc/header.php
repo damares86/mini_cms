@@ -1,11 +1,11 @@
 <?php
 
-require 'admin/phpDebug/src/Debug/Debug.php';   			// if not using composer
+// require 'admin/phpDebug/src/Debug/Debug.php';   			// if not using composer
 
-$debug = new \bdk\Debug(array(
-    'collect' => true,
-    'output' => true,
-));
+// $debug = new \bdk\Debug(array(
+//     'collect' => true,
+//     'output' => true,
+// ));
 
 session_start();
 // loading class
@@ -187,9 +187,9 @@ while ($row = $stmt2->fetch(PDO::FETCH_ASSOC)){
 <script src="assets/<?=$theme?>/js/bootstrap.min.js"></script>
 
 <?php
-foreach (glob("admin/template/inc/css/*.css") as $file){
+foreach (glob("admin/template/inc/css/*.css") as $cssfile){
     ?>
-    <link href='<?=$file?>' rel='stylesheet' type='text/css'>
+    <link href='<?=$cssfile?>' rel='stylesheet' type='text/css'>
 <?php
 }
 

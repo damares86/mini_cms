@@ -341,6 +341,43 @@ if($man=="settings"){
 </div>
 
 
+    <!-- Project Card Example -->
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary"><?=$site_box_4_title?></h6>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col">
+                    <br>
+                    <?php
+                    $checked="";
+                                
+                    if($dm==0){
+                        $checked="checked";
+                    }
+
+                    ?>
+                <form class="form-horizontal row-fluid" action="core/mngSettings.php" method="POST" enctype="multipart/form-data">
+
+                    <input type="hidden" name="id" value="1" />
+                    <input type="checkbox" name="dm" value="1" <?=$checked?>> <?=$site_maintenance_active?><br><br>
+                    <div class="control-group">
+                        <div class="controls">
+                        
+                            <input type="submit" class="btn btn-primary" name="subRegCheck" value="Invia">
+                        </div>
+                    </div>
+                </form>
+                </div>
+                <div class="col rounded guide mx-3">
+                    <?=$site_box_4_desc?>
+                </div>
+            </div>
+    </div>
+          
+        </div>
+
 <?php
 }else if($man=="menu"){
 ?>
