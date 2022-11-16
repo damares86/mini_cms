@@ -3,10 +3,19 @@ body{
 }
 
 .sidebar{
-    background-color: #008db1;;
+    background-color: #00aa78;;
 }
 
 .sidebar-dark .nav-item .nav-link{
+    color:#fff;
+}
+
+
+.sidebar-dark .nav-item .nav-link i{
+    color:#fff;
+}
+
+.sidebar-dark .sidebar-heading{
     color:#fff;
 }
 

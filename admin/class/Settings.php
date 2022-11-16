@@ -28,8 +28,7 @@ class Settings{
                     site_name = :site_name,
                     site_description = :site_description,
                     use_text = :use_text,
-                    footer = :footer,
-                    dashboard_language = :dashboard_language
+                    footer = :footer
                 WHERE
                     id = :id";
     // prepare the query
@@ -40,7 +39,6 @@ class Settings{
         $stmt->bindParam(':site_description', $this->site_description); 
         $stmt->bindParam(':use_text', $this->use_text); 
         $stmt->bindParam(':footer', $this->footer); 
-        $stmt->bindParam(':dashboard_language', $this->dashboard_language); 
         $stmt->bindParam(':id', $this->id);
         
                 

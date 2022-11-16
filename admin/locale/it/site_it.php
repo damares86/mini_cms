@@ -39,16 +39,16 @@ $side_manage_plugins = "Gestione plugins";
 
 // HOME PAGE
 
-$home_title = "Mini Cms Dashboard";
+$home_title = "Mini Cms Church";
 $home_welcome ="Benvenuto";
 $home_intro1 = "Benvenuto";
-$home_intro2 = "nel Pannello di Amministazione di Mini Cms."; 
+$home_intro2 = "nel Pannello di Amministazione di Mini Cms Church."; 
 $home_intro3 = "Qui ci sono alcuni link rapidi per gestire il tuo sito.";
 $home_quicklink = "Link rapidi";
 $home_link1 = "Manuale di Mini Cms";
 $home_link2 = "Il sito dello sviluppatore di Mini Cms";
 $home_tab1 = "Utenti";
-$home_tab2 = "Lingua";
+$home_tab2 = "Gallerie";
 $home_tab3 = "Pagine";
 
 

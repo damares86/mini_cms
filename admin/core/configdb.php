@@ -85,16 +85,7 @@ $password_hash = password_hash($password, PASSWORD_DEFAULT);
 
 $user=new User($db);
 
-if(!is_file('../core/site.php')){
-  $file_handle = fopen('../core/site.php', 'w');
-  fwrite($file_handle, '<?php');
-  fwrite($file_handle, "\n");
-  fwrite($file_handle, '$site=array("'.$_SERVER['SERVER_NAME'].'");');
-  fwrite($file_handle, "\n");
-  fwrite($file_handle, '?>');
-}
-
-chmod('../core/site.php',0777);
+// REMOVED SITE.PHP CREATION
 
 if(!is_dir("../inc/pages/")){
   $oldmask = umask(0);
@@ -250,7 +241,7 @@ VALUES ('1','admin', '". $password_hash ."','". $user_email ."','Admin')
 
 $db->query("INSERT INTO settings
 (id, site_name, site_description,footer,dashboard_language,theme,dm)
-VALUES ('1','Mini Cms', 'Create your own website','Your footer text','en','damares','1')
+VALUES ('1','Parrocchia', 'Descrizione','Testo del footer','it','damares','1')
 ");
 
 $db->query("INSERT INTO page 

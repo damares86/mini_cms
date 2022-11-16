@@ -56,32 +56,7 @@ if($man=="settings"){
             </div>
 
 
-            <hr>
-
-            <div class="control-group">
-                            <label class="control-label" for="language"><?=$site_lang?></label>
-                <div class="controls">
-
-                <select name="language">
-                <?php
-                $lang =glob("locale/*", GLOB_BRACE);
-
-            foreach ($lang as $file) {
-                    $language=pathinfo($file, PATHINFO_FILENAME);
-                    $selected = "";
-                    if ($language == $dashboard_language) {
-                        $selected = "selected";
-                    }
-                    echo "<option value='{$language}' $selected >{$language}</option>";
-
-                
-            }
-                ?>
-            </select>
-                        
-                </div>
-            </div>
-   
+       
             <hr>
             <div class="control-group">
                             <label class="control-label" for="footer"><?=$site_footer ?></label><br><br>

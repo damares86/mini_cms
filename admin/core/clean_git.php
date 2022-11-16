@@ -41,7 +41,7 @@ foreach (glob("../inc/pages/*") as $row){
 rmdir("../inc/pages");
 
 unlink("../class/Database.php");
-
+unlink("site.php");
 unlink("../inc/class_initialize.php");
 
 
