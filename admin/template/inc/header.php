@@ -187,9 +187,9 @@ while ($row = $stmt2->fetch(PDO::FETCH_ASSOC)){
 <script src="assets/<?=$theme?>/js/bootstrap.min.js"></script>
 
 <?php
-foreach (glob("admin/template/inc/css/*.css") as $file){
+foreach (glob("admin/template/inc/css/*.css") as $cssfile){
     ?>
-    <link href='<?=$file?>' rel='stylesheet' type='text/css'>
+    <link href='<?=$cssfile?>' rel='stylesheet' type='text/css'>
 <?php
 }
 
@@ -206,6 +206,7 @@ if(($file=="login.php")||($file=="contact.php")){
 	<body>
 
     <?php
+    if(is_file("admin/class/Popup.php")){
     $popup->page_popup=$name;
     $popup->id_popup=0;
     $popup_exist=$popup->showPopupByPage();
@@ -234,6 +235,7 @@ if(($file=="login.php")||($file=="contact.php")){
 
     <?php
 }
+    }
 
     ?>
             <script type='text/javascript'>

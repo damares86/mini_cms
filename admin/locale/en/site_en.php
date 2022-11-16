@@ -240,6 +240,9 @@ $site_box3_desc = " This is a tool to avoid spam attack on your email address. <
 $site_box3_desc .= "<a href=\"https://www.google.com/recaptcha/admin\" target=\"_blank\">this page</a>, then you can select the \"Use Recaptcha\" checkbox";
 $site_box3_desc .= "and paste the two keys given by Google.<br><br> Discover more about ";
 $site_box3_desc .= "<a href=\"https://developers.google.com/search/blog/2018/10/introducing-recaptcha-v3-new-way-to\" target=\"_blank\">Google reCAPTCHA v3</a>";
+$site_box_4_title="Maintenance Mode";
+$site_box_4_desc="Activate the \"Maintenance Mode\" (only logged users will see the pages)";
+$site_maintenance_active="Activate";
 
 
 // MENU SETTINGS

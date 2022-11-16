@@ -233,7 +233,9 @@ $site_box3_desc = "Questo è uno strumento per evitare attacchi spam sull'indiri
 $site_box3_desc .= "<a href=\"https://www.google.com/recaptcha/admin\" target=\"_blank\">in questa pagina</a>, quindi potrai selezionare la checkbox \"Usa reCAPTCHA v3\" ";
 $site_box3_desc .= "e incollare le 2 chiavi  fornite da Google.<br><br> Scopri di più su ";
 $site_box3_desc .= "<a href=\"https://developers.google.com/search/blog/2018/10/introducing-recaptcha-v3-new-way-to\" target=\"_blank\">Google reCAPTCHA v3</a>";
-
+$site_box_4_title="Modalità Manutenzione";
+$site_box_4_desc="Attiva la \"Modalità manutenzione\" (solo gli utenti loggati potranno vedere le pagine)";
+$site_maintenance_active="Attiva";
 
 // MENU SETTINGS
 
