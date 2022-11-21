@@ -446,7 +446,7 @@ if(filter_input(INPUT_POST,"addBlock")){
 						if($_FILES['info'.$i.'']['name']){
 							$page->img=$_FILES['info'.$i.'']['name'];
 							$page->img_tmp=$_FILES['info'.$i.'']['tmp_name'];
-							$page->uploadPicture();
+							$page->uploadInfo();
 							$info=$_FILES['info'.$i.'']['name'];
 						}else{
 							$info=$_POST['old_info_'.$i.''];
