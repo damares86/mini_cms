@@ -246,7 +246,7 @@ VALUES ('1','Parrocchia', 'Descrizione','Testo del footer','it','damares','1')
 
 $db->query("INSERT INTO page 
 (id, page_name, no_mod, layout, header, use_name, use_desc, img, counter) 
-VALUES ('1','index', '1', 'default', '1', '1', '1', 'visual.jpg', '1')
+VALUES ('1','index', '1', 'default', '1', '1', '1', 'visual.png', '1')
 ");
 
 $db->query("INSERT INTO default_page 

@@ -9,7 +9,7 @@
                             </div>
                         </div>
                     </div>
-                <p class="copyright" style="font-size:0.7em;">Made with Mini Cms <?=$mc_version?> - a project by &nbsp; &nbsp; <a href="https://www.dmweblab.com"><img src="admin/assets/img/dmweblab_logo.png"></a></p>
+                <p class="copyright" style="font-size:0.7em;">Made with Mini Cms Church <?=$mc_version?> - Fork of Mini Cms, a project by &nbsp; &nbsp; <a href="https://www.dmweblab.com"><img src="admin/assets/img/dmweblab_logo.png"></a></p>
             </footer>
         </div>
 

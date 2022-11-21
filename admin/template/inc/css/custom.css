@@ -1,0 +1,10 @@
+#adminBar {
+    height: 2em;
+    width: 100%;
+    background-color: #008db1;
+    position: fixed;
+    top: 0;
+    z-index: 1000;
+    padding: 0em 3em;
+    text-align: right;
+}

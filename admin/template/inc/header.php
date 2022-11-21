@@ -186,6 +186,7 @@ while ($row = $stmt2->fetch(PDO::FETCH_ASSOC)){
         <script type="text/javascript" src="admin/scripts/simplelightbox/simple-lightbox.jquery.min.js"></script>
 <script src="assets/<?=$theme?>/js/bootstrap.min.js"></script>
 
+<link rel="stylesheet" href="admin/assets/css/carousel.css" />  
 <?php
 foreach (glob("admin/template/inc/css/*.css") as $cssfile){
     ?>
@@ -199,7 +200,6 @@ if(($file=="login.php")||($file=="contact.php")){
     require "admin/template/inc/recaptcha.php";
 }
 ?>
-<link rel="stylesheet" href="admin/assets/css/carousel.css" />  
         <meta name="viewport" content="width=device-width, initial-scale=1" />
 	</head>
 
@@ -272,24 +272,24 @@ if(($file=="login.php")||($file=="contact.php")){
                 if(pathinfo($page->img, PATHINFO_EXTENSION)){
                 ?>
                     <div id="banner" class="box container" style="background-image: url(<?=$root?>uploads/img/<?=$img?>);">
-						<div class="row">
+						<!-- <div class="row">
                             <div class="col-7 col-12-medium">
                             <?php
-                            if($page->use_name==1){
-                            ?>
-								<h2><?=$site_name?></h2>
-                            <?php
-                            }
+                            // if($page->use_name==1){
+                            // ?>
+							// 	<h2><?=$site_name?></h2>
+                            // <?php
+                            // }
                             
-                            if($page->use_desc==1){
-                            ?>
+                            // if($page->use_desc==1){
+                            // ?>
 
 								<p><?=$site_description?></p>
                             <?php
-                            }
+                            // }
                             ?>
 							</div>
-						</div>
+						</div> -->
 					</div>
                 <?php
                 }else{
