@@ -1,1 +1,28 @@
-[{"name":"index"},{"block1_type":"i","block1_info":"crosses-2713356_1920.jpg","block1_desc":"<p>Benvenuto nel sito della Parrocchia San Francesco.<\/p>\r\n<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi viverra ligula eu aliquam ultricies. Cras finibus metus dignissim, maximus urna ut, gravida magna. Nunc accumsan sem a lorem feugiat rhoncus. Duis urna ante, elementum vitae ultrices eget, vulputate in lorem. Praesent eget iaculis nisi. Nunc malesuada tortor vel pretium feugiat.<\/p>","block1_bg":"none","block1_text":"none"},{"block2_type":"t","block2":"<p>Orari Messe<\/p>","block2_bg":"#00aa78","block2_text":"#ffffff"},{"block3_type":"t","block3":"<p>Orari parrocchia<\/p>","block3_bg":"#00cc99","block3_text":"#ffffff"},{"block4_type":"t","block4":"<p>Liturgia<\/p>","block4_bg":"none","block4_text":"none"}]
+[
+  { "name": "index" },
+  {
+    "block1_type": "i",
+    "block1_info": "crosses-2713356_1920.jpg",
+    "block1_desc": "<p>Benvenuto nel sito della Parrocchia San Francesco.</p>\r\n<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi viverra ligula eu aliquam ultricies. Cras finibus metus dignissim, maximus urna ut, gravida magna. Nunc accumsan sem a lorem feugiat rhoncus. Duis urna ante, elementum vitae ultrices eget, vulputate in lorem. Praesent eget iaculis nisi. Nunc malesuada tortor vel pretium feugiat.</p>",
+    "block1_bg": "none",
+    "block1_text": "none"
+  },
+  {
+    "block2_type": "t",
+    "block2": "<p>Orari Messe</p>",
+    "block2_bg": "#00aa78",
+    "block2_text": "#ffffff"
+  },
+  {
+    "block3_type": "t",
+    "block3": "<p>Orari parrocchia</p>",
+    "block3_bg": "#00cc99",
+    "block3_text": "#ffffff"
+  },
+  {
+    "block4_type": "t",
+    "block4": " ",
+    "block4_bg": "none",
+    "block4_text": "none"
+  }
+]

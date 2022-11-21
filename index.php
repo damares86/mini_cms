@@ -45,8 +45,14 @@ require "admin/template/inc/header.php";
 
                 <?php
                              if($json_arr[$i]['block'.$i.'_type']=="t"){
-                     
+                                if($i==4){
+                                    ?>
+                                <script src='https://widgets.chiesacattolica.it/widget-almanacco-v2/widget.php?mods=401569&font=8' async></script>          
+    
+                                    <?php
+                                 }else{
                                 echo $json_arr[$i]['block'.$i.''];
+                                 }
 
                              }else if($json_arr[$i]['block'.$i.'_type']=="p"){
                                 $pict=$json_arr[$i]['block'.$i.'_pict'];
