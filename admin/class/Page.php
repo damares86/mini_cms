@@ -159,6 +159,7 @@ class Page{
                     $_SESSION['sess_pict_'.$i_real.'']=$_POST['old_img_'.$i_real.''];
                 }
             }  else if($$block_name=="i$i_real"){
+
                 $_SESSION[''.$sess_type.'']="i";
                 $editor = preg_replace('/^\s+/', '', $_POST['info_editor'.$i_real.'']);
                 if(!empty($editor)){
@@ -368,8 +369,6 @@ class Page{
                 page_name = :page_name".$this->setNo_mod.",
                 layout = :layout,
                 header = :header,
-                use_name = :use_name,
-                use_desc = :use_desc,
                 counter = :counter WHERE id = :id";
                 
               
@@ -383,8 +382,6 @@ class Page{
                 }
                 $stmt->bindParam(':layout', $this->layout);    
                 $stmt->bindParam(':header', $this->header);    
-                $stmt->bindParam(':use_name', $this->use_name);    
-                $stmt->bindParam(':use_desc', $this->use_desc);    
                 $stmt->bindParam(':counter', $this->counter);  
                 $stmt->bindParam(':id', $this->id); 
 

@@ -327,7 +327,7 @@ $(targetBox).show();
         </div>
    
 <br>
-<hr>
+<!-- <hr> -->
         <div class="control-group">
 
 
@@ -347,12 +347,12 @@ $(targetBox).show();
 
         extract($row);
 ?>
-<input type="checkbox" name="use_name" value="1" <?=$checked_name?>> <?=$regpage_use_name?> (<b><?=$site_name?></b>)<br><br>
-<input type="checkbox" name="use_desc" value="1" <?=$checked_desc?>> <?=$regpage_use_description?> (<b><?=$site_description?></b>)<br>
+<!-- <input type="checkbox" name="use_name" value="1" <?=$checked_name?>> <?=$regpage_use_name?> (<b><?=$site_name?></b>)<br><br>
+<input type="checkbox" name="use_desc" value="1" <?=$checked_desc?>> <?=$regpage_use_description?> (<b><?=$site_description?></b>)<br> -->
 <?php
     // }
     ?>
-    <hr>
+    <!-- <hr> -->
 </div>
 </div>
 <br>

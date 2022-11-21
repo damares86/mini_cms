@@ -38,7 +38,7 @@ if (!isset($_SESSION['loggedin'])) {
 		$str=$page->page_name;
 		$str = preg_replace('/\s+/', '_', $str);
 		$str = strtolower($str);
-		$filepath = "../../" . $str . ".php";
+		$filepath = "../../" . $str . ".php"; 
 		$json="../inc/pages/$str.json";
 	
 	
@@ -281,6 +281,9 @@ if(filter_input(INPUT_POST,"addBlock")){
 					$page->img_info=$_FILES['info'.$i.'']['name'];
 					$page->img_tmp_info=$_FILES['info'.$i.'']['tmp_name'];
 				}
+
+				print_r($page->img_info);
+				exit;
 				$page->uploadInfo();
 				$editor = preg_replace('/^\s+/', '', $_SESSION["sess_info_editor$i"]);
 				$$array_name=array(
@@ -382,8 +385,8 @@ if(filter_input(INPUT_POST,"addBlock")){
 			$page->no_mod=$_SESSION['sess_no_mod'];
 			$page->layout=$_SESSION['sess_layout'];
 			$page->header=$_SESSION['sess_header'];
-			$page->use_name=$_SESSION['sess_use_name'];
-			$page->use_desc=$_SESSION['sess_use_desc'];
+			// $page->use_name=$_SESSION['sess_use_name'];
+			// $page->use_desc=$_SESSION['sess_use_desc'];
 			$page->counter=$_POST['counter'];
 
 			if($_POST['visual'][0]=="visual_img"){
@@ -446,7 +449,7 @@ if(filter_input(INPUT_POST,"addBlock")){
 						if($_FILES['info'.$i.'']['name']){
 							$page->img=$_FILES['info'.$i.'']['name'];
 							$page->img_tmp=$_FILES['info'.$i.'']['tmp_name'];
-							$page->uploadPicture();
+							$page->uploadInfo();
 							$info=$_FILES['info'.$i.'']['name'];
 						}else{
 							$info=$_POST['old_info_'.$i.''];

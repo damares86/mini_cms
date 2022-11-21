@@ -8,3 +8,7 @@
     padding: 0em 3em;
     text-align: right;
 }
+
+.block img{
+    width:100%;
+}

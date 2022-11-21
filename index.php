@@ -98,6 +98,20 @@ require "admin/template/inc/header.php";
 
                                     <?php
                                 }
+                             }else if($json_arr[$i]['block'.$i.'_type']=="i"){
+                                $info=$json_arr[$i]['block'.$i.'_info'];
+                                ?>
+                                <div class="row">
+                                    <div class="col-3">
+                                        <img src="uploads/img/<?=$info?>">
+                                    </div>
+                                    <div class="col-9">
+                                        <?php
+                                            echo $json_arr[$i]['block'.$i.'_desc'];
+                                        ?>
+                                    </div>
+                                </div>
+                                <?php
                              }else if($json_arr[$i]['block'.$i.'_type']=="b"){
 
                                 $stmt1=$post->showLastPosts();
