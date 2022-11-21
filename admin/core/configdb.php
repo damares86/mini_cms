@@ -141,6 +141,8 @@ $db->query("CREATE TABLE settings (
   id int(5) NOT NULL AUTO_INCREMENT PRIMARY KEY,
   site_name VARCHAR(255) NOT NULL,
   site_description VARCHAR(255) NOT NULL,
+  logo VARCHAR(255) NOT NULL DEFAULT 'logo.png,
+  use_logo INT (1) DEFAULT '1',
   use_text INT (1) DEFAULT '1',
   footer TEXT NOT NULL,
   dashboard_language VARCHAR(255) NOT NULL,
@@ -240,8 +242,8 @@ VALUES ('1','admin', '". $password_hash ."','". $user_email ."','Admin')
 
 
 $db->query("INSERT INTO settings
-(id, site_name, site_description,footer,dashboard_language,theme,dm)
-VALUES ('1','Parrocchia', 'Descrizione','Testo del footer','it','damares','1')
+(id, site_name, site_description,logo, footer,dashboard_language,theme,dm)
+VALUES ('1','Parrocchia', 'Descrizione', 'logo.png','Testo del footer','it','mcc','1')
 ");
 
 $db->query("INSERT INTO page 

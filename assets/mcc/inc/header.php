@@ -6,7 +6,7 @@
 							<a href="<?=$root?>index.php">
                           		  <img src="<?=$root?>assets/<?= $theme ?>/img/logo.svg">
                        	 </a>
-						 <h2><?=$site_name?></h2>
+						 <h3><?=$site_name?></h3>
 							</div>
 
 						<!-- Nav -->

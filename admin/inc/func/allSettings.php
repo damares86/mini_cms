@@ -46,14 +46,30 @@ if($man=="settings"){
                     <input type="text" id="site_name" name="site_name" placeholder="<?=$site_sitename?>" class="span12" value="<?= $site_name ?>">
                 </div>
             </div>
+            <br>
             <div class="control-group">
+                <label class="control-label" for="site_uselogo"><?=$site_uselogo?></label>
+                <div class="controls">
+                    <?php
+                        $checked="";
+                    ?>
+                    <input type="checkbox" name="site_uselogo" value="1" <?=$checked?>> <br>
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label" for="site_logo">&nbsp; &nbsp;<?=$site_sitelogo?></label>
+                <div class="controls">
+                   <input type="file" id="myfile" name="myfile">
+                </div>
+            </div>
+            <!-- <div class="control-group">
                  <label class="control-label" for="site_description"><?=$site_sitedescription ?></label>
                 <div class="controls">
 
                     <input type="text" id="site_description" name="site_description" placeholder="<?=$site_sitedescription ?>" class="span8" value="<?= $site_description ?>">
                         
                 </div>
-            </div>
+            </div> -->
 
             <!-- 
                         <hr>

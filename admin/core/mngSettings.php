@@ -62,7 +62,7 @@ if(filter_input(INPUT_GET,"idToDel")){
 
 if(filter_input(INPUT_POST,"subReg")){
 
-		if(!$_POST['site_name']||!$_POST['site_description']){
+		if(!$_POST['site_name']){
 			header("Location: ../index.php?man=settings&msg=settingsEmpty");
 			exit;
 		}
@@ -73,10 +73,18 @@ if(filter_input(INPUT_POST,"subReg")){
 			$settings->use_text = 0;
 		}
 
+		if(isset($_POST['use_logo'])){
+			$settings->use_logo = 1;
+		}else{
+			$settings->use_logo = 0;
+		}
+
 		$settings->id=$_POST['id'];
 		$settings->site_name=$_POST['site_name'];
 		$settings->site_description=$_POST['site_description'];
 		$settings->footer=$_POST['editor1'];
+		$settings->file_name=$_FILES['myfile']['name'];
+		$settings->file_tmp_name=$_FILES['myfile']['tmp_name'];
 		
 		// update the settings
 		if($settings->update()){
