@@ -73,7 +73,7 @@ if(filter_input(INPUT_POST,"subReg")){
 			$settings->use_text = 0;
 		}
 
-		if(isset($_POST['use_logo'])){
+		if(isset($_POST['site_uselogo'])){
 			$settings->use_logo = 1;
 		}else{
 			$settings->use_logo = 0;
@@ -81,8 +81,9 @@ if(filter_input(INPUT_POST,"subReg")){
 
 		$settings->id=$_POST['id'];
 		$settings->site_name=$_POST['site_name'];
-		$settings->site_description=$_POST['site_description'];
+		// $settings->site_description=$_POST['site_description'];
 		$settings->footer=$_POST['editor1'];
+		$setting->actual_logo=$_POST['actual_logo'];
 		$settings->file_name=$_FILES['myfile']['name'];
 		$settings->file_tmp_name=$_FILES['myfile']['tmp_name'];
 		

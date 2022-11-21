@@ -33,6 +33,7 @@ if($man=="settings"){
         
                  extract($row);
                 $checked="";
+
             ?>
 
         <form class="form-horizontal row-fluid" action="core/mngSettings.php" method="POST" enctype="multipart/form-data">
@@ -51,7 +52,9 @@ if($man=="settings"){
                 <label class="control-label" for="site_uselogo"><?=$site_uselogo?></label>
                 <div class="controls">
                     <?php
-                        $checked="";
+                        if($use_logo==1){
+                            $checked = "checked";
+                        }
                     ?>
                     <input type="checkbox" name="site_uselogo" value="1" <?=$checked?>> <br>
                 </div>
@@ -60,6 +63,14 @@ if($man=="settings"){
                 <label class="control-label" for="site_logo">&nbsp; &nbsp;<?=$site_sitelogo?></label>
                 <div class="controls">
                    <input type="file" id="myfile" name="myfile">
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label" for="file"><?=$regpage_actual?> </label>
+                <div class="controls">
+                    &nbsp;<img src="../uploads/img/<?=$logo?>"  style="max-width:150px;">
+                    <input type="hidden" name="actual_logo" value="<?= $logo ?>" />
+
                 </div>
             </div>
             <!-- <div class="control-group">

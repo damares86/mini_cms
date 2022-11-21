@@ -16,6 +16,7 @@ class Settings{
     public $file_name;
     public $file_tmp_name;
     public $use_logo;
+    public $actual_logo;
 
     // constructor
     public function __construct($db){
@@ -29,7 +30,6 @@ class Settings{
                     " . $this->table_name . "
                 SET
                     site_name = :site_name,
-                    site_description = :site_description,
                     use_text = :use_text,
                     use_logo = :use_logo,
                     footer = :footer
@@ -40,18 +40,24 @@ class Settings{
      
         // bind the values
         $stmt->bindParam(':site_name', $this->site_name);
-        $stmt->bindParam(':site_description', $this->site_description); 
         $stmt->bindParam(':use_text', $this->use_text); 
         $stmt->bindParam(':use_logo', $this->use_logo); 
         $stmt->bindParam(':footer', $this->footer); 
         $stmt->bindParam(':id', $this->id);
         
-                
+        
       
         // execute the query, also check if query was successful
         if($stmt->execute()){
-            
-            return true;
+            if($this->file_name!=$this->actual_logo){
+                if($this->uploadImg()){
+                    return true;
+                }else{
+                    return false;
+                }
+            }else{
+                return true;
+            }
 
         }else{
             $this->showError($stmt);
@@ -143,7 +149,7 @@ class Settings{
             $file_type = pathinfo($target_file, PATHINFO_EXTENSION);
             $file_upload_error_messages="";
             
-            $allowed_file_types=array("jpg", "JPG", "png");
+            $allowed_file_types=array("jpg", "JPG", "png","svg");
             if(!in_array($file_type, $allowed_file_types)){
                 header("Location: ../index.php?man=settings");
 		        exit;
