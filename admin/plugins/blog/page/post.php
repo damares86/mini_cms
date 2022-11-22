@@ -18,6 +18,9 @@ require "admin/template/inc/header.php";
 
 ?>
 <div id="bottomContainer" class="pb-1">
+
+<div class="row mt-3">
+    <div class="col-8">
     <div id="content">
         <div id="blog">
         <?php
@@ -37,8 +40,8 @@ require "admin/template/inc/header.php";
 
         $catArr=explode(",",$post->category_id);
         
-        $time = $post->modified;
-        $newTime = date("d/m/Y",strtotime($time));
+        $data = $post->modified;
+        $newTime = date("d/m/Y",strtotime($data));
    
 
                 if (isset($_SESSION['loggedin'])) {
@@ -169,23 +172,39 @@ require "admin/template/inc/header.php";
                 &nbsp; &nbsp; <a href="https://www.facebook.com/sharer.php?u=<?=$url?>" target="_blank" onclick="window.open(this.href,'window','width=640,height=480,resizable,scrollbars') ;return false;">
                 <i class="fab fa-facebook"></i></a>
 
-                &nbsp; &nbsp;
+                <!-- &nbsp; &nbsp;
                 <script src="https://platform.linkedin.com/in.js" type="text/javascript">lang: en_US</script>
-                <script type="IN/Share" data-url="<?=$url?>"></script>
+                <script type="IN/Share" data-url="<?=$url?>"></script> -->
                 
                 <br>
             </div>
         </div>
         
         </div>
-        <div id="sidebar">
-            <div id="sidebar_menu">
-            <h2><strong><?=$blog_categories?></strong></h2>
-                    <ul>
-            <?php
+        </div>
+    </div>
+        <div class="col-4">
+            <div id="side_blog">
+
+                <h2><strong><?=$blog_categories?></strong></h2>
+                <ul>
+                    <?php
                     require "admin/template/inc/sidebar.php";
-                ?>
+                    ?>
                     </ul>
+                    
+                </div>
+        <div class="clearfix"></div>
+            <div id="side_page">
+            <?php
+                $t=$time->showAll();
+                while($data = $t->fetch(PDO::FETCH_ASSOC)){
+                    echo $data['mass'];
+                    echo "<div class=\"border\"></div><br>";
+                    echo $data['office'];
+                }
+            ?>
+            
             </div>
         </div>
         <div class="clearfix"></div>

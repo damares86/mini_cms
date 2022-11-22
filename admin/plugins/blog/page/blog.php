@@ -1,21 +1,19 @@
 <?php
 
 require "admin/template/inc/header.php";
-
 ?>
 
 <div id="bottomContainer">
+
+<div class="row mt-3">
+    <div class="col-8">
     <div id="content">
         <div id="blog">
         <?php
         
         require "admin/core/config.php";
 
-        $database = new Database();
-        $db = $database->getConnection();
-    
-        $post = new Post($db);
-        $categories = new Categories($db);
+
 
         $total_rows="";
 
@@ -37,8 +35,8 @@ require "admin/template/inc/header.php";
                 $post_title= preg_replace('/\s+/', '_', $row['title']);
                 $post_title = strtolower($post_title);
 
-                $time = $row['modified'];
-                $newTime = date("d/m/Y",strtotime($time));
+                $date = $row['modified'];
+                $newTime = date("d/m/Y",strtotime($date));
                 ?>
 
 						
@@ -64,8 +62,8 @@ require "admin/template/inc/header.php";
          *** <?=$blog_mod?>: <?=$newTime?> ***</p>
         <div class="blog_content">
         <div class="row">
-                <div class="col px-5">
-                    <img src="uploads/img/<?=$row['main_img']?>" class="w-50 justify-content-center mx-auto"><br>
+                <div class="col px-5 text-center my-3">
+                    <img src="uploads/img/<?=$row['main_img']?>" class="w-75 img-fluid"><br>
                 </div>
             </div>
             <?=$row['summary']?>
@@ -77,17 +75,33 @@ require "admin/template/inc/header.php";
         require "admin/template/inc/blog_paging.php";
         ?>
         </div>
-        <div id="sidebar">
-            <div id="sidebar_menu">
+    </div>
+        </div>
+        <div class="col-4">
+            <div id="side_blog">
+
                 <h2><strong><?=$blog_categories?></strong></h2>
-                    <ul>
-            <?php
+                <ul>
+                    <?php
                     require "admin/template/inc/sidebar.php";
-                ?>
+                    ?>
                     </ul>
+                    
+                </div>
+        <div class="clearfix"></div>
+            <div id="side_page">
+            <?php
+                $t=$time->showAll();
+                while($data = $t->fetch(PDO::FETCH_ASSOC)){
+                    echo $data['mass'];
+                    echo "<div class=\"border\"></div><br>";
+                    echo $data['office'];
+                }
+            ?>
+            
             </div>
         </div>
-        <div class="clearfix"></div>
+    </div>
     </div>
 </div>
 <?php

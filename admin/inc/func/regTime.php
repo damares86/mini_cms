@@ -1,5 +1,5 @@
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">Modifica Orari</h1>
+                        <h1 class="h3 mb-0 text-gray-800"><?=$time_title_mod?></h1>
 
                     </div><div class="row">
 
@@ -18,7 +18,7 @@
         <form class="form-horizontal row-fluid" action="core/mngTime.php" method="post">
             <div class="control-group">
                 <div class="controls">
-                    <h4>Orari Messe</h4>
+                    <h4><?=$time_mass?></h4>
                     <textarea id="editor1" name="editor" rows="10">
                         <?php
                             echo $row['mass'];
@@ -31,7 +31,7 @@
 
             <div class="control-group">
                 <div class="controls">
-                    <h4>Orari Segreteria</h4>
+                    <h4><?=$time_office?></h4>
                     <textarea id="editor2" name="editor2" rows="10">
                         <?php
                             echo $row['office'];

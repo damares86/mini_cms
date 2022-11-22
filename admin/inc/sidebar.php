@@ -64,7 +64,7 @@
             <li class="nav-item">
                 <a class="nav-link" href="index.php?man=time&op=show">
                     <i class="fa fa-calendar"></i>
-                    <span>Orari Messe e Segreteria</span>
+                    <span><?=$side_time?></span>
                 </a>
             </li>
             

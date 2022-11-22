@@ -22,6 +22,7 @@ $side_manage = "Gestione sito";
 $side_page = "Pagine";
 $side_page_default = "Default";
 $side_page_custom = "Personali";
+$side_time = "Orari Messe e Segreteria";
 $side_files = "Files";
 $side_blog = "Blog";
 $side_post = "Post";
@@ -131,6 +132,15 @@ $regpage_desc .= "Puoi scegliere se visualizzare il <b>visual</b> (in cima alla 
 $regpage_desc .= "Puoi scegliere se visualizzare nel visual il nome e la descrizione del sito (modificabili nelle impostazioni).<br><br>";
 $regpage_desc .= "<b>Colore di sfondo e del testo</b><br> Ogni bloccho può avere colore di sfondo e del testo specifici, puoi selezionarli dal menù a tendina sotto ogni editor.<br>";
 $regpage_desc .= "Se vuoi aggiungere più colori disponibili, vai alla sezione \"Impostazioni -> Tema\".";
+
+// TIME
+
+$time_title_mod = "Modifica orari";
+$time_mass = "Orari Messe";
+$time_office = "Orari Segreteria";
+$time_title = "Orari";
+$time_box_title = "Orari Messe e Segreteria";
+$time_box_edit = "Modifica orari";
 
 
 // FILES 
@@ -375,6 +385,8 @@ $al_pluginSucc = "Plugin installato";
 $al_pluginErr = "Plugin non installato. Prova ad eliminare la cartella e caricarla nuovamente.";
 $al_pluginUploadSucc = "Plugin caricato";
 $al_pluginUploadErr = "Plugin non caricato";
+$al_timeSucc = "Orari modificati correttamente";
+$al_timeErr = "Orari non modificati";
 
 
 // ALERT WEBSITE

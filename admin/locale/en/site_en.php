@@ -23,6 +23,7 @@ $side_manage = "Managing site";
 $side_page = "Pages";
 $side_page_default = "Default";
 $side_page_custom = "Custom";
+$side_time = "Mass and office time";
 $side_files = "Files";
 $side_blog = "Blog";
 $side_post = "Posts";
@@ -134,6 +135,14 @@ $regpage_desc .= "You can choose if you want to view the site name and the site 
 $regpage_desc .= "<b>Background and text color</b><br> Every block may have specifics background and text color, you can select them from the dropdown menu below every block editor.<br>";
 $regpage_desc .= "If you want to add more colors go to the \"Theme Settings\" section.";
 
+// TIME
+
+$time_title_mod = "Edit time";
+$time_mass = "Mass time";
+$time_office = "Office time";
+$time_title = "Time";
+$time_box_title = "Mass and office time";
+$time_box_edit = "Edit time";
 
 
 // FILES 
@@ -382,6 +391,8 @@ $al_pluginSucc = "Plugin installed";
 $al_pluginErr = "Plugin not installed. Try to delete the folder and upload it again.";
 $al_pluginUploadSucc = "Plugin successfully uploaded";
 $al_pluginUploadErr = "Plugin not uploaded";
+$al_timeSucc = "Time successfully modified";
+$al_timeErr = "Time not modified";
 
 
 // ALERT WEBSITE

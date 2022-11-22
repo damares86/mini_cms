@@ -617,6 +617,22 @@ if($msg=="userDelSucc"){
     </div>
 
     <?php    
+}else if($msg=="timeSucc"){
+    ?>
+    <div class="alert alert-success">
+        <button type="button" class="close" data-dismiss="alert">x</button>
+        <?=$al_timeSucc?>
+    </div>
+
+    <?php    
+}else if($msg=="timeErr"){
+    ?>
+    <div class="alert alert-danger">
+        <button type="button" class="close" data-dismiss="alert">x</button>
+        <?=$al_timeErr?>
+    </div>
+
+    <?php    
 } else 
 
 ?>
