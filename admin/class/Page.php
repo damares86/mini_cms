@@ -358,7 +358,8 @@ class Page{
             $this->table="page";
             $this->setNo_mod = ", no_mod = :no_mod";
         }
-        
+
+
         if($this->type=="custom"){
             
             $stmt="";
@@ -387,23 +388,20 @@ class Page{
 
             }else if($this->type=="default"){
 
-           
                 $query = "UPDATE
                     default_page
                     SET
-                    header = :header,
-                    use_name = :use_name,
-                    use_desc = :use_desc
+                    header = :header
                     WHERE
                     id = :id";
 
                     $stmt = $this->conn->prepare($query);
-                    
-                    $stmt->bindParam(':header', $this->header);      
-                    $stmt->bindParam(':use_name', $this->use_name);      
-                    $stmt->bindParam(':use_desc', $this->use_desc);      
+
+                    $stmt->bindParam(':header', $this->header);          
                     $stmt->bindParam(':id', $this->id);   
 
+
+                    
                     if($stmt->execute()){  
                         $query1="SELECT * FROM ".$this->table." WHERE page_name = :page_name LIMIT 0,1";
                         $stmt1 = $this->conn->prepare($query1);
@@ -411,7 +409,7 @@ class Page{
                         $stmt1->execute();
                         $row1 = $stmt1->fetch(PDO::FETCH_ASSOC);
                         $actualImage=$row1['img'];
-                        if($this->header!=0){
+                        if($this->header!=0){                            
                             if(($this->img)==$actualImage){
                                 return true;
                             }else{

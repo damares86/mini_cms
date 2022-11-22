@@ -154,34 +154,34 @@ if(filter_input(INPUT_POST,"addBlock")){
 	$type=filter_input(INPUT_POST,"type");
 
 	if($type=="default"){
-
 		$page->type=filter_input(INPUT_POST,"type");
-
+		
 		$idToMod=filter_input(INPUT_POST,"idToMod");
-
+		
 		$page->id=$idToMod;
-
+		
 		$page->page_name=$_POST['page_name'];
-		if(isset($_POST['use_name'])){
-			$page->use_name=1;
-		}else{
-			$page->use_name=0;
-		}
+		// if(isset($_POST['use_name'])){
+		// 	$page->use_name=1;
+		// }else{
+		// 	$page->use_name=0;
+		// }
 
-		if(isset($_POST['use_desc'])){
-			$page->use_desc=1;
-		}else{
-			$page->use_desc=0;
-		}
+		// if(isset($_POST['use_desc'])){
+		// 	$page->use_desc=1;
+		// }else{
+		// 	$page->use_desc=0;
+		// }
 
 		if(isset($_POST['visualSel'])){
 			$page->header=1;
 		}else{
 			$page->header=0;
 		}
-
+        
 		if($_POST['visual'][0]=="visual_img"){
 			if($_FILES['myfile']['name']){
+				$page->visual_img=1;
 				$page->img=$_FILES['myfile']['name'];
 			}else{
 				$query1="SELECT * FROM default_page WHERE page_name = :page_name LIMIT 0,1";

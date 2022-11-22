@@ -3,7 +3,6 @@
 require "admin/template/inc/header.php";
 
 
-
 	?>
 
 <div id="bottomContainer">

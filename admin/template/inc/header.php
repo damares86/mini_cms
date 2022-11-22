@@ -268,6 +268,7 @@ if(($file=="login.php")||($file=="contact.php")){
                 </header>
                 <?php
                     if($page->header==1){
+
                         ?>
                 <div id="banner-wrapper">
                 <?php    
