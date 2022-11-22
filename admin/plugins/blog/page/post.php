@@ -186,7 +186,7 @@ require "admin/template/inc/header.php";
         <div class="col-4">
             <div id="side_blog">
 
-                <h2><strong><?=$blog_categories?></strong></h2>
+                <h3><strong><?=$blog_categories?></strong></h3>
                 <ul>
                     <?php
                     require "admin/template/inc/sidebar.php";

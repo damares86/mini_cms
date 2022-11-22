@@ -6,7 +6,7 @@ require "admin/template/inc/header.php";
 <div id="bottomContainer">
 
 <div class="row mt-3">
-    <div class="col-8">
+    <div class="col-12 col-lg-8">
     <div id="content">
         <div id="blog">
         <?php
@@ -77,10 +77,10 @@ require "admin/template/inc/header.php";
         </div>
     </div>
         </div>
-        <div class="col-4">
+        <div class="col-12 col-lg-4">
             <div id="side_blog">
 
-                <h2><strong><?=$blog_categories?></strong></h2>
+                <h3><strong><?=$blog_categories?></strong></h3>
                 <ul>
                     <?php
                     require "admin/template/inc/sidebar.php";
