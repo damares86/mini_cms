@@ -1,6 +1,7 @@
 <?php
 $verify = new Verify($db);
 $user = new User($db);
+$time = new Time($db);
 $settings = new Settings($db);
 $role = new Role($db);
 $plugins = new Plugins($db);

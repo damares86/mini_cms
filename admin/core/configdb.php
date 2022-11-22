@@ -149,6 +149,11 @@ $db->query("CREATE TABLE settings (
   theme VARCHAR(255) NOT NULL,
   dm INT (1) DEFAULT 1)");
 
+$db->query("CREATE TABLE time (
+  id int(1) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  mass TEXT NOT NULL,
+  office TEXT NOT NULL)");
+
 $db->query("CREATE TABLE IF NOT EXISTS page
               ( id INT ( 5 ) NOT NULL AUTO_INCREMENT PRIMARY KEY,
                 page_name VARCHAR(255) NOT NULL,

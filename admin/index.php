@@ -91,6 +91,12 @@ $user_id=$_SESSION['user_id'];
                                 } else if($operation=="add"||$operation=="edit"){
                                     require "inc/func/regGallery.php";
                                 }
+                            }else if($manage=="time"){// fuori
+                                if($operation=="show"){
+                                    require "inc/func/allTime.php";
+                                } else if($operation=="add"||$operation=="edit"){
+                                    require "inc/func/regTime.php";
+                                }
                             }else if($manage=="plugins"){ // portfolio
                                 if($operation=="show"){
                                     require "inc/func/allPlugins.php";
