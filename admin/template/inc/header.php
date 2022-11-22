@@ -94,6 +94,8 @@ if($file=="index.php"){
     $page_name=$cont_form_page;
     $page_class="contact";
 }else if($file=="blog.php"){
+    $page_class="blog";
+    
 }else{
 // mi prendo solo il nome senza l'estensione
 $page_name = pathinfo($file, PATHINFO_FILENAME);
