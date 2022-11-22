@@ -59,6 +59,25 @@ a{
     font-weight: bold;
 }
 
+#titleBar{
+    box-shadow: none;
+    height:60px;
+}
+
+span.title{
+    padding:5px 0;
+}
+
+span.title img{
+    height:50px;
+    vertical-align: middle;
+    display:inline;
+}
+
+span.title h3{
+    display:inline;
+    margin-left:5px;
+}
 
 #nav > ul > li a{
     padding: 0 0.5em;
@@ -86,4 +105,34 @@ footer{
 
 .block4.index{
     padding:0;
+}
+
+.block4.index:first{
+    height: 100%;
+}
+
+/* MEDIA QUERIES */
+
+@media (max-width: 960px) {
+    .block2.index, .block3.index, .block4.index{
+        width:90%;
+        margin: 1em auto;
+    }
+
+    .block4.index{
+        padding-left: 1.5em;
+
+    }
+}
+
+@media (max-width: 576px) {
+    .block2.index, .block3.index, .block4.index{
+        width:95%;
+        margin: 1em auto;
+    }
+
+    .block4.index{
+        padding-left: 0;
+
+    }
 }

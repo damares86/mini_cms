@@ -40,8 +40,8 @@ require "admin/template/inc/header.php";
                     $row_stretch_start="";
                     $row_stretch_end="";
 
-                    if($i>1){
-                        $stretch="height:100%";
+                    if($i==4){
+                        $stretch="d-flex align-item-stretch";
                     }
                     if($i==2){
                         $clear="<div class=\"clearfix\"></div><br>";
@@ -54,7 +54,7 @@ require "admin/template/inc/header.php";
 
              
                 <?=$row_stretch_start?>
-                <div class="block block<?=$i?> <?=$page_class?>" style="background-color:<?=$json_arr[$i]['block'.$i.'_bg']?> !important; color:<?=$json_arr[$i]['block'.$i.'_text']?> !important;">
+                <div class="block block<?=$i?> <?=$page_class?> <?=$stretch?>" style="background-color:<?=$json_arr[$i]['block'.$i.'_bg']?> !important; color:<?=$json_arr[$i]['block'.$i.'_text']?> !important;">
 
                 <?php
                              if($json_arr[$i]['block'.$i.'_type']=="t"){
@@ -129,10 +129,10 @@ require "admin/template/inc/header.php";
                                 $info=$json_arr[$i]['block'.$i.'_info'];
                                 ?>
                                 <div class="row">
-                                    <div class="col-3" style="padding:2em 0 !important;">
+                                    <div class="d-none d-lg-block col-lg-3" style="padding:2em 0 !important;">
                                         <img src="uploads/img/<?=$info?>">
                                     </div>
-                                    <div class="col-9">
+                                    <div class="col-12 px-0 pl-lg-5 col-lg-9">
                                         <?php
                                             echo $json_arr[$i]['block'.$i.'_desc'];
                                         ?>

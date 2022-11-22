@@ -4,7 +4,7 @@ require "admin/template/inc/header.php";
 ?>
             <div id="bottomContainer">
                 <div class="row">
-                    <div class="col-8">
+                    <div class="col-12 col-lg-8">
                <?php
                 $file = basename($_SERVER['PHP_SELF']);
                 $page_class = pathinfo($file, PATHINFO_FILENAME);
@@ -214,7 +214,7 @@ require "admin/template/inc/header.php";
                     <div class="clearfix"></div>
                 </div>
                 </div>
-                    <div class="col-4">
+                    <div class="col-12 col-lg-4">
                         <div id="side_page">
                         <?php
                             $timetable=$time->showAll();
