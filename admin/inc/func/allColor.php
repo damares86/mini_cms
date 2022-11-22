@@ -28,7 +28,7 @@
             while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
         
                  extract($row);
-       
+              
             ?>
 
         <form class="form-horizontal row-fluid" action="core/mngSettings.php" method="POST" enctype="multipart/form-data">
@@ -40,8 +40,9 @@
                 <div class="controls">
                 <select name="theme">
                 <?php
-            foreach (glob("../assets/*") as $file) {
-                if( is_dir($file) ){
+            foreach (glob("../assets/colors/*") as $file) {
+
+                if( is_file($file) ){
                     $folder=pathinfo($file, PATHINFO_FILENAME);
                     $selected = "";
                     if ($folder == $row['theme']) {

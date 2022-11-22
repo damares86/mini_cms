@@ -129,7 +129,7 @@ require "admin/template/inc/header.php";
                                 $info=$json_arr[$i]['block'.$i.'_info'];
                                 ?>
                                 <div class="row">
-                                    <div class="col-3">
+                                    <div class="col-3" style="padding:2em 0 !important;">
                                         <img src="uploads/img/<?=$info?>">
                                     </div>
                                     <div class="col-9">

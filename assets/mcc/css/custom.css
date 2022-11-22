@@ -1,6 +1,5 @@
 body{
     font-family: 'Montserrat', sans-serif;
-    background-color: rgba(183, 255, 171,0.3);
 }
 
 #header{
@@ -10,9 +9,7 @@ body{
     width: 100% !important;
 }
 
-#side_page{
-    background-color: #00aa78;
-    color:#fff;
+#side_page, #side_blog{
     font-size:0.9em;
 }
 
@@ -43,14 +40,13 @@ a{
 
 #nav{
     padding:0.5em;
-    background-color: #00aa78;
 }
+
 #nav:after{
     display:none;
 }
 
 .dropotron{
-    background-color: #00aa78;
     background-image: none;
     box-shadow:none;
 }
@@ -60,7 +56,6 @@ a{
 }
 
 .dropotron > li > a{
-    color:#fff;
     font-weight: bold;
 }
 
@@ -69,7 +64,6 @@ a{
     padding: 0 0.5em;
     /* margin-bottom: 1.5em; */
     font-weight: bold;
-    color:#fff;
 }
 
 #nav > ul{

@@ -176,7 +176,7 @@ while ($row = $stmt2->fetch(PDO::FETCH_ASSOC)){
         
 
 		<title><?=$page_name?> - <?=$site_name?></title>
-        <link rel="icon" href="assets/<?= $theme ?>/img/favicon.ico">
+        <link rel="icon" href="assets/mcc/img/favicon.ico">
 
         
         <link rel="stylesheet" href="admin/template/layout/<?=$page->layout?>.css" />
@@ -184,7 +184,7 @@ while ($row = $stmt2->fetch(PDO::FETCH_ASSOC)){
         <link href='admin/scripts/simplelightbox/simple-lightbox.min.css' rel='stylesheet' type='text/css'>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script type="text/javascript" src="admin/scripts/simplelightbox/simple-lightbox.jquery.min.js"></script>
-<script src="assets/<?=$theme?>/bootstrap/js/bootstrap.min.js"></script>
+<script src="assets/mcc/bootstrap/js/bootstrap.min.js"></script>
 
 <link rel="stylesheet" href="admin/assets/css/carousel.css" />  
 <?php
@@ -194,12 +194,14 @@ foreach (glob("admin/template/inc/css/*.css") as $cssfile){
 <?php
 }
 
-require "assets/".$theme."/inc/scripts.php";
+require "assets/mcc/inc/scripts.php";
 require "admin/inc/func/check.php";
 if(($file=="login.php")||($file=="contact.php")){
     require "admin/template/inc/recaptcha.php";
 }
 ?>
+        <link rel="stylesheet" href="assets/colors/<?=$theme?>.css" />
+
         <meta name="viewport" content="width=device-width, initial-scale=1" />
 	</head>
 
@@ -261,7 +263,7 @@ if(($file=="login.php")||($file=="contact.php")){
             <div id="topContainer">
                 <header>
                 <?php
-                    require "assets/".$theme."/inc/header.php";
+                    require "assets/mcc/inc/header.php";
                 ?>  
                 </header>
                 <?php

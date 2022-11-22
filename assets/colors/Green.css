@@ -1,0 +1,42 @@
+body{
+    background-color: rgba(183, 255, 171,0.3);
+}
+
+#side_page{
+    background-color: #00aa78;
+    color:#fff;
+}
+
+#side_blog{
+    background-color: #00cc99;
+    color:#fff;
+}
+
+#side_blog a{
+    color:#fff;
+}
+
+#side_blog a:visited{
+    color:#fff;
+}
+
+#side_blog a:hover{
+    color:#fff;
+    text-decoration: underline;
+}
+
+#nav{
+    background-color: #00aa78;
+}
+
+.dropotron{
+    background-color: #00aa78;
+}
+
+.dropotron > li > a{
+    color:#fff;
+}
+
+#nav > ul > li a{
+    color:#fff;
+}

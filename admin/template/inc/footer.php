@@ -15,13 +15,13 @@
 
         
         <?php
-            require "assets/".$theme."/inc/cookie.php";
+            require "assets/mcc/inc/cookie.php";
             foreach (glob("admin/scripts/var/*.js") as $file){
                 ?>
 			    <script src="<?=$file?>"></script>
             <?php
             }
-            require "assets/".$theme."/inc/footerScript.php";
+            require "assets/mcc/inc/footerScript.php";
         ?>
 
 

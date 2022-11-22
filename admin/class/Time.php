@@ -52,7 +52,12 @@ class Time{
         }
     
     }
+    
+    function test(){
+        echo "ciao";
+    }
 
+    
     function showAll(){
         //select all data
         $query = "SELECT

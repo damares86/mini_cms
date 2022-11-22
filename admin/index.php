@@ -206,7 +206,21 @@ $user_id=$_SESSION['user_id'];
                                         </div>
                                         <div class="card-body"> 
                                             <p>
-                                                <a href="https://docs.google.com/document/d/1ueqfbE5TEzNY-HnbNTx3_yq-gbmd0OuvLpVuREQzqwA/edit?usp=sharing" target="_blank">&rarr; Mini Cms</a>:
+                                                <?php
+                                                 foreach (glob("doc/*") as $file) {
+
+                                                    if( is_file($file) ){
+                                                        $folder=pathinfo($file, PATHINFO_FILENAME);
+                                                        ?>
+                                                        
+                                                        <a href="<?=$file?>">&rarr; Mini Cms Church</a>:
+
+                                                        <?php
+                                                       
+                                    
+                                                    }
+                                                }
+                                                ?>
                                                 <?=$home_link1?>
                                             </p>
                                             <p>
