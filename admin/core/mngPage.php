@@ -281,9 +281,6 @@ if(filter_input(INPUT_POST,"addBlock")){
 					$page->img_info=$_FILES['info'.$i.'']['name'];
 					$page->img_tmp_info=$_FILES['info'.$i.'']['tmp_name'];
 				}
-
-				print_r($page->img_info);
-				exit;
 				$page->uploadInfo();
 				$editor = preg_replace('/^\s+/', '', $_SESSION["sess_info_editor$i"]);
 				$$array_name=array(
@@ -326,8 +323,8 @@ if(filter_input(INPUT_POST,"addBlock")){
 		$json=json_encode($arr_tot);
 
 		file_put_contents($file, $json, FILE_APPEND);
-		chmod($file,0777);
-
+		chmod($file,0777); 
+		
 			if($page->insert()){
 
 			$str=$page->page_name;

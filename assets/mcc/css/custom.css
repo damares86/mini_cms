@@ -10,6 +10,11 @@ body{
     width: 100% !important;
 }
 
+#side_page{
+    background-color: #00aa78;
+    color:#fff;
+}
+
 a{
     border-bottom: 0;
 }

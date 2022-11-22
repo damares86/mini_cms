@@ -9,3 +9,10 @@
     clear:both;
     height:auto;
 }
+
+#side_page{
+    margin:1em;
+    padding:1em;
+    border-radius:5px;
+    background-color: #fff;
+}

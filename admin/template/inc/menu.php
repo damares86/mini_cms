@@ -15,8 +15,11 @@
         if($name=='index'){
             echo "Home";
         } else if($name=="Post"||$name=="Blog"){
-            echo "Blog";
-        }else{
+            echo "News";
+        }else if($name=="Contact"){
+            echo "Contatti";
+        }
+        else{
         echo $name;
         }?></a>
         <?php

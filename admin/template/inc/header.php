@@ -184,7 +184,7 @@ while ($row = $stmt2->fetch(PDO::FETCH_ASSOC)){
         <link href='admin/scripts/simplelightbox/simple-lightbox.min.css' rel='stylesheet' type='text/css'>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script type="text/javascript" src="admin/scripts/simplelightbox/simple-lightbox.jquery.min.js"></script>
-<script src="assets/<?=$theme?>/js/bootstrap.min.js"></script>
+<script src="assets/<?=$theme?>/bootstrap/js/bootstrap.min.js"></script>
 
 <link rel="stylesheet" href="admin/assets/css/carousel.css" />  
 <?php
