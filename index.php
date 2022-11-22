@@ -31,21 +31,41 @@ require "admin/template/inc/header.php";
                 $data = file_get_contents($json_file);
                 $json_arr = json_decode($data, true);
 
-
+                
                 $counter=$page->counter;
                
                 for($i=1;$i<=$counter;$i++){
 
+                    $stretch="";
+                    $row_stretch_start="";
+                    $row_stretch_end="";
+
+                    if($i>1){
+                        $stretch="height:100%";
+                    }
+                    if($i==2){
+                        $clear="<div class=\"clearfix\"></div><br>";
+                        $row_stretch_start="<div class=\"row\">";
+                    }
+                    if($i==4){
+                        $row_stretch_end="</div>";
+                    }
                 ?>
 
-
-                 
              
+                <?=$row_stretch_start?>
                 <div class="block block<?=$i?> <?=$page_class?>" style="background-color:<?=$json_arr[$i]['block'.$i.'_bg']?> !important; color:<?=$json_arr[$i]['block'.$i.'_text']?> !important;">
 
                 <?php
                              if($json_arr[$i]['block'.$i.'_type']=="t"){
-                                if($i==4){
+                                $timetable=$time->showAll();
+                                while($row = $timetable->fetch(PDO::FETCH_ASSOC)){
+                                    extract($row);
+                                if($i==2){
+                                    echo $mass;
+                                }else if($i==3){
+                                    echo $office;
+                                }else if($i==4){
                                     ?>
                                 <script src='https://widgets.chiesacattolica.it/widget-almanacco-v2/widget.php?mods=401569&font=8' async></script>          
     
@@ -53,6 +73,7 @@ require "admin/template/inc/header.php";
                                  }else{
                                 echo $json_arr[$i]['block'.$i.''];
                                  }
+                                }
 
                              }else if($json_arr[$i]['block'.$i.'_type']=="p"){
                                 $pict=$json_arr[$i]['block'.$i.'_pict'];
@@ -217,6 +238,7 @@ require "admin/template/inc/header.php";
                                 <span class="sr-only">Next</span>
                             </a>
                         </div>
+                        <?=$row_stretch_end?>
 
                         <?php
                          }

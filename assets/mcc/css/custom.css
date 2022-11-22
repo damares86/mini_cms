@@ -13,6 +13,7 @@ body{
 #side_page{
     background-color: #00aa78;
     color:#fff;
+    font-size:0.9em;
 }
 
 a{
@@ -81,6 +82,7 @@ footer{
     margin: 0 auto 2em;
     text-align: center;
 }
+
 
 /*/////////////////////////////////////////*/
 

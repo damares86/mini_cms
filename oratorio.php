@@ -216,7 +216,15 @@ require "admin/template/inc/header.php";
                 </div>
                     <div class="col-4">
                         <div id="side_page">
-                        sidebar
+                        <?php
+                            $timetable=$time->showAll();
+                            while($row = $timetable->fetch(PDO::FETCH_ASSOC)){
+                                echo $row['mass'];
+                                echo "<div class=\"border\"></div><br>";
+                                echo $row['office'];
+                            }
+                        ?>
+                        
                         </div>
                     </div>
                 </div>
