@@ -371,6 +371,10 @@ $(targetBox).show();
 
 // SESSION VARIABILES
 
+if($page->page_name=="index"){
+    $counter=1;
+}
+
 for($i=1;$i<=$counter;$i++){    
     echo "<style>";
     echo "\n";        
@@ -786,17 +790,23 @@ for($i=1;$i<=$counter;$i++){
         
         <?php
 }
+
 ?>
 
 
 
-
+<?php
+if($page->page_name!="index"){
+    ?>
 <button type="submit" class="btn btn-success btn-icon-split" name="addBlock" value="<?=$i?>">
     <span class="icon text-white-50">
         <i class="fas fa-plus"></i>
     </span>
     <span class="text"><?=$regpage_add_block?></span>
 </button>
+<?php
+}
+?>
 <br><br>
 
 

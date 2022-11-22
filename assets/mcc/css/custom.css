@@ -16,6 +16,10 @@ body{
     font-size:0.9em;
 }
 
+#side_page p{
+    margin: 0 0 0.6em 0;
+}
+
 a{
     border-bottom: 0;
 }

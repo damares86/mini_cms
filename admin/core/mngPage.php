@@ -211,6 +211,7 @@ if(filter_input(INPUT_POST,"addBlock")){
 
 
 	$counter=filter_input(INPUT_POST,"counter");
+	
 
 	$page->initCheckSessVar();
 	
@@ -248,6 +249,10 @@ if(filter_input(INPUT_POST,"addBlock")){
 		$arr0=array(
 			"name"		=> $_SESSION['sess_page_name']
 		);
+
+		if($page->page_name=="index"){
+			$counter=4;
+		}
 
 		for($i=1;$i<=$counter;$i++){
 			$sess_type="sess_type_$i";
