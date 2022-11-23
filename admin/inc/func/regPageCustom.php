@@ -16,7 +16,7 @@ if(filter_input(INPUT_GET,"idToMod")){
 
 $stmt = $settings->showSettings();
 
-$plugins->plugin_name="Post";
+$plugins->plugin_name="Blog";
 $plugins->showByName();
 $postActive=$plugins->active;
 
