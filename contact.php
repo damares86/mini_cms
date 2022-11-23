@@ -11,8 +11,9 @@ $json_arr = json_decode($data, true);
 
 <div id="bottomContainer">
 	<div id="content">
+		<div class="text-center"><h2>Contatti</h2></div>
 		<div class="row d-flex">
-			<div class="col-6">
+			<div class="col-12 col-lg-6">
 					<div class="col-12 mt-3">
 						<?php
 							echo $json_arr['contacts'];
@@ -25,7 +26,7 @@ $json_arr = json_decode($data, true);
 					</div>
 
 			</div>
-			<div class="col-6">
+			<div class="col-12 col-lg-6">
 					<div class="card mt-3 mb-5 login p-3">
 						<div class="card-body">
 							<?php
@@ -58,7 +59,7 @@ $json_arr = json_decode($data, true);
 
 								<div class="form-group">
 									<label for="contact"><?=$cont_form_select_email?></label>
-									<select name="contact">
+									<select name="contact" style="width:50%">
 									<?php
 										$stmt1=$contact->showAllContacts();
 										while ($row1 = $stmt1->fetch(PDO::FETCH_ASSOC)){
@@ -79,7 +80,7 @@ $json_arr = json_decode($data, true);
 								</div>
 								<div class="form-group">
 									<label for="message"><?=$cont_form_msg?></label>
-									<textarea id="message" name="message" placeholder="Write your message here"></textarea>
+									<textarea id="message" name="message" placeholder="Scrivi il tuo messaggio qui"></textarea>
 								</div>
 								
 								<input type="hidden" name="recaptcha_response" id="recaptchaResponse">

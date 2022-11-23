@@ -258,12 +258,17 @@ function is_dir_empty($dir) {
         <br>
         <?php
         if($idToMod==2){
+            $json_file = 'inc/pages/contact.json';
+            $data = file_get_contents($json_file);
+            $json_arr = json_decode($data, true);
         ?>
 
             <div class="control-group">
                 <label class="control-label" for="maps"><?=$regpage_maps?></label>
                 <div class="controls">
-                    <textarea id="maps" name="maps" rows="3" cols="50" placeholder="Posizione sulla mappa" value="" ></textarea>&nbsp; &nbsp; 
+                    <textarea id="maps" name="maps" rows="3" cols="50" placeholder="Posizione sulla mappa" value="" >
+                        <?=  $json_arr['maps']?>
+                    </textarea>&nbsp; &nbsp; 
                     <a href="#" class="btn btn-primary btn-icon-split" data-toggle="modal" data-target="#infoMaps">
                         <i class="fa fa-question-circle"></i>
                     </a>
@@ -277,7 +282,7 @@ function is_dir_empty($dir) {
                 <div class="controls">
                     <h4><?=$regpage_contacts?></h4>
                     <textarea id="editor1" name="editor1" rows="10">
-                              
+                        <?=  $json_arr['contacts']?>
                     </textarea>
                 </div>
             </div>

@@ -50,7 +50,8 @@ $home_quicklink = "Quick links";
 $home_link1 = "the manual";
 $home_link2 = "Website of the Mini Cms Church' developer";
 $home_tab1 = "Users";
-$home_tab2 = "Language";
+$home_tab2 = "Mass time";
+$home_tab2_desc = "View";
 $home_tab3 = "Pages";
 
 

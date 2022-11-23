@@ -49,7 +49,8 @@ $home_quicklink = "Link rapidi";
 $home_link1 = "il manuale";
 $home_link2 = "Il sito dello sviluppatore di Mini Cms Church";
 $home_tab1 = "Utenti";
-$home_tab2 = "Gallerie";
+$home_tab2 = "Orari Messe";
+$home_tab2_desc = "Vedi";
 $home_tab3 = "Pagine";
 
 

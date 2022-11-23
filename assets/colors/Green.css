@@ -48,3 +48,23 @@ body{
 #navPanel{
     background-color: #00aa78;
 }
+
+.blog.index{
+    background-color: #03ff66;
+    color:#fff;
+}
+
+.blog.index a{
+    color:#fff;
+    text-decoration: underline;
+}
+
+.blog.index a:visited{
+    color:#fff;
+    text-decoration: underline;
+}
+
+.blog.index a:hover{
+    color:#fff;
+    text-decoration: none;
+}

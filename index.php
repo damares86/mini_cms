@@ -248,9 +248,48 @@ require "admin/template/inc/header.php";
                 }
         
               ?>
-                    <div class="clearfix"></div>
                 </div>
-            </div>
+                <div class="clearfix"></div>
+                <?php
+                $plugins->plugin_name="Blog";
+                $plugins->showByName();
+                $postActive=$plugins->active;
+                if($postActive==1){
+                ?>
+                <div class="row blog <?=$page_class?> mt-2">   
+                        <div class="col-12 text-center p-0"><h3>News</h3></div>
+
+                        <?php
+                        $stmt1=$post->showLastPosts(2);
+                                    
+                        while ($row = $stmt1->fetch(PDO::FETCH_ASSOC)){
+
+                            extract($row);
+                        ?>
+                            <div class="col-12 col-lg-6">
+                                <div class="row d-flex align-items-center">
+                                    <div class="col-12 col-lg-6 img_blog">
+                                        <img src="uploads/img/<?=$main_img?>">
+                                    </div>
+                                    <div class="col-12 col-lg-6 py-2">
+                                    <b><?=$title?></b><br>
+                                        <a href="post.php?id=<?=$id?>&title=<?=$post_title?>">
+                                            <?=$blog_continue?> ->
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+
+                        <?php
+                        }
+                        ?>
+
+                </div>
+                <?php
+                }
+                ?>
+                </div>
+                
 
 <?php
 require "admin/template/inc/footer.php";

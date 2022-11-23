@@ -141,9 +141,9 @@ $db->query("CREATE TABLE settings (
   id int(5) NOT NULL AUTO_INCREMENT PRIMARY KEY,
   site_name VARCHAR(255) NOT NULL,
   site_description VARCHAR(255) NOT NULL,
+  use_text INT (1) DEFAULT '1',
   logo VARCHAR(255) NOT NULL DEFAULT 'logo.png,
   use_logo INT (1) DEFAULT '1',
-  use_text INT (1) DEFAULT '1',
   footer TEXT NOT NULL,
   dashboard_language VARCHAR(255) NOT NULL,
   theme VARCHAR(255) NOT NULL,
@@ -228,7 +228,7 @@ $db->query("INSERT INTO color
                               ");
 $db->query("INSERT INTO color
                             (id, color)
-                            VALUES ('2','#00cc99')
+                            VALUES ('2','#00aa78')
                             ");
 $db->query("INSERT INTO color
                            (id, color)
@@ -248,7 +248,7 @@ VALUES ('1','admin', '". $password_hash ."','". $user_email ."','Admin')
 
 $db->query("INSERT INTO settings
 (id, site_name, site_description,logo, footer,dashboard_language,theme,dm)
-VALUES ('1','Parrocchia', 'Descrizione', 'logo.png','Testo del footer','it','mcc','1')
+VALUES ('1','Parrocchia San Francesco', 'Descrizione', 'logo.png','Testo del footer','it','Green','1')
 ");
 
 $db->query("INSERT INTO page 
@@ -258,12 +258,12 @@ VALUES ('1','index', '1', 'default', '1', '1', '1', 'visual.png', '1')
 
 $db->query("INSERT INTO default_page 
 (id, page_name, header, use_name, use_desc, img) 
-VALUES ('1','Login', '1', '1', '1', 'visual.jpg')
+VALUES ('1','Login', '1', '1', '1', 'visual.png')
 ");
 
 $db->query("INSERT INTO default_page 
 (id, page_name, header, use_name, use_desc, img) 
-VALUES ('2','Contact', '1', '1', '1', 'visual.jpg')
+VALUES ('2','Contact', '1', '1', '1', 'visual.png')
 ");
 
 $db->query("INSERT INTO menu 
