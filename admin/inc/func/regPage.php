@@ -261,7 +261,7 @@ function is_dir_empty($dir) {
         ?>
 
             <div class="control-group">
-                <label class="control-label" for="maps">Posizione sulla mappa </label>
+                <label class="control-label" for="maps"><?=$regpage_maps?></label>
                 <div class="controls">
                     <textarea id="maps" name="maps" rows="3" cols="50" placeholder="Posizione sulla mappa" value="" ></textarea>&nbsp; &nbsp; 
                     <a href="#" class="btn btn-primary btn-icon-split" data-toggle="modal" data-target="#infoMaps">
@@ -275,7 +275,7 @@ function is_dir_empty($dir) {
 
             <div class="control-group">
                 <div class="controls">
-                    <h4>Contatti</h4>
+                    <h4><?=$regpage_contacts?></h4>
                     <textarea id="editor1" name="editor1" rows="10">
                               
                     </textarea>
@@ -288,13 +288,13 @@ function is_dir_empty($dir) {
                 <div class="modal-dialog modal-dialog-scrollable" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel"><b>Inserimento posizione Google Maps</b></h5>
+                            <h5 class="modal-title" id="exampleModalLabel"><b><?=$regpage_maps_title?></b></h5>
                             <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">×</span>
                             </button>
                         </div>
                         <div class="modal-body guide">
-                            Vai sul sito Google Maps, cerca l'indirizzo della parrocchia e poi...
+                            <?=$regpage_maps_desc?>
 
                         </div>
                         <div class="modal-footer">
