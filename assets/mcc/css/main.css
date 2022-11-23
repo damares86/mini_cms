@@ -3156,7 +3156,7 @@ input, select, textarea {
 				#navPanel .link {
 					border-bottom: 0;
 					border-top: solid 1px rgba(255, 255, 255, 0.05);
-					color: #888;
+					/* color: #888; */
 					display: block;
 					height: 48px;
 					line-height: 48px;

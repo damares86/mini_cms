@@ -105,7 +105,7 @@ require "admin/template/inc/header.php";
                                 <?php
                              }else if($json_arr[$i]['block'.$i.'_type']=="b"){
 
-                                $stmt1=$post->showLastPosts(3);
+                                $stmt1=$post->showLastPosts();
             
                                 while ($row = $stmt1->fetch(PDO::FETCH_ASSOC)){
         

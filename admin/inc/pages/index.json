@@ -10,14 +10,14 @@
   {
     "block2_type": "t",
     "block2": "<p>Orari Messe</p>",
-    "block2_bg": "#00aa78",
-    "block2_text": "#ffffff"
+    "block2_bg": "none",
+    "block2_text": "none"
   },
   {
     "block3_type": "t",
     "block3": "<p>Orari parrocchia</p>",
-    "block3_bg": "#00cc99",
-    "block3_text": "#ffffff"
+    "block3_bg": "none",
+    "block3_text": "none"
   },
   {
     "block4_type": "t",
