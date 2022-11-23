@@ -254,8 +254,60 @@ function is_dir_empty($dir) {
                     </div>
                
             <br>
-</div>
+        </div>
+        <br>
+        <?php
+        if($idToMod==2){
+        ?>
 
+            <div class="control-group">
+                <label class="control-label" for="maps">Posizione sulla mappa </label>
+                <div class="controls">
+                    <textarea id="maps" name="maps" rows="3" cols="50" placeholder="Posizione sulla mappa" value="" ></textarea>&nbsp; &nbsp; 
+                    <a href="#" class="btn btn-primary btn-icon-split" data-toggle="modal" data-target="#infoMaps">
+                        <i class="fa fa-question-circle"></i>
+                    </a>
+                    
+                </div>
+            </div>
+            <br>
+        <hr><br>
+
+            <div class="control-group">
+                <div class="controls">
+                    <h4>Contatti</h4>
+                    <textarea id="editor1" name="editor1" rows="10">
+                              
+                    </textarea>
+                </div>
+            </div>
+
+            <!-- Info Modal-->
+            <div class="modal fade" id="infoMaps" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog modal-dialog-scrollable" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel"><b>Inserimento posizione Google Maps</b></h5>
+                            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">×</span>
+                            </button>
+                        </div>
+                        <div class="modal-body guide">
+                            Vai sul sito Google Maps, cerca l'indirizzo della parrocchia e poi...
+
+                        </div>
+                        <div class="modal-footer">
+                            <button class="btn btn-primary" type="button" data-dismiss="modal"><?=$txt_close?></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        <?php
+        }
+        ?>
 
 
             <br>

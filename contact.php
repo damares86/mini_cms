@@ -2,29 +2,47 @@
 <?php
 require "admin/template/inc/header.php";
 
+$json_file = 'admin/inc/pages/contact.json';
+$data = file_get_contents($json_file);
+$json_arr = json_decode($data, true);
+
 
 	?>
 
 <div id="bottomContainer">
 	<div id="content">
-		<div class="d-flex justify-content-center ">
-				<div class="card mt-3 mb-5 login">
-					<div class="card-body">
+		<div class="row d-flex">
+			<div class="col-6">
+					<div class="col-12 mt-3">
 						<?php
-							require "admin/template/inc/alert.php";
-
-
-								$stmt=$verify->showAll();
-								$row=$stmt->fetch(PDO::FETCH_ASSOC);
-								$active=$row['active'];
-
-								$send="mngMail";
-								if($active==1){
-									$send="mngMailRecap";
-								}
-
-
+							echo $json_arr['contacts'];
 						?>
+					</div>
+					<div class="col-12 text-center" id="googlemaps">
+						<?php
+							echo $json_arr['maps'];
+						?>
+					</div>
+
+			</div>
+			<div class="col-6">
+					<div class="card mt-3 mb-5 login p-3">
+						<div class="card-body">
+							<?php
+								require "admin/template/inc/alert.php";
+
+
+									$stmt=$verify->showAll();
+									$row=$stmt->fetch(PDO::FETCH_ASSOC);
+									$active=$row['active'];
+
+									$send="mngMail";
+									if($active==1){
+										$send="mngMailRecap";
+									}
+
+
+							?>
 
 							<h3 class="my-3"><?=$cont_form_title?></h3>
 
@@ -75,7 +93,10 @@ require "admin/template/inc/header.php";
 								</div>
 							</form>
 
+						</div>
+					</div>
 				</div>
+
 			</div>
 		</div>
 

@@ -111,6 +111,10 @@ footer{
     height: 100%;
 }
 
+#googlemaps iframe{
+    width:100% !important;
+}
+
 /* MEDIA QUERIES */
 
 @media (max-width: 960px) {

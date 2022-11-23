@@ -153,10 +153,11 @@ if(filter_input(INPUT_POST,"addBlock")){
 
 	$type=filter_input(INPUT_POST,"type");
 
+	$idToMod=filter_input(INPUT_POST,"idToMod");
+
 	if($type=="default"){
 		$page->type=filter_input(INPUT_POST,"type");
 		
-		$idToMod=filter_input(INPUT_POST,"idToMod");
 		
 		$page->id=$idToMod;
 		
@@ -172,7 +173,7 @@ if(filter_input(INPUT_POST,"addBlock")){
 		// }else{
 		// 	$page->use_desc=0;
 		// }
-
+		
 		if(isset($_POST['visualSel'])){
 			$page->header=1;
 		}else{
@@ -197,6 +198,27 @@ if(filter_input(INPUT_POST,"addBlock")){
 		}
 		
 
+		if($idToMod==2){
+			$page->maps=$_POST['maps'];
+			$page->contacts=$_POST['editor1'];
+
+			$arr_tot=array(
+				'maps' 	=> $page->maps,
+				'contacts' 	=> $page->contacts
+			);
+
+	
+			rename("../inc/pages/contact.json","../inc/pages/contact_tmp.json");
+			$file='../inc/pages/contact.json';
+			
+			$json=json_encode($arr_tot);
+			
+			if(file_put_contents($file, $json, FILE_APPEND)){
+				chmod($file,0777);
+				unlink('../inc/pages/contact_tmp.json');
+			}
+		}
+
 		if($page->update()){
 			header("Location: ../index.php?man=page&op=show&type=default&msg=pageEditSucc");
 			exit;
@@ -208,7 +230,6 @@ if(filter_input(INPUT_POST,"addBlock")){
 
 
 	}
-
 
 	$counter=filter_input(INPUT_POST,"counter");
 	

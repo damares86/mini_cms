@@ -3,10 +3,16 @@
 
 						<!-- Logo -->
 							<div id="logo">
-							<a href="<?=$root?>index.php">
+								<a href="<?=$root?>index.php">
+							<?php
+							if($use_logo==1){
+								?>
                           		  <img src="<?=$root?>uploads/img/<?=$logo?>">
-                       	 </a>
+									<?php
+							}
+							?>
 						 <h3><?=$site_name?></h3>
+						</a>
 							</div>
 
 						<!-- Nav -->
