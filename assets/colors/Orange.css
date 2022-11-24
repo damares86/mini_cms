@@ -1,14 +1,14 @@
 body{
-    background-color: rgba(12, 9, 100,0.3);
+    background-color: rgba(220, 115, 0,0.3);
 }
 
 #side_page{
-    background-color: #14107B;
+    background-color: #ff8500;
     color:#fff;
 }
 
 #side_blog{
-    background-color: #0C0964;
+    background-color: #dc7300;
     color:#fff;
 }
 
@@ -26,11 +26,11 @@ body{
 }
 
 #nav{
-    background-color: #0C0964;
+    background-color: #dc7300;
 }
 
 .dropotron{
-    background-color: #0C0964;
+    background-color: #dc7300;
 }
 
 .dropotron > li > a{
@@ -42,15 +42,15 @@ body{
 }
 
 #titleBar{
-    background-color: #0C0964;
+    background-color: #dc7300;
 }
 
 #navPanel{
-    background-color: #0C0964;
+    background-color: #dc7300;
 }
 
 .blog.index{
-    background-color: #211C94;
+    background-color: #ff9f00;
     color:#fff;
 }
 
@@ -70,11 +70,11 @@ body{
 }
 
 .block2.index{
-    background-color: #14107B;
+    background-color: #ff8500;
     color:#fff;
 }
 
 .block3.index{
-    background-color: #0C0964;
+    background-color: #dc7300;
     color:#fff;
 }

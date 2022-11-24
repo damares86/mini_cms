@@ -184,7 +184,7 @@ while ($row = $stmt2->fetch(PDO::FETCH_ASSOC)){
         <link rel="stylesheet" href="admin/template/layout/<?=$page->layout?>.css" />
         <link rel="stylesheet" href="admin/assets/css/my-login.css" />
         <link href='admin/scripts/simplelightbox/simple-lightbox.min.css' rel='stylesheet' type='text/css'>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="admin/scripts/jquery.min.js"></script>
         <script type="text/javascript" src="admin/scripts/simplelightbox/simple-lightbox.jquery.min.js"></script>
 <script src="assets/mcc/bootstrap/js/bootstrap.min.js"></script>
 

@@ -95,7 +95,7 @@ foreach (glob("locale/$lang/*.php") as $row){
             <!-- Custom styles for this template-->
             <!-- <link href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet">-->
            
-            <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+            <script src="scripts/jquery-3.5.1.min.js"></script>
             <!-- <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script> -->
 
             <link href="assets/css/sb-admin-2.min.css" rel="stylesheet">
