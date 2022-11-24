@@ -38,6 +38,15 @@ if(is_dir($dir)){
   }
 }
 
+$img_arr=array("croci.jpg","visual.png","logo.svg");
+
+foreach (glob("../../uploads/img/*") as $row){
+  $file = pathinfo($row);
+  $filename = $file['filename'].".".$file['extension'];
+if(!in_array($filename,$img_arr)){
+  unlink($row);
+}
+}
 
 // rmdir_recursive($dir);
 
