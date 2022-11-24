@@ -7,7 +7,25 @@
 //     'output' => true,
 // ));
 
-$dir="../../uploads/";
+// $dir="../../uploads/";
+
+if(session_status() == PHP_SESSION_ACTIVE){
+  session_destroy();
+ }
+ 
+ if(is_file("../class/Database.php")){
+ 
+ include ("../class/Database.php");
+ $database=new Database();
+ $db = $database->getConnection();
+ 
+ $query = "DROP TABLE `accounts`, `color`, `contacts`, `default_page`, `files`, `menu`,`page`, `password_reset_temp`, `plugins`, `roles`, `settings`, `time`, `verify`, `view_home`";
+     
+ $stmt = $database->conn->prepare($query);
+ 
+ $stmt->execute();
+ }
+$dir="../../misc/";
 
 if(is_dir($dir)){
   function rmdir_recursive($dir) {
@@ -20,11 +38,10 @@ if(is_dir($dir)){
   }
 }
 
-$dir="../../misc/";
 
-rmdir_recursive($dir);
+// rmdir_recursive($dir);
 
-$page_arr=array("contact","index","login");
+$page_arr=array("catechismo","contact","index","login","blog","post","oratorio","parrocchia","storia_della_chiesa");
 
 foreach (glob("../../*.php") as $row){
     $file = pathinfo($row);
@@ -34,11 +51,16 @@ foreach (glob("../../*.php") as $row){
   }
 }
 
-foreach (glob("../inc/pages/*") as $row){
-  unlink($row);
+$json_arr=array("catechismo","contact","index","oratorio","parrocchia","storia_della_chiesa");
+
+foreach (glob("../inc/pages/*.json") as $row){
+  $file = pathinfo($row);
+  $filename = $file['filename'];
+  if(!in_array($filename,$json_arr)){
+    unlink($row);
+  }
 }
 
-rmdir("../inc/pages");
 
 unlink("../class/Database.php");
 
