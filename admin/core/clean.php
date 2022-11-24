@@ -7,6 +7,23 @@
 //     'output' => true,
 // ));
 
+if(session_status() == PHP_SESSION_ACTIVE){
+  session_destroy();
+ }
+ 
+ if(is_file("../class/Database.php")){
+ 
+ include ("../class/Database.php");
+ $database=new Database();
+ $db = $database->getConnection();
+ 
+ $query = "DROP TABLE `accounts`, `color`, `contacts`, `default_page`, `files`, `menu`,`page`, `password_reset_temp`, `plugins`, `roles`, `settings`, `verify`, `view_home`";
+     
+ $stmt = $database->conn->prepare($query);
+ 
+ $stmt->execute();
+ }
+
 $dir="../../uploads/";
 
 if(is_dir($dir)){
