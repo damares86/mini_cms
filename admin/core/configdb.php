@@ -154,6 +154,12 @@ $db->query("CREATE TABLE time (
   mass TEXT NOT NULL,
   office TEXT NOT NULL)");
 
+$db->query("INSERT INTO roles
+  (id, mass, office)
+  VALUES ('1','Orari delle Messe', 'Orari Segreteria')
+  ");
+
+
 $db->query("CREATE TABLE IF NOT EXISTS page
               ( id INT ( 5 ) NOT NULL AUTO_INCREMENT PRIMARY KEY,
                 page_name VARCHAR(255) NOT NULL,
@@ -203,6 +209,11 @@ $db->query("CREATE TABLE IF NOT EXISTS plugins
                               active INT(1) NOT NULL)
                               ");
 
+$db->query("INSERT INTO plugins 
+(id, plugin_name, link, second_page, description, icon, title, sub_show_title, sub_show_link, sub_add_title, sub_add_link, active) 
+VALUES ('1', 'Blog', NULL, 'cat','A blog with a overview page, single post page and the possibility to recall the last 3 post in a block of the pages.','fas fa-fw fa-marker','side_blog', 'side_post','index.php?man=blog&op=show','side_cat','index.php?man=cat&op=show','1')
+");
+
 $db->query("CREATE TABLE IF NOT EXISTS view_home
                 ( id INT ( 5 ) NOT NULL AUTO_INCREMENT PRIMARY KEY,
                   name_function VARCHAR(255) NOT NULL)");
@@ -210,6 +221,16 @@ $db->query("CREATE TABLE IF NOT EXISTS view_home
 $db->query("INSERT INTO view_home
           (id, name_function)
           VALUES ('1','color')
+          ");
+
+$db->query("INSERT INTO view_home
+          (id, name_function)
+          VALUES ('2','blog')
+          ");
+
+$db->query("INSERT INTO view_home
+          (id, name_function)
+          VALUES ('3','cat')
           ");
 
 
@@ -248,12 +269,32 @@ VALUES ('1','admin', '". $password_hash ."','". $user_email ."','Admin')
 
 $db->query("INSERT INTO settings
 (id, site_name, site_description,logo, footer,dashboard_language,theme,dm)
-VALUES ('1','Parrocchia San Francesco', 'Descrizione', 'logo.png','Testo del footer','it','Green','1')
+VALUES ('1','Parrocchia San Francesco', 'Descrizione', 'logo.svg','Testo del footer','it','Green','1')
 ");
 
 $db->query("INSERT INTO page 
 (id, page_name, no_mod, layout, header, use_name, use_desc, img, counter) 
 VALUES ('1','index', '1', 'default', '1', '1', '1', 'visual.png', '1')
+");
+
+$db->query("INSERT INTO page 
+(id, page_name, no_mod, layout, header, use_name, use_desc, img, counter) 
+VALUES ('2','Oratorio', '0', 'default', '1', '0', '0', 'visual.png', '1')
+");
+
+$db->query("INSERT INTO page 
+(id, page_name, no_mod, layout, header, use_name, use_desc, img, counter) 
+VALUES ('3','Catechismo', '0', 'default', '1', '0', '0', 'visual.png', '1')
+");
+
+$db->query("INSERT INTO page 
+(id, page_name, no_mod, layout, header, use_name, use_desc, img, counter) 
+VALUES ('4','Parrocchia', '0', 'default', '1', '0', '0', 'visual.png', '1')
+");
+
+$db->query("INSERT INTO page 
+(id, page_name, no_mod, layout, header, use_name, use_desc, img, counter) 
+VALUES ('5','Storia della chiesa', '0', 'default', '1', '0', '0', 'visual.png', '1')
 ");
 
 $db->query("INSERT INTO default_page 
@@ -271,15 +312,39 @@ $db->query("INSERT INTO menu
 VALUES ('1','index', '0','0','1','none')
 ");
 
-
 $db->query("INSERT INTO menu 
 (id, pagename, inmenu,itemorder,parent,childof) 
-VALUES ('2','Login', '1','0','1','none')
+VALUES ('2','Login', '0','0','1','none')
 ");
 
 $db->query("INSERT INTO menu 
 (id, pagename, inmenu,itemorder,parent,childof) 
-VALUES ('3','Contact', '0','0','1','none')
+VALUES ('3','Contact', '1','2','1','none')
+");
+
+$db->query("INSERT INTO menu 
+(id, pagename, inmenu,itemorder,parent,childof) 
+VALUES ('4','Oratorio', '1','1','1','none')
+");
+
+$db->query("INSERT INTO menu 
+(id, pagename, inmenu,itemorder,parent,childof) 
+VALUES ('5','Catechismo', '1','1','1','none')
+");
+
+$db->query("INSERT INTO menu 
+(id, pagename, inmenu,itemorder,parent,childof) 
+VALUES ('6','Parrocchia', '1','0','1','none')
+");
+
+$db->query("INSERT INTO menu 
+(id, pagename, inmenu,itemorder,parent,childof) 
+VALUES ('7','Storia della chiesa', '1','1','1','Parrocchia')
+");
+
+$db->query("INSERT INTO menu 
+(id, pagename, inmenu,itemorder,parent,childof) 
+VALUES ('8','Blog', '1','1','1','none')
 ");
 
 $db->query("CREATE TABLE `password_reset_temp` (
