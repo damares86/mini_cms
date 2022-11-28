@@ -181,6 +181,7 @@ if(filter_input(INPUT_POST,"addBlock")){
 		}
 
 		if($_POST['visual'][0]=="visual_img"){
+			$page->visual_img=1;
 			if($_FILES['myfile']['name']){
 				$page->img=$_FILES['myfile']['name'];
 			}else{
@@ -192,7 +193,7 @@ if(filter_input(INPUT_POST,"addBlock")){
 				$page->img=$row1['img'];
 			}
 		}else if($_POST['visual'][0]=="visual_gall"){
-			$page->visual_gall=1;
+			$page->visual_gall=1; 
 			$page->img=$_POST['visual_gallery'];
 		}
 		
@@ -446,7 +447,7 @@ if(filter_input(INPUT_POST,"addBlock")){
 						if($_FILES['info'.$i.'']['name']){
 							$page->img=$_FILES['info'.$i.'']['name'];
 							$page->img_tmp=$_FILES['info'.$i.'']['tmp_name'];
-							$page->uploadPicture();
+							$page->uploadInfo();
 							$info=$_FILES['info'.$i.'']['name'];
 						}else{
 							$info=$_POST['old_info_'.$i.''];

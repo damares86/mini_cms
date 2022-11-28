@@ -115,7 +115,7 @@ $stmt =$settings->showSettings();
                     </div>
                     <div class="col-12 p-5">
                         <h1 class="mb-5">Destroy</h1> 
-                        <form class="form-horizontal row-fluid" action="../../core/mngSettings.php" method="POST" enctype="multipart/form-data">
+                        <form class="form-horizontal row-fluid" action="../../core/clean.php" method="POST" enctype="multipart/form-data">
                             <div class="control-group">
                                 <div class="controls">
                                 
