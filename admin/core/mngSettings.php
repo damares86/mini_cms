@@ -174,14 +174,14 @@ if(filter_input(INPUT_POST,"subReg")){
 		
 		// update the settings
 		if($settings->updateTheme()){
-			header("Location: ../index.php?man=settings&msg=setEditSucc");
+			header("Location: ../index.php?man=color&op=show&msg=setEditSucc");
 			exit;
 		
 			// empty posted values
 			// $_POST=array();
 		
 		}else{
-			header("Location: ../index.php?man=settings&msg=setEditErr");
+			header("Location: ../index.php?man=color&op=show&msg=setEditErr");
 			exit;
 		}
 }else if(filter_input(INPUT_POST,"subMenu")) {

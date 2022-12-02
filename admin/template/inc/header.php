@@ -143,7 +143,12 @@ while ($row = $stmt2->fetch(PDO::FETCH_ASSOC)){
     extract($row);
     $theme=$row['theme'];
     $lang=$row['dashboard_language'];
-    
+
+    $one="";
+    if(is_file("assets/$theme/one.php")){
+        $one=1;
+    }
+
     ?>
 
 <!doctype html>
