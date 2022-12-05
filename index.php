@@ -3,7 +3,11 @@ require "admin/template/inc/header.php";
 
 ?>
             <div id="bottomContainer">
+                
                 <?php
+                if($one){
+                    // qui il ciclo di richiamo delle pagine
+                }else{
                 $file = basename($_SERVER['PHP_SELF']);
                 $page_class = pathinfo($file, PATHINFO_FILENAME);
 
@@ -212,12 +216,11 @@ require "admin/template/inc/header.php";
                 </div>
                 <?php    
                 }
-        
+            }
               ?>
                     <div class="clearfix"></div>
                 </div>
-            </div>
-
 <?php
 require "admin/template/inc/footer.php";
 ?>
+            </div>

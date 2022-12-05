@@ -198,13 +198,15 @@ foreach (glob("admin/template/inc/css/*.css") as $cssfile){
 <?php
 }
 
-require "assets/".$theme."/inc/scripts.php";
 require "admin/inc/func/check.php";
 if(($file=="login.php")||($file=="contact.php")){
     require "admin/template/inc/recaptcha.php";
 }
 ?>
 <link rel="stylesheet" href="admin/assets/css/carousel.css" />  
+<?php
+require "assets/".$theme."/inc/scripts.php";
+?>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
 	</head>
 
@@ -277,7 +279,7 @@ if(($file=="login.php")||($file=="contact.php")){
                 if(pathinfo($page->img, PATHINFO_EXTENSION)){
                 ?>
                     <div id="banner" class="box container" style="background-image: url(<?=$root?>uploads/img/<?=$img?>);">
-						<div class="row">
+						<div id="header_text" class="row">
                             <div class="col-7 col-12-medium">
                             <?php
                             if($page->use_name==1){
@@ -370,6 +372,7 @@ if(($file=="login.php")||($file=="contact.php")){
                     }
                 ?> 
             </div>
+            <div class="clearfix"></div>
             <?php
 }
 ?>
