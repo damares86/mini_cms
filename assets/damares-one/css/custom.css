@@ -79,8 +79,8 @@ body{
 #header_text{
 	position:absolute;
 	top:40%;
-	left:20%;
-	width:100%;
+	left:40%;
+	width:50%;
 }
 
 #header_text h2, #header_text p{
@@ -98,7 +98,9 @@ body{
 }
 
 footer{
+	text-align:center;
 	bottom:0;
+	padding:1em;
 }
 
 #banner-wrapper{
