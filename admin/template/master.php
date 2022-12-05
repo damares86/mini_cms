@@ -36,7 +36,7 @@ require "admin/template/inc/header.php";
 
                 ?>
                 
-                <div class="block block<?=$i?> <?=$page_class?>" style="background-color:<?=$json_arr[$i]['block'.$i.'_bg']?> !important; color:<?=$json_arr[$i]['block'.$i.'_text']?> !important;">
+                <div class="block block<?=$i?> <?=$page->layout?> <?=$page_class?>" style="background-color:<?=$json_arr[$i]['block'.$i.'_bg']?> !important; color:<?=$json_arr[$i]['block'.$i.'_text']?> !important;">
 
                 <?php
                              if($json_arr[$i]['block'.$i.'_type']=="t"){
