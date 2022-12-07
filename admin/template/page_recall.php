@@ -25,23 +25,33 @@
                 $json_file = 'admin/inc/pages/'.$json.'.json';
                 $data = file_get_contents($json_file);
                 $json_arr = json_decode($data, true);
-
-
+                
                 $counter=$page->counter;
-               
+                
+                if($page_class=="contact"||$page_req=="contact"){
+                    $counter=3;
+                }
+                
                 for($i=1;$i<=$counter;$i++){
+                    
+                    ?>
 
-                ?>
 
 
-                 
-             
-                <div class="block block<?=$i?> <?=$page->layout?> <?=$page_class?>" style="background-color:<?=$json_arr[$i]['block'.$i.'_bg']?> !important; color:<?=$json_arr[$i]['block'.$i.'_text']?> !important;">
 
-                <?php
+<div class="block block<?=$i?> <?=$page->layout?> <?=$page_class?>" style="background-color:<?=$json_arr[$i]['block'.$i.'_bg']?> !important; color:<?=$json_arr[$i]['block'.$i.'_text']?> !important;">
+    
+    <?php
+    
                              if($json_arr[$i]['block'.$i.'_type']=="t"){
                      
+                                if(($page_class=="contact"&&$i==3)||($page_req=="contact"&&$i==3)){
+                                    require "admin/inc/contact_form.php";
+                                }
+
                                 echo $json_arr[$i]['block'.$i.''];
+
+
 
                              }else if($json_arr[$i]['block'.$i.'_type']=="p"){
                                 $pict=$json_arr[$i]['block'.$i.'_pict'];

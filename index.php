@@ -14,18 +14,19 @@ if(!$one){
     
 }else{
 
-        foreach($page_order as $page_req){
+    foreach($page_order as $page_req){
+            if($page_req!="login"){
             
             $page->page_name=$page_req;
             
             ?>
             <div id="<?=$page_req?>">
             <?php
-                // TODO: MANAGE CONTACT AND LOGIN PAGES
                 require "admin/template/page_recall.php";
-                ?>
+            ?>
             </div>
             <?php
+        }
         }
         
     }

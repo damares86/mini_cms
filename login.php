@@ -25,9 +25,7 @@ require "admin/template/inc/header.php";
 									$auth="authRecap";
 									$pass="mngPassRecap";
 								}
-								
 								if($op==""){
-
 						?>
 
 							<h3 class="my-3">Login</h3>

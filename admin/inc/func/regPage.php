@@ -285,7 +285,7 @@ function is_dir_empty($dir) {
                 <label class="control-label" for="maps"><?=$regpage_maps?></label>
                 <div class="controls">
                     <textarea id="maps" name="maps" rows="3" cols="50" placeholder="Posizione sulla mappa" value="" >
-                        <?=  $json_arr['maps']?>
+                        <?=  $json_arr[2]['block2'];?>
                     </textarea>&nbsp; &nbsp; 
                     <a href="#" class="btn btn-primary btn-icon-split" data-toggle="modal" data-target="#infoMaps">
                         <i class="fa fa-question-circle"></i>
@@ -301,7 +301,7 @@ function is_dir_empty($dir) {
                 <div class="controls">
                     <h4><?=$regpage_contacts?></h4>
                     <textarea id="editor1" name="editor1" rows="10">
-                        <?=  $json_arr['contacts']?>
+                        <?= $json_arr[1]['block1'];?>
                     </textarea>
                 </div>
             </div>

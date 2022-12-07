@@ -14,11 +14,13 @@
         $str = strtolower($str);
         $page_order[]=$str;
         $link=$root.$str.".php";
-        if($one){
+        $class="";
+        if($one&&$str!="login"){
             $link="#$str";
+            $class="class=\"scrolly\"";
         }
         ?>
-        <li><a href="<?=$link?>" class="scrolly"><?php
+        <li><a href="<?=$link?>" <?=$class?> ><?php
         if($name=='index'){
             echo "Home";
         } else if($name=="Post"||$name=="Blog"){
@@ -48,11 +50,12 @@
                         $str1 = strtolower($str1);
                         $page_order[]=$str1;
                         $link_child=$root.$str1.".php";
-                        if($one){
-                            $link_child="#$str1";
+                        if($one&&$str1!="login"){
+                            $link="#$str1";
+                            $class="class=\"scrolly\"";
                         }
                         ?>
-                            <li style="white-space: nowrap;"><a href="<?=$link_child?>" style="display: block;" class="scrolly"><?php
+                            <li style="white-space: nowrap;"><a href="<?=$link_child?>" style="display: block;"  <?=$class?> ><?php
                                 if($row1['pagename']=='index'){
                                     echo "Home";
                                 } else {

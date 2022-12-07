@@ -1,11 +1,11 @@
 <?php
 
-// require 'admin/phpDebug/src/Debug/Debug.php';   			// if not using composer
+require 'admin/phpDebug/src/Debug/Debug.php';   			// if not using composer
 
-// $debug = new \bdk\Debug(array(
-//     'collect' => true,
-//     'output' => true,
-// ));
+$debug = new \bdk\Debug(array(
+    'collect' => true,
+    'output' => true,
+));
 
 session_start();
 // loading class
@@ -19,11 +19,12 @@ if(!is_file('admin/class/Database.php')){
 
 require "admin/inc/version.php";
 
-spl_autoload_register('autoloader');
 
-function autoloader($class){
-	include("admin/class/$class.php");
-}
+spl_autoload_register('autoloader');
+    function autoloader($class){
+        include("admin/class/$class.php");
+    }
+
 
 $database = new Database();
 $db = $database->getConnection();
