@@ -1,8 +1,8 @@
 [
-  { "name": "index" },
+  { "name": "contact" },
   {
     "block1_type": "t",
-    "block1": "<p>This is your homepage.</p>\r\n<p>&nbsp;</p>",
+    "block1": "<p>Your contacts her</p>\r\n<p>&nbsp;</p>",
     "block1_bg": "none",
     "block1_text": "none"
   },

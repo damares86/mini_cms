@@ -259,6 +259,87 @@ function is_dir_empty($dir) {
 
 
             <br>
+            <?php
+        if($idToMod==2){
+            $json_file = 'inc/pages/contact.json';
+            $data = file_get_contents($json_file);
+            $json_arr = json_decode($data, true);
+        ?>
+<!-- 
+        <script>
+            function show(i) {
+                document.getElementById(i).style.visibility='visible';
+            }
+        </script>
+        <script>
+            $(document).ready(function(){
+            $("#changeGmaps").click(function(){
+                $("#gmaps").toggle();
+            });
+            });
+        </script>
+        <input type="checkbox" name="mapsSel" value="1" id="changeGmaps" <?=$checked?>> <?=$regpage_use_visual?> -->
+
+        <div id="gmaps" class="border-bottom"  style="display:<?=$display?>">
+            <div class="control-group">
+                <label class="control-label" for="maps"><?=$regpage_maps?></label>
+                <div class="controls">
+                    <textarea id="maps" name="maps" rows="3" cols="50" placeholder="Posizione sulla mappa" value="" >
+                        <?=  $json_arr['maps']?>
+                    </textarea>&nbsp; &nbsp; 
+                    <a href="#" class="btn btn-primary btn-icon-split" data-toggle="modal" data-target="#infoMaps">
+                        <i class="fa fa-question-circle"></i>
+                    </a>
+                    
+                </div>
+            </div>
+        <!-- </div> -->
+            <br>
+        <hr><br>
+
+            <div class="control-group">
+                <div class="controls">
+                    <h4><?=$regpage_contacts?></h4>
+                    <textarea id="editor1" name="editor1" rows="10">
+                        <?=  $json_arr['contacts']?>
+                    </textarea>
+                </div>
+            </div>
+
+            <!-- Info Modal-->
+            <div class="modal fade" id="infoMaps" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog modal-dialog-scrollable" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel"><b><?=$regpage_maps_title?></b></h5>
+                            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">×</span>
+                            </button>
+                        </div>
+                        <div class="modal-body guide">
+                            <?=$regpage_maps_desc?>
+
+                        </div>
+                        <div class="modal-footer">
+                            <button class="btn btn-primary" type="button" data-dismiss="modal"><?=$txt_close?></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        <?php
+        }
+        ?>
+
+
+            <br>
+
+
+
+
+
                  <input type="submit" class="btn btn-primary" name="subReg" value="<?=$txt_submit?>">
         </form>
         
