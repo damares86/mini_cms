@@ -13,17 +13,16 @@ session_start();
 if(!is_file('admin/class/Database.php')){
     require "admin/inc/dbdata.php";
     exit;
-    // header("Location: admin/inc/dbdata.php");
-    // exit;
 }
 
 require "admin/inc/version.php";
 
-spl_autoload_register('autoloader');
 
-function autoloader($class){
-	include("admin/class/$class.php");
-}
+spl_autoload_register('autoloader');
+    function autoloader($class){
+        include("admin/class/$class.php");
+    }
+
 
 $database = new Database();
 $db = $database->getConnection();
@@ -143,8 +142,25 @@ while ($row = $stmt2->fetch(PDO::FETCH_ASSOC)){
     extract($row);
     $theme=$row['theme'];
     $lang=$row['dashboard_language'];
-    
-    ?>
+
+    $one="";
+    if(is_file("assets/$theme/one.php")){
+        $one=1;
+    }
+
+    if($one){
+        ?>
+        <script>
+        var hash = window.location.hash;
+        if(!hash){
+            location.href = 'index.php#index';
+        }
+        </script>
+
+        <?php
+            }
+        ?>
+
 
 <!doctype html>
 <html>
@@ -152,7 +168,7 @@ while ($row = $stmt2->fetch(PDO::FETCH_ASSOC)){
         <!--
             ==========================================================================
             
-            Mini Cms is a project by damares86 (https://github.com/damares86/mini_cms)
+            Mini Cms is a project by DM WebLab (https://www.dmweblab.com)
             
             ==========================================================================
         -->
@@ -180,7 +196,6 @@ while ($row = $stmt2->fetch(PDO::FETCH_ASSOC)){
         <link rel="icon" href="assets/<?= $theme ?>/img/favicon.ico">
 
         
-        <link rel="stylesheet" href="admin/template/layout/<?=$page->layout?>.css" />
         <link rel="stylesheet" href="admin/assets/css/my-login.css" />
         <link href='admin/scripts/simplelightbox/simple-lightbox.min.css' rel='stylesheet' type='text/css'>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -194,17 +209,20 @@ foreach (glob("admin/template/inc/css/*.css") as $cssfile){
 <?php
 }
 
-require "assets/".$theme."/inc/scripts.php";
 require "admin/inc/func/check.php";
 if(($file=="login.php")||($file=="contact.php")){
     require "admin/template/inc/recaptcha.php";
 }
 ?>
 <link rel="stylesheet" href="admin/assets/css/carousel.css" />  
+<?php
+require "assets/".$theme."/inc/scripts.php";
+?>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
 	</head>
 
 	<body>
+    <div id="index"></div>
 
     <?php
     if(is_file("admin/class/Popup.php")){
@@ -273,7 +291,7 @@ if(($file=="login.php")||($file=="contact.php")){
                 if(pathinfo($page->img, PATHINFO_EXTENSION)){
                 ?>
                     <div id="banner" class="box container" style="background-image: url(<?=$root?>uploads/img/<?=$img?>);">
-						<div class="row">
+						<div id="header_text" class="row">
                             <div class="col-7 col-12-medium">
                             <?php
                             if($page->use_name==1){
@@ -366,6 +384,7 @@ if(($file=="login.php")||($file=="contact.php")){
                     }
                 ?> 
             </div>
+            <div class="clearfix"></div>
             <?php
 }
 ?>

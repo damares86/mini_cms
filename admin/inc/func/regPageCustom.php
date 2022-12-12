@@ -177,7 +177,7 @@ if($operation=="add"){
                             if ($style == $pageLayout) {
                                 $checked = "checked";
                             }
-                            echo "<input type='radio' id='$style' name='layout' value='$style' $checked> <img src='template/layout/img/$style.png'> &nbsp; &nbsp; &nbsp;";
+                            echo "<input type='radio' id='$style' name='layout' value='$style' $checked> <img src='template/layout/$style.png'> &nbsp; &nbsp; &nbsp;";
 
                         }
                     }

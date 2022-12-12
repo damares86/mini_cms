@@ -27,14 +27,11 @@ $stmt =$settings->showSettings();
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
-    <meta name="author" content="damares86">
+    <meta name="author" content="DM WebLab">
     <link rel="icon" href="assets/img/favicon.ico" type="image/png"/>
 
     <title>Blocca sito</title>
 
-    <!-- Custom fonts for this template-->
-    <!-- per le modali -->
-    <!-- <script src="scripts/jquery-1.9.1.min.js" type="text/javascript"></script> -->
         <script src="../../scripts/jquery-ui-1.10.1.custom.min.js" type="text/javascript"></script>
     <script src="../../assets/vendor/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
     <link href="../../assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -44,23 +41,15 @@ $stmt =$settings->showSettings();
     <link
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
-
-            <!-- Custom styles for this template-->
-            <!-- <link href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet">-->
            
             <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-            <!-- <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script> -->
 
             <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
 
             <link href="../../assets/css/sb-admin-2.min.css" rel="stylesheet">
             <link href="../../assets/css/custom.css" rel="stylesheet">
             <script>
-    // $(document).ready(function(){
-    //     $(".btn").click(function(){
-    //         $("#myModal").modal('show');
-    //     });
-    // });
+
 </script>
 
 </head>

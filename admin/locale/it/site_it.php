@@ -124,6 +124,12 @@ $regpage_gall = "Galleria";
 $regpage_choose_gall = "Scegli una galleria";
 $regpage_post = "Ultimi post";
 $regpage_post_desc = "Mostra gli ultimi tre post dal blog";
+$regpage_contacts = "Contatti";
+$regpage_maps = "Posizione sulla mappa";
+$regpage_maps_title = "Inserimento posizione sulla mappa";
+$regpage_maps_desc = "Vai sul sito Google Maps, cerca il tuo indirizzo e poi clicca su <b>Condividi</b>.<br>";
+$regpage_maps_desc .= "Nella finestra che si apre seleziona in alto <b>Incorporare una mappa</b>.<br>";
+$regpage_maps_desc .= "Clicca su <b>COPIA HTML</b> e incolla quello che hai copiato nel campo di questa pagina.";
 $regpage_desc = "Quando crei una nuova pagina, puoi inserire contenuti in vari blocchi. <br><br>";
 $regpage_desc .= "Obbligatorio è solo il Blocco 1, poi puoi scegliere quanti blocchi aggiungere, usando il tasto aggiungi blocco.<br><br>";
 $regpage_desc .= "Puoi scegliere tra <b>3 diversi layout</b> per il posizionamento dei primi 6 blocchi, le immagini danno un'idea della disposizione dei blocchi, per scegliere quella che più si adatta alle esigenze della pagina.<br><br>";
@@ -404,6 +410,7 @@ $log_forgot_sent = "Ti è stata inviata una mail con le istruzioni per il reset 
 $log_forgot_wrong = "Link errato";
 $log_forgot_new = "Inserisci la nuova password";
 $log_forgot_exp = "Il tuo link non è più valido";
+$login_back_home = "Torna alla homepage";
 
 // RESET MAIL
 

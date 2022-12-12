@@ -126,6 +126,12 @@ $regpage_gall = "Gallery";
 $regpage_choose_gall = "Choose an existing gallery";
 $regpage_post = "Last posts";
 $regpage_post_desc = "Shows the last three posts from the blog";
+$regpage_contacts = "Contacts";
+$regpage_maps = "Position on map";
+$regpage_maps_title = "Insert your position on map";
+$regpage_maps_desc = "Go on Google Maps website, find your address and click on <b>Share</b>.<br>";
+$regpage_maps_desc .= "In the opened modal select <b>Embed a map</b>.<br>";
+$regpage_maps_desc .= "Click on <b>COPY HTML</b> and paste it in the textarea in this page.";
 $regpage_desc = "When you create a new page, you can insert content in many blocks. <br><br>";
 $regpage_desc .= "It's mandatory to insert the Block1, then you can choose how many blocks you want to add, using the \"Add block\" button.<br><br>";
 $regpage_desc .= "You can choose from <b>three different layout</b> for the six blocks positioning, look at the images to select the best layout for your page.<br><br>";
@@ -411,6 +417,7 @@ $log_forgot_sent = "An email has been sent to you with instructions on how to re
 $log_forgot_wrong = "Wrong link";
 $log_forgot_new = "Insert your new password";
 $log_forgot_exp = "Your link is expired";
+$login_back_home = "Back to home";
 
 // RESET MAIL
 

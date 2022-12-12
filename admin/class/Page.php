@@ -32,6 +32,8 @@ class Page{
     public $item_order;
     public $parent;
     public $child_of;
+    public $maps;
+    public $contacts;
 
     // constructor
     public function __construct($db){

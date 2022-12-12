@@ -104,8 +104,8 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
         <!--
             ==========================================================================
             
-            Mini Cms is a project by damares86 (https://github.com/damares86/mini_cms)
-            
+            Mini Cms is a project by DM WebLab (https://www.dmweblab.com)
+
             ==========================================================================
         -->
 		<meta charset="utf-8">

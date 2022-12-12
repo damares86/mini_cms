@@ -196,6 +196,56 @@ if(filter_input(INPUT_POST,"addBlock")){
 			$page->visual_gall=1; 
 			$page->img=$_POST['visual_gallery'];
 		}
+
+		if($idToMod==2){
+			$page->maps=$_POST['maps'];
+			$page->contacts=$_POST['editor1'];
+
+			$json_file = '../inc/pages/contact.json';
+			$data = file_get_contents($json_file);
+			$json_arr = json_decode($data, true);
+
+			$arr_0=array(
+				'name' => 'contact'
+			);
+
+			$arr_tot[]=$arr_0;
+
+			$arr_1=array(
+				'block1_type' 	=> "t", 
+				'block1'		=> "$page->contacts",
+				'block1_bg'	=> "none",
+				'block1_text'  => "none"
+			);
+			$arr_tot[]=$arr_1;
+			
+			$arr_2=array(
+				'block2_type' 	=> "t", 
+				'block2'		=> "$page->maps",
+				'block2_bg'	=> "none",
+				'block2_text'  => "none"
+			);	
+			$arr_tot[]=$arr_2;
+			
+
+			$arr_3=array(
+				'block3_type' 	=> "t", 
+				'block3'		=> "ok",
+				'block3_bg'	=> "none",
+				'block3_text'  => "none"
+			);	
+			$arr_tot[]=$arr_3;
+			
+			rename("../inc/pages/contact.json","../inc/pages/contact_tmp.json");
+			$file='../inc/pages/contact.json';
+			
+			$json=json_encode($arr_tot);
+			
+			if(file_put_contents($file, $json, FILE_APPEND)){
+				chmod($file,0777);
+				unlink('../inc/pages/contact_tmp.json');
+			}
+		}
 		
 
 		if($page->update()){
