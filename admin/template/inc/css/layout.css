@@ -108,3 +108,23 @@
 	width:32%;
 	margin: 1% 0 1% 1%;
 }
+
+
+/******** CONTACT  ***********/
+
+.card.contact{
+	width:90% !important;
+	border:none;
+}
+
+#contact{
+	padding: 2%;;
+}
+
+.col-12.maps{
+	padding:2em !important;
+}
+
+.maps iframe{
+	width:100% !important;
+}

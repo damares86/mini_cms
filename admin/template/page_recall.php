@@ -28,10 +28,6 @@
                 
                 $counter=$page->counter;
                 
-                if($page_class=="contact"||$page_req=="contact"){
-                    $counter=3;
-                }
-                
                 for($i=1;$i<=$counter;$i++){
                     
                     ?>
@@ -45,10 +41,7 @@
     
                              if($json_arr[$i]['block'.$i.'_type']=="t"){
                      
-                                if(($page_class=="contact"&&$i==3)||($page_req=="contact"&&$i==3)){
-                                    require "admin/inc/contact_form.php";
-                                }
-
+                          
                                 echo $json_arr[$i]['block'.$i.''];
 
 

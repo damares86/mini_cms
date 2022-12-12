@@ -290,18 +290,18 @@ VALUES ('2','Contact', '1', '1', '1', 'visual.jpg')
 
 $db->query("INSERT INTO menu 
 (id, pagename, inmenu,itemorder,parent,childof) 
-VALUES ('1','index', '0','0','1','none')
+VALUES ('1','index', '1','1','1','none')
 ");
 
 
 $db->query("INSERT INTO menu 
 (id, pagename, inmenu,itemorder,parent,childof) 
-VALUES ('2','Login', '1','0','1','none')
+VALUES ('2','Login', '1','2','1','none')
 ");
 
 $db->query("INSERT INTO menu 
 (id, pagename, inmenu,itemorder,parent,childof) 
-VALUES ('3','Contact', '0','0','1','none')
+VALUES ('3','Contact', '0','3','1','none')
 ");
 
 $db->query("CREATE TABLE `password_reset_temp` (

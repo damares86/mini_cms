@@ -1,15 +1,1 @@
-[
-  { "name": "index" },
-  {
-    "block1_type": "t",
-    "block1": "<p>This is your homepage.</p>\r\n<p>&nbsp;</p>",
-    "block1_bg": "none",
-    "block1_text": "none"
-  },
-  {
-    "block2_type": "t",
-    "block2": "<p>J H JGHJFG</p>",
-    "block2_bg": "#008db1",
-    "block2_text": "none"
-  }
-]
+[{"name":"index"},{"block1_type":"t","block1":"<p>This is your homepage.<\/p><p><br><\/p>","block1_bg":"none","block1_text":"none"}]
