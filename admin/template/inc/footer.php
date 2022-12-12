@@ -1,5 +1,7 @@
 <div class="clearfix"></div>
-           
+           <?php
+           if(!$one){
+        ?>
            <footer>
                 <div class="row">
                         <div class="col-12">
@@ -13,7 +15,10 @@
                     </div>
                 <p class="copyright" style="font-size:0.7em;">Made with Mini Cms <?=$mc_version?> - a project by &nbsp; &nbsp; <a href="https://www.dmweblab.com"><img src="admin/assets/img/dmweblab_logo.png"></a></p>
             </footer>
-        </div>
+            <?php
+           }
+           ?>
+            </div>
 
         
         <?php

@@ -417,6 +417,7 @@ $log_forgot_sent = "An email has been sent to you with instructions on how to re
 $log_forgot_wrong = "Wrong link";
 $log_forgot_new = "Insert your new password";
 $log_forgot_exp = "Your link is expired";
+$login_back_home = "Back to home";
 
 // RESET MAIL
 

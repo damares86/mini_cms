@@ -13,8 +13,6 @@ session_start();
 if(!is_file('admin/class/Database.php')){
     require "admin/inc/dbdata.php";
     exit;
-    // header("Location: admin/inc/dbdata.php");
-    // exit;
 }
 
 require "admin/inc/version.php";
@@ -150,7 +148,19 @@ while ($row = $stmt2->fetch(PDO::FETCH_ASSOC)){
         $one=1;
     }
 
-    ?>
+    if($one){
+        ?>
+        <script>
+        var hash = window.location.hash;
+        if(!hash){
+            location.href = 'index.php#index';
+        }
+        </script>
+
+        <?php
+            }
+        ?>
+
 
 <!doctype html>
 <html>
@@ -158,7 +168,7 @@ while ($row = $stmt2->fetch(PDO::FETCH_ASSOC)){
         <!--
             ==========================================================================
             
-            Mini Cms is a project by damares86 (https://github.com/damares86/mini_cms)
+            Mini Cms is a project by DM WebLab (https://www.dmweblab.com)
             
             ==========================================================================
         -->
@@ -213,7 +223,6 @@ require "assets/".$theme."/inc/scripts.php";
 
 	<body>
     <div id="index"></div>
-    <div id="#"></div>
 
     <?php
     if(is_file("admin/class/Popup.php")){

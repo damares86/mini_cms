@@ -4,6 +4,16 @@
     $link="";
     $link_child="";
 
+    if($page_class=="login"){
+        echo $root;
+?>
+
+<li><a href="index.php#index" <?=$class?> ><- <?=$login_back_home?> </a></li>
+
+
+    <?php
+    }else{
+
     $stmt=$menu->showAllParent();
     while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
         extract($row);
@@ -73,6 +83,7 @@
         </li>
         <?php
         }
+    }
     ?>
 
 </ul>

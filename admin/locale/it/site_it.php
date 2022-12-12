@@ -410,6 +410,7 @@ $log_forgot_sent = "Ti è stata inviata una mail con le istruzioni per il reset 
 $log_forgot_wrong = "Link errato";
 $log_forgot_new = "Inserisci la nuova password";
 $log_forgot_exp = "Il tuo link non è più valido";
+$login_back_home = "Torna alla homepage";
 
 // RESET MAIL
 

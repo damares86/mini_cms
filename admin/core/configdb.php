@@ -10,7 +10,7 @@ $debug = new \bdk\Debug(array(
 /*
 ==========================================================================
 
-Mini Cms is a project by damares86 (https://github.com/damares86/mini_cms)
+Mini Cms is a project by DM WebLab (https://www.dmweblab.com)
 
 ==========================================================================
 */
