@@ -116,12 +116,12 @@ class File{
     }
 
 
-    function showAll($from_record_num, $records_per_page){
+    function showAll($from_record_num, $records_per_page,$where){
         //select all data
         $query = "SELECT
         *
     FROM
-        " . $this->table_name . "
+        " . $this->table_name . " ".$where."
     ORDER BY
         id 
         LIMIT
@@ -136,6 +136,18 @@ class File{
     public function countAll(){
     
         $query = "SELECT id FROM files";
+    
+        $stmt = $this->conn->prepare( $query );
+        $stmt->execute();
+    
+        $num = $stmt->rowCount();
+    
+        return $num;
+    }
+
+    public function countFetch($where){
+    
+        $query = "SELECT id FROM files".$where."";
     
         $stmt = $this->conn->prepare( $query );
         $stmt->execute();

@@ -154,6 +154,7 @@ $file_filename = "Nome";
 $file_filelink = "Link";
 $file_modal_text = "Se vuoi veramente cancellare questo file clicca \"Ok\".";
 $file_nofile = "Nessun file trovato";
+$file_search_ph="Cerca file...";
 
 
 

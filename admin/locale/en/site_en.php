@@ -155,6 +155,7 @@ $file_filename = "Name";
 $file_filelink = "Link";
 $file_modal_text = "If you really want to delete this file click \"Ok\" below.";
 $file_nofile = "No files found";
+$file_search_ph="Search file...";
 
 
 

@@ -39,15 +39,6 @@
             <br>
         <div id="result"></div>
     
-        <?php
-        // paging buttons
-        // include_once 'inc/paging.php';
-?>
-<script>
-
- 
-
- </script>
 <script>
 $(document).ready(function(){
  
