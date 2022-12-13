@@ -149,7 +149,7 @@ if(filter_input(INPUT_POST,"addBlock")){
 		exit;
 	 }
 
-}else if(filter_input(INPUT_POST,"subReg")){
+} else if(filter_input(INPUT_POST,"subReg")){
 
 	$type=filter_input(INPUT_POST,"type");
 

@@ -11,7 +11,9 @@ $txt_logout = "Logout";
 $txt_close = "Close";
 $txt_modal_title = "Are you sure?";
 $txt_modal_logout = "Select \"Logout\" below if you are ready to end your current session.";
-
+$txt_search = "Search";
+$txt_first_page="First page";
+$txt_last_page="Last page";
 
 
 // SIDEBAR
@@ -96,6 +98,7 @@ $allpage_link = "Page link";
 $allpage_view = "View";
 $allpage_modal_text = "If you really want to delete this page click \"Ok\" below.";
 $allpage_nopage = "No pages found";
+$allpage_search_ph = "Search pages...";
 
 
 // REG AND EDIT PAGES

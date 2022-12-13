@@ -11,6 +11,9 @@ $txt_logout = "Logout";
 $txt_close = "Chiudi";
 $txt_modal_title = "Sei sicuro?";
 $txt_modal_logout = "Seleziona \"Logout\" se ti vuoi disconnettere.";
+$txt_search = "Cerca";
+$txt_first_page="Prima pagina";
+$txt_last_page="Ultima pagina";
 
 
 // SIDEBAR
@@ -94,6 +97,8 @@ $allpage_link = "Link della pagina";
 $allpage_view = "Mostra";
 $allpage_modal_text = "Se vuoi veramente cancellare questa pagina clicca \"Ok\".";
 $allpage_nopage = "Nessuna pagina trovata";
+$allpage_search_ph = "Cerca pagine...";
+
 
 
 // REG AND EDIT PAGES

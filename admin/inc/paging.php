@@ -14,7 +14,7 @@ echo "<ul class=\"pagination justify-content-center\">";
 // button for first page
 if($pageNum>1){
     echo "<li class=\"page-item\"><a class=\"page-link\" href='?man=".$manage."&op=show&type={$type}' title='Go to the first page.'>";
-        echo "First Page";
+        echo $txt_first_page;
     echo "</a></li>";
 }
 
@@ -48,8 +48,8 @@ for ($x=$initial_num; $x<$condition_limit_num; $x++) {
   
 // button for last page
 if($pageNum<$total_pages){
-    echo "<l class=\"page-item\"><a class=\"page-link\" href='?man=".$manage."&op=show&page={$total_pages}&type={$type}' title='Last page is {$total_pages}.'>";
-        echo "Last Page";
+    echo "<li class=\"page-item\"><a class=\"page-link\" href='?man=".$manage."&op=show&page={$total_pages}&type={$type}' title='Last page is {$total_pages}.'>";
+        echo $txt_last_page;
     echo "</a></li>";
 }
   

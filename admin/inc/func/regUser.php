@@ -140,7 +140,11 @@ if(filter_input(INPUT_GET,"idToMod")){
         </form>
         </div>
       <div class="col guide">
-          <?=$prof_box1_desc?>
+        <?php
+        if($idToMod!=1){
+            echo $prof_box1_desc;
+        }
+        ?>
       </div>
   </div>
 
