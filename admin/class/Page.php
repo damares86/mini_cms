@@ -732,12 +732,12 @@ class Page{
                 }
             }
 
-    function showAllCustom($from_record_num, $records_per_page){
+    function showAllCustom($from_record_num, $records_per_page,$where){
         //select all data
         $query = "SELECT
                     *
                 FROM
-                    " . $this->table_name . "
+                    " . $this->table_name . "".$where."
                 ORDER BY
                     id DESC
                     LIMIT
@@ -841,6 +841,17 @@ class Page{
         return $num;
     }
 
+    public function countFetchCustom($where){
+    
+        $query = "SELECT id FROM page".$where."";
+    
+        $stmt = $this->conn->prepare( $query );
+        $stmt->execute();
+    
+        $num = $stmt->rowCount();
+    
+        return $num;
+    }
 
 
     function showById(){

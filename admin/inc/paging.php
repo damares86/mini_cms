@@ -48,7 +48,7 @@ for ($x=$initial_num; $x<$condition_limit_num; $x++) {
   
 // button for last page
 if($pageNum<$total_pages){
-    echo "<l class=\"page-item\"><a class=\"page-link\" href='?man=".$manage."&op=show&page={$total_pages}&type={$type}' title='Last page is {$total_pages}.'>";
+    echo "<li class=\"page-item\"><a class=\"page-link\" href='?man=".$manage."&op=show&page={$total_pages}&type={$type}' title='Last page is {$total_pages}.'>";
         echo "Last Page";
     echo "</a></li>";
 }

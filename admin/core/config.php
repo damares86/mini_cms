@@ -3,7 +3,7 @@
 $pageNum = isset($_GET['page']) ? $_GET['page'] : 1; 
 
 // set number of records per page
-$records_per_page = 6;
+$records_per_page = 5;
   
 // calculate for the query LIMIT clause
 $from_record_num = ($records_per_page * $pageNum) - $records_per_page;
