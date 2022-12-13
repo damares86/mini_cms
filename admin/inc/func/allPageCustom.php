@@ -1,7 +1,6 @@
 <?php
     require "core/config.php";
 
-
 ?>
 
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
@@ -30,8 +29,9 @@
                 <div class="col-9">
                     <div class="form-group">
                         <div class="input-group">
-                        <span class="input-group-addon">Search &nbsp;</span>
-                        <input type="text" name="search_text" id="search_text" placeholder="Search pages..." class="form-control" />
+                        <span class="input-group-addon"><?=$txt_search?> &nbsp;</span>
+                        <input type="text" name="search_text" id="search_text" placeholder="<?=$allpage_search_ph?>" class="form-control" />
+                        <input type="hidden" id="pageNum" value="<?=$pageNum?>">
                         </div>
                     </div>
                 </div>
@@ -44,27 +44,40 @@
         // include_once 'inc/paging.php';
 ?>
 <script>
+
+ 
+
+ </script>
+<script>
 $(document).ready(function(){
-
+ 
+ 
  load_data();
-
+ 
  function load_data(query)
  {
+    var pageNum = document.getElementById("pageNum").value;
+
+    if(typeof pageNum == 'null'){
+        pageNum = 1;
+    }
+    
   $.ajax({
    url:"core/fetchPage.php",
    method:"POST",
-   data:{query:query},
+   data:{query:query,num:pageNum},
    success:function(data)
    {
     $('#result').html(data);
    }
   });
  }
+
  $('#search_text').keyup(function(){
   var search = $(this).val();
   if(search != '')
   {
-   load_data(search);
+   load_data(search,pageNum);
   }
   else
   {

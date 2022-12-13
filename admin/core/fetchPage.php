@@ -7,7 +7,6 @@ $debug = new \bdk\Debug(array(
     'output' => true,
 ));
 
-require "config.php";
 
 
 session_start();
@@ -32,7 +31,15 @@ $lang=$settings->dashboard_language;
 foreach (glob("../locale/$lang/*.php") as $row){
     require "$row";
 }
-    $where="";
+
+$where="";
+
+$pageNum=filter_input(INPUT_POST,"num");
+// set number of records per page
+$records_per_page = 5;  
+// calculate for the query LIMIT clause
+$from_record_num = ($records_per_page * $pageNum) - $records_per_page;
+
 
 if(filter_input(INPUT_POST,"query")){
 
@@ -47,7 +54,7 @@ if(filter_input(INPUT_POST,"query")){
 
 
     $stmt = $page->showAllCustom($from_record_num, $records_per_page,$where);
-    // print_r($stmt);
+    // print_r($pageNum);
     // exit;
 
     if($total_rows > 0){
@@ -130,7 +137,7 @@ if(filter_input(INPUT_POST,"query")){
 
         }
         $output.="</tbody></table>";
-        $pageNum = isset($_GET['page']) ? $_GET['page'] : 1; 
+        // $pageNum = isset($_GET['page']) ? $_GET['page'] : 1; 
         
         // $man=filter_input(INPUT_GET,"man");
         // set number of records per page
@@ -145,7 +152,7 @@ if(filter_input(INPUT_POST,"query")){
         $output.="<ul class=\"pagination justify-content-center\">";
         // button for first page
         if($pageNum>1){
-            $output.="<li class=\"page-item\"><a class=\"page-link\" href='?man=".$manage."&op=show&type={$type}' title='Go to the first page.'>First Page</a></li>";
+            $output.="<li class=\"page-item\"><a class=\"page-link\" href='?man=".$manage."&op=show&type={$type}' title='Go to the first page.'>$txt_first_page</a></li>";
         }
         // count all products in the database to calculate total pages
         $total_pages = ceil($total_rows / $records_per_page);
@@ -173,10 +180,10 @@ if(filter_input(INPUT_POST,"query")){
         }
         // button for last page
         if($pageNum<$total_pages){
-            $output.="<li class=\"page-item\"><a class=\"page-link\" href='?man=".$manage."&op=show&page={$total_pages}&type={$type}' title='Last page is {$total_pages}.'>Last Page</a></li>";
+            $output.="<li class=\"page-item\"><a class=\"page-link\" href='?man=".$manage."&op=show&page={$total_pages}&type={$type}' title='Last page is {$total_pages}.'>$txt_last_page</a></li>";
         }
         $output.="</ul>";
  echo $output;
     }else{
-        echo "No pages";
+        echo '<div class="alert alert-danger">'.$allpage_nopage.'</div>';
     }
