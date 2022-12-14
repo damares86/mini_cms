@@ -164,13 +164,13 @@ class User{
     }
 
 
-    function showAll($from_record_num, $records_per_page){
+    function showAll($from_record_num, $records_per_page, $where){
         $query = "SELECT
                     *
                 FROM
                 " . $this->table_name . "
                 WHERE NOT
-                    rolename='Admin'
+                    rolename='Admin'".$where."
                 ORDER BY
                     username ASC
                 LIMIT
@@ -240,6 +240,18 @@ class User{
     public function countAll(){
     
         $query = "SELECT id FROM accounts WHERE NOT id=1";
+    
+        $stmt = $this->conn->prepare( $query );
+        $stmt->execute();
+    
+        $num = $stmt->rowCount();
+    
+        return $num;
+    }
+
+    public function countFetch($where){
+    
+        $query = "SELECT id FROM accounts WHERE NOT id=1 ".$where."";
     
         $stmt = $this->conn->prepare( $query );
         $stmt->execute();

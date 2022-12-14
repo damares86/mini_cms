@@ -4,7 +4,7 @@
     $link="";
     $link_child="";
 
-    if($page_class=="login"){
+    if($page_class=="login"&&$one){
         echo $root;
 ?>
 

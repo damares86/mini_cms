@@ -72,6 +72,7 @@ $prof_role = "Ruolo";
 $prof_username_ph = "Scegli uno username";
 $prof_email_ph = "esempio@mail.com";
 $prof_password_ph = "Scegli una password";
+$prof_new_password_ph = "Scegli una nuova password";
 
 
 // ALL USERS
@@ -85,6 +86,7 @@ $alluser_role = "Ruolo";
 $alluser_login = "Ultimo login";
 $alluser_modal_text = "Se vuoi veramente cancellare questo utente clicca \"Ok\".";
 $alluser_nouser = "Nessun utente trovato";
+$alluser_search_ph = "Cerca utente...";
 
 
 // PAGES
