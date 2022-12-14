@@ -31,7 +31,7 @@
                     <div class="form-group">
                         <div class="input-group">
                         <span class="input-group-addon"><?=$txt_search?> &nbsp;</span>
-                        <input type="text" name="search_text" id="search_text" placeholder="<?=$file_search_ph?>" class="form-control" />
+                        <input type="text" name="search_text" id="search_text" placeholder="<?=$alluser_search_ph?>" class="form-control" />
                         <input type="hidden" id="pageNum" value="<?=$pageNum?>">
                         </div>
                     </div>
