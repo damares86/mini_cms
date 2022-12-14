@@ -1,9 +1,6 @@
 <?php
     require "core/config.php";
     
-    $stmt = $user->showAll($from_record_num, $records_per_page);
-
-    $total_rows=$user->countAll();
 
         ?>
 
@@ -21,107 +18,66 @@
             <h6 class="m-0 font-weight-bold text-primary"><?=$alluser_box_title?></h6>
         </div>
         <div class="card-body">
-            <a href="index.php?man=users&op=add" class="btn btn-success btn-icon-split">
-                <span class="icon text-white-50">
-                    <i class="fas fa-plus"></i>
-                </span>
-                <span class="text"><?=$alluser_add?></span>
-            </a>
-            <br>
-            <br>
-
-
-        <?php
-
-if($total_rows>0){
-    ?>
-        <table class="table table-striped">
-            <thead>
-            <tr>
-                <th scope="col"><?=$alluser_username?></th>
-                <th scope="col"><?=$alluser_email?></th>
-                <th scope="col"><?=$alluser_role?></th>
-                <th scope="col"><?=$alluser_login?></th>
-                <th scope="col"><?=$txt_edit?></th>
-                <th scope="col"><?=$txt_delete?></th>
-            </tr>
-            </thead>
-            <tbody>
-      <?php 
-    
-    
-       
-    
-    while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
-        
-                extract($row);
-              
-
-                ?>
-            <tr>
-                <td><?=$username?></td>
-                <td><?=$email?></td>
-                <td><?=$rolename?></td>
-                <td><?=$last_login?></td>
-                <td>
-                        <a href="index.php?man=users&op=edit&idToMod=<?=$row["id"]?>" class="btn btn-warning btn-icon-split">
-                            <span class="icon text-white-50">
-                                <i class="fas fa-pen"></i>
-                            </span>
-                            <span class="text"><?=$txt_edit?></span>
-                        </a>   
-                        </td>
-                        
-                        <td>
-                            <a href="#" class="btn btn-danger btn-icon-split" data-toggle="modal" data-target="#delete<?=$row['id']?>">
-                                <span class="icon text-white-50">
-                                    <i class="fas fa-trash"></i>
-                                </span>
-                                <span class="text"><?=$txt_delete?></span>
-                            </a> 
-                        </td>
-                  <!-- Delete Modal-->
-                  <div class="modal fade" id="delete<?=$row['id']?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-                        aria-hidden="true">
-                        <div class="modal-dialog" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel"><b><?=$txt_modal_title?></b></h5>
-                                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">×</span>
-                                    </button>
-                                </div>
-                                <div class="modal-body"><?=$alluser_modal_text?></div>
-                                <div class="modal-footer">
-                                    <button class="btn btn-secondary" type="button" data-dismiss="modal"><?=$txt_cancel?></button>
-                                    <a class="btn btn-primary" href="core/mngUser.php?idToDel=<?=$row["id"]?>">Ok</a>
-                                </div>
-                            </div>
+            <div class="row">
+                <div class="col-3">
+                    <a href="index.php?man=users&op=add" class="btn btn-success btn-icon-split">
+                        <span class="icon text-white-50">
+                            <i class="fas fa-plus"></i>
+                        </span>
+                        <span class="text"><?=$alluser_add?></span>
+                    </a>
+                </div>
+                <div class="col-9">
+                    <div class="form-group">
+                        <div class="input-group">
+                        <span class="input-group-addon"><?=$txt_search?> &nbsp;</span>
+                        <input type="text" name="search_text" id="search_text" placeholder="<?=$file_search_ph?>" class="form-control" />
+                        <input type="hidden" id="pageNum" value="<?=$pageNum?>">
                         </div>
                     </div>
-      
-            </tr>
-      <?php
-            }
-      ?>
-        
-     </tbody>
-</table>
+                </div>
+            </div>
+        <br>
+        <div id="result"></div>
+        <script>
+$(document).ready(function(){
+ 
+ 
+ load_data();
+ 
+ function load_data(query)
+ {
+    var pageNum = document.getElementById("pageNum").value;
 
-      <?php
-        // paging buttons
-        include_once 'inc/paging.php';
+    if(typeof pageNum == 'null'){
+        pageNum = 1;
     }
-      
-    // tell the user there are no products
-    else{
-        echo "<div class='alert alert-danger'>$alluser_nouser</div>";
-    }
+    
+  $.ajax({
+   url:"core/fetchUser.php",
+   method:"POST",
+   data:{query:query,num:pageNum},
+   success:function(data)
+   {
+    $('#result').html(data);
+   }
+  });
+ }
 
-
-?>
-
-    </div>
+ $('#search_text').keyup(function(){
+  var search = $(this).val();
+  if(search != '')
+  {
+   load_data(search,pageNum);
+  }
+  else
+  {
+   load_data();
+  }
+ });
+});
+</script>
+</div>
 </div>
 </div>
 </div>

@@ -65,7 +65,7 @@ if(filter_input(INPUT_GET,"idToMod")){
             <div class="control-group">
                 <label class="control-label" for="password"><?=$prof_password?></label>
                 <div class="controls">
-                    <input type="text" id="password" name="password" placeholder="<?=$prof_username_ph?>" class="span8">
+                    <input type="text" id="password" name="password" placeholder="<?=$prof_password_ph?>" class="span8">
                      
                 </div>
             </div>
@@ -175,7 +175,7 @@ if($operation=="mod"){
                     <input type="hidden" name="idToMod" value="<?= $idToMod ?>" />
                     <input type="hidden" name="lang" value="<?= $lang ?>" />
 
-                    <input type="text" id="password" name="password" placeholder="Choose the new password" class="span8">
+                    <input type="text" id="password" name="password" placeholder="<?=$prof_new_password_ph?>" class="span8">
                         
                 </div>
             </div>

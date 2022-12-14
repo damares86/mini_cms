@@ -150,12 +150,15 @@ while ($row = $stmt2->fetch(PDO::FETCH_ASSOC)){
 
     if($one){
         ?>
-        <script>
-        var hash = window.location.hash;
-        if(!hash){
-            location.href = 'index.php#index';
-        }
-        </script>
+            <script>      
+            var path = window.location.pathname;
+            var page = path.split("/").pop();
+            var hash = window.location.hash;
+            if(!hash&&page==('index.php')){
+                console.log("ciao");
+                location.href = 'index.php#index';
+            }
+            </script>
 
         <?php
             }

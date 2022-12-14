@@ -17,13 +17,13 @@ if (!isset($_SESSION['loggedin'])) {
 
 // loading class
 include("../class/Database.php");
-include("../class/Page.php");
+include("../class/File.php");
 include("../class/Settings.php");
 
 $database = new Database();
 $db = $database->getConnection();
 
-$page = new Page($db);
+$file = new File($db);
 $settings = new Settings($db);
 
 $stmt=$settings->showLangAndName();
@@ -45,15 +45,15 @@ if(filter_input(INPUT_POST,"query")){
 
     $query=filter_input(INPUT_POST,"query");
 
-    $where=" WHERE page_name LIKE '%".$query."%' ";
+    $where=" WHERE filename LIKE '%".$query."%' OR title LIKE '%".$query."%'";
 
-    $total_rows=$page->countFetchCustom($where);
+    $total_rows=$file->countFetch($where);
 }else{
-    $total_rows=$page->countAllCustom();
+    $total_rows=$file->countAll();
 }
 
 
-    $stmt = $page->showAllCustom($from_record_num, $records_per_page,$where);
+    $stmt = $file->showAll($from_record_num, $records_per_page,$where);
     // print_r($pageNum);
     // exit;
 
@@ -65,10 +65,10 @@ if(filter_input(INPUT_POST,"query")){
         <table class="table table-striped">
         <thead>
             <tr>
-                <th scope="col">'.$allpage_name.'</th>
-                <th scope="col">'.$allpage_link.'</th>
+                <th scope="col">'.$file_filetitle.'</th>
+                <th scope="col">'.$file_filename.'</th>
+                <th scope="col">'.$file_filelink.'</th>
                 <th scope="col">'.$txt_edit.'</th>
-                <th scope="col">'.$txt_copy.'</th>
                 <th scope="col">'.$txt_delete.'</th>
             </tr>
         </thead>
@@ -76,18 +76,15 @@ if(filter_input(INPUT_POST,"query")){
         
         while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
         
-            extract($row);
-            $str=$page_name;
-            $str = preg_replace('/\s+/', '_', $str);
- 
-            $str = strtolower($str);
-           
+           extract($row);
+
            $output.=' <tr>
-                <td>'.$page_name.'</td>
-                <td><a href="../'.$str.'.php">'.$allpage_view.'</a></td>
+                <td>'.$title.'</td>
+                <td>'.$filename.'</td>
+                <td><a href="../uploads/'.$filename.'">'.$file_filelink.'</a></td>
                 <td>
 
-                <a href="index.php?man=page&op=edit&idToMod='.$row["id"].'&type=custom&count='.$row["counter"].'" class="btn btn-warning btn-icon-split">
+                <a href="index.php?man=files&op=edit&idToMod='.$row['id'].'" class="btn btn-warning btn-icon-split">
                             <span class="icon text-white-50">
                                 <i class="fas fa-pen"></i>
                             </span>
@@ -95,18 +92,7 @@ if(filter_input(INPUT_POST,"query")){
                         </a>   
     
                 </td>
-                <td>   
-
-                <a href="core/mngPage.php?op=copy&idToMod='.$row["id"].'" class="btn btn-info btn-icon-split">
-                            <span class="icon text-white-50">
-                                <i class="fas fa-clone"></i>
-                            </span>
-                            <span class="text">'.$txt_copy.'</span>
-                        </a>  
-                </td>
-                <td>';
-            if($no_mod==0){
-                $output.='               
+                <td>           
                     <a href="#" class="btn btn-danger btn-icon-split" data-toggle="modal" data-target="#delete'.$row['id'].'">
                         <span class="icon text-white-50">
                             <i class="fas fa-trash"></i>
@@ -124,15 +110,15 @@ if(filter_input(INPUT_POST,"query")){
                                   <span aria-hidden="true">×</span>
                               </button>
                           </div>
-                          <div class="modal-body">'.$allpage_modal_text.'</div>
+                          <div class="modal-body">'.$file_modal_text.'</div>
                           <div class="modal-footer">
                               <button class="btn btn-secondary" type="button" data-dismiss="modal">'.$txt_cancel.'</button>
-                              <a class="btn btn-primary" href="core/mngPage.php?idToDel='.$row["id"].'">Ok</a>
+                              <a class="btn btn-primary" href="core/mngFile.php?idToDel='.$row["id"].'">Ok</a>
                           </div>
                       </div>
                   </div>
               </div>';
-            }
+          
             $output.="</td>";
 
         }
@@ -146,13 +132,13 @@ if(filter_input(INPUT_POST,"query")){
         // calculate for the query LIMIT clause
         $from_record_num = ($records_per_page * $pageNum) - $records_per_page;
 
-        $manage="page";
+        $manage="file";
         $type="custom";
 
         $output.="<ul class=\"pagination justify-content-center\">";
         // button for first page
         if($pageNum>1){
-            $output.="<li class=\"page-item\"><a class=\"page-link\" href='?man=".$manage."&op=show&type={$type}' title='Go to the first page.'>$txt_first_page</a></li>";
+            $output.="<li class=\"page-item\"><a class=\"page-link\" href='?man=".$manage."&op=show' title='Go to the first page.'>$txt_first_page</a></li>";
         }
         // count all products in the database to calculate total pages
         $total_pages = ceil($total_rows / $records_per_page);
@@ -174,16 +160,16 @@ if(filter_input(INPUT_POST,"query")){
                 if ($x == $pageNum) {
                     $output.="<li class='active page-item'><a class=\"page-link\" href=\"#\">$x </a></li>";
                 }else{
-                    $output.="<li class=\"page-item\"><a class=\"page-link\" href='?man=".$manage."&op=show&page=$x&type={$type}'>$x</a></li>";
+                    $output.="<li class=\"page-item\"><a class=\"page-link\" href='?man=".$manage."&op=show&page=$x'>$x</a></li>";
                 }
             }
         }
         // button for last page
         if($pageNum<$total_pages){
-            $output.="<li class=\"page-item\"><a class=\"page-link\" href='?man=".$manage."&op=show&page={$total_pages}&type={$type}' title='Last page is {$total_pages}.'>$txt_last_page</a></li>";
+            $output.="<li class=\"page-item\"><a class=\"page-link\" href='?man=".$manage."&op=show&page={$total_pages}' title='Last page is {$total_pages}.'>$txt_last_page</a></li>";
         }
         $output.="</ul>";
- echo $output;
+        echo $output;
     }else{
-        echo '<div class="alert alert-danger">'.$allpage_nopage.'</div>';
+        echo '<div class="alert alert-danger">'.$file_nofile.'</div>';
     }
