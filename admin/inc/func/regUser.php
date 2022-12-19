@@ -12,7 +12,6 @@ if(filter_input(INPUT_GET,"idToMod")){
     $operation="mod";
 }
 
-
 ?>
 
 
@@ -38,11 +37,8 @@ if(filter_input(INPUT_GET,"idToMod")){
         <input type="hidden" name="operation" value="<?=$operation?>" />
 
         <?php 
-      
-        $user = new User($db);
-        $user->id = $idToMod;
-        
 
+        $user->id = $idToMod;
       
            if($operation=="mod"){ 
                     ?>

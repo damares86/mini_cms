@@ -17,7 +17,7 @@ if (!isset($_SESSION['loggedin'])) {
 
 spl_autoload_register('autoloader');
     function autoloader($class){
-        include("admin/class/$class.php");
+        include("../class/$class.php");
     }
 
 

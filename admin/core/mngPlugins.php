@@ -9,18 +9,17 @@ $debug = new \bdk\Debug(array(
 
 
 // loading class
-include("../class/Database.php");
-include("../class/Plugins.php");
-include("../class/Home.php");
-include("../class/Menu.php");
+spl_autoload_register('autoloader');
+    function autoloader($class){
+        include("../class/$class.php");
+    }
 
 
 $database = new Database();
 $db = $database->getConnection();
 
-$plugins = new Plugins($db);
-$home = new Home($db);
-$menu = new Menu($db);
+include "../inc/class_initialize.php";
+
 
 $op=filter_input(INPUT_GET,"op");
 

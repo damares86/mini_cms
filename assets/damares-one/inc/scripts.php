@@ -4,6 +4,5 @@
 
 
 
-<link type="text/css" href="<?=$root?>assets/<?= $theme ?>/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 <link rel="stylesheet" href="<?=$root?>assets/<?=$theme?>/css/main.css" />
 <link rel="stylesheet" href="<?=$root?>assets/<?=$theme?>/css/custom.css" />

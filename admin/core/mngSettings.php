@@ -9,21 +9,17 @@
 
 
 // loading class
-include("../class/Database.php");
-include("../class/Settings.php");
-include("../class/Menu.php");
-include("../class/Contact.php");
-include("../class/Verify.php");
-
+spl_autoload_register('autoloader');
+    function autoloader($class){
+        include("../class/$class.php");
+    }
 
 
 $database = new Database();
 $db = $database->getConnection();
 
-$settings = new Settings($db);
-$menu = new Menu($db);
-$contact = new Contact($db);
-$verify = new Verify($db);
+include "../inc/class_initialize.php";
+
 
 if(filter_input(INPUT_POST,"subRegCheck")){
 

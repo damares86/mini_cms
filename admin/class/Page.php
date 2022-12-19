@@ -173,7 +173,7 @@ class Page{
                 if($_FILES['info'.$i_real.'']['name']){
                     $this->img_info=$_FILES['info'.$i_real.'']['name'];
                     $this->img_tmp_info=$_FILES['info'.$i_real.'']['tmp_name'];
-                    $this->uploadPicture();
+                    $this->uploadInfo();
                     $_SESSION['sess_pict_info_'.$i_real.'']=$_FILES['info'.$i_real.'']['name'];
                 }else{
                     $_SESSION['sess_pict_info_'.$i_real.'']=$_POST['old_info_'.$i_real.''];
@@ -279,11 +279,11 @@ class Page{
 
     
     function insert(){
-    // if($this->type=="default"){
-    //     $this->table="default_page";
-    // }else if($this->type=="custom"){
-    //     $this->table="page";
-    // }
+    if($this->type=="default"){
+        $this->table="default_page";
+    }else if($this->type=="custom"){
+        $this->table="page";
+    }
     
     // insert query
     $query = "INSERT INTO
@@ -410,13 +410,14 @@ class Page{
                     $stmt->bindParam(':use_desc', $this->use_desc);      
                     $stmt->bindParam(':id', $this->id);   
 
-                    if($stmt->execute()){  
+                    if($stmt->execute()){ 
                         $query1="SELECT * FROM ".$this->prx.$this->table." WHERE page_name = :page_name LIMIT 0,1";
                         $stmt1 = $this->conn->prepare($query1);
                         $stmt1->bindParam(':page_name', $this->page_name);       
                         $stmt1->execute();
                         $row1 = $stmt1->fetch(PDO::FETCH_ASSOC);
                         $actualImage=$row1['img'];
+                        
                         if($this->header!=0){
                             if(($this->img)==$actualImage){
                                 return true;

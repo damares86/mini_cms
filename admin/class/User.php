@@ -186,11 +186,10 @@ class User{
     function showById(){
         $query = "SELECT *
         FROM " .$this->prx. $this->table_name . "
-        WHERE id = ?
+        WHERE id = :id
         LIMIT 0,1";
-  
         $stmt = $this->conn->prepare( $query );
-        $stmt->bindParam(1, $this->id);
+        $stmt->bindParam(":id", $this->id);
         $stmt->execute();
     
         $row = $stmt->fetch(PDO::FETCH_ASSOC);

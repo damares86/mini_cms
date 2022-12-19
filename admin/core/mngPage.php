@@ -16,16 +16,17 @@ if (!isset($_SESSION['loggedin'])) {
 }
 
 	// loading class
-	include("../class/Database.php");
-	include("../class/Page.php");
-	include("../class/Menu.php");
+	spl_autoload_register('autoloader');
+    function autoloader($class){
+        include("../class/$class.php");
+    }
 
 
-	$database = new Database();
-	$db = $database->getConnection();
+$database = new Database();
+$db = $database->getConnection();
 
-	$page = new Page($db);
-	$menu = new Menu($db);
+include "../inc/class_initialize.php";
+
 
 	if(filter_input(INPUT_GET,"idToDel")){
 
@@ -180,12 +181,15 @@ if(filter_input(INPUT_POST,"addBlock")){
 			$page->header=0;
 		}
 
+		
 		if($_POST['visual'][0]=="visual_img"){
 			$page->visual_img=1;
 			if($_FILES['myfile']['name']){
+				print_r("file caricato: err");
+				exit;
 				$page->img=$_FILES['myfile']['name'];
 			}else{
-				$query1="SELECT * FROM default_page WHERE page_name = :page_name LIMIT 0,1";
+				$query1="SELECT * FROM ".$page->prx."default_page WHERE page_name = :page_name LIMIT 0,1";
 				$stmt1 = $db->prepare($query1);
 				$stmt1->bindParam(':page_name', $page->page_name);       
 				$stmt1->execute();

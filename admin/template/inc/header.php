@@ -1,11 +1,11 @@
 <?php
 
-require 'admin/phpDebug/src/Debug/Debug.php';   			// if not using composer
+// require 'admin/phpDebug/src/Debug/Debug.php';   			// if not using composer
 
-$debug = new \bdk\Debug(array(
-    'collect' => true,
-    'output' => true,
-));
+// $debug = new \bdk\Debug(array(
+//     'collect' => true,
+//     'output' => true,
+// ));
 
 session_start();
 // loading class
@@ -211,7 +211,8 @@ while ($row = $stmt2->fetch(PDO::FETCH_ASSOC)){
         <link href='admin/scripts/simplelightbox/simple-lightbox.min.css' rel='stylesheet' type='text/css'>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script type="text/javascript" src="admin/scripts/simplelightbox/simple-lightbox.jquery.min.js"></script>
-<script src="assets/<?=$theme?>/js/bootstrap.min.js"></script>
+        <script src="admin/assets/js/bootstrap.min.js"></script>
+        <link type="text/css" href="admin/assets/css/bootstrap.min.css" rel="stylesheet">
 
 <?php
 foreach (glob("admin/template/inc/css/*.css") as $cssfile){
@@ -219,7 +220,7 @@ foreach (glob("admin/template/inc/css/*.css") as $cssfile){
     <link href='<?=$cssfile?>' rel='stylesheet' type='text/css'>
 <?php
 }
-
+$root="";
 require "admin/inc/func/check.php";
 if(($file=="login.php")||($file=="contact.php")){
     require "admin/template/inc/recaptcha.php";

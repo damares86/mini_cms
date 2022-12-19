@@ -39,6 +39,8 @@ foreach ($files as $filename) {
     $file_var = strtolower($file);
     fwrite($file_handle, '$'.$file_var.' = new '.$file.'($db);');
     fwrite($file_handle, "\n");
+    fwrite($file_handle, '$'.$file_var.'->prx = "'.$prefix_table.'";');
+    fwrite($file_handle, "\n");
 }
 fwrite($file_handle,"?>");
 
@@ -140,6 +142,8 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script type="text/javascript" src="../../admin/scripts/simplelightbox/simple-lightbox.jquery.min.js"></script>
         <link href='../../admin/template/inc/layout.css' rel='stylesheet' type='text/css'>
+        <script src="../../admin/assets/js/bootstrap.min.js"></script>
+        <link type="text/css" href="../../admin/assets/css/bootstrap.min.css" rel="stylesheet">
 
 <?php
 foreach (glob("../admin/template/inc/css/*.css") as $file){

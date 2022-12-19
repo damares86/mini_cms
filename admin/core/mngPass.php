@@ -9,24 +9,22 @@ $debug = new \bdk\Debug(array(
 
 
 session_start();
-// if (!isset($_SESSION['loggedin'])) {
-// 	header('Location: ../');
-//     exit;
-// }
+
+$lang=$_POST['lang'];
+require "../locale/$lang.php";
 
 // loading class
-	include("../class/Database.php");
-	include("../class/User.php");
-	include("../class/Contact.php");
+	spl_autoload_register('autoloader');
+    function autoloader($class){
+        include("../class/$class.php");
+    }
 
-	$lang=$_POST['lang'];
-	require "../locale/$lang.php";
-	
-	$database = new Database();
-	$db = $database->getConnection();
-	
-	$user = new User($db);
-	$contact = new Contact($db);
+
+$database = new Database();
+$db = $database->getConnection();
+
+include "../inc/class_initialize.php";
+
 	
 	$resetForm = filter_input(INPUT_POST, "resetForm");
 	$resetMail = filter_input(INPUT_POST, "resetMail");

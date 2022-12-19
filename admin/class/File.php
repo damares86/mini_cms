@@ -122,7 +122,7 @@ class File{
         $query = "SELECT
         *
     FROM
-        " . $this->table_name . " ".$where."
+        " .$this->prx. $this->table_name . " ".$where."
     ORDER BY
         id 
         LIMIT
@@ -136,7 +136,7 @@ class File{
 
     public function countAll(){
     
-        $query = "SELECT id FROM files";
+        $query = "SELECT id FROM " .$this->prx."files";
     
         $stmt = $this->conn->prepare( $query );
         $stmt->execute();
@@ -148,7 +148,7 @@ class File{
 
     public function countFetch($where){
     
-        $query = "SELECT id FROM files".$where."";
+        $query = "SELECT id FROM " .$this->prx."files".$where."";
     
         $stmt = $this->conn->prepare( $query );
         $stmt->execute();
@@ -301,21 +301,6 @@ function showById(){
 
 
     }
-
-    // function rolename_id(){
-    //     //select all data
-    //     $query = "SELECT
-    //                 id, rolename
-    //             FROM
-    //                 " . $this->table_name . "
-    //             WHERE
-    //                 rolename = :rolename";  
-  
-    //     $stmt = $this->conn->prepare( $query );
-    //     $stmt->execute();
-  
-    //     return $stmt;
-    // }
 
 
 
