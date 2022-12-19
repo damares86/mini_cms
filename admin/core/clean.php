@@ -16,9 +16,17 @@ if(session_status() == PHP_SESSION_ACTIVE){
  include ("../class/Database.php");
  $database=new Database();
  $db = $database->getConnection();
+
+ $prx="";
+ if(is_file("prefix.php")){
+  require "prefix.php";
+  $prx=$prefix;
+ }
+
  
- $query = "DROP TABLE `accounts`, `color`, `contacts`, `default_page`, `files`, `menu`,`page`, `password_reset_temp`, `plugins`, `roles`, `settings`, `verify`, `view_home`";
-     
+ $query = "DROP TABLE `".$prx."accounts`, `".$prx."color`, `".$prx."contacts`, `".$prx."default_page`, `".$prx."files`, `".$prx."menu`,`".$prx."page`, `".$prx."password_reset_temp`, `".$prx."plugins`, `".$prx."roles`, `".$prx."settings`, `".$prx."verify`, `".$prx."view_home`";
+
+ 
  $stmt = $database->conn->prepare($query);
  
  $stmt->execute();
@@ -59,6 +67,9 @@ rmdir("../inc/pages");
 
 unlink("../class/Database.php");
 unlink("site.php");
+if(is_file("prefix.php")){
+  unlink("prefix.php");
+ }
 unlink("../inc/class_initialize.php");
 
 

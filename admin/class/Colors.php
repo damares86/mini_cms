@@ -5,9 +5,10 @@ class Colors{
 
     private $conn;
     private $table_name = "color";
-
+    
     public $id;
     public $color;
+    public $prx;
 
     // constructor
     public function __construct($db){
@@ -19,7 +20,7 @@ class Colors{
     
         // insert query
         $query = "INSERT INTO
-                    " . $this->table_name . "
+                    " .$this->prx. $this->table_name . "
                 SET
                     color = :color";
     
@@ -46,7 +47,7 @@ class Colors{
     function update(){
         // insert query
         $query = "UPDATE
-                    " . $this->table_name . "
+                    " .$this->prx. $this->table_name . "
                 SET
                     color = :color
                 WHERE
@@ -82,7 +83,7 @@ class Colors{
         $query = "SELECT
                     id, color
                 FROM
-                    " . $this->table_name . "
+                    " .$this->prx. $this->table_name . "
                 ORDER BY
                     color";  
   
@@ -98,7 +99,7 @@ class Colors{
         $query = "SELECT
                     id, color
                 FROM
-                    " . $this->table_name . "
+                    " .$this->prx. $this->table_name . "
                 ORDER BY
                     color";  
   
@@ -110,7 +111,7 @@ class Colors{
 
     public function countAll(){
     
-        $query = "SELECT id FROM color";
+        $query = "SELECT id FROM ".$this->prx."color";
     
         $stmt = $this->conn->prepare( $query );
         $stmt->execute();
@@ -122,7 +123,7 @@ class Colors{
 
     function showById(){
         $query = "SELECT *
-        FROM " . $this->table_name . "
+        FROM " .$this->prx. $this->table_name . "
         WHERE id = ?
         LIMIT 0,1";
   
@@ -143,7 +144,7 @@ class Colors{
     
         // query to check if email exists
         $query = "SELECT id, color
-                FROM " . $this->table_name . "
+                FROM " .$this->prx. $this->table_name . "
                 WHERE color = ?
                 LIMIT 0,1";
     
@@ -183,7 +184,7 @@ class Colors{
  // delete the role
  function delete(){
     
-    $query = "DELETE FROM " . $this->table_name . " WHERE id = ?";
+    $query = "DELETE FROM " .$this->prx. $this->table_name . " WHERE id = ?";
     
     $stmt = $this->conn->prepare($query);
     $stmt->bindParam(1, $this->id);

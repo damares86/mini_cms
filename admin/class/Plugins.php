@@ -19,6 +19,7 @@ class Plugins{
     public $sub_add_title;
     public $sub_add_link;
     public $active;
+    public $prx;
 
     // constructor
     public function __construct($db){
@@ -30,7 +31,7 @@ class Plugins{
 
         // insert query
         $query = "INSERT INTO
-                    " . $this->table_name . "
+                    " .$this->prx. $this->table_name . "
                 SET
                     plugin_name = :plugin_name,
                     link = :link,
@@ -78,7 +79,7 @@ class Plugins{
 
         // insert query
         $query = "UPDATE
-                    " . $this->table_name . "
+                    " .$this->prx. $this->table_name . "
                 SET
                     active = :active
                 WHERE
@@ -94,7 +95,7 @@ class Plugins{
         // execute the query, also check if query was successful
         if($stmt->execute()){
             if($this->active==1 && $this->page_exist>0){
-                $query1= "INSERT INTO  default_page      
+                $query1= "INSERT INTO  ".$this->prx."default_page      
                 SET
                 page_name = :page_name,
                 header = 1,
@@ -139,7 +140,7 @@ class Plugins{
         $query = "SELECT
                     *
                 FROM
-                    " . $this->table_name . "
+                    " .$this->prx. $this->table_name . "
                 ORDER BY
                     id";  
   
@@ -151,7 +152,7 @@ class Plugins{
 
     function showByName(){
         $query = "SELECT *
-        FROM " . $this->table_name . "
+        FROM " .$this->prx. $this->table_name . "
         WHERE plugin_name = :plugin_name
         LIMIT 0,1";
   
@@ -178,7 +179,7 @@ class Plugins{
 
     function delete(){
     
-    $query = "DELETE FROM " . $this->table_name . " WHERE plugin_name = :plugin_name";
+    $query = "DELETE FROM " .$this->prx. $this->table_name . " WHERE plugin_name = :plugin_name";
     
     $stmt = $this->conn->prepare($query);
     $stmt->bindParam(':plugin_name', $this->plugin_name);
@@ -192,7 +193,7 @@ class Plugins{
 
 function deletePage(){
     
-    $query = "DELETE FROM default_page WHERE page_name = :plugin_name";
+    $query = "DELETE FROM ".$this->prx."default_page WHERE page_name = :plugin_name";
     
     $stmt = $this->conn->prepare($query);
     $stmt->bindParam(':plugin_name', $this->plugin_name);

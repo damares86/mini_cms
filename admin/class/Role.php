@@ -19,7 +19,7 @@ class Role{
     
         // insert query
         $query = "INSERT INTO
-                    " . $this->table_name . "
+                    " .$this->prx. $this->table_name . "
                 SET
                     rolename = :rolename";
     
@@ -54,7 +54,7 @@ class Role{
         $query = "SELECT
                     id, rolename
                 FROM
-                    " . $this->table_name . "
+                    " .$this->prx. $this->table_name . "
                 WHERE NOT
                     rolename='Admin'
                 ORDER BY
@@ -73,7 +73,7 @@ class Role{
         $query = "SELECT
                     id, rolename
                 FROM
-                    " . $this->table_name . "
+                    " .$this->prx. $this->table_name . "
                 WHERE NOT
                     rolename='Admin'
                 ORDER BY
@@ -87,7 +87,7 @@ class Role{
 
     public function countAll(){
     
-        $query = "SELECT id FROM roles";
+        $query = "SELECT id FROM ".$this->prx."roles";
     
         $stmt = $this->conn->prepare( $query );
         $stmt->execute();
@@ -101,7 +101,7 @@ class Role{
     
         // query to check if email exists
         $query = "SELECT id, rolename
-                FROM " . $this->table_name . "
+                FROM " .$this->prx. $this->table_name . "
                 WHERE rolename = ?
                 LIMIT 0,1";
     
@@ -141,7 +141,7 @@ class Role{
  // delete the role
  function delete(){
     
-    $query = "DELETE FROM " . $this->table_name . " WHERE id = ?";
+    $query = "DELETE FROM " .$this->prx. $this->table_name . " WHERE id = ?";
     
     $stmt = $this->conn->prepare($query);
     $stmt->bindParam(1, $this->id);
@@ -152,41 +152,6 @@ class Role{
         return false;
     }
 }
-
-
-    // function showById($id){
-        
-    //     //select all data
-    //     $query = "SELECT
-    //                 rolename
-    //             FROM
-    //                 " . $this->table_name . "
-    //             WHERE
-    //                 id = ".$id."";  
-        
-    //     $stmt = $this->conn->prepare( $query );
-        
-    //     $stmt->execute();
-    //     return $stmt;
-
-    // }
-
-    // function rolename_id(){
-    //     //select all data
-    //     $query = "SELECT
-    //                 id, rolename
-    //             FROM
-    //                 " . $this->table_name . "
-    //             WHERE
-    //                 rolename = :rolename";  
-  
-    //     $stmt = $this->conn->prepare( $query );
-    //     $stmt->execute();
-  
-    //     return $stmt;
-    // }
-
-
 
 }
 

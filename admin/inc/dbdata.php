@@ -24,43 +24,42 @@
 							<h4 class="card-title">Insert your database data</h4>
 							<form method="POST" class="my-login-validation" novalidate="" action="admin/core/configdb.php">
 								<div class="form-group">
-									<label for="host">Server host (es. localhost)</label>
+									<label for="host">Server host (es. localhost) <span class="text-danger font-weight-bold">*</span></label>
 									<input id="host" class="form-control" name="host" value="" required autofocus>
 								</div>
 
 								<div class="form-group">
-									<label for="dbname">Database name</label>
+									<label for="dbname">Database name <span class="text-danger font-weight-bold">*</span></label>
 									<input id="dbname" class="form-control" name="dbname" value="" required autofocus>
 								</div>
 
 								<div class="form-group">
-									<label for="username">Database user</label>
+									<label for="username">Database user <span class="text-danger font-weight-bold">*</span></label>
 									<input id="username" class="form-control" name="username" value="" required autofocus>
 								</div>
 
 								<div class="form-group">
-									<label for="db_password">Database Password
-										<!-- <a href="forgot.html" class="float-right">
-											Forgot Password?
-										</a> -->
-									</label>
+									<label for="db_password">Database Password <span class="text-danger font-weight-bold">*</span></label>
 									<input id="db_password" type="password" class="form-control" name="db_password" required data-eye>
 								    <div class="invalid-feedback">
 								    	Password is required
 							    	</div>
 								</div>
 								<hr>
+
 								<div class="form-group">
-									<label for="email">Your admin email</label>
+									<label for="prefix">Table prefix <br>(useful if you have more sites on the same database)</label>
+									<input id="prefix" class="form-control" name="prefix" value="" autofocus>
+								</div>
+
+								<hr>
+								<div class="form-group">
+									<label for="email">Your admin email <span class="text-danger font-weight-bold">*</span></label>
 									<input id="email" class="form-control" name="email" value="" required autofocus>
 								</div>
 
 								<div class="form-group">
-									<label for="password">Your admin Password
-										<!-- <a href="forgot.html" class="float-right">
-											Forgot Password?
-										</a> -->
-									</label>
+									<label for="password">Your admin Password <span class="text-danger font-weight-bold">*</span></label>
 									<input id="password" type="password" class="form-control" name="password" required data-eye>
 								    <div class="invalid-feedback">
 								    	Password is required

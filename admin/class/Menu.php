@@ -13,6 +13,7 @@ class Menu{
     public $itemorder;
     public $parent;
     public $childof;
+    public $prx;
 
     // constructor
     public function __construct($db){
@@ -21,7 +22,7 @@ class Menu{
 
     // create new role record
     function insert(){
-        $query="INSERT INTO menu SET pagename = :page_name";
+        $query="INSERT INTO ".$this->prx."menu SET pagename = :page_name";
         $stmt = $this->conn->prepare($query);
         $stmt->bindParam(':page_name', $this->pagename);       
         if($stmt->execute()){
@@ -42,7 +43,7 @@ class Menu{
 
     function update(){
         $query = "UPDATE
-                    " . $this->table_name . "
+                    " .$this->prx.$this->table_name . "
                 SET
                 inmenu = :inmenu,
                 itemorder = :itemorder,
@@ -83,7 +84,7 @@ class Menu{
         $query = "SELECT
                     *
                 FROM
-                    " . $this->table_name . "
+                    " .$this->prx. $this->table_name . "
                 ORDER BY
                     itemorder";  
   
@@ -98,7 +99,7 @@ class Menu{
         $query = "SELECT
                     *
                 FROM
-                    " . $this->table_name . "
+                    " .$this->prx. $this->table_name . "
                 WHERE
                     parent = 1 AND inmenu = 1
                 ORDER BY
@@ -114,7 +115,7 @@ class Menu{
         $query = "SELECT
                     *
                 FROM
-                    " . $this->table_name . "
+                    " .$this->prx. $this->table_name . "
                 WHERE
                     id = :id";  
                     
@@ -130,7 +131,7 @@ class Menu{
         $query = "SELECT
                     *
                 FROM
-                    " . $this->table_name . "
+                    " .$this->prx. $this->table_name . "
                 WHERE
                     childof = :childof AND inmenu = 1 AND parent = 0
                 ORDER BY
@@ -147,7 +148,7 @@ class Menu{
         $query = "SELECT
                     *
                 FROM
-                    " . $this->table_name . "
+                    " .$this->prx. $this->table_name . "
                 WHERE
                     childof = 'none' AND inmenu = 1 AND parent = 0
                 ORDER BY
@@ -165,7 +166,7 @@ class Menu{
         $query = "SELECT 
             id 
             FROM 
-            menu
+            ".$this->prx."menu
             WHERE childof = :childof";
     
         $stmt = $this->conn->prepare( $query );
@@ -184,7 +185,7 @@ class Menu{
         $query = "SELECT 
             id 
             FROM 
-            menu
+            ".$this->prx."menu
             WHERE childof = :childof and inmenu = 1";
     
         $stmt = $this->conn->prepare( $query );
@@ -204,7 +205,7 @@ class Menu{
         $query = "SELECT
                     *
                 FROM
-                    " . $this->table_name . "
+                    " .$this->prx. $this->table_name . "
                 WHERE
                     inmenu = 0
                 ORDER BY
@@ -226,7 +227,7 @@ class Menu{
         $query = "SELECT
                     *
                 FROM
-                    menu
+                    ".$this->prx."menu
                 WHERE
                 inmenu = 1 ORDER BY itemorder ASC";  
   
@@ -239,7 +240,7 @@ class Menu{
 
     public function countAll(){
     
-        $query = "SELECT id FROM menu";
+        $query = "SELECT id FROM ".$this->prx."menu";
     
         $stmt = $this->conn->prepare( $query );
         $stmt->execute();
@@ -251,7 +252,7 @@ class Menu{
 
     function showById(){
         $query = "SELECT *
-        FROM " . $this->table_name . "
+        FROM " .$this->prx. $this->table_name . "
         WHERE id = ?
         LIMIT 0,1";
   
@@ -272,7 +273,7 @@ class Menu{
 
     function showByName(){
         $query = "SELECT *
-        FROM " . $this->table_name . "
+        FROM " .$this->prx. $this->table_name . "
         WHERE pagename = :pagename
         LIMIT 0,1";
         
@@ -298,7 +299,7 @@ class Menu{
  function delete(){
     
   
-    $query = "DELETE FROM menu WHERE pagename = :pagename";
+    $query = "DELETE FROM ".$this->prx."menu WHERE pagename = :pagename";
 
     $stmt = $this->conn->prepare($query);
     $stmt->bindParam(":pagename",$this->pagename);

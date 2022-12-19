@@ -1,11 +1,11 @@
 <?php
 
-// require 'admin/phpDebug/src/Debug/Debug.php';   			// if not using composer
+require 'admin/phpDebug/src/Debug/Debug.php';   			// if not using composer
 
-// $debug = new \bdk\Debug(array(
-//     'collect' => true,
-//     'output' => true,
-// ));
+$debug = new \bdk\Debug(array(
+    'collect' => true,
+    'output' => true,
+));
 
 session_start();
 // loading class
@@ -24,6 +24,12 @@ spl_autoload_register('autoloader');
     }
 
 
+$prefix_table="";
+if(is_file("admin/core/prefix.php")){
+    include "admin/core/prefix.php";
+    $prefix_table=$prefix;
+}
+
 $database = new Database();
 $db = $database->getConnection();
 
@@ -40,6 +46,9 @@ foreach ($files as $filename) {
     $file_var = strtolower($file);
     fwrite($file_handle, '$'.$file_var.' = new '.$file.'($db);');
     fwrite($file_handle, "\n");
+    fwrite($file_handle, '$'.$file_var.'->prx = "'.$prefix_table.'";');
+    fwrite($file_handle, "\n");
+
 }
 fwrite($file_handle,"?>");
 chmod('admin/inc/class_initialize.php',0777);
@@ -47,7 +56,6 @@ chmod('admin/inc/class_initialize.php',0777);
 }
 
 include "admin/inc/class_initialize.php";
-
 
 $stmt2=$settings->showSettings();
 

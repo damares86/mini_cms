@@ -23,6 +23,13 @@ function autoloader($class){
 	include("class/$class.php");
 }
 
+$prefix_table="";
+if(is_file("core/prefix.php")){
+  include "core/prefix.php";
+  $prefix_table=$prefix;
+}
+
+
 $database = new Database();
 $db = $database->getConnection();
 
@@ -38,6 +45,8 @@ foreach ($files as $filename) {
     $file=$nomefile['filename'];
     $file_var = strtolower($file);
     fwrite($file_handle, '$'.$file_var.' = new '.$file.'($db);');
+    fwrite($file_handle, "\n");
+    fwrite($file_handle, '$'.$file_var.'->prx = "'.$prefix_table.'";');
     fwrite($file_handle, "\n");
 }
 fwrite($file_handle,"?>");
@@ -59,7 +68,6 @@ $lang=$settings->dashboard_language;
 foreach (glob("locale/$lang/*.php") as $row){
     require "$row";
 }
-
 
 
 ?>

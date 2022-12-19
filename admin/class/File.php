@@ -13,6 +13,7 @@ class File{
     public $rolename;
     public $file;
     public $operation;
+    public $prx;
 
     // constructor
     public function __construct($db){
@@ -71,13 +72,13 @@ class File{
                     $query="";
                     if($this->operation=="add"){
                     $query = "INSERT INTO
-                                " . $this->table_name . "
+                                " .$this->prx. $this->table_name . "
                             SET
                             filename = :filename,
                             title = :title";
                         }else if($this->operation=="edit"){
                             $query = "UPDATE
-                            " . $this->table_name . "
+                            " .$this->prx. $this->table_name . "
                             SET
                             filename = :filename,
                             title = :title
@@ -239,7 +240,7 @@ class File{
     function update(){
         // insert query
         $query = "UPDATE
-                    " . $this->table_name . "
+                    " .$this->prx. $this->table_name . "
                 SET
                 title = :title
                 WHERE
@@ -268,7 +269,7 @@ class File{
  // delete the file
  function delete(){
     
-    $query = "DELETE FROM " . $this->table_name . " WHERE id = ?";
+    $query = "DELETE FROM " .$this->prx. $this->table_name . " WHERE id = ?";
     
     $stmt = $this->conn->prepare($query);
     $stmt->bindParam(1, $this->id);
@@ -283,7 +284,7 @@ class File{
 
 function showById(){
     $query = "SELECT *
-    FROM " . $this->table_name . "
+    FROM " .$this->prx. $this->table_name . "
     WHERE id = ?
     LIMIT 0,1";
 

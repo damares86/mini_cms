@@ -85,9 +85,23 @@ $password_hash = password_hash($password, PASSWORD_DEFAULT);
 
 $user=new User($db);
 
+$prefix="";
+if($_POST['prefix']){
+  $prefix=$_POST['prefix']."_";
+}
+
+$file_handle = fopen('../core/prefix.php', 'w');
+fwrite($file_handle, '<?php');
+fwrite($file_handle, "\n");
+fwrite($file_handle, '$prefix="'.$prefix.'";');
+fwrite($file_handle, "\n");
+fwrite($file_handle, '?>');
+
+chmod('../core/prefix.php',0777);
+
 $url=explode(".",$_SERVER['SERVER_NAME']);
 
-$webiste="";
+$website="";
 $new_url="";
 
 if($url[0]=="www"){
@@ -139,7 +153,7 @@ umask($oldmask);
 /////////////////////////////////////////////////////////////
 
 // creating user's table 
-$db->query("CREATE TABLE IF NOT EXISTS accounts
+$db->query("CREATE TABLE IF NOT EXISTS ".$prefix."accounts
                            ( id INT ( 5 ) NOT NULL AUTO_INCREMENT PRIMARY KEY,
                              username VARCHAR(50) NOT NULL,
                              password VARCHAR(255) NOT NULL,
@@ -148,25 +162,25 @@ $db->query("CREATE TABLE IF NOT EXISTS accounts
                              last_login datetime DEFAULT CURRENT_TIMESTAMP)");
 
 // creating role's table
-$db->query("CREATE TABLE IF NOT EXISTS roles
+$db->query("CREATE TABLE IF NOT EXISTS ".$prefix."roles
                            ( id INT ( 5 ) NOT NULL AUTO_INCREMENT PRIMARY KEY,
                              rolename VARCHAR(255) NOT NULL)");
 
-$db->query("INSERT INTO roles
+$db->query("INSERT INTO ".$prefix."roles
                             (id, rolename)
                             VALUES ('1','Admin')
                             ");
 
-$db->query("INSERT INTO roles
+$db->query("INSERT INTO ".$prefix."roles
                             (id, rolename)
                             VALUES ('2','Manager')
                             ");
-$db->query("INSERT INTO roles
+$db->query("INSERT INTO ".$prefix."roles
                             (id, rolename)
                             VALUES ('3','Editor')
                             ");
 
-$db->query("CREATE TABLE settings (
+$db->query("CREATE TABLE ".$prefix."settings (
   id int(5) NOT NULL AUTO_INCREMENT PRIMARY KEY,
   site_name VARCHAR(255) NOT NULL,
   site_description VARCHAR(255) NOT NULL,
@@ -174,9 +188,10 @@ $db->query("CREATE TABLE settings (
   footer TEXT NOT NULL,
   dashboard_language VARCHAR(255) NOT NULL,
   theme VARCHAR(255) NOT NULL,
+  prefix VARCHAR(255) NOT NULL,
   dm INT (1) DEFAULT 1)");
 
-$db->query("CREATE TABLE IF NOT EXISTS page
+$db->query("CREATE TABLE IF NOT EXISTS ".$prefix."page
               ( id INT ( 5 ) NOT NULL AUTO_INCREMENT PRIMARY KEY,
                 page_name VARCHAR(255) NOT NULL,
                 no_mod INT (1) DEFAULT '0',
@@ -188,7 +203,7 @@ $db->query("CREATE TABLE IF NOT EXISTS page
                 counter INT(5) DEFAULT '1')
                 ");
 
-$db->query("CREATE TABLE IF NOT EXISTS default_page
+$db->query("CREATE TABLE IF NOT EXISTS ".$prefix."default_page
               ( id INT ( 5 ) NOT NULL AUTO_INCREMENT PRIMARY KEY,
                 page_name VARCHAR(255) NOT NULL,
                 header INT (1) DEFAULT '1',
@@ -198,7 +213,7 @@ $db->query("CREATE TABLE IF NOT EXISTS default_page
                 ");
 
 
-$db->query("CREATE TABLE IF NOT EXISTS menu
+$db->query("CREATE TABLE IF NOT EXISTS ".$prefix."menu
                             ( id INT ( 5 ) NOT NULL AUTO_INCREMENT PRIMARY KEY,
                               pagename VARCHAR(255) NOT NULL,
                               inmenu INT(1) DEFAULT '0',
@@ -210,7 +225,7 @@ $db->query("CREATE TABLE IF NOT EXISTS menu
 chmod("../inc/func/regCheck.php",0777);
 
 
-$db->query("CREATE TABLE IF NOT EXISTS plugins
+$db->query("CREATE TABLE IF NOT EXISTS ".$prefix."plugins
                             ( id INT ( 5 ) NOT NULL AUTO_INCREMENT PRIMARY KEY,
                               plugin_name VARCHAR(255) NOT NULL,
                               link VARCHAR(255) DEFAULT NULL,
@@ -225,117 +240,117 @@ $db->query("CREATE TABLE IF NOT EXISTS plugins
                               active INT(1) NOT NULL)
                               ");
 
-$db->query("CREATE TABLE IF NOT EXISTS view_home
+$db->query("CREATE TABLE IF NOT EXISTS ".$prefix."view_home
                 ( id INT ( 5 ) NOT NULL AUTO_INCREMENT PRIMARY KEY,
                   name_function VARCHAR(255) NOT NULL)");
 
-$db->query("INSERT INTO view_home
+$db->query("INSERT INTO ".$prefix."view_home
           (id, name_function)
           VALUES ('1','color')
           ");
 
 
-$db->query("CREATE TABLE IF NOT EXISTS files
+$db->query("CREATE TABLE IF NOT EXISTS ".$prefix."files
                             ( id INT ( 5 ) NOT NULL AUTO_INCREMENT PRIMARY KEY,
                               filename VARCHAR(255) NOT NULL,
                               title VARCHAR(255) NOT NULL)
                               ");
 
-$db->query("CREATE TABLE IF NOT EXISTS color
+$db->query("CREATE TABLE IF NOT EXISTS ".$prefix."color
                               ( id INT ( 5 ) NOT NULL AUTO_INCREMENT PRIMARY KEY,
                                 color VARCHAR(50) NOT NULL)");
-$db->query("INSERT INTO color
+$db->query("INSERT INTO ".$prefix."color
                               (id, color)
                               VALUES ('1','#008db1')
                               ");
-$db->query("INSERT INTO color
+$db->query("INSERT INTO ".$prefix."color
                             (id, color)
                             VALUES ('2','#00cc99')
                             ");
-$db->query("INSERT INTO color
+$db->query("INSERT INTO ".$prefix."color
                            (id, color)
                            VALUES ('3','#000000')
                            ");
 
-$db->query("INSERT INTO color
+$db->query("INSERT INTO ".$prefix."color
                             (id, color)
                             VALUES ('4','#ffffff')
                             ");
 
-$db->query("INSERT INTO accounts
+$db->query("INSERT INTO ".$prefix."accounts
 (id, username, password,email,rolename)
 VALUES ('1','admin', '". $password_hash ."','". $user_email ."','Admin')
 ");
 
 
-$db->query("INSERT INTO settings
-(id, site_name, site_description,footer,dashboard_language,theme,dm)
-VALUES ('1','Mini Cms', 'Create your own website','Your footer text','en','damares','1')
+$db->query("INSERT INTO ".$prefix."settings
+(id, site_name, site_description,footer,dashboard_language,theme,prefix,dm)
+VALUES ('1','Mini Cms', 'Create your own website','Your footer text','en','damares','".$prefix."','1')
 ");
 
-$db->query("INSERT INTO page 
+$db->query("INSERT INTO ".$prefix."page 
 (id, page_name, no_mod, layout, header, use_name, use_desc, img, counter) 
 VALUES ('1','index', '1', 'default', '1', '1', '1', 'visual.jpg', '1')
 ");
 
-$db->query("INSERT INTO default_page 
+$db->query("INSERT INTO ".$prefix."default_page 
 (id, page_name, header, use_name, use_desc, img) 
 VALUES ('1','Login', '1', '1', '1', 'visual.jpg')
 ");
 
-$db->query("INSERT INTO default_page 
+$db->query("INSERT INTO ".$prefix."default_page 
 (id, page_name, header, use_name, use_desc, img) 
 VALUES ('2','Contact', '1', '1', '1', 'visual.jpg')
 ");
 
-$db->query("INSERT INTO menu 
+$db->query("INSERT INTO ".$prefix."menu 
 (id, pagename, inmenu,itemorder,parent,childof) 
 VALUES ('1','index', '1','1','1','none')
 ");
 
 
-$db->query("INSERT INTO menu 
+$db->query("INSERT INTO ".$prefix."menu 
 (id, pagename, inmenu,itemorder,parent,childof) 
 VALUES ('2','Login', '1','2','1','none')
 ");
 
-$db->query("INSERT INTO menu 
+$db->query("INSERT INTO ".$prefix."menu 
 (id, pagename, inmenu,itemorder,parent,childof) 
 VALUES ('3','Contact', '0','3','1','none')
 ");
 
-$db->query("CREATE TABLE `password_reset_temp` (
+$db->query("CREATE TABLE ".$prefix."password_reset_temp (
   `email` varchar(250) NOT NULL PRIMARY KEY,
   `token` varchar(250) NOT NULL,
   `expDate` datetime NOT NULL
 )
 ");
 
-$db->query("CREATE TABLE `verify` (
+$db->query("CREATE TABLE ".$prefix."verify (
   `id` INT ( 5 ) NOT NULL AUTO_INCREMENT PRIMARY KEY,
   `public` varchar(250) NOT NULL,
   `secret` varchar(250) NOT NULL,
   `active` INT ( 5 ) DEFAULT 0
 )");
 
-$db->query("INSERT INTO verify
+$db->query("INSERT INTO ".$prefix."verify
 (id, public, secret, active) 
 VALUES ('1','PUBLIC_KEY', 'SECRET_KEY', '0')
 ");
 
 
-$db->query("CREATE TABLE `contacts` (
+$db->query("CREATE TABLE ".$prefix."contacts (
   `id` INT ( 5 ) NOT NULL AUTO_INCREMENT PRIMARY KEY,
   `label` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL
 )");
 
-$db->query("INSERT INTO contacts 
+$db->query("INSERT INTO ".$prefix."contacts 
 (id, label, email) 
 VALUES ('1','noreply', 'noreply@yoursite.com')
 ");
 
-$db->query("INSERT INTO contacts 
+$db->query("INSERT INTO ".$prefix."contacts 
 (id, label, email) 
 VALUES ('2','Info', 'info@yoursite.com')
 ");

@@ -14,6 +14,7 @@ class User{
     public $last_login;
     public $token;
     public $expDate;
+    public $prx;
 
     // constructor
     public function __construct($db){
@@ -25,7 +26,7 @@ class User{
     
         // insert query
         $query = "INSERT INTO
-                    " . $this->table_name . "
+                    " .$this->prx. $this->table_name . "
                 SET
                     username = :username,
                     password = :password,
@@ -65,7 +66,7 @@ class User{
         }
         // insert query
         $query = "UPDATE
-                    " . $this->table_name . "
+                    " .$this->prx. $this->table_name . "
                 SET
                     username = :username,
                     email = :email" . $this->setRolename . "
@@ -97,7 +98,7 @@ class User{
     function updatePass(){
         // insert query
         $query = "UPDATE
-                    " . $this->table_name . "
+                    " .$this->prx. $this->table_name . "
                 SET
                     password = :password
                 WHERE
@@ -124,7 +125,7 @@ class User{
 
     function updateLog($time){
         $query="UPDATE 
-        " . $this->table_name . "
+        " .$this->prx. $this->table_name . "
             SET last_login=:last_login 
             WHERE username = :username";
 
@@ -146,7 +147,7 @@ class User{
 
     public function findToken(){
     
-        $query = "SELECT * FROM password_reset_temp WHERE
+        $query = "SELECT * FROM ".$this->prx."password_reset_temp WHERE
                 ( email = :email AND token = :token)";
     
         $stmt = $this->conn->prepare( $query );
@@ -168,7 +169,7 @@ class User{
         $query = "SELECT
                     *
                 FROM
-                " . $this->table_name . "
+                " .$this->prx. $this->table_name . "
                 WHERE NOT
                     rolename='Admin'".$where."
                 ORDER BY
@@ -184,7 +185,7 @@ class User{
 
     function showById(){
         $query = "SELECT *
-        FROM " . $this->table_name . "
+        FROM " .$this->prx. $this->table_name . "
         WHERE id = ?
         LIMIT 0,1";
   
@@ -203,7 +204,7 @@ class User{
 
     function showByEmail(){
         $query = "SELECT *
-        FROM " . $this->table_name . "
+        FROM " .$this->prx. $this->table_name . "
         WHERE email = :email
         LIMIT 0,1";
   
@@ -222,7 +223,7 @@ class User{
 
     function showEmailPass(){
         $query = "SELECT *
-        FROM password_reset_temp
+        FROM ".$this->prx."password_reset_temp
         WHERE email = :email
         LIMIT 0,1";
   
@@ -239,7 +240,7 @@ class User{
 
     public function countAll(){
     
-        $query = "SELECT id FROM accounts WHERE NOT id=1";
+        $query = "SELECT id FROM ".$this->prx."accounts WHERE NOT id=1";
     
         $stmt = $this->conn->prepare( $query );
         $stmt->execute();
@@ -251,7 +252,7 @@ class User{
 
     public function countFetch($where){
     
-        $query = "SELECT id FROM accounts WHERE NOT id=1 ".$where."";
+        $query = "SELECT id FROM ".$this->prx."accounts WHERE NOT id=1 ".$where."";
     
         $stmt = $this->conn->prepare( $query );
         $stmt->execute();
@@ -267,7 +268,7 @@ class User{
     
         // query to check if email exists
         $query = "SELECT id, username, password, rolename
-                FROM " . $this->table_name . "
+                FROM " .$this->prx. $this->table_name . "
                 WHERE email = ?
                 LIMIT 0,1";
     
@@ -308,7 +309,7 @@ class User{
 
     function delete(){
     
-        $query = "DELETE FROM " . $this->table_name . " WHERE id = ?";
+        $query = "DELETE FROM " .$this->prx. $this->table_name . " WHERE id = ?";
         
         $stmt = $this->conn->prepare($query);
         $stmt->bindParam(1, $this->id);
