@@ -9,22 +9,19 @@
 
 
 session_start();
-// if (!isset($_SESSION['loggedin'])) {
-// 	header('Location: ../');
-//     exit;
-// }
 
 // loading class
-	include("../class/Database.php");
-	include("../class/Contact.php");
-	include("../class/Verify.php");
+spl_autoload_register('autoloader');
+    function autoloader($class){
+        include("../class/$class.php");
+    }
 
-	
-	$database = new Database();
-	$db = $database->getConnection();
-	
-	$contact = new Contact($db);
-	$verify = new Verify($db);
+
+$database = new Database();
+$db = $database->getConnection();
+
+include "../inc/class_initialize.php";
+
 
 
 	if(!$_POST['name']||!$_POST['email']||!$_POST['message']||!$_POST['subject']){

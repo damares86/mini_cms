@@ -16,15 +16,17 @@ if (!isset($_SESSION['loggedin'])) {
 }
 
 // loading class
-include("../class/Database.php");
-include("../class/File.php");
-include("../class/Settings.php");
+spl_autoload_register('autoloader');
+    function autoloader($class){
+        include("../class/$class.php");
+    }
+
 
 $database = new Database();
 $db = $database->getConnection();
 
-$file = new File($db);
-$settings = new Settings($db);
+include "../inc/class_initialize.php";
+
 
 $stmt=$settings->showLangAndName();
 $lang=$settings->dashboard_language;

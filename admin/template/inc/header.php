@@ -24,6 +24,12 @@ spl_autoload_register('autoloader');
     }
 
 
+$prefix_table="";
+if(is_file("admin/core/prefix.php")){
+    include "admin/core/prefix.php";
+    $prefix_table=$prefix;
+}
+
 $database = new Database();
 $db = $database->getConnection();
 
@@ -40,6 +46,9 @@ foreach ($files as $filename) {
     $file_var = strtolower($file);
     fwrite($file_handle, '$'.$file_var.' = new '.$file.'($db);');
     fwrite($file_handle, "\n");
+    fwrite($file_handle, '$'.$file_var.'->prx = "'.$prefix_table.'";');
+    fwrite($file_handle, "\n");
+
 }
 fwrite($file_handle,"?>");
 chmod('admin/inc/class_initialize.php',0777);
@@ -47,7 +56,6 @@ chmod('admin/inc/class_initialize.php',0777);
 }
 
 include "admin/inc/class_initialize.php";
-
 
 $stmt2=$settings->showSettings();
 
@@ -203,7 +211,8 @@ while ($row = $stmt2->fetch(PDO::FETCH_ASSOC)){
         <link href='admin/scripts/simplelightbox/simple-lightbox.min.css' rel='stylesheet' type='text/css'>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script type="text/javascript" src="admin/scripts/simplelightbox/simple-lightbox.jquery.min.js"></script>
-<script src="assets/<?=$theme?>/js/bootstrap.min.js"></script>
+        <script src="admin/assets/js/bootstrap.min.js"></script>
+        <link type="text/css" href="admin/assets/css/bootstrap.min.css" rel="stylesheet">
 
 <?php
 foreach (glob("admin/template/inc/css/*.css") as $cssfile){
@@ -211,7 +220,7 @@ foreach (glob("admin/template/inc/css/*.css") as $cssfile){
     <link href='<?=$cssfile?>' rel='stylesheet' type='text/css'>
 <?php
 }
-
+$root="";
 require "admin/inc/func/check.php";
 if(($file=="login.php")||($file=="contact.php")){
     require "admin/template/inc/recaptcha.php";

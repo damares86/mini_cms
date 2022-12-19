@@ -30,8 +30,6 @@ function is_dir_empty($dir) {
     }
 
 
-
-
 ?>
 
 
@@ -156,6 +154,7 @@ if($operation=="add"){
                     <input type="hidden" name="no_mod" value="<?= $page->no_mod ?>" />
             
                        <input type="hidden" name="type" value="custom" />
+                       <input type="hidden" name="prx" value="<?=$page->prx?>" />
                      
                 </div>
             </div>

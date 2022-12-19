@@ -34,6 +34,7 @@ class Page{
     public $child_of;
     public $maps;
     public $contacts;
+    public $prx;
 
     // constructor
     public function __construct($db){
@@ -172,7 +173,7 @@ class Page{
                 if($_FILES['info'.$i_real.'']['name']){
                     $this->img_info=$_FILES['info'.$i_real.'']['name'];
                     $this->img_tmp_info=$_FILES['info'.$i_real.'']['tmp_name'];
-                    $this->uploadPicture();
+                    $this->uploadInfo();
                     $_SESSION['sess_pict_info_'.$i_real.'']=$_FILES['info'.$i_real.'']['name'];
                 }else{
                     $_SESSION['sess_pict_info_'.$i_real.'']=$_POST['old_info_'.$i_real.''];
@@ -286,7 +287,7 @@ class Page{
     
     // insert query
     $query = "INSERT INTO
-        " . $this->table_name . "
+        " .$this->prx. $this->table_name . "
         SET
         page_name = :page_name,
         no_mod = :no_mod,
@@ -314,7 +315,7 @@ class Page{
             if($this->visual_img==1){
                 $this->uploadPhoto();
             }else if($this->visual_gall==1){
-                $query2 = "UPDATE " . $this->table . "
+                $query2 = "UPDATE " .$this->prx. $this->table_name . "
                         SET
                         img = :img
                         WHERE page_name = :page_name";
@@ -328,7 +329,7 @@ class Page{
                 $stmt2->execute();
             }
 
-            $query1="INSERT INTO menu SET pagename = :page_name";
+            $query1="INSERT INTO ".$this->prx."menu SET pagename = :page_name";
             $stmt1 = $this->conn->prepare($query1);
             $stmt1->bindParam(':page_name', $this->page_name);       
             if($stmt1->execute()){
@@ -365,7 +366,7 @@ class Page{
             $stmt="";
             
             $query = "UPDATE
-                " . $this->table . "
+                " .$this->prx. $this->table . "
                 SET
                 page_name = :page_name".$this->setNo_mod.",
                 layout = :layout,
@@ -394,7 +395,7 @@ class Page{
 
            
                 $query = "UPDATE
-                    default_page
+                    ".$this->prx."default_page
                     SET
                     header = :header,
                     use_name = :use_name,
@@ -409,13 +410,14 @@ class Page{
                     $stmt->bindParam(':use_desc', $this->use_desc);      
                     $stmt->bindParam(':id', $this->id);   
 
-                    if($stmt->execute()){  
-                        $query1="SELECT * FROM ".$this->table." WHERE page_name = :page_name LIMIT 0,1";
+                    if($stmt->execute()){ 
+                        $query1="SELECT * FROM ".$this->prx.$this->table." WHERE page_name = :page_name LIMIT 0,1";
                         $stmt1 = $this->conn->prepare($query1);
                         $stmt1->bindParam(':page_name', $this->page_name);       
                         $stmt1->execute();
                         $row1 = $stmt1->fetch(PDO::FETCH_ASSOC);
                         $actualImage=$row1['img'];
+                        
                         if($this->header!=0){
                             if(($this->img)==$actualImage){
                                 return true;
@@ -427,7 +429,7 @@ class Page{
                                         return false;
                                     }
                                 }else if($this->visual_gall==1){
-                                    $query2 = "UPDATE " . $this->table . "
+                                    $query2 = "UPDATE " .$this->prx. $this->table . "
                                             SET
                                             img = :img
                                             WHERE page_name = :page_name";
@@ -458,7 +460,7 @@ class Page{
             if($stmt->execute()){    
 
                 if($this->old_page_name != $this->page_name){
-                    $query3="SELECT * FROM menu WHERE pagename = :page_name LIMIT 0,1";
+                    $query3="SELECT * FROM ".$this->prx."menu WHERE pagename = :page_name LIMIT 0,1";
                     $stmt3 = $this->conn->prepare($query3);
                     $stmt3->bindParam(':page_name', $this->old_page_name);       
                     $stmt3->execute();
@@ -466,7 +468,7 @@ class Page{
                     $id=$row3['id'];
 
 
-                    $query2 = "UPDATE menu SET 
+                    $query2 = "UPDATE ".$this->prx."menu SET 
                     pagename = :page_name
                     WHERE
                     id = :id";
@@ -495,7 +497,7 @@ class Page{
 
          
 
-                $query1="SELECT * FROM ".$this->table." WHERE page_name = :page_name LIMIT 0,1";
+                $query1="SELECT * FROM ".$this->prx.$this->table." WHERE page_name = :page_name LIMIT 0,1";
                 $stmt1 = $this->conn->prepare($query1);
                 $stmt1->bindParam(':page_name', $this->page_name);       
                 $stmt1->execute();
@@ -512,7 +514,7 @@ class Page{
                                 return false;
                             }
                         }else if($this->visual_gall==1){
-                            $query2 = "UPDATE " . $this->table . "
+                            $query2 = "UPDATE " .$this->prx. $this->table . "
                                     SET
                                     img = :img
                                     WHERE page_name = :page_name";
@@ -607,7 +609,7 @@ class Page{
                     }
                 }
             }
-            $query2 = "UPDATE " . $this->table . "
+            $query2 = "UPDATE " .$this->prx. $this->table . "
                         SET
                         img = :img
                         WHERE page_name = :page_name";
@@ -739,7 +741,7 @@ class Page{
         $query = "SELECT
                     *
                 FROM
-                    " . $this->table_name . "".$where."
+                    " .$this->prx. $this->table_name . "".$where."
                 ORDER BY
                     id DESC
                     LIMIT
@@ -758,7 +760,7 @@ class Page{
         $query = "SELECT
                     *
                 FROM
-                    default_page
+                    ".$this->prx."default_page
                 ORDER BY
                     id ASC";  
   
@@ -773,7 +775,7 @@ class Page{
         $query = "SELECT
                     *
                 FROM
-                    page
+                    ".$this->prx."page
                 ORDER BY
                     id DESC";  
     
@@ -788,7 +790,7 @@ class Page{
         $query1 = "SELECT
                 *
             FROM
-                default_page
+                ".$this->prx."default_page
             ORDER BY
                 id DESC";  
 
@@ -808,7 +810,7 @@ class Page{
         $query = "SELECT
                     *
                 FROM
-                    menu
+                    ".$this->prx."menu
                 WHERE
                 inmenu = 'y' ORDER BY itemorder ASC";  
   
@@ -821,7 +823,7 @@ class Page{
 
     public function countAllDefault(){
     
-        $query = "SELECT id FROM default_page";
+        $query = "SELECT id FROM ".$this->prx."default_page";
     
         $stmt = $this->conn->prepare( $query );
         $stmt->execute();
@@ -833,7 +835,7 @@ class Page{
 
     public function countAllCustom(){
     
-        $query = "SELECT id FROM page";
+        $query = "SELECT id FROM ".$this->prx."page";
     
         $stmt = $this->conn->prepare( $query );
         $stmt->execute();
@@ -845,7 +847,7 @@ class Page{
 
     public function countFetchCustom($where){
     
-        $query = "SELECT id FROM page".$where."";
+        $query = "SELECT id FROM ".$this->prx."page".$where."";
     
         $stmt = $this->conn->prepare( $query );
         $stmt->execute();
@@ -858,7 +860,7 @@ class Page{
 
     function showById(){
         $query = "SELECT *
-        FROM " . $this->table_name . "
+        FROM " .$this->prx. $this->table_name . "
         WHERE id = ?
         LIMIT 0,1";
               
@@ -882,7 +884,7 @@ class Page{
 
     function showByName(){
         $query = "SELECT *
-        FROM " . $this->table_name . "
+        FROM " .$this->prx. $this->table_name . "
         WHERE page_name = :page_name
         LIMIT 0,1";      
         
@@ -905,7 +907,7 @@ class Page{
 
     function showByIdDefault(){
         $query = "SELECT *
-        FROM default_page
+        FROM ".$this->prx."default_page
         WHERE id = ?
         LIMIT 0,1";
   
@@ -927,7 +929,7 @@ class Page{
 
     function showByNameDefault(){
         $query = "SELECT *
-        FROM default_page
+        FROM ".$this->prx."default_page
         WHERE page_name = :page_name
         LIMIT 0,1";
         
@@ -964,13 +966,13 @@ class Page{
 
     $name=$this->page_name;
     
-    $query = "DELETE FROM " . $this->table_name . " WHERE id = ?";
+    $query = "DELETE FROM " .$this->prx. $this->table_name . " WHERE id = ?";
     
     $stmt = $this->conn->prepare($query);
     $stmt->bindParam(1, $this->id);
 
     if($stmt->execute()){
-        $query1 = "DELETE FROM menu WHERE pagename = :pagename";
+        $query1 = "DELETE FROM ".$this->prx."menu WHERE pagename = :pagename";
         
         $stmt1 = $this->conn->prepare($query1);
         $stmt1->bindParam(":pagename", $name);

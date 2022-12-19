@@ -1,5 +1,4 @@
 <?php
-
 class Settings{
     
     private $conn;
@@ -12,7 +11,10 @@ class Settings{
     public $footer;
     public $dashboard_language;
     public $theme;
+    public $prx;
     public $dm;
+
+    
 
     // constructor
     public function __construct($db){
@@ -23,7 +25,7 @@ class Settings{
     function update(){
         // insert query
         $query = "UPDATE
-                    " . $this->table_name . "
+                    " .$this->prx. $this->table_name . "
                 SET
                     site_name = :site_name,
                     site_description = :site_description,
@@ -61,7 +63,7 @@ class Settings{
     function updateTheme(){
         // insert query
         $query = "UPDATE
-                    " . $this->table_name . "
+                    " .$this->prx. $this->table_name . "
                 SET
                     theme = :theme";
     // prepare the query
@@ -95,7 +97,7 @@ class Settings{
         $query = "SELECT
                     *
                 FROM
-                " . $this->table_name . "";
+                " .$this->prx. $this->table_name . "";
       
         $stmt = $this->conn->prepare( $query );
         $stmt->execute();
@@ -106,7 +108,7 @@ class Settings{
     function updateCheck(){
         // insert query
         $query = "UPDATE
-                    " . $this->table_name . "
+                    " .$this->prx. $this->table_name . "
                 SET
                     dm = :dm
                 WHERE
@@ -136,7 +138,7 @@ class Settings{
         $query = "SELECT
                     *
                 FROM
-                " . $this->table_name . "";
+                " .$this->prx. $this->table_name . "";
   
         $stmt = $this->conn->prepare( $query );
         $stmt->execute();

@@ -9,24 +9,22 @@ $debug = new \bdk\Debug(array(
 
 
 session_start();
-// if (!isset($_SESSION['loggedin'])) {
-// 	header('Location: ../');
-//     exit;
-// }
+
+$lang=$_POST['lang'];
+require "../locale/$lang.php";
 
 // loading class
-	include("../class/Database.php");
-	include("../class/User.php");
-	include("../class/Contact.php");
+	spl_autoload_register('autoloader');
+    function autoloader($class){
+        include("../class/$class.php");
+    }
 
-	$lang=$_POST['lang'];
-	require "../locale/$lang.php";
-	
-	$database = new Database();
-	$db = $database->getConnection();
-	
-	$user = new User($db);
-	$contact = new Contact($db);
+
+$database = new Database();
+$db = $database->getConnection();
+
+include "../inc/class_initialize.php";
+
 	
 	$resetForm = filter_input(INPUT_POST, "resetForm");
 	$resetMail = filter_input(INPUT_POST, "resetMail");
@@ -53,7 +51,7 @@ session_start();
 			exit;
 		}
 		
-		$query="SELECT * FROM `password_reset_temp` WHERE `email` = '$email' LIMIT 0,1";
+		$query="SELECT * FROM `".$user->prx."password_reset_temp` WHERE `email` = '$email' LIMIT 0,1";
 		$stmt=$db->prepare($query);	
 		$stmt->execute();
 		$row=$stmt->fetch(PDO::FETCH_ASSOC);
@@ -61,7 +59,7 @@ session_start();
 		$expDate=$row['expDate'];
 		
 		if((!$row['email']||(($row['email']) && ($expDate<$curDate)))){
-			$query="DELETE FROM `password_reset_temp` WHERE `email` = '$email'";
+			$query="DELETE FROM `".$user->prx."password_reset_temp` WHERE `email` = '$email'";
 			$stmt=$db->prepare($query);	
 			if(!$stmt->execute()){
 				header("Location: ../../login.php?msg=noResetDelete");
@@ -75,7 +73,7 @@ session_start();
 			$token = $token . $addToken;
 			$user->token=$token;
 			// $user->addResetPassKey();
-			$query="INSERT INTO `password_reset_temp` (`email`, `token`, `expDate`)
+			$query="INSERT INTO `".$user->prx."password_reset_temp` (`email`, `token`, `expDate`)
 			VALUES ('".$email."', '".$token."', '".$expDate."');";
 			$stmt=$db->prepare($query);
 
@@ -146,7 +144,7 @@ session_start();
 
 		// update the post
 		if($user->updatePass()){
-			$query="DELETE FROM password_reset_temp WHERE email = '$email'";
+			$query="DELETE FROM ".$user->prx."password_reset_temp WHERE email = '$email'";
 			$stmt=$db->prepare($query);	
 			if($stmt->execute()){
 				header("Location: ../../login.php?msg=newPass");

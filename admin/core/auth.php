@@ -18,8 +18,8 @@ function autoloader($class){
 $database = new Database();
 $db = $database->getConnection();
 
-$user = new User($db);
-$verify = new Verify($db);
+include "../inc/class_initialize.php";
+
 
 
 

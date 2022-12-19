@@ -9,6 +9,7 @@ class Contact{
     public $id;
     public $label;
     public $email;
+    public $prx;
 
     // constructor
     public function __construct($db){
@@ -20,7 +21,7 @@ class Contact{
     
         // insert query
         $query = "INSERT INTO
-                    " . $this->table_name . "
+                    " .$this->prx. $this->table_name . "
                 SET
                     label = :label,
                     email = :email";
@@ -51,7 +52,7 @@ class Contact{
 
         // insert query
         $query = "UPDATE
-                    " . $this->table_name . "
+                    " .$this->prx. $this->table_name . "
                 SET
                     email = :email
                 WHERE
@@ -88,7 +89,7 @@ class Contact{
         $query = "SELECT
                     *
                 FROM
-                    " . $this->table_name . "
+                    " .$this->prx. $this->table_name . "
                 ORDER BY
                     id";  
   
@@ -104,7 +105,7 @@ class Contact{
         $query = "SELECT
                     *
                 FROM
-                    " . $this->table_name . "
+                    " .$this->prx. $this->table_name . "
                     WHERE NOT id=1
                 ORDER BY
                     id";  
@@ -117,7 +118,7 @@ class Contact{
 
     function delete(){
         
-        $query = "DELETE FROM " . $this->table_name . " WHERE id = :id";
+        $query = "DELETE FROM " .$this->prx. $this->table_name . " WHERE id = :id";
         
         $stmt = $this->conn->prepare($query);
         $stmt->bindParam(":id", $this->id);

@@ -327,6 +327,7 @@ function is_dir_empty($dir) {
                     </div>
                 </div>
             </div>
+        </div>
 
 
         <?php

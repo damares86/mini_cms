@@ -9,23 +9,19 @@
 
 
 session_start();
-// if (!isset($_SESSION['loggedin'])) {
-// 	header('Location: ../');
-//     exit;
-// }
 
 // loading class
-	include("../class/Database.php");
-	include("../class/User.php");
-	include("../class/Contact.php");
+spl_autoload_register('autoloader');
+function autoloader($class){
+	include("../class/$class.php");
+}
 
-	
-	$database = new Database();
-	$db = $database->getConnection();
-	
-	$user = new User($db);
-	$contact = new Contact($db);
-	$verify = new Verify($db);
+
+$database = new Database();
+$db = $database->getConnection();
+
+include "../inc/class_initialize.php";
+
 
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['recaptcha_response'])) {
@@ -72,7 +68,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['recaptcha_response'])
 			exit;
 		}
 		
-		$query="SELECT * FROM `password_reset_temp` WHERE `email` = '$email' LIMIT 0,1";
+		$query="SELECT * FROM `".$user->prx."password_reset_temp` WHERE `email` = '$email' LIMIT 0,1";
 		$stmt=$db->prepare($query);	
 		$stmt->execute();
 		$row=$stmt->fetch(PDO::FETCH_ASSOC);
@@ -80,7 +76,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['recaptcha_response'])
 		$expDate=$row['expDate'];
 		
 		if((!$row['email']||(($row['email']) && ($expDate<$curDate)))){
-			$query="DELETE FROM `password_reset_temp` WHERE `email` = '$email'";
+			$query="DELETE FROM `".$user->prx."password_reset_temp` WHERE `email` = '$email'";
 			$stmt=$db->prepare($query);	
 			if(!$stmt->execute()){
 				header("Location: ../../login.php?msg=noResetDelete");
@@ -94,7 +90,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['recaptcha_response'])
 			$token = $token . $addToken;
 			$user->token=$token;
 			// $user->addResetPassKey();
-			$query="INSERT INTO `password_reset_temp` (`email`, `token`, `expDate`)
+			$query="INSERT INTO `".$user->prx."password_reset_temp` (`email`, `token`, `expDate`)
 			VALUES ('".$email."', '".$token."', '".$expDate."');";
 			$stmt=$db->prepare($query);
 
@@ -176,7 +172,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['recaptcha_response'])
 
 		// update the post
 		if($user->updatePass()){
-			$query="DELETE FROM password_reset_temp WHERE email = '$email'";
+			$query="DELETE FROM ".$user->prx."password_reset_temp WHERE email = '$email'";
 			$stmt=$db->prepare($query);	
 			if($stmt->execute()){
 				header("Location: ../../login.php?msg=newPass");

@@ -16,14 +16,17 @@ if (!isset($_SESSION['loggedin'])) {
 }
 
 	// loading class
-	include("../class/Database.php");
-	include("../class/File.php");
+	spl_autoload_register('autoloader');
+    function autoloader($class){
+        include("../class/$class.php");
+    }
 
 
-	$database = new Database();
-	$db = $database->getConnection();
+$database = new Database();
+$db = $database->getConnection();
 
-	$file = new File($db);
+include "../inc/class_initialize.php";
+
 
 if(filter_input(INPUT_GET,"idToDel")){
 	

@@ -8,6 +8,7 @@ class Home{
 
     public $id;
     public $name_function;
+    public $prx;
 
 
     // constructor
@@ -19,7 +20,7 @@ class Home{
     function create(){
         // insert query
         $query = "INSERT INTO
-                    " . $this->table_name . "
+                    " .$this->prx. $this->table_name . "
                 SET
                     name_function = :name_function";
     
@@ -55,7 +56,7 @@ class Home{
         $query = "SELECT
                     *
                 FROM
-                    " . $this->table_name . "
+                    " .$this->prx. $this->table_name . "
                 ORDER BY
                     id";  
   
@@ -69,7 +70,7 @@ class Home{
 
     function delete(){
     
-    $query = "DELETE FROM " . $this->table_name . " WHERE name_function = :name_function";
+    $query = "DELETE FROM " .$this->prx. $this->table_name . " WHERE name_function = :name_function";
     
     $stmt = $this->conn->prepare($query);
     $stmt->bindParam(':name_function', $this->name_function);

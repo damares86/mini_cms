@@ -9,21 +9,17 @@
 
 
 // loading class
-include("../class/Database.php");
-include("../class/Settings.php");
-include("../class/Menu.php");
-include("../class/Contact.php");
-include("../class/Verify.php");
-
+spl_autoload_register('autoloader');
+    function autoloader($class){
+        include("../class/$class.php");
+    }
 
 
 $database = new Database();
 $db = $database->getConnection();
 
-$settings = new Settings($db);
-$menu = new Menu($db);
-$contact = new Contact($db);
-$verify = new Verify($db);
+include "../inc/class_initialize.php";
+
 
 if(filter_input(INPUT_POST,"subRegCheck")){
 
@@ -323,7 +319,7 @@ if(isset($_POST['idChildNone'])){
 }else if(filter_input(INPUT_POST,"subDestroy")){
 
 
-	$query = "DROP TABLE `accounts`, `categories`, `color`, `files`, `menu`, `default_page`,`page`, `post`, `roles`, `settings`, `verify`, `contacts`,`password_reset_temp`,`view_home`,`plugins`";
+	$query = "DROP TABLE `".$user->prx."accounts`, `".$user->prx."color`, `".$user->prx."files`, `".$user->prx."menu`, `".$user->prx."default_page`,`".$user->prx."page`, `".$user->prx."roles`, `".$user->prx."settings`, `".$user->prx."verify`, `".$user->prx."contacts`,`".$user->prx."password_reset_temp`,`".$user->prx."view_home`,`".$user->prx."plugins`";
     
 	$stmt = $database->conn->prepare($query);
 

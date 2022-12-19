@@ -15,16 +15,17 @@ if (!isset($_SESSION['loggedin'])) {
     exit;
 }
 
-// loading class
-include("../class/Database.php");
-include("../class/User.php");
-include("../class/Settings.php");
+spl_autoload_register('autoloader');
+    function autoloader($class){
+        include("../class/$class.php");
+    }
+
 
 $database = new Database();
 $db = $database->getConnection();
 
-$user = new User($db);
-$settings = new Settings($db);
+include "../inc/class_initialize.php";
+
 
 $stmt=$settings->showLangAndName();
 $lang=$settings->dashboard_language;
@@ -86,7 +87,7 @@ if(filter_input(INPUT_POST,"query")){
                 <td>'.$last_login.'</td>
                 <td>
 
-                <a href="index.php?man=user&op=edit&idToMod='.$row['id'].'" class="btn btn-warning btn-icon-split">
+                <a href="index.php?man=users&op=edit&idToMod='.$row['id'].'" class="btn btn-warning btn-icon-split">
                             <span class="icon text-white-50">
                                 <i class="fas fa-pen"></i>
                             </span>

@@ -15,15 +15,16 @@ if (!isset($_SESSION['loggedin'])) {
     exit;
 }
 
-	// loading class
-	include("../class/Database.php");
-	include("../class/Colors.php");
+spl_autoload_register('autoloader');
+    function autoloader($class){
+        include("../class/$class.php");
+    }
 
 
-	$database = new Database();
-	$db = $database->getConnection();
+$database = new Database();
+$db = $database->getConnection();
 
-	$colors = new Colors($db);
+include "../inc/class_initialize.php";
 
 if(filter_input(INPUT_GET,"idToDel")){
 	

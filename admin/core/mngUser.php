@@ -16,16 +16,17 @@ if (!isset($_SESSION['loggedin'])) {
 }
 
 	// loading class
-	include("../class/Database.php");
-	include("../class/User.php");
-	include("../class/Role.php");
+	spl_autoload_register('autoloader');
+    function autoloader($class){
+        include("../class/$class.php");
+    }
 
 
-	$database = new Database();
-	$db = $database->getConnection();
+$database = new Database();
+$db = $database->getConnection();
 
-	$user = new User($db);
-	$role = new Role($db);
+include "../inc/class_initialize.php";
+
 
 if(filter_input(INPUT_GET,"idToDel")){
 	

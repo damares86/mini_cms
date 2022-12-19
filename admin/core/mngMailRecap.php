@@ -15,16 +15,17 @@ session_start();
 // }
 
 // loading class
-	include("../class/Database.php");
-	include("../class/Contact.php");
-	include("../class/Verify.php");
+spl_autoload_register('autoloader');
+    function autoloader($class){
+        include("../class/$class.php");
+    }
 
-	
-	$database = new Database();
-	$db = $database->getConnection();
-	
-	$contact = new Contact($db);
-	$verify = new Verify($db);
+
+$database = new Database();
+$db = $database->getConnection();
+
+include "../inc/class_initialize.php";
+
 
 
 	if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['recaptcha_response'])) {
