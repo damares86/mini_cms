@@ -26,23 +26,32 @@
 								<div class="form-group">
 									<label for="host">Server host (es. localhost) <span class="text-danger font-weight-bold">*</span></label>
 									<input id="host" class="form-control" name="host" value="" required autofocus>
+									<div class="invalid-feedback">
+										Server host is required
+							    	</div>
 								</div>
 
 								<div class="form-group">
 									<label for="dbname">Database name <span class="text-danger font-weight-bold">*</span></label>
 									<input id="dbname" class="form-control" name="dbname" value="" required autofocus>
+									<div class="invalid-feedback">
+										Database name is required
+							    	</div>
 								</div>
 
 								<div class="form-group">
 									<label for="username">Database user <span class="text-danger font-weight-bold">*</span></label>
 									<input id="username" class="form-control" name="username" value="" required autofocus>
+									<div class="invalid-feedback">
+										Database user is required
+							    	</div>
 								</div>
 
 								<div class="form-group">
 									<label for="db_password">Database Password <span class="text-danger font-weight-bold">*</span></label>
 									<input id="db_password" type="password" class="form-control" name="db_password" required data-eye>
 								    <div class="invalid-feedback">
-								    	Password is required
+										Database Password is required
 							    	</div>
 								</div>
 								<hr>
@@ -56,6 +65,9 @@
 								<div class="form-group">
 									<label for="email">Your admin email <span class="text-danger font-weight-bold">*</span></label>
 									<input id="email" class="form-control" name="email" value="" required autofocus>
+									<div class="invalid-feedback">
+								    	Email is required
+							    	</div>
 								</div>
 
 								<div class="form-group">

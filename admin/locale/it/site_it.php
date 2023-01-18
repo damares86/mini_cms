@@ -131,6 +131,7 @@ $regpage_gall = "Galleria";
 $regpage_choose_gall = "Scegli una galleria";
 $regpage_post = "Ultimi post";
 $regpage_post_desc = "Mostra gli ultimi tre post dal blog";
+$regpage_quote = "Citazioni";
 $regpage_contacts = "Contatti";
 $regpage_maps = "Posizione sulla mappa";
 $regpage_maps_title = "Inserimento posizione sulla mappa";
