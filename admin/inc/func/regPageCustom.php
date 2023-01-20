@@ -560,7 +560,7 @@ for($i=1;$i<=$counter;$i++){
         }
         if($quotesActive==1){
             ?>
-            <label><input type="radio" name="block<?=$i?>[]" value="q<?=$i?>" <?=$$quotes?>> Quotes</label>
+            <label><input type="radio" name="block<?=$i?>[]" value="q<?=$i?>" <?=$$quotes?>> <?=$regpage_quote?></label>
             <?php
             }
             

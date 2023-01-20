@@ -83,7 +83,14 @@ if(filter_input(INPUT_POST,"query")){
            $output.=' <tr>
                 <td>'.$title.'</td>
                 <td>'.$filename.'</td>
-                <td><a href="../uploads/'.$filename.'">'.$file_filelink.'</a></td>
+                <td>
+                    <a href="../uploads/'.$filename.'" class="btn btn-primary btn-icon-split">
+                        <span class="icon text-white-50">
+                            <i class="fas fa-link"></i>
+                        </span>
+                        <span class="text">'.$file_filelink.'</span>
+                    </a>
+                </td>
                 <td>
 
                 <a href="index.php?man=files&op=edit&idToMod='.$row['id'].'" class="btn btn-warning btn-icon-split">

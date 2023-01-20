@@ -131,6 +131,7 @@ $regpage_gall = "Gallery";
 $regpage_choose_gall = "Choose an existing gallery";
 $regpage_post = "Last posts";
 $regpage_post_desc = "Shows the last three posts from the blog";
+$regpage_quote = "Quotes";
 $regpage_contacts = "Contacts";
 $regpage_maps = "Position on map";
 $regpage_maps_title = "Insert your position on map";

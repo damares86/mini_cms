@@ -103,6 +103,12 @@ if(filter_input(INPUT_POST,"subReg")){
 			}
 			$file->title=$_POST['title'];
 
+
+			if (isset($_POST['fileSel'])&&$_FILES['myfile']['size'] == 0 ){
+				header("Location: ../index.php?man=files&op=show&msg=fileEmpty");
+				exit;
+			}
+
 			if($file->update()){
 				if(isset($_POST['fileSel'])){
 
@@ -117,10 +123,7 @@ if(filter_input(INPUT_POST,"subReg")){
 					$filepath = "../../uploads/". $filename ."";
 					
 					if(unlink($filepath) || !file_exists(($filepath))){
-							if ($_FILES['myfile']['size'] == 0 ){
-								header("Location: ../index.php?man=files&op=show&msg=fileEmpty");
-								exit;
-							}
+
 							$file->file=$_FILES['myfile']['tmp_name'];
 							$file->title=$_POST['title'];
 							$file->filename=$_FILES['myfile']['name'];
