@@ -262,22 +262,22 @@ VALUES ('1','index', '1', 'variant1', '1', '1', '1', 'visual.png', '4')
 
 $db->query("INSERT INTO page 
 (id, page_name, no_mod, layout, header, use_name, use_desc, img, counter) 
-VALUES ('2','Oratorio', '0', 'default', '1', '0', '0', 'visual.png', '1')
+VALUES ('2','oratorio', '0', 'default', '1', '0', '0', 'visual.png', '1')
 ");
 
 $db->query("INSERT INTO page 
 (id, page_name, no_mod, layout, header, use_name, use_desc, img, counter) 
-VALUES ('3','Catechismo', '0', 'default', '1', '0', '0', 'visual.png', '1')
+VALUES ('3','catechismo', '0', 'default', '1', '0', '0', 'visual.png', '1')
 ");
 
 $db->query("INSERT INTO page 
 (id, page_name, no_mod, layout, header, use_name, use_desc, img, counter) 
-VALUES ('4','Parrocchia', '0', 'default', '1', '0', '0', 'visual.png', '1')
+VALUES ('4','parrocchia', '0', 'default', '1', '0', '0', 'visual.png', '1')
 ");
 
 $db->query("INSERT INTO page 
 (id, page_name, no_mod, layout, header, use_name, use_desc, img, counter) 
-VALUES ('5','Storia della chiesa', '0', 'default', '1', '0', '0', 'visual.png', '1')
+VALUES ('5','storia_della_chiesa', '0', 'default', '1', '0', '0', 'visual.png', '1')
 ");
 
 $db->query("INSERT INTO default_page 
@@ -307,22 +307,22 @@ VALUES ('3','Contact', '1','2','1','none')
 
 $db->query("INSERT INTO menu 
 (id, pagename, inmenu,itemorder,parent,childof) 
-VALUES ('4','Oratorio', '1','1','1','none')
+VALUES ('4','oratorio', '1','1','1','none')
 ");
 
 $db->query("INSERT INTO menu 
 (id, pagename, inmenu,itemorder,parent,childof) 
-VALUES ('5','Catechismo', '1','1','1','none')
+VALUES ('5','catechismo', '1','1','1','none')
 ");
 
 $db->query("INSERT INTO menu 
 (id, pagename, inmenu,itemorder,parent,childof) 
-VALUES ('6','Parrocchia', '1','0','1','none')
+VALUES ('6','parrocchia', '1','0','1','none')
 ");
 
 $db->query("INSERT INTO menu 
 (id, pagename, inmenu,itemorder,parent,childof) 
-VALUES ('7','Storia della chiesa', '1','1','0','Parrocchia')
+VALUES ('7','storia_della_chiesa', '1','1','0','Parrocchia')
 ");
 
 $db->query("CREATE TABLE `password_reset_temp` (

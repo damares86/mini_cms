@@ -51,16 +51,13 @@
             while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
         
         extract($row);
+        $str=$page_name;
+        $str = str_replace('_',' ', $str);
+        $str = ucfirst($str);
         ?>
             <tr>
-                <td><?=$page_name?></td>
-                <?php
-                    $str=$page_name;
-                    $str = preg_replace('/\s+/', '_', $str);
-
-                    $str = strtolower($str);
-                ?>
-                <td><a href="../<?=$str?>.php"><?=$allpage_view?></a></td>
+                <td><?=$str?></td>
+                <td><a href="../<?=$page_name?>.php"><?=$allpage_view?></a></td>
                 <td>
                     <?php
                     if($no_mod==0||$page_name=="index"){
