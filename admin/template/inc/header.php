@@ -114,11 +114,7 @@ $page_name=ucfirst($page_name);
 
 $lang="";
 
-if($page_class=="index"||$page_class=="blog"||$page_class=="contact"){
     $page->page_name=$page_class;
-}else{
-    $page->page_name=$page_name;
-}
 
 $default="";
 $showDefault=$page->showAllDefault();

@@ -2,9 +2,9 @@
                 
                 <?php
                
-                $stmt=$page->showByName();
-                $type="custom";
-                $count=$page->counter;
+               $stmt=$page->showByName();
+               $type="custom";
+               $count=$page->counter;
                 ?>
                 <div id="content">
                 <?php

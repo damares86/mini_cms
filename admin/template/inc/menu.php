@@ -19,6 +19,7 @@
         extract($row);
         $class="";
         $name=$row['pagename'];
+        $name=ucfirst($name);
         $str=$row['pagename'];
         $str = preg_replace('/\s+/', '_', $str);
         $str = strtolower($str);
