@@ -887,13 +887,14 @@ class Page{
         FROM " .$this->prx. $this->table_name . "
         WHERE page_name = :page_name
         LIMIT 0,1";      
+
         
         $stmt = $this->conn->prepare( $query );
         $stmt->bindParam(':page_name', $this->page_name);       
         $stmt->execute();
         
         $row = $stmt->fetch(PDO::FETCH_ASSOC);
-
+      
         $this->id = $row['id'];
         $this->page_name = $row['page_name'];
         $this->no_mod = $row['no_mod'];

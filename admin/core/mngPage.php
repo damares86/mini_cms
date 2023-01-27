@@ -163,6 +163,7 @@ if(filter_input(INPUT_POST,"addBlock")){
 		$page->id=$idToMod;
 
 		$page->page_name=$_POST['page_name'];
+
 		if(isset($_POST['use_name'])){
 			$page->use_name=1;
 		}else{
@@ -279,7 +280,10 @@ if(filter_input(INPUT_POST,"addBlock")){
 	$operation=filter_input(INPUT_POST,"operation");
 
 	if($operation=="add"){
-		$page->page_name = $_SESSION['sess_page_name'];
+		$name=$_SESSION['sess_page_name'];
+		$name=strtolower($name);
+		$name=str_replace(" ","_",$name);
+		$page->page_name=$name;
 
 		if($_POST['visual'][0]=="visual_img"){
 			$page->visual_img=1;

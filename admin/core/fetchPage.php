@@ -78,13 +78,12 @@ if(filter_input(INPUT_POST,"query")){
         
             extract($row);
             $str=$page_name;
-            $str = preg_replace('/\s+/', '_', $str);
- 
-            $str = strtolower($str);
+            $str = str_replace('_',' ', $str);
+            $str = ucfirst($str);
            
            $output.=' <tr>
-                <td>'.$page_name.'</td>
-                <td><a href="../'.$str.'.php">'.$allpage_view.'</a></td>
+                <td>'.$str.'</td>
+                <td><a href="../'.$page_name.'.php">'.$allpage_view.'</a></td>
                 <td>
 
                 <a href="index.php?man=page&op=edit&idToMod='.$row["id"].'&type=custom&count='.$row["counter"].'" class="btn btn-warning btn-icon-split">
