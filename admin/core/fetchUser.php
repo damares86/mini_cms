@@ -1,12 +1,9 @@
 <?php
-
-require '../phpDebug/src/Debug/Debug.php';   			// if not using composer
-
+require '../vendor/autoload.php';		// If installed via composer
 $debug = new \bdk\Debug(array(
-    'collect' => true,
-    'output' => true,
+	'collect' => true,
+	'output' => true,
 ));
-
 
 
 session_start();
