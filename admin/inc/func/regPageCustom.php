@@ -114,12 +114,12 @@ if($operation=="add"){
 }else if($operation=="mod"&&!isset($_REQUEST['more'])){
         $page->destroyCheckSessVar();
         $_SESSION["sess_old_page_name"]= $page->page_name;
-
+        
         $name=$page->page_name;
-        $name=preg_replace("/\s+/", "_", $name);
-        $name=strtolower($name);
+        $name=str_replace("_", " ", $name);
+        $name=ucfirst($name);
 
-        $json_file = 'inc/pages/'.$name.'.json';
+        $json_file = 'inc/pages/'.$page->page_name.'.json';
         $data = file_get_contents($json_file);
         $json_arr = json_decode($data, true);
 
@@ -136,7 +136,7 @@ if($operation=="add"){
             <div class="control-group">
                 
                 <div class="controls">
-                    <strong><?php echo $_SESSION["sess_old_page_name"] ?></strong>
+                    <strong><?php echo $name ?></strong>
                     <input type="hidden" name="old_page_name" value="<?= $_SESSION["sess_old_page_name"] ?>" />
 
                     <?php

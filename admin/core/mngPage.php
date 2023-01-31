@@ -415,7 +415,10 @@ if(filter_input(INPUT_POST,"addBlock")){
 		$page->id=$_POST['idToMod'];
 			
 		$page->page_name=$_POST['page_name'];
-		$page->old_page_name = $_POST['old_page_name'];
+		$old_name=$_POST['old_page_name'];
+		$old_name=preg_replace("/\s+/", "_", $old_name);
+		$old_name=strtolower($old_name);
+		$page->old_page_name = $old_name ;
 
 		$new =$_POST['page_name'];
 		$new=preg_replace("/\s+/", "_", $new);
