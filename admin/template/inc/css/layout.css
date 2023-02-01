@@ -122,7 +122,11 @@
 }
 
 .col-12.maps{
-	padding:2em !important;
+	padding:1em !important;
+}
+
+.row.address{
+	margin-top:0 !important;
 }
 
 .maps iframe{
