@@ -1,5 +1,12 @@
 <?php
 
+    ##############    Mini Cms    ##############
+    #                                          #
+    #           A project by DM WebLab         #
+    #   Website: https://www.dmweblab.com      #
+    #   GitHub: https://github.com/damares86   #
+    #                                          #
+    ############################################
 
 class Menu{
 
@@ -20,7 +27,13 @@ class Menu{
         $this->conn = $db;
     }
 
-    // create new role record
+    function showError($stmt){
+        echo "<pre>";
+            print_r($stmt->errorInfo());
+        echo "</pre>";
+    }
+
+    // create new menu record
     function insert(){
         $query="INSERT INTO ".$this->prx."menu SET pagename = :page_name";
         $stmt = $this->conn->prepare($query);
@@ -33,13 +46,6 @@ class Menu{
         }
     
     }
-
-    function showError($stmt){
-        echo "<pre>";
-            print_r($stmt->errorInfo());
-        echo "</pre>";
-    }
-
 
     function update(){
         $query = "UPDATE
@@ -280,7 +286,7 @@ class Menu{
 
 
         $stmt = $this->conn->prepare( $query );
-        $stmt->bindParam(':page_name', $this->page_name);       
+        $stmt->bindParam(':page_name', $this->pagename);       
         $stmt->execute();
         
         $row = $stmt->fetch(PDO::FETCH_ASSOC);

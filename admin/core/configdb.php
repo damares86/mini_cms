@@ -1,17 +1,19 @@
 <?php
-require '../vendor/autoload.php';		// If installed via composer
-$debug = new \bdk\Debug(array(
-	'collect' => true,
-	'output' => true,
-));
 
-/*
-==========================================================================
+// require '../vendor/autoload.php';		// If installed via composer
+// $debug = new \bdk\Debug(array(
+// 	'collect' => true,
+// 	'output' => true,
+// ));
 
-Mini Cms is a project by DM WebLab (https://www.dmweblab.com)
 
-==========================================================================
-*/
+    ##############    Mini Cms    ##############
+    #                                          #
+    #           A project by DM WebLab         #
+    #   Website: https://www.dmweblab.com      #
+    #   GitHub: https://github.com/damares86   #
+    #                                          #
+    ############################################
 
 
 if(!$_POST['dbname']||!$_POST['username']||!$_POST['db_password']||!$_POST['host']||!$_POST['email']||!$_POST['password']){
@@ -38,6 +40,8 @@ if(!is_file('../class/Database.php')){
   fwrite($file_handle, 'public $host="'.$host.'";');
   fwrite($file_handle, "\n");
   fwrite($file_handle, 'public $conn;');
+  fwrite($file_handle, "\n");
+  fwrite($file_handle, 'public $prx;');
   fwrite($file_handle, "\n");
   fwrite($file_handle, "\n");
   fwrite($file_handle, "public function getConnection(){");

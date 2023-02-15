@@ -32,8 +32,8 @@ $stmt =$settings->showSettings();
     <title>Blocca sito</title>
 
         <script src="../../scripts/jquery-ui-1.10.1.custom.min.js" type="text/javascript"></script>
-    <script src="../../assets/vendor/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
-    <link href="../../assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <script src="../../assets/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+    <link href="../../assets/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet">
@@ -43,7 +43,6 @@ $stmt =$settings->showSettings();
            
             <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 
-            <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
 
             <link href="../../assets/css/sb-admin-2.min.css" rel="stylesheet">
             <link href="../../assets/css/custom.css" rel="stylesheet">

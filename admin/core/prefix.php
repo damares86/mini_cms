@@ -1,0 +1,3 @@
+<?php
+$prefix="test__";
+?>

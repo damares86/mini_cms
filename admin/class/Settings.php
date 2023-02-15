@@ -1,4 +1,13 @@
 <?php
+
+    ##############    Mini Cms    ##############
+    #                                          #
+    #           A project by DM WebLab         #
+    #   Website: https://www.dmweblab.com      #
+    #   GitHub: https://github.com/damares86   #
+    #                                          #
+    ############################################
+
 class Settings{
     
     private $conn;
@@ -20,6 +29,13 @@ class Settings{
     public function __construct($db){
         $this->conn = $db;
     }
+
+    function showError($stmt){
+        echo "<pre>";
+            print_r($stmt->errorInfo());
+        echo "</pre>";
+    }
+
 
   
     function update(){
@@ -85,13 +101,6 @@ class Settings{
         }
     
     }
-
-    function showError($stmt){
-        echo "<pre>";
-            print_r($stmt->errorInfo());
-        echo "</pre>";
-    }
-
 
     function showSettings(){
         $query = "SELECT

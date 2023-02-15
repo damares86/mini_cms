@@ -6,6 +6,13 @@
 // 	'output' => true,
 // ));
 
+    ##############    Mini Cms    ##############
+    #                                          #
+    #           A project by DM WebLab         #
+    #   Website: https://www.dmweblab.com      #
+    #   GitHub: https://github.com/damares86   #
+    #                                          #
+    ############################################
 
 
 session_start();

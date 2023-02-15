@@ -60,7 +60,7 @@
             <?php
             } 
 // } 
-$stmt1 = $colors->showAll($from_record_num, $records_per_page);
+$stmt1 = $colors->showAllList();
 $total_rows=$colors->countAll();
 
 

@@ -6,6 +6,15 @@
 // 	'output' => true,
 // ));
 
+    ##############    Mini Cms    ##############
+    #                                          #
+    #           A project by DM WebLab         #
+    #   Website: https://www.dmweblab.com      #
+    #   GitHub: https://github.com/damares86   #
+    #                                          #
+    ############################################
+
+
 if(session_status() == PHP_SESSION_ACTIVE){
   session_destroy();
  }

@@ -1,6 +1,14 @@
 <?php
 
-class Colors{
+    ##############    Mini Cms    ##############
+    #                                          #
+    #           A project by DM WebLab         #
+    #   Website: https://www.dmweblab.com      #
+    #   GitHub: https://github.com/damares86   #
+    #                                          #
+    ############################################
+
+    class Colors{
 
 
     private $conn;
@@ -15,7 +23,14 @@ class Colors{
         $this->conn = $db;
     }
 
-    // create new role record
+    function showError($stmt){
+        echo "<pre>";
+            print_r($stmt->errorInfo());
+        echo "</pre>";
+    }
+
+
+    // create new color record
     function create(){
     
         // insert query
@@ -42,57 +57,6 @@ class Colors{
         }
     
     }
-
-
-    function update(){
-        // insert query
-        $query = "UPDATE
-                    " .$this->prx. $this->table_name . "
-                SET
-                    color = :color
-                WHERE
-                    id = :id";
-    // prepare the query
-        $stmt = $this->conn->prepare($query);
-     
-        // bind the values
-        $stmt->bindParam(':color', $this->color);
-        $stmt->bindParam(':id', $this->id);
-                
-      
-        // execute the query, also check if query was successful
-        if($stmt->execute()){
-            return true;
-
-        }else{
-            $this->showError($stmt);
-            return false;
-        }
-    
-    }
-
-    function showError($stmt){
-        echo "<pre>";
-            print_r($stmt->errorInfo());
-        echo "</pre>";
-    }
-
-
-    function showAll(){
-        //select all data
-        $query = "SELECT
-                    id, color
-                FROM
-                    " .$this->prx. $this->table_name . "
-                ORDER BY
-                    color";  
-  
-        $stmt = $this->conn->prepare( $query );
-        $stmt->execute();
-  
-        return $stmt;
-    }
-
 
     function showAllList(){
         //select all data
@@ -134,15 +98,12 @@ class Colors{
         $row = $stmt->fetch(PDO::FETCH_ASSOC);
     
         $this->id = $row['id'];
-        $this->username = $row['username'];
-        $this->email = $row['email'];
-        $this->rolename = $row['rolename'];
     }
 
 
     function colorExists(){
     
-        // query to check if email exists
+        // query to check if color exists
         $query = "SELECT id, color
                 FROM " .$this->prx. $this->table_name . "
                 WHERE color = ?
@@ -154,7 +115,7 @@ class Colors{
         // sanitize
         $this->color=htmlspecialchars(strip_tags($this->color));
     
-        // bind given email value
+        // bind given color value
         $stmt->bindParam(1, $this->color);
     
         // execute the query
@@ -163,7 +124,6 @@ class Colors{
         // get number of rows
         $num = $stmt->rowCount();
     
-        // if email exists, assign values to object properties for easy access and use for php sessions
         if($num>0){
     
             // get record details / values
@@ -171,17 +131,17 @@ class Colors{
     
             // assign values to object properties
             $this->id = $row['id'];
-            $this->status = $row['color'];
+            $this->color = $row['color'];
     
-            // return true because email exists in the database
+            // return true because color exists in the database
             return true;
         }
     
-        // return false if email does not exist in the database
+        // return false if color does not exist in the database
         return false;
     }
 
- // delete the role
+ // delete the color
  function delete(){
     
     $query = "DELETE FROM " .$this->prx. $this->table_name . " WHERE id = ?";

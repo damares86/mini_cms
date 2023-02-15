@@ -1,17 +1,32 @@
 <?php
 
+    ##############    Mini Cms    ##############
+    #                                          #
+    #           A project by DM WebLab         #
+    #   Website: https://www.dmweblab.com      #
+    #   GitHub: https://github.com/damares86   #
+    #                                          #
+    ############################################
+
 class Role{
 
 
     private $conn;
     private $table_name = "roles";
 
+    public $prx;
     public $id;
     public $rolename;
 
     // constructor
     public function __construct($db){
         $this->conn = $db;
+    }
+
+    function showError($stmt){
+        echo "<pre>";
+            print_r($stmt->errorInfo());
+        echo "</pre>";
     }
 
     // create new role record
@@ -42,11 +57,6 @@ class Role{
     
     }
 
-    function showError($stmt){
-        echo "<pre>";
-            print_r($stmt->errorInfo());
-        echo "</pre>";
-    }
 
 
     function showAll($from_record_num,$records_per_page){
@@ -128,7 +138,7 @@ class Role{
     
             // assign values to object properties
             $this->id = $row['id'];
-            $this->status = $row['rolename'];
+            $this->rolename = $row['rolename'];
     
             // return true because email exists in the database
             return true;

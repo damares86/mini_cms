@@ -1,5 +1,13 @@
 <?php
 
+    ##############    Mini Cms    ##############
+    #                                          #
+    #           A project by DM WebLab         #
+    #   Website: https://www.dmweblab.com      #
+    #   GitHub: https://github.com/damares86   #
+    #                                          #
+    ############################################
+
 class Plugins{
 
 
@@ -24,6 +32,12 @@ class Plugins{
     // constructor
     public function __construct($db){
         $this->conn = $db;
+    }
+
+    function showError($stmt){
+        echo "<pre>";
+            print_r($stmt->errorInfo());
+        echo "</pre>";
     }
 
     // create new role record
@@ -67,11 +81,11 @@ class Plugins{
       
             return true;
        
-    }else{
-        $this->showError($stmt);
-        return false;
+        }else{
+            $this->showError($stmt);
+            return false;
+        }
     }
-}
 
 
 
@@ -126,13 +140,6 @@ class Plugins{
         }
     
     }
-
-    function showError($stmt){
-        echo "<pre>";
-            print_r($stmt->errorInfo());
-        echo "</pre>";
-    }
-
 
     function showAll(){
         

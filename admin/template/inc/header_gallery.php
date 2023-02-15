@@ -102,12 +102,14 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
 <!doctype html>
 <html>
     <head>
-        <!--
-            ==========================================================================
-            
-            Mini Cms is a project by DM WebLab (https://www.dmweblab.com)
-
-            ==========================================================================
+        <!--            
+          ##############    Mini Cms    ##############
+          #                                          #
+          #           A project by DM WebLab         #
+          #   Website: https://www.dmweblab.com      #
+          #   GitHub: https://github.com/damares86   #
+          #                                          #
+          ############################################
         -->
 		<meta charset="utf-8">
 		<title><?=$page_name?> - <?=$site_name?></title>

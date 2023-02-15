@@ -1,5 +1,13 @@
 <?php
 
+    ##############    Mini Cms    ##############
+    #                                          #
+    #           A project by DM WebLab         #
+    #   Website: https://www.dmweblab.com     #
+    #   GitHub: https://github.com/damares86   #
+    #                                          #
+    ############################################
+
 class User{
     
     private $conn;
@@ -20,6 +28,13 @@ class User{
     public function __construct($db){
         $this->conn = $db;
     }
+    
+    function showError($stmt){
+        echo "<pre>";
+            print_r($stmt->errorInfo());
+        echo "</pre>";
+    }
+
 
    // create new user record
     function create(){
@@ -143,8 +158,6 @@ class User{
 
     }
 
-
-
     public function findToken(){
     
         $query = "SELECT * FROM ".$this->prx."password_reset_temp WHERE
@@ -156,12 +169,6 @@ class User{
         $stmt->execute();
         
         return $stmt;
-    }
-
-    function showError($stmt){
-        echo "<pre>";
-            print_r($stmt->errorInfo());
-        echo "</pre>";
     }
 
 

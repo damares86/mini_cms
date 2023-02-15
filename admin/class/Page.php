@@ -1,5 +1,13 @@
 <?php
 
+    ##############    Mini Cms    ##############
+    #                                          #
+    #           A project by DM WebLab         #
+    #   Website: https://www.dmweblab.com      #
+    #   GitHub: https://github.com/damares86   #
+    #                                          #
+    ############################################
+
 class Page{
 
 
@@ -40,6 +48,13 @@ class Page{
     public function __construct($db){
         $this->conn = $db;
     }
+
+    function showError($stmt){
+        echo "<pre>";
+            print_r($stmt->errorInfo());
+        echo "</pre>";
+    }
+
 
     function initCheckSessVar(){
         
@@ -279,78 +294,71 @@ class Page{
 
     
     function insert(){
-    if($this->type=="default"){
-        $this->table="default_page";
-    }else if($this->type=="custom"){
-        $this->table="page";
-    }
-    
-    // insert query
-    $query = "INSERT INTO
-        " .$this->prx. $this->table_name . "
-        SET
-        page_name = :page_name,
-        no_mod = :no_mod,
-        layout = :layout,
-        header = :header,
-        use_name = :use_name,
-        use_desc = :use_desc,
-        counter = :counter";
-     
-        // prepare the query
-        $stmt = $this->conn->prepare($query);
+        if($this->type=="default"){
+            $this->table="default_page";
+        }else if($this->type=="custom"){
+            $this->table="page";
+        }
         
-        // bind the values
-        $stmt->bindParam(':page_name', $this->page_name);       
-        $stmt->bindParam(':no_mod', $this->no_mod);       
-        $stmt->bindParam(':layout', $this->layout);    
-        $stmt->bindParam(':header', $this->header);    
-        $stmt->bindParam(':use_name', $this->use_name);    
-        $stmt->bindParam(':use_desc', $this->use_desc);    
-        $stmt->bindParam(':counter', $this->counter);    
+        // insert query
+        $query = "INSERT INTO
+            " .$this->prx. $this->table_name . "
+            SET
+            page_name = :page_name,
+            no_mod = :no_mod,
+            layout = :layout,
+            header = :header,
+            use_name = :use_name,
+            use_desc = :use_desc,
+            counter = :counter";
         
-        // execute the query, also check if query was successful
-        if($stmt->execute()){
+            // prepare the query
+            $stmt = $this->conn->prepare($query);
+            
+            // bind the values
+            $stmt->bindParam(':page_name', $this->page_name);       
+            $stmt->bindParam(':no_mod', $this->no_mod);       
+            $stmt->bindParam(':layout', $this->layout);    
+            $stmt->bindParam(':header', $this->header);    
+            $stmt->bindParam(':use_name', $this->use_name);    
+            $stmt->bindParam(':use_desc', $this->use_desc);    
+            $stmt->bindParam(':counter', $this->counter);    
+            
+            // execute the query, also check if query was successful
+            if($stmt->execute()){
 
-            if($this->visual_img==1){
-                $this->uploadPhoto();
-            }else if($this->visual_gall==1){
-                $query2 = "UPDATE " .$this->prx. $this->table_name . "
-                        SET
-                        img = :img
-                        WHERE page_name = :page_name";
+                if($this->visual_img==1){
+                    $this->uploadPhoto();
+                }else if($this->visual_gall==1){
+                    $query2 = "UPDATE " .$this->prx. $this->table_name . "
+                            SET
+                            img = :img
+                            WHERE page_name = :page_name";
 
-                // prepare the query
-                $stmt2 = $this->conn->prepare($query2);
-                // bind the values
-                $stmt2->bindParam(':img', $this->img);
-                $stmt2->bindParam(':page_name', $this->page_name);  
-                
-                $stmt2->execute();
-            }
+                    // prepare the query
+                    $stmt2 = $this->conn->prepare($query2);
+                    // bind the values
+                    $stmt2->bindParam(':img', $this->img);
+                    $stmt2->bindParam(':page_name', $this->page_name);  
+                    
+                    $stmt2->execute();
+                }
 
-            $query1="INSERT INTO ".$this->prx."menu SET pagename = :page_name";
-            $stmt1 = $this->conn->prepare($query1);
-            $stmt1->bindParam(':page_name', $this->page_name);       
-            if($stmt1->execute()){
-                return true;
+                $query1="INSERT INTO ".$this->prx."menu SET pagename = :page_name";
+                $stmt1 = $this->conn->prepare($query1);
+                $stmt1->bindParam(':page_name', $this->page_name);       
+                if($stmt1->execute()){
+                    return true;
+                }else{
+                    $this->showError($stmt);
+                    return false;
+                }
             }else{
                 $this->showError($stmt);
                 return false;
             }
-        }else{
-            $this->showError($stmt);
-            return false;
-        }
-    
-    }
-
-    function showError($stmt){
-        echo "<pre>";
-            print_r($stmt->errorInfo());
-        echo "</pre>";
-    }
-
+        
+      }
 
     function update(){
 
@@ -574,19 +582,12 @@ class Page{
                 if(!in_array($file_type, $allowed_file_types)){
                     header("Location: ../index.php?man=page&op=show&type=".$this->type."&msg=formatImgErr");
                     exit;
-                    // $file_upload_error_messages.="<div>Only .zip, .doc, .docx,.pdf files are allowed.</div>";
-                    //exit;
                 }
                 
                 if(file_exists($target_file)){
                     // $file_upload_error_messages.="File already exists";
                 }
                 
-                // make sure submitted file is not too large, can't be larger than 5 MB
-                // if($_FILES['myfile']['size'] > (5120000)){
-                    //     $file_upload_error_messages.="<div>Doc must be less than 5 MB in size.</div>";
-                    // }
-                    
                     // make sure the 'uploads' folder exists
                     // if not, create it
                     if(!is_dir($target_directory)){
@@ -649,19 +650,11 @@ class Page{
                         if(!in_array($file_type, $allowed_file_types)){
                             header("Location: ../index.php?man=page&op=show&msg=formatImgErr");
                             exit;
-                            // $file_upload_error_messages.="<div>Only .zip, .doc, .docx,.pdf files are allowed.</div>";
-                            //exit;
                         }
                         
                         if(file_exists($target_file)){
                             // $file_upload_error_messages.="File already exists";
                         }
-                        
-                        // make sure submitted file is not too large, can't be larger than 5 MB
-                        // if($_FILES['myfile']['size'] > (5120000)){
-                            //     $file_upload_error_messages.="<div>Doc must be less than 5 MB in size.</div>";
-                            // }
-                            
                             // make sure the 'uploads' folder exists
                             // if not, create it
                             if(!is_dir($target_directory)){
@@ -699,19 +692,12 @@ class Page{
                         if(!in_array($file_type, $allowed_file_types)){
                             header("Location: ../index.php?man=page&op=show&msg=formatImgErr");
                             exit;
-                            // $file_upload_error_messages.="<div>Only .zip, .doc, .docx,.pdf files are allowed.</div>";
-                            //exit;
                         }
                         
                         if(file_exists($target_file)){
                             // $file_upload_error_messages.="File already exists";
                         }
-                        
-                        // make sure submitted file is not too large, can't be larger than 5 MB
-                        // if($_FILES['myfile']['size'] > (5120000)){
-                            //     $file_upload_error_messages.="<div>Doc must be less than 5 MB in size.</div>";
-                            // }
-                            
+                                                    
                             // make sure the 'uploads' folder exists
                             // if not, create it
                             if(!is_dir($target_directory)){

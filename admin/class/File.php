@@ -1,5 +1,13 @@
 <?php
 
+    ##############    Mini Cms    ##############
+    #                                          #
+    #           A project by DM WebLab         #
+    #   Website: https://www.dmweblab.com      #
+    #   GitHub: https://github.com/damares86   #
+    #                                          #
+    ############################################
+
 class File{
 
 
@@ -12,6 +20,7 @@ class File{
     public $category_id;
     public $rolename;
     public $file;
+    public $image;
     public $operation;
     public $prx;
 
@@ -33,33 +42,25 @@ class File{
             if(!in_array($file_type, $allowed_file_types)){
                 header("Location: ../index.php?man=partfiles&op=show&msg=formatErr");
 		        exit;
-                // $file_upload_error_messages.="<div>Only .zip, .doc, .docx,.pdf files are allowed.</div>";
-                //exit;
             }
             
             if(file_exists($target_file)){
                 $file_upload_error_messages.="File already exists";
             }
+
+            // make sure the 'uploads' folder exists
+            // if not, create it
+            if(!is_dir($target_directory)){
+                $oldmask = umask(0);
+                mkdir($target_directory, 0777, true);
+                umask($oldmask);
+            }else{
+                $oldmask = umask(0);
+                chmod($target_directory, 0777);
+                umask($oldmask);
+            }
             
-            // make sure submitted file is not too large, can't be larger than 5 MB
-            // if($_FILES['myfile']['size'] > (5120000)){
-                //     $file_upload_error_messages.="<div>Doc must be less than 5 MB in size.</div>";
-                // }
-                
-                // make sure the 'uploads' folder exists
-                // if not, create it
-                if(!is_dir($target_directory)){
-                    $oldmask = umask(0);
-                    mkdir($target_directory, 0777, true);
-                    umask($oldmask);
-                }else{
-                    $oldmask = umask(0);
-                    chmod($target_directory, 0777);
-                    umask($oldmask);
-                }
-            
-            if(empty($file_upload_error_messages)){
-                
+            if(empty($file_upload_error_messages)){                
                 
                 // the physical file on a temporary uploads directory on the server
                 $file = $_FILES['myfile']['tmp_name'];
@@ -87,11 +88,7 @@ class File{
                         }
                             // prepare the query
                             $stmt = $this->conn->prepare($query);
-                            
-           ;               
-                    // sanitize
-                    // $this->rolename=htmlspecialchars(strip_tags($this->title));
-                
+                       
                     // bind the values
                     $stmt->bindParam(':filename', $this->filename);
                     $stmt->bindParam(':title', $this->title);
@@ -120,11 +117,11 @@ class File{
     function showAll($from_record_num, $records_per_page,$where){
         //select all data
         $query = "SELECT
-        *
-    FROM
-        " .$this->prx. $this->table_name . " ".$where."
-    ORDER BY
-        id 
+            *
+        FROM
+            " .$this->prx. $this->table_name . " ".$where."
+        ORDER BY
+            id 
         LIMIT
         {$from_record_num}, {$records_per_page}";  
   
@@ -165,7 +162,6 @@ class File{
         // now, if image is not empty, try to upload the image
         if($this->image){
     
-            // sha1_file() function is used to make a unique file name
             $target_directory = "../uploads/img/";
             $target_file = $target_directory . $this->image;
             $file_type = pathinfo($target_file, PATHINFO_EXTENSION);

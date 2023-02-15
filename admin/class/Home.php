@@ -1,5 +1,13 @@
 <?php
 
+    ##############    Mini Cms    ##############
+    #                                          #
+    #           A project by DM WebLab         #
+    #   Website: https://www.dmweblab.com      #
+    #   GitHub: https://github.com/damares86   #
+    #                                          #
+    ############################################
+
 class Home{
 
 
@@ -16,7 +24,15 @@ class Home{
         $this->conn = $db;
     }
 
-    // create new role record
+
+    function showError($stmt){
+        echo "<pre>";
+            print_r($stmt->errorInfo());
+        echo "</pre>";
+    }
+
+
+    // create new home record
     function create(){
         // insert query
         $query = "INSERT INTO
@@ -39,16 +55,7 @@ class Home{
             $this->showError($stmt);
             return false;
         }
-}
-
-   
-
-    function showError($stmt){
-        echo "<pre>";
-            print_r($stmt->errorInfo());
-        echo "</pre>";
     }
-
 
     function showAll(){
         

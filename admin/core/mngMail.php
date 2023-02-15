@@ -1,10 +1,18 @@
 <?php
 
-require '../vendor/autoload.php';		// If installed via composer
-$debug = new \bdk\Debug(array(
-	'collect' => true,
-	'output' => true,
-));
+// require '../vendor/autoload.php';		// If installed via composer
+// $debug = new \bdk\Debug(array(
+// 	'collect' => true,
+// 	'output' => true,
+// ));
+
+    ##############    Mini Cms    ##############
+    #                                          #
+    #           A project by DM WebLab         #
+    #   Website: https://www.dmweblab.com      #
+    #   GitHub: https://github.com/damares86   #
+    #                                          #
+    ############################################
 
 
 session_start();

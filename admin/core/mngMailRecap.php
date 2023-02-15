@@ -6,12 +6,16 @@
 // 	'output' => true,
 // ));
 
+    ##############    Mini Cms    ##############
+    #                                          #
+    #           A project by DM WebLab         #
+    #   Website: https://www.dmweblab.com      #
+    #   GitHub: https://github.com/damares86   #
+    #                                          #
+    ############################################
+
 
 session_start();
-// if (!isset($_SESSION['loggedin'])) {
-// 	header('Location: ../');
-//     exit;
-// }
 
 // loading class
 spl_autoload_register('autoloader');

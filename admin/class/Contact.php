@@ -1,5 +1,13 @@
 <?php
 
+    ##############    Mini Cms    ##############
+    #                                          #
+    #           A project by DM WebLab         #
+    #   Website: https://www.dmweblab.com      #
+    #   GitHub: https://github.com/damares86   #
+    #                                          #
+    ############################################
+
 class Contact{
 
 
@@ -16,7 +24,13 @@ class Contact{
         $this->conn = $db;
     }
 
-    // create new role record
+    function showError($stmt){
+        echo "<pre>";
+            print_r($stmt->errorInfo());
+        echo "</pre>";
+    }
+
+    // create new contact record
     function create(){
     
         // insert query
@@ -30,8 +44,8 @@ class Contact{
         $stmt = $this->conn->prepare($query);
     
         // sanitize
-        $this->color=htmlspecialchars(strip_tags($this->label));
-        $this->color=htmlspecialchars(strip_tags($this->email));
+        $this->label=htmlspecialchars(strip_tags($this->label));
+        $this->email=htmlspecialchars(strip_tags($this->email));
     
         // bind the values
         $stmt->bindParam(':label', $this->label);
@@ -57,7 +71,7 @@ class Contact{
                     email = :email
                 WHERE
                     id = :id";
-    // prepare the query
+        // prepare the query
         $stmt = $this->conn->prepare($query);
      
         // bind the values
@@ -76,13 +90,6 @@ class Contact{
     
     }
 
-    function showError($stmt){
-        echo "<pre>";
-            print_r($stmt->errorInfo());
-        echo "</pre>";
-    }
-
-
     function showAll(){
         
         //select all data
@@ -99,6 +106,7 @@ class Contact{
         return $stmt;
     }
 
+    // show only contacts for the form, not the noreply mail
     function showAllContacts(){
         
         //select all data

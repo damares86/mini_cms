@@ -726,8 +726,8 @@ for($i=1;$i<=$counter;$i++){
             <label for="block<?=$i?>_bg"><?=$regpage_background?></label>
             <?php
                 $color = new Colors($db);
-                $stmt = $color->showAllList();
-                $total_rows = $color->countAll();
+                $stmt = $colors->showAllList();
+                $total_rows = $colors->countAll();
               
                 ?>
             <select name="block<?=$i?>_bg">
@@ -754,8 +754,8 @@ for($i=1;$i<=$counter;$i++){
             <label for="block<?=$i?>_text"><?=$regpage_text?></label>
             <?php
                 $color = new Colors($db);
-                $stmt = $color->showAllList();
-                $total_rows = $color->countAll();
+                $stmt = $colors->showAllList();
+                $total_rows = $colors->countAll();
               
                 ?>
             <select name="block<?=$i?>_text">

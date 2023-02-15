@@ -1,5 +1,5 @@
-  <!-- Footer -->
-  <footer class="sticky-footer bg-white">
+            <!-- Footer -->
+            <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
                         <span>Mini Cms <?=$mc_version?> - a project by  &nbsp; <a href="https://www.dmweblab.com"><img src="assets/img/dmweblab_logo.png"></a> - Theme by <a href="https://startbootstrap.com/" target="_blank">Start Bootstrap</a></span>
@@ -7,9 +7,9 @@
                 </div>
             </footer>
             <!-- End of Footer -->
-			<script src="scripts/my-login.js"></script>
+            <script src="scripts/my-login.js"></script>
 
-            </div>
+        </div>
         <!-- End of Content Wrapper -->
 
     </div>
@@ -41,21 +41,18 @@
     </div>
 
     <!-- Bootstrap core JavaScript-->
-    <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/bootstrap/js/bootstrap.bundle.min.js"></script>
 
     <!-- Core plugin JavaScript-->
-    <script src="assets/vendor/jquery-easing/jquery.easing.min.js"></script>
+    <script src="assets/jquery-easing/jquery.easing.min.js"></script>
 
     <!-- Custom scripts for all pages-->
     <script src="scripts/sb-admin-2.min.js"></script>
-    
-    <script src="scripts/flot/jquery.flot.js" type="text/javascript"></script>
-    <script src="scripts/flot/jquery.flot.resize.js" type="text/javascript"></script>
-    <script src="scripts/datatables/jquery.dataTables.js" type="text/javascript"></script>
     <script type="text/javascript" src="scripts/farbtastic/farbtastic.js"></script>
     
     <script src="scripts/common.js" type="text/javascript"></script>
 
+    <!-- function to manange the block addition in regPage -->
 <script type="text/javascript">
 function postForm() {
     <?php

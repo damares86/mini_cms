@@ -1,5 +1,13 @@
 <?php
 
+    ##############    Mini Cms    ##############
+    #                                          #
+    #           A project by DM WebLab         #
+    #   Website: https://www.dmweblab.com      #
+    #   GitHub: https://github.com/damares86   #
+    #                                          #
+    ############################################
+
 class Verify{
 
 
@@ -9,6 +17,7 @@ class Verify{
     public $id;
     public $public;
     public $secret;
+    public $active;
     public $prx;
 
     // constructor
@@ -16,32 +25,10 @@ class Verify{
         $this->conn = $db;
     }
 
-    // create new role record
-    function create(){
-    
-        // insert query
-        $query = "INSERT INTO
-                    " .$this->prx. $this->table_name . "
-                SET
-                    public = :public,
-                    secret = :secret";
-    
-        // prepare the query
-        $stmt = $this->conn->prepare($query);
-    
-    
-        // bind the values
-        $stmt->bindParam(':public', $this->public);
-        $stmt->bindParam(':secret', $this->secret);
-        
-        // execute the query, also check if query was successful
-        if($stmt->execute()){
-            return true;
-        }else{
-            $this->showError($stmt);
-            return false;
-        }
-    
+    function showError($stmt){
+        echo "<pre>";
+            print_r($stmt->errorInfo());
+        echo "</pre>";
     }
 
 
@@ -102,13 +89,6 @@ class Verify{
         }
     
     }
-
-    function showError($stmt){
-        echo "<pre>";
-            print_r($stmt->errorInfo());
-        echo "</pre>";
-    }
-
 
     function showAll(){
         

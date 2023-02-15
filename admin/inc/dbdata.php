@@ -2,6 +2,16 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+	<!-- 
+	##############    Mini Cms    ##############
+    #                                          #
+    #           A project by DM WebLab         #
+    #   Website: https://www.dmweblab.com      #
+    #   GitHub: https://github.com/damares86   #
+    #                                          #
+    ############################################
+
+	 -->
 	<meta charset="utf-8">
 	<meta name="author" content="DM WebLab">
 	<meta name="viewport" content="width=device-width,initial-scale=1">
